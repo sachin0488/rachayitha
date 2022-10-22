@@ -4,7 +4,7 @@ import rootReducer from "./root.reducer";
 import storage from "../utility/webStore";
 import { FLUSH, REHYDRATE, PAUSE } from "redux-persist";
 import { PERSIST, PURGE, REGISTER } from "redux-persist";
-import { setAuthToken } from "../api/default";
+import { setAuthToken } from "../api/global.api";
 
 const persistConfig = {
   key: "root",

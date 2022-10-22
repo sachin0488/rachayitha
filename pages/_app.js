@@ -40,14 +40,12 @@ const MyApp = (props) => {
       <PersistGate loading={null} persistor={persistor}>
         <CacheProvider value={emotionCache}>
           <MUIThemeProvider theme={lightTheme}>
-            <ThemeProvider theme={lightTheme}>
-              <SnackbarProvider Components={snackbarComponents}>
-                <QueryClientProvider client={queryClient}>
-                  <CssBaseline />
-                  <Component {...pageProps} />
-                </QueryClientProvider>
-              </SnackbarProvider>
-            </ThemeProvider>
+            <SnackbarProvider Components={snackbarComponents}>
+              <QueryClientProvider client={queryClient}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </QueryClientProvider>
+            </SnackbarProvider>
           </MUIThemeProvider>
         </CacheProvider>
       </PersistGate>
