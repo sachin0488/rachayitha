@@ -1,0 +1,107 @@
+{
+  "potential_starlet": [
+    {
+      "id": 1,
+      "title": "The Legend of Futian",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_upper_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_12_knfdht.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_12_knfdht.png"
+    },
+    {
+      "id": 2,
+      "title": "God- Like Extraction",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.3,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666469480/image_13_1_gfutjk.png",
+      "side_upper_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_20_hxn0po.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_13_amtpaj.png"
+    },
+    {
+      "id": 2,
+      "title": "I Was Skeleton...",
+      "fantasy": "Eastern Fantasy",
+      "rating": 5.1,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_234_a83ptj.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/Rectangle_145_okrvua.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_12_knfdht.png"
+    },
+    {
+      "id": 3,
+      "title": "After reincarnating i became a ....",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_upper_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_12_knfdht.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_20_hxn0po.png"
+    },
+    {
+      "id": 4,
+      "title": "After reincarnating i became a ....",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_upper_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_12_knfdht.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666447326/image_13_amtpaj.png"
+    },
+    {
+      "id": 5,
+      "title": "God- Like Extraction",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_upper_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png",
+      "side_middle_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_174_bqcrub.png",
+      "side_lower_img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_237_khof5z.png"
+    }
+  ],
+  "weekly_feature": [
+    {
+      "id": 1,
+      "title": "The Legend of Futian",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png"
+    },
+    {
+      "id": 1,
+      "title": "God- Like Extraction",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.3,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666469480/image_13_1_gfutjk.png"
+    },
+    {
+      "id": 1,
+      "title": "I Was Skeleton...",
+      "fantasy": "Eastern Fantasy",
+      "rating": 5.1,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_234_a83ptj.png"
+    },
+    {
+      "id": 1,
+      "title": "After reincarnating i became a ....",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png"
+    },
+    {
+      "id": 1,
+      "title": "After reincarnating i became a ....",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666469480/image_13_1_gfutjk.png"
+    },
+    {
+      "id": 1,
+      "title": "God- Like Extraction",
+      "fantasy": "Eastern Fantasy",
+      "rating": 4.5,
+      "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png"
+    }
+  ]
+}
