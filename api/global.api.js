@@ -3,7 +3,7 @@ import axios from "axios";
 import { MutationCache, QueryCache } from "@tanstack/react-query";
 
 // const API_URL = "http://127.0.0.1:8000/";
-const API_URL = "http://localhost:4000/stories";
+const API_URL = "http://localhost:4000/weekly_feature";
 
 export const ApiInstance = axios.create({
   baseURL: `${API_URL}`,

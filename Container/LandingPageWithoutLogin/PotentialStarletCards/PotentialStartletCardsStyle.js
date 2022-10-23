@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { Typography, Box } from "@mui/material";
 import React from "react";
+import styled from "@emotion/styled";
+import { Box, Typography } from "@mui/material";
 import breakPoints from "../../../styles/mediaQuery/breakPoints";
 
 const {
@@ -17,65 +17,74 @@ const {
 
 const Wrapper = styled(Box)`
   width: 100%;
-  min-height: 460px;
+  min-height: 540px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: start;
-  gap: 50px;
+
   padding: 0px 107px;
-  background-image: linear-gradient(
-    180deg,
-    rgba(102, 59, 203, 0) 0%,
-    rgba(102, 59, 203, 0.1) 52.4%,
-    rgba(102, 59, 203, 0) 100%
-  );
 `;
 const SubWrapper = styled(Box)`
   @media ${laptopM} {
-    padding: 0px 0px 0 143px;
+    padding: 0px 0px 0 130px;
   }
   @media ${laptopS} {
     padding: 0px 0px 0 100px;
   }
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 10px;
   width: 95%;
   height: 100%;
 `;
-const WeeklyContent = styled.div`
+const PotentialStarletContent = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  gap: 20px;
+  padding: 0px 10px;
   align-items: center;
   width: 100%;
-  height: 379px;
+  height: 464px;
   overflow-x: auto;
   &::-webkit-scrollbar {
     width: 0;
   }
 `;
-const WeeklyContentCard = styled(Box)`
+const PotentialStarletContentCard = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
   &:hover {
     border-color: #582ac5;
+    transform: scale(1.03, 1.03);
+    transition-duration: 0.7s;
   }
   gap: 10px;
-  padding: 16px 14px;
-  width: 250px;
-  height: 349px;
+  padding: 10px 19px;
+  min-width: 410px;
+  height: 95%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+  border-radius: 20px;
   border: 1px solid #ffffff;
+`;
+const AlignRatingAndFantasySection = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const RatingAndFantasySection = styled(Box)`
   display: flex;
   justify-content: space-between;
-  gap: 80px;
-  align-items: flex-end;
+  width: 70%;
+  gap: 90px;
+  align-items: flex-start;
   padding: 0px 5px 0px 5px;
 `;
 const Fantasy = styled(Box)`
@@ -84,16 +93,16 @@ const Fantasy = styled(Box)`
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-
   color: #8d8e99;
 `;
 
 const Rating = styled(Box)`
+  color: #5225c2;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 18px;
+  line-height: 21px;
 `;
 
 const Heading = styled(Typography)`
@@ -102,54 +111,74 @@ const Heading = styled(Typography)`
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
-  color: ${(props) => props.theme.palette.headingColor.main};
+  color: #18144a;
 `;
 const StoryHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
-  font-size: 22px;
-  line-height: 26px;
-  height: 63px;
-  color: black;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+
   width: 100%;
-  padding: 16px 5px;
+  padding: 0px 6px 10px 6px;
 `;
 const Img = styled(Box)`
   border-radius: 10px;
+  width: 100%;
+  height: 330px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+`;
+const LeftSideImgContent = styled(Box)`
+  border-radius: 10px;
   width: 221px;
   height: 219px;
-  position: relative;
-`;
-const AddIcon = styled(Box)`
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 8px;
-  right: 7px;
-  border-radius: 999px;
-  z-index: 10;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
-const WeeklyFeaturedCardsStyles = () => {
+const RightSideImgContent = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+`;
+// const AddIcon = styled(Box)`
+//   background: #ffffff;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+//   position: absolute;
+//   top: 8px;
+//   right: 7px;
+//   border-radius: 999px;
+//   z-index: 10;
+//   width: 30px;
+//   height: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+const PotentialStartletCardsStyle = () => {
   return {
     Wrapper,
-    WeeklyContent,
+    PotentialStarletContent,
     Heading,
     SubWrapper,
-    WeeklyContentCard,
+    PotentialStarletContentCard,
     RatingAndFantasySection,
     StoryHeading,
     Img,
     Fantasy,
     Rating,
-    AddIcon,
+    RightSideImgContent,
+    LeftSideImgContent,
+    AlignRatingAndFantasySection,
   };
 };
 
-export default WeeklyFeaturedCardsStyles;
+export default PotentialStartletCardsStyle;
