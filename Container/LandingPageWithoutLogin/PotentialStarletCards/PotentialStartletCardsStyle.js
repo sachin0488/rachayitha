@@ -15,7 +15,7 @@ const {
   desktop,
 } = breakPoints();
 
-const Wrapper = styled(Box)`
+const PotentialCardWrapper = styled(Box)`
   width: 100%;
   min-height: 540px;
   display: flex;
@@ -27,10 +27,10 @@ const Wrapper = styled(Box)`
 `;
 const SubWrapper = styled(Box)`
   @media ${laptopM} {
-    padding: 0px 0px 0 130px;
+    padding: 0px 0px 0 122px;
   }
   @media ${laptopS} {
-    padding: 0px 0px 0 100px;
+    padding: 0px 0px 0 93px;
   }
   display: flex;
   flex-direction: column;
@@ -165,7 +165,7 @@ const RightSideImgContent = styled(Box)`
 
 const PotentialStartletCardsStyle = () => {
   return {
-    Wrapper,
+    PotentialCardWrapper,
     PotentialStarletContent,
     Heading,
     SubWrapper,

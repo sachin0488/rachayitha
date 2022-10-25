@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const PotentialStarletCards = () => {
   const {
-    Wrapper,
     PotentialStarletContent,
     Heading,
     SubWrapper,
@@ -31,40 +30,38 @@ const PotentialStarletCards = () => {
   }
   return (
     <>
-      <Wrapper>
-        <SubWrapper>
-          <Heading>Potential Starlet</Heading>
-          <PotentialStarletContent>
-            {data?.map((story) => (
-              <PotentialStarletContentCard>
-                <Img>
-                  {" "}
-                  <LeftSideImgContent>
-                    <Image
-                      src={story.img_url}
-                      height="305px"
-                      width="255px"
-                      layout="fixed"
-                    />
-                  </LeftSideImgContent>
-                  <RightSideImgContent>
-                    <Image src={story?.img_url} height="95px" width="101px" />
-                    <Image src={story.img_url} height="95px" width="101px" />
-                    <Image src={story.img_url} height="95px" width="101px" />
-                  </RightSideImgContent>
-                </Img>
-                <StoryHeading>{story.title}</StoryHeading>
-                <AlignRatingAndFantasySection>
-                  <RatingAndFantasySection>
-                    <Fantasy>{story.fantasy}</Fantasy>
-                    <Rating>{story.rating}</Rating>
-                  </RatingAndFantasySection>
-                </AlignRatingAndFantasySection>
-              </PotentialStarletContentCard>
-            ))}
-          </PotentialStarletContent>
-        </SubWrapper>
-      </Wrapper>
+      <SubWrapper>
+        <Heading>Potential Starlet</Heading>
+        <PotentialStarletContent>
+          {data?.map((story) => (
+            <PotentialStarletContentCard>
+              <Img>
+                {" "}
+                <LeftSideImgContent>
+                  <Image
+                    src={story.img_url}
+                    height="305px"
+                    width="255px"
+                    layout="fixed"
+                  />
+                </LeftSideImgContent>
+                <RightSideImgContent>
+                  <Image src={story?.img_url} height="95px" width="101px" />
+                  <Image src={story.img_url} height="95px" width="101px" />
+                  <Image src={story.img_url} height="95px" width="101px" />
+                </RightSideImgContent>
+              </Img>
+              <StoryHeading>{story.title}</StoryHeading>
+              <AlignRatingAndFantasySection>
+                <RatingAndFantasySection>
+                  <Fantasy>{story.fantasy}</Fantasy>
+                  <Rating>{story.rating}</Rating>
+                </RatingAndFantasySection>
+              </AlignRatingAndFantasySection>
+            </PotentialStarletContentCard>
+          ))}
+        </PotentialStarletContent>
+      </SubWrapper>
     </>
   );
 };

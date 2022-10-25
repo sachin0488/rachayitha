@@ -23,7 +23,12 @@ const Wrapper = styled(Box)`
   align-items: flex-start;
   justify-content: start;
   gap: 50px;
-  padding: 0px 107px;
+  @media ${laptopM} {
+    padding: 0px 107px 0 170px;
+  }
+  @media ${laptopS} {
+    padding: 0px 107px 0 127px;
+  }
   background-image: linear-gradient(
     180deg,
     rgba(102, 59, 203, 0) 0%,
@@ -33,16 +38,16 @@ const Wrapper = styled(Box)`
 `;
 const SubWrapper = styled(Box)`
   @media ${laptopM} {
-    padding: 0px 0px 0 143px;
+    padding: 0px 0px 0 80px;
   }
   @media ${laptopS} {
-    padding: 0px 0px 0 100px;
+    padding: 0px 0px 0 80px;
   }
 
   width: 95%;
   height: 100%;
 `;
-const WeeklyContent = styled.div`
+const WeeklyContent = styled(Box)`
   display: flex;
   justify-content: space-between;
   gap: 30px;

@@ -103,5 +103,62 @@
       "rating": 4.5,
       "img_url": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png"
     }
+  ],
+  "landing_banner_page_section": [
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_146_gddpm5.png"
+    },
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png"
+    },
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_170_l2jvj5.png"
+    }
+  ],
+  "landing_banner_page_section1": [
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_170_l2jvj5.png"
+    },
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_84_uutsyo.png"
+    },
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png"
+    },
+    {
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
+    }
+  ],
+  "top_collection": [
+    {
+      "title": "Supreme Magus",
+      "rating": 4.8,
+      "fantasy": "Fantasy",
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_170_l2jvj5.png"
+    },
+    {
+      "title": "My Vampire System",
+      "rating": 3.9,
+      "fantasy": "Eastern Fantasy",
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_84_uutsyo.png"
+    },
+    {
+      "title": "Shadow Slave",
+      "rating": 5.0,
+      "fantasy": "Video Games",
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png"
+    },
+    {
+      "title": "White Online",
+      "rating": 4.0,
+      "fantasy": "Video Games",
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
+    },
+    {
+      "title": "Shadow Slave",
+      "rating": 5.0,
+      "fantasy": "Video Games",
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png"
+    }
   ]
 }

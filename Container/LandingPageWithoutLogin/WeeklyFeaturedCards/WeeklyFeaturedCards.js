@@ -31,39 +31,37 @@ const WeeklyFeaturedCards = () => {
   }
   return (
     <>
-      <Wrapper>
-        <SubWrapper>
-          <Heading>Weekly Featured</Heading>
-          <WeeklyContent>
-            {data?.map((story) => (
-              <WeeklyContentCard>
-                <Img>
-                  {" "}
-                  <Image
-                    src={story.img_url}
-                    height="222px"
-                    width="222px"
-                    sx={{
-                      position: "absolute",
+      <SubWrapper>
+        <Heading>Weekly Featured</Heading>
+        <WeeklyContent>
+          {data?.map((story) => (
+            <WeeklyContentCard>
+              <Img>
+                {" "}
+                <Image
+                  src={story.img_url}
+                  height="222px"
+                  width="222px"
+                  sx={{
+                    position: "absolute",
 
-                      top: "0",
-                      left: "0",
-                    }}
-                  />
-                  <AddIcon>
-                    <IoIosAddCircle size={26} color="#069CF6" />
-                  </AddIcon>
-                </Img>
-                <StoryHeading>{story.title}</StoryHeading>
-                <RatingAndFantasySection>
-                  <Fantasy>{story.fantasy}</Fantasy>
-                  <Rating>{story.rating}</Rating>
-                </RatingAndFantasySection>
-              </WeeklyContentCard>
-            ))}
-          </WeeklyContent>
-        </SubWrapper>
-      </Wrapper>
+                    top: "0",
+                    left: "0",
+                  }}
+                />
+                <AddIcon>
+                  <IoIosAddCircle size={26} color="#069CF6" />
+                </AddIcon>
+              </Img>
+              <StoryHeading>{story.title}</StoryHeading>
+              <RatingAndFantasySection>
+                <Fantasy>{story.fantasy}</Fantasy>
+                <Rating>{story.rating}</Rating>
+              </RatingAndFantasySection>
+            </WeeklyContentCard>
+          ))}
+        </WeeklyContent>
+      </SubWrapper>
     </>
   );
 };
