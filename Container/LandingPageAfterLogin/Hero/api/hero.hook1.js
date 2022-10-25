@@ -1,13 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPotentialStarletCard } from "./potentialStarletCard.api";
+import { fetchBannerSectionImg1 } from "./hero.api";
 
-const potentialStartletCardHook = () => {
+export const useHero1 = () => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
-    ["use-potential"],
-    fetchPotentialStarletCard
+    ["use-hero1"],
+    fetchBannerSectionImg1
   );
   return { data, isLoading, isError, error, isFetching };
 };
-
-export default potentialStartletCardHook;

@@ -3,7 +3,7 @@ import potentialStartletCardHook from "../PotentialStarletCards/api/potentialSta
 import NewArrivalCardsStyle from "./NewArrivalCardsStyle";
 import Image from "next/image";
 
-const NewArrivalsCards = () => {
+const NewArrivalCardMiniComp = () => {
   const {
     NewArrivalContent,
     Heading,
@@ -28,7 +28,6 @@ const NewArrivalsCards = () => {
   return (
     <>
       <SubWrapper>
-        <Heading>New Arrivals</Heading>
         <NewArrivalContent>
           {data?.map((story) => (
             <NewArrivalContentCard>
@@ -53,4 +52,4 @@ const NewArrivalsCards = () => {
   );
 };
 
-export default NewArrivalsCards;
+export default NewArrivalCardMiniComp;

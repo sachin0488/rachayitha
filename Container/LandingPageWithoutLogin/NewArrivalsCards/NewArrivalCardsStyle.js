@@ -15,7 +15,7 @@ const {
   desktop,
 } = breakPoints();
 
-const Wrapper = styled(Box)`
+const ArrivalCardWrapper = styled(Box)`
   width: 100%;
   min-height: 520px;
   display: flex;
@@ -128,7 +128,7 @@ const AddIcon = styled(Box)`
 
 const NewArrivalCardsStyle = () => {
   return {
-    Wrapper,
+    ArrivalCardWrapper,
     NewArrivalContent,
     Heading,
     SubWrapper,

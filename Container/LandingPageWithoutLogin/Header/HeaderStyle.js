@@ -28,7 +28,7 @@ const LogoContainer = styled.div`
   justify-content: start;
   padding: 0 30px;
   align-items: center;
-  width: 50%;
+
   height: 100%;
   font-size: 40px;
   gap: 14px;

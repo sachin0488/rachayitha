@@ -20,7 +20,7 @@ const Header = () => {
     <>
       <Wrapper>
         <HeaderContent>
-          <LogoContainer>
+          <LogoContainer style={{ width: "50%" }}>
             <Image src={LogoImage} sx={{ width: "55px", height: "55px" }} />
             <LogoTitle>E-Read</LogoTitle>
           </LogoContainer>

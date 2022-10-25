@@ -1,13 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPotentialStarletCard } from "./potentialStarletCard.api";
+import { fetchTopCollection } from "./topCollection.api";
 
-const potentialStartletCardHook = () => {
+export const useTopCollection = () => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
-    ["use-potential"],
-    fetchPotentialStarletCard
+    ["use-top-collection"],
+    fetchTopCollection
   );
   return { data, isLoading, isError, error, isFetching };
 };
-
-export default potentialStartletCardHook;

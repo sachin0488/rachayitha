@@ -10,7 +10,6 @@ const MainContainer = styled.div`
   align-items: center;
   background-color: white;
   color: black;
-  gap: 50px;
 `;
 
 const LandingPageWithoutLoginStyle = () => {
