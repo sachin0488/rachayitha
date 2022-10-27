@@ -41,26 +41,32 @@ const GetStartedInputField = styled(Box)`
   justify-content: space-between;
   align-items: center;
 `;
-const InputField = styled(TextField)`
+
+const InputField = styled.input`
   width: 400px;
   height: 100%;
   padding: 0 15px;
   font-weight: 300;
   font-size: 15px;
   line-height: 18px;
+  background-color: transparent;
+  border: 0px;
+  font-weight: 600;
+  font-size: 18px;
+  color: gray;
+  outline: 0;
 `;
+
 const GetStartedButton = styled(Button)`
   width: 200px;
   border-radius: 0px 10px 10px 0px;
   height: 100%;
   font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 26px;
-  color: white;
-  background-color: ${(props) => props.theme.palette.secondary.main};
-  &:hover {
-    pointer-events: none;
+  font-size: 19px;
+  line-height: 1.5;
+  padding-top: 8px;
+  && {
+    font-weight: 500;
   }
 `;
 

@@ -16,14 +16,13 @@ const HeaderMiddleSection = () => {
       <SubHeading>India’s Largest online Reading Platform</SubHeading>
       <GetStartedInputField>
         <InputField
-          id="outlined-basic"
-          label="Write your email here.."
+          placeholder="Write your email here.."
           variant="standard"
           InputProps={{
             disableUnderline: true,
           }}
         />
-        <GetStartedButton>GET STARTED</GetStartedButton>
+        <GetStartedButton color="primary" variant="contained">GET STARTED</GetStartedButton>
       </GetStartedInputField>
     </Wrapper>
   );

@@ -46,7 +46,7 @@ const Footer = () => {
           <ImpSectionButton>Hindi</ImpSectionButton>
         </ImpSection>
         <ImpSection>
-          <Heading>Change Website Language</Heading>
+          <Heading>Follow us</Heading>
           <SocialMediaIconContainer>
             <BsFacebook size={35} color="#673CCB" />
             <FaInstagramSquare size={35} color="#673CCB" />
