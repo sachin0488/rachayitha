@@ -1,39 +1,63 @@
 import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import {
+  laptop,
+  laptopS,
+  mobileL,
+  tabletS,
+} from "../../../styles/mediaQuery/breakPoints";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 790px;
+  height: 500px;
   background: linear-gradient(
     180deg,
     rgba(102, 59, 203, 0.1) 0%,
     rgba(102, 59, 203, 0) 100%
   );
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   gap: 10px;
+  @media ${tabletS} {
+    height: 790px;
+    justify-content: start;
+  }
 `;
 
 const HeroLeftSideSection = styled.div`
-  width: 45%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   gap: 23px;
-  padding: 0px 100px;
+  padding: 0px 50px;
+  @media ${tabletS} {
+    align-items: start;
+    padding: 0px 50px;
+    width: 50%;
+  }
+  @media ${laptopS} {
+    padding: 0px 100px;
+    width: 45%;
+  }
 `;
 
 const Heading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 900;
-  font-size: 55px;
-  line-height: 64px;
-
+  font-size: 44px;
+  line-height: 55px;
+  text-align: center;
+  @media ${laptopS} {
+    font-weight: 900;
+    font-size: 55px;
+    line-height: 64px;
+  }
   color: ${(props) => props.theme.palette.headingColor.main};
   max-width: 540px;
 `;
@@ -42,8 +66,12 @@ const SubHeading = styled(Typography)`
   font-style: normal;
   font-family: "Roboto";
   font-weight: 300;
-  font-size: 25px;
-  line-height: 29px;
+  font-size: 20px;
+  line-height: 25px;
+  @media ${laptopS} {
+    font-size: 25px;
+    line-height: 29px;
+  }
   text-align: center;
   color: ${(props) => props.theme.palette.primary.main};
 `;
@@ -93,9 +121,16 @@ const HeroRightSideSection = styled(Box)`
   justify-content: start;
   gap: 15px;
   align-items: center;
-  width: 55%;
+
   height: 100%;
   overflow: hidden;
+
+  @media ${tabletS} {
+    width: 50%;
+  }
+  @media ${laptopS} {
+    width: 55%;
+  }
 `;
 
 const BannerImgContainer = styled(Box)`
@@ -106,6 +141,10 @@ const BannerImgContainer = styled(Box)`
   align-items: flex-start;
   height: 100%;
   width: 215px;
+  display: none;
+  @media ${tabletS} {
+    display: block;
+  }
 `;
 
 const ImgContainer = styled(Box)`

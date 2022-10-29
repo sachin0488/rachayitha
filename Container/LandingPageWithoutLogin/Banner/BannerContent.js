@@ -22,7 +22,11 @@ const BannerContent = ({ heading, img, subHeading, width, height }) => {
       </LeftSideContent>
       <RightSideContent>
         <Card>
-          <Image src={img} sx={{ width: { width }, height: { height } }} />
+          <Image
+            src={img}
+            objectFit="contain"
+            sx={{ width: { width }, height: { height } }}
+          />
         </Card>
       </RightSideContent>
     </>

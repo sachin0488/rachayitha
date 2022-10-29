@@ -21,7 +21,7 @@ const LandingPageWithoutLogin = () => {
       <MainContainer sx={{ gap: "50px" }}>
         <Header />
         <Banner />
-        <Wrapper>
+        <Wrapper padding="100px 0px 0px 0px">
           {" "}
           <WeeklyFeaturedCards />
         </Wrapper>

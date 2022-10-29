@@ -1,6 +1,7 @@
 import React from "react";
 import potentialStartletCardHook from "../PotentialStarletCards/api/potentialStartletCard.hook";
 import NewArrivalCardsStyle from "./NewArrivalCardsStyle";
+
 import Image from "next/image";
 
 const NewArrivalCardMiniComp = () => {
@@ -12,6 +13,7 @@ const NewArrivalCardMiniComp = () => {
     RatingAndFantasySection,
     StoryHeading,
     Img,
+    ImgWrapper,
     Fantasy,
   } = NewArrivalCardsStyle();
 
@@ -31,15 +33,15 @@ const NewArrivalCardMiniComp = () => {
         <NewArrivalContent>
           {data?.map((story) => (
             <NewArrivalContentCard>
-              <Img>
+              <ImgWrapper>
                 {" "}
-                <Image
+                <Img
                   src={story.img_url}
                   height="331px"
                   width="282px"
                   layout="fixed"
                 />
-              </Img>
+              </ImgWrapper>
               <StoryHeading>{story.title}</StoryHeading>
               <RatingAndFantasySection>
                 <Fantasy>{story.fantasy}</Fantasy>

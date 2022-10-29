@@ -1,10 +1,11 @@
 import React from "react";
 
 const size = {
-  mobileS: "370px",
+  mobileS: "360px",
   mobileM: "475px",
   mobileL: "625px",
-  tablet: "768px",
+  tabletS: "768px",
+  tablet: "868px",
   laptop: "1024px",
   laptopS: "1280px",
   laptopM: "1500px",
@@ -12,28 +13,13 @@ const size = {
   desktop: "1900px",
 };
 
-const breakPoints = () => {
-  const mobileS = `(min-width: ${size.mobileS})`;
-  const mobileM = `(min-width: ${size.mobileM})`;
-  const mobileL = `(min-width: ${size.mobileL})`;
-  const tablet = `(min-width: ${size.tablet})`;
-  const laptop = `(min-width: ${size.laptop})`;
-  const laptopS = `(min-width: ${size.laptopS})`;
-  const laptopM = `(min-width: ${size.laptopM})`;
-  const laptopL = `(min-width: ${size.laptopL})`;
-  const desktop = `(min-width: ${size.desktop})`;
-
-  return {
-    mobileS,
-    mobileM,
-    mobileL,
-    tablet,
-    laptop,
-    laptopS,
-    laptopM,
-    laptopL,
-    desktop,
-  };
-};
-
-export default breakPoints;
+export const mobileS = `(min-width: ${size.mobileS})`;
+export const mobileM = `(min-width: ${size.mobileM})`;
+export const mobileL = `(min-width: ${size.mobileL})`;
+export const tabletS = `(min-width: ${size.tabletS})`;
+export const tablet = `(min-width: ${size.tablet})`;
+export const laptop = `(min-width: ${size.laptop})`;
+export const laptopS = `(min-width: ${size.laptopS})`;
+export const laptopM = `(min-width: ${size.laptopM})`;
+export const laptopL = `(min-width: ${size.laptopL})`;
+export const desktop = `(min-width: ${size.desktop})`;

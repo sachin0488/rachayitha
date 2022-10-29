@@ -7,6 +7,7 @@ import { SnackbarProvider } from "notistack";
 import { CacheProvider, ThemeProvider } from "@emotion/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as MUIThemeProvider, CssBaseline } from "@mui/material";
+import ExploreProvider from "../Providers/ExploreProvider";
 
 import snackbarComponents from "../utility/snackbar.components";
 import createEmotionCache from "../utility/createEmotionCache";
@@ -43,7 +44,9 @@ const MyApp = (props) => {
             <SnackbarProvider Components={snackbarComponents}>
               <QueryClientProvider client={queryClient}>
                 <CssBaseline />
-                <Component {...pageProps} />
+                <ExploreProvider>
+                  <Component {...pageProps} />
+                </ExploreProvider>
               </QueryClientProvider>
             </SnackbarProvider>
           </MUIThemeProvider>
