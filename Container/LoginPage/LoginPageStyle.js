@@ -38,6 +38,15 @@ const HighlightedHeading = styled.span`
   line-height: 135.5%;
   color: #683dcc;
 `;
+const Form = styled.form`
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 49px;
+`;
 const LoginProviderWrapper = styled(Box)`
   width: 100%;
   height: 190px;
@@ -58,6 +67,25 @@ const LoginProviderCard = styled(Box)`
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
   border-radius: 8px;
   cursor: pointer;
+`;
+
+const LoginButton = styled(Button)`
+  width: 100%;
+  height: 78px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+  border-radius: 8px;
+  background-color: ${(props) => props.theme.palette.primary.main};
+  color: white;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 139%;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.theme.palette.primary.main};
+  }
 `;
 
 const LoginProviderName = styled(Typography)`
@@ -197,6 +225,7 @@ const LoginPageStyle = () => {
     HighlightedHeading,
     LoginProviderCard,
     LoginProviderName,
+    Form,
     LoginProviderWrapper,
     Divider,
     DividerMiddlePart,
@@ -212,6 +241,7 @@ const LoginPageStyle = () => {
     ForgetPasswordButton,
     RegisterContainer,
     RegisterButton,
+    LoginButton,
   };
 };
 

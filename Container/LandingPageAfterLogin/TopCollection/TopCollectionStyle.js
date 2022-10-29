@@ -1,6 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
+import {
+  laptop,
+  laptopM,
+  laptopS,
+  mobileL,
+  mobileS,
+  tablet,
+  tabletS,
+} from "../../../styles/mediaQuery/breakPoints";
 
 const TopCollectionWrapper = styled(Box)`
   width: 100%;
@@ -10,14 +19,42 @@ const TopCollectionWrapper = styled(Box)`
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
-  padding: 90px 110px 30px 110px;
+  padding: 90px 50px 30px 50px;
+  @media ${laptopS} {
+    padding: 90px 110px 30px 110px;
+  }
   gap: 22px;
 `;
 
 const SectionWrapper = styled(Box)`
   width: 100%;
 
-  padding: 40px 0px;
+  /* padding: 40px 0px; */
+  @media ${mobileS} {
+    padding: 0px 10px 0px 30px;
+    margin-bottom: 40px;
+  }
+  @media ${mobileL} {
+    padding: 0px 20px 0px 45px;
+    margin-bottom: 40px;
+  }
+  @media ${tabletS} {
+    padding: 0px 30px 0px 60px;
+    height: 520px;
+    margin-bottom: 40px;
+  }
+  @media ${tablet} {
+    padding: 0px 30px 0px 70px;
+  }
+  @media ${laptop} {
+    padding: 0px 30px 0px 70px;
+  }
+  @media ${laptopS} {
+    padding: 0px 20px 0 50px;
+  }
+  @media ${laptopM} {
+    padding: 0px 40px;
+  }
 `;
 
 const TopCollectionList = styled(Box)`
@@ -67,7 +104,10 @@ const IndividualCard = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 48px;
+  gap: 18px;
+  @media ${laptopS} {
+    gap: 48px;
+  }
   width: 100%;
   min-height: 140px;
 

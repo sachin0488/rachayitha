@@ -11,6 +11,7 @@ const NewArrivalsCards = () => {
     NewArrivalContentCard,
     RatingAndFantasySection,
     StoryHeading,
+    ImgWrapper,
     Img,
     Fantasy,
   } = NewArrivalCardsStyle();
@@ -32,15 +33,10 @@ const NewArrivalsCards = () => {
         <NewArrivalContent>
           {data?.map((story) => (
             <NewArrivalContentCard>
-              <Img>
+              <ImgWrapper>
                 {" "}
-                <Image
-                  src={story.img_url}
-                  height="331px"
-                  width="282px"
-                  layout="fixed"
-                />
-              </Img>
+                <Img src={story.img_url} />
+              </ImgWrapper>
               <StoryHeading>{story.title}</StoryHeading>
               <RatingAndFantasySection>
                 <Fantasy>{story.fantasy}</Fantasy>

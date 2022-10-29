@@ -2,8 +2,7 @@ import React from "react";
 import LoginPageStyle from "./LoginPageStyle";
 import { ImFacebook } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
-import { MdEmail } from "react-icons/md";
-import { FaKey } from "react-icons/fa";
+import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
   const {
@@ -14,22 +13,11 @@ const LoginPage = () => {
     LoginProviderCard,
     LoginProviderName,
     LoginProviderWrapper,
-    Divider,
-    DividerMiddlePart,
-    DividerSidePart,
-    LoginThroughEmailAndPassword,
-    EmailPasswordLabelAndInput,
-    InputField,
-    Label,
-    CheckboxAndForgetPass,
-    RememberMeCheckbox,
-    RememberMeContainer,
-    RememberMeText,
-    ForgetPasswordButton,
 
     RegisterContainer,
     RegisterButton,
   } = LoginPageStyle();
+
   return (
     <>
       <LoginWrapper>
@@ -51,53 +39,7 @@ const LoginPage = () => {
               </LoginProviderName>
             </LoginProviderCard>
           </LoginProviderWrapper>
-          <LoginProviderWrapper>
-            <Divider>
-              <DividerSidePart />
-              <DividerMiddlePart>OR</DividerMiddlePart>
-              <DividerSidePart />
-            </Divider>
-            <LoginThroughEmailAndPassword>
-              <MdEmail color="black" size={38} />
-              <EmailPasswordLabelAndInput>
-                <Label>Email</Label>
-
-                <InputField type="email" placeholder="example@gmail.com" />
-              </EmailPasswordLabelAndInput>
-            </LoginThroughEmailAndPassword>
-            <LoginThroughEmailAndPassword>
-              <FaKey color="black" size={38} />
-              <EmailPasswordLabelAndInput>
-                <Label>Password</Label>
-
-                <InputField type="password" placeholder="*********" />
-              </EmailPasswordLabelAndInput>
-            </LoginThroughEmailAndPassword>
-          </LoginProviderWrapper>
-          <LoginProviderWrapper padding="22px 0px">
-            <CheckboxAndForgetPass>
-              <RememberMeContainer>
-                <RememberMeCheckbox />
-                <RememberMeText>Remember me</RememberMeText>
-              </RememberMeContainer>
-              <ForgetPasswordButton variant="text">
-                Forgot Password?
-              </ForgetPasswordButton>
-            </CheckboxAndForgetPass>
-            <LoginProviderCard sx={{ backgroundColor: "#683DCC" }}>
-              <h1
-                style={{
-                  color: "white",
-                  fontWeight: "400",
-                  fontSize: "22px",
-                  lineHeight: "139%",
-                  cursor: "pointer",
-                }}
-              >
-                Login
-              </h1>
-            </LoginProviderCard>
-          </LoginProviderWrapper>
+          <LoginForm />
           <LoginProviderWrapper>
             <RegisterContainer>
               <h1

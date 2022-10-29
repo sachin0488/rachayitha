@@ -34,6 +34,17 @@ const RightSideRegisterUpperSubWrapper = styled(Box)`
   background-color: #000000;
   opacity: 0.7;
 `;
+const RightSideRegisterText = styled(Typography)`
+  top: 692px;
+  left: 81px;
+  position: absolute;
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 42px;
+  text-align: center;
+`;
 const RegisterContainer = styled(Box)`
   margin-top: 30px;
   width: 100%;
@@ -44,6 +55,25 @@ const RegisterContainer = styled(Box)`
 
   align-items: flex-start;
   gap: 95px;
+`;
+
+const RegisterFooter = styled(Box)`
+  width: 499px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
+const FooterText = styled(Typography)`
+  font-family: "Inria Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 14px;
+  color: #6b6b6b;
 `;
 
 const RegisterUpperContainer = styled(Box)`
@@ -62,6 +92,7 @@ const RegisterLowerContainer = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   gap: 40px;
+  padding: 0px 0px 80px 0px;
 `;
 const Heading = styled(Typography)`
   font-family: "Inria Sans";
@@ -97,8 +128,8 @@ const RegisterButton = styled(Button)`
 `;
 const Img = styled.img`
   width: 100%;
-  min-height: 100vh;
-  object-fit: fill;
+  min-height: 99.1vh;
+  object-fit: cover;
 `;
 
 const RegisterPageStyle = () => {
@@ -114,6 +145,9 @@ const RegisterPageStyle = () => {
     RightSideRegisterSubWrapper,
     RightSideRegisterUpperSubWrapper,
     Img,
+    FooterText,
+    RegisterFooter,
+    RightSideRegisterText,
   };
 };
 

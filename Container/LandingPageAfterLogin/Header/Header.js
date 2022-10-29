@@ -8,6 +8,8 @@ import Ranking from "../../../public/ranking.svg";
 import Create from "../../../public/create.svg";
 import Library from "../../../public/library1.svg";
 import Shorts from "../../../public/shorts.svg";
+import { FiMenu } from "react-icons/fi";
+import Link from "next/link";
 
 const Header = () => {
   const {
@@ -19,6 +21,8 @@ const Header = () => {
     SearchInputDiv,
     MenuItem,
     Button,
+    Img,
+    ImgCont,
   } = HeaderStyle();
   return (
     <>
@@ -32,28 +36,41 @@ const Header = () => {
           <SearchInput placeholder="Search novels, poems and many more" />
         </SearchInputDiv>
         <NavMenu>
-          <MenuItem>
-            <Image src={Explore} />
-            <Button>Explore</Button>
-          </MenuItem>
-          <MenuItem>
-            <Image src={Ranking} />
-            <Button>Ranking</Button>
-          </MenuItem>
-          <MenuItem>
-            <Image src={Create} />
-            <Button>Create</Button>
-          </MenuItem>
-          <MenuItem>
-            <Image src={Library} />
-            <Button>Library</Button>
-          </MenuItem>
-          <MenuItem>
-            <Image src={Shorts} />
-            <Button>Shorts</Button>
-          </MenuItem>
+          <ImgCont>
+            <FiMenu />
+          </ImgCont>
+          <Link href="/explore">
+            <MenuItem>
+              <Image src={Explore} />
+              <Button>Explore</Button>
+            </MenuItem>
+          </Link>
+          <Link href="/ranking">
+            <MenuItem>
+              <Image src={Ranking} />
+              <Button>Ranking</Button>
+            </MenuItem>
+          </Link>
+          <Link href="/">
+            <MenuItem>
+              <Image src={Create} />
+              <Button>Create</Button>
+            </MenuItem>
+          </Link>
+          <Link href="/">
+            <MenuItem>
+              <Image src={Library} />
+              <Button>Library</Button>
+            </MenuItem>
+          </Link>
+          <Link href="/">
+            <MenuItem>
+              <Image src={Shorts} />
+              <Button>Shorts</Button>
+            </MenuItem>
+          </Link>
         </NavMenu>
-        <Image src={Logo} />
+        <Img src={Logo} />
       </HeaderContent>
     </>
   );

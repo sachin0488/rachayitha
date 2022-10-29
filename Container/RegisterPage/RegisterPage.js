@@ -5,6 +5,7 @@ import LogoImage from "../../public/logo.svg";
 import Image from "next/image";
 import LoginPageStyle from "../LoginPage/LoginPageStyle";
 import RegisterPageImg from "../../public/registerPageImg.png";
+
 const RegisterPage = () => {
   const {
     ParagraphText,
@@ -18,6 +19,9 @@ const RegisterPage = () => {
     RightSideRegisterSubWrapper,
     RightSideRegisterUpperSubWrapper,
     Img,
+    FooterText,
+    RegisterFooter,
+    RightSideRegisterText,
   } = RegisterPageStyle();
   const { RegisterButton: Button, RegisterContainer: RegisterCont } =
     LoginPageStyle();
@@ -64,11 +68,19 @@ const RegisterPage = () => {
                 </Button>
               </RegisterCont>
             </RegisterLowerContainer>
+            <RegisterFooter>
+              <FooterText>ALL RIGHTS RESERVED</FooterText>
+              <FooterText>TERMS OF SERVICE</FooterText>
+            </RegisterFooter>
           </RegisterContainer>
         </LeftSideRegisterSubWrapper>
         <RightSideRegisterSubWrapper>
           <Img src="https://res.cloudinary.com/dk6twrko6/image/upload/v1666682387/pexels-michael-burrows-7129054_1_m7mm1b.jpg" />
-          <RightSideRegisterUpperSubWrapper></RightSideRegisterUpperSubWrapper>
+          <RightSideRegisterUpperSubWrapper>
+            <RightSideRegisterText>
+              Writer is simply a photographer of Thoughts.
+            </RightSideRegisterText>
+          </RightSideRegisterUpperSubWrapper>
         </RightSideRegisterSubWrapper>
       </RegisterWrapper>
     </>

@@ -14,13 +14,17 @@ const WeeklyFeaturedCards = () => {
     WeeklyContentCard,
     RatingAndFantasySection,
     StoryHeading,
-    Img,
+    ImgBox,
     Fantasy,
     Rating,
     AddIcon,
+    Img,
   } = WeeklyFeaturedCardsStyles();
 
   const { data, isLoading, isError, error, isFetching } = useStoryApi();
+
+  const url_img =
+    "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png";
 
   if (isLoading) {
     return <h1>LOADING ... </h1>;
@@ -36,15 +40,14 @@ const WeeklyFeaturedCards = () => {
         <WeeklyContent>
           {data?.map((story) => (
             <WeeklyContentCard>
-              <Img>
+              <ImgBox>
                 {" "}
-                <Image
+                <Img
                   src={story.img_url}
-                  height="222px"
-                  width="222px"
-                  sx={{
+                  width="full"
+                  style={{
                     position: "absolute",
-
+                    objectFit: "cover",
                     top: "0",
                     left: "0",
                   }}
@@ -52,7 +55,7 @@ const WeeklyFeaturedCards = () => {
                 <AddIcon>
                   <IoIosAddCircle size={26} color="#069CF6" />
                 </AddIcon>
-              </Img>
+              </ImgBox>
               <StoryHeading>{story.title}</StoryHeading>
               <RatingAndFantasySection>
                 <Fantasy>{story.fantasy}</Fantasy>

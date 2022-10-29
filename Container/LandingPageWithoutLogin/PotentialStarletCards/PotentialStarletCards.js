@@ -11,12 +11,14 @@ const PotentialStarletCards = () => {
     PotentialStarletContentCard,
     RatingAndFantasySection,
     StoryHeading,
+    ImgBox,
     Img,
     Fantasy,
     Rating,
     LeftSideImgContent,
     RightSideImgContent,
     AlignRatingAndFantasySection,
+    SmallImg,
   } = PotentialStartletCardsStyle();
   const { data, isLoading, isError, error, isFetching } =
     potentialStartletCardHook();
@@ -35,22 +37,17 @@ const PotentialStarletCards = () => {
         <PotentialStarletContent>
           {data?.map((story) => (
             <PotentialStarletContentCard>
-              <Img>
+              <ImgBox>
                 {" "}
                 <LeftSideImgContent>
-                  <Image
-                    src={story.img_url}
-                    height="305px"
-                    width="255px"
-                    layout="fixed"
-                  />
+                  <Img src={story.img_url} />
                 </LeftSideImgContent>
                 <RightSideImgContent>
-                  <Image src={story?.img_url} height="95px" width="101px" />
-                  <Image src={story.img_url} height="95px" width="101px" />
-                  <Image src={story.img_url} height="95px" width="101px" />
+                  <SmallImg src={story?.img_url} />
+                  <SmallImg src={story.img_url} />
+                  <SmallImg src={story.img_url} />
                 </RightSideImgContent>
-              </Img>
+              </ImgBox>
               <StoryHeading>{story.title}</StoryHeading>
               <AlignRatingAndFantasySection>
                 <RatingAndFantasySection>

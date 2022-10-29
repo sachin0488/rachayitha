@@ -1,29 +1,51 @@
 import styled from "@emotion/styled";
 import { Typography, Box } from "@mui/material";
 
-import breakPoints from "../../../styles/mediaQuery/breakPoints";
-
-const {
+import {
   mobileS,
   mobileM,
   mobileL,
+  tabletS,
   tablet,
   laptop,
-  laptopL,
-  laptopM,
   laptopS,
+  laptopM,
+  laptopL,
   desktop,
-} = breakPoints();
+} from "../../../styles/mediaQuery/breakPoints";
 
 const ArrivalCardWrapper = styled(Box)`
   width: 100%;
-  min-height: 520px;
+  height: 430px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: start;
   gap: 50px;
-  padding: 0px 107px;
+  margin: 50px 0px;
+  @media ${mobileS} {
+    padding: 0px 10px 0px 30px;
+  }
+  @media ${mobileL} {
+    padding: 0px 20px 0px 45px;
+  }
+  @media ${tabletS} {
+    padding: 0px 30px 0px 60px;
+    height: 520px;
+  }
+  @media ${tablet} {
+    padding: 0px 30px 0px 70px;
+  }
+  @media ${laptop} {
+    padding: 0px 30px 0px 70px;
+  }
+  @media ${laptopS} {
+    padding: 0px 60px 0 90px;
+  }
+  @media ${laptopM} {
+    padding: 0px 107px;
+  }
+
   background-image: linear-gradient(
     180deg,
     rgba(102, 59, 203, 0) 0%,
@@ -32,11 +54,11 @@ const ArrivalCardWrapper = styled(Box)`
   );
 `;
 const SubWrapper = styled(Box)`
-  @media ${laptopM} {
-    padding: 0px 0px 0 123px;
-  }
   @media ${laptopS} {
     padding: 0px 0px 0 100px;
+  }
+  @media ${laptopM} {
+    padding: 0px 0px 0 123px;
   }
 
   width: 95%;
@@ -48,7 +70,10 @@ const NewArrivalContent = styled.div`
   gap: 20px;
   align-items: center;
   width: 100%;
-  height: 475px;
+  height: 95%;
+  @media ${laptopM} {
+    height: 475px;
+  }
   overflow-x: auto;
   &::-webkit-scrollbar {
     width: 0;
@@ -63,8 +88,12 @@ const NewArrivalContentCard = styled(Box)`
     border-color: #582ac5;
   }
   gap: 10px;
-  padding: 16px 14px;
-  min-width: 312px;
+  padding: 16px 6px;
+  min-width: 265px;
+  @media ${tablet} {
+    padding: 16px 14px;
+    min-width: 312px;
+  }
   height: 98%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -106,10 +135,18 @@ const StoryHeading = styled(Typography)`
   width: 100%;
   padding: 5px 5px;
 `;
-const Img = styled(Box)`
+const ImgWrapper = styled(Box)`
   border-radius: 10px;
-  width: 282px;
-  height: 331px;
+  width: 235px;
+  height: 285px;
+  @media ${tablet} {
+    width: 282px;
+    height: 331px;
+  }
+`;
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 const AddIcon = styled(Box)`
   background: #ffffff;
@@ -135,9 +172,9 @@ const NewArrivalCardsStyle = () => {
     NewArrivalContentCard,
     RatingAndFantasySection,
     StoryHeading,
-    Img,
+    ImgWrapper,
     Fantasy,
-
+    Img,
     AddIcon,
   };
 };

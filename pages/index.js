@@ -4,8 +4,8 @@ import LandingPageWithoutLogin from "../Container/LandingPageWithoutLogin/Landin
 export default function Home() {
   return (
     <>
-      {/* <LandingPageAfterLogin /> */}
       <LandingPageWithoutLogin />
+      {/* <LandingPageAfterLogin /> */}
     </>
   );
 }

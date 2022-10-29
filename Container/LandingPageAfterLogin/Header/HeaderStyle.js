@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Box, Typography, TextField } from "@mui/material";
+import {
+  laptop,
+  laptopM,
+  laptopS,
+  mobileL,
+  tablet,
+  tabletS,
+} from "../../../styles/mediaQuery/breakPoints";
 
 const HeaderContent = styled.div`
   display: flex;
@@ -9,15 +17,33 @@ const HeaderContent = styled.div`
   align-items: center;
   height: 100px;
   width: 100%;
-  padding: 0px 70px;
+  padding: 0px 15px;
+  @media ${tabletS} {
+    padding: 0px 30px;
+  }
+  @media ${tablet} {
+    padding: 0px 50px;
+  }
+  @media ${laptopS} {
+    padding: 0px 50px;
+  }
+  @media ${laptopM} {
+    padding: 0px 70px;
+  }
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 `;
 const LogoContainer = styled.div`
   display: flex;
   justify-content: start;
-  padding: 0 15px;
+  padding: 0 10px;
   align-items: center;
-  width: 20%;
+  width: 50%;
+  @media ${tabletS} {
+    width: 20%;
+  }
+  @media ${laptopS} {
+    width: 17%;
+  }
   height: 100%;
   font-size: 40px;
   gap: 14px;
@@ -28,14 +54,24 @@ const LogoTitle = styled(Typography)`
   color: ${(props) => props.theme.palette.primary.main};
   font-weight: 600;
   line-height: 29px;
+  @media ${laptop} {
+    line-height: 29px;
+    font-size: 25px;
+  }
 `;
 const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
-  width: 50%;
+  width: 10%;
   font-size: 40px;
+  @media ${laptop} {
+    width: 30%;
+  }
+  @media ${laptopS} {
+    width: 50%;
+  }
   color: ${(props) => props.theme.palette.secondary.main};
 `;
 
@@ -45,6 +81,11 @@ const MenuItem = styled.div`
   gap: 2px;
   align-items: center;
   cursor: pointer;
+  display: none;
+  @media ${laptopS} {
+    display: block;
+    display: flex;
+  }
 `;
 
 const Button = styled.button`
@@ -56,6 +97,10 @@ const Button = styled.button`
   color: #2f2d5c;
   background-color: #ffffff;
   border: none;
+  display: none;
+  @media ${laptopS} {
+    display: block;
+  }
 `;
 
 const SearchInputDiv = styled.div`
@@ -65,12 +110,26 @@ const SearchInputDiv = styled.div`
   gap: 20px;
   border-radius: 23.5px;
   border: 2px solid #5121c0;
-  width: 451px;
+  width: 360px;
+  display: none;
+
+  @media ${tabletS} {
+    width: 360px;
+    display: block;
+    display: flex;
+  }
+
+  @media ${tablet} {
+    width: 451px;
+  }
   height: 47px;
   padding: 0px 8px;
 `;
 const SearchInput = styled.input`
-  width: 295px;
+  width: 260px;
+  @media ${tabletS} {
+    width: 295px;
+  }
   background-color: white;
   border: none;
   outline: none;
@@ -80,6 +139,18 @@ const SearchInput = styled.input`
   font-size: 15px;
   line-height: 18px;
   color: black;
+`;
+const Img = styled.img`
+  display: none;
+  @media ${laptopS} {
+    display: block;
+  }
+`;
+const ImgCont = styled.div`
+  display: block;
+  @media ${laptopS} {
+    display: none;
+  }
 `;
 
 const HeaderStyle = () => {
@@ -92,6 +163,8 @@ const HeaderStyle = () => {
     SearchInputDiv,
     MenuItem,
     Button,
+    Img,
+    ImgCont,
   };
 };
 
