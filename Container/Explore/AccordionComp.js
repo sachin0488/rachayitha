@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GenreButtonList from "../../Components/GenreButtonList/GenreButtonList";
 
-export default function SimpleAccordion({ Text }) {
+export default function SimpleAccordion({ text, high }) {
   const styles = {
     genreHeading: {
       fontWeight: "600",
@@ -30,9 +30,9 @@ export default function SimpleAccordion({ Text }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography sx={styles.genreHeading}>{Text}</Typography>
+          <Typography sx={styles.genreHeading}>{text}</Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ height: "450px" }}>
+        <AccordionDetails sx={{ height: high }}>
           <GenreButtonList />
         </AccordionDetails>
       </Accordion>

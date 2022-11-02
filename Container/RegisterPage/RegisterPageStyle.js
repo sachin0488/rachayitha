@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
-const RegisterWrapper = styled(Box)`
+export const RegisterWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,7 +11,7 @@ const RegisterWrapper = styled(Box)`
   background-color: white;
 `;
 
-const LeftSideRegisterSubWrapper = styled(Box)`
+export const LeftSideRegisterSubWrapper = styled(Box)`
   width: 63%;
   height: 100%;
   padding: 24px 100px;
@@ -20,12 +20,12 @@ const LeftSideRegisterSubWrapper = styled(Box)`
   align-items: center;
 `;
 
-const RightSideRegisterSubWrapper = styled(Box)`
+export const RightSideRegisterSubWrapper = styled(Box)`
   width: 37%;
   height: 100%;
   position: relative;
 `;
-const RightSideRegisterUpperSubWrapper = styled(Box)`
+export const RightSideRegisterUpperSubWrapper = styled(Box)`
   position: absolute;
   top: 0px;
   left: 0px;
@@ -34,7 +34,7 @@ const RightSideRegisterUpperSubWrapper = styled(Box)`
   background-color: #000000;
   opacity: 0.7;
 `;
-const RightSideRegisterText = styled(Typography)`
+export const RightSideRegisterText = styled(Typography)`
   top: 692px;
   left: 81px;
   position: absolute;
@@ -45,7 +45,7 @@ const RightSideRegisterText = styled(Typography)`
   line-height: 42px;
   text-align: center;
 `;
-const RegisterContainer = styled(Box)`
+export const RegisterContainer = styled(Box)`
   margin-top: 30px;
   width: 100%;
   height: 60%;
@@ -57,7 +57,7 @@ const RegisterContainer = styled(Box)`
   gap: 95px;
 `;
 
-const RegisterFooter = styled(Box)`
+export const RegisterFooter = styled(Box)`
   width: 499px;
   height: 80px;
   display: flex;
@@ -67,7 +67,7 @@ const RegisterFooter = styled(Box)`
   gap: 10px;
 `;
 
-const FooterText = styled(Typography)`
+export const FooterText = styled(Typography)`
   font-family: "Inria Sans";
   font-style: normal;
   font-weight: 300;
@@ -76,7 +76,7 @@ const FooterText = styled(Typography)`
   color: #6b6b6b;
 `;
 
-const RegisterUpperContainer = styled(Box)`
+export const RegisterUpperContainer = styled(Box)`
   display: flex;
   width: 100%;
 
@@ -86,7 +86,7 @@ const RegisterUpperContainer = styled(Box)`
   gap: 29px;
 `;
 
-const RegisterLowerContainer = styled(Box)`
+export const RegisterLowerContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -94,7 +94,7 @@ const RegisterLowerContainer = styled(Box)`
   gap: 40px;
   padding: 0px 0px 80px 0px;
 `;
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-family: "Inria Sans";
   font-style: normal;
   font-weight: 400;
@@ -104,7 +104,7 @@ const Heading = styled(Typography)`
   color: #000000;
 `;
 
-const ParagraphText = styled(Typography)`
+export const ParagraphText = styled(Typography)`
   font-family: "Inria Sans";
   font-style: normal;
   font-weight: 400;
@@ -113,7 +113,7 @@ const ParagraphText = styled(Typography)`
 
   color: #000000;
 `;
-const RegisterButton = styled(Button)`
+export const RegisterButton = styled(Button)`
   width: 447px;
   height: 90px;
   background-color: #673ccc;
@@ -126,29 +126,8 @@ const RegisterButton = styled(Button)`
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
   }
 `;
-const Img = styled.img`
+export const Img = styled.img`
   width: 100%;
   min-height: 99.1vh;
   object-fit: cover;
 `;
-
-const RegisterPageStyle = () => {
-  return {
-    ParagraphText,
-    Heading,
-    RegisterContainer,
-    RegisterLowerContainer,
-    RegisterUpperContainer,
-    LeftSideRegisterSubWrapper,
-    RegisterWrapper,
-    RegisterButton,
-    RightSideRegisterSubWrapper,
-    RightSideRegisterUpperSubWrapper,
-    Img,
-    FooterText,
-    RegisterFooter,
-    RightSideRegisterText,
-  };
-};
-
-export default RegisterPageStyle;

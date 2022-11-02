@@ -9,7 +9,7 @@ export const userSlice = createSlice({
       email: "",
     },
     token: "",
-    isLoggedIn: false,
+    isLoggedIn: true,
   },
   reducers: {
     setUserLogout(state, action) {

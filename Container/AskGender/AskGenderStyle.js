@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Button, Typography, Checkbox } from "@mui/material";
 import React from "react";
 
-const AskGenderWrapper = styled(Box)`
+export const AskGenderWrapper = styled(Box)`
   width: 100%;
   height: 100vh;
   background-color: white;
@@ -11,7 +11,7 @@ const AskGenderWrapper = styled(Box)`
   align-items: center;
 `;
 
-const SubWrapper = styled(Box)`
+export const SubWrapper = styled(Box)`
   padding: 85px 30px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const SubWrapper = styled(Box)`
   border-radius: 39px; */
 `;
 
-const ConfirmButton = styled(Button)`
+export const ConfirmButton = styled(Button)`
   background: linear-gradient(270deg, #7f48ff 2%, #5629c4 100%);
   border-radius: 5px;
   width: 182px;
@@ -35,7 +35,7 @@ const ConfirmButton = styled(Button)`
   line-height: 23px;
 `;
 
-const MainHeading = styled(Typography)`
+export const MainHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -49,14 +49,14 @@ const MainHeading = styled(Typography)`
   color: #2a1e17;
 `;
 
-const GenderLeadContainer = styled(Box)`
+export const GenderLeadContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
 `;
-const GenderLeadSubContainer = styled(Box)`
+export const GenderLeadSubContainer = styled(Box)`
   display: flex;
   padding: 35px 47px;
   width: 379px;
@@ -68,7 +68,7 @@ const GenderLeadSubContainer = styled(Box)`
   border-radius: 10px;
 `;
 
-const GenderLead = styled(Typography)`
+export const GenderLead = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -77,19 +77,4 @@ const GenderLead = styled(Typography)`
 
   letter-spacing: 0.01em;
 `;
-const GenderLeadCheckbox = styled(Checkbox)``;
-
-const AskGenderStyle = () => {
-  return {
-    GenderLead,
-    GenderLeadContainer,
-    GenderLeadSubContainer,
-    AskGenderWrapper,
-    ConfirmButton,
-    SubWrapper,
-    MainHeading,
-    GenderLeadCheckbox,
-  };
-};
-
-export default AskGenderStyle;
+export const GenderLeadCheckbox = styled(Checkbox)``;

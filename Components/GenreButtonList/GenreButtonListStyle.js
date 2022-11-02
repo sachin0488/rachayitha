@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
-import React from "react";
 
-const GenreButtonListWrapper = styled(Box)`
+export const GenreButtonListWrapper = styled(Box)`
   width: 100%;
   height: 200px;
   display: flex;
@@ -11,9 +10,3 @@ const GenreButtonListWrapper = styled(Box)`
   align-items: flex-start;
   flex-wrap: wrap;
 `;
-
-const GenreButtonListStyle = () => {
-  return { GenreButtonListWrapper };
-};
-
-export default GenreButtonListStyle;
