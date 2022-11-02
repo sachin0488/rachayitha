@@ -1,31 +1,30 @@
-import { ExploreContext } from "../../Providers/ExploreProvider";
-import { useContext } from "react";
 import Link from "next/link";
-import GenreButtonStyle from "./GenreButtonStyle";
+import { GenreButtons } from "./GenreButtonStyle";
+import { useRouter } from "next/router";
 
 const GenreButton = (props) => {
+  const router = useRouter();
+  const { genre } = router.query;
+  const type = router.pathname.split("/")[2];
   const text = props?.platformButton?.toLowerCase();
-  const { GenreButtons } = GenreButtonStyle();
-  const { platformName, setPlatformName, currentRoute } =
-    useContext(ExploreContext);
-  const platformRoute = currentRoute;
+
   const handleColor = () => {
-    if (props.platformButton === platformRoute || platformName === text) {
-      return "#5528C4";
-    } else {
-      return "white";
+    console.log(props.platformApi, genre);
+    if (genre) {
+      if (props.platformApi === genre) {
+        return "#5528C4";
+      } else {
+        return "white";
+      }
     }
+    if (props.platformApi === "all") return "#5528C4";
+    return "white";
   };
 
   return (
     <>
-      <Link href={`/explore/novel/${props.platformButton}`}>
-        <GenreButtons
-          onClick={() => {
-            setPlatformName(props.platformApi);
-          }}
-          style={{ backgroundColor: handleColor() }}
-        >
+      <Link href={`/${props.explore}/${props.platformApi}`}>
+        <GenreButtons style={{ backgroundColor: handleColor() }}>
           {props.platformButton}
         </GenreButtons>
       </Link>

@@ -2,7 +2,7 @@ import React from "react";
 
 const size = {
   mobileS: "360px",
-  mobileM: "475px",
+  mobileM: "495px",
   mobileL: "625px",
   tabletS: "768px",
   tablet: "868px",

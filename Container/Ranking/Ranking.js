@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
-import { genreName } from "../../hooks/useGenreButton";
-import { css } from "@emotion/react";
+import React from "react";
 import {
   Wrapper,
-  ExploreBannerContainer,
   SubWrapper,
   ExploreBannerImageContainer,
   GenreMenuBar,
@@ -13,16 +10,13 @@ import {
   FilterText,
   ContentType,
   ContentTypeText,
+  ExploreBannerContainer,
+  MenuItem,
   MainContentWrapper,
   GenreAccordionContainer,
   ShowQueryContainer,
   SortByHeading,
   HorizontalRule,
-  Cards,
-  CardsSubWrapper,
-  CardsWrapper,
-  CardLeftSideContent,
-  CardRightSideContent,
   Img,
   Title,
   ParagraphText,
@@ -30,27 +24,35 @@ import {
   Button,
   MaleAndFemaleLeadContainer,
   GenderBox,
-  ExploreBannerImg,
-  MenuItem,
-} from "./ExploreStyle";
-import { useExplore } from "./api/explore.hook";
-import Header from "../LandingPageAfterLogin/Header/Header";
-import ExploreBannerImgs from "../../public/exploreBanner.svg";
-import Image from "next/image";
-import Footer from "../LandingPageWithoutLogin/Footer/Footer";
-
+} from "../Explore/ExploreStyle";
 import NovelImg from "../../public/novel.svg";
 import PoemImg from "../../public/poem.svg";
 import ShortImg from "../../public/shorts.svg";
-import { AiFillCaretDown } from "react-icons/ai";
+import Image from "next/image";
 import Link from "next/link";
-import SimpleAccordion from "./AccordionComp";
-import GenreButton from "../../Components/GenreButton/GenreButton";
+import {
+  ExploreBannerImg,
+  Cards,
+  CardsWrapper,
+  LeftSideCardPart,
+  RightSideCardPart,
+  HashtagAndButtonSection,
+  ButtonSection,
+  ReadButton,
+  AddButton,
+  RatingContainer,
+  RatingGenreAuthorContainer,
+} from "./RankingStyle";
+import Header from "../LandingPageAfterLogin/Header/Header";
+import { AiFillCaretDown, AiOutlineLike } from "react-icons/ai";
+import SimpleAccordion from "../Explore/AccordionComp";
 import { Typography } from "@mui/material";
-import { useRouter } from "next/router";
-const Explore = () => {
-  const { data, isLoading, isError, error, isFetching } = useExplore();
+import { useRanking } from "./api/ranking.hook";
+import Footer from "../LandingPageWithoutLogin/Footer/Footer";
+import { IoIosAddCircle } from "react-icons/io";
 
+const ItemDetails = () => {
+  const { data, isLoading, isError, error, isFetching } = useRanking();
   return (
     <>
       <Wrapper>
@@ -58,27 +60,27 @@ const Explore = () => {
         <SubWrapper>
           <ExploreBannerContainer>
             <ExploreBannerImageContainer>
-              <ExploreBannerImg src="https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png" />
+              <ExploreBannerImg src="https://res.cloudinary.com/dk6twrko6/image/upload/v1667386473/Rectangle_219_1_ylt2yp.png" />
               <h1 style={{ position: "absolute", color: "#2F2D5C" }}>
-                Explore
+                Hot Ranking
               </h1>
             </ExploreBannerImageContainer>
             <GenreMenuBar>
               <LeftSideGenreMenuBar>
-                <Link href="/explore/novel">
+                <Link href="/ranking/novel">
                   <MenuItem>
                     <Image src={NovelImg} />
                     <GenreTitle>Novels</GenreTitle>
                   </MenuItem>
                 </Link>
 
-                <Link href="/explore/short">
+                <Link href="/ranking/short">
                   <MenuItem>
                     <Image src={ShortImg} />
                     <GenreTitle>Shorts</GenreTitle>
                   </MenuItem>
                 </Link>
-                <Link href="/explore/poem">
+                <Link href="/ranking/poem">
                   <MenuItem>
                     <Image src={PoemImg} />
                     <GenreTitle>Poems</GenreTitle>
@@ -116,28 +118,22 @@ const Explore = () => {
                   FEMALE LEAD
                 </Typography>
               </MaleAndFemaleLeadContainer>
-              <SimpleAccordion text="Genre of Novels" high="450px" />
-              <SimpleAccordion text="Genre of Poems" high="450px" />
-              <SimpleAccordion text="Genre of Shorts" high="450px" />
+              <SimpleAccordion text="Novel Ranking" />
+              <SimpleAccordion text="Poems Ranking" />
+              <SimpleAccordion text="Shorts Ranking" />
             </GenreAccordionContainer>
             <ShowQueryContainer>
-              <SortByHeading>Sort By</SortByHeading>
-              <HorizontalRule style={{ width: "80%" }} />
-              <ButtonContainer>
-                {genreName?.map((button) => (
-                  <Button style={{ color: "black" }}>
-                    {button.buttonName}
-                  </Button>
-                ))}
-              </ButtonContainer>
+              <SortByHeading>Power Ranking</SortByHeading>
+              <HorizontalRule style={{ width: "100%" }} />
               <CardsWrapper>
+                {" "}
                 {data?.map((card) => (
-                  <CardsSubWrapper>
-                    <Cards>
-                      <CardLeftSideContent>
-                        <Img src={card.img} />
-                      </CardLeftSideContent>
-                      <CardRightSideContent>
+                  <Cards>
+                    <LeftSideCardPart>
+                      <Img src={card.img} />
+                    </LeftSideCardPart>
+                    <RightSideCardPart>
+                      <HashtagAndButtonSection>
                         <ButtonContainer>
                           {card.hashtag.map((hash) => (
                             <Typography style={{ color: "#673CCC" }}>
@@ -145,11 +141,28 @@ const Explore = () => {
                             </Typography>
                           ))}
                         </ButtonContainer>
-                        <Title>{card.title}</Title>
-                        <ParagraphText>{card.paragraph}</ParagraphText>
-                      </CardRightSideContent>
-                    </Cards>
-                  </CardsSubWrapper>
+                        <ButtonSection>
+                          <AddButton>
+                            <IoIosAddCircle size={26} color="#069CF6" />
+                            <Typography color="#069CF6" fontWeight="600">
+                              Add
+                            </Typography>
+                          </AddButton>
+                          <ReadButton>Read</ReadButton>
+                        </ButtonSection>
+                      </HashtagAndButtonSection>
+                      <Title>{card.title}</Title>
+                      <ParagraphText>{card.paragraph}</ParagraphText>
+                      <RatingGenreAuthorContainer>
+                        <RatingContainer>
+                          <AiOutlineLike color="black" />
+                          <Typography color="black">{card.rating}</Typography>
+                        </RatingContainer>
+                        <Typography color="black">{card.genre}</Typography>
+                        <Typography color="black">{card.author}</Typography>
+                      </RatingGenreAuthorContainer>
+                    </RightSideCardPart>
+                  </Cards>
                 ))}
               </CardsWrapper>
             </ShowQueryContainer>
@@ -161,4 +174,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default ItemDetails;

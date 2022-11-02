@@ -1,5 +1,14 @@
 import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
+import {
+  laptop,
+  laptopM,
+  laptopS,
+  mobileL,
+  mobileM,
+  tablet,
+  tabletS,
+} from "../../styles/mediaQuery/breakPoints";
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -14,7 +23,19 @@ export const Wrapper = styled(Box)`
 export const SubWrapper = styled(Box)`
   width: 100%;
   height: 100%;
-  padding: 40px 106px;
+  padding: 30px 40px;
+  @media ${laptopS} {
+    padding: 30px 60px;
+  }
+  @media ${laptopS} {
+    padding: 30px 40px;
+  }
+  @media ${laptopS} {
+    padding: 40px 80px;
+  }
+  @media ${laptopM} {
+    padding: 40px 106px;
+  }
   display: flex;
   justify-content: start;
   flex-direction: column;
@@ -36,10 +57,17 @@ export const ExploreBannerImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+`;
+
+export const ExploreBannerImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 `;
 
 export const GenreMenuBar = styled(Box)`
-  width: 80%;
   height: 75px;
   background-color: #673ccc;
   border: 2px solid #673ccc;
@@ -50,14 +78,24 @@ export const GenreMenuBar = styled(Box)`
   justify-content: space-between;
   align-items: center;
   padding: 25px 49px;
+  width: 95%;
+  @media ${mobileM} {
+    width: 87%;
+  }
+  @media ${laptopS} {
+    width: 85%;
+  }
 `;
 
 export const LeftSideGenreMenuBar = styled(Box)`
-  width: 40%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  width: 50%;
+  @media ${laptopM} {
+    width: 40%;
+  }
 `;
 export const RightSideGenreMenuBar = styled(Box)`
   width: 50%;
@@ -66,6 +104,19 @@ export const RightSideGenreMenuBar = styled(Box)`
   justify-content: flex-end;
   gap: 35px;
   align-items: center;
+`;
+
+export const MenuItem = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  align-items: center;
+  cursor: pointer;
+  display: none;
+  @media ${tabletS} {
+    display: block;
+    display: flex;
+  }
 `;
 
 export const GenreTitle = styled(Typography)`
@@ -107,7 +158,13 @@ export const MainContentWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 88px;
+  gap: 45px;
+  @media ${laptopS} {
+    gap: 60px;
+  }
+  @media ${laptopM} {
+    gap: 88px;
+  }
 `;
 
 export const GenreAccordionContainer = styled(Box)`
@@ -118,13 +175,25 @@ export const GenreAccordionContainer = styled(Box)`
   align-items: center;
   gap: 17px;
   justify-content: start;
+  display: none;
+  @media ${laptop} {
+    display: block;
+    display: flex;
+  }
 `;
 export const MaleAndFemaleLeadContainer = styled(Box)`
   width: 100%;
   height: 35px;
   display: flex;
   justify-content: space-between;
-  padding: 0px 12px;
+  padding: 0px 2px;
+  @media ${laptop} {
+    padding: 0px 9px;
+  }
+  @media ${laptopS} {
+    padding: 0px 18px;
+  }
+
   align-items: center;
   background-color: #edefff;
 `;
@@ -141,13 +210,16 @@ export const GenderBox = styled(Box)`
 `;
 
 export const ShowQueryContainer = styled(Box)`
-  width: 72%;
   height: 100%;
   display: flex;
   justify-content: start;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 27px;
+  width: 100%;
+  @media ${laptop} {
+    width: 72%;
+  }
 `;
 
 export const SortByHeading = styled(Typography)`
@@ -160,7 +232,6 @@ export const SortByHeading = styled(Typography)`
   color: #717174;
 `;
 export const HorizontalRule = styled.div`
-  width: 80%;
   border-top: 1px solid #e7e7e7;
 `;
 export const CardsWrapper = styled(Box)`
@@ -169,24 +240,53 @@ export const CardsWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  @media ${mobileL} {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 `;
 
 export const CardsSubWrapper = styled(Box)`
   height: 130px;
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   margin: 16px 0px;
+  @media ${mobileL} {
+    width: 50%;
+  }
+  @media ${laptopM} {
+    margin: 16px 0px;
+  }
 `;
 export const Cards = styled(Box)`
   height: 100%;
-  width: 65%;
+  gap: 20px;
+
+  @media ${mobileL} {
+    gap: 30px;
+    width: 93%;
+  }
+
+  @media ${tabletS} {
+    width: 83%;
+  }
+  @media ${tablet} {
+    width: 82%;
+  }
+
+  @media ${laptopS} {
+    width: 75%;
+  }
+  @media ${laptopM} {
+    width: 65%;
+  }
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 16px;
 `;
 export const CardLeftSideContent = styled(Box)`
   height: 100%;
@@ -195,10 +295,22 @@ export const CardLeftSideContent = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 16px;
+  @media ${mobileM} {
+    width: 20%;
+  }
+  @media ${mobileL} {
+    width: 30%;
+  }
 `;
 export const CardRightSideContent = styled(Box)`
   height: 100%;
   width: 70%;
+  @media ${mobileL} {
+    width: 55%;
+  }
+  @media ${mobileL} {
+    width: 70%;
+  }
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -228,6 +340,7 @@ export const ButtonContainer = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 13px;
+  flex-wrap: wrap;
 `;
 
 export const ParagraphText = styled(Typography)`

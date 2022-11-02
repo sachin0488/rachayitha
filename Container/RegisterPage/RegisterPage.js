@@ -1,28 +1,28 @@
 import React from "react";
-import RegisterPageStyle from "./RegisterPageStyle";
+
 import HeaderStyle from "../LandingPageWithoutLogin/Header/HeaderStyle";
 import LogoImage from "../../public/logo.svg";
 import Image from "next/image";
 import LoginPageStyle from "../LoginPage/LoginPageStyle";
 import RegisterPageImg from "../../public/registerPageImg.png";
+import {
+  ParagraphText,
+  Heading,
+  RegisterContainer,
+  RegisterLowerContainer,
+  RegisterUpperContainer,
+  LeftSideRegisterSubWrapper,
+  RegisterWrapper,
+  RegisterButton,
+  RightSideRegisterSubWrapper,
+  RightSideRegisterUpperSubWrapper,
+  Img,
+  FooterText,
+  RegisterFooter,
+  RightSideRegisterText,
+} from "./RegisterPageStyle";
 
 const RegisterPage = () => {
-  const {
-    ParagraphText,
-    Heading,
-    RegisterContainer,
-    RegisterLowerContainer,
-    RegisterUpperContainer,
-    LeftSideRegisterSubWrapper,
-    RegisterWrapper,
-    RegisterButton,
-    RightSideRegisterSubWrapper,
-    RightSideRegisterUpperSubWrapper,
-    Img,
-    FooterText,
-    RegisterFooter,
-    RightSideRegisterText,
-  } = RegisterPageStyle();
   const { RegisterButton: Button, RegisterContainer: RegisterCont } =
     LoginPageStyle();
   const { LogoContainer, LogoTitle } = HeaderStyle();

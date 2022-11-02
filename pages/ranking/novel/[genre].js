@@ -1,11 +1,9 @@
 import React from "react";
-
-import Explore from "../../../Container/Explore/Explore";
-
+import Ranking from "../../../Container/Ranking/Ranking";
 const genre = () => {
   return (
     <>
-      <Explore />
+      <Ranking />
     </>
   );
 };

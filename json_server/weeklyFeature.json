@@ -171,44 +171,118 @@
     {
       "title": "Super Gene",
       "paragraph": "In the magnificent interstellar era,mankind has finally developed...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_84_uutsyo.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png"
     },
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
-      "hashtag": ["ROMANCE", "ADDVENTURE"],
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_174_bqcrub.png"
+    }
+  ],
+  "ranking": [
+    {
+      "title": "My Vampire System",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#Action", "#System"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_170_l2jvj5.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Super Gene",
+      "paragraph": "In the magnificent interstellar era,mankind has finally developed...",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_84_uutsyo.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
+    },
+    {
+      "title": "Trail Mariage Husband :Need t...",
+      "paragraph": "Growing up in poverty, Sunny never expected anything good from life. However, even he did not anticipate being chosen by the Nightmare Spell and.",
+      "hashtag": ["#ROMANCE", "#ADDVENTURE"],
+      "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_174_bqcrub.png",
+      "rating": 3.9,
+      "genre": "Fantasy",
+      "author": "Alekzi"
     }
   ]
 }

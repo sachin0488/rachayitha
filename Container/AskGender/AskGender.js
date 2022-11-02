@@ -1,17 +1,16 @@
 import React from "react";
-import AskGenderStyle from "./AskGenderStyle";
+import {
+  GenderLead,
+  GenderLeadContainer,
+  GenderLeadSubContainer,
+  AskGenderWrapper,
+  ConfirmButton,
+  SubWrapper,
+  MainHeading,
+  GenderLeadCheckbox,
+} from "./AskGenderStyle";
 
 const AskGender = () => {
-  const {
-    GenderLead,
-    GenderLeadContainer,
-    GenderLeadSubContainer,
-    AskGenderWrapper,
-    ConfirmButton,
-    SubWrapper,
-    MainHeading,
-    GenderLeadCheckbox,
-  } = AskGenderStyle();
   return (
     <>
       <AskGenderWrapper>
