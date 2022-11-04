@@ -51,6 +51,14 @@ import { useRouter } from "next/router";
 const Explore = () => {
   const { data, isLoading, isError, error, isFetching } = useExplore();
 
+  if (isLoading) {
+    return <h1>LOADING ... </h1>;
+  }
+
+  if (isError) {
+    return <h1>{error?.message}</h1>;
+  }
+
   return (
     <>
       <Wrapper>
@@ -132,24 +140,28 @@ const Explore = () => {
               </ButtonContainer>
               <CardsWrapper>
                 {data?.map((card) => (
-                  <CardsSubWrapper>
-                    <Cards>
-                      <CardLeftSideContent>
-                        <Img src={card.img} />
-                      </CardLeftSideContent>
-                      <CardRightSideContent>
-                        <ButtonContainer>
-                          {card.hashtag.map((hash) => (
-                            <Typography style={{ color: "#673CCC" }}>
-                              {hash}
-                            </Typography>
-                          ))}
-                        </ButtonContainer>
-                        <Title>{card.title}</Title>
-                        <ParagraphText>{card.paragraph}</ParagraphText>
-                      </CardRightSideContent>
-                    </Cards>
-                  </CardsSubWrapper>
+                  <Link href={`/book/${card.id}`}>
+                    <CardsSubWrapper>
+                      <Cards>
+                        <CardLeftSideContent>
+                          <Img src={card.img} />
+                        </CardLeftSideContent>
+                        <CardRightSideContent>
+                          <ButtonContainer>
+                            {card.hashtag.map((hash) => (
+                              <Typography
+                                style={{ color: "#673CCC", fontSize: "13px" }}
+                              >
+                                {hash}
+                              </Typography>
+                            ))}
+                          </ButtonContainer>
+                          <Title>{card.title}</Title>
+                          <ParagraphText>{card.paragraph}</ParagraphText>
+                        </CardRightSideContent>
+                      </Cards>
+                    </CardsSubWrapper>
+                  </Link>
                 ))}
               </CardsWrapper>
             </ShowQueryContainer>

@@ -261,6 +261,7 @@ export const CardsSubWrapper = styled(Box)`
   @media ${laptopM} {
     margin: 16px 0px;
   }
+  cursor: pointer;
 `;
 export const Cards = styled(Box)`
   height: 100%;
