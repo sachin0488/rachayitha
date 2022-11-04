@@ -163,50 +163,74 @@
   ],
   "explore": [
     {
+      "id": "my_vampire_system-11",
       "title": "My Vampire System",
       "paragraph": "The human Race is at war with the Vicious Dalki and when they needed...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#Action", "System"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_170_l2jvj5.png"
     },
     {
+      "id": "super_gene-12",
       "title": "Super Gene",
       "paragraph": "In the magnificent interstellar era,mankind has finally developed...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_84_uutsyo.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-14",
       "title": "Trail Mariage Husband :Need t...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-15",
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-16",
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-17",
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-18",
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_128_w67lfe.png"
     },
     {
+      "id": "trail_mariage_husband_need_t-19",
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+      "genre": "Fantasy",
+      "rating": 4.0,
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_174_bqcrub.png"
     }
@@ -233,6 +257,7 @@
     {
       "title": "Trail Mariage Husband :Need t...",
       "paragraph": "The night before their wedding, herfiancé ran off with his mistress. Out o...",
+
       "hashtag": ["#ROMANCE", "#ADDVENTURE"],
       "img": "https://res.cloudinary.com/dk6twrko6/image/upload/v1666521937/Rectangle_146_gddpm5.png",
       "rating": 3.9,
