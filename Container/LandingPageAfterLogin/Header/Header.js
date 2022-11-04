@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import HeaderStyle from "./HeaderStyle";
 import Logo from "../../../public/logo.svg";
+import ProfileImg from "../../../public/headerProfileImg.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Explore from "../../../public/MenuItem1.svg";
 import Ranking from "../../../public/ranking.svg";
@@ -70,7 +71,9 @@ const Header = () => {
             </MenuItem>
           </Link>
         </NavMenu>
-        <Img src={Logo} />
+        <Link href={`/profile/1`}>
+          <Image src={ProfileImg} />
+        </Link>
       </HeaderContent>
     </>
   );
