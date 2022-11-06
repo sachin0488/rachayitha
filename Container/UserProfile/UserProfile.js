@@ -11,12 +11,17 @@ import {
   UserProfileLowerLeftSection,
   MudraContainer,
   IndividualMudraContainer,
+  UserProfileLowerRightSection,
+  EditProfileContainer,
 } from "./UserProfileStyle";
 import Image from "next/image";
 import { Typography } from "@mui/material";
 import { FaMale } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
+import UserProfileModal from "./UserProfileModal";
+import UserProfileTab from "./UserProfileTab";
+import Badges from "./Badges";
 
 const UserProfile = () => {
   const bannerImgUrl =
@@ -85,6 +90,17 @@ const UserProfile = () => {
                 </IndividualMudraContainer>
               </MudraContainer>
             </UserProfileLowerLeftSection>
+            <UserProfileLowerRightSection>
+              <EditProfileContainer>
+                <UserProfileModal />
+              </EditProfileContainer>
+              <UserProfileTab
+                label1="Library"
+                label2="Activity"
+                label3="Original Work"
+                comp2={<Badges />}
+              />
+            </UserProfileLowerRightSection>
           </UserProfileLowerSection>
         </SubWrapper>
       </Wrapper>

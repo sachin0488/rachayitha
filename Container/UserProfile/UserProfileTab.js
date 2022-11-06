@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,9 +22,17 @@ function TabPanel(props) {
   );
 }
 
+const useStyles = makeStyles((theme) => ({
+  MuiSelected: {
+    backgroundColor: "crimson",
+    borderRadius: "10px",
+    color: "yellow",
+  },
+}));
+
 const UserProfileTab = ({ comp1, comp2, label1, label2, label3, comp3 }) => {
   const [value, setValue] = useState(0);
-
+  const classes = useStyles();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -35,15 +44,24 @@ const UserProfileTab = ({ comp1, comp2, label1, label2, label3, comp3 }) => {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "#D97D54",
-                color: "#D97D54",
+            sx={{
+              "& .Mui-selected": {
+                backgroundColor: "#F6F3FF",
+
+                borderRadius: "20px",
+              },
+              "& .MuiTabs-indicator": {
+                display: "none",
+              },
+              "& .MuiButtonBase-root": {
+                fontSize: "16px",
+                fontWeight: "400",
               },
             }}
           >
             <Tab
               label={label1}
+              //   className={classes.MuiSelected}
               sx={{
                 marginRight: "10px",
                 fontSize: "15px",
@@ -52,7 +70,7 @@ const UserProfileTab = ({ comp1, comp2, label1, label2, label3, comp3 }) => {
                   fontSize: "20px",
                 },
                 "@media (min-width: 830px)": {
-                  marginRight: "42px",
+                  marginRight: "32px",
                 },
               }}
             />
@@ -62,6 +80,7 @@ const UserProfileTab = ({ comp1, comp2, label1, label2, label3, comp3 }) => {
                 fontSize: "15px",
                 "@media (min-width: 430px)": {
                   fontSize: "20px",
+                  marginRight: "32px",
                 },
               }}
             />

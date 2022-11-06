@@ -1,6 +1,17 @@
 import Image from "next/image";
 import React from "react";
-import HeaderStyle from "./HeaderStyle";
+import {
+  HeaderContent,
+  LogoContainer,
+  LogoTitle,
+  NavMenu,
+  SearchInput,
+  SearchInputDiv,
+  MenuItem,
+  Button,
+  Img,
+  ImgCont,
+} from "./HeaderStyle";
 import Logo from "../../../public/logo.svg";
 import ProfileImg from "../../../public/headerProfileImg.png";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -11,20 +22,9 @@ import Library from "../../../public/library1.svg";
 import Shorts from "../../../public/shorts.svg";
 import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
+import HeaderDrawer from "./HeaderDrawer";
 
 const Header = () => {
-  const {
-    HeaderContent,
-    LogoContainer,
-    LogoTitle,
-    NavMenu,
-    SearchInput,
-    SearchInputDiv,
-    MenuItem,
-    Button,
-    Img,
-    ImgCont,
-  } = HeaderStyle();
   return (
     <>
       <HeaderContent>
@@ -38,7 +38,7 @@ const Header = () => {
         </SearchInputDiv>
         <NavMenu>
           <ImgCont>
-            <FiMenu />
+            <HeaderDrawer />
           </ImgCont>
           <Link href="/explore">
             <MenuItem>
@@ -70,10 +70,13 @@ const Header = () => {
               <Button>Shorts</Button>
             </MenuItem>
           </Link>
+          <Link href={`/profile/1`}>
+            <MenuItem>
+              {" "}
+              <Image src={ProfileImg} />
+            </MenuItem>
+          </Link>
         </NavMenu>
-        <Link href={`/profile/1`}>
-          <Image src={ProfileImg} />
-        </Link>
       </HeaderContent>
     </>
   );

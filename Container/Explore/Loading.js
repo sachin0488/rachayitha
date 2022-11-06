@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { genreName } from "../../hooks/useGenreButton";
-import { css } from "@emotion/react";
 import {
   Wrapper,
   ExploreBannerContainer,
@@ -33,7 +32,9 @@ import {
   ExploreBannerImg,
   MenuItem,
 } from "./ExploreStyle";
+import React from "react";
 import { useExplore } from "./api/explore.hook";
+
 import Header from "../LandingPageAfterLogin/Header/Header";
 import ExploreBannerImgs from "../../public/exploreBanner.svg";
 import Image from "next/image";
@@ -46,24 +47,11 @@ import { AiFillCaretDown } from "react-icons/ai";
 import Link from "next/link";
 import SimpleAccordion from "./AccordionComp";
 import GenreButton from "../../Components/GenreButton/GenreButton";
-import { Typography } from "@mui/material";
+
 import { useRouter } from "next/router";
-import Loading from "./Loading";
-const Explore = () => {
+
+const Loading = () => {
   const { data, isLoading, isError, error, isFetching } = useExplore();
-
-  if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  }
-
-  if (isError) {
-    return <h1>{error?.message}</h1>;
-  }
-
   return (
     <>
       <Wrapper>
@@ -145,28 +133,28 @@ const Explore = () => {
               </ButtonContainer>
               <CardsWrapper>
                 {data?.map((card) => (
-                  <Link href={`/book/${card.id}`}>
-                    <CardsSubWrapper>
-                      <Cards>
-                        <CardLeftSideContent>
-                          <Img src={card.img} />
-                        </CardLeftSideContent>
-                        <CardRightSideContent>
-                          <ButtonContainer>
-                            {card.hashtag.map((hash) => (
-                              <Typography
-                                style={{ color: "#673CCC", fontSize: "13px" }}
-                              >
-                                {hash}
-                              </Typography>
-                            ))}
-                          </ButtonContainer>
-                          <Title>{card.title}</Title>
-                          <ParagraphText>{card.paragraph}</ParagraphText>
-                        </CardRightSideContent>
-                      </Cards>
-                    </CardsSubWrapper>
-                  </Link>
+                  <CardsSubWrapper>
+                    <Cards style={{ width: "100%" }}>
+                      <CardLeftSideContent>
+                        <Skeleton sx={{ width: "100%", height: "120%" }} />
+                      </CardLeftSideContent>
+                      <CardRightSideContent>
+                        <ButtonContainer>
+                          {card.hashtag.map((hash) => (
+                            <Skeleton sx={{ fontSize: "16px", width: "30%" }} />
+                          ))}
+                        </ButtonContainer>
+                        <Skeleton sx={{ fontSize: "19px", width: "60%" }} />
+                        <Skeleton
+                          sx={{
+                            fontSize: "19px",
+                            width: "70%",
+                            height: "220px",
+                          }}
+                        />
+                      </CardRightSideContent>
+                    </Cards>
+                  </CardsSubWrapper>
                 ))}
               </CardsWrapper>
             </ShowQueryContainer>
@@ -178,4 +166,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Loading;

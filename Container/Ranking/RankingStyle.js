@@ -1,6 +1,15 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 import React from "react";
+import {
+  laptop,
+  laptopM,
+  laptopS,
+  mobileL,
+  mobileM,
+  tablet,
+  tabletS,
+} from "../../styles/mediaQuery/breakPoints";
 
 export const ExploreBannerImg = styled.img`
   width: 100%;
@@ -11,12 +20,19 @@ export const ExploreBannerImg = styled.img`
 export const CardsWrapper = styled(Box)`
   width: 100%;
   min-height: 800px;
-  padding: 30px;
+  padding: 5px;
+  gap: 40px;
+  @media ${mobileM} {
+    padding: 10px;
+    gap: 20px;
+  }
+  @media ${tabletS} {
+    padding: 30px;
+  }
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
-  gap: 20px;
 `;
 export const Cards = styled(Box)`
   width: 100%;
@@ -27,7 +43,23 @@ export const Cards = styled(Box)`
   gap: 30px;
 `;
 export const LeftSideCardPart = styled(Box)`
-  width: 10%;
+  width: 15%;
+  @media ${mobileL} {
+    width: 15%;
+  }
+  @media ${tablet} {
+    width: 10%;
+  }
+  @media ${laptop} {
+    width: 14%;
+  }
+  @media ${laptopS} {
+    width: 15%;
+  }
+  @media ${laptopM} {
+    width: 10%;
+  }
+
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -35,13 +67,21 @@ export const LeftSideCardPart = styled(Box)`
 `;
 
 export const RightSideCardPart = styled(Box)`
-  width: 80%;
+  gap: 5px;
+  width: 84%;
+  @media ${tabletS} {
+    width: 85%;
+    gap: 10px;
+  }
+  @media ${laptopM} {
+    width: 80%;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
   height: 100%;
-  gap: 10px;
 `;
 export const HashtagAndButtonSection = styled(Box)`
   width: 100%;
@@ -55,7 +95,13 @@ export const ButtonSection = styled(Box)`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
+  @media ${tabletS} {
+    gap: 12px;
+  }
+  /* @media ${laptopM} {
+    width: 80%;
+  } */
 `;
 export const AddButton = styled(Box)`
   display: flex;
@@ -75,7 +121,10 @@ export const RatingGenreAuthorContainer = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 21px;
+  gap: 13px;
+  @media ${mobileL} {
+    gap: 21px;
+  }
 `;
 export const RatingContainer = styled(Box)`
   display: flex;
@@ -83,4 +132,23 @@ export const RatingContainer = styled(Box)`
   height: 30px;
   align-items: center;
   gap: 3px;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 45%;
+  @media ${mobileM} {
+    width: 100%;
+    height: 70%;
+  }
+  @media ${tabletS} {
+    width: 100%;
+    height: 80%;
+  }
+  @media ${laptop} {
+    width: 100%;
+    height: 90%;
+  }
+  object-fit: cover;
+  border-radius: 5px;
 `;
