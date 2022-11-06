@@ -10,7 +10,7 @@ import {
   tabletS,
 } from "../../../styles/mediaQuery/breakPoints";
 
-const HeaderContent = styled.div`
+export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -32,7 +32,7 @@ const HeaderContent = styled.div`
   }
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 `;
-const LogoContainer = styled.div`
+export const LogoContainer = styled.div`
   display: flex;
   justify-content: start;
   padding: 0 10px;
@@ -49,7 +49,7 @@ const LogoContainer = styled.div`
   gap: 14px;
 `;
 
-const LogoTitle = styled(Typography)`
+export const LogoTitle = styled(Typography)`
   font-size: 25px;
   color: ${(props) => props.theme.palette.primary.main};
   font-weight: 600;
@@ -59,7 +59,7 @@ const LogoTitle = styled(Typography)`
     font-size: 25px;
   }
 `;
-const NavMenu = styled.div`
+export const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -75,7 +75,7 @@ const NavMenu = styled.div`
   color: ${(props) => props.theme.palette.secondary.main};
 `;
 
-const MenuItem = styled.div`
+export const MenuItem = styled.div`
   display: flex;
   justify-content: center;
   gap: 2px;
@@ -88,7 +88,7 @@ const MenuItem = styled.div`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -98,12 +98,14 @@ const Button = styled.button`
   background-color: #ffffff;
   border: none;
   display: none;
+  cursor: pointer;
   @media ${laptopS} {
     display: block;
+    cursor: pointer;
   }
 `;
 
-const SearchInputDiv = styled.div`
+export const SearchInputDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +127,7 @@ const SearchInputDiv = styled.div`
   height: 47px;
   padding: 0px 8px;
 `;
-const SearchInput = styled.input`
+export const SearchInput = styled.input`
   width: 260px;
   @media ${tabletS} {
     width: 295px;
@@ -140,32 +142,15 @@ const SearchInput = styled.input`
   line-height: 18px;
   color: black;
 `;
-const Img = styled.img`
+export const Img = styled.img`
   display: none;
   @media ${laptopS} {
     display: block;
   }
 `;
-const ImgCont = styled.div`
+export const ImgCont = styled.div`
   display: block;
   @media ${laptopS} {
     display: none;
   }
 `;
-
-const HeaderStyle = () => {
-  return {
-    HeaderContent,
-    LogoContainer,
-    LogoTitle,
-    NavMenu,
-    SearchInput,
-    SearchInputDiv,
-    MenuItem,
-    Button,
-    Img,
-    ImgCont,
-  };
-};
-
-export default HeaderStyle;

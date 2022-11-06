@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 
 export const ImgBox = styled(Box)`
@@ -48,4 +48,79 @@ export const IndividualMudraContainer = styled(Box)`
   width: 100%;
   align-items: center;
   gap: 4px;
+`;
+
+export const UserProfileLowerRightSection = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 70%;
+  height: 100%;
+  padding-left: 40px;
+`;
+
+export const EditProfileContainer = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-top: 10px;
+`;
+export const EditProfileButton = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid #5326c2;
+  border-radius: 15.5px;
+  color: "#5225C2";
+  cursor: pointer;
+  &:hover {
+    background-color: #f6f3ff;
+    transition-duration: 300ms;
+  }
+`;
+
+export const EditProfileModalWrapper = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  border: 1.5px solid #5225c2;
+  box-shadow: 24;
+  padding: 16px;
+  border-radius: 10px;
+`;
+
+export const BadgesWrapper = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 23px;
+`;
+
+export const BadgesContainer = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 32px;
+`;
+
+export const IndividualBadgeContainer = styled(Box)`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 70px;
+  text-align: center;
 `;

@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Wrapper,
   SubWrapper,
@@ -17,6 +18,7 @@ import {
   ShowQueryContainer,
   SortByHeading,
   HorizontalRule,
+  Img,
   Title,
   ParagraphText,
   ButtonContainer,
@@ -41,27 +43,16 @@ import {
   AddButton,
   RatingContainer,
   RatingGenreAuthorContainer,
-  Img,
 } from "./RankingStyle";
 import Header from "../LandingPageAfterLogin/Header/Header";
 import { AiFillCaretDown, AiOutlineLike } from "react-icons/ai";
 import SimpleAccordion from "../Explore/AccordionComp";
-import { Divider, Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { useRanking } from "./api/ranking.hook";
 import Footer from "../LandingPageWithoutLogin/Footer/Footer";
 import { IoIosAddCircle } from "react-icons/io";
-import RankingLoading from "./RankingLoading";
-
-const ItemDetails = () => {
+const RankingLoading = () => {
   const { data, isLoading, isError, error, isFetching } = useRanking();
-
-  if (isLoading) {
-    return (
-      <>
-        <RankingLoading />
-      </>
-    );
-  }
   return (
     <>
       <Wrapper>
@@ -139,86 +130,68 @@ const ItemDetails = () => {
                 {data?.map((card) => (
                   <Cards>
                     <LeftSideCardPart>
-                      <Img src={card.img} />
+                      <Skeleton sx={{ width: "100%", height: "120%" }} />
                     </LeftSideCardPart>
                     <RightSideCardPart>
                       <HashtagAndButtonSection>
                         <ButtonContainer>
                           {card.hashtag.map((hash) => (
-                            <Typography
-                              style={{
-                                color: "#673CCC",
-                                fontSize: "12px",
-
-                                "@media (min-width:768px)": {
-                                  fontSize: "16px",
-                                },
-                              }}
-                            >
-                              {hash}
-                            </Typography>
+                            <Skeleton sx={{ fontSize: "17px", width: "17%" }} />
                           ))}
                         </ButtonContainer>
                         <ButtonSection>
-                          <AddButton>
-                            <IoIosAddCircle size={24} color="#069CF6" />
-                            <Typography
-                              color="#069CF6"
-                              style={{
-                                fontWeight: "400",
-                                "@media (min-width:768px)": {
-                                  fontWeight: "600",
-                                },
-                              }}
-                            >
-                              Add
-                            </Typography>
-                          </AddButton>
-                          <ReadButton>Read</ReadButton>
+                          <Skeleton
+                            sx={{
+                              fontSize: "30px",
+                              width: "30%",
+                              borderRadius: "19px",
+                            }}
+                          />
+
+                          <Skeleton
+                            sx={{
+                              fontSize: "30px",
+                              width: "30%",
+                              borderRadius: "19px",
+                            }}
+                          />
                         </ButtonSection>
                       </HashtagAndButtonSection>
-                      <Title>{card.title}</Title>
-                      <ParagraphText>{card.paragraph}</ParagraphText>
+                      <Skeleton
+                        sx={{
+                          fontSize: "23px",
+                          width: "30%",
+                        }}
+                      />
+                      <Skeleton
+                        sx={{
+                          fontSize: "15px",
+                          width: "70%",
+                        }}
+                      />
                       <RatingGenreAuthorContainer>
-                        <RatingContainer>
-                          <AiOutlineLike color="black" />
-                          <Typography
-                            style={{
-                              fontSize: "14px",
-                              "@media (min-width:625px)": {
-                                fontSize: "16px",
-                              },
+                        <RatingContainer width="5%">
+                          <Skeleton
+                            sx={{
+                              fontSize: "15px",
+                              width: "100%",
                             }}
-                            color="black"
-                          >
-                            {card.rating}
-                          </Typography>
+                          />
                         </RatingContainer>
-                        <Typography
-                          style={{
-                            fontSize: "12px",
-                            "@media (min-width:625px)": {
-                              fontSize: "16px",
-                            },
+                        <Skeleton
+                          sx={{
+                            fontSize: "15px",
+                            width: "10%",
                           }}
-                          color="black"
-                        >
-                          {card.genre}
-                        </Typography>
-                        <Typography
-                          style={{
-                            fontSize: "12px",
-                            "@media (min-width:625px)": {
-                              fontSize: "16px",
-                            },
+                        />
+                        <Skeleton
+                          sx={{
+                            fontSize: "15px",
+                            width: "10%",
                           }}
-                          color="black"
-                        >
-                          {card.author}
-                        </Typography>
+                        />
                       </RatingGenreAuthorContainer>
                     </RightSideCardPart>
-                    <Divider color="black" />
                   </Cards>
                 ))}
               </CardsWrapper>
@@ -231,4 +204,4 @@ const ItemDetails = () => {
   );
 };
 
-export default ItemDetails;
+export default RankingLoading;

@@ -23,11 +23,9 @@ export const Wrapper = styled(Box)`
 export const SubWrapper = styled(Box)`
   width: 100%;
   height: 100%;
-  padding: 30px 40px;
-  @media ${laptopS} {
-    padding: 30px 60px;
-  }
-  @media ${laptopS} {
+  padding: 30px 25px;
+
+  @media ${mobileM} {
     padding: 30px 40px;
   }
   @media ${laptopS} {
@@ -158,7 +156,10 @@ export const MainContentWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 45px;
+  gap: 33px;
+  @media ${mobileM} {
+    gap: 45px;
+  }
   @media ${laptopS} {
     gap: 60px;
   }
@@ -328,26 +329,37 @@ export const Img = styled.img`
 
 export const Title = styled(Typography)`
   font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 14px;
   letter-spacing: 0.1em;
-
+  @media ${mobileL} {
+    font-size: 14px;
+    line-height: 16px;
+  }
   color: #fc9404;
 `;
 export const ButtonContainer = styled(Box)`
-  height: 10%;
+  min-height: 10%;
   width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 13px;
+  gap: 6px;
+  flex-wrap: wrap;
+  @media ${mobileL} {
+    gap: 13px;
+  }
   flex-wrap: wrap;
 `;
 
 export const ParagraphText = styled(Typography)`
   font-weight: 300;
-  font-size: 13px;
-  line-height: 15px;
+  font-size: 11px;
+  line-height: 13px;
+  @media ${mobileL} {
+    font-size: 13px;
+    line-height: 15px;
+  }
   letter-spacing: 0.1em;
   color: #000000;
 `;
