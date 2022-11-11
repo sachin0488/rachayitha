@@ -1,24 +1,32 @@
 import React from "react";
 export const genreName = [
   {
+    buttonName: "Power",
+    name: "power",
+  },
+  {
+    buttonName: "Trending",
+    name: "trending",
+  },
+  {
+    buttonName: "Collect",
+    name: "collect",
+  },
+  {
     buttonName: "Popular",
     name: "popular",
   },
   {
-    buttonName: "Recommended",
-    name: "recomended",
+    buttonName: "Update",
+    name: "update",
   },
   {
-    buttonName: "Most Collections",
-    name: "most_collection",
+    buttonName: "Active",
+    name: "active",
   },
   {
-    buttonName: "Rating",
-    name: "rating",
-  },
-  {
-    buttonName: "Time Update",
-    name: "time_update",
+    buttonName: "Fandom",
+    name: "fandom",
   },
 ];
 

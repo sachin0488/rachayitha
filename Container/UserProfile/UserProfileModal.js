@@ -1,6 +1,10 @@
 import React from "react";
 import { Modal, Button, Box, Typography } from "@mui/material";
-import { EditProfileButton, EditProfileModalWrapper } from "./UserProfileStyle";
+import {
+  EditProfileButton,
+  EditProfileModalWrapper,
+  UserProfileHeading,
+} from "./UserProfileStyle";
 import { AiFillEdit } from "react-icons/ai";
 
 const UserProfileModal = () => {
@@ -11,16 +15,7 @@ const UserProfileModal = () => {
     <>
       <EditProfileButton onClick={handleOpen}>
         <AiFillEdit color="#5225C2" size={21} />
-        <Typography
-          style={{
-            fontSize: "17px",
-            fontWeight: "400",
-            lineHeight: "16px",
-            color: "#5225C2",
-          }}
-        >
-          Edit Profile
-        </Typography>
+        <UserProfileHeading>Edit Profile</UserProfileHeading>
       </EditProfileButton>
       <Modal
         open={open}

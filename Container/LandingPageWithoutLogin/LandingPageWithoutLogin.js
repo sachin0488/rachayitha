@@ -1,5 +1,7 @@
 import React from "react";
-import LandingPageWithoutLoginStyle from "./LandingPageWithoutLoginStyle";
+import LandingPageWithoutLoginStyle, {
+  MainContainer,
+} from "./LandingPageWithoutLoginStyle";
 import Header from "./Header/Header";
 import Banner from "./Banner/Banner";
 import WeeklyFeaturedCards from "./WeeklyFeaturedCards/WeeklyFeaturedCards";
@@ -11,7 +13,6 @@ import NewArrivalCardsStyle from "./NewArrivalsCards/NewArrivalCardsStyle";
 import PotentialStartletCardsStyle from "./PotentialStarletCards/PotentialStartletCardsStyle";
 
 const LandingPageWithoutLogin = () => {
-  const { MainContainer } = LandingPageWithoutLoginStyle();
   const { Wrapper } = WeeklyFeaturedCardsStyles();
   const { ArrivalCardWrapper } = NewArrivalCardsStyle();
   const { PotentialCardWrapper } = PotentialStartletCardsStyle();
@@ -22,7 +23,6 @@ const LandingPageWithoutLogin = () => {
         <Header />
         <Banner />
         <Wrapper padding="100px 0px 0px 0px">
-          {" "}
           <WeeklyFeaturedCards />
         </Wrapper>
         <PotentialCardWrapper>

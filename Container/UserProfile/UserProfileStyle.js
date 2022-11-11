@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 export const ImgBox = styled(Box)`
@@ -123,4 +123,11 @@ export const IndividualBadgeContainer = styled(Box)`
   gap: 3px;
   width: 70px;
   text-align: center;
+`;
+
+export const UserProfileHeading = styled(Typography)`
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #5225c2;
 `;

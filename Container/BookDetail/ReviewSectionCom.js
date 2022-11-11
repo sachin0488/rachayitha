@@ -1,77 +1,57 @@
 import React from "react";
 import { FaRegCommentDots } from "react-icons/fa";
+import MuiTabs from "../../Components/MuiTabs/MuiTabs";
 import RatingStar from "../../Components/RatingComp/Rating";
+import { bookLikedAndNewReviewDetailMuiTabList } from "../../hooks/useMuiTabComp";
+import { styles } from "./MuiTabStyles";
 import {
   AllCategoryRatingSection,
   AllCategoryRatingLeftSection,
   AllCategoryRatingLeftSectionFirstPart,
+  AllCategoryRatingLeftSectionSecondPart,
+  AllCategoryRatingLeftSectionThirdPart,
   AllCategoryRatingFont,
   AllCategoryRatingRightSection,
   ShareFontSize,
-  AddToLibraryButton,
+  ReviewSectionAddToLibraryButton,
   CommentSectionWrapper,
 } from "./BookDetailStyle";
-import LikedComp from "./LikedComp";
-import MuiTab from "./MuiTab";
 
 const ReviewSectionCom = () => {
   return (
     <>
       <AllCategoryRatingSection>
         <AllCategoryRatingLeftSection>
-          <AllCategoryRatingLeftSectionFirstPart
-            alignItems="flex-start"
-            gap="15px"
-            paddingTop="3px"
-            justifyContent="start"
-            sx={{
-              "@media (min-width: 625px)": {
-                gap: "12px",
-                paddingTop: "0px",
-              },
-            }}
-          >
+          <AllCategoryRatingLeftSectionFirstPart>
             <AllCategoryRatingFont>Writing Quality</AllCategoryRatingFont>
             <AllCategoryRatingFont>Stability of Updates</AllCategoryRatingFont>
             <AllCategoryRatingFont>Story Development</AllCategoryRatingFont>
             <AllCategoryRatingFont>Character Design</AllCategoryRatingFont>
             <AllCategoryRatingFont>World Background</AllCategoryRatingFont>
           </AllCategoryRatingLeftSectionFirstPart>
-          <AllCategoryRatingLeftSectionFirstPart
-            justifyContent="start"
-            alignItems="center"
-            gap="5px"
-          >
+          <AllCategoryRatingLeftSectionSecondPart>
             <RatingStar value="2" />
             <RatingStar value="2" />
             <RatingStar value="2" />
             <RatingStar value="2" />
             <RatingStar value="2" />
-          </AllCategoryRatingLeftSectionFirstPart>
+          </AllCategoryRatingLeftSectionSecondPart>
         </AllCategoryRatingLeftSection>
+
         <AllCategoryRatingRightSection>
-          <AllCategoryRatingLeftSectionFirstPart
-            justifyContent="center"
-            alignItems="center"
-            gap="5px"
-            width="100%"
-          >
+          <AllCategoryRatingLeftSectionThirdPart>
             <ShareFontSize>Share your thoughts with others</ShareFontSize>
-            <AddToLibraryButton
-              style={{ color: "white", backgroundColor: "#5b2ec7" }}
-            >
+            <ReviewSectionAddToLibraryButton>
               <FaRegCommentDots size="25" />
               WRITE A REVIEW
-            </AddToLibraryButton>
-          </AllCategoryRatingLeftSectionFirstPart>
+            </ReviewSectionAddToLibraryButton>
+          </AllCategoryRatingLeftSectionThirdPart>
         </AllCategoryRatingRightSection>
       </AllCategoryRatingSection>
       <CommentSectionWrapper>
-        <MuiTab
-          label1="LIKED"
-          label2="NEWEST"
-          comp1={<LikedComp />}
-          comp2={<LikedComp />}
+        <MuiTabs
+          muiTab={bookLikedAndNewReviewDetailMuiTabList}
+          styles={styles}
         />
       </CommentSectionWrapper>
     </>

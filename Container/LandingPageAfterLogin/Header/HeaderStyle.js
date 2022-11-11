@@ -6,6 +6,7 @@ import {
   laptopM,
   laptopS,
   mobileL,
+  mobileM,
   tablet,
   tabletS,
 } from "../../../styles/mediaQuery/breakPoints";
@@ -35,11 +36,12 @@ export const HeaderContent = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   justify-content: start;
-  padding: 0 10px;
+  padding: 0 0px;
   align-items: center;
   width: 50%;
   @media ${tabletS} {
     width: 20%;
+    padding: 0 10px;
   }
   @media ${laptopS} {
     width: 17%;
@@ -50,11 +52,11 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoTitle = styled(Typography)`
-  font-size: 25px;
+  font-size: 22px;
   color: ${(props) => props.theme.palette.primary.main};
   font-weight: 600;
-  line-height: 29px;
-  @media ${laptop} {
+  line-height: 25px;
+  @media ${mobileM} {
     line-height: 29px;
     font-size: 25px;
   }
@@ -75,13 +77,18 @@ export const NavMenu = styled.div`
   color: ${(props) => props.theme.palette.secondary.main};
 `;
 
-export const MenuItem = styled.div`
+export const MenuItems = styled.div`
   display: flex;
   justify-content: center;
   gap: 2px;
   align-items: center;
   cursor: pointer;
   display: none;
+  padding: 6px 2px;
+  &:hover {
+    background-color: #f6f3ff;
+    transition-duration: 500ms;
+  }
   @media ${laptopS} {
     display: block;
     display: flex;
@@ -95,7 +102,7 @@ export const Button = styled.button`
   font-size: 17px;
   line-height: 20px;
   color: #2f2d5c;
-  background-color: #ffffff;
+  background-color: transparent;
   border: none;
   display: none;
   cursor: pointer;

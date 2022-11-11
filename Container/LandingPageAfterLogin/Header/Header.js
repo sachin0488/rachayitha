@@ -7,22 +7,20 @@ import {
   NavMenu,
   SearchInput,
   SearchInputDiv,
-  MenuItem,
+  MenuItems,
   Button,
-  Img,
   ImgCont,
 } from "./HeaderStyle";
 import Logo from "../../../public/logo.svg";
-import ProfileImg from "../../../public/headerProfileImg.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import Explore from "../../../public/MenuItem1.svg";
 import Ranking from "../../../public/ranking.svg";
 import Create from "../../../public/create.svg";
 import Library from "../../../public/library1.svg";
 import Shorts from "../../../public/shorts.svg";
-import { FiMenu } from "react-icons/fi";
 import Link from "next/link";
 import HeaderDrawer from "./HeaderDrawer";
+import HeaderMenuMui from "./HeaderMenuMui";
 
 const Header = () => {
   return (
@@ -41,41 +39,36 @@ const Header = () => {
             <HeaderDrawer />
           </ImgCont>
           <Link href="/explore">
-            <MenuItem>
+            <MenuItems>
               <Image src={Explore} />
               <Button>Explore</Button>
-            </MenuItem>
+            </MenuItems>
           </Link>
           <Link href="/ranking">
-            <MenuItem>
+            <MenuItems>
               <Image src={Ranking} />
               <Button>Ranking</Button>
-            </MenuItem>
+            </MenuItems>
           </Link>
           <Link href="/">
-            <MenuItem>
+            <MenuItems>
               <Image src={Create} />
               <Button>Create</Button>
-            </MenuItem>
+            </MenuItems>
           </Link>
           <Link href="/">
-            <MenuItem>
+            <MenuItems>
               <Image src={Library} />
               <Button>Library</Button>
-            </MenuItem>
+            </MenuItems>
           </Link>
           <Link href="/">
-            <MenuItem>
+            <MenuItems>
               <Image src={Shorts} />
               <Button>Shorts</Button>
-            </MenuItem>
+            </MenuItems>
           </Link>
-          <Link href={`/profile/1`}>
-            <MenuItem>
-              {" "}
-              <Image src={ProfileImg} />
-            </MenuItem>
-          </Link>
+          <HeaderMenuMui />
         </NavMenu>
       </HeaderContent>
     </>

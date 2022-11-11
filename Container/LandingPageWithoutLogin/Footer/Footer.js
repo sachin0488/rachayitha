@@ -1,16 +1,15 @@
 import React from "react";
-import FooterStyle from "./FooterStyle";
 import { BsFacebook } from "react-icons/bs";
 import { FaInstagramSquare } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
+import {
+  Wrapper,
+  Heading,
+  ImpSection,
+  ImpSectionButton,
+  SocialMediaIconContainer,
+} from "./FooterStyle";
 const Footer = () => {
-  const {
-    Wrapper,
-    Heading,
-    ImpSection,
-    ImpSectionButton,
-    SocialMediaIconContainer,
-  } = FooterStyle();
   return (
     <>
       <Wrapper>

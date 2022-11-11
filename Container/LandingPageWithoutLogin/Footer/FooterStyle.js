@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+import buttonClasses from "@mui/material";
 import React from "react";
 import styled from "@emotion/styled";
 import {
@@ -14,13 +15,14 @@ import {
   tabletS,
 } from "../../../styles/mediaQuery/breakPoints";
 
-const Wrapper = styled(Box)`
+export const Wrapper = styled(Box)`
   width: 100%;
   min-height: 520px;
   display: flex;
 
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   gap: 20px;
   @media ${mobileS} {
     padding: 40px 25px;
@@ -51,16 +53,16 @@ const Wrapper = styled(Box)`
   background-color: #f6f3ff;
 `;
 
-const ImpSection = styled(Box)`
+export const ImpSection = styled(Box)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   gap: 13px;
 `;
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-family: "Roboto";
-  text-align: center;
+  text-align: start;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -69,14 +71,17 @@ const Heading = styled(Typography)`
   color: black;
 `;
 
-const ImpSectionButton = styled(Button)`
+export const ImpSectionButton = styled(Button)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   display: none;
-
+  text-align: start;
+  &${buttonClasses?.text} {
+    text-transform: capitalize;
+  }
   @media ${tabletS} {
     display: block;
   }
@@ -84,21 +89,9 @@ const ImpSectionButton = styled(Button)`
   color: #000000;
 `;
 
-const SocialMediaIconContainer = styled(Box)`
+export const SocialMediaIconContainer = styled(Box)`
   display: flex;
   justify-content: center;
   gap: 8px;
   align-items: center;
 `;
-
-const FooterStyle = () => {
-  return {
-    Wrapper,
-    ImpSectionButton,
-    ImpSection,
-    Heading,
-    SocialMediaIconContainer,
-  };
-};
-
-export default FooterStyle;

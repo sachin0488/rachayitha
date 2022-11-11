@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { styles } from "./MuiTabStyles";
 import { useRouter } from "next/router";
 import React from "react";
 import { Wrapper, SubWrapper } from "../Explore/ExploreStyle";
@@ -7,8 +8,6 @@ import Footer from "../LandingPageWithoutLogin/Footer/Footer";
 import { GrFormView } from "react-icons/gr";
 import Chapter from "../../public/chapter.png";
 import useBookDetail from "./api/bookDetail.hook";
-import BookAboutContent from "./BookAboutContent";
-import BookTableOfContent from "./BookTableOfContent";
 import {
   BookDetailCard,
   BookDetailCardLeftSection,
@@ -22,14 +21,23 @@ import {
   ReadButton,
   AddToLibraryButton,
   RecommendedCardsHeading,
+  RatingSectionComp,
+  StarText,
+  Author,
+  StyledTabs,
+  StyledTab,
+  TabSection,
+  TabDisplayRoot,
+  MuiTabWrapper,
 } from "./BookDetailStyle";
 import Image from "next/image";
 import { IoIosAddCircle } from "react-icons/io";
 import RatingStar from "../../Components/RatingComp/Rating";
 import { Box, Typography } from "@mui/material";
-import MuiTab from "./MuiTab";
 import RecommendedCards from "./RecommendedCards";
 import ReviewSectionCom from "./ReviewSectionCom";
+import MuiTabs from "../../Components/MuiTabs/MuiTabs";
+import { bookAboutAndContentDetailMuiTabList } from "../../hooks/useMuiTabComp";
 
 const BookDetail = () => {
   const router = useRouter();
@@ -55,9 +63,9 @@ const BookDetail = () => {
               <Img src={data?.img} />
             </BookDetailCardLeftSection>
             <BookDetailCardRightSection>
-              <TitleFantasyViewSection style={{ gap: "14px" }}>
+              <TitleFantasyViewSection>
                 <Title>{data.title}</Title>
-                <FantasyAndViewSection style={{ gap: "15px" }}>
+                <FantasyAndViewSection>
                   <Text>Eastern Fantasy</Text>
                   <Text>
                     <Image src={Chapter} /> Chapters
@@ -67,45 +75,37 @@ const BookDetail = () => {
                   </Text>
                 </FantasyAndViewSection>
               </TitleFantasyViewSection>
-              <TitleFantasyViewSection style={{ gap: "18px" }}>
-                <FantasyAndViewSection style={{ gap: "15px" }}>
-                  <AuthorText style={{ color: "black" }}>Author :</AuthorText>
-                  <AuthorText style={{ color: "#5a2cc6" }}>
-                    Fruit of Chaos
-                  </AuthorText>
+              <TitleFantasyViewSection>
+                <FantasyAndViewSection>
+                  <Author>Author :</Author>
+                  <AuthorText>Fruit of Chaos</AuthorText>
                 </FantasyAndViewSection>
-                <FantasyAndViewSection style={{ gap: "17px" }}>
+                <FantasyAndViewSection>
                   <RatingStar value="3" size="large" />
-                  <Typography color="#FC9404" fontSize="21px" fontWeight="400">
-                    4.0
-                  </Typography>
-                  <Typography color="#656565" fontSize="11px" fontWeight="200">
-                    (300 rating)
-                  </Typography>
+                  <StarText>4.0</StarText>
+                  <RatingSectionComp>(300 rating)</RatingSectionComp>
                 </FantasyAndViewSection>
               </TitleFantasyViewSection>
 
-              <FantasyAndViewSection style={{ gap: "16px" }}>
+              <FantasyAndViewSection>
                 <ReadButton>READ</ReadButton>
-                <AddToLibraryButton color="#5b2ec7">
+                <AddToLibraryButton>
                   <IoIosAddCircle size="30" />
                   ADD TO LIBRARY
                 </AddToLibraryButton>
               </FantasyAndViewSection>
-              <Box style={{ width: "100%", height: "330px" }}>
-                <MuiTab
-                  label1="About"
-                  label2="Table of Content"
-                  comp1={<BookAboutContent />}
-                  comp2={<BookTableOfContent />}
+              <MuiTabWrapper>
+                <MuiTabs
+                  muiTab={bookAboutAndContentDetailMuiTabList}
+                  styles={styles}
                 />
-              </Box>
+              </MuiTabWrapper>
             </BookDetailCardRightSection>
           </BookDetailCard>
         </SubWrapper>
         <RecommendedCards />
         <SubWrapper>
-          <FantasyAndViewSection gap="15px">
+          <FantasyAndViewSection>
             <RecommendedCardsHeading>139 Reviews</RecommendedCardsHeading>
             <RatingStar value="4" />
             <Typography sx={{ color: "black" }}>4.0</Typography>
