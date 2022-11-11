@@ -131,3 +131,16 @@ export const UserProfileHeading = styled(Typography)`
   line-height: 16px;
   color: #5225c2;
 `;
+
+export const Username = styled(Typography)`
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+`;
+
+export const ImgComp = styled.img`
+  position: absolute;
+  top: 69%;
+  left: 10%;
+`;

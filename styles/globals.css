@@ -11,6 +11,16 @@ a {
   text-decoration: none;
 }
 
+.active {
+  border-left: 5px solid #673ccb;
+  background-color: #f6f3ff;
+}
+
+.subsection {
+  color: #673ccb;
+  border-bottom: 2px solid #673ccb;
+}
+
 * {
   box-sizing: border-box;
 }

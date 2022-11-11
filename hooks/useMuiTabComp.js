@@ -3,6 +3,9 @@ import BookAboutContent from "../Container/BookDetail/BookAboutContent";
 import BookTableOfContent from "../Container/BookDetail/BookTableOfContent";
 import LikedComp from "../Container/BookDetail/LikedComp";
 import NewestComp from "../Container/BookDetail/NewestComp";
+import DashBoardPoem from "../Container/Create/DashBoardPoem";
+import DashBoardShort from "../Container/Create/DashBoardShort";
+import DashBoardStories from "../Container/Create/DashBoardStories";
 import Badges from "../Container/UserProfile/Badges";
 import UserLibrary from "../Container/UserProfile/UserLibrary";
 import UserWorks from "../Container/UserProfile/UserWorks";
@@ -54,6 +57,27 @@ export const UserProfileMuiTabList = [
       { com: <UserLibrary />, index: 0 },
       { com: <Badges />, index: 1 },
       { com: <UserWorks />, index: 2 },
+    ],
+  },
+];
+
+export const CreateUserDashboardMuiTabList = [
+  {
+    labelComp: [
+      {
+        label: "STORIES",
+      },
+      {
+        label: "POEMS",
+      },
+      {
+        label: "SHORTS",
+      },
+    ],
+    component: [
+      { com: <DashBoardStories />, index: 0 },
+      { com: <DashBoardPoem />, index: 1 },
+      { com: <DashBoardShort />, index: 2 },
     ],
   },
 ];

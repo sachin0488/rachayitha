@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { GenreTitle, MenuItem } from "../../Container/Explore/ExploreStyle";
+import { GenreTitle, MenuItem } from "./ExploreStyle";
 
 const LinkContainer = ({ href, img_url, genretitle }) => {
   return (
