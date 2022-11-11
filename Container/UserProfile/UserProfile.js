@@ -20,8 +20,9 @@ import { FaMale } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 import { ImLocation } from "react-icons/im";
 import UserProfileModal from "./UserProfileModal";
-import UserProfileTab from "./UserProfileTab";
-import Badges from "./Badges";
+import MuiTabs from "../../Components/MuiTabs/MuiTabs";
+import { UserProfileMuiTabList } from "../../hooks/useMuiTabComp";
+import { UserProfileStylesTab } from "./UserProfileStylesTab";
 
 const UserProfile = () => {
   const bannerImgUrl =
@@ -94,11 +95,9 @@ const UserProfile = () => {
               <EditProfileContainer>
                 <UserProfileModal />
               </EditProfileContainer>
-              <UserProfileTab
-                label1="Library"
-                label2="Activity"
-                label3="Original Work"
-                comp2={<Badges />}
+              <MuiTabs
+                muiTab={UserProfileMuiTabList}
+                styles={UserProfileStylesTab}
               />
             </UserProfileLowerRightSection>
           </UserProfileLowerSection>

@@ -13,6 +13,9 @@ import {
   ReplyLikeAndCommentSection,
   RepliesSection,
   LikeAndCommentSection,
+  Months,
+  Replies,
+  UserName,
 } from "./BookDetailStyle";
 const LikedComp = () => {
   return (
@@ -20,26 +23,18 @@ const LikedComp = () => {
       <CommentSectionSubWrapper>
         <Image src={ProfileImg} />
         <CommentSectionSubWrapperRightSideContent>
-          <Typography
-            style={{ fontSize: "15px", fontWeight: "700", lineHeight: "18px" }}
-          >
-            Guiltythree
-          </Typography>
+          <UserName>Guiltythree</UserName>
           <RatingStar value="5" />
           <ShareFontSize>
             Shameless author here :) Writing a review for your own book is not
             easy, so I'll just say a few things. Also, if you have any questions
             about the novel, you can leave them in the comments!
           </ShareFontSize>
-          <Typography color="#656565" fontSize="11px" fontWeight="200">
-            4 months
-          </Typography>
+          <Months>4 months</Months>
           <ReplyLikeAndCommentSection>
             <RepliesSection>
               <Image src={ReplyImg} />
-              <Typography color="#5A2CC6" fontSize="11px" fontWeight="200">
-                32 replies
-              </Typography>
+              <Replies>32 replies</Replies>
             </RepliesSection>
             <LikeAndCommentSection>
               <Image src={LikeImg} />
@@ -51,26 +46,18 @@ const LikedComp = () => {
       <CommentSectionSubWrapper>
         <Image src={ProfileImg} />
         <CommentSectionSubWrapperRightSideContent>
-          <Typography
-            style={{ fontSize: "15px", fontWeight: "700", lineHeight: "18px" }}
-          >
-            Guiltythree
-          </Typography>
+          <UserName>Guiltythree</UserName>
           <RatingStar value="5" />
           <ShareFontSize>
             Shameless author here :) Writing a review for your own book is not
             easy, so I'll just say a few things. Also, if you have any questions
             about the novel, you can leave them in the comments!
           </ShareFontSize>
-          <Typography color="#656565" fontSize="11px" fontWeight="200">
-            4 months
-          </Typography>
+          <Months>4 months</Months>
           <ReplyLikeAndCommentSection>
             <RepliesSection>
               <Image src={ReplyImg} />
-              <Typography color="#5A2CC6" fontSize="11px" fontWeight="200">
-                32 replies
-              </Typography>
+              <Replies>32 replies</Replies>
             </RepliesSection>
             <LikeAndCommentSection>
               <Image src={LikeImg} />

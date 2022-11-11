@@ -9,9 +9,9 @@ import {
   IndividualRecommendedCardTitle,
   RecommendedCardsContainer,
   CardImg,
+  CardRatingText,
 } from "./BookDetailStyle";
 import { useExplore } from "../Explore/api/explore.hook";
-import { Typography } from "@mui/material";
 const RecommendedCards = () => {
   const { data } = useExplore();
   return (
@@ -28,9 +28,7 @@ const RecommendedCards = () => {
               <Fantasy>{card.genre}</Fantasy>
               <RatingSection>
                 <RatingStar value={card.rating} size="small" />
-                <Typography style={{ color: "#4F4F4F" }}>
-                  {card.rating}
-                </Typography>
+                <CardRatingText>{card.rating}</CardRatingText>
               </RatingSection>
             </IndividualRecommendedCardContainer>
           ))}

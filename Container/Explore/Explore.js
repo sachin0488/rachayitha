@@ -1,65 +1,37 @@
-import React, { useEffect } from "react";
-import { genreName } from "../../hooks/useGenreButton";
-import { css } from "@emotion/react";
+import React from "react";
 import {
   Wrapper,
   ExploreBannerContainer,
   SubWrapper,
   ExploreBannerImageContainer,
-  GenreMenuBar,
-  RightSideGenreMenuBar,
-  LeftSideGenreMenuBar,
-  GenreTitle,
-  FilterText,
-  ContentType,
-  ContentTypeText,
   MainContentWrapper,
   GenreAccordionContainer,
   ShowQueryContainer,
   SortByHeading,
   HorizontalRule,
-  Cards,
-  CardsSubWrapper,
   CardsWrapper,
-  CardLeftSideContent,
-  CardRightSideContent,
-  Img,
-  Title,
-  ParagraphText,
-  ButtonContainer,
-  Button,
-  MaleAndFemaleLeadContainer,
-  GenderBox,
+  ExploreBannerHeading,
   ExploreBannerImg,
-  MenuItem,
+  SortByWrapper,
 } from "./ExploreStyle";
 import { useExplore } from "./api/explore.hook";
 import Header from "../LandingPageAfterLogin/Header/Header";
-import ExploreBannerImgs from "../../public/exploreBanner.svg";
-import Image from "next/image";
 import Footer from "../LandingPageWithoutLogin/Footer/Footer";
-
-import NovelImg from "../../public/novel.svg";
-import PoemImg from "../../public/poem.svg";
-import ShortImg from "../../public/shorts.svg";
-import { AiFillCaretDown } from "react-icons/ai";
-import Link from "next/link";
-import SimpleAccordion from "./AccordionComp";
-import GenreButton from "../../Components/GenreButton/GenreButton";
-import { Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import Loading from "./Loading";
+import ExploreCard from "./ExploreCard";
+import RankingAccordionContainer, {
+  ExploreTextAndNestedRoute,
+} from "../Ranking/RankingAccordionContainer";
+import SubGenreButton from "../../Components/SubGenreButton/SubGenreButton";
+import { ExploreLinkList } from "../Ranking/RankingLinksContainer";
+import GenreMenuBarComp from "../../Components/GenreMenuBarComp/GenreMenuBarComp";
+import MuiAccordion from "../../Components/MuiAccordion/MuiAccordion";
+import { Typography } from "@mui/material";
+import GenreButtonLIstMobile from "../../Components/GenreButtonList/GenreButtonLIstMobile";
 const Explore = () => {
-  const { data, isLoading, isError, error, isFetching } = useExplore();
-
-  if (isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
-  }
-
+  const { data, isLoading, isError, error } = useExplore();
+  const bannerImg =
+    "https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png";
   if (isError) {
     return <h1>{error?.message}</h1>;
   }
@@ -71,103 +43,50 @@ const Explore = () => {
         <SubWrapper>
           <ExploreBannerContainer>
             <ExploreBannerImageContainer>
-              <ExploreBannerImg src="https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png" />
-              <h1 style={{ position: "absolute", color: "#2F2D5C" }}>
-                Explore
-              </h1>
+              <ExploreBannerImg src={bannerImg} />
+              <ExploreBannerHeading>Explore</ExploreBannerHeading>
             </ExploreBannerImageContainer>
-            <GenreMenuBar>
-              <LeftSideGenreMenuBar>
-                <Link href="/explore/novel">
-                  <MenuItem>
-                    <Image src={NovelImg} />
-                    <GenreTitle>Novels</GenreTitle>
-                  </MenuItem>
-                </Link>
-
-                <Link href="/explore/short">
-                  <MenuItem>
-                    <Image src={ShortImg} />
-                    <GenreTitle>Shorts</GenreTitle>
-                  </MenuItem>
-                </Link>
-                <Link href="/explore/poem">
-                  <MenuItem>
-                    <Image src={PoemImg} />
-                    <GenreTitle>Poems</GenreTitle>
-                  </MenuItem>
-                </Link>
-              </LeftSideGenreMenuBar>
-              <RightSideGenreMenuBar>
-                <FilterText>Filter by</FilterText>
-                <ContentType>
-                  <ContentTypeText>Content Type</ContentTypeText>
-                  <AiFillCaretDown />
-                </ContentType>
-                <ContentType>
-                  <ContentTypeText>Content Status</ContentTypeText>
-                  <AiFillCaretDown />
-                </ContentType>
-              </RightSideGenreMenuBar>
-            </GenreMenuBar>
+            <GenreMenuBarComp sectionName={ExploreLinkList} />
           </ExploreBannerContainer>
           <MainContentWrapper>
             <GenreAccordionContainer>
-              <MaleAndFemaleLeadContainer>
-                <GenderBox>MALE LEAD</GenderBox>
-                <Typography
-                  sx={{
-                    color: "black",
-                    fontSize: "13px",
-                    "@media (min-width: 1100px)": {
-                      fontSize: "15px",
-                      fontWeight: "300",
-                    },
-                    "@media (min-width: 1500px)": { fontSize: "15px" },
-                  }}
-                >
-                  FEMALE LEAD
-                </Typography>
-              </MaleAndFemaleLeadContainer>
-              <SimpleAccordion text="Genre of Novels" high="450px" />
-              <SimpleAccordion text="Genre of Poems" high="450px" />
-              <SimpleAccordion text="Genre of Shorts" high="450px" />
+              {ExploreTextAndNestedRoute.map((comp) => (
+                <RankingAccordionContainer
+                  text={comp.text}
+                  explore={comp.explore}
+                  section={comp.section}
+                  high={comp.high}
+                />
+              ))}
             </GenreAccordionContainer>
             <ShowQueryContainer>
+              <SortByWrapper>
+                <MuiAccordion text="Sort By" high="300px">
+                  {ExploreTextAndNestedRoute.map((comp) => (
+                    <>
+                      <Typography marginBottom="15px" fontSize="20px">
+                        {comp.text}
+                      </Typography>
+                      <GenreButtonLIstMobile
+                        explore={comp.explore}
+                        section={comp.section}
+                      />
+                    </>
+                  ))}
+                </MuiAccordion>
+              </SortByWrapper>
               <SortByHeading>Sort By</SortByHeading>
-              <HorizontalRule style={{ width: "80%" }} />
-              <ButtonContainer>
-                {genreName?.map((button) => (
-                  <Button style={{ color: "black" }}>
-                    {button.buttonName}
-                  </Button>
-                ))}
-              </ButtonContainer>
+              <HorizontalRule />
+              <SubGenreButton sectionName="novel" />
+
               <CardsWrapper>
-                {data?.map((card) => (
-                  <Link href={`/book/${card.id}`}>
-                    <CardsSubWrapper>
-                      <Cards>
-                        <CardLeftSideContent>
-                          <Img src={card.img} />
-                        </CardLeftSideContent>
-                        <CardRightSideContent>
-                          <ButtonContainer>
-                            {card.hashtag.map((hash) => (
-                              <Typography
-                                style={{ color: "#673CCC", fontSize: "13px" }}
-                              >
-                                {hash}
-                              </Typography>
-                            ))}
-                          </ButtonContainer>
-                          <Title>{card.title}</Title>
-                          <ParagraphText>{card.paragraph}</ParagraphText>
-                        </CardRightSideContent>
-                      </Cards>
-                    </CardsSubWrapper>
-                  </Link>
-                ))}
+                {data?.map((card, index) =>
+                  isLoading ? (
+                    <Loading card={card} index={index} />
+                  ) : (
+                    <ExploreCard card={card} index={index} />
+                  )
+                )}
               </CardsWrapper>
             </ShowQueryContainer>
           </MainContentWrapper>

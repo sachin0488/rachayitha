@@ -77,8 +77,6 @@ const HeaderDrawer = () => {
               </IndividualMenuContainer>
             </Link>
             <Link href="/ranking">
-              {" "}
-              onClick={() => setIsDrawerOpen(false)}
               <IndividualMenuContainer
                 onClick={() => setIsDrawerOpen(false)}
                 style={{ gap: "10px" }}

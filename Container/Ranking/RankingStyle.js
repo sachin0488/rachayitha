@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import {
   laptop,
@@ -99,9 +99,6 @@ export const ButtonSection = styled(Box)`
   @media ${tabletS} {
     gap: 12px;
   }
-  /* @media ${laptopM} {
-    width: 80%;
-  } */
 `;
 export const AddButton = styled(Box)`
   display: flex;
@@ -151,4 +148,38 @@ export const Img = styled.img`
   }
   object-fit: cover;
   border-radius: 5px;
+`;
+
+export const HashtagContainer = styled(Typography)`
+  color: #673ccc;
+  font-size: 12px;
+
+  @media ${tabletS} {
+    font-size: 16px;
+  }
+`;
+
+export const AddButtonText = styled(Typography)`
+  color: #069cf6;
+  font-weight: 400;
+  @media ${tabletS} {
+    font-weight: 600;
+  }
+`;
+
+export const CardRatingText = styled(Typography)`
+  color: black;
+
+  font-size: 14px;
+  @media ${tabletS} {
+    font-size: 16px;
+  }
+`;
+
+export const CardGenreText = styled(Typography)`
+  color: black;
+  font-size: 12px;
+  @media ${tabletS} {
+    font-size: 16px;
+  }
 `;

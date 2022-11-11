@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
 import {
   laptop,
@@ -83,6 +83,7 @@ export const BookDetailCardRightSection = styled(Box)`
 export const TitleFantasyViewSection = styled(Box)`
   min-height: 80px;
   width: 100%;
+  gap: 16px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -121,6 +122,7 @@ export const Img = styled.img`
 export const FantasyAndViewSection = styled(Box)`
   display: flex;
   justify-content: start;
+  gap: 15px;
   align-items: center;
   width: 100%;
   height: 23px;
@@ -132,6 +134,7 @@ export const AuthorText = styled(Typography)`
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
+  color: #5a2cc6;
 `;
 
 export const ReadButton = styled.button`
@@ -162,12 +165,67 @@ export const AddToLibraryButton = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #5b2ec7;
   padding: 9px 15px;
   gap: 7px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
 
+  text-transform: uppercase;
+  border: 1px solid #5b2ec7;
+  border-radius: 23px;
+
+  padding: 4px 13px;
+  font-size: 16px;
+  line-height: 18px;
+
+  @media ${tablet} {
+    padding: 4px 13px;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  @media ${laptop} {
+    padding: 5px 15px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  @media ${laptopS} {
+    padding: 6px 18px;
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  cursor: pointer;
+`;
+
+export const StarText = styled(Box)`
+  color: #fc9404;
+  font-size: 21px;
+  font-weight: 400;
+`;
+
+export const Author = styled(Typography)`
+  color: black;
+`;
+
+export const RatingSectionComp = styled(Box)`
+  color: #656565;
+  font-size: 11px;
+  font-weight: 200;
+`;
+
+export const ReviewSectionAddToLibraryButton = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 15px;
+  gap: 7px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  color: white;
+  background-color: #5b2ec7;
   text-transform: uppercase;
   border: 1px solid #5b2ec7;
   border-radius: 23px;
@@ -298,10 +356,6 @@ export const AllCategoryRatingLeftSection = styled(Box)`
   justify-content: space-between;
   align-items: center;
 
-  /* @media ${mobileS} {
-    width: 55%;
-    padding: 18px 3px 0px 8px;
-  } */
   @media ${mobileS} {
     width: 100%;
     padding: 18px 13px 0px 8px;
@@ -311,12 +365,14 @@ export const AllCategoryRatingLeftSection = styled(Box)`
   }
   @media ${mobileL} {
     width: 52%;
-    padding: 18px 13px 0px 8px;
+    padding: 18px 13px 20px 8px;
     border-right: 1px solid #cecccc;
+    border-bottom: none;
+    margin: 0px;
   }
   @media ${tabletS} {
     width: 48%;
-    padding: 18px 33px 0px 8px;
+    padding: 18px 33px 20px 8px;
   }
   @media ${tablet} {
     width: 40%;
@@ -336,8 +392,37 @@ export const AllCategoryRatingLeftSection = styled(Box)`
 export const AllCategoryRatingLeftSectionFirstPart = styled(Box)`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  padding-top: 3px;
+  justify-content: start;
+
+  @media ${mobileL} {
+    gap: 12px;
+    padding-top: 0px;
+  }
 
   width: 50%;
+  height: 100%;
+`;
+
+export const AllCategoryRatingLeftSectionSecondPart = styled(Box)`
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+`;
+export const AllCategoryRatingLeftSectionThirdPart = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+
   height: 100%;
 `;
 
@@ -461,4 +546,29 @@ export const AboutSectionUpperContent = styled(Box)`
   align-items: flex-start;
   flex-direction: column;
   gap: 8px;
+`;
+
+export const MuiTabWrapper = styled(Box)`
+  width: 100%;
+  height: 330px;
+`;
+
+export const Months = styled(Typography)`
+  color: #656565;
+  font-size: 11px;
+  font-weight: 200;
+`;
+export const Replies = styled(Typography)`
+  color: #5a2cc6;
+  font-size: 11px;
+  font-weight: 200;
+`;
+
+export const UserName = styled(Typography)`
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+`;
+export const CardRatingText = styled(Typography)`
+  color: #4f4f4f;
 `;

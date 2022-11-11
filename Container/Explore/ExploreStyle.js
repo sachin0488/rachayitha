@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import {
   laptop,
   laptopM,
@@ -66,7 +66,6 @@ export const ExploreBannerImg = styled.img`
 `;
 
 export const GenreMenuBar = styled(Box)`
-  height: 75px;
   background-color: #673ccc;
   border: 2px solid #673ccc;
   border-radius: 37.5px;
@@ -75,13 +74,24 @@ export const GenreMenuBar = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 49px;
+
   width: 95%;
+  padding: 20px 17px;
+  height: 60px;
   @media ${mobileM} {
-    width: 87%;
+    width: 89%;
+    height: 60px;
+    padding: 22px 20px;
+  }
+  @media ${tabletS} {
+    width: 92%;
+    padding: 22px 20px;
+    height: 60px;
   }
   @media ${laptopS} {
+    padding: 25px 49px;
     width: 85%;
+    height: 75px;
   }
 `;
 
@@ -90,7 +100,11 @@ export const LeftSideGenreMenuBar = styled(Box)`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 50%;
+  gap: 20px;
+  width: 100%;
+  @media ${tablet} {
+    width: 50%;
+  }
   @media ${laptopM} {
     width: 40%;
   }
@@ -99,9 +113,19 @@ export const RightSideGenreMenuBar = styled(Box)`
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
-  gap: 35px;
+  justify-content: space-evenly;
+
   align-items: center;
+  display: none;
+  @media ${tablet} {
+    display: block;
+    display: flex;
+  }
+  gap: 20px;
+  @media ${laptop} {
+    justify-content: flex-end;
+    gap: 35px;
+  }
 `;
 
 export const MenuItem = styled.div`
@@ -110,19 +134,30 @@ export const MenuItem = styled.div`
   gap: 2px;
   align-items: center;
   cursor: pointer;
-  display: none;
-  @media ${tabletS} {
-    display: block;
-    display: flex;
-  }
 `;
 
 export const GenreTitle = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 16px;
+  line-height: 18px;
+  @media ${mobileM} {
+    font-size: 19px;
+    line-height: 20px;
+  }
+  @media ${mobileL} {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  @media ${tabletS} {
+    font-size: 19px;
+    line-height: 20px;
+  }
+  @media ${laptop} {
+    font-size: 22px;
+    line-height: 26px;
+  }
 `;
 
 export const FilterText = styled(Typography)`
@@ -131,7 +166,14 @@ export const FilterText = styled(Typography)`
   font-weight: 400;
   font-size: 19px;
   line-height: 22px;
-
+  @media ${tabletS} {
+    font-size: 16px;
+    line-height: 17px;
+  }
+  @media ${laptop} {
+    font-size: 19px;
+    line-height: 22px;
+  }
   color: #ffffff;
 `;
 export const ContentType = styled(Box)`
@@ -139,6 +181,8 @@ export const ContentType = styled(Box)`
   justify-content: center;
   align-items: center;
   gap: 1px;
+  width: 29%;
+  padding-bottom: 12px;
 `;
 export const ContentTypeText = styled(Typography)`
   font-family: "Roboto";
@@ -146,6 +190,14 @@ export const ContentTypeText = styled(Typography)`
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
+  @media ${tabletS} {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  @media ${laptop} {
+    font-size: 15px;
+    line-height: 18px;
+  }
   color: #ffffff;
 `;
 
@@ -174,7 +226,7 @@ export const GenreAccordionContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 17px;
+  gap: 7px;
   justify-content: start;
   display: none;
   @media ${laptop} {
@@ -183,18 +235,13 @@ export const GenreAccordionContainer = styled(Box)`
   }
 `;
 export const MaleAndFemaleLeadContainer = styled(Box)`
-  width: 100%;
-  height: 35px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 2px;
-  @media ${laptop} {
-    padding: 0px 9px;
-  }
+  width: 120%;
   @media ${laptopS} {
-    padding: 0px 18px;
+    width: 105%;
   }
-
+  height: 60px;
+  display: flex;
+  justify-content: center;
   align-items: center;
   background-color: #edefff;
 `;
@@ -222,7 +269,13 @@ export const ShowQueryContainer = styled(Box)`
     width: 72%;
   }
 `;
+export const SortByWrapper = styled(Box)`
+  width: 100%;
 
+  @media ${laptop} {
+    display: none;
+  }
+`;
 export const SortByHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
@@ -231,9 +284,19 @@ export const SortByHeading = styled(Typography)`
   line-height: 26px;
   letter-spacing: 0.1em;
   color: #717174;
+  display: none;
+  @media ${laptop} {
+    display: block;
+  }
 `;
+
 export const HorizontalRule = styled.div`
   border-top: 1px solid #e7e7e7;
+  width: 80%;
+  display: none;
+  @media ${laptop} {
+    display: block;
+  }
 `;
 export const CardsWrapper = styled(Box)`
   width: 100%;
@@ -363,14 +426,22 @@ export const ParagraphText = styled(Typography)`
   letter-spacing: 0.1em;
   color: #000000;
 `;
-export const Button = styled.button`
+export const Buttons = styled(Button)`
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.1em;
   border-radius: 16px;
   padding: 5px 12px;
-  color: #000000;
-  background-color: transparent;
   border: 1px solid #e7e7e7;
+`;
+
+export const ExploreBannerHeading = styled.h1`
+  position: absolute;
+  color: #2f2d5c;
+`;
+
+export const HashTagComp = styled(Typography)`
+  color: #673ccc;
+  font-size: 13px;
 `;

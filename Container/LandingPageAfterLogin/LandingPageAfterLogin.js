@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 import React from "react";
 import Footer from "../LandingPageWithoutLogin/Footer/Footer";
-import LandingPageWithoutLoginStyle from "../LandingPageWithoutLogin/LandingPageWithoutLoginStyle";
+import { MainContainer } from "../LandingPageWithoutLogin/LandingPageWithoutLoginStyle";
 import NewArrivalCardMiniComp from "../LandingPageWithoutLogin/NewArrivalsCards/NewArrivalCardMiniComp";
 import NewArrivalsCards from "../LandingPageWithoutLogin/NewArrivalsCards/NewArrivalsCards";
 import PotentialStarletCards from "../LandingPageWithoutLogin/PotentialStarletCards/PotentialStarletCards";
@@ -13,7 +13,6 @@ import TopCollection from "./TopCollection/TopCollection";
 import TopCollectionStyle from "./TopCollection/TopCollectionStyle";
 
 const LandingPageAfterLogin = () => {
-  const { MainContainer } = LandingPageWithoutLoginStyle();
   const { SectionWrapper } = TopCollectionStyle();
 
   return (
