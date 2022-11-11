@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 import TabPanel from "./Tabpanel";
-import Link from "next/link";
 
 const MuiTabs = ({ muiTab, styles }) => {
   const [value, setValue] = useState(0);
@@ -9,8 +8,6 @@ const MuiTabs = ({ muiTab, styles }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const handleLink = () => {};
 
   return (
     <>
@@ -24,12 +21,12 @@ const MuiTabs = ({ muiTab, styles }) => {
               sx={styles?.tabs}
             >
               {tab.labelComp?.map((label) => (
-                <Tab label={label.label} onClick={handleLink} />
+                <Tab label={label.label} />
               ))}
             </Tabs>
           </Box>
           {tab.component.map((comp) => (
-            <TabPanel value={value} index={comp.index}>
+            <TabPanel sx={styles?.tabPanel} value={value} index={comp.index}>
               {comp.com}
             </TabPanel>
           ))}

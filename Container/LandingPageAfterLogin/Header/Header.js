@@ -50,19 +50,19 @@ const Header = () => {
               <Button>Ranking</Button>
             </MenuItems>
           </Link>
-          <Link href="/">
+          <Link href="/create/dashboard/stories">
             <MenuItems>
               <Image src={Create} />
               <Button>Create</Button>
             </MenuItems>
           </Link>
-          <Link href="/">
+          <Link href="/library">
             <MenuItems>
               <Image src={Library} />
               <Button>Library</Button>
             </MenuItems>
           </Link>
-          <Link href="/">
+          <Link href="/short">
             <MenuItems>
               <Image src={Shorts} />
               <Button>Shorts</Button>

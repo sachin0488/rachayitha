@@ -8,7 +8,7 @@ import {
   LeftSideGenreMenuBar,
   RightSideGenreMenuBar,
 } from "../../Container/Explore/ExploreStyle";
-import LinkContainer from "../LinksContainer/LinkContainer";
+import LinkContainer from "../../Container/Explore/LinkContainer";
 import MuiSelect from "./MuiSelect";
 
 const GenreMenuBarComp = ({ sectionName }) => {

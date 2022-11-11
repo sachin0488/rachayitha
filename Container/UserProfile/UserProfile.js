@@ -13,6 +13,8 @@ import {
   IndividualMudraContainer,
   UserProfileLowerRightSection,
   EditProfileContainer,
+  Username,
+  ImgComp,
 } from "./UserProfileStyle";
 import Image from "next/image";
 import { Typography } from "@mui/material";
@@ -36,23 +38,11 @@ const UserProfile = () => {
         <SubWrapper>
           <ImgBox>
             <Img src={bannerImgUrl} />
-            <img
-              src={ProfileImg}
-              style={{ position: "absolute", top: "69%", left: "10%" }}
-            />
+            <ImgComp src={ProfileImg} />
           </ImgBox>
           <UserProfileLowerSection>
             <UserProfileLowerLeftSection>
-              <Typography
-                style={{
-                  color: "black",
-                  fontWeight: "500",
-                  fontSize: "18px",
-                  lineHeight: "21px",
-                }}
-              >
-                Shubham Kr Kurrey
-              </Typography>
+              <Username>Shubham Kr Kurrey</Username>
               <Typography
                 style={{
                   color: " #93968E",
