@@ -1,24 +1,17 @@
 import React from "react";
-import BannerStyle from "./BannerStyle";
-
 import Image from "next/image";
 import MaleLead from "../../../public/MaleLead.png";
 import FemaleLead from "../../../public/FemaleLead.svg";
 
-const {
-  Wrapper,
-  BannerUpperContent,
-  BannerMiddleContent,
-  BannerLowerContent,
+import {
   SubHeading,
   Heading,
-  Card,
   LeftSideContent,
   RightSideContent,
   LowerCardContent,
   LowerSubCardContent,
   GenderLeadBox,
-} = BannerStyle();
+} from "./BannerStyle";
 
 const BannerlowerContent = ({ heading, subHeading, img }) => {
   return (

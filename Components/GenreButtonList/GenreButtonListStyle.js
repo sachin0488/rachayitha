@@ -24,7 +24,7 @@ export const GenreButtonListMobileWrapper = styled(Box)`
   }
 `;
 
-export const GenreButtonsMobile = styled(Button)`
+export const GenreButtonsMobile = styled.button`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -34,4 +34,6 @@ export const GenreButtonsMobile = styled(Button)`
   padding: 5px 12px;
   border-radius: 12px;
   border: 1px solid #e7e7e7;
+  color: #5624c1;
+  background-color: transparent;
 `;

@@ -85,7 +85,7 @@ export const GenreMenuBar = styled(Box)`
   }
   @media ${tabletS} {
     width: 92%;
-    padding: 22px 20px;
+    padding: 12px 20px;
     height: 60px;
   }
   @media ${laptopS} {
@@ -142,6 +142,7 @@ export const GenreTitle = styled(Typography)`
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
+  padding-bottom: 5px;
   @media ${mobileM} {
     font-size: 19px;
     line-height: 20px;
@@ -182,7 +183,7 @@ export const ContentType = styled(Box)`
   align-items: center;
   gap: 1px;
   width: 29%;
-  padding-bottom: 12px;
+  padding-bottom: 25px;
 `;
 export const ContentTypeText = styled(Typography)`
   font-family: "Roboto";

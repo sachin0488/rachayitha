@@ -14,7 +14,7 @@ import {
   desktop,
 } from "../../../styles/mediaQuery/breakPoints";
 
-const PotentialCardWrapper = styled(Box)`
+export const PotentialCardWrapper = styled(Box)`
   width: 100%;
   height: 300px;
   display: flex;
@@ -46,15 +46,15 @@ const PotentialCardWrapper = styled(Box)`
     padding: 0px 60px 0 90px;
   }
   @media ${laptopM} {
-    padding: 0px 107px;
+    padding: 0px 0px 0px 100px;
   }
 `;
-const SubWrapper = styled(Box)`
+export const SubWrapper = styled(Box)`
   @media ${laptopS} {
-    padding: 0px 0px 0 93px;
+    padding: 0px 0px 0 23px;
   }
   @media ${laptopM} {
-    padding: 0px 0px 0 122px;
+    padding: 0px 0px 0 102px;
   }
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ const SubWrapper = styled(Box)`
   width: 95%;
   height: 100%;
 `;
-const PotentialStarletContent = styled.div`
+export const PotentialStarletContent = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -82,7 +82,7 @@ const PotentialStarletContent = styled.div`
     width: 0;
   }
 `;
-const PotentialStarletContentCard = styled(Box)`
+export const PotentialStarletContentCard = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -117,13 +117,13 @@ const PotentialStarletContentCard = styled(Box)`
   border-radius: 20px;
   border: 1px solid #ffffff;
 `;
-const AlignRatingAndFantasySection = styled(Box)`
+export const AlignRatingAndFantasySection = styled(Box)`
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
-const RatingAndFantasySection = styled(Box)`
+export const RatingAndFantasySection = styled(Box)`
   display: flex;
   justify-content: space-between;
   width: 70%;
@@ -131,7 +131,7 @@ const RatingAndFantasySection = styled(Box)`
   align-items: flex-start;
   padding: 0px 5px 0px 5px;
 `;
-const Fantasy = styled(Box)`
+export const Fantasy = styled(Box)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -146,7 +146,7 @@ const Fantasy = styled(Box)`
   color: #8d8e99;
 `;
 
-const Rating = styled(Box)`
+export const Rating = styled(Box)`
   color: #5225c2;
   font-family: "Roboto";
   font-style: normal;
@@ -160,7 +160,7 @@ const Rating = styled(Box)`
   }
 `;
 
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -168,7 +168,7 @@ const Heading = styled(Typography)`
   line-height: 29px;
   color: #18144a;
 `;
-const StoryHeading = styled(Typography)`
+export const StoryHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
 
@@ -186,7 +186,7 @@ const StoryHeading = styled(Typography)`
   width: 100%;
   padding: 0px 6px 0px 6px;
 `;
-const ImgBox = styled(Box)`
+export const ImgBox = styled(Box)`
   border-radius: 10px;
   min-height: 170px;
   min-width: 210px;
@@ -205,7 +205,7 @@ const ImgBox = styled(Box)`
   align-items: flex-start;
   gap: 10px;
 `;
-const LeftSideImgContent = styled(Box)`
+export const LeftSideImgContent = styled(Box)`
   border-radius: 10px;
   width: 140px;
   height: 170px;
@@ -219,7 +219,7 @@ const LeftSideImgContent = styled(Box)`
   }
 `;
 
-const RightSideImgContent = styled(Box)`
+export const RightSideImgContent = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -229,11 +229,11 @@ const RightSideImgContent = styled(Box)`
     gap: 10px;
   }
 `;
-const Img = styled.img`
+export const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
-const SmallImg = styled.img`
+export const SmallImg = styled.img`
   width: 65px;
   height: 55px;
   @media ${mobileM} {
@@ -245,39 +245,3 @@ const SmallImg = styled.img`
     height: 95px;
   }
 `;
-// const AddIcon = styled(Box)`
-//   background: #ffffff;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-//   position: absolute;
-//   top: 8px;
-//   right: 7px;
-//   border-radius: 999px;
-//   z-index: 10;
-//   width: 30px;
-//   height: 30px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-const PotentialStartletCardsStyle = () => {
-  return {
-    PotentialCardWrapper,
-    PotentialStarletContent,
-    Heading,
-    SubWrapper,
-    PotentialStarletContentCard,
-    RatingAndFantasySection,
-    StoryHeading,
-    ImgBox,
-    Fantasy,
-    Rating,
-    RightSideImgContent,
-    LeftSideImgContent,
-    AlignRatingAndFantasySection,
-    Img,
-    SmallImg,
-  };
-};
-
-export default PotentialStartletCardsStyle;

@@ -1,21 +1,19 @@
 import React from "react";
 import potentialStartletCardHook from "../PotentialStarletCards/api/potentialStartletCard.hook";
-import NewArrivalCardsStyle from "./NewArrivalCardsStyle";
+import {
+  NewArrivalContent,
+  Heading,
+  SubWrapper,
+  NewArrivalContentCard,
+  RatingAndFantasySection,
+  StoryHeading,
+  ImgWrapper,
+  Img,
+  Fantasy,
+} from "./NewArrivalCardsStyle";
 import Image from "next/image";
 
 const NewArrivalsCards = () => {
-  const {
-    NewArrivalContent,
-    Heading,
-    SubWrapper,
-    NewArrivalContentCard,
-    RatingAndFantasySection,
-    StoryHeading,
-    ImgWrapper,
-    Img,
-    Fantasy,
-  } = NewArrivalCardsStyle();
-
   const { data, isLoading, isError, error, isFetching } =
     potentialStartletCardHook();
 

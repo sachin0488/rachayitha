@@ -2,25 +2,24 @@ import React from "react";
 import WeeklyFeaturedCardsStyles from "./WeeklyFeaturedCardsStyles";
 import { useStoryApi } from "../../../api/global.hook";
 import Image from "next/image";
+import {
+  Wrapper,
+  WeeklyContent,
+  Heading,
+  SubWrapper,
+  WeeklyContentCard,
+  RatingAndFantasySection,
+  StoryHeading,
+  ImgBox,
+  Fantasy,
+  Rating,
+  AddIcon,
+  Img,
+} from "./WeeklyFeaturedCardsStyles";
 
 import { IoIosAddCircle } from "react-icons/io";
 
 const WeeklyFeaturedCards = () => {
-  const {
-    Wrapper,
-    WeeklyContent,
-    Heading,
-    SubWrapper,
-    WeeklyContentCard,
-    RatingAndFantasySection,
-    StoryHeading,
-    ImgBox,
-    Fantasy,
-    Rating,
-    AddIcon,
-    Img,
-  } = WeeklyFeaturedCardsStyles();
-
   const { data, isLoading, isError, error, isFetching } = useStoryApi();
 
   const url_img =
