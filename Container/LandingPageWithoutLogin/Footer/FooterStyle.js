@@ -79,6 +79,7 @@ export const ImpSectionButton = styled(Button)`
   line-height: 19px;
   display: none;
   text-align: start;
+  padding-left: 0px;
   &${buttonClasses?.text} {
     text-transform: capitalize;
   }

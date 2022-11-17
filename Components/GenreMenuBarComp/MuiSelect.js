@@ -10,7 +10,13 @@ import {
 import React, { useState } from "react";
 import { laptop } from "../../styles/mediaQuery/breakPoints";
 
-export default function MuiSelect({ label, menuItems, textColor, background }) {
+export default function MuiSelect({
+  label,
+  menuItems,
+  textColor,
+  background,
+  margintop,
+}) {
   const [content, setContent] = useState("");
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -18,7 +24,10 @@ export default function MuiSelect({ label, menuItems, textColor, background }) {
   return (
     <>
       <StyledFormControl variant="standard">
-        <StyledInputLabel id="demo-simple-select-standard-label">
+        <StyledInputLabel
+          margin_top={margintop}
+          id="demo-simple-select-standard-label"
+        >
           {label}
         </StyledInputLabel>
         <StyledSelect
@@ -66,9 +75,9 @@ const StyledFormControl = styled(FormControl)`
   &.${formControlClasses.root} {
     min-width: 100%;
     height: 40px;
+    display: flex;
   }
   & .MuiInputBase-root {
-    margin-top: 4px;
   }
   & .MuiSelect-select {
     background-color: transparent;

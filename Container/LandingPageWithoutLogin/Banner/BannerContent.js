@@ -1,19 +1,14 @@
 import React from "react";
-import BannerStyle from "./BannerStyle";
-
+import {
+  SubHeading,
+  Heading,
+  Card,
+  LeftSideContent,
+  RightSideContent,
+  Img,
+} from "./BannerStyle";
 import Image from "next/image";
 const BannerContent = ({ heading, img, subHeading, width, height }) => {
-  const {
-    Wrapper,
-    BannerUpperContent,
-    BannerMiddleContent,
-    BannerLowerContent,
-    SubHeading,
-    Heading,
-    Card,
-    LeftSideContent,
-    RightSideContent,
-  } = BannerStyle();
   return (
     <>
       <LeftSideContent>
@@ -21,13 +16,7 @@ const BannerContent = ({ heading, img, subHeading, width, height }) => {
         <SubHeading>{subHeading}</SubHeading>
       </LeftSideContent>
       <RightSideContent>
-        <Card>
-          <Image
-            src={img}
-            objectFit="contain"
-            sx={{ width: { width }, height: { height } }}
-          />
-        </Card>
+        <Img src={img} width={width} height={height} />
       </RightSideContent>
     </>
   );

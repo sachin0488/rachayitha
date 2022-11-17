@@ -14,12 +14,12 @@ import {
   desktop,
 } from "../../../styles/mediaQuery/breakPoints";
 
-const Wrapper = styled(Box)`
+export const Wrapper = styled(Box)`
   width: 100%;
   min-height: 275px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: start;
 
   gap: 50px;
@@ -34,20 +34,20 @@ const Wrapper = styled(Box)`
     padding: 0px 30px 0px 60px;
   }
   @media ${tablet} {
-    padding: 0px 30px 0px 80px;
+    padding: 0px 30px 0px 60px;
     min-height: 460px;
   }
   @media ${laptop} {
-    padding: 0px 30px 0px 100px;
-    margin-top: 200px;
+    padding: 0px 30px 0px 70px;
+    margin-top: 40px;
   }
   @media ${laptopS} {
-    padding: 0px 60px 0 127px;
-    margin-top: 200px;
+    padding: 0px 60px 0 95px;
+    margin-top: 50px;
   }
   @media ${laptopM} {
-    padding: 0px 107px 0 170px;
-    margin-top: 100px;
+    padding: 0px 0px 0 170px;
+    margin-top: 50px;
   }
 
   background-image: linear-gradient(
@@ -57,21 +57,21 @@ const Wrapper = styled(Box)`
     rgba(102, 59, 203, 0) 100%
   );
 `;
-const SubWrapper = styled(Box)`
+export const SubWrapper = styled(Box)`
   /* @media ${laptopS} {
     padding: 0px 0px 0 73px;
   } */
+  width: 95%;
   @media ${laptopS} {
-    padding: 0px 0px 0 85px;
+    padding: 0px 0px 0 0px;
   }
   @media ${laptopM} {
-    padding: 0px 0px 0 80px;
+    padding: 0px 0px 0 0px;
   }
 
-  width: 95%;
   height: 100%;
 `;
-const WeeklyContent = styled(Box)`
+export const WeeklyContent = styled(Box)`
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -92,7 +92,7 @@ const WeeklyContent = styled(Box)`
     width: 0;
   }
 `;
-const WeeklyContentCard = styled(Box)`
+export const WeeklyContentCard = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -119,7 +119,7 @@ const WeeklyContentCard = styled(Box)`
   border-radius: 15px;
   border: 1px solid #ffffff;
 `;
-const RatingAndFantasySection = styled(Box)`
+export const RatingAndFantasySection = styled(Box)`
   display: flex;
   justify-content: space-between;
   gap: 50px;
@@ -129,7 +129,7 @@ const RatingAndFantasySection = styled(Box)`
   align-items: flex-end;
   padding: 0px 5px 0px 5px;
 `;
-const Fantasy = styled(Box)`
+export const Fantasy = styled(Box)`
   font-family: "Roboto";
   font-style: normal;
 
@@ -145,7 +145,7 @@ const Fantasy = styled(Box)`
   color: #8d8e99;
 `;
 
-const Rating = styled(Box)`
+export const Rating = styled(Box)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -158,7 +158,7 @@ const Rating = styled(Box)`
   }
 `;
 
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   margin-bottom: 20px;
@@ -172,7 +172,7 @@ const Heading = styled(Typography)`
   }
   color: ${(props) => props.theme.palette.headingColor.main};
 `;
-const StoryHeading = styled(Typography)`
+export const StoryHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -199,7 +199,7 @@ const StoryHeading = styled(Typography)`
     height: 63px;
   }
 `;
-const ImgBox = styled(Box)`
+export const ImgBox = styled(Box)`
   border-radius: 10px;
   width: 123px;
   height: 121px;
@@ -214,11 +214,11 @@ const ImgBox = styled(Box)`
   }
   position: relative;
 `;
-const Img = styled.img`
+export const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
-const AddIcon = styled(Box)`
+export const AddIcon = styled(Box)`
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
@@ -232,22 +232,3 @@ const AddIcon = styled(Box)`
   justify-content: center;
   align-items: center;
 `;
-
-const WeeklyFeaturedCardsStyles = () => {
-  return {
-    Wrapper,
-    WeeklyContent,
-    Heading,
-    SubWrapper,
-    WeeklyContentCard,
-    RatingAndFantasySection,
-    StoryHeading,
-    ImgBox,
-    Img,
-    Fantasy,
-    Rating,
-    AddIcon,
-  };
-};
-
-export default WeeklyFeaturedCardsStyles;

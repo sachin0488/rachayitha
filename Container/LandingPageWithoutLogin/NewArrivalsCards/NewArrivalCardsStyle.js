@@ -14,7 +14,7 @@ import {
   desktop,
 } from "../../../styles/mediaQuery/breakPoints";
 
-const ArrivalCardWrapper = styled(Box)`
+export const ArrivalCardWrapper = styled(Box)`
   width: 100%;
   height: 430px;
   display: flex;
@@ -43,7 +43,7 @@ const ArrivalCardWrapper = styled(Box)`
     padding: 0px 60px 0 90px;
   }
   @media ${laptopM} {
-    padding: 0px 107px;
+    padding: 0px 0px 0px 100px;
   }
 
   background-image: linear-gradient(
@@ -53,18 +53,18 @@ const ArrivalCardWrapper = styled(Box)`
     rgba(102, 59, 203, 0) 100%
   );
 `;
-const SubWrapper = styled(Box)`
+export const SubWrapper = styled(Box)`
   @media ${laptopS} {
-    padding: 0px 0px 0 100px;
+    padding: 0px 0px 0 18px;
   }
   @media ${laptopM} {
-    padding: 0px 0px 0 123px;
+    padding: 0px 0px 0 103px;
   }
 
   width: 95%;
   height: 100%;
 `;
-const NewArrivalContent = styled.div`
+export const NewArrivalContent = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -79,7 +79,7 @@ const NewArrivalContent = styled.div`
     width: 0;
   }
 `;
-const NewArrivalContentCard = styled(Box)`
+export const NewArrivalContentCard = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -100,13 +100,13 @@ const NewArrivalContentCard = styled(Box)`
   border-radius: 15px;
   border: 1px solid #ffffff;
 `;
-const RatingAndFantasySection = styled(Box)`
+export const RatingAndFantasySection = styled(Box)`
   display: flex;
   width: 100%;
   align-items: flex-end;
   padding: 0px 5px 0px 5px;
 `;
-const Fantasy = styled(Box)`
+export const Fantasy = styled(Box)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -116,7 +116,7 @@ const Fantasy = styled(Box)`
   color: #8d8e99;
 `;
 
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -124,7 +124,7 @@ const Heading = styled(Typography)`
   line-height: 29px;
   color: ${(props) => props.theme.palette.headingColor.main};
 `;
-const StoryHeading = styled(Typography)`
+export const StoryHeading = styled(Typography)`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -135,7 +135,7 @@ const StoryHeading = styled(Typography)`
   width: 100%;
   padding: 5px 5px;
 `;
-const ImgWrapper = styled(Box)`
+export const ImgWrapper = styled(Box)`
   border-radius: 10px;
   width: 235px;
   height: 285px;
@@ -144,11 +144,11 @@ const ImgWrapper = styled(Box)`
     height: 331px;
   }
 `;
-const Img = styled.img`
+export const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
-const AddIcon = styled(Box)`
+export const AddIcon = styled(Box)`
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
@@ -162,21 +162,3 @@ const AddIcon = styled(Box)`
   justify-content: center;
   align-items: center;
 `;
-
-const NewArrivalCardsStyle = () => {
-  return {
-    ArrivalCardWrapper,
-    NewArrivalContent,
-    Heading,
-    SubWrapper,
-    NewArrivalContentCard,
-    RatingAndFantasySection,
-    StoryHeading,
-    ImgWrapper,
-    Fantasy,
-    Img,
-    AddIcon,
-  };
-};
-
-export default NewArrivalCardsStyle;

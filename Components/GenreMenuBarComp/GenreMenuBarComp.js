@@ -47,7 +47,11 @@ const GenreMenuBarComp = ({ sectionName }) => {
         <RightSideGenreMenuBar>
           <FilterText>Filter by</FilterText>
           <ContentType>
-            <MuiSelect label="content type" menuItems={menuItems} />
+            <MuiSelect
+              label="content type"
+              menuItems={menuItems}
+              margintop="0px"
+            />
           </ContentType>
 
           <ContentType>
