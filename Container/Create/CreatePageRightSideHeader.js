@@ -29,7 +29,10 @@ const CreatePageRightSideHeader = ({ section }) => {
         <Link href={`/create/${section}/poem`}>
           <SubSectionIndividualLinkText
             className={
-              router.pathname == `/create/${section}/poem` ? "subsection" : ""
+              router.pathname == `/create/${section}/poem` ||
+              router.pathname == `/create/${section}/poem/create_new`
+                ? "subsection"
+                : ""
             }
           >
             Poems

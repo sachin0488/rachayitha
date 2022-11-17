@@ -12,7 +12,7 @@ a {
 }
 
 .active {
-  border-left: 5px solid #673ccb;
+  border-color: #673ccb;
   background-color: #f6f3ff;
 }
 

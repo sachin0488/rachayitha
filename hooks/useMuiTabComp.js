@@ -3,9 +3,9 @@ import BookAboutContent from "../Container/BookDetail/BookAboutContent";
 import BookTableOfContent from "../Container/BookDetail/BookTableOfContent";
 import LikedComp from "../Container/BookDetail/LikedComp";
 import NewestComp from "../Container/BookDetail/NewestComp";
-import DashBoardPoem from "../Container/Create/DashBoardPoem";
-import DashBoardShort from "../Container/Create/DashBoardShort";
-import DashBoardStories from "../Container/Create/DashBoardStories";
+// import DashBoardPoem from "../Container/Create/DashBoardSection/DashBoardPoemSection/DashBoardPoem";
+// import DashBoardShort from "../Container/Create/DashBoardShort";
+// import DashBoardStories from "../Container/Create/DashBoardStories";
 import Badges from "../Container/UserProfile/Badges";
 import UserLibrary from "../Container/UserProfile/UserLibrary";
 import UserWorks from "../Container/UserProfile/UserWorks";
@@ -61,23 +61,59 @@ export const UserProfileMuiTabList = [
   },
 ];
 
-export const CreateUserDashboardMuiTabList = [
+export const NewChapterMuiTableList = [
   {
-    labelComp: [
-      {
-        label: "STORIES",
-      },
-      {
-        label: "POEMS",
-      },
-      {
-        label: "SHORTS",
-      },
-    ],
-    component: [
-      { com: <DashBoardStories />, index: 0 },
-      { com: <DashBoardPoem />, index: 1 },
-      { com: <DashBoardShort />, index: 2 },
-    ],
+    img_url:
+      "https://res.cloudinary.com/dk6twrko6/image/upload/v1668423990/Rectangle_259_q2ybhv.png",
+    name: "Dark desire unleased",
+    state: "Serializing",
+    chapters: "2",
+    words: "1948",
+    views: "4.5k",
+    collection: "1",
+    operation: "edit",
+  },
+  {
+    img_url:
+      "https://res.cloudinary.com/dk6twrko6/image/upload/v1668423990/Rectangle_259_q2ybhv.png",
+    name: "Dark desire unleased",
+    state: "Serializing",
+    chapters: "2",
+    words: "1948",
+    views: "4.5k",
+    collection: "1",
+    operation: "edit",
+  },
+  {
+    img_url:
+      "https://res.cloudinary.com/dk6twrko6/image/upload/v1668423990/Rectangle_259_q2ybhv.png",
+    name: "Dark desire unleased",
+    state: "Serializing",
+    chapters: "2",
+    words: "1948",
+    views: "4.5k",
+    collection: "1",
+    operation: "edit",
   },
 ];
+
+// export const CreateUserDashboardMuiTabList = [
+//   {
+//     labelComp: [
+//       {
+//         label: "STORIES",
+//       },
+//       {
+//         label: "POEMS",
+//       },
+//       {
+//         label: "SHORTS",
+//       },
+//     ],
+//     component: [
+//       { com: <DashBoardStories />, index: 0 },
+//       { com: <DashBoardPoem />, index: 1 },
+//       { com: <DashBoardShort />, index: 2 },
+//     ],
+//   },
+// ];

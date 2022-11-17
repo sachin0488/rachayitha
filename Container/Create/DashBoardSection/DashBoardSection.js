@@ -1,18 +1,14 @@
 import React from "react";
-import {
-  RightSideHeaderSectionWrapper,
-  WrapperRightSideSection,
-} from "../CreateStyle";
+import { RightSideHeaderSectionWrapper, UserGuide } from "../CreateStyle";
 import CreatePageRightSideHeader from "../CreatePageRightSideHeader";
 
 const DashBoard = () => {
   return (
     <>
-      <WrapperRightSideSection>
-        <RightSideHeaderSectionWrapper>
-          <CreatePageRightSideHeader section="dashboard" />
-        </RightSideHeaderSectionWrapper>
-      </WrapperRightSideSection>
+      <RightSideHeaderSectionWrapper>
+        <CreatePageRightSideHeader section="dashboard" />
+        <UserGuide>user guide</UserGuide>
+      </RightSideHeaderSectionWrapper>
     </>
   );
 };
