@@ -1,9 +1,11 @@
 import React from "react";
 import {
   RightSideHeaderSectionWrapper,
+  UserGuide,
   WrapperRightSideSection,
 } from "../CreateStyle";
 import CreatePageRightSideHeader from "../CreatePageRightSideHeader";
+import WorkspaceSectionMainContent from "./WorkspaceSectionMainContent";
 
 const WorkspaceSection = () => {
   return (
@@ -11,7 +13,9 @@ const WorkspaceSection = () => {
       <WrapperRightSideSection>
         <RightSideHeaderSectionWrapper>
           <CreatePageRightSideHeader section="workspace" />
+          <UserGuide>Create</UserGuide>
         </RightSideHeaderSectionWrapper>
+        <WorkspaceSectionMainContent />
       </WrapperRightSideSection>
     </>
   );

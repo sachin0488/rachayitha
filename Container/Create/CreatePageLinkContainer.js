@@ -19,7 +19,10 @@ const CreatePageLinkContainer = () => {
         <Link href={`/create/dashboard/stories`}>
           <IndividualLink
             className={
-              router.pathname == `/create/dashboard/${section}` ? "active" : ""
+              router.pathname == `/create/dashboard/${section}` ||
+              router.pathname == `/create/dashboard/${section}/create_new`
+                ? "active"
+                : ""
             }
           >
             <img src={icon} />

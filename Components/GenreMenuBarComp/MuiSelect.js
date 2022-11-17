@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { laptop } from "../../styles/mediaQuery/breakPoints";
 
-const MuiSelect = ({ label, menuItems }) => {
+export default function MuiSelect({ label, menuItems, textColor, background }) {
   const [content, setContent] = useState("");
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -22,16 +22,18 @@ const MuiSelect = ({ label, menuItems }) => {
           {label}
         </StyledInputLabel>
         <StyledSelect
+          text_Color={textColor}
+          back_ground={background}
           label={label}
           select
           value={content}
           onChange={handleChange}
           fullWidth
-          sx={{
-            "& .MuiSvgIcon-root": {
-              color: "white",
-            },
-          }}
+          // sx={{
+          //   "& .MuiSvgIcon-root": {
+          //     color: "white",
+          //   },
+          // }}
           variant="standard"
           disableUnderline
         >
@@ -42,14 +44,12 @@ const MuiSelect = ({ label, menuItems }) => {
       </StyledFormControl>
     </>
   );
-};
-
-export default MuiSelect;
+}
 
 const StyledSelect = styled(Select)`
   &${selectClasses.root} {
-    color: white;
-    background-color: transparent;
+    color: ${({ text_Color }) => text_Color || "white"};
+    background-color: ${({ back_ground }) => back_ground || "transparent"};
   }
 `;
 
@@ -65,5 +65,12 @@ const StyledInputLabel = styled(InputLabel)`
 const StyledFormControl = styled(FormControl)`
   &.${formControlClasses.root} {
     min-width: 100%;
+    height: 40px;
+  }
+  & .MuiInputBase-root {
+    margin-top: 4px;
+  }
+  & .MuiSelect-select {
+    background-color: transparent;
   }
 `;
