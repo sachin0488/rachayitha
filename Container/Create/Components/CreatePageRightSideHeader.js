@@ -6,7 +6,7 @@ import {
   IndividualLinkText,
   RightSideHeaderSubSectionWrapper,
   SubSectionIndividualLinkText,
-} from "./CreateStyle";
+} from "../CreateStyle";
 
 const CreatePageRightSideHeader = ({ section }) => {
   const router = useRouter();

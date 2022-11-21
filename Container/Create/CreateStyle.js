@@ -1,21 +1,15 @@
-import styled from "@emotion/styled";
-import {
-  Box,
-  Button,
-  TextareaAutosize,
-  TextField,
-  textFieldClasses,
-  Typography,
-} from "@mui/material";
+import styled from '@emotion/styled'
+import { Box, Button, TextareaAutosize, TextField, textFieldClasses, Typography } from '@mui/material'
 
 export const Wrapper = styled(Box)`
   width: 100%;
-  max-height: 100vh;
+  min-height: 100vh;
   background-color: white;
   display: flex;
   justify-content: start;
   align-items: flex-start;
-`;
+  padding-bottom: 50px;
+`
 
 export const WrapperLeftSideSection = styled(Box)`
   width: 18%;
@@ -26,7 +20,7 @@ export const WrapperLeftSideSection = styled(Box)`
   gap: 35px;
   flex-direction: column;
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
-`;
+`
 
 export const LinkContainer = styled(Box)`
   display: flex;
@@ -37,7 +31,7 @@ export const LinkContainer = styled(Box)`
   width: 100%;
   height: 50%;
   cursor: pointer;
-`;
+`
 
 export const IndividualLink = styled(Box)`
   display: flex;
@@ -47,25 +41,26 @@ export const IndividualLink = styled(Box)`
   width: 100%;
   padding: 10px 0px 10px 50px;
   border-left: 5px solid white;
-`;
+`
 export const SubSectionIndividualLinkText = styled(Button)`
   font-size: 12px;
   line-height: 15px;
   color: #2f2d5c;
   padding-bottom: 18px;
   font-weight: 500;
-`;
+  border-radius: 0px;
+`
 export const IndividualLinkText = styled(Typography)`
   font-weight: 600;
   font-size: 19px;
   line-height: 23px;
   color: #424247;
-`;
+`
 
 export const WrapperRightSideSection = styled(Box)`
   width: 82%;
   height: 100%;
-`;
+`
 
 export const RightSideHeaderSectionWrapper = styled(Box)`
   width: 100%;
@@ -76,7 +71,7 @@ export const RightSideHeaderSectionWrapper = styled(Box)`
   padding: 20px 10px 0px 20px;
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-`;
+`
 export const RightSideHeaderSubSectionWrapper = styled(Box)`
   width: 80%;
   height: 100%;
@@ -84,7 +79,7 @@ export const RightSideHeaderSubSectionWrapper = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   gap: 40px;
-`;
+`
 
 export const UserProfileImgNameWrapper = styled(Box)`
   width: 100%;
@@ -94,12 +89,12 @@ export const UserProfileImgNameWrapper = styled(Box)`
   align-items: center;
   flex-direction: column;
   gap: 15px;
-`;
+`
 
 export const ImgComp = styled.img`
   border: 3px solid #7f5cc7;
   border-radius: 1240px;
-`;
+`
 
 export const FIrstFictionWrapper = styled(Box)`
   width: 100%;
@@ -107,7 +102,7 @@ export const FIrstFictionWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const FirstFictionSubWrapper = styled(Box)`
   width: 91%;
@@ -116,7 +111,7 @@ export const FirstFictionSubWrapper = styled(Box)`
   justify-content: center;
   align-items: center;
   background-color: #f6f3ff;
-`;
+`
 
 export const CreateNewFictionWrapper = styled(Box)`
   display: flex;
@@ -124,7 +119,7 @@ export const CreateNewFictionWrapper = styled(Box)`
   align-items: center;
   gap: 30px;
   flex-direction: column;
-`;
+`
 
 export const NoWorkTextWrapper = styled(Box)`
   display: flex;
@@ -132,20 +127,20 @@ export const NoWorkTextWrapper = styled(Box)`
   align-items: center;
   gap: 10px;
   flex-direction: column;
-`;
+`
 
 export const NoWorkText = styled(Typography)`
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   color: #929292;
-`;
+`
 export const CreateFirstFictionText = styled(Typography)`
   font-weight: 300;
   font-size: 15px;
   line-height: 18px;
   color: #929292;
-`;
+`
 
 export const CreateNewButton = styled(Button)`
   border: 2px solid #673ccb;
@@ -155,7 +150,7 @@ export const CreateNewButton = styled(Button)`
   padding: 4px 16px;
   color: #673ccb;
   text-transform: capitalize;
-`;
+`
 
 export const UserGuide = styled(Button)`
   border: 1.5px solid #673ccb;
@@ -165,7 +160,7 @@ export const UserGuide = styled(Button)`
   padding: 7px 16px;
   color: #673ccb;
   margin-bottom: 16px;
-`;
+`
 
 export const DashBoardSectionWrapper = styled(Box)`
   width: 100%;
@@ -173,17 +168,17 @@ export const DashBoardSectionWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-`;
+`
 export const DashBoardSubWrapper = styled(Box)`
   width: 95%;
-  gap: 20px;
+  gap: 40px;
   flex-direction: column;
   display: flex;
   justify-content: start;
   align-items: center;
   height: 100%;
   margin-top: 20px;
-`;
+`
 
 export const AccordionDetailNovelWrapper = styled(Box)`
   width: 100%;
@@ -195,7 +190,7 @@ export const AccordionDetailNovelWrapper = styled(Box)`
   align-items: flex-start;
   background-color: #f6f3ff;
   gap: 40px;
-`;
+`
 
 export const AccordionNovelDetailUpperSectionWrapper = styled(Box)`
   display: flex;
@@ -203,11 +198,11 @@ export const AccordionNovelDetailUpperSectionWrapper = styled(Box)`
   align-items: flex-start;
   gap: 20px;
   width: 100%;
-`;
+`
 
 export const AccordionNovelImg = styled.img`
   object-fit: cover;
-`;
+`
 
 export const AccordionNovelDetailUpperRightSection = styled(Box)`
   display: flex;
@@ -215,7 +210,7 @@ export const AccordionNovelDetailUpperRightSection = styled(Box)`
   flex-direction: column;
   gap: 41px;
   align-items: flex-start;
-`;
+`
 
 export const AccordionDetailAuthorAndNovelNameWrapper = styled(Box)`
   display: flex;
@@ -223,14 +218,14 @@ export const AccordionDetailAuthorAndNovelNameWrapper = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   gap: 8px;
-`;
+`
 
 export const AccordionDetailButtonWrapper = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: flex-start;
   gap: 10px;
-`;
+`
 export const NewChapterButton = styled(Button)`
   background-color: #673ccb;
   padding: 7px 16px;
@@ -239,7 +234,7 @@ export const NewChapterButton = styled(Button)`
   &:hover {
     color: #673ccb;
   }
-`;
+`
 
 export const DetailButton = styled(Button)`
   background-color: transparent;
@@ -247,18 +242,18 @@ export const DetailButton = styled(Button)`
   border-radius: 5px;
   color: #673ccb;
   border: 1px solid #673ccb;
-`;
+`
 export const AccordionDetailNovelNameTextSize = styled(Typography)`
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
-`;
+`
 
 export const AccordionDetailAuthorNameTextSize = styled(Typography)`
   font-weight: 300;
   font-size: 12px;
   line-height: 15px;
-`;
+`
 
 export const AccordionNovelDetailLowerSectionWrapper = styled(Box)`
   display: flex;
@@ -266,14 +261,14 @@ export const AccordionNovelDetailLowerSectionWrapper = styled(Box)`
   width: 100%;
   padding: 0px 100px;
   align-items: center;
-`;
+`
 export const AccordionNovelDetailLowerSectionSubWrapper = styled(Box)`
   display: flex;
   justify-content: start;
   flex-direction: column;
   align-items: center;
   gap: 7px;
-`;
+`
 
 export const CollectionHeadingTextSize = styled(Typography)`
   font-weight: 500;
@@ -282,7 +277,7 @@ export const CollectionHeadingTextSize = styled(Typography)`
   letter-spacing: 0.06em;
   text-transform: capitalize;
   color: #6a6a6a;
-`;
+`
 
 export const CollectionDataTextSize = styled(Typography)`
   font-weight: 400;
@@ -292,7 +287,7 @@ export const CollectionDataTextSize = styled(Typography)`
   text-transform: capitalize;
 
   color: #000000;
-`;
+`
 
 export const DashBoardStoriesReleaseStatWrapper = styled(Box)`
   display: flex;
@@ -301,7 +296,8 @@ export const DashBoardStoriesReleaseStatWrapper = styled(Box)`
   align-items: flex-start;
   gap: 10px;
   width: 100%;
-`;
+  margin-top: -50px;
+`
 
 export const ReleaseStatisticsIconTextWrapper = styled(Box)`
   display: flex;
@@ -309,14 +305,14 @@ export const ReleaseStatisticsIconTextWrapper = styled(Box)`
   align-items: center;
   gap: 6px;
   height: 30px;
-`;
+`
 
 export const ReleaseStatisticsText = styled(Typography)`
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
   color: #000000;
-`;
+`
 export const DashBoardStoriesReleaseStatSubWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -325,7 +321,7 @@ export const DashBoardStoriesReleaseStatSubWrapper = styled(Box)`
   padding: 20px 20px;
   background-color: #f6f3ff;
   width: 100%;
-`;
+`
 
 export const DashBoardStoriesReleaseStatSubWrapperCard = styled(Box)`
   display: flex;
@@ -335,7 +331,7 @@ export const DashBoardStoriesReleaseStatSubWrapperCard = styled(Box)`
   width: 24%;
   height: 190px;
   background-color: white;
-`;
+`
 
 export const ReleaseStatCardLeftSectionWrapper = styled(Box)`
   display: flex;
@@ -345,7 +341,7 @@ export const ReleaseStatCardLeftSectionWrapper = styled(Box)`
   width: 50%;
   height: 100%;
   gap: 15px;
-`;
+`
 
 export const ReleaseStatCardRightSectionWrapper = styled(Box)`
   display: flex;
@@ -354,7 +350,7 @@ export const ReleaseStatCardRightSectionWrapper = styled(Box)`
   align-items: center;
   width: 50%;
   height: 100%;
-`;
+`
 
 export const WordCountText = styled(Typography)`
   font-weight: 400;
@@ -362,21 +358,107 @@ export const WordCountText = styled(Typography)`
   line-height: 15px;
   color: #717174;
   height: 15px;
-`;
+`
 
 export const PercentageIncreaseData = styled(Typography)`
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
   color: #673ccb;
-`;
+`
 
 export const PercentageIncreaseDataWrapper = styled(Typography)`
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 3px;
-`;
+`
+
+export const DashBoardReadingStatWrapper = styled(Box)`
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+`
+
+export const DashBoardReadingStatSubWrapper = styled(Box)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 20px;
+  background-color: #f6f3ff;
+  width: 100%;
+`
+
+export const DashBoardReadingRightSection = styled(Box)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  width: 25%;
+  height: 100%;
+`
+
+export const DashBoardReadingRightSecSubContent = styled(Box)`
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 90%;
+  gap: 18px;
+  height: 182px;
+  padding: 20px 20px;
+  background-color: white;
+`
+
+export const DashBoardReadingMuiTabStyled = {
+  tabs: {
+    '& .MuiTab-root.Mui-selected': {
+      color: 'black',
+      borderTop: '2px solid #673CCB',
+    },
+    '& .MuiTabs-flexContainer': {
+      display: 'flex',
+      justifyContent: 'start',
+      alignItems: 'center',
+      gap: '30px',
+    },
+
+    '& .MuiTabs-indicator ': {
+      display: 'none',
+    },
+  },
+  wrapper: {
+    width: '75%',
+    height: '390px',
+    backgroundColor: 'white',
+  },
+}
+export const WorkSpaceBookStatusMuiTabStyled = {
+  tabs: {
+    '& .MuiTab-root.Mui-selected': {
+      color: '#3B66F5',
+    },
+    '& .MuiTabs-flexContainer': {
+      display: 'flex',
+      justifyContent: 'start',
+      alignItems: 'center',
+      gap: '30px',
+    },
+
+    '& .MuiTabs-indicator ': {
+      display: 'none',
+    },
+  },
+  wrapper: {
+    width: '75%',
+    height: '190px',
+  },
+}
 
 export const NewChapterWrapper = styled(Box)`
   width: 100%;
@@ -387,20 +469,20 @@ export const NewChapterWrapper = styled(Box)`
   align-items: flex-start;
   padding: 15px 20px;
   gap: 10px;
-`;
+`
 export const NewChapterUpperSection = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: 19px;
   height: 30px;
-`;
+`
 
 export const NewChapterLowerSection = styled(Box)`
   width: 100%;
   height: 90%;
   background-color: #f6f3ff;
-`;
+`
 
 export const NewChapterLowerSectionInputFieldWrapper = styled(Box)`
   width: 100%;
@@ -409,7 +491,7 @@ export const NewChapterLowerSectionInputFieldWrapper = styled(Box)`
   justify-content: space-between;
   align-items: center;
   padding: 0px 16px;
-`;
+`
 
 export const NewChapterLowerSectionInputField = styled(TextField)`
   width: 90%;
@@ -419,7 +501,7 @@ export const NewChapterLowerSectionInputField = styled(TextField)`
   &.${textFieldClasses.root} {
     text-decoration: none;
   }
-`;
+`
 
 export const NewChapterLowerSectionTextArea = styled(TextareaAutosize)`
   width: 100%;
@@ -430,21 +512,21 @@ export const NewChapterLowerSectionTextArea = styled(TextareaAutosize)`
   border: none;
   outline: none;
   color: black;
-`;
+`
 
 export const NewChapterText = styled(Typography)`
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
   color: #848484;
-`;
+`
 
 export const NewChapterHeading = styled(Typography)`
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #000000;
-`;
+`
 
 export const NewChapterPublishButton = styled(Button)`
   background: #673ccb;
@@ -456,7 +538,7 @@ export const NewChapterPublishButton = styled(Button)`
   color: #ffffff;
   padding: 5px 10px;
   margin-bottom: 16px;
-`;
+`
 
 export const NewChapterSaveButton = styled(Button)`
   background: transparent;
@@ -468,7 +550,7 @@ export const NewChapterSaveButton = styled(Button)`
   color: #673ccb;
   padding: 5px 18px;
   margin-bottom: 16px;
-`;
+`
 
 export const CreateNewWrapper = styled(Box)`
   width: 100%;
@@ -476,7 +558,7 @@ export const CreateNewWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-`;
+`
 
 export const CreateNewSubWrapper = styled(Box)`
   width: 91%;
@@ -486,7 +568,7 @@ export const CreateNewSubWrapper = styled(Box)`
   align-items: flex-start;
   background-color: #f6f3ff;
   margin-top: 30px;
-`;
+`
 
 export const CreateNewSubWrapperLeftSection = styled(Box)`
   width: 100%;
@@ -497,7 +579,7 @@ export const CreateNewSubWrapperLeftSection = styled(Box)`
   flex-direction: column;
   gap: 37px;
   padding: 25px 35px;
-`;
+`
 
 export const CreateNewHeadingUploadImgWrapper = styled(Box)`
   width: 100%;
@@ -507,7 +589,7 @@ export const CreateNewHeadingUploadImgWrapper = styled(Box)`
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
-`;
+`
 
 export const MultipleLabelAndInputContainer = styled(Box)`
   width: 100%;
@@ -517,7 +599,7 @@ export const MultipleLabelAndInputContainer = styled(Box)`
   justify-content: start;
   gap: 4px;
   align-items: flex-start;
-`;
+`
 
 export const CreateNewLabelAndInputWrapper = styled(Box)`
   width: 50%;
@@ -527,14 +609,14 @@ export const CreateNewLabelAndInputWrapper = styled(Box)`
   justify-content: center;
   gap: 4px;
   align-items: flex-start;
-`;
+`
 
 export const Label = styled.label`
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
   color: #484848;
-`;
+`
 
 export const CreateNewTextField = styled(TextField)`
   width: 335px;
@@ -542,7 +624,7 @@ export const CreateNewTextField = styled(TextField)`
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
-`;
+`
 
 export const CreateNewSelectCompWrapper = styled(Box)`
   display: flex;
@@ -554,7 +636,7 @@ export const CreateNewSelectCompWrapper = styled(Box)`
   background-color: #ffffff;
   border: 2px solid #dcdcdc;
   border-radius: 4px;
-`;
+`
 
 export const CreateNewRadioGroupWrapper = styled(Box)`
   display: flex;
@@ -563,7 +645,7 @@ export const CreateNewRadioGroupWrapper = styled(Box)`
   flex-direction: column;
   width: 50%;
   gap: 16px;
-`;
+`
 
 export const MultipleRadioGroupContainer = styled(Box)`
   display: flex;
@@ -571,21 +653,29 @@ export const MultipleRadioGroupContainer = styled(Box)`
   align-items: flex-start;
   width: 100%;
   gap: 20px;
-`;
+`
 
 export const LabelBelowTextField = styled.label`
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
   color: #808080;
-`;
+`
 
 export const CreateNewHeadingText = styled(Typography)`
   font-weight: 700;
   font-size: 35px;
   line-height: 42px;
   color: #000000;
-`;
+`
+
+export const EditedBookName = styled(Typography)`
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 23px;
+  color: #2f2d5c;
+  margin-left: -20px;
+`
 
 export const CreateNewButtonComp = styled(Button)`
   background-color: #673ccb;
@@ -597,14 +687,14 @@ export const CreateNewButtonComp = styled(Button)`
     background-color: white;
     color: #673ccb;
   }
-`;
+`
 
 export const UploadImgWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 30%;
-`;
+`
 
 export const UploadImgSubWrapper = styled(Button)`
   display: flex;
@@ -617,7 +707,7 @@ export const UploadImgSubWrapper = styled(Button)`
   border-radius: 5px;
   border: 2px dashed #673ccb;
   background-color: white;
-`;
+`
 
 export const UploadButton = styled(Button)`
   display: flex;
@@ -629,7 +719,7 @@ export const UploadButton = styled(Button)`
   font-weight: 600;
   font-size: 15px;
   padding: 4px 15px;
-`;
+`
 
 export const UploadButtonWrapper = styled(Box)`
   display: flex;
@@ -637,7 +727,7 @@ export const UploadButtonWrapper = styled(Box)`
   align-items: center;
   gap: 5px;
   flex-direction: column;
-`;
+`
 
 export const CoverPhotoText = styled(Box)`
   font-weight: 300;
@@ -646,7 +736,7 @@ export const CoverPhotoText = styled(Box)`
   text-align: center;
 
   color: #686868;
-`;
+`
 
 export const WorkSpaceSubWrapper = styled(Box)`
   width: 91%;
@@ -656,4 +746,82 @@ export const WorkSpaceSubWrapper = styled(Box)`
   justify-content: center;
   align-items: flex-start;
   background-color: #f6f3ff;
-`;
+`
+
+export const EditBookSubWrapper = styled(Box)`
+  width: 91%;
+  height: 89%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f6f3ff;
+`
+
+export const EditBookUpperSectionWrapper = styled(Box)`
+  width: 100%;
+  height: 65%;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 37px;
+`
+
+export const EditBookLowerSectionWrapper = styled(Box)`
+  width: 100%;
+  height: 35%;
+  display: flex;
+  padding: 30px 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+`
+
+export const EditBookUpperRightSectionWrapper = styled(Box)`
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 45px;
+`
+
+export const DateTimeText = styled(Typography)`
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: right;
+  color: #8e8e8e;
+`
+
+export const ImgWrapper = styled.img`
+  object-fit: cover;
+  width: 210px;
+  height: 279px;
+`
+
+export const ChapterText = styled(Typography)`
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #8e8e8e;
+`
+export const ImportAndDeleteButtonContainer = styled(Box)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 13px;
+  margin-top: 50px;
+`
+export const ImportButton = styled(Button)`
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: ${({ textColor }) => textColor};
+  border: 1px solid ${({ textColor }) => textColor};
+  border-radius: 2px;
+  padding: 6px 10px;
+`

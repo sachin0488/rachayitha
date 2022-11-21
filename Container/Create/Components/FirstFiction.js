@@ -1,5 +1,5 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link'
+import React from 'react'
 import {
   FIrstFictionWrapper,
   FirstFictionSubWrapper,
@@ -8,11 +8,10 @@ import {
   CreateNewButton,
   NoWorkText,
   CreateFirstFictionText,
-} from "./CreateStyle";
+} from '../CreateStyle'
 
 const FirstFiction = ({ link }) => {
-  const noWorkIcon =
-    "https://res.cloudinary.com/dk6twrko6/image/upload/v1668259789/Vector_1_u6n1ci.png";
+  const noWorkIcon = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1668259789/Vector_1_u6n1ci.png'
   return (
     <>
       <FIrstFictionWrapper>
@@ -21,9 +20,7 @@ const FirstFiction = ({ link }) => {
             <img src={noWorkIcon} />
             <NoWorkTextWrapper>
               <NoWorkText>No Works!</NoWorkText>
-              <CreateFirstFictionText>
-                Click the button below to create your first fiction now.
-              </CreateFirstFictionText>
+              <CreateFirstFictionText>Click the button below to create your first fiction now.</CreateFirstFictionText>
             </NoWorkTextWrapper>
             <Link href={link}>
               <CreateNewButton>Create New</CreateNewButton>
@@ -32,7 +29,7 @@ const FirstFiction = ({ link }) => {
         </FirstFictionSubWrapper>
       </FIrstFictionWrapper>
     </>
-  );
-};
+  )
+}
 
-export default FirstFiction;
+export default FirstFiction

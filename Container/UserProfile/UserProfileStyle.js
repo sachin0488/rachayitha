@@ -2,6 +2,17 @@ import styled from "@emotion/styled";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
+export const Wrapper = styled(Box)`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 13px 11px 13px rgba(0, 0, 0, 0.2);
+  `
+
 export const ImgBox = styled(Box)`
   width: 100%;
   height: 295px;

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
 import {
   HeaderContent,
   LogoContainer,
@@ -10,19 +10,24 @@ import {
   MenuItems,
   Button,
   ImgCont,
-} from "./HeaderStyle";
-import Logo from "../../../public/logo.svg";
-import { AiOutlineSearch } from "react-icons/ai";
-import Explore from "../../../public/MenuItem1.svg";
-import Ranking from "../../../public/ranking.svg";
-import Create from "../../../public/create.svg";
-import Library from "../../../public/library1.svg";
-import Shorts from "../../../public/shorts.svg";
-import Link from "next/link";
-import HeaderDrawer from "./HeaderDrawer";
-import HeaderMenuMui from "./HeaderMenuMui";
+} from './HeaderStyle'
+import Logo from '../../../public/logo.svg'
+import { AiOutlineSearch } from 'react-icons/ai'
+import Explore from '../../../public/MenuItem1.svg'
+import Ranking from '../../../public/ranking.svg'
+import Create from '../../../public/create.svg'
+import Library from '../../../public/library1.svg'
+import Shorts from '../../../public/shorts.svg'
+import Link from 'next/link'
+import HeaderDrawer from './HeaderDrawer'
+import HeaderMenuMui from './HeaderMenuMui'
+import { useRouter } from 'next/router'
 
 const Header = () => {
+  const router = useRouter()
+  const section1 = router.pathname.split('/')[1]
+  const section2 = router.pathname.split('/')[2]
+  const link = `/${section1}/${section2}?lead=female&genre=all&sub_genre=power`
   return (
     <>
       <HeaderContent>
@@ -38,13 +43,13 @@ const Header = () => {
           <ImgCont>
             <HeaderDrawer />
           </ImgCont>
-          <Link href="/explore">
+          <Link href="/explore/novel?lead=female&genre=all&sub_genre=power">
             <MenuItems>
               <Image src={Explore} />
               <Button>Explore</Button>
             </MenuItems>
           </Link>
-          <Link href="/ranking">
+          <Link href="/ranking/novel?lead=female&genre=all&sub_genre=power">
             <MenuItems>
               <Image src={Ranking} />
               <Button>Ranking</Button>
@@ -56,7 +61,7 @@ const Header = () => {
               <Button>Create</Button>
             </MenuItems>
           </Link>
-          <Link href="/library">
+          <Link href={link}>
             <MenuItems>
               <Image src={Library} />
               <Button>Library</Button>
@@ -72,7 +77,7 @@ const Header = () => {
         </NavMenu>
       </HeaderContent>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -1,31 +1,26 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   AccordionDashBoardComp,
   AccordionSummaryDashBoardComp,
   AccordionDetailsDashBoardComp,
   GenreHeadingDashBoardComp,
   HorizontalRuleDashBoardComp,
-} from "./MuiAccordionStyles";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+} from './MuiAccordionStyles'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-export default function MuiAccordionDashBoard({ text, high, children }) {
+export default function MuiAccordionDashBoard({ textSize, text, high, children }) {
   return (
     <>
       <AccordionDashBoardComp>
         <AccordionSummaryDashBoardComp
-          expandIcon={
-            <ExpandMoreIcon style={{ color: "#5426C3", fontSize: "32px" }} />
-          }
+          expandIcon={<ExpandMoreIcon style={{ color: '#5426C3', fontSize: { textSize } }} />}
           aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <GenreHeadingDashBoardComp>{text}</GenreHeadingDashBoardComp>
+          id="panel1a-header">
+          <GenreHeadingDashBoardComp textSize={textSize}>{text}</GenreHeadingDashBoardComp>
         </AccordionSummaryDashBoardComp>
-        <AccordionDetailsDashBoardComp sx={{ height: high }}>
-          {children}
-        </AccordionDetailsDashBoardComp>
+        <AccordionDetailsDashBoardComp sx={{ height: high }}>{children}</AccordionDetailsDashBoardComp>
       </AccordionDashBoardComp>
       <HorizontalRuleDashBoardComp></HorizontalRuleDashBoardComp>
     </>
-  );
+  )
 }

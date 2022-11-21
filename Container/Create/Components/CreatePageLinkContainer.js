@@ -6,13 +6,15 @@ import {
   LinkContainer,
   IndividualLinkText,
   ImgComp,
-} from "./CreateStyle";
+} from "../CreateStyle";
 
 const CreatePageLinkContainer = () => {
   const icon =
     "https://res.cloudinary.com/dk6twrko6/image/upload/v1668153331/dashboard_utnewk.svg";
   const router = useRouter();
+  const {chapter} = router.query;
   const section = router.pathname.split("/")[3];
+  console.log(router.asPath,"aspath",chapter)
   return (
     <>
       <LinkContainer>
@@ -20,7 +22,8 @@ const CreatePageLinkContainer = () => {
           <IndividualLink
             className={
               router.pathname == `/create/dashboard/${section}` ||
-              router.pathname == `/create/dashboard/${section}/create_new`
+              router.pathname == `/create/dashboard/${section}/create_new` ||
+              router.pathname == `/create/dashboard/${section}/new_chapter`
                 ? "active"
                 : ""
             }
@@ -32,7 +35,10 @@ const CreatePageLinkContainer = () => {
         <Link href={`/create/workspace/stories`}>
           <IndividualLink
             className={
-              router.pathname == `/create/workspace/${section}` ? "active" : ""
+              router.pathname == `/create/workspace/${section}` ||
+             router.asPath == `/create/workspace/edit/${chapter}`
+               ? "active" 
+               : ""
             }
           >
             <img src={icon} />

@@ -21,6 +21,7 @@ export const BookDetailCard = styled(Box)`
   gap: 40px;
   flex-direction: column;
   padding: 30px 0px 0px 0px;
+
   @media ${mobileM} {
     height: 1250px;
   }
@@ -534,7 +535,7 @@ export const AboutSectionWrapper = styled(Box)`
   justify-content: start;
   flex-direction: column;
   align-items: flex-start;
-  gap: 34px;
+  gap: 24px;
   /* padding: 25px 0px; */
   width: 100%;
   min-height: 240px;

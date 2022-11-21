@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePageLeftSection from "../../../../Container/Create/CreatePageLeftSection";
+import CreatePageLeftSection from "../../../../Container/Create/Components/CreatePageLeftSection";
 import { Wrapper } from "../../../../Container/Create/CreateStyle";
 import DashBoardStoriesSection from "../../../../Container/Create/DashBoardSection/DashBoardStoriesSection/DashBoardStoriesSection";
 

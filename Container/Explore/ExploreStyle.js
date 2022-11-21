@@ -12,12 +12,13 @@ import {
 
 export const Wrapper = styled(Box)`
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   background-color: white;
+  box-shadow: 0px 13px 11px 13px rgba(0, 0, 0, 0.2);
 `;
 
 export const SubWrapper = styled(Box)`
@@ -435,6 +436,10 @@ export const Buttons = styled(Button)`
   border-radius: 16px;
   padding: 5px 12px;
   border: 1px solid #e7e7e7;
+  &:hover {
+    background-color: transparent;
+   
+  }
 `;
 
 export const ExploreBannerHeading = styled.h1`

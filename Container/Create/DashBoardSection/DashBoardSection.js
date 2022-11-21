@@ -1,6 +1,6 @@
 import React from "react";
 import { RightSideHeaderSectionWrapper, UserGuide } from "../CreateStyle";
-import CreatePageRightSideHeader from "../CreatePageRightSideHeader";
+import CreatePageRightSideHeader from "../Components/CreatePageRightSideHeader";
 
 const DashBoard = () => {
   return (

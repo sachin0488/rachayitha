@@ -25,12 +25,6 @@ const BookAboutContent = () => {
           <Typography
             style={{ fontSize: "12px", fontWeight: "300", lineHeight: "14px" }}
           >
-            “Discovered hundred years aged Original Plane corpse, loot to
-            receive Indestructible Golden Body, extract?”
-          </Typography>
-          <Typography
-            style={{ fontSize: "12px", fontWeight: "300", lineHeight: "14px" }}
-          >
             “Yes!”
           </Typography>
           <Typography

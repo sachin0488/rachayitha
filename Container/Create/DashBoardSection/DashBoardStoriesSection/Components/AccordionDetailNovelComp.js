@@ -16,11 +16,13 @@ import {
   CreateNewButton,
   DetailButton,
   NewChapterButton,
-} from "../../CreateStyle";
+} from "../../../CreateStyle";
+
+export const novelImg =
+"https://res.cloudinary.com/dk6twrko6/image/upload/v1668423990/Rectangle_259_q2ybhv.png";
 
 const AccordionDetailNovelComp = () => {
-  const novelImg =
-    "https://res.cloudinary.com/dk6twrko6/image/upload/v1668423990/Rectangle_259_q2ybhv.png";
+
   return (
     <>
       <AccordionDetailNovelWrapper>

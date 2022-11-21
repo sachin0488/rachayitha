@@ -4,8 +4,8 @@ import {
   UserGuide,
   WrapperRightSideSection,
 } from "../CreateStyle";
-import CreatePageRightSideHeader from "../CreatePageRightSideHeader";
-import WorkspaceSectionMainContent from "./WorkspaceSectionMainContent";
+import CreatePageRightSideHeader from "../Components/CreatePageRightSideHeader";
+import WorkspaceSectionMainContent from "./Components/WorkspaceSectionMainContent";
 
 const WorkspaceSection = () => {
   return (

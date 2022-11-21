@@ -10,6 +10,12 @@ export const styles = {
     },
     "& .MuiTabs-indicator ": {},
   },
+  wrapper: {
+    width:"100%",
+  },
+  tabPanel:{
+    width:"100%"
+  }
 };
 
 export const GenreLeadMuiTab = {
