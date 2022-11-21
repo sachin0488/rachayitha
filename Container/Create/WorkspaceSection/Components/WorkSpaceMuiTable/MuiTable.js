@@ -15,9 +15,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
-const MuiTable = ({ tableHead, tableData }) => {
+const MuiTable = ({  tableData }) => {
   return (
     <>
       <TableContainer width="100%">
@@ -48,9 +49,11 @@ const MuiTable = ({ tableHead, tableData }) => {
                 <TableCellBody>{data.views}</TableCellBody>
                 <TableCellBody>{data.collection}</TableCellBody>
                 <TableCellBody>
-                  <TableBodyInsideButton>
+                 <Link href={`/create/workspace/edit/against_the_world`}>
+                 <TableBodyInsideButton >
                     {data.operation}
                   </TableBodyInsideButton>
+                 </Link>
                 </TableCellBody>
               </TableRowBody>
             ))}

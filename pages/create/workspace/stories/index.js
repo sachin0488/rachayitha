@@ -1,14 +1,14 @@
 import React from "react";
 import CreatePageLeftSection from "../../../../Container/Create/Components/CreatePageLeftSection";
 import { Wrapper } from "../../../../Container/Create/CreateStyle";
-import DashBoardPoemSection from "../../../../Container/Create/DashBoardSection/DashBoardPoemSection/DashBoardPoemSection";
+import WorkspaceSection from "../../../../Container/Create/WorkspaceSection/WorkspaceSection";
 
 const index = () => {
   return (
     <>
       <Wrapper>
         <CreatePageLeftSection />
-        <DashBoardPoemSection />
+        <WorkspaceSection />
       </Wrapper>
     </>
   );

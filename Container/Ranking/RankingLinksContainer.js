@@ -25,17 +25,17 @@ export const RankingLinkList = [
 
 export const ExploreLinkList = [
   {
-    href: "/explore/novel?lead=female&genre=all&sub_genre=power",
+    href: "/explore/novel?lead=female",
     img_url: NovelImg,
     genretitle: "Novels",
   },
   {
-    href: "/explore/short?lead=female&genre=all&sub_genre=power",
+    href: "/explore/short?lead=female",
     img_url: ShortImg,
     genretitle: "Shorts",
   },
   {
-    href: "/explore/poem?lead=female&genre=all&sub_genre=power",
+    href: "/explore/poem?lead=female",
     img_url: PoemImg,
     genretitle: "Poems",
   },

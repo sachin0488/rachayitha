@@ -1,35 +1,17 @@
-import styled from "@emotion/styled";
-import {
-  FormControl,
-  formControlClasses,
-  InputLabel,
-  MenuItem,
-  Select,
-  selectClasses,
-} from "@mui/material";
-import React, { useState } from "react";
-import { laptop } from "../../styles/mediaQuery/breakPoints";
+import styled from '@emotion/styled'
+import { FormControl, formControlClasses, InputLabel, MenuItem, Select, selectClasses } from '@mui/material'
+import React, { useState } from 'react'
+import { laptop } from '../../styles/mediaQuery/breakPoints'
 
-export default function MuiSelect({
-  label,
-  menuItems,
-  textColor,
-  background,
-  margintop,
-}) {
-  const [content, setContent] = useState("");
-  const handleChange = (event) => {
-    setContent(event.target.value);
-  };
+export default function MuiSelect({ label, menuItems, textColor, background, selectMargin }) {
+  const [content, setContent] = useState('')
+  const handleChange = event => {
+    setContent(event.target.value)
+  }
   return (
     <>
-      <StyledFormControl variant="standard">
-        <StyledInputLabel
-          margin_top={margintop}
-          id="demo-simple-select-standard-label"
-        >
-          {label}
-        </StyledInputLabel>
+      <StyledFormControl selectMargin={selectMargin} variant="standard">
+        <StyledInputLabel id="demo-simple-select-standard-label">{label}</StyledInputLabel>
         <StyledSelect
           text_Color={textColor}
           back_ground={background}
@@ -38,38 +20,36 @@ export default function MuiSelect({
           value={content}
           onChange={handleChange}
           fullWidth
-          // sx={{
-          //   "& .MuiSvgIcon-root": {
-          //     color: "white",
-          //   },
-          // }}
+          sx={{
+            '& .MuiSvgIcon-root': {
+              color: 'white',
+            },
+          }}
           variant="standard"
-          disableUnderline
-        >
-          {menuItems.map((items) => (
+          disableUnderline>
+          {menuItems.map(items => (
             <MenuItem value={items.value}>{items.name}</MenuItem>
           ))}
         </StyledSelect>
       </StyledFormControl>
     </>
-  );
+  )
 }
 
 const StyledSelect = styled(Select)`
   &${selectClasses.root} {
-    color: ${({ text_Color }) => text_Color || "white"};
-    background-color: ${({ back_ground }) => back_ground || "transparent"};
+    color: ${({ text_Color }) => text_Color || 'white'};
+    background-color: ${({ back_ground }) => back_ground || 'transparent'};
   }
-`;
+`
 
 const StyledInputLabel = styled(InputLabel)`
   color: white;
-
   font-size: 14px;
   @media ${laptop} {
     font-size: large;
   }
-`;
+`
 
 const StyledFormControl = styled(FormControl)`
   &.${formControlClasses.root} {
@@ -78,8 +58,9 @@ const StyledFormControl = styled(FormControl)`
     display: flex;
   }
   & .MuiInputBase-root {
+    margin-top: ${({ selectMargin }) => selectMargin};
   }
   & .MuiSelect-select {
     background-color: transparent;
   }
-`;
+`

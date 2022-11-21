@@ -16,8 +16,10 @@ export const HeaderContent = styled.div`
   justify-content: space-between;
   gap: 10px;
   align-items: center;
-  height: 100px;
+  height: 110px;
   width: 100%;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); */
+  z-index: 100000;
   padding: 0px 15px;
   @media ${tabletS} {
     padding: 0px 30px;
@@ -31,7 +33,8 @@ export const HeaderContent = styled.div`
   @media ${laptopM} {
     padding: 0px 70px;
   }
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+
 `;
 export const LogoContainer = styled.div`
   display: flex;

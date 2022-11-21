@@ -1,6 +1,6 @@
 import React from "react";
-import { UserProfileImgNameWrapper, ImgComp } from "./CreateStyle";
-import { Username } from "../UserProfile/UserProfileStyle";
+import { UserProfileImgNameWrapper, ImgComp } from "../CreateStyle";
+import { Username } from "../../UserProfile/UserProfileStyle";
 
 const UserProfileImgAndName = () => {
   const ProfileImg =

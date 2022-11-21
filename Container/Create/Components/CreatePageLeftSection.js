@@ -1,6 +1,6 @@
 import React from "react";
 import CreatePageLinkContainer from "./CreatePageLinkContainer";
-import { WrapperLeftSideSection } from "./CreateStyle";
+import { WrapperLeftSideSection } from "../CreateStyle";
 import UserProfileImgAndName from "./UserProfileImgAndName";
 
 const CreatePageLeftSection = () => {

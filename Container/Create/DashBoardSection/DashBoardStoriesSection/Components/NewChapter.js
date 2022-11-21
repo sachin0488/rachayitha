@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePageLeftSection from "../../CreatePageLeftSection";
+import CreatePageLeftSection from "../../../Components/CreatePageLeftSection";
 import { BsArrowLeft } from "react-icons/bs";
 import {
   NewChapterHeading,
@@ -16,7 +16,7 @@ import {
   RightSideHeaderSubSectionWrapper,
   Wrapper,
   WrapperRightSideSection,
-} from "../../CreateStyle";
+} from "../../../CreateStyle";
 import Link from "next/link";
 
 const NewChapter = () => {

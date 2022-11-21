@@ -1,10 +1,10 @@
-import { TextField } from "@mui/material";
-import React from "react";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { HiDownload } from "react-icons/hi";
-import MuiSelect from "../../../../Components/GenreMenuBarComp/MuiSelect";
-import RadioGroupMui from "../../../../Components/RadioGroup/RadioGroupMui";
-import CreatePageLeftSection from "../../CreatePageLeftSection";
+import { TextField } from '@mui/material'
+import React from 'react'
+import { AiFillPlusCircle } from 'react-icons/ai'
+import { HiDownload } from 'react-icons/hi'
+import MuiSelect from '../../../../Components/GenreMenuBarComp/MuiSelect'
+import RadioGroupMui from '../../../../Components/RadioGroup/RadioGroupMui'
+import CreatePageLeftSection from '../../Components/CreatePageLeftSection'
 import {
   CoverPhotoText,
   CreateNewButtonComp,
@@ -28,20 +28,20 @@ import {
   UploadImgWrapper,
   Wrapper,
   WrapperRightSideSection,
-} from "../../CreateStyle";
-import DashBoard from "../DashBoardSection";
+} from '../../CreateStyle'
+import DashBoard from '../DashBoardSection'
 
 const CreateNewPoem = () => {
   const createNewMenuItems = [
     {
-      name: "novel",
-      value: "NO",
+      name: 'novel',
+      value: 'NO',
     },
     {
-      name: "poem",
-      value: "PO",
+      name: 'poem',
+      value: 'PO',
     },
-  ];
+  ]
   return (
     <>
       <Wrapper>
@@ -59,7 +59,7 @@ const CreateNewPoem = () => {
 
                       <input type="file" hidden />
                       <UploadButtonWrapper>
-                        {" "}
+                        {' '}
                         <UploadButton>
                           <HiDownload />
                           Upload
@@ -73,9 +73,7 @@ const CreateNewPoem = () => {
                   <CreateNewLabelAndInputWrapper>
                     <Label>NAME</Label>
                     <CreateNewTextField variant="outlined" size="small" />
-                    <LabelBelowTextField>
-                      Within 70 characters
-                    </LabelBelowTextField>
+                    <LabelBelowTextField>Within 70 characters</LabelBelowTextField>
                   </CreateNewLabelAndInputWrapper>
                   <CreateNewRadioGroupWrapper>
                     <Label>* LEADING GENDER</Label>
@@ -96,6 +94,7 @@ const CreateNewPoem = () => {
                         menuItems={createNewMenuItems}
                         textColor="black"
                         background="white"
+                        selectMargin="4px"
                       />
                     </CreateNewSelectCompWrapper>
                   </CreateNewLabelAndInputWrapper>
@@ -104,11 +103,7 @@ const CreateNewPoem = () => {
                 <CreateNewLabelAndInputWrapper>
                   <Label>ABBREVIATION</Label>
                   <CreateNewSelectCompWrapper>
-                    <MuiSelect
-                      menuItems={createNewMenuItems}
-                      textColor="black"
-                      background="white"
-                    />
+                    <MuiSelect menuItems={createNewMenuItems} textColor="black" background="white" selectMargin="4px" />
                   </CreateNewSelectCompWrapper>
                   <LabelBelowTextField>Within 15 words</LabelBelowTextField>
                 </CreateNewLabelAndInputWrapper>
@@ -116,9 +111,7 @@ const CreateNewPoem = () => {
                 <CreateNewLabelAndInputWrapper>
                   <Label>TAG CATEGORY</Label>
                   <CreateNewTextField variant="outlined" size="small" />
-                  <LabelBelowTextField>
-                    Tag Category of similar content.
-                  </LabelBelowTextField>
+                  <LabelBelowTextField>Tag Category of similar content.</LabelBelowTextField>
                 </CreateNewLabelAndInputWrapper>
                 <CreateNewButtonComp>Create</CreateNewButtonComp>
               </CreateNewSubWrapperLeftSection>
@@ -127,7 +120,7 @@ const CreateNewPoem = () => {
         </WrapperRightSideSection>
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default CreateNewPoem;
+export default CreateNewPoem

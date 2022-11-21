@@ -1,10 +1,10 @@
 import React from "react";
-import { Wrapper, SubWrapper } from "../Explore/ExploreStyle";
-import Header from "../LandingPageAfterLogin/Header/Header";
+import { SubWrapper } from "../Explore/ExploreStyle";
 import RedMudra from "../../public/redMudra.png";
 import GreenMudra from "../../public/greenMudra.png";
 import BlueMudra from "../../public/blueMudra.png";
 import {
+  Wrapper,
   Img,
   ImgBox,
   UserProfileLowerSection,
@@ -25,6 +25,7 @@ import UserProfileModal from "./UserProfileModal";
 import MuiTabs from "../../Components/MuiTabs/MuiTabs";
 import { UserProfileMuiTabList } from "../../hooks/useMuiTabComp";
 import { UserProfileStylesTab } from "./UserProfileStylesTab";
+import ProfileLayout from "../../Components/Layouts/ProfileLayout";
 
 const UserProfile = () => {
   const bannerImgUrl =
@@ -33,9 +34,9 @@ const UserProfile = () => {
     "https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png";
   return (
     <>
+    <ProfileLayout>
       <Wrapper>
-        <Header />
-        <SubWrapper>
+       <SubWrapper>
           <ImgBox>
             <Img src={bannerImgUrl} />
             <ImgComp src={ProfileImg} />
@@ -93,6 +94,7 @@ const UserProfile = () => {
           </UserProfileLowerSection>
         </SubWrapper>
       </Wrapper>
+      </ProfileLayout>
     </>
   );
 };

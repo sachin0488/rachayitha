@@ -14,7 +14,7 @@ import {
   ReleaseStatisticsText,
   WordCountData,
   WordCountText,
-} from "../../CreateStyle";
+} from "../../../CreateStyle";
 import { BsArrowUp } from "react-icons/bs";
 import { Typography } from "@mui/material";
 

@@ -38,6 +38,7 @@ import RecommendedCards from "./RecommendedCards";
 import ReviewSectionCom from "./ReviewSectionCom";
 import MuiTabs from "../../Components/MuiTabs/MuiTabs";
 import { bookAboutAndContentDetailMuiTabList } from "../../hooks/useMuiTabComp";
+import NavLayout from "../../Components/Layouts/NavLayout";
 
 const BookDetail = () => {
   const router = useRouter();
@@ -55,9 +56,9 @@ const BookDetail = () => {
 
   return (
     <>
+    <NavLayout>
       <Wrapper>
-        <Header />
-        <SubWrapper>
+       <SubWrapper>
           <BookDetailCard>
             <BookDetailCardLeftSection>
               <Img src={data?.img} />
@@ -112,8 +113,8 @@ const BookDetail = () => {
           </FantasyAndViewSection>
           <ReviewSectionCom />
         </SubWrapper>
-        <Footer />
-      </Wrapper>
+     </Wrapper>
+     </NavLayout>
     </>
   );
 };
