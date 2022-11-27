@@ -1,25 +1,25 @@
-import React from "react";
-import HeroStyle from "./HeroStyle";
-import { useHero } from "./api/hero.hook";
-import Image from "next/image";
-import { useHero1 } from "./api/hero.hook1";
+import React from 'react'
+import HeroStyle from './HeroStyle'
+import { useHero } from './api/hero.hook'
+import Image from 'next/image'
+import { useHero1 } from './api/hero.hook1'
+import {
+  Wrapper,
+  CreateButton,
+  ExploreButton,
+  ParagraphText,
+  SubHeading,
+  Heading,
+  HeroLeftSideSection,
+  ButtonContainer,
+  HeroRightSideSection,
+  BannerImgContainer,
+  ImgContainer,
+} from './HeroStyle'
 
 const Hero = () => {
-  const {
-    Wrapper,
-    CreateButton,
-    ExploreButton,
-    ParagraphText,
-    SubHeading,
-    Heading,
-    HeroLeftSideSection,
-    ButtonContainer,
-    HeroRightSideSection,
-    BannerImgContainer,
-    ImgContainer,
-  } = HeroStyle();
-  const { data, isLoading, isError, error, isFetching } = useHero();
-  const { data: data1 } = useHero1();
+  const { data, isLoading, isError, error, isFetching } = useHero()
+  const { data: data1 } = useHero1()
   return (
     <>
       <Wrapper>
@@ -33,29 +33,29 @@ const Hero = () => {
           </ButtonContainer>
         </HeroLeftSideSection>
         <HeroRightSideSection>
-          <BannerImgContainer sx={{ margin: "0px 0px -57px 0px" }}>
-            {data?.map((bannerImg) => (
+          <BannerImgContainer sx={{ margin: '0px 0px -57px 0px' }}>
+            {data?.map(bannerImg => (
               <ImgContainer>
                 <Image src={bannerImg.img} width="218px" height="253px" />
               </ImgContainer>
             ))}
           </BannerImgContainer>
-          <BannerImgContainer sx={{ margin: "-37px 0px 0px 0px" }}>
-            {data?.map((bannerImg) => (
+          <BannerImgContainer sx={{ margin: '-37px 0px 0px 0px' }}>
+            {data?.map(bannerImg => (
               <ImgContainer>
                 <Image src={bannerImg.img} width="218px" height="253px" />
               </ImgContainer>
             ))}
           </BannerImgContainer>
-          <BannerImgContainer sx={{ margin: "-237px 0px 0px 0px" }}>
-            {data1?.map((bannerImg) => (
+          <BannerImgContainer sx={{ margin: '-237px 0px 0px 0px' }}>
+            {data1?.map(bannerImg => (
               <ImgContainer>
                 <Image src={bannerImg.img} width="218px" height="253px" />
               </ImgContainer>
             ))}
           </BannerImgContainer>
-          <BannerImgContainer sx={{ margin: "-67px 0px 0px 0px" }}>
-            {data?.map((bannerImg) => (
+          <BannerImgContainer sx={{ margin: '-67px 0px 0px 0px' }}>
+            {data?.map(bannerImg => (
               <ImgContainer>
                 <Image src={bannerImg.img} width="218px" height="253px" />
               </ImgContainer>
@@ -64,7 +64,7 @@ const Hero = () => {
         </HeroRightSideSection>
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

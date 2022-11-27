@@ -1,57 +1,60 @@
-import React from "react";
-import NovelImg from "../../public/novel.svg";
-import PoemImg from "../../public/poem.png";
-import ShortImg from "../../public/shorts.svg";
-import Image from "next/image";
-import Link from "next/link";
-import { GenreTitle, MenuItem } from "../Explore/ExploreStyle";
+import React from 'react'
+import NovelImg from '../../public/novel.svg'
+import PoemImg from '../../public/poem.png'
+import ShortImg from '../../public/shorts.svg'
+import Image from 'next/image'
+import Link from 'next/link'
+import { GenreTitle, MenuItem } from '../Explore/ExploreStyle'
+import { useRouter } from 'next/router'
 export const RankingLinkList = [
   {
-    href: "/ranking/novel",
+    href: '/ranking/novel?lead=male',
     img_url: NovelImg,
-    genretitle: "Novels",
+    genretitle: 'Novels',
   },
   {
-    href: "/ranking/short",
+    href: '/ranking/short?lead=male',
     img_url: ShortImg,
-    genretitle: "Shorts",
+    genretitle: 'Shorts',
   },
   {
-    href: "/ranking/poem",
+    href: '/ranking/poem?lead=male',
     img_url: PoemImg,
-    genretitle: "Poems",
+    genretitle: 'Poems',
   },
-];
+]
 
 export const ExploreLinkList = [
   {
-    href: "/explore/novel?lead=female",
+    href: '/explore/novel?lead=male',
     img_url: NovelImg,
-    genretitle: "Novels",
+    genretitle: 'Novels',
   },
   {
-    href: "/explore/short?lead=female",
+    href: '/explore/short?lead=male',
     img_url: ShortImg,
-    genretitle: "Shorts",
+    genretitle: 'Shorts',
   },
   {
-    href: "/explore/poem?lead=female",
+    href: '/explore/poem?lead=male',
     img_url: PoemImg,
-    genretitle: "Poems",
+    genretitle: 'Poems',
   },
-];
+]
 
 const RankingLinksContainer = ({ href, img_url, genretitle }) => {
+  const router = useRouter()
+  const { genre } = router.query
   return (
     <>
-      <Link href={href}>
-        <MenuItem>
+      <Link href={`${href}&genre=${genre}`}>
+        <MenuItem className={router.asPath === `${href}&genre=${genre}` ? 'explore' : ''}>
           <Image src={img_url} />
           <GenreTitle>{genretitle}</GenreTitle>
         </MenuItem>
       </Link>
     </>
-  );
-};
+  )
+}
 
-export default RankingLinksContainer;
+export default RankingLinksContainer

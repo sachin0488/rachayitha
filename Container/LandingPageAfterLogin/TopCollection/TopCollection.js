@@ -1,35 +1,33 @@
-import Image from "next/image";
-import React from "react";
-import TopCollectionStyle from "./TopCollectionStyle";
-import { useTopCollection } from "./api/topCollection.hook";
+import Image from 'next/image'
+import React from 'react'
+import {
+  TopCollectionWrapper,
+  CollectionName,
+  TopCollectionList,
+  IndividualCollection,
+  Heading,
+  HighlightedHeading,
+  Rating,
+  Title,
+  Fantasy,
+  IndividualCard,
+  IndividualCardLeftSection,
+  IndividualCardRightSection,
+} from './TopCollectionStyle'
+import { useTopCollection } from './api/topCollection.hook'
 
 const TopCollection = () => {
-  const {
-    TopCollectionWrapper,
-    CollectionName,
-    TopCollectionList,
-    IndividualCollection,
-    Heading,
-    HighlightedHeading,
-    Rating,
-    Title,
-    Fantasy,
-    IndividualCard,
-    IndividualCardLeftSection,
-    IndividualCardRightSection,
-  } = TopCollectionStyle();
-  const { data, isLoading, isError, error, isFetching } = useTopCollection();
+  const { data, isLoading, isError, error, isFetching } = useTopCollection()
   return (
     <>
       <TopCollectionWrapper>
         <Heading>
-          Top collection over{" "}
-          <HighlightedHeading>last 7 days</HighlightedHeading>{" "}
+          Top collection over <HighlightedHeading>last 7 days</HighlightedHeading>{' '}
         </Heading>
         <TopCollectionList>
           <IndividualCollection>
             <CollectionName>Novel</CollectionName>
-            {data?.map((card) => (
+            {data?.map(card => (
               <IndividualCard>
                 <IndividualCardLeftSection>
                   <Image src={card.img} width="90px" height="115px" />
@@ -44,7 +42,7 @@ const TopCollection = () => {
           </IndividualCollection>
           <IndividualCollection>
             <CollectionName>Poems</CollectionName>
-            {data?.map((card) => (
+            {data?.map(card => (
               <IndividualCard>
                 <IndividualCardLeftSection>
                   <Image src={card.img} width="90px" height="115px" />
@@ -59,7 +57,7 @@ const TopCollection = () => {
           </IndividualCollection>
           <IndividualCollection>
             <CollectionName>Shorts</CollectionName>
-            {data?.map((card) => (
+            {data?.map(card => (
               <IndividualCard>
                 <IndividualCardLeftSection>
                   <Image src={card.img} width="90px" height="115px" />
@@ -75,7 +73,7 @@ const TopCollection = () => {
         </TopCollectionList>
       </TopCollectionWrapper>
     </>
-  );
-};
+  )
+}
 
-export default TopCollection;
+export default TopCollection

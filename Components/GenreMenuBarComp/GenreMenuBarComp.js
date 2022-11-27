@@ -1,55 +1,14 @@
 import React from 'react'
-import { AiFillCaretDown } from 'react-icons/ai'
-import {
-  ContentType,
-  ContentTypeText,
-  FilterText,
-  GenreMenuBar,
-  LeftSideGenreMenuBar,
-  RightSideGenreMenuBar,
-} from '../../Container/Explore/ExploreStyle'
-import LinkContainer from '../../Container/Explore/LinkContainer'
-import MuiSelect from './MuiSelect'
+import { GenreMenuBar } from '../../Container/Explore/ExploreStyle'
+import GenreMenuBarLeftSection from './Components/GenreMenuBarLeftSection'
+import GenreMenuBarRightSection from './Components/GenreMenuBarRightSection'
 
 const GenreMenuBarComp = ({ sectionName }) => {
-  const menuItems = [
-    {
-      name: 'novel',
-      value: 'NO',
-    },
-    {
-      name: 'poem',
-      value: 'PO',
-    },
-  ]
-  const contentStatus = [
-    {
-      name: 'novel',
-      value: 'NO',
-    },
-    {
-      name: 'poem',
-      value: 'PO',
-    },
-  ]
   return (
     <>
       <GenreMenuBar>
-        <LeftSideGenreMenuBar>
-          {sectionName.map(list => (
-            <LinkContainer href={list.href} img_url={list.img_url} genretitle={list.genretitle} />
-          ))}
-        </LeftSideGenreMenuBar>
-        <RightSideGenreMenuBar>
-          <FilterText>Filter by</FilterText>
-          <ContentType>
-            <MuiSelect label="content type" menuItems={menuItems} selectMargin="none" />
-          </ContentType>
-
-          <ContentType>
-            <MuiSelect label="content Status" menuItems={contentStatus} />
-          </ContentType>
-        </RightSideGenreMenuBar>
+        <GenreMenuBarLeftSection sectionName={sectionName} />
+        <GenreMenuBarRightSection />
       </GenreMenuBar>
     </>
   )

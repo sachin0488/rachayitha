@@ -1,18 +1,19 @@
-import React from "react";
-import { GenreName, genreName } from "../../hooks/useGenreButton";
-import GenreButton from "../GenreButton/GenreButton";
-import { GenreButtonListWrapper } from "./GenreButtonListStyle";
-import { useRouter } from "next/router";
+import React from 'react'
+import { GenreName, genreName } from '../../hooks/useGenreButton'
+import { GenreButtonListWrapper } from './GenreButtonListStyle'
+import { useRouter } from 'next/router'
+import RankingGenreButton from '../GenreButton/Components/RankingGenreButton'
+import ExploreGenreButton from '../GenreButton/Components/ExploreGenreButton'
 const GenreButtonList = ({ explore, section, genreLead }) => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const type = router.pathname.split("/")[1];
+  const type = router.pathname.split('/')[1]
 
   return (
     <GenreButtonListWrapper>
-      {type === "explore"
-        ? GenreName.map((platform) => (
-            <GenreButton
+      {type === 'explore'
+        ? GenreName.map(platform => (
+            <ExploreGenreButton
               explore={explore}
               section={section}
               platformApi={platform.name}
@@ -21,8 +22,8 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
               genreLead={genreLead}
             />
           ))
-        : genreName.map((platform) => (
-            <GenreButton
+        : genreName.map(platform => (
+            <RankingGenreButton
               explore={explore}
               section={section}
               width="47%"
@@ -32,7 +33,7 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
             />
           ))}
     </GenreButtonListWrapper>
-  );
-};
+  )
+}
 
-export default GenreButtonList;
+export default GenreButtonList

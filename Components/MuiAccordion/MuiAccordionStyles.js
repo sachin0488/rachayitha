@@ -23,11 +23,11 @@ export const AccordionSummaryComp = styled(AccordionSummary)`
   }
   @media ${laptop} {
     min-width: 250px;
-    padding-top: 15px;
+    padding-top: 0px;
   }
   @media ${laptopS} {
     min-width: 270px;
-    padding-top: 15px;
+    padding-top: 0px;
   }
 `
 

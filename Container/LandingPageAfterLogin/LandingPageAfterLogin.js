@@ -1,47 +1,46 @@
-import styled from "@emotion/styled";
-import { Box } from "@mui/material";
-import React from "react";
-import Footer from "../LandingPageWithoutLogin/Footer/Footer";
-import { MainContainer } from "../LandingPageWithoutLogin/LandingPageWithoutLoginStyle";
-import NewArrivalCardMiniComp from "../LandingPageWithoutLogin/NewArrivalsCards/NewArrivalCardMiniComp";
-import NewArrivalsCards from "../LandingPageWithoutLogin/NewArrivalsCards/NewArrivalsCards";
-import PotentialStarletCards from "../LandingPageWithoutLogin/PotentialStarletCards/PotentialStarletCards";
-import WeeklyFeaturedCards from "../LandingPageWithoutLogin/WeeklyFeaturedCards/WeeklyFeaturedCards";
-import Header from "./Header/Header";
-import Hero from "./Hero/Hero";
-import TopCollection from "./TopCollection/TopCollection";
-import TopCollectionStyle from "./TopCollection/TopCollectionStyle";
+import styled from '@emotion/styled'
+import { Box } from '@mui/material'
+import React from 'react'
+import Footer from '../LandingPageWithoutLogin/Components/Footer/Footer'
+import { MainContainer } from '../LandingPageWithoutLogin/LandingPageWithoutLoginStyle'
+import NewArrivalCardMiniComp from '../LandingPageWithoutLogin/Components/NewArrivalsCards/NewArrivalCardMiniComp'
+import NewArrivalsCards from '../LandingPageWithoutLogin/Components/NewArrivalsCards/NewArrivalsCards'
+import PotentialStarletCards from '../LandingPageWithoutLogin/Components/PotentialStarletCards/PotentialStarletCards'
+import WeeklyFeaturedCards from '../LandingPageWithoutLogin/Components/WeeklyFeaturedCards/WeeklyFeaturedCards'
+import Header from './Header/Header'
+import Hero from './Hero/Hero'
+import { SubMainContainer } from './LandingPageAfterLoginStyled'
+import TopCollection from './TopCollection/TopCollection'
+import { SectionWrapper, WeeklyCardSectionWrapper } from './TopCollection/TopCollectionStyle'
 
 const LandingPageAfterLogin = () => {
-  const { SectionWrapper } = TopCollectionStyle();
-
   return (
     <>
       <MainContainer>
+        {' '}
         <Header />
         <Hero />
-        <TopCollection />
-        <SectionWrapper>
-          {" "}
-          <WeeklyFeaturedCards />
-        </SectionWrapper>
-
-        <SectionWrapper>
-          {" "}
-          <PotentialStarletCards />
-        </SectionWrapper>
-        <SectionWrapper>
-          <NewArrivalsCards />
-        </SectionWrapper>
-
-        <SectionWrapper sx={{ margin: "-40px 0px 0px 0px" }}>
-          <NewArrivalCardMiniComp />
-        </SectionWrapper>
-
-        <Footer />
+        <SubMainContainer>
+          <TopCollection />
+          <WeeklyCardSectionWrapper>
+            {' '}
+            <WeeklyFeaturedCards />
+          </WeeklyCardSectionWrapper>
+          <SectionWrapper>
+            {' '}
+            <PotentialStarletCards />
+          </SectionWrapper>
+          <SectionWrapper>
+            <NewArrivalsCards />
+          </SectionWrapper>
+          <SectionWrapper sx={{ margin: '-40px 0px 0px 0px' }}>
+            <NewArrivalCardMiniComp />
+          </SectionWrapper>
+          <Footer />
+        </SubMainContainer>
       </MainContainer>
     </>
-  );
-};
+  )
+}
 
-export default LandingPageAfterLogin;
+export default LandingPageAfterLogin

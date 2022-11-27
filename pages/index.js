@@ -5,10 +5,5 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function Home() {
   const { isLoggedIn } = useSelector(state => state.user)
 
-  return (
-    <>
-      <LandingPageAfterLogin />
-      {/* {isLoggedIn ? <LandingPageAfterLogin /> : <LandingPageWithoutLogin />};{" "} */}
-    </>
-  )
+  return <>{isLoggedIn ? <LandingPageAfterLogin /> : <LandingPageWithoutLogin />}; </>
 }

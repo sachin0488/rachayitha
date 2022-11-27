@@ -1,12 +1,12 @@
-import React from "react";
-import RegisterPage from "../Container/RegisterPage/RegisterPage";
+import React from 'react'
+import CreateAccountCard from '../Container/Auth/Create-account'
 
 const createAccount = () => {
   return (
     <>
-      <RegisterPage />
+      <CreateAccountCard />
     </>
-  );
-};
+  )
+}
 
-export default createAccount;
+export default createAccount

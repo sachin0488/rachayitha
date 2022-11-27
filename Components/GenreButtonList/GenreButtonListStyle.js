@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import styled from '@emotion/styled'
+import { Box, Button } from '@mui/material'
 
 export const GenreButtonListWrapper = styled(Box)`
   width: 100%;
@@ -9,7 +9,7 @@ export const GenreButtonListWrapper = styled(Box)`
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-`;
+`
 
 export const GenreButtonListMobileWrapper = styled(Box)`
   width: 100%;
@@ -22,10 +22,10 @@ export const GenreButtonListMobileWrapper = styled(Box)`
   &::-webkit-scrollbar {
     width: 0;
   }
-`;
+`
 
 export const GenreButtonsMobile = styled.button`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   min-width: 90px;
@@ -36,4 +36,12 @@ export const GenreButtonsMobile = styled.button`
   border: 1px solid #e7e7e7;
   color: #5624c1;
   background-color: transparent;
-`;
+  &.genre {
+    background-color: #673ccb;
+    color: white;
+  }
+
+  &.genre:hover {
+    background-color: #673ccb;
+  }
+`

@@ -31,10 +31,12 @@ const Header = () => {
   return (
     <>
       <HeaderContent>
-        <LogoContainer>
-          <Image src={Logo} />
-          <LogoTitle>E-Read</LogoTitle>
-        </LogoContainer>
+        <Link href={`/`}>
+          <LogoContainer>
+            <Image src={Logo} />
+            <LogoTitle>E-Read</LogoTitle>
+          </LogoContainer>
+        </Link>
         <SearchInputDiv>
           <AiOutlineSearch size={28} color="#969696" fontWeight="600" />
           <SearchInput placeholder="Search novels, poems and many more" />
@@ -43,13 +45,13 @@ const Header = () => {
           <ImgCont>
             <HeaderDrawer />
           </ImgCont>
-          <Link href="/explore/novel?lead=female&genre=all&sub_genre=power">
+          <Link href="/explore/novel?lead=male&genre=all&sub_genre=power">
             <MenuItems>
               <Image src={Explore} />
               <Button>Explore</Button>
             </MenuItems>
           </Link>
-          <Link href="/ranking/novel?lead=female&genre=all&sub_genre=power">
+          <Link href="/ranking/novel?lead=male&genre=all">
             <MenuItems>
               <Image src={Ranking} />
               <Button>Ranking</Button>

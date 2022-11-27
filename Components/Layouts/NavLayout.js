@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import React from 'react'
 import Header from '../../Container/LandingPageAfterLogin/Header/Header'
-import Footer from '../../Container/LandingPageWithoutLogin/Footer/Footer'
+import Footer from '../../Container/LandingPageWithoutLogin/Components/Footer/Footer'
 
 const NavLayout = ({ children, header, footer }) => {
   return (
