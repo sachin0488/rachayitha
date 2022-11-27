@@ -1,19 +1,12 @@
-import axios from "axios";
+import axios from 'axios'
 
-import { MutationCache, QueryCache } from "@tanstack/react-query";
+import { MutationCache, QueryCache } from '@tanstack/react-query'
 
-// const API_URL = "http://127.0.0.1:8000/";
-const API_URL = "http://localhost:4000/weekly_feature";
+const API_URL = 'http://rachayitha.com/api/v1/'
 
 export const ApiInstance = axios.create({
   baseURL: `${API_URL}`,
-});
-
-export const fetchUsers = async () => {
-  const res = await axios.get(API_URL);
-
-  return res.data;
-};
+})
 
 // const handleLogout = () => {
 //   const isSuperAdmin = localStorage.getItem("isSuperAdmin") === "true";
@@ -71,32 +64,32 @@ export const fetchUsers = async () => {
 // });
 
 export function setAuthToken(token) {
-  const AUTHORIZATION = "Authorization";
+  const AUTHORIZATION = 'Authorization'
 
-  const instances = [axios, ApiInstance];
+  const instances = [axios, ApiInstance]
 
-  instances.forEach((item) => {
-    item.defaults.headers.common[AUTHORIZATION] = `Bearer ${token}`;
-  });
+  instances.forEach(item => {
+    item.defaults.headers.common[AUTHORIZATION] = `Bearer ${token}`
+  })
 
-  instances.forEach((item) => {
-    if (item === "instance") {
+  instances.forEach(item => {
+    if (item === 'instance') {
       item.interceptors.request.use(
-        (config) => {
-          return config;
+        config => {
+          return config
         },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
+        error => {
+          return Promise.reject(error)
+        },
+      )
       item.interceptors.response.use(
-        (config) => {
-          return config;
+        config => {
+          return config
         },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
+        error => {
+          return Promise.reject(error)
+        },
+      )
     }
-  });
+  })
 }

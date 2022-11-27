@@ -19,7 +19,7 @@ export const GenreButtons = styled(Button)`
     background-color: #673ccb;
   }
 `
-export const GenreButtonWrapper = styled.div`
+export const GenreButtonWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;

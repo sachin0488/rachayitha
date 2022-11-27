@@ -1,14 +1,6 @@
-import styled from "@emotion/styled";
-import { Box, Button, Typography } from "@mui/material";
-import {
-  laptop,
-  laptopM,
-  laptopS,
-  mobileL,
-  mobileM,
-  tablet,
-  tabletS,
-} from "../../styles/mediaQuery/breakPoints";
+import styled from '@emotion/styled'
+import { Box, Button, Typography } from '@mui/material'
+import { laptop, laptopM, laptopS, mobileL, mobileM, tablet, tabletS } from '../../styles/mediaQuery/breakPoints'
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -19,7 +11,7 @@ export const Wrapper = styled(Box)`
   align-items: center;
   background-color: white;
   box-shadow: 0px 13px 11px 13px rgba(0, 0, 0, 0.2);
-`;
+`
 
 export const SubWrapper = styled(Box)`
   width: 100%;
@@ -40,7 +32,7 @@ export const SubWrapper = styled(Box)`
   flex-direction: column;
   align-items: center;
   gap: 42px;
-`;
+`
 
 export const ExploreBannerContainer = styled(Box)`
   position: relative;
@@ -48,7 +40,7 @@ export const ExploreBannerContainer = styled(Box)`
   height: 271px;
   display: flex;
   justify-content: center;
-`;
+`
 
 export const ExploreBannerImageContainer = styled.div`
   width: 100%;
@@ -57,14 +49,14 @@ export const ExploreBannerImageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-`;
+`
 
 export const ExploreBannerImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
-`;
+`
 
 export const GenreMenuBar = styled(Box)`
   background-color: #673ccc;
@@ -94,7 +86,7 @@ export const GenreMenuBar = styled(Box)`
     width: 85%;
     height: 75px;
   }
-`;
+`
 
 export const LeftSideGenreMenuBar = styled(Box)`
   height: 100%;
@@ -109,7 +101,7 @@ export const LeftSideGenreMenuBar = styled(Box)`
   @media ${laptopM} {
     width: 40%;
   }
-`;
+`
 export const RightSideGenreMenuBar = styled(Box)`
   width: 50%;
   height: 100%;
@@ -127,7 +119,7 @@ export const RightSideGenreMenuBar = styled(Box)`
     justify-content: flex-end;
     gap: 35px;
   }
-`;
+`
 
 export const MenuItem = styled.div`
   display: flex;
@@ -135,10 +127,10 @@ export const MenuItem = styled.div`
   gap: 2px;
   align-items: center;
   cursor: pointer;
-`;
+`
 
 export const GenreTitle = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -160,10 +152,10 @@ export const GenreTitle = styled(Typography)`
     font-size: 22px;
     line-height: 26px;
   }
-`;
+`
 
 export const FilterText = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 19px;
@@ -177,7 +169,7 @@ export const FilterText = styled(Typography)`
     line-height: 22px;
   }
   color: #ffffff;
-`;
+`
 export const ContentType = styled(Box)`
   display: flex;
   justify-content: center;
@@ -185,9 +177,9 @@ export const ContentType = styled(Box)`
   gap: 1px;
   width: 29%;
   padding-bottom: 25px;
-`;
+`
 export const ContentTypeText = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -201,7 +193,7 @@ export const ContentTypeText = styled(Typography)`
     line-height: 18px;
   }
   color: #ffffff;
-`;
+`
 
 export const MainContentWrapper = styled(Box)`
   margin: 40px 0px;
@@ -220,7 +212,7 @@ export const MainContentWrapper = styled(Box)`
   @media ${laptopM} {
     gap: 88px;
   }
-`;
+`
 
 export const GenreAccordionContainer = styled(Box)`
   width: 22%;
@@ -235,18 +227,18 @@ export const GenreAccordionContainer = styled(Box)`
     display: block;
     display: flex;
   }
-`;
+`
 export const MaleAndFemaleLeadContainer = styled(Box)`
   width: 120%;
   @media ${laptopS} {
-    width: 105%;
+    width: 110%;
   }
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #edefff;
-`;
+`
 
 export const GenderBox = styled(Box)`
   width: 40%;
@@ -257,7 +249,7 @@ export const GenderBox = styled(Box)`
   border: 0.5px solid #673ccc;
   border-radius: 3px;
   color: #5426c3;
-`;
+`
 
 export const ShowQueryContainer = styled(Box)`
   height: 100%;
@@ -270,16 +262,16 @@ export const ShowQueryContainer = styled(Box)`
   @media ${laptop} {
     width: 72%;
   }
-`;
+`
 export const SortByWrapper = styled(Box)`
   width: 100%;
 
   @media ${laptop} {
     display: none;
   }
-`;
+`
 export const SortByHeading = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -290,7 +282,7 @@ export const SortByHeading = styled(Typography)`
   @media ${laptop} {
     display: block;
   }
-`;
+`
 
 export const HorizontalRule = styled.div`
   border-top: 1px solid #e7e7e7;
@@ -299,7 +291,7 @@ export const HorizontalRule = styled.div`
   @media ${laptop} {
     display: block;
   }
-`;
+`
 export const CardsWrapper = styled(Box)`
   width: 100%;
   height: 85%;
@@ -312,7 +304,7 @@ export const CardsWrapper = styled(Box)`
     flex-wrap: wrap;
     flex-direction: row;
   }
-`;
+`
 
 export const CardsSubWrapper = styled(Box)`
   height: 130px;
@@ -328,7 +320,7 @@ export const CardsSubWrapper = styled(Box)`
     margin: 16px 0px;
   }
   cursor: pointer;
-`;
+`
 export const Cards = styled(Box)`
   height: 100%;
   gap: 20px;
@@ -354,7 +346,7 @@ export const Cards = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-`;
+`
 export const CardLeftSideContent = styled(Box)`
   height: 100%;
   width: 30%;
@@ -368,7 +360,7 @@ export const CardLeftSideContent = styled(Box)`
   @media ${mobileL} {
     width: 30%;
   }
-`;
+`
 export const CardRightSideContent = styled(Box)`
   height: 100%;
   width: 70%;
@@ -383,14 +375,14 @@ export const CardRightSideContent = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   gap: 10px;
-`;
+`
 
 export const Img = styled.img`
   width: 91.9px;
   height: 128px;
   object-fit: cover;
   border-radius: 5px;
-`;
+`
 
 export const Title = styled(Typography)`
   font-weight: 600;
@@ -402,7 +394,7 @@ export const Title = styled(Typography)`
     line-height: 16px;
   }
   color: #fc9404;
-`;
+`
 export const ButtonContainer = styled(Box)`
   min-height: 10%;
   width: 100%;
@@ -415,7 +407,7 @@ export const ButtonContainer = styled(Box)`
     gap: 13px;
   }
   flex-wrap: wrap;
-`;
+`
 
 export const ParagraphText = styled(Typography)`
   font-weight: 300;
@@ -427,7 +419,7 @@ export const ParagraphText = styled(Typography)`
   }
   letter-spacing: 0.1em;
   color: #000000;
-`;
+`
 export const Buttons = styled(Button)`
   font-weight: 300;
   font-size: 14px;
@@ -436,18 +428,25 @@ export const Buttons = styled(Button)`
   border-radius: 16px;
   padding: 5px 12px;
   border: 1px solid #e7e7e7;
+  &.genre {
+    background-color: #673ccb;
+    color: white;
+  }
+
+  &.genre:hover {
+    background-color: #673ccb;
+  }
   &:hover {
     background-color: transparent;
-   
   }
-`;
+`
 
 export const ExploreBannerHeading = styled.h1`
   position: absolute;
   color: #2f2d5c;
-`;
+`
 
 export const HashTagComp = styled(Typography)`
   color: #673ccc;
   font-size: 13px;
-`;
+`

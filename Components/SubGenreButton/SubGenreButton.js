@@ -13,10 +13,10 @@ const SubGenreButton = ({ sectionName }) => {
     <>
       <ButtonContainer>
         {genreName?.map((button, index) => (
-          <Link href={`${fullSection}?lead=female&genre=${genre}&sub_genre=${button.name}`}>
+          <Link href={`${fullSection}?lead=male&genre=${genre}&sub_genre=${button.name}`}>
             <Buttons
               className={
-                router.asPath === `${fullSection}?lead=female&genre=${genre}&sub_genre=${button.name}` ? 'genre' : ''
+                router.asPath === `${fullSection}?lead=male&genre=${genre}&sub_genre=${button.name}` ? 'genre' : ''
               }>
               {button.buttonName}
             </Buttons>

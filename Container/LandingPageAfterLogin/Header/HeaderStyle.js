@@ -1,15 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Box, Typography, TextField } from "@mui/material";
-import {
-  laptop,
-  laptopM,
-  laptopS,
-  mobileL,
-  mobileM,
-  tablet,
-  tabletS,
-} from "../../../styles/mediaQuery/breakPoints";
+import React from 'react'
+import styled from '@emotion/styled'
+import { Box, Typography, TextField } from '@mui/material'
+import { laptop, laptopM, laptopS, mobileL, mobileM, tablet, tabletS } from '../../../styles/mediaQuery/breakPoints'
 
 export const HeaderContent = styled.div`
   display: flex;
@@ -33,17 +25,16 @@ export const HeaderContent = styled.div`
   @media ${laptopM} {
     padding: 0px 70px;
   }
-
-
-`;
+`
 export const LogoContainer = styled.div`
   display: flex;
   justify-content: start;
   padding: 0 0px;
   align-items: center;
   width: 50%;
+  cursor: pointer;
   @media ${tabletS} {
-    width: 20%;
+    width: 26%;
     padding: 0 10px;
   }
   @media ${laptopS} {
@@ -52,18 +43,18 @@ export const LogoContainer = styled.div`
   height: 100%;
   font-size: 40px;
   gap: 14px;
-`;
+`
 
 export const LogoTitle = styled(Typography)`
   font-size: 22px;
-  color: ${(props) => props.theme.palette.primary.main};
+  color: ${props => props.theme.palette.primary.main};
   font-weight: 600;
   line-height: 25px;
   @media ${mobileM} {
     line-height: 29px;
     font-size: 25px;
   }
-`;
+`
 export const NavMenu = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -77,8 +68,8 @@ export const NavMenu = styled.div`
   @media ${laptopS} {
     width: 50%;
   }
-  color: ${(props) => props.theme.palette.secondary.main};
-`;
+  color: ${props => props.theme.palette.secondary.main};
+`
 
 export const MenuItems = styled.div`
   display: flex;
@@ -96,10 +87,10 @@ export const MenuItems = styled.div`
     display: block;
     display: flex;
   }
-`;
+`
 
 export const Button = styled.button`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -113,7 +104,7 @@ export const Button = styled.button`
     display: block;
     cursor: pointer;
   }
-`;
+`
 
 export const SearchInputDiv = styled.div`
   display: flex;
@@ -136,7 +127,7 @@ export const SearchInputDiv = styled.div`
   }
   height: 47px;
   padding: 0px 8px;
-`;
+`
 export const SearchInput = styled.input`
   width: 260px;
   @media ${tabletS} {
@@ -151,16 +142,16 @@ export const SearchInput = styled.input`
   font-size: 15px;
   line-height: 18px;
   color: black;
-`;
+`
 export const Img = styled.img`
   display: none;
   @media ${laptopS} {
     display: block;
   }
-`;
+`
 export const ImgCont = styled.div`
   display: block;
   @media ${laptopS} {
     display: none;
   }
-`;
+`

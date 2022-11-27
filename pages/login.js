@@ -1,12 +1,12 @@
-import React from "react";
-import LoginPage from "../Container/LoginPage/LoginPage";
+import React from 'react'
+import LoginCard from '../Container/Auth/Login'
 
 const login = () => {
   return (
     <>
-      <LoginPage />
+      <LoginCard />
     </>
-  );
-};
+  )
+}
 
-export default login;
+export default login
