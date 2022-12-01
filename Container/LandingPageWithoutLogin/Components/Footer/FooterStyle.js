@@ -57,6 +57,10 @@ export const ImpSection = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: start;
+  @media ${tabletS} {
+    width: 20%;
+  }
+
   justify-content: start;
   gap: 13px;
 `
@@ -95,4 +99,21 @@ export const SocialMediaIconContainer = styled(Box)`
   justify-content: center;
   gap: 8px;
   align-items: center;
+`
+
+export const LogoSection = styled(Box)`
+  display: none;
+
+  @media ${tabletS} {
+    display: flex;
+    display: block;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+  }
+`
+export const LogoSvg = styled.img`
+  width: 40px;
+  object-fit: cover;
 `

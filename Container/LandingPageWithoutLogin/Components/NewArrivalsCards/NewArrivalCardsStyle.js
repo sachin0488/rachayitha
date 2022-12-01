@@ -70,10 +70,9 @@ export const NewArrivalContent = styled.div`
   gap: 20px;
   align-items: center;
   width: 100%;
-  height: 95%;
-  @media ${laptopM} {
-    height: 475px;
-  }
+  height: 475px;
+  padding-left: 5px;
+
   overflow-x: auto;
   &::-webkit-scrollbar {
     width: 0;
@@ -84,8 +83,11 @@ export const NewArrivalContentCard = styled(Box)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
   &:hover {
     border-color: #582ac5;
+    transform: scale(1.01, 1.01);
+    transition-duration: 0.7s;
   }
   gap: 10px;
   padding: 16px 6px;
@@ -120,6 +122,7 @@ export const Heading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
+  padding-bottom: 10px;
   font-size: 25px;
   line-height: 29px;
   color: ${props => props.theme.palette.headingColor.main};
@@ -130,7 +133,9 @@ export const StoryHeading = styled(Typography)`
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #000000;
   width: 100%;
   padding: 5px 5px;

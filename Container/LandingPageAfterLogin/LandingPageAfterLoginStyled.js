@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 
 export const SubMainContainer = styled(Box)`
   width: 100%;
-  max-width: 1700px;
+  max-width: 1850px;
   display: flex;
   flex-direction: column;
   justify-content: start;

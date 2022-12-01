@@ -104,9 +104,8 @@ export const MenuButton2 = styled(Button)`
   width: 74.98px;
   height: 30px;
   padding: 5px;
-  border: 2px solid #5525c2;
   border-radius: 2.8341px;
-  border-color: ${props => props.theme.palette.secondary.main};
+  border: 2px solid ${props => props.theme.palette.secondary.main};
 
   font-family: 'Roboto';
   font-style: normal;
@@ -118,7 +117,7 @@ export const MenuButton2 = styled(Button)`
     width: 97px;
     height: 38px;
     border-radius: 5px;
-    border: 2px solid;
+
     padding: 11px;
     font-size: 16px;
     line-height: 19px;

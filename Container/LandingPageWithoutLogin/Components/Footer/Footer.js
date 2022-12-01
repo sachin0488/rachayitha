@@ -1,14 +1,19 @@
-import React from "react";
-import { BsFacebook } from "react-icons/bs";
-import { FaInstagramSquare } from "react-icons/fa";
-import { AiFillTwitterCircle } from "react-icons/ai";
+import React from 'react'
+import { BsFacebook } from 'react-icons/bs'
+import { FaInstagramSquare } from 'react-icons/fa'
+import { AiFillTwitterCircle } from 'react-icons/ai'
 import {
   Wrapper,
   Heading,
   ImpSection,
   ImpSectionButton,
   SocialMediaIconContainer,
-} from "./FooterStyle";
+  LogoSvg,
+  LogoSection,
+} from './FooterStyle'
+import { LogoTitle } from '../Header/HeaderStyle'
+import LogoImage from '../../../../public/logo.svg'
+import Image from 'next/image'
 const Footer = () => {
   return (
     <>
@@ -51,10 +56,14 @@ const Footer = () => {
             <FaInstagramSquare size={35} color="#673CCB" />
             <AiFillTwitterCircle size={37} color="#673CCB" />
           </SocialMediaIconContainer>
+          <LogoSection>
+            <Image src={LogoImage} />
+            <LogoTitle>E-Read</LogoTitle>
+          </LogoSection>
         </ImpSection>
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

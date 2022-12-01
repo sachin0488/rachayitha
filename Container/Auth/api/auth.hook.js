@@ -113,7 +113,7 @@ export const useLogoutUserAPI = () => {
 
   const handleLogoutUser = () => {
     dispatch(setUserLogout())
-    router.push('/login')
+    router.push('/')
     window && window.localStorage.setItem('persist:root', '')
   }
 

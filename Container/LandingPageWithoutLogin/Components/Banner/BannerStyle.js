@@ -29,11 +29,10 @@ export const BannerUpperContent = styled(Box)`
   align-items: center;
   height: 33%;
   max-width: 1636px;
-  @media ${mobileS} {
-    padding: 20px 30px;
-    flex-direction: column;
-    gap: 40px;
-  }
+  padding: 20px 30px;
+  flex-direction: column;
+  gap: 40px;
+
   @media ${mobileM} {
     padding: 30px 40px;
     flex-direction: column;
@@ -88,11 +87,10 @@ export const BannerMiddleContentSubWrapper = styled(Box)`
   gap: 10px;
   align-items: center;
 
-  @media ${mobileS} {
-    padding: 20px 30px;
-    flex-direction: column;
-    gap: -110px;
-  }
+  padding: 20px 30px;
+  flex-direction: column;
+  gap: -110px;
+
   @media ${mobileM} {
     padding: 30px 40px;
     flex-direction: column;
@@ -131,10 +129,9 @@ export const BannerLowerContent = styled(Box)`
   align-items: center;
   min-height: 33%;
   max-width: 1636px;
-  @media ${mobileS} {
-    padding: 18px 30px;
-    flex-direction: column;
-  }
+
+  padding: 18px 10px;
+  flex-direction: column;
   @media ${mobileM} {
     padding: 18px 40px;
     flex-direction: column;
@@ -193,12 +190,12 @@ export const RightSideContent = styled(Box)`
 `
 export const Heading = styled(Typography)`
   font-style: normal;
-  @media ${mobileS} {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 56px;
-    text-align: center;
-  }
+
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 56px;
+  text-align: center;
+
   @media ${mobileM} {
     font-weight: 600;
     font-size: 58px;
@@ -255,14 +252,14 @@ export const SubHeading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
   padding-right: 20px;
-  @media ${mobileS} {
-    font-weight: 300;
-    font-size: 23px;
-    line-height: 24px;
 
-    text-align: center;
-    margin-bottom: 30px;
-  }
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 24px;
+
+  text-align: center;
+  margin-bottom: 30px;
+
   @media ${mobileM} {
     font-weight: 300;
     font-size: 30px;
@@ -315,10 +312,9 @@ export const SubHeading = styled(Typography)`
   }
 `
 export const Card = styled(Box)`
-  @media ${mobileS} {
-    width: 360px;
-    height: 310px;
-  }
+  width: 360px;
+  height: 310px;
+
   @media ${mobileM} {
     width: 410px;
     height: 350px;
@@ -353,11 +349,10 @@ export const Card = styled(Box)`
   align-items: center;
 `
 export const LowerCardContent = styled(Box)`
-  @media ${mobileS} {
-    width: 360px;
-    height: 290px;
-    gap: 10px;
-  }
+  width: 360px;
+  height: 290px;
+  gap: 10px;
+
   @media ${mobileL} {
     width: 400px;
     height: 290px;

@@ -11,27 +11,30 @@ import { ArrivalCardWrapper } from './Components/NewArrivalsCards/NewArrivalCard
 import Footer from './Components/Footer/Footer'
 
 import { SubMainContainer } from '../LandingPageAfterLogin/LandingPageAfterLoginStyled'
+import NavLayout from '../../Components/Layouts/NavLayout'
 
 const LandingPageWithoutLogin = () => {
   return (
     <>
-      <MainContainer sx={{ gap: '50px' }}>
-        <Header />
-        <Banner />
+      <NavLayout footer={true} header={false}>
+        {' '}
+        <MainContainer sx={{ gap: '50px' }}>
+          <Header />
+          <Banner />
 
-        <Wrapper padding="100px 0px 0px 0px">
-          <WeeklyFeaturedCards />
-        </Wrapper>
-        <SubMainContainer>
-          <PotentialCardWrapper>
-            <PotentialStarletCards />
-          </PotentialCardWrapper>
-          <ArrivalCardWrapper>
-            <NewArrivalsCards />
-          </ArrivalCardWrapper>
-          <Footer />
-        </SubMainContainer>
-      </MainContainer>
+          <Wrapper padding="100px 0px 0px 0px">
+            <WeeklyFeaturedCards />
+          </Wrapper>
+          <SubMainContainer>
+            <PotentialCardWrapper>
+              <PotentialStarletCards />
+            </PotentialCardWrapper>
+            <ArrivalCardWrapper>
+              <NewArrivalsCards />
+            </ArrivalCardWrapper>
+          </SubMainContainer>
+        </MainContainer>
+      </NavLayout>
     </>
   )
 }
