@@ -94,7 +94,7 @@ const SubHeading = styled(Typography)`
 `
 
 const GetStartedInputField = styled(Box)`
-  width: 360px;
+  width: 350px;
   height: 40px;
   border-radius: 4px;
   @media ${mobileS} {
@@ -126,7 +126,7 @@ const GetStartedInputField = styled(Box)`
 `
 
 const InputField = styled.input`
-  width: 230px;
+  width: 200px;
   padding-top: 9px;
   font-weight: 300;
   font-size: 11px;

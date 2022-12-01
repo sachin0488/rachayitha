@@ -20,9 +20,8 @@ const Header = () => {
             <LogoTitle>E-Read</LogoTitle>
           </LogoContainer>
           <NavMenu>
-            <MenuButton1>
-              <LanguageSelectComp selectMargin="10px" label="Language" />
-            </MenuButton1>
+            <LanguageSelectComp selectMargin="10px" label="Language" />
+
             <Link href={`/login`}>
               <MenuButton2>SIGN IN</MenuButton2>
             </Link>

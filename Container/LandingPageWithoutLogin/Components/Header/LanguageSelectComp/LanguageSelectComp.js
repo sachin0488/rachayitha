@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { FormControl, formControlClasses, InputLabel, MenuItem, Select, selectClasses } from '@mui/material'
 import React, { useState } from 'react'
-import { laptop } from '../../../../../styles/mediaQuery/breakPoints'
+import { laptop, mobileM } from '../../../../../styles/mediaQuery/breakPoints'
 
 const LanguageSelectComp = ({ textColor, background, selectMargin, label }) => {
   const [content, setContent] = useState('')
@@ -10,11 +10,11 @@ const LanguageSelectComp = ({ textColor, background, selectMargin, label }) => {
   }
   const menuItems = [
     {
-      name: 'novel',
+      name: 'English',
       value: 'NO',
     },
     {
-      name: 'poem',
+      name: 'Hindi',
       value: 'PO',
     },
   ]
@@ -32,7 +32,8 @@ const LanguageSelectComp = ({ textColor, background, selectMargin, label }) => {
           fullWidth
           sx={{
             '& .MuiSvgIcon-root': {
-              color: 'purple',
+              color: '#5629c5',
+              paddingTop: '4px',
             },
           }}
           variant="standard"
@@ -57,22 +58,35 @@ const StyledSelect = styled(Select)`
 
 const StyledInputLabel = styled(InputLabel)`
   color: #5629c5;
-  font-size: 14px;
-  @media ${laptop} {
+  padding: 0px 0px 0px 5px;
+  margin-top: -13px;
+  font-size: 12px;
+  @media ${mobileM} {
     font-size: large;
+    margin-top: -16px;
   }
 `
 
 const StyledFormControl = styled(FormControl)`
   &.${formControlClasses.root} {
-    min-width: 100%;
-    /* height: 40px; */
+    width: 88px;
+    @media ${mobileM} {
+      width: 110px;
+    }
     display: flex;
+    align-items: center;
+    height: 35px;
+    border: 2px solid #5629c5;
+    border-radius: 3px;
   }
+  /* & .MuiInputBase-root  */
   & .MuiInputBase-root {
-    margin-bottom: ${({ selectMargin }) => selectMargin};
+    margin-top: 0;
+    /* margin-bottom: ${({ selectMargin }) => selectMargin}; */
   }
   & .MuiSelect-select {
+    padding: 2px 0px 0px 8px;
     background-color: transparent;
+    color: #5629c5;
   }
 `

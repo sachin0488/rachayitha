@@ -171,7 +171,9 @@ export const Heading = styled(Typography)`
 export const StoryHeading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-weight: 600;
   font-size: 12.0545px;
   line-height: 14px;
@@ -179,7 +181,7 @@ export const StoryHeading = styled(Typography)`
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    padding: 0px 6px 10px 6px;
+    padding: 0px 6px 4px 6px;
   }
   color: #000000;
 

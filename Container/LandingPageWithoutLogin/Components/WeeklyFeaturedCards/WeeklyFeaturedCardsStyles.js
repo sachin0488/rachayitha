@@ -79,7 +79,7 @@ export const WeeklyContent = styled(Box)`
   align-items: center;
   width: 100%;
   height: 212px;
-
+  padding-left: 3px;
   @media ${mobileM} {
     height: 315px;
     gap: 30px;
@@ -98,9 +98,13 @@ export const WeeklyContentCard = styled(Box)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
   &:hover {
     border-color: #582ac5;
+    transform: scale(1.01, 1.01);
+    transition-duration: 0.7s;
   }
+
   gap: 3px;
   padding: 7px 5px;
   width: 138px;
@@ -123,7 +127,7 @@ export const WeeklyContentCard = styled(Box)`
 export const RatingAndFantasySection = styled(Box)`
   display: flex;
   justify-content: space-between;
-  gap: 50px;
+  width: 100%;
   @media ${mobileM} {
     gap: 80px;
   }
@@ -162,7 +166,6 @@ export const Rating = styled(Box)`
 export const Heading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
-  margin-bottom: 20px;
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
@@ -180,7 +183,9 @@ export const StoryHeading = styled(Typography)`
   padding: 5px 5px;
   color: black;
   width: 100%;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;

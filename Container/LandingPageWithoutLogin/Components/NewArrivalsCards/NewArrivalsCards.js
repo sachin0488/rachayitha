@@ -1,5 +1,5 @@
-import React from "react";
-import potentialStartletCardHook from "../PotentialStarletCards/api/potentialStartletCard.hook";
+import React from 'react'
+import potentialStartletCardHook from '../PotentialStarletCards/api/potentialStartletCard.hook'
 import {
   NewArrivalContent,
   Heading,
@@ -10,29 +10,28 @@ import {
   ImgWrapper,
   Img,
   Fantasy,
-} from "./NewArrivalCardsStyle";
-import Image from "next/image";
+} from './NewArrivalCardsStyle'
+import Image from 'next/image'
 
 const NewArrivalsCards = () => {
-  const { data, isLoading, isError, error, isFetching } =
-    potentialStartletCardHook();
+  const { data, isLoading, isError, error, isFetching } = potentialStartletCardHook()
 
   if (isLoading) {
-    return <h1>LOADING ... </h1>;
+    return <h1>LOADING ... </h1>
   }
 
   if (isError) {
-    return <h1>{error?.message}</h1>;
+    return <h1>{error?.message}</h1>
   }
   return (
     <>
       <SubWrapper>
         <Heading>New Arrivals</Heading>
         <NewArrivalContent>
-          {data?.map((story) => (
+          {data?.map(story => (
             <NewArrivalContentCard>
               <ImgWrapper>
-                {" "}
+                {' '}
                 <Img src={story.img_url} />
               </ImgWrapper>
               <StoryHeading>{story.title}</StoryHeading>
@@ -44,7 +43,7 @@ const NewArrivalsCards = () => {
         </NewArrivalContent>
       </SubWrapper>
     </>
-  );
-};
+  )
+}
 
-export default NewArrivalsCards;
+export default NewArrivalsCards
