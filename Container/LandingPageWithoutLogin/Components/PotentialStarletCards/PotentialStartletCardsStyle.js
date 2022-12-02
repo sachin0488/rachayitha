@@ -16,34 +16,35 @@ import {
 
 export const PotentialCardWrapper = styled(Box)`
   width: 100%;
+  max-width: 1700px;
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: start;
   @media ${mobileS} {
-    padding: 0px 10px 0px 30px;
+    padding: 0px 0px 0px 30px;
     margin-top: 20px;
   }
   @media ${mobileM} {
     height: 470px;
   }
   @media ${mobileL} {
-    padding: 0px 20px 0px 45px;
+    padding: 0px 0px 0px 45px;
     height: 470px;
   }
   @media ${tabletS} {
-    padding: 0px 30px 0px 60px;
+    padding: 0px 0px 0px 60px;
   }
   @media ${tablet} {
-    padding: 0px 30px 0px 70px;
+    padding: 0px 0px 0px 70px;
     min-height: 540px;
   }
   @media ${laptop} {
-    padding: 0px 30px 0px 70px;
+    padding: 0px 0px 0px 70px;
   }
   @media ${laptopS} {
-    padding: 0px 60px 0 90px;
+    padding: 0px 0px 0 90px;
   }
   @media ${laptopM} {
     padding: 0px 0px 0px 100px;
@@ -61,7 +62,7 @@ export const SubWrapper = styled(Box)`
   align-items: flex-start;
   justify-content: start;
   gap: 10px;
-  width: 95%;
+  width: 100%;
   height: 100%;
 `
 export const PotentialStarletContent = styled.div`
