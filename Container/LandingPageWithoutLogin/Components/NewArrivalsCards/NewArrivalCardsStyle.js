@@ -17,6 +17,7 @@ import {
 export const ArrivalCardWrapper = styled(Box)`
   width: 100%;
   height: 430px;
+  max-width: 1700px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -30,17 +31,17 @@ export const ArrivalCardWrapper = styled(Box)`
     padding: 0px 20px 0px 45px;
   }
   @media ${tabletS} {
-    padding: 0px 30px 0px 60px;
+    padding: 0px 0px 0px 60px;
     height: 520px;
   }
   @media ${tablet} {
-    padding: 0px 30px 0px 70px;
+    padding: 0px 0px 0px 70px;
   }
   @media ${laptop} {
-    padding: 0px 30px 0px 70px;
+    padding: 0px 0px 0px 70px;
   }
   @media ${laptopS} {
-    padding: 0px 60px 0 90px;
+    padding: 0px 0px 0 90px;
   }
   @media ${laptopM} {
     padding: 0px 0px 0px 100px;
@@ -61,7 +62,7 @@ export const SubWrapper = styled(Box)`
     padding: 0px 0px 0 103px;
   }
 
-  width: 95%;
+  width: 100%;
   height: 100%;
 `
 export const NewArrivalContent = styled.div`

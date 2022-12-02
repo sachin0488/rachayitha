@@ -24,25 +24,25 @@ export const Wrapper = styled(Box)`
 
   gap: 50px;
   @media ${mobileS} {
-    padding: 0px 10px 0px 30px;
+    padding: 0px 0px 0px 30px;
   }
   @media ${mobileL} {
-    padding: 0px 20px 0px 45px;
+    padding: 0px 0px 0px 45px;
     min-height: 400px;
   }
   @media ${tabletS} {
-    padding: 0px 30px 0px 60px;
+    padding: 0px 0px 0px 60px;
   }
   @media ${tablet} {
-    padding: 0px 30px 0px 70px;
+    padding: 0px 0px 0px 70px;
     min-height: 460px;
   }
   @media ${laptop} {
-    padding: 0px 30px 0px 80px;
+    padding: 0px 0px 0px 80px;
     margin-top: 40px;
   }
   @media ${laptopS} {
-    padding: 0px 60px 0 118px;
+    padding: 0px 0px 0 118px;
     margin-top: 50px;
   }
   @media ${laptopM} {
