@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios'
 
-const URL = "http://localhost:4000/landing_banner_page_section";
-const URL1 = "http://localhost:4000/landing_banner_page_section1";
+const URL = 'https://novel-jsonserver-production.up.railway.app/landing_banner_page_section'
+const URL1 = 'https://novel-jsonserver-production.up.railway.app/landing_banner_page_section1'
 
 export const fetchBannerSectionImg = async () => {
-  const res = await axios.get(URL);
+  const res = await axios.get(URL)
 
-  return res.data;
-};
+  return res.data
+}
 
 export const fetchBannerSectionImg1 = async () => {
-  const res = await axios.get(URL1);
+  const res = await axios.get(URL1)
 
-  return res.data;
-};
+  return res.data
+}
