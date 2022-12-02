@@ -8,7 +8,6 @@ import WeeklyFeaturedCards from './Components/WeeklyFeaturedCards/WeeklyFeatured
 import PotentialStarletCards from './Components/PotentialStarletCards/PotentialStarletCards'
 import NewArrivalsCards from './Components/NewArrivalsCards/NewArrivalsCards'
 import { ArrivalCardWrapper } from './Components/NewArrivalsCards/NewArrivalCardsStyle'
-import Footer from './Components/Footer/Footer'
 
 import { SubMainContainer } from '../LandingPageAfterLogin/LandingPageAfterLoginStyled'
 import NavLayout from '../../Components/Layouts/NavLayout'
