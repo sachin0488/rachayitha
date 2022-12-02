@@ -39,12 +39,12 @@ const WeeklyFeaturedCards = () => {
         <SubWrapper>
           <Heading>Weekly Featured</Heading>
           <WeeklyContent>
-            {data.data.data?.map(book => (
+            {data?.map(book => (
               <WeeklyContentCard key={book.id}>
                 <ImgBox>
                   {' '}
                   <Img
-                    src={book.cover_img}
+                    src={book.img_url}
                     width="full"
                     style={{
                       position: 'absolute',
@@ -57,14 +57,14 @@ const WeeklyFeaturedCards = () => {
                     <IoIosAddCircle size={26} color="#069CF6" />
                   </AddIcon>
                 </ImgBox>
-                <StoryHeading>{book.book_name}</StoryHeading>
+                <StoryHeading>{book?.title}</StoryHeading>
                 <RatingAndFantasySection>
-                  {book.category.map(category => (
-                    <>
-                      <Fantasy>{category.name}</Fantasy>
-                      <Rating>{category.id}</Rating>
-                    </>
-                  ))}
+                  {/* {book.category.map(category => (
+                    <> */}
+                  <Fantasy>{book.fantasy}</Fantasy>
+                  <Rating>{book.rating}</Rating>
+                  {/* </>
+                  ))} */}
                 </RatingAndFantasySection>
               </WeeklyContentCard>
             ))}

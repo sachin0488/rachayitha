@@ -85,11 +85,12 @@ export const useLoginAPI = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(loginAPI, {
     onSuccess({ data }) {
-      dispatch(setUserData(data.user))
-      dispatch(setLoginToken(data.token))
+      console.log(data?.user, 'madharchode')
+      dispatch(setUserData(data?.user))
+      dispatch(setLoginToken(data?.user?.tokens.access))
       dispatch({ type: LOGIN_SUCCESS })
       router.push('/')
-      enqueueSnackbar(data.message, {
+      enqueueSnackbar(data?.message, {
         variant: 'success',
       })
     },

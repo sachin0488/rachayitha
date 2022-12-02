@@ -63,10 +63,11 @@ export const ApiInstance = axios.create({
 //   },
 // });
 
-export function setAuthToken(token) {
+export async function setAuthToken(token) {
+  console.log(token, 'token')
   const AUTHORIZATION = 'Authorization'
 
-  const instances = [axios, ApiInstance]
+  const instances = await [axios, ApiInstance]
 
   instances.forEach(item => {
     item.defaults.headers.common[AUTHORIZATION] = `Bearer ${token}`
