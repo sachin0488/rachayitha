@@ -5,6 +5,7 @@ import storage from '../utility/webStore'
 import { FLUSH, REHYDRATE, PAUSE } from 'redux-persist'
 import { PERSIST, PURGE, REGISTER } from 'redux-persist'
 import { setAuthToken } from '../api/global.api'
+import { selectUser } from './slices/global/user.slice'
 
 const persistConfig = {
   key: 'root',
@@ -20,6 +21,7 @@ const saveAuthToken = store => next => action => {
   const state = store.getState()
 
   if (action.type === LOGIN_SUCCESS) {
+    console.log(state.user, 'store')
     setAuthToken(state.user.token)
   }
 

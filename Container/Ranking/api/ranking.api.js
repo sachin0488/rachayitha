@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios'
 
-const URL = "http://localhost:4000/ranking";
+const URL = 'https://novel-jsonserver-production.up.railway.app/ranking'
 
 export const fetchRankingSection = async () => {
-  const res = await axios.get(URL);
+  const res = await axios.get(URL)
 
-  return res.data;
-};
+  return res.data
+}

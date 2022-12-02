@@ -5,6 +5,7 @@ import { weeklyAPI } from './weeklyCard.api'
 
 const useWeeklyApi = () => {
   const { isLoggedIn } = useSelector(selectUser)
+  console.log(isLoggedIn, 'isloged')
   const { data, isLoading, isError, error, isFetching } = useQuery(
     ['use-weekly', isLoggedIn],
     () => weeklyAPI(isLoggedIn),

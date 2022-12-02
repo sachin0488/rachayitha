@@ -1,13 +1,13 @@
-import React from "react";
-import axios from "axios";
-const API_URL = "http://localhost:4000/potential_starlet";
+import React from 'react'
+import axios from 'axios'
+const API_URL = 'https://novel-jsonserver-production.up.railway.app/potential_starlet'
 export const fetchPotentialStarletCard = async () => {
-  const res = await axios.get(API_URL);
+  const res = await axios.get(API_URL)
 
-  return res.data;
-};
+  return res.data
+}
 const potentialStarletCardApi = () => {
-  return <div></div>;
-};
+  return <div></div>
+}
 
-export default potentialStarletCardApi;
+export default potentialStarletCardApi
