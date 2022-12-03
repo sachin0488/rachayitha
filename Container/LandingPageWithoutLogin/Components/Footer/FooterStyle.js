@@ -41,13 +41,13 @@ export const Wrapper = styled(Box)`
     padding: 70px 40px;
   }
   @media ${laptop} {
-    padding: 80px 107px;
+    padding: 80px 100px;
   }
   @media ${laptopS} {
-    padding: 100px 157px;
+    padding: 100px 127px;
   }
   @media ${laptopM} {
-    padding: 100px 157px;
+    padding: 100px 120px;
   }
 
   background-color: #f6f3ff;

@@ -1,17 +1,16 @@
 import { ApiInstance } from '../../../../../api/global.api'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../../store/slices/global/user.slice'
 import axios from 'axios'
-const API_URL = 'https://novel-jsonserver-production.up.railway.app/weekly_feature'
-const Url = '/potentialstartletbook'
+// const API_URL = 'https://novel-jsonserver-production.up.railway.app/weekly_feature'
+const API_URL = '/potentialstartletbook/'
+const Url = '/potentialstartletbook/'
 
-export const weeklyAPI = async isLoggedIn => {
-  // console.log(isLoggedIn, 'isLoggedIN')
-  // return await ApiInstance({
-  //   url: API_URL,
-  //   method: 'GET',
+export const weeklyAPI = isLoggedIn => {
+  // const response = await axios.get('http://rachayitha.com/api/v1/newarrivalbook', {
+  //   headers: { Authorization: ApiInstance.defaults.headers.common['Authorization'] },
   // })
-  const res = await axios.get(API_URL)
-
-  return res.data
+  // console.log('api call force', response?.data)
+  return ApiInstance({
+    url: Url,
+    method: 'GET',
+  })
 }

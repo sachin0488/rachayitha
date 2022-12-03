@@ -49,7 +49,7 @@ const Footer = () => {
           <ImpSectionButton>English</ImpSectionButton>
           <ImpSectionButton>Hindi</ImpSectionButton>
         </ImpSection>
-        <ImpSection>
+        <ImpSection paddingLeft="20px">
           <Heading>Follow us</Heading>
           <SocialMediaIconContainer>
             <BsFacebook size={35} color="#673CCB" />

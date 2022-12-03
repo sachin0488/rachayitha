@@ -54,9 +54,9 @@ const RankingAccordionContainer = ({ text, high, explore, section }) => {
     <>
       <MuiAccordion text={text} high={high}>
         <>
-          <MaleAndFemaleLeadContainer>
+          {/* <MaleAndFemaleLeadContainer>
             <MuiGenreLeadTab muiTab={genreLeadMuiTabList} styles={GenreLeadMuiTab} setGenreLead={setGenreLead} />
-          </MaleAndFemaleLeadContainer>
+          </MaleAndFemaleLeadContainer> */}
           <GenreButtonList explore={explore} section={section} genreLead={genreLead} />
         </>
       </MuiAccordion>

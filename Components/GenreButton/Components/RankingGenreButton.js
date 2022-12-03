@@ -5,7 +5,6 @@ import { GenreButtons, GenreButtonWrapper } from '../GenreButtonStyle'
 const RankingGenreButton = props => {
   const router = useRouter()
   const { sub_genre } = router.query
-  // console.log(props.explore, 'genreLead')
   return (
     <>
       <GenreButtonWrapper style={{ width: props.width }}>

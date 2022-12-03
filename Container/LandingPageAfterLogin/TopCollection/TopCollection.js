@@ -28,7 +28,7 @@ const TopCollection = () => {
           <IndividualCollection>
             <CollectionName>Novel</CollectionName>
             {data?.map(card => (
-              <IndividualCard>
+              <IndividualCard key={card.id}>
                 <IndividualCardLeftSection>
                   <Image src={card.img} width="90px" height="115px" />
                 </IndividualCardLeftSection>

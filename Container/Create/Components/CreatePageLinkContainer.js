@@ -8,7 +8,6 @@ const CreatePageLinkContainer = () => {
   const router = useRouter()
   const { chapter } = router.query
   const section = router.pathname.split('/')[3]
-  // console.log(router.asPath,"aspath",chapter)
   return (
     <>
       <LinkContainer>

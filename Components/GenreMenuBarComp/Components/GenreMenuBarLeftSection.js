@@ -7,7 +7,6 @@ import RankingLinksContainer from '../../../Container/Ranking/RankingLinksContai
 const GenreMenuBarLeftSection = ({ sectionName }) => {
   const router = useRouter()
   const section = router.pathname.split('/')[1]
-  //   console.log(section, 'section')
   return (
     <>
       <LeftSideGenreMenuBar>
