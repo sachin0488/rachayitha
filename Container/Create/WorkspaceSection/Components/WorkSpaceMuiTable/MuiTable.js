@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 import {
   Table,
   TableBody,
@@ -14,11 +14,11 @@ import {
   Box,
   Typography,
   Button,
-} from "@mui/material";
-import Link from "next/link";
-import React from "react";
+} from '@mui/material'
+import Link from 'next/link'
+import React from 'react'
 
-const MuiTable = ({  tableData }) => {
+const MuiTable = ({ tableData }) => {
   return (
     <>
       <TableContainer width="100%">
@@ -35,7 +35,7 @@ const MuiTable = ({  tableData }) => {
             </TableRowHead>
           </TableHeadStyled>
           <TableBodyStyled>
-            {tableData.map((data) => (
+            {tableData.map(data => (
               <TableRowBody>
                 <TableCellBody>
                   <TableBodyInsideContent>
@@ -49,11 +49,9 @@ const MuiTable = ({  tableData }) => {
                 <TableCellBody>{data.views}</TableCellBody>
                 <TableCellBody>{data.collection}</TableCellBody>
                 <TableCellBody>
-                 <Link href={`/create/workspace/edit/against_the_world`}>
-                 <TableBodyInsideButton >
-                    {data.operation}
-                  </TableBodyInsideButton>
-                 </Link>
+                  <Link href={`/create/workspace/edit/against_the_world`}>
+                    <TableBodyInsideButton>{data.operation}</TableBodyInsideButton>
+                  </Link>
                 </TableCellBody>
               </TableRowBody>
             ))}
@@ -61,15 +59,15 @@ const MuiTable = ({  tableData }) => {
         </TableStyled>
       </TableContainer>
     </>
-  );
-};
+  )
+}
 
-export default MuiTable;
+export default MuiTable
 
 const TableStyled = styled(Table)`
   &.${tableClasses.root} {
   }
-`;
+`
 
 const TableHeadStyled = styled(TableHead)`
   &.${tableHeadClasses.root} {
@@ -79,11 +77,11 @@ const TableHeadStyled = styled(TableHead)`
   }
   & .css-6cvo03-MuiTableRow-root {
   }
-`;
+`
 const TableRowHead = styled(TableRow)`
   &.${tableRowClasses.head} {
   }
-`;
+`
 const TableCellHead = styled(TableCell)`
   &.${tableCellClasses.head} {
     font-weight: 400;
@@ -91,7 +89,7 @@ const TableCellHead = styled(TableCell)`
     line-height: 18px;
     color: #929292;
   }
-`;
+`
 
 const TableRowBody = styled(TableRow)`
   &.${tableRowClasses.root} {
@@ -100,16 +98,16 @@ const TableRowBody = styled(TableRow)`
     width: 100%;
     border-radius: 12px;
   }
-`;
+`
 
 const TableCellBody = styled(TableCell)`
   &.${tableCellClasses.body} {
   }
-`;
+`
 
 const TableBodyStyled = styled(TableBody)`
   width: 100%;
-`;
+`
 
 const TableBodyInsideContent = styled(Box)`
   width: 100%;
@@ -118,10 +116,10 @@ const TableBodyInsideContent = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 20px;
-`;
+`
 const TableBodyInsideImg = styled.img`
   object-fit: cover;
-`;
+`
 
 const TableBodyInsideButton = styled(Button)`
   background-color: #3b66f5;
@@ -134,4 +132,4 @@ const TableBodyInsideButton = styled(Button)`
     color: #3b66f5;
     border: 2px solid #3b66f5;
   }
-`;
+`

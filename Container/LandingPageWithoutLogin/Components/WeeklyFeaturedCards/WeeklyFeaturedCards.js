@@ -21,7 +21,6 @@ import useWeeklyApi from './api/WeeklyCard.hook'
 
 const WeeklyFeaturedCards = () => {
   const { data, isLoading, isError, error } = useWeeklyApi()
-  // console.log(data, 'madharchode')
 
   // const url_img = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1666323902/Rectangle_232_ke4tmd.png'
 
@@ -39,12 +38,12 @@ const WeeklyFeaturedCards = () => {
         <SubWrapper>
           <Heading>Weekly Featured</Heading>
           <WeeklyContent>
-            {data?.map(book => (
+            {data.data.data?.map(book => (
               <WeeklyContentCard key={book.id}>
                 <ImgBox>
                   {' '}
                   <Img
-                    src={book.img_url}
+                    src={book.cover_img}
                     width="full"
                     style={{
                       position: 'absolute',
@@ -57,14 +56,14 @@ const WeeklyFeaturedCards = () => {
                     <IoIosAddCircle size={26} color="#069CF6" />
                   </AddIcon>
                 </ImgBox>
-                <StoryHeading>{book?.title}</StoryHeading>
+                <StoryHeading>{book.book_name}</StoryHeading>
                 <RatingAndFantasySection>
-                  {/* {book.category.map(category => (
-                    <> */}
-                  <Fantasy>{book.fantasy}</Fantasy>
-                  <Rating>{book.rating}</Rating>
-                  {/* </>
-                  ))} */}
+                  {book.category.map(category => (
+                    <>
+                      <Fantasy>{category.name}</Fantasy>
+                      <Rating>{category.id}</Rating>
+                    </>
+                  ))}
                 </RatingAndFantasySection>
               </WeeklyContentCard>
             ))}

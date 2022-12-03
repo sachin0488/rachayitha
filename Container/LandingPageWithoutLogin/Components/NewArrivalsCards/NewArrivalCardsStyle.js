@@ -67,8 +67,8 @@ export const SubWrapper = styled(Box)`
 `
 export const NewArrivalContent = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: start;
+  gap: 22px;
   align-items: center;
   width: 100%;
   height: 475px;

@@ -21,7 +21,6 @@ const saveAuthToken = store => next => action => {
   const state = store.getState()
 
   if (action.type === LOGIN_SUCCESS) {
-    console.log(state.user, 'store')
     setAuthToken(state.user.token)
   }
 

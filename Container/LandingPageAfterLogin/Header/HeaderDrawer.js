@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Box, Drawer, Typography, IconButton } from '@mui/material'
+import { Box, Drawer, Typography, IconButton, Button } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
@@ -11,9 +11,13 @@ import Create from '../../../public/create.svg'
 import Library from '../../../public/library1.svg'
 import Shorts from '../../../public/shorts.svg'
 import Link from 'next/link'
+import { RiCloseFill } from 'react-icons/ri'
+import { MdLogout } from 'react-icons/md'
+import { useLogoutUserAPI } from '../../Auth/api/auth.hook'
 
 const HeaderDrawer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const { handleLogoutUser } = useLogoutUserAPI()
   return (
     <>
       <FiMenu onClick={() => setIsDrawerOpen(true)} />
@@ -25,11 +29,9 @@ const HeaderDrawer = () => {
           setIsDrawerOpen(false)
         }}>
         <DrawerWrapper>
-          <ThreeDotContainer onClick={() => setIsDrawerOpen(false)} style={{ gap: '5px' }}>
-            <Dots style={{ backgroundColor: '#FC5C4C' }} />
-            <Dots style={{ backgroundColor: '#FEBE39' }} />
-            <Dots style={{ backgroundColor: '#66e14d' }} />
-          </ThreeDotContainer>
+          <CloseIconContainer onClick={() => setIsDrawerOpen(false)} style={{ gap: '5px', zIndex: '5' }}>
+            <RiCloseFill color="#673CCB" size="45" />
+          </CloseIconContainer>
           <ThreeDotContainer style={{ gap: '15px' }}>
             {' '}
             <Image width="44" height="44" style={{ cursor: 'pointer' }} src={ProfileImg} />
@@ -101,6 +103,15 @@ const HeaderDrawer = () => {
                 Shorts
               </Typography>
             </IndividualMenuContainer>
+            <IndividualMenuContainer style={{ gap: '10px', paddingLeft: '27px' }}>
+              <MdLogout size="24" />
+              <SignoutButton
+                onClick={() => {
+                  handleLogoutUser()
+                }}>
+                Signout
+              </SignoutButton>
+            </IndividualMenuContainer>
           </MenuWrapper>
         </DrawerWrapper>
       </Drawer>
@@ -129,6 +140,15 @@ const MenuWrapper = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   width: 100%;
+`
+
+const CloseIconContainer = styled(Box)`
+  width: 100%;
+  height: 50px;
+  padding: 2px 20px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 `
 
 const ThreeDotContainer = styled(Box)`
@@ -164,3 +184,9 @@ const Dots = styled(Box)`
 `
 
 const NavigationSideItems = styled(Box)``
+
+const SignoutButton = styled(Button)`
+  color: red;
+  font-size: 22px;
+  text-transform: capitalize;
+`

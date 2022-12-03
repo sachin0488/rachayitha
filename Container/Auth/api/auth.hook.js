@@ -85,7 +85,6 @@ export const useLoginAPI = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(loginAPI, {
     onSuccess({ data }) {
-      console.log(data?.user, 'madharchode')
       dispatch(setUserData(data?.user))
       dispatch(setLoginToken(data?.user?.tokens.access))
       dispatch({ type: LOGIN_SUCCESS })
