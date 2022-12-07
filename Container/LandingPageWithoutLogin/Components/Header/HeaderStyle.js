@@ -4,7 +4,7 @@ import { laptop, mobileL, mobileM, tablet } from '../../../../styles/mediaQuery/
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 2700px;
-  min-height: 642px;
+  min-height: 542px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const HeaderContent = styled.div`
   width: 96%;
   max-width: 1636px;
   @media ${mobileL} {
-    width: 85%;
+    width: 95%;
   }
 `
 export const LogoContainer = styled.div`
@@ -48,6 +48,10 @@ export const LogoContainer = styled.div`
   font-size: 40px;
   gap: 5px;
   @media ${mobileL} {
+    padding: 0 10px;
+    gap: 14px;
+  }
+  @media ${tablet} {
     padding: 0 30px;
     gap: 14px;
   }
@@ -102,18 +106,18 @@ export const MenuButton1 = styled(Box)`
 
 export const MenuButton2 = styled(Button)`
   width: 74.98px;
-  height: 30px;
+  height: 27px;
   padding: 5px;
   border-radius: 2.8341px;
   border: 2px solid ${props => props.theme.palette.secondary.main};
 
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   gap: 4px;
-  @media ${mobileM} {
+  @media ${mobileL} {
     width: 97px;
     height: 38px;
     border-radius: 5px;

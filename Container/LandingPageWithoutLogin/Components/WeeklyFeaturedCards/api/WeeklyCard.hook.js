@@ -16,6 +16,3 @@ const useWeeklyApi = () => {
 }
 
 export default useWeeklyApi
-
-// ["use-book", book],
-// () => fetchBookDetail(book)

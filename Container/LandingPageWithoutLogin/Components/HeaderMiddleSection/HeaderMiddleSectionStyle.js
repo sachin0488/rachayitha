@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { Box, Typography, TextField, Button } from '@mui/material'
 import { laptop, mobileL, mobileM, mobileS, tablet, tabletS } from '../../../../styles/mediaQuery/breakPoints'
 
-const Wrapper = styled(Box)`
+export const Wrapper = styled(Box)`
   width: 100%;
   max-width: 1636px;
   @media ${mobileS} {
@@ -33,13 +33,12 @@ const Wrapper = styled(Box)`
   align-items: center;
   gap: 35px;
 `
-const Heading = styled(Typography)`
+export const Heading = styled(Typography)`
   font-style: normal;
 
   text-align: center;
   color: ${props => props.theme.palette.headingColor.main};
   @media ${mobileS} {
-    min-width: 360px;
     font-weight: 900;
     font-size: 30px;
     line-height: 34px;
@@ -78,7 +77,7 @@ const Heading = styled(Typography)`
   }
 `
 
-const SubHeading = styled(Typography)`
+export const SubHeading = styled(Typography)`
   font-style: normal;
   font-family: 'Roboto';
   font-weight: 300;
@@ -93,14 +92,12 @@ const SubHeading = styled(Typography)`
   color: ${props => props.theme.palette.headingColor.main};
 `
 
-const GetStartedInputField = styled(Box)`
-  width: 350px;
+export const GetStartedInputField = styled(Box)`
   height: 40px;
   border-radius: 4px;
-  @media ${mobileS} {
-    flex-direction: column;
-    gap: 50px;
-  }
+
+  flex-direction: column;
+  gap: 30px;
 
   @media ${mobileM} {
     flex-direction: row;
@@ -125,7 +122,7 @@ const GetStartedInputField = styled(Box)`
   align-items: center;
 `
 
-const InputField = styled.input`
+export const InputField = styled.input`
   width: 200px;
   padding-top: 9px;
   font-weight: 300;
@@ -148,7 +145,7 @@ const InputField = styled.input`
   outline: 0;
 `
 
-const GetStartedButton = styled(Button)`
+export const GetStartedButton = styled(Button)`
   height: 100%;
   font-style: normal;
   font-size: 15px;
@@ -166,16 +163,3 @@ const GetStartedButton = styled(Button)`
     border-radius: 0px 10px 10px 0px;
   }
 `
-
-const HeaderMiddleSectionStyle = () => {
-  return {
-    Wrapper,
-    Heading,
-    SubHeading,
-    GetStartedInputField,
-    InputField,
-    GetStartedButton,
-  }
-}
-
-export default HeaderMiddleSectionStyle

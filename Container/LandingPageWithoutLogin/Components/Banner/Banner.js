@@ -19,6 +19,9 @@ const Banner = () => {
             heading="Download Books to read Offline"
             subHeading="Save your favourites easily and always have something to read."
             img={banner1}
+            height="357px"
+            width="302px"
+            selectMargin="0px"
           />
         </BannerUpperContent>
       </Wrapper>
@@ -29,6 +32,9 @@ const Banner = () => {
               heading="Mobile Version is also available in playstore"
               subHeading="Read unlimited stories, poems & shayeris in your phone, tablet, laptop, and TV."
               img={banner2}
+              height="417px"
+              width="377px"
+              selectMargin="-140px"
             />
           </BannerMiddleContentSubWrapper>
         </BannerMiddleContent>

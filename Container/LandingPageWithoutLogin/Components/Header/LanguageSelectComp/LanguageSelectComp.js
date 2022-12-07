@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { FormControl, formControlClasses, InputLabel, MenuItem, Select, selectClasses } from '@mui/material'
 import React, { useState } from 'react'
-import { laptop, mobileM } from '../../../../../styles/mediaQuery/breakPoints'
+import { laptop, mobileL, mobileM } from '../../../../../styles/mediaQuery/breakPoints'
 
 const LanguageSelectComp = ({ textColor, background, selectMargin, label }) => {
   const [content, setContent] = useState('')
@@ -30,12 +30,13 @@ const LanguageSelectComp = ({ textColor, background, selectMargin, label }) => {
           value={content}
           onChange={handleChange}
           fullWidth
-          sx={{
-            '& .MuiSvgIcon-root': {
-              color: '#5629c5',
-              paddingTop: '4px',
-            },
-          }}
+          // sx={{
+          //   '& .MuiSvgIcon-root': {
+          //     color: '#5629c5',
+          //     // paddingTop: '4px',
+          //     fontSize: '17px',
+          //   },
+          // }}
           variant="standard"
           disableUnderline>
           {menuItems.map(items => (
@@ -54,28 +55,39 @@ const StyledSelect = styled(Select)`
     color: ${({ text_Color }) => text_Color || 'white'};
     background-color: ${({ back_ground }) => back_ground || 'transparent'};
   }
+  & .MuiSvgIcon-root {
+    color: #5629c5;
+
+    font-size: 17px;
+    @media ${mobileL} {
+      font-size: 22px;
+      padding-top: 4px;
+    }
+  }
 `
 
 const StyledInputLabel = styled(InputLabel)`
   color: #5629c5;
   padding: 0px 0px 0px 5px;
-  margin-top: -13px;
+  margin-top: -17px;
   font-size: 12px;
-  @media ${mobileM} {
+  @media ${mobileL} {
     font-size: large;
-    margin-top: -16px;
+    margin-top: -17px;
   }
 `
 
 const StyledFormControl = styled(FormControl)`
   &.${formControlClasses.root} {
-    width: 88px;
-    @media ${mobileM} {
+    width: 81px;
+    height: 25px;
+    @media ${mobileL} {
       width: 110px;
+      height: 35px;
     }
     display: flex;
     align-items: center;
-    height: 35px;
+
     border: 2px solid #5629c5;
     border-radius: 3px;
   }
