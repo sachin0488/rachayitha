@@ -1,15 +1,14 @@
-import React from "react";
-import HeaderMiddleSectionStyle from "./HeaderMiddleSectionStyle";
+import React from 'react'
+import {
+  Wrapper,
+  Heading,
+  SubHeading,
+  GetStartedInputField,
+  InputField,
+  GetStartedButton,
+} from './HeaderMiddleSectionStyle'
 
 const HeaderMiddleSection = () => {
-  const {
-    Wrapper,
-    Heading,
-    SubHeading,
-    GetStartedInputField,
-    InputField,
-    GetStartedButton,
-  } = HeaderMiddleSectionStyle();
   return (
     <Wrapper>
       <Heading>Expand your Vision of Knowledge Here</Heading>
@@ -22,10 +21,12 @@ const HeaderMiddleSection = () => {
             disableUnderline: true,
           }}
         />
-        <GetStartedButton color="primary" variant="contained">GET STARTED</GetStartedButton>
+        <GetStartedButton color="primary" variant="contained">
+          GET STARTED
+        </GetStartedButton>
       </GetStartedInputField>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default HeaderMiddleSection;
+export default HeaderMiddleSection

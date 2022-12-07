@@ -9,6 +9,7 @@ import {
   laptopS,
   laptopM,
   tabletS,
+  laptopL,
 } from '../../../../styles/mediaQuery/breakPoints'
 
 export const Wrapper = styled.div`
@@ -25,9 +26,8 @@ export const Wrapper = styled.div`
 export const BannerUpperContent = styled(Box)`
   display: flex;
   justify-content: space-between;
-
   align-items: center;
-  height: 33%;
+
   max-width: 1636px;
   padding: 20px 30px;
   flex-direction: column;
@@ -73,10 +73,14 @@ export const BannerMiddleContent = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 33%;
+
   width: 100%;
   max-width: 2300px;
   color: ${props => props.theme.palette.lightColor.main};
+  @media ${mobileL} {
+    height: 100%;
+    min-height: 200px;
+  }
 `
 export const BannerMiddleContentSubWrapper = styled(Box)`
   max-width: 1636px;
@@ -94,7 +98,6 @@ export const BannerMiddleContentSubWrapper = styled(Box)`
   @media ${mobileM} {
     padding: 30px 40px;
     flex-direction: column;
-    gap: -110px;
   }
   @media ${mobileL} {
     padding: 40px 70px;
@@ -111,15 +114,13 @@ export const BannerMiddleContentSubWrapper = styled(Box)`
   }
   @media ${laptop} {
     padding: 22px 90px;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
   @media ${laptopS} {
     padding: 22px 125px;
-    flex-direction: row;
   }
   @media ${laptopM} {
     padding: 22px 207px;
-    flex-direction: row-reverse;
   }
 `
 export const BannerLowerContent = styled(Box)`
@@ -130,7 +131,7 @@ export const BannerLowerContent = styled(Box)`
   min-height: 33%;
   max-width: 1636px;
 
-  padding: 18px 10px;
+  padding: 18px 0px;
   flex-direction: column;
   @media ${mobileM} {
     padding: 18px 40px;
@@ -166,7 +167,7 @@ export const LeftSideContent = styled(Box)`
   width: 100%;
   height: 100%;
   @media ${tablet} {
-    width: 60%;
+    width: 55%;
   }
   display: flex;
   flex-direction: column;
@@ -190,23 +191,23 @@ export const RightSideContent = styled(Box)`
 `
 export const Heading = styled(Typography)`
   font-style: normal;
-
+  line-height: 105%;
   font-weight: 600;
   font-size: 36px;
-  line-height: 56px;
+
   text-align: center;
 
   @media ${mobileM} {
     font-weight: 600;
-    font-size: 58px;
-    line-height: 68px;
+    font-size: 48px;
+    line-height: 58px;
 
     text-align: center;
   }
   @media ${mobileL} {
     font-weight: 600;
-    font-size: 68px;
-    line-height: 76px;
+    font-size: 58px;
+    /* line-height: 76px; */
 
     text-align: center;
   }
@@ -251,8 +252,6 @@ export const Heading = styled(Typography)`
 export const SubHeading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
-  padding-right: 20px;
-
   font-weight: 300;
   font-size: 23px;
   line-height: 24px;
@@ -349,31 +348,36 @@ export const Card = styled(Box)`
   align-items: center;
 `
 export const LowerCardContent = styled(Box)`
-  width: 360px;
-  height: 290px;
-  gap: 10px;
+  width: 300px;
+  height: 230px;
 
+  @media ${mobileS} {
+    width: 355px;
+    gap: 10px;
+  }
+  @media ${mobileM} {
+    width: 400px;
+    height: 290px;
+    gap: 25px;
+  }
   @media ${mobileL} {
     width: 400px;
     height: 290px;
-    gap: 10px;
+    gap: 20px;
   }
-  /* @media ${tabletS} {
-    width: 400px;
-    height: 290px;
-    gap: 10px;
-  } */
+
   @media ${tablet} {
-    width: 340px;
+    width: 370px;
     height: 250px;
+    margin-left: 60px;
   }
 
   @media ${laptop} {
-    width: 375px;
+    width: 395px;
     height: 270px;
   }
   @media ${laptopS} {
-    width: 400px;
+    width: 420px;
     height: 290px;
   }
   @media ${laptopM} {
@@ -387,15 +391,28 @@ export const LowerCardContent = styled(Box)`
   align-items: center;
 `
 export const LowerSubCardContent = styled(Box)`
-  width: 49%;
   height: 100%;
   display: flex;
-  @media ${laptopM} {
+  width: 40%;
+
+  @media ${tabletS} {
+    width: 41%;
+    gap: 14px;
+  }
+  @media ${laptop} {
+    width: 40%;
     gap: 14px;
   }
   @media ${laptopS} {
-    gap: 10px;
+    width: 45%;
+    gap: 14px;
   }
+
+  @media ${laptopL} {
+    width: 49%;
+    gap: 14px;
+  }
+
   gap: 8px;
   flex-direction: column;
   justify-content: start;
@@ -422,7 +439,27 @@ export const GenderLeadBox = styled(Box)`
   }
 `
 export const Img = styled.img`
-  width: 302px;
-  height: 347px;
+  margin-top: ${({ selectMargin }) => selectMargin};
+  height: 310px;
+  width: 250px;
+  @media ${mobileM} {
+    height: ${({ imgHeight }) => imgHeight};
+    width: ${({ imgWidth }) => imgWidth};
+  }
+
+  @media ${mobileL} {
+    margin-top: ${({ selectMargin }) => selectMargin};
+  }
   object-fit: cover;
+`
+export const LeadImage = styled.div`
+  width: 100%;
+  height: 190px;
+  @media ${tabletS} {
+    height: 190px;
+  }
+  @media ${laptopS} {
+    height: 220px;
+  }
+  position: relative;
 `

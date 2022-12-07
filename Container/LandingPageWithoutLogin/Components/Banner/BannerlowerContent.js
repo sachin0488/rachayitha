@@ -11,6 +11,7 @@ import {
   LowerCardContent,
   LowerSubCardContent,
   GenderLeadBox,
+  LeadImage,
 } from './BannerStyle'
 
 const BannerlowerContent = ({ heading, subHeading, img }) => {
@@ -23,11 +24,16 @@ const BannerlowerContent = ({ heading, subHeading, img }) => {
       <RightSideContent>
         <LowerCardContent>
           <LowerSubCardContent>
-            <Image src={MaleLead} sx={{ width: '49%', height: '100%' }} />
+            <LeadImage>
+              <Image src={MaleLead} layout="fill" alt="maleLead" />
+            </LeadImage>
             <GenderLeadBox sx={{ color: '#8049FF', borderColor: '#8049FF' }}>Male Lead</GenderLeadBox>
           </LowerSubCardContent>
           <LowerSubCardContent>
-            <Image src={FemaleLead} sx={{ width: '49%', height: '100%' }} />
+            <LeadImage>
+              <Image src={FemaleLead} layout="fill" alt="femaleLead" />
+            </LeadImage>
+
             <GenderLeadBox sx={{ color: '#F450AE', borderColor: '#F450AE' }}>Male Lead</GenderLeadBox>
           </LowerSubCardContent>
         </LowerCardContent>
