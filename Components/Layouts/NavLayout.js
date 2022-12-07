@@ -1,6 +1,5 @@
-import styled from '@emotion/styled'
-import { Box } from '@mui/material'
 import React from 'react'
+import { Box } from '@mui/material'
 import Header from '../../Container/LandingPageAfterLogin/Header/Header'
 import Footer from '../../Container/LandingPageWithoutLogin/Components/Footer/Footer'
 

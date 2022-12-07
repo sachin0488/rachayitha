@@ -17,29 +17,31 @@ import NavLayout from '../../Components/Layouts/NavLayout'
 const LandingPageAfterLogin = () => {
   return (
     <>
-      <NavLayout header={true} footer={true}>
+      <>
         <MainContainer>
-          {' '}
           <Hero />
+
           <SubMainContainer>
             <TopCollection />
+
             <WeeklyCardSectionWrapper>
-              {' '}
               <WeeklyFeaturedCards />
             </WeeklyCardSectionWrapper>
+
             <SectionWrapper>
-              {' '}
               <PotentialStarletCards />
             </SectionWrapper>
+
             <SectionWrapper>
               <NewArrivalsCards />
             </SectionWrapper>
+
             <SectionWrapper sx={{ margin: '-40px 0px 0px 0px' }}>
               <NewArrivalCardMiniComp />
             </SectionWrapper>
           </SubMainContainer>
         </MainContainer>
-      </NavLayout>
+      </>
     </>
   )
 }
