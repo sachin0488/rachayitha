@@ -14,6 +14,7 @@ import lightTheme from '../styles/theme/lightTheme'
 import store from '../store'
 import '../styles/globals.css'
 import LoadToken from '../Container/Auth/load-token'
+import { queryCache, mutationCache } from '../api/global.api'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -29,6 +30,8 @@ const queryClient = new QueryClient({
       staleTime: twentyFourHoursInMs,
     },
   },
+  mutationCache,
+  queryCache,
 })
 
 const persistor = persistStore(store)

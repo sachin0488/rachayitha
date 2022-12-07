@@ -4,17 +4,9 @@ import { useSnackbar } from 'notistack'
 import { useDispatch } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
-import {
-  changeEmailAPI,
-  changePasswordAPI,
-  createAccountAPI,
-  fetchUserDataAPI,
-  generateOTPByEmailAPI,
-  generateOTPByTokenAPI,
-  loginAPI,
-  logoutUserAPI,
-  verifyEmailAPI,
-} from './auth.api'
+import { createAccountAPI, fetchUserDataAPI, loginAPI } from './auth.api'
+import useLocalStorage from '../../../hooks/useLocalStorage'
+import useAuthTokens from '../../../api/global.hook'
 
 export const useFetchUserDataAPI = (props, work) => {
   const { enqueueSnackbar } = useSnackbar()
@@ -82,11 +74,13 @@ export const useLoginAPI = () => {
   const { enqueueSnackbar } = useSnackbar()
   const router = useRouter()
   const dispatch = useDispatch()
-
+  const { setAccess, setRefresh } = useAuthTokens()
   const { mutate, isLoading, isSuccess } = useMutation(loginAPI, {
     onSuccess({ data }) {
       dispatch(setUserData(data?.user))
-      dispatch(setLoginToken(data?.user?.tokens.access))
+      dispatch(setLoginToken(data?.user?.tokens))
+      setAccess(data?.user?.tokens?.access)
+      setRefresh(data?.user?.tokens?.refresh)
       dispatch({ type: LOGIN_SUCCESS })
       router.push('/')
       enqueueSnackbar(data?.message, {
