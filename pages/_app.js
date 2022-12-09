@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { SnackbarProvider } from 'notistack'
@@ -38,6 +38,7 @@ const persistor = persistStore(store)
 
 const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  // const { isLoggedIn } = useSelector(selectUser)
 
   return (
     <Provider store={store}>
@@ -48,6 +49,7 @@ const MyApp = props => {
               <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <LoadToken />
+
                 <Component {...pageProps} />
               </QueryClientProvider>
             </SnackbarProvider>

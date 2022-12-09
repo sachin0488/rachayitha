@@ -12,6 +12,9 @@ export const styles = {
   },
   wrapper: {
     width: '100%',
+    '@media (min-width:1100px)': {
+      width: '90%',
+    },
   },
   tabPanel: {
     width: '100%',
