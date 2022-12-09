@@ -1,9 +1,11 @@
-import axios from 'axios'
+import { ApiInstance } from '../../../api/global.api'
 
-const URL = 'https://novel-jsonserver-production.up.railway.app/explore'
+const OriginalUrl = ''
 
-export const fetchExploreSection = async () => {
-  const res = await axios.get(URL)
-
-  return res.data
+export const fetchExploreSection = () => {
+  const Url = '/explorebook?category_id=1&page=2'
+  return ApiInstance({
+    url: Url,
+    method: 'GET',
+  })
 }

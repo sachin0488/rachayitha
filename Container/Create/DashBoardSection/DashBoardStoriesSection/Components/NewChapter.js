@@ -1,6 +1,6 @@
-import React from "react";
-import CreatePageLeftSection from "../../../Components/CreatePageLeftSection";
-import { BsArrowLeft } from "react-icons/bs";
+import React from 'react'
+import CreatePageLeftSection from '../../../Components/CreatePageLeftSection'
+import { BsArrowLeft } from 'react-icons/bs'
 import {
   NewChapterHeading,
   NewChapterLowerSection,
@@ -16,8 +16,8 @@ import {
   RightSideHeaderSubSectionWrapper,
   Wrapper,
   WrapperRightSideSection,
-} from "../../../CreateStyle";
-import Link from "next/link";
+} from '../../../CreateStyle'
+import Link from 'next/link'
 
 const NewChapter = () => {
   return (
@@ -48,16 +48,13 @@ const NewChapter = () => {
                   InputProps={{ disableUnderline: true }}
                 />
               </NewChapterLowerSectionInputFieldWrapper>
-              <NewChapterLowerSectionTextArea
-                aria-label="empty textarea"
-                placeholder="text"
-              />
+              <NewChapterLowerSectionTextArea aria-label="empty textarea" placeholder="text" />
             </NewChapterLowerSection>
           </NewChapterWrapper>
         </WrapperRightSideSection>
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default NewChapter;
+export default NewChapter

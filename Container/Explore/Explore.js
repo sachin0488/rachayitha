@@ -14,7 +14,7 @@ import {
   ExploreBannerImg,
   SortByWrapper,
 } from './ExploreStyle'
-import { useExplore } from './api/explore.hook'
+import useExplore from './api/explore.hook'
 import Loading from './Loading'
 import ExploreCard from './ExploreCard'
 import RankingAccordionContainer, { ExploreTextAndNestedRoute } from '../Ranking/RankingAccordionContainer'
@@ -27,13 +27,14 @@ import GenreButtonLIstMobile from '../../Components/GenreButtonList/GenreButtonL
 import NavLayout from '../../Components/Layouts/NavLayout'
 const Explore = () => {
   const { data, isLoading, isError, error } = useExplore()
+  // console.log(data.data, 'inside explore')
   const bannerImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png'
   if (isError) {
     return <h1>{error?.message}</h1>
   }
 
   return (
-    <NavLayout header={true} footer={true}>
+    <NavLayout>
       <Wrapper>
         <SubWrapper>
           <ExploreBannerContainer>
@@ -72,7 +73,7 @@ const Explore = () => {
               <SubGenreButton sectionName="novel" />
 
               <CardsWrapper>
-                {data?.map((card, index) =>
+                {data?.data?.resources?.data?.map((card, index) =>
                   isLoading ? <Loading card={card} index={index} /> : <ExploreCard card={card} index={index} />,
                 )}
               </CardsWrapper>

@@ -24,7 +24,7 @@ const ItemDetails = () => {
 
   return (
     <>
-      <NavLayout header={true} footer={true}>
+      <NavLayout>
         <Wrapper>
           <SubWrapper>
             <ExploreBannerContainer>

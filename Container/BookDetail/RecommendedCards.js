@@ -1,5 +1,5 @@
-import React from "react";
-import RatingStar from "../../Components/RatingComp/Rating";
+import React from 'react'
+import RatingStar from '../../Components/RatingComp/Rating'
 import {
   RecommendedCardsWrapper,
   RecommendedCardsHeading,
@@ -10,21 +10,19 @@ import {
   RecommendedCardsContainer,
   CardImg,
   CardRatingText,
-} from "./BookDetailStyle";
-import { useExplore } from "../Explore/api/explore.hook";
+} from './BookDetailStyle'
+import useExplore from '../Explore/api/explore.hook'
 const RecommendedCards = () => {
-  const { data } = useExplore();
+  const { data } = useExplore()
   return (
     <>
       <RecommendedCardsWrapper>
         <RecommendedCardsHeading>You may also Like</RecommendedCardsHeading>
         <RecommendedCardsContainer>
-          {data?.map((card) => (
-            <IndividualRecommendedCardContainer>
+          {data?.data?.resources?.data?.map(card => (
+            <IndividualRecommendedCardContainer key={card.id}>
               <CardImg src={card.img} />
-              <IndividualRecommendedCardTitle>
-                {card.title}
-              </IndividualRecommendedCardTitle>
+              <IndividualRecommendedCardTitle>{card.title}</IndividualRecommendedCardTitle>
               <Fantasy>{card.genre}</Fantasy>
               <RatingSection>
                 <RatingStar value={card.rating} size="small" />
@@ -35,7 +33,7 @@ const RecommendedCards = () => {
         </RecommendedCardsContainer>
       </RecommendedCardsWrapper>
     </>
-  );
-};
+  )
+}
 
-export default RecommendedCards;
+export default RecommendedCards

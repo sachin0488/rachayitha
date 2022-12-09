@@ -15,7 +15,7 @@ import NavLayout from '../../Components/Layouts/NavLayout'
 const LandingPageWithoutLogin = () => {
   return (
     <>
-      <NavLayout footer={true} header={false}>
+      <NavLayout>
         {' '}
         <MainContainer sx={{ gap: '50px' }}>
           <Header />
