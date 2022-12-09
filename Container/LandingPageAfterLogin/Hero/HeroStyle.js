@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
-import { Box, Typography } from '@mui/material'
-import React from 'react'
-import { laptop, laptopS, mobileL, tabletS } from '../../../styles/mediaQuery/breakPoints'
+import { Box, Button, Typography } from '@mui/material'
+import { laptopS, tabletS } from '../../../styles/mediaQuery/breakPoints'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -37,78 +36,65 @@ export const HeroLeftSideSection = styled.div`
     width: 45%;
   }
 `
+export const TextSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  @media ${tabletS} {
+    align-items: flex-start;
+  }
+  gap: 18px;
+`
 
 export const Heading = styled(Typography)`
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 44px;
-  line-height: 55px;
+  line-height: 1.43;
   text-align: center;
   @media ${tabletS} {
     text-align: start;
   }
-  @media ${laptopS} {
-    font-weight: 900;
-    font-size: 55px;
-    line-height: 64px;
+  @media (max-width: ) {
+    font-size: 50px;
   }
   color: ${props => props.theme.palette.headingColor.main};
   max-width: 540px;
 `
 
 export const SubHeading = styled(Typography)`
-  font-style: normal;
-  font-family: 'Roboto';
   font-weight: 300;
   font-size: 20px;
-  line-height: 25px;
-  text-align: start;
+  color: ${props => props.theme.palette.primary.main};
   @media ${laptopS} {
     font-size: 25px;
-    line-height: 29px;
   }
   text-align: center;
-  color: ${props => props.theme.palette.primary.main};
+  @media ${tabletS} {
+    text-align: start;
+  }
 `
-export const ParagraphText = styled.p`
-  font-family: 'Roboto';
-  font-style: normal;
+export const ParagraphText = styled(Typography)`
   font-weight: 300;
   font-size: 17px;
-  line-height: 20px;
-  color: black;
-  text-align: start;
+  color: #000000;
+  text-align: center;
+  @media ${tabletS} {
+    text-align: start;
+  }
 `
 
-export const ExploreButton = styled.button`
-  width: 160px;
-  height: 41px;
-  border: 1px solid #5624c1;
-  border-radius: 20.5px;
-  background-color: #5326c3;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
+export const StyledButton = styled(Button)`
+  border-radius: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
+  padding: 6px 45px;
 `
-export const CreateButton = styled.button`
-  width: 160px;
-  height: 41px;
-  border: 1px solid #5624c1;
-  border-radius: 20.5px;
-  background-color: #fdfcfe;
-  color: ${props => props.theme.palette.primary.main};
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-`
+
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 14px;
 `
@@ -147,6 +133,5 @@ export const ImgContainer = styled(Box)`
   width: 218px;
   height: 253px;
   box-shadow: 0rem 0.4rem 0.45rem 0rem rgba(0, 0, 30, 0.5);
-
   border-radius: 15px;
 `

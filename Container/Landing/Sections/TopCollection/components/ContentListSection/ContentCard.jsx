@@ -1,0 +1,78 @@
+import styled from '@emotion/styled'
+import Image from 'next/image'
+import React from 'react'
+import { laptopS } from 'styles/mediaQuery/breakPoints'
+
+const ContentCard = ({ item }) => {
+  return (
+    <Root>
+      <ImageSection>
+        <Image alt="book image" src={item.img} width="90px" height="115px" />
+      </ImageSection>
+      <InfoSection>
+        <Title>{item.title}</Title>
+        <Fantasy>{item.fantasy}</Fantasy>
+        <Rating>{item.rating}</Rating>
+      </InfoSection>
+    </Root>
+  )
+}
+
+const Root = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @media ${laptopS} {
+    gap: 48px;
+  }
+  border-radius: 13px;
+  gap: 18px;
+  width: 100%;
+  padding: 8px 9px;
+
+  border: 2px solid transparent;
+  /* border: 2px solid red; */
+  transition: 0.3s ease-in-out;
+  &:hover {
+    border: 2px solid #562ac5;
+    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
+    transform: scale(1.05);
+  }
+`
+
+const ImageSection = styled.div`
+  width: fit-content;
+  height: 115px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const InfoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+  padding: 0px 0px;
+  justify-content: center;
+  gap: 4px;
+`
+
+const Title = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+`
+
+const Fantasy = styled.div`
+  font-weight: 300;
+  font-size: 13px;
+  color: #888994;
+`
+
+const Rating = styled.div`
+  font-weight: 600;
+  font-size: 21px;
+  color: #148544;
+`
+
+export default ContentCard

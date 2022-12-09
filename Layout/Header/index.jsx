@@ -24,10 +24,7 @@ const Header = () => {
           }),
           boxShadow: '4px 4px 17px #864dff1f',
           backdropFilter: 'blur(66px)',
-
-          // backdropFilter: 'blur(0px)',
           borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
-          // borderBottom: theme => '2px solid' + theme.palette.primary.main + '23',
           background: '#ffffffd9',
         }}>
         <Toolbar>
