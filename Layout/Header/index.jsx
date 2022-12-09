@@ -7,15 +7,15 @@ import ProfileButton from './components/ProfileButton'
 import StyledNavButton from './components/StyledNavButton'
 import StyledSearchBox from './components/StyledSearchBox'
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded'
-import SideBar from './SideBar'
+import { ImgCont } from '../../Container/LandingPageAfterLogin/Header/HeaderStyle'
+import HeaderDrawer from '../../Container/LandingPageAfterLogin/Header/HeaderDrawer'
 
 const Header = () => {
-//   const [isSideBarOpen, setIsSideBarOpen] = useState(second)
+  //   const [isSideBarOpen, setIsSideBarOpen] = useState(second)
   const isTabletXSM = useMediaQuery('(min-width:900px)')
 
   return (
     <>
-      {/* <SideBar handleSideBarToggle={() => setIsSideBarOpen(!isSideBarOpen)} isSideBarOpen={isSideBarOpen} /> */}
       <AppBar
         position="fixed"
         sx={{
@@ -24,6 +24,7 @@ const Header = () => {
           }),
           boxShadow: '4px 4px 17px #864dff1f',
           backdropFilter: 'blur(66px)',
+
           // backdropFilter: 'blur(0px)',
           borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
           // borderBottom: theme => '2px solid' + theme.palette.primary.main + '23',
@@ -45,16 +46,9 @@ const Header = () => {
           {isTabletXSM ? (
             <ProfileButton />
           ) : (
-            <StyledSidebarButton
-              color="primary"
-              //   onClick={(handleSideBarToggle)}
-              edge="start"
-              sx={{
-                transition: '.2s ease-in-out',
-                // transform: isSideBarOpen ? 'rotate(0deg)' : 'rotate(180deg)',
-              }}>
-              <MenuOpenRoundedIcon />
-            </StyledSidebarButton>
+            <ImgCont>
+              <HeaderDrawer />
+            </ImgCont>
           )}
         </Toolbar>
       </AppBar>{' '}

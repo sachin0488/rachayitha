@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { Box, Tab, Tabs, Typography } from "@mui/material";
-import React from "react";
+import styled from '@emotion/styled'
+import { Box, Tab, Tabs, TextareaAutosize, Typography } from '@mui/material'
+import React from 'react'
 import {
   laptop,
   laptopM,
@@ -10,7 +10,7 @@ import {
   mobileS,
   tablet,
   tabletS,
-} from "../../styles/mediaQuery/breakPoints";
+} from '../../styles/mediaQuery/breakPoints'
 
 export const BookDetailCard = styled(Box)`
   width: 100%;
@@ -33,7 +33,7 @@ export const BookDetailCard = styled(Box)`
   @media ${tablet} {
     gap: 60px;
   }
-`;
+`
 export const BookDetailCardLeftSection = styled(Box)`
   @media ${mobileS} {
     width: 70%;
@@ -65,7 +65,7 @@ export const BookDetailCardLeftSection = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-`;
+`
 
 export const BookDetailCardRightSection = styled(Box)`
   height: 100%;
@@ -80,7 +80,7 @@ export const BookDetailCardRightSection = styled(Box)`
   align-items: flex-start;
   gap: 35px;
   padding: 10px 0px;
-`;
+`
 export const TitleFantasyViewSection = styled(Box)`
   min-height: 80px;
   width: 100%;
@@ -89,18 +89,18 @@ export const TitleFantasyViewSection = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   flex-direction: column;
-`;
+`
 
 export const Title = styled(Typography)`
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
   line-height: 44px;
   color: #2c2b5b;
-`;
+`
 export const Text = styled(Box)`
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -113,13 +113,13 @@ export const Text = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 3px;
-`;
+`
 export const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-`;
+`
 export const FantasyAndViewSection = styled(Box)`
   display: flex;
   justify-content: start;
@@ -127,22 +127,22 @@ export const FantasyAndViewSection = styled(Box)`
   align-items: center;
   width: 100%;
   height: 23px;
-`;
+`
 
 export const AuthorText = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
   color: #5a2cc6;
-`;
+`
 
 export const ReadButton = styled.button`
   background: #5a2cc6;
   border: 1px solid #5a2cc6;
   border-radius: 23px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -161,7 +161,7 @@ export const ReadButton = styled.button`
   @media ${laptopS} {
     padding: 12px 35px;
   }
-`;
+`
 export const AddToLibraryButton = styled(Box)`
   display: flex;
   justify-content: center;
@@ -169,7 +169,7 @@ export const AddToLibraryButton = styled(Box)`
   color: #5b2ec7;
   padding: 9px 15px;
   gap: 7px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
 
@@ -198,23 +198,23 @@ export const AddToLibraryButton = styled(Box)`
   }
 
   cursor: pointer;
-`;
+`
 
 export const StarText = styled(Box)`
   color: #fc9404;
   font-size: 21px;
   font-weight: 400;
-`;
+`
 
 export const Author = styled(Typography)`
   color: black;
-`;
+`
 
 export const RatingSectionComp = styled(Box)`
   color: #656565;
   font-size: 11px;
   font-weight: 200;
-`;
+`
 
 export const ReviewSectionAddToLibraryButton = styled(Box)`
   display: flex;
@@ -222,7 +222,7 @@ export const ReviewSectionAddToLibraryButton = styled(Box)`
   align-items: center;
   padding: 9px 15px;
   gap: 7px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: white;
@@ -252,7 +252,7 @@ export const ReviewSectionAddToLibraryButton = styled(Box)`
   }
 
   cursor: pointer;
-`;
+`
 
 export const RecommendedCardsWrapper = styled(Box)`
   padding: 0px 0px 0px 40px;
@@ -273,16 +273,16 @@ export const RecommendedCardsWrapper = styled(Box)`
   align-items: flex-start;
   gap: 11px;
   margin: 20px 0px 10px 0px;
-`;
+`
 export const RecommendedCardsHeading = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
   line-height: 29px;
 
   color: #000000;
-`;
+`
 export const RecommendedCardsContainer = styled(Box)`
   display: flex;
   justify-content: start;
@@ -294,7 +294,7 @@ export const RecommendedCardsContainer = styled(Box)`
   &::-webkit-scrollbar {
     width: 0;
   }
-`;
+`
 
 export const IndividualRecommendedCardContainer = styled(Box)`
   display: flex;
@@ -307,38 +307,38 @@ export const IndividualRecommendedCardContainer = styled(Box)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   padding: 0px 0px 5px 0px;
-`;
+`
 export const CardImg = styled.img`
   padding: 11px 13px;
   width: 100%;
   height: 68%;
-`;
+`
 export const IndividualRecommendedCardTitle = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #000000;
   padding: 0px 13px;
-`;
+`
 
 export const Fantasy = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 200;
   font-size: 11px;
   line-height: 13px;
   padding: 0px 13px;
   color: #4f4f4f;
-`;
+`
 export const RatingSection = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 10px;
   padding: 0px 13px;
-`;
+`
 export const AllCategoryRatingSection = styled(Box)`
   display: flex;
   justify-content: start;
@@ -351,7 +351,7 @@ export const AllCategoryRatingSection = styled(Box)`
   @media ${mobileL} {
     flex-direction: row;
   }
-`;
+`
 export const AllCategoryRatingLeftSection = styled(Box)`
   display: flex;
   justify-content: space-between;
@@ -388,7 +388,7 @@ export const AllCategoryRatingLeftSection = styled(Box)`
     width: 25%;
   }
   height: 100%;
-`;
+`
 
 export const AllCategoryRatingLeftSectionFirstPart = styled(Box)`
   display: flex;
@@ -405,7 +405,7 @@ export const AllCategoryRatingLeftSectionFirstPart = styled(Box)`
 
   width: 50%;
   height: 100%;
-`;
+`
 
 export const AllCategoryRatingLeftSectionSecondPart = styled(Box)`
   justify-content: start;
@@ -415,7 +415,7 @@ export const AllCategoryRatingLeftSectionSecondPart = styled(Box)`
   flex-direction: column;
   width: 50%;
   height: 100%;
-`;
+`
 export const AllCategoryRatingLeftSectionThirdPart = styled(Box)`
   display: flex;
   flex-direction: column;
@@ -425,10 +425,10 @@ export const AllCategoryRatingLeftSectionThirdPart = styled(Box)`
   width: 100%;
 
   height: 100%;
-`;
+`
 
 export const AllCategoryRatingFont = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -442,7 +442,7 @@ export const AllCategoryRatingFont = styled(Typography)`
     font-size: 15px;
     line-height: 18px;
   }
-`;
+`
 
 export const AllCategoryRatingRightSection = styled(Box)`
   display: flex;
@@ -462,17 +462,17 @@ export const AllCategoryRatingRightSection = styled(Box)`
     width: 60%;
     height: 100%;
   }
-`;
+`
 
 export const ShareFontSize = styled(Typography)`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
   color: #000000;
-`;
+`
 
 export const CommentSectionWrapper = styled(Box)`
   display: flex;
@@ -482,7 +482,7 @@ export const CommentSectionWrapper = styled(Box)`
   width: 100%;
   min-height: 510px;
   margin: 0px 0px 40px 0px;
-`;
+`
 
 export const CommentSectionSubWrapper = styled(Box)`
   display: flex;
@@ -494,7 +494,7 @@ export const CommentSectionSubWrapper = styled(Box)`
   border-bottom: 1px solid #747474;
   margin-top: 20px;
   margin-bottom: 30px;
-`;
+`
 
 export const CommentSectionSubWrapperRightSideContent = styled(Box)`
   display: flex;
@@ -505,21 +505,21 @@ export const CommentSectionSubWrapperRightSideContent = styled(Box)`
   height: 100%;
   width: 93%;
   padding-top: 5px;
-`;
+`
 
 export const ReplyLikeAndCommentSection = styled(Box)`
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-`;
+`
 export const RepliesSection = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 6px;
   width: 50%;
-`;
+`
 
 export const LikeAndCommentSection = styled(Box)`
   display: flex;
@@ -528,7 +528,7 @@ export const LikeAndCommentSection = styled(Box)`
   gap: 6px;
   width: 50%;
   padding-right: 20px;
-`;
+`
 
 export const AboutSectionWrapper = styled(Box)`
   display: flex;
@@ -539,7 +539,7 @@ export const AboutSectionWrapper = styled(Box)`
   /* padding: 25px 0px; */
   width: 100%;
   min-height: 240px;
-`;
+`
 
 export const AboutSectionUpperContent = styled(Box)`
   display: flex;
@@ -547,29 +547,55 @@ export const AboutSectionUpperContent = styled(Box)`
   align-items: flex-start;
   flex-direction: column;
   gap: 8px;
-`;
+`
 
 export const MuiTabWrapper = styled(Box)`
   width: 100%;
   height: 330px;
-`;
+`
 
 export const Months = styled(Typography)`
   color: #656565;
   font-size: 11px;
   font-weight: 200;
-`;
+`
 export const Replies = styled(Typography)`
   color: #5a2cc6;
   font-size: 11px;
   font-weight: 200;
-`;
+`
 
 export const UserName = styled(Typography)`
   font-size: 15px;
   font-weight: 700;
   line-height: 18px;
-`;
+`
 export const CardRatingText = styled(Typography)`
   color: #4f4f4f;
-`;
+`
+
+export const WriteReviewModalWrapper = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background-color: white;
+
+  border-top: 5px solid #5a2cc6;
+  box-shadow: 24;
+  padding: 16px;
+`
+
+export const PostCommentText = styled(TextareaAutosize)`
+  width: 100%;
+  background-color: transparent;
+  padding: 0px 16px;
+  margin-top: 14px;
+  min-height: 500px;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  color: black;
+`

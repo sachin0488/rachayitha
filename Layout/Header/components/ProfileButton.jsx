@@ -7,12 +7,14 @@ import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
+import { useLogoutUserAPI } from '../../../Container/Auth/api/auth.hook'
+import Link from 'next/link'
 
 const settings = ['Profile', 'Logout']
 
 const ProfileButton = () => {
   const [anchorElUser, setAnchorElUser] = useState(null)
-
+  const { handleLogoutUser } = useLogoutUserAPI()
   const handleOpenUserMenu = event => {
     setAnchorElUser(event.currentTarget)
   }
@@ -41,11 +43,26 @@ const ProfileButton = () => {
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}>
-        {settings.map(setting => (
+        <Link href={`/profile/1`}>
+          <MenuItem onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">Profile</Typography>
+          </MenuItem>
+        </Link>
+
+        <MenuItem onClick={handleCloseUserMenu}>
+          <Typography
+            onClick={() => {
+              handleLogoutUser()
+            }}
+            textAlign="center">
+            Logout
+          </Typography>
+        </MenuItem>
+        {/* {settings.map(setting => (
           <MenuItem key={setting} onClick={handleCloseUserMenu}>
             <Typography textAlign="center">{setting}</Typography>
           </MenuItem>
-        ))}
+        ))} */}
       </Menu>
     </Box>
   )

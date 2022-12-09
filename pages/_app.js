@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { SnackbarProvider } from 'notistack'
@@ -15,7 +15,6 @@ import store from '../store'
 import '../styles/globals.css'
 import LoadToken from '../Container/Auth/load-token'
 import { queryCache, mutationCache } from '../api/global.api'
-import Header from '../Layout/Header'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -39,6 +38,7 @@ const persistor = persistStore(store)
 
 const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  // const { isLoggedIn } = useSelector(selectUser)
 
   return (
     <Provider store={store}>
@@ -47,9 +47,9 @@ const MyApp = props => {
           <MUIThemeProvider theme={lightTheme}>
             <SnackbarProvider Components={snackbarComponents}>
               <QueryClientProvider client={queryClient}>
-                <Header />
                 <CssBaseline />
                 <LoadToken />
+
                 <Component {...pageProps} />
               </QueryClientProvider>
             </SnackbarProvider>

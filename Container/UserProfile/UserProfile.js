@@ -32,7 +32,7 @@ const UserProfile = () => {
   const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
   return (
     <>
-      <NavLayout header={true}>
+      <NavLayout>
         <Wrapper>
           <SubWrapper>
             <ImgBox>

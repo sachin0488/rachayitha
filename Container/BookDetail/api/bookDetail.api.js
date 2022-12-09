@@ -1,9 +1,17 @@
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import { ApiInstance } from '../../../api/global.api'
 
-const fetchBookDetail = async book => {
-  const res = await axios.get(`https://novel-jsonserver-production.up.railway.app/${book}`)
-  return res.data
+export const fetchBookDetail = book => {
+  const Url = `book/${book}`
+  return ApiInstance({
+    url: Url,
+    method: 'GET',
+  })
 }
 
-export default fetchBookDetail
+export const fetchCommentSection = book => {
+  const Url = `/bookcomment?book_id=1`
+  return ApiInstance({
+    url: Url,
+    method: 'GET',
+  })
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Cards,
   CardsSubWrapper,
@@ -9,8 +9,8 @@ import {
   ParagraphText,
   ButtonContainer,
   HashTagComp,
-} from "./ExploreStyle";
-import Link from "next/link";
+} from './ExploreStyle'
+import Link from 'next/link'
 const ExploreCard = ({ card, index }) => {
   return (
     <>
@@ -18,22 +18,23 @@ const ExploreCard = ({ card, index }) => {
         <CardsSubWrapper key={index}>
           <Cards>
             <CardLeftSideContent>
-              <Img src={card.img} />
+              <Img src={card?.cover_img} />
             </CardLeftSideContent>
             <CardRightSideContent>
               <ButtonContainer>
-                {card.hashtag.map((hash) => (
+                {/* {card.hashtag.map(hash => (
                   <HashTagComp>{hash}</HashTagComp>
-                ))}
+                ))} */}
+                <HashTagComp> #Adventure #Action</HashTagComp>
               </ButtonContainer>
-              <Title>{card.title}</Title>
-              <ParagraphText>{card.paragraph}</ParagraphText>
+              <Title>{card?.book_name}</Title>
+              <ParagraphText>The human Race is at war with the Vicious Dalki and when they needed...</ParagraphText>
             </CardRightSideContent>
           </Cards>
         </CardsSubWrapper>
       </Link>
     </>
-  );
-};
+  )
+}
 
-export default ExploreCard;
+export default ExploreCard
