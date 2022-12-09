@@ -3,6 +3,7 @@ import { Box, Drawer, Typography, IconButton, Button } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
+import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import Image from 'next/image'
 import ProfileImg from '../../../public/headerProfileImg.png'
 import Explore from '../../../public/MenuItem1.svg'
@@ -20,7 +21,16 @@ const HeaderDrawer = () => {
   const { handleLogoutUser } = useLogoutUserAPI()
   return (
     <>
-      <FiMenu onClick={() => setIsDrawerOpen(true)} />
+      <StyledSidebarButton
+        color="primary"
+        onClick={() => setIsDrawerOpen(true)}
+        edge="start"
+        sx={{
+          transition: '.2s ease-in-out',
+          // transform: isSideBarOpen ? 'rotate(0deg)' : 'rotate(180deg)',
+        }}>
+        <MenuOpenIcon />
+      </StyledSidebarButton>
 
       <Drawer
         anchor="right"
@@ -120,6 +130,8 @@ const HeaderDrawer = () => {
 }
 
 export default HeaderDrawer
+
+const StyledSidebarButton = styled(IconButton)``
 
 const DrawerWrapper = styled(Box)`
   padding: 24px;

@@ -1,9 +1,9 @@
-import React from "react";
-import { FaRegCommentDots } from "react-icons/fa";
-import MuiTabs from "../../Components/MuiTabs/MuiTabs";
-import RatingStar from "../../Components/RatingComp/Rating";
-import { bookLikedAndNewReviewDetailMuiTabList } from "../../hooks/useMuiTabComp";
-import { styles } from "./MuiTabStyles";
+import React from 'react'
+import { FaRegCommentDots } from 'react-icons/fa'
+import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
+import RatingStar from '../../../Components/RatingComp/Rating'
+import { bookLikedAndNewReviewDetailMuiTabList } from '../../../hooks/useMuiTabComp'
+import { styles } from '../MuiTabStyles'
 import {
   AllCategoryRatingSection,
   AllCategoryRatingLeftSection,
@@ -15,9 +15,11 @@ import {
   ShareFontSize,
   ReviewSectionAddToLibraryButton,
   CommentSectionWrapper,
-} from "./BookDetailStyle";
+} from '../BookDetailStyle'
 
-const ReviewSectionCom = () => {
+import WriteReviewModal from './Components/WriteReviewModal'
+
+const ReviewSectionCom = ({ book }) => {
   return (
     <>
       <AllCategoryRatingSection>
@@ -41,21 +43,15 @@ const ReviewSectionCom = () => {
         <AllCategoryRatingRightSection>
           <AllCategoryRatingLeftSectionThirdPart>
             <ShareFontSize>Share your thoughts with others</ShareFontSize>
-            <ReviewSectionAddToLibraryButton>
-              <FaRegCommentDots size="25" />
-              WRITE A REVIEW
-            </ReviewSectionAddToLibraryButton>
+            <WriteReviewModal />
           </AllCategoryRatingLeftSectionThirdPart>
         </AllCategoryRatingRightSection>
       </AllCategoryRatingSection>
       <CommentSectionWrapper>
-        <MuiTabs
-          muiTab={bookLikedAndNewReviewDetailMuiTabList}
-          styles={styles}
-        />
+        <MuiTabs muiTabsProp={book} muiTab={bookLikedAndNewReviewDetailMuiTabList} styles={styles} />
       </CommentSectionWrapper>
     </>
-  );
-};
+  )
+}
 
-export default ReviewSectionCom;
+export default ReviewSectionCom

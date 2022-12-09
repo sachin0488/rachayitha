@@ -151,7 +151,7 @@ export const Img = styled.img`
 `
 export const ImgCont = styled.div`
   display: block;
-  @media ${laptopS} {
+  @media (min-width: 900px) {
     display: none;
   }
 `
