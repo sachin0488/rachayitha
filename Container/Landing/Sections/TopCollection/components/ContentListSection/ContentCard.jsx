@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Typography } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
 import { laptopS } from 'styles/mediaQuery/breakPoints'
@@ -54,22 +55,22 @@ const InfoSection = styled.div`
   align-items: flex-start;
   width: 70%;
   padding: 0px 0px;
-  justify-content: center;
   gap: 4px;
+  text-align: left;
 `
 
-const Title = styled.div`
+const Title = styled(Typography)`
   font-weight: 600;
   font-size: 20px;
 `
 
-const Fantasy = styled.div`
+const Fantasy = styled(Typography)`
   font-weight: 300;
   font-size: 13px;
   color: #888994;
 `
 
-const Rating = styled.div`
+const Rating = styled(Typography)`
   font-weight: 600;
   font-size: 21px;
   color: #148544;

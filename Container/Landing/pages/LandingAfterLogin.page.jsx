@@ -12,6 +12,7 @@ import NavLayout from '../../../Components/Layouts/NavLayout'
 import { RootContainer } from '../common/common.styles'
 import Hero from '../Sections/Hero'
 import TopCollection from '../Sections/TopCollection'
+import WeeklyFeatured from '../Sections/WeeklyFeatured'
 
 const LandingPageAfterLogin = () => {
   return (
@@ -20,6 +21,7 @@ const LandingPageAfterLogin = () => {
         <Hero />
 
         <TopCollection />
+        <WeeklyFeatured />
         {/* 
           
 

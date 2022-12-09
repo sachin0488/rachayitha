@@ -6,7 +6,6 @@ import { laptop, laptopM, laptopS, mobileL, mobileS, tablet, tabletS } from '../
 export const TopCollectionWrapper = styled(Box)`
   width: 100%;
   height: 1000px;
-
   display: flex;
   flex-direction: column;
   justify-content: start;

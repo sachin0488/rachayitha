@@ -1,13 +1,11 @@
 import styled from '@emotion/styled'
-import displayDot from '@assets/svg/display-dot.svg'
 
-import { useCallback, useEffect } from 'react'
-import { IconButton } from '@mui/material'
+import { useCallback } from 'react'
+import { IconButton, useTheme } from '@mui/material'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
-import { useFormContext } from 'react-hook-form'
 
 const variants = {
   enter: direction => {
@@ -35,8 +33,10 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity
 }
 
-const CarouselBox = ({ messages, isError, pageState, activeLayoutIndex, msgIndex }) => {
+const CarouselBox = ({ messages, isError, pageState, msgIndex }) => {
+  const theme = useTheme()
   const [[page, direction], setPage] = pageState
+
   const paginate = useCallback(
     newDirection => {
       setPage([page + newDirection, newDirection])
@@ -52,12 +52,13 @@ const CarouselBox = ({ messages, isError, pageState, activeLayoutIndex, msgIndex
     }
   }
 
-  useEffect(() => {
-    handleJumpToSelectedPage(activeLayoutIndex)
-  }, [activeLayoutIndex])
+  //   useEffect(() => {
+  //     handleJumpToSelectedPage(activeLayoutIndex)
+  //   }, [activeLayoutIndex])
 
   return (
     <Root error={isError ? 'true' : 'false'}>
+      <Hidable>{messages[msgIndex]}</Hidable>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -83,15 +84,22 @@ const CarouselBox = ({ messages, isError, pageState, activeLayoutIndex, msgIndex
               paginate(-1)
             }
           }}>
-          <strong>{messages[msgIndex]}</strong>
+          <main>{messages[msgIndex]}</main>
         </motion.div>
       </AnimatePresence>
-      <ShowBarContainer>
-        {messages.map((item, index) => (
+      <ShowBarContainer
+        style={{
+          'grid-template-columns': `repeat(${messages.length},auto)`,
+        }}>
+        {messages.map((_, index) => (
           <ShowBar
             key={index}
+            style={{
+              background: msgIndex === index ? theme.palette.primary.main : theme.palette.primary.main + '99',
+            }}
             animate={{
-              width: msgIndex === index ? 50 : 30,
+              width: msgIndex === index ? 50 : 20,
+              background: msgIndex === index ? theme.palette.primary.main : theme.palette.primary.main + '99',
             }}
             transition={{
               width: { type: 'spring', stiffness: 900, damping: 25 },
@@ -113,14 +121,14 @@ const CarouselBox = ({ messages, isError, pageState, activeLayoutIndex, msgIndex
         onClick={() => {
           paginate(1)
         }}>
-        <KeyboardArrowRightRoundedIcon animate="center" />
+        <KeyboardArrowRightRoundedIcon color="primary" />
       </IconButton>
       <IconButton
         className="prev"
         onClick={() => {
           paginate(-1)
         }}>
-        <KeyboardArrowLeftRoundedIcon />
+        <KeyboardArrowLeftRoundedIcon color="primary" />
       </IconButton>
     </Root>
   )
@@ -135,8 +143,7 @@ const Root = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  /* height: 200px; */
+
   .toggle__viewBtn {
     position: absolute;
     top: 2px;
@@ -145,6 +152,7 @@ const Root = styled.div`
     height: 32px;
     width: 32px;
   }
+
   .next,
   .prev {
     top: calc(50% - 22px);
@@ -158,17 +166,33 @@ const Root = styled.div`
   }
 
   .next {
-    right: 5px;
+    right: 15px;
   }
 
   .prev {
-    left: 5px;
+    left: 15px;
+  }
+  @media (max-width: 550px) {
+    .next {
+      right: -13px;
+    }
+
+    .prev {
+      left: -13px;
+    }
   }
 
+  @media (max-width: 422px) {
+    .next {
+      right: -23px;
+    }
+
+    .prev {
+      left: -23px;
+    }
+  }
   .display {
     position: absolute;
-    background: ${({ error }) => (error === 'true' ? `rgb(229 57 53 / 21%)` : `rgb(7 98 85 / 31%)`)};
-    backdrop-filter: blur(4px);
     width: 100%;
     height: 100%;
     right: 0;
@@ -176,42 +200,22 @@ const Root = styled.div`
     top: 0;
     bottom: 0;
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
     text-align: center;
-    /* padding: 25px; */
     padding: 5px;
     border-radius: 8px;
-    background-image: url(${displayDot});
     background-repeat: space;
     background-size: 5px;
-    strong {
-      font-family: system-ui;
-      font-size: 1.4742rem;
-      font-weight: 800;
-      letter-spacing: 0.4px;
-      line-height: 0.8;
-      color: #b2dfdb;
-      opacity: 1;
-      background: #13828a;
-      background: ${({ error }) =>
-        error === 'true'
-          ? `radial-gradient( 
-            circle farthest-corner at top right, 
-            #dcb6b6 51%,
-            #f6d6d6 50%, 
-            #e3c6c6 100% 
-           )`
-          : `radial-gradient(
-            circle farthest-corner at top right,
-            #add5d0 51%,
-            #93e1d8 50%,
-            #a8e2dd 100%
-           )`};
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   small {
     position: absolute;
     top: 5px;
@@ -231,20 +235,24 @@ export const ShowBarContainer = styled.div`
   cursor: pointer;
   font-weight: bold;
   z-index: 2;
-  bottom: 10px;
+  bottom: -35px;
   right: 50%;
   left: 50%;
   display: grid;
-  grid-template-columns: auto auto auto auto;
   grid-template-rows: 1fr;
   gap: 4px 7px;
   justify-content: center;
   justify-items: center;
+  background: #000;
 `
 
 export const ShowBar = styled(motion.div)`
-  background: ${({ error }) => (error === 'true' ? `#f6d6d6` : `#93e1d8`)};
+  background: ${({ theme }) => theme.palette.primary.main};
   height: 5px;
   z-index: 10;
   border-radius: 5px;
+`
+
+export const Hidable = styled.div`
+  opacity: 0;
 `

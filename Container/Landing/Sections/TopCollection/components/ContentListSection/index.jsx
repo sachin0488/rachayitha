@@ -21,6 +21,9 @@ const Root = styled.div`
   gap: 10px;
   width: 33%;
   height: 100%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `
 
 const ContentName = styled.div`
