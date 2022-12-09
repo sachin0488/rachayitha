@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import StyledSlider from 'components/StyledSlider'
+import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 
-import { mainMaxWidth } from 'container/Landing/common/common.styles'
+import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import { mobileM } from 'styles/mediaQuery/breakPoints'
 
 import ContentCard from './components/ContentCard'
