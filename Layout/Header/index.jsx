@@ -1,17 +1,16 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material'
-import React from 'react'
 import { NavPageLinks } from '../config.layout'
+
 import LogoBox from './components/LogoBox'
 import ProfileButton from './components/ProfileButton'
 import StyledNavButton from './components/StyledNavButton'
 import StyledSearchBox from './components/StyledSearchBox'
-import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded'
-import { ImgCont } from '../../Container/LandingPageAfterLogin/Header/HeaderStyle'
-import HeaderDrawer from '../../Container/LandingPageAfterLogin/Header/HeaderDrawer'
 
-const Header = () => {
-  //   const [isSideBarOpen, setIsSideBarOpen] = useState(second)
+import MenuOpenIcon from '@mui/icons-material/MenuOpen'
+
+const Header = ({ handleSidebarOpen }) => {
   const isTabletXSM = useMediaQuery('(min-width:900px)')
 
   return (
@@ -19,9 +18,6 @@ const Header = () => {
       <AppBar
         position="fixed"
         sx={{
-          zIndex: theme => ({
-            sm: theme.zIndex.drawer + 1,
-          }),
           boxShadow: '4px 4px 17px #864dff1f',
           backdropFilter: 'blur(66px)',
           borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
@@ -38,14 +34,19 @@ const Header = () => {
                 ))}
               </NavButtonWarper>
             )}
-            {/* <ProfileButton /> */}
           </Toolbar>
           {isTabletXSM ? (
             <ProfileButton />
           ) : (
-            <ImgCont>
-              <HeaderDrawer />
-            </ImgCont>
+            <StyledSidebarButton
+              color="primary"
+              onClick={handleSidebarOpen}
+              edge="start"
+              sx={{
+                transition: '.2s ease-in-out',
+              }}>
+              <MenuOpenIcon style={{ fontSize: 25 }} />
+            </StyledSidebarButton>
           )}
         </Toolbar>
       </AppBar>{' '}

@@ -15,6 +15,7 @@ import store from '../store'
 import '../styles/globals.css'
 import LoadToken from '../Container/Auth/load-token'
 import { queryCache, mutationCache } from '../api/global.api'
+import Layout from 'Layout'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -49,8 +50,9 @@ const MyApp = props => {
               <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <LoadToken />
-
-                <Component {...pageProps} />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
               </QueryClientProvider>
             </SnackbarProvider>
           </MUIThemeProvider>

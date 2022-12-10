@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
-import { useLogoutUserAPI } from '../../../Container/Auth/api/auth.hook'
+import { useLogoutUserAPI } from 'Container/Auth/api/auth.hook'
 import Link from 'next/link'
 
 const settings = ['Profile', 'Logout']

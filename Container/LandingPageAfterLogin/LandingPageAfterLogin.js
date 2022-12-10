@@ -12,37 +12,33 @@ import Hero from './Hero/Hero'
 import { SubMainContainer } from './LandingPageAfterLoginStyled'
 import TopCollection from './TopCollection/TopCollection'
 import { SectionWrapper, WeeklyCardSectionWrapper } from './TopCollection/TopCollectionStyle'
-import NavLayout from '../../Components/Layouts/NavLayout'
 
 const LandingPageAfterLogin = () => {
   return (
-    <NavLayout>
-      <MainContainer>
-        <Hero />
+    <MainContainer>
+      <Hero />
 
-        <SubMainContainer>
-          <TopCollection />
+      <SubMainContainer>
+        <TopCollection />
 
-          <WeeklyCardSectionWrapper>
-            <WeeklyFeaturedCards />
-          </WeeklyCardSectionWrapper>
+        <WeeklyCardSectionWrapper>
+          <WeeklyFeaturedCards />
+        </WeeklyCardSectionWrapper>
 
-          <SectionWrapper>
-            <PotentialStarletCards />
-          </SectionWrapper>
+        <SectionWrapper>
+          <PotentialStarletCards />
+        </SectionWrapper>
 
-          <SectionWrapper>
-            <NewArrivalsCards />
-          </SectionWrapper>
+        <SectionWrapper>
+          <NewArrivalsCards />
+        </SectionWrapper>
 
-          <SectionWrapper sx={{ margin: '-40px 0px 0px 0px' }}>
-            <NewArrivalCardMiniComp />
-          </SectionWrapper>
-        </SubMainContainer>
-      </MainContainer>
-    </NavLayout>
+        <SectionWrapper sx={{ margin: '-40px 0px 0px 0px' }}>
+          <NewArrivalCardMiniComp />
+        </SectionWrapper>
+      </SubMainContainer>
+    </MainContainer>
   )
 }
-
 
 export default LandingPageAfterLogin
