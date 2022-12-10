@@ -95,9 +95,9 @@ export const PotentialStarletContentCard = styled(Box)`
     transition-duration: 0.7s;
   }
   gap: 8px;
-  min-height: 233px;
-  min-width: 221px;
-  padding: 6px 7px;
+  min-height: 239px;
+  min-width: 235px;
+  padding: 10px 14px;
   @media ${mobileM} {
     gap: 10px;
     padding: 10px 8px;
@@ -108,7 +108,7 @@ export const PotentialStarletContentCard = styled(Box)`
   @media ${tablet} {
     min-width: 410px;
     padding: 10px 19px;
-
+    /* height: 426px; */
     align-items: center;
   }
 
@@ -196,7 +196,7 @@ export const ImgBox = styled(Box)`
   padding-bottom: 5px;
   @media ${mobileM} {
     height: 270px;
-    width: 270px;
+    width: 95%;
   }
   @media ${tablet} {
     height: 330px;

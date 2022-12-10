@@ -11,6 +11,8 @@ import NavLayout from '../../../Components/Layouts/NavLayout'
 // import { SectionWrapper, WeeklyCardSectionWrapper } from './TopCollection/TopCollectionStyle'
 import { RootContainer } from '../common/common.styles'
 import Hero from '../Sections/Hero'
+import NewArrivalsCards from '../Sections/NewArrivalsCards'
+import PotentialStarletCards from '../Sections/PotentialStarletCards'
 import TopCollection from '../Sections/TopCollection'
 import WeeklyFeatured from '../Sections/WeeklyFeatured'
 
@@ -22,6 +24,8 @@ const LandingPageAfterLogin = () => {
 
         <TopCollection />
         <WeeklyFeatured />
+        <PotentialStarletCards />
+        <NewArrivalsCards />
         {/* 
           
 
