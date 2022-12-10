@@ -9,9 +9,16 @@ const NavLayout = ({ children, header, footer }) => {
   const { isLoggedIn } = useSelector(selectUser)
   return (
     <>
-      <Box sx={{ minHeight: '100vh', backgroundColor: 'white' }}>
-        {isLoggedIn === true ? <Header /> : null}
-        <Box marginTop="60px"> {children}</Box>
+      <Box sx={{ width: '100%', minHeight: '100vh', backgroundColor: 'white' }}>
+        {isLoggedIn === true ? (
+          <>
+            <Header />
+          </>
+        ) : null}
+        <Box marginTop={isLoggedIn && '60px'} style={{ width: '100%' }}>
+          {' '}
+          {children}
+        </Box>
 
         <Footer />
       </Box>

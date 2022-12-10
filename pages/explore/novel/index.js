@@ -1,12 +1,12 @@
-import React from "react";
-import Explore from "../../../Container/Explore/Explore";
+import React from 'react'
+import Explore from 'Container/FeatureSection/Pages/Explore'
 
 const index = () => {
   return (
     <>
       <Explore />
     </>
-  );
-};
+  )
+}
 
-export default index;
+export default index

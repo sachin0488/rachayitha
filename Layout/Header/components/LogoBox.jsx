@@ -1,17 +1,22 @@
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import styled from '@emotion/styled'
 import React from 'react'
+import Link from 'next/link'
 
 const LogoBox = () => {
   return (
-    <Root>
-      <AutoStoriesOutlinedIcon
-        style={{
-          fontSize: 29,
-        }}
-      />
-      <Text>E Book</Text>
-    </Root>
+    <Link href={'/'}>
+      <a>
+        <Root>
+          <AutoStoriesOutlinedIcon
+            style={{
+              fontSize: 29,
+            }}
+          />
+          <Text>E Book</Text>
+        </Root>
+      </a>
+    </Link>
   )
 }
 

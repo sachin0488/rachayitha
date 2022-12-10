@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { GenreTitle, MenuItem } from '../Explore/ExploreStyle'
 import { useRouter } from 'next/router'
+
 export const RankingLinkList = [
   {
     href: '/ranking/novel?lead=male',

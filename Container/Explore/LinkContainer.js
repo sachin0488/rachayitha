@@ -12,7 +12,7 @@ const LinkContainer = ({ href, img_url, genretitle }) => {
       <Link href={`${href}&genre=${genre}&sub_genre=${sub_genre}`}>
         <MenuItem>
           <Image src={img_url} />
-          <GenreTitle className={router.asPath === `${href}&genre=${genre}&sub_genre=${sub_genre}` ? 'explore' : ''}>
+          <GenreTitle classN ame={router.asPath === `${href}&genre=${genre}&sub_genre=${sub_genre}` ? 'explore' : ''}>
             {genretitle}
           </GenreTitle>
         </MenuItem>
