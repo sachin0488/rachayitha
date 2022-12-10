@@ -24,7 +24,7 @@ import GenreMenuBarComp from '../../Components/GenreMenuBarComp/GenreMenuBarComp
 import MuiAccordion from '../../Components/MuiAccordion/MuiAccordion'
 import { Typography } from '@mui/material'
 import GenreButtonLIstMobile from '../../Components/GenreButtonList/GenreButtonLIstMobile'
-import NavLayout from '../../Components/Layouts/NavLayout'
+
 const Explore = () => {
   const { data, isLoading, isError, error } = useExplore()
   // console.log(data.data, 'inside explore')
@@ -34,54 +34,52 @@ const Explore = () => {
   }
 
   return (
-    <NavLayout>
-      <Wrapper>
-        <SubWrapper>
-          <ExploreBannerContainer>
-            <ExploreBannerImageContainer>
-              <ExploreBannerImg src={bannerImg} alt="bannerImg" />
-              <ExploreBannerHeading>Explore</ExploreBannerHeading>
-            </ExploreBannerImageContainer>
-            <GenreMenuBarComp sectionName={ExploreLinkList} />
-          </ExploreBannerContainer>
-          <MainContentWrapper>
-            <GenreAccordionContainer>
-              {ExploreTextAndNestedRoute.map(comp => (
-                <RankingAccordionContainer
-                  text={comp.text}
-                  explore={comp.explore}
-                  section={comp.section}
-                  high={comp.high}
-                />
-              ))}
-            </GenreAccordionContainer>
-            <ShowQueryContainer>
-              <SortByWrapper>
-                <MuiAccordion text="Sort By" high="300px">
-                  {ExploreTextAndNestedRoute.map(comp => (
-                    <>
-                      <Typography marginBottom="15px" fontSize="20px">
-                        {comp.text}
-                      </Typography>
-                      <GenreButtonLIstMobile explore={comp.explore} section={comp.section} />
-                    </>
-                  ))}
-                </MuiAccordion>
-              </SortByWrapper>
-              <SortByHeading>Sort By</SortByHeading>
-              <HorizontalRule />
-              <SubGenreButton sectionName="novel" />
+    <Wrapper>
+      <SubWrapper>
+        <ExploreBannerContainer>
+          <ExploreBannerImageContainer>
+            <ExploreBannerImg src={bannerImg} alt="bannerImg" />
+            <ExploreBannerHeading>Explore</ExploreBannerHeading>
+          </ExploreBannerImageContainer>
+          <GenreMenuBarComp sectionName={ExploreLinkList} />
+        </ExploreBannerContainer>
+        <MainContentWrapper>
+          <GenreAccordionContainer>
+            {ExploreTextAndNestedRoute.map(comp => (
+              <RankingAccordionContainer
+                text={comp.text}
+                explore={comp.explore}
+                section={comp.section}
+                high={comp.high}
+              />
+            ))}
+          </GenreAccordionContainer>
+          <ShowQueryContainer>
+            <SortByWrapper>
+              <MuiAccordion text="Sort By" high="300px">
+                {ExploreTextAndNestedRoute.map(comp => (
+                  <>
+                    <Typography marginBottom="15px" fontSize="20px">
+                      {comp.text}
+                    </Typography>
+                    <GenreButtonLIstMobile explore={comp.explore} section={comp.section} />
+                  </>
+                ))}
+              </MuiAccordion>
+            </SortByWrapper>
+            <SortByHeading>Sort By</SortByHeading>
+            <HorizontalRule />
+            <SubGenreButton sectionName="novel" />
 
-              <CardsWrapper>
-                {data?.data?.resources?.data?.map((card, index) =>
-                  isLoading ? <Loading card={card} index={index} /> : <ExploreCard card={card} index={index} />,
-                )}
-              </CardsWrapper>
-            </ShowQueryContainer>
-          </MainContentWrapper>
-        </SubWrapper>
-      </Wrapper>
-    </NavLayout>
+            <CardsWrapper>
+              {data?.data?.resources?.data?.map((card, index) =>
+                isLoading ? <Loading card={card} index={index} /> : <ExploreCard card={card} index={index} />,
+              )}
+            </CardsWrapper>
+          </ShowQueryContainer>
+        </MainContentWrapper>
+      </SubWrapper>
+    </Wrapper>
   )
 }
 

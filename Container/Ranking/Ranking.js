@@ -17,14 +17,11 @@ import RankingCard from './RankingCard'
 import RankingAccordionContainer, { RankingTextAndNestedRoute } from './RankingAccordionContainer'
 import { RankingLinkList } from './RankingLinksContainer'
 import GenreMenuBarComp from '../../Components/GenreMenuBarComp/GenreMenuBarComp'
-import NavLayout from '../../Components/Layouts/NavLayout'
 
 const ItemDetails = () => {
   const { data, isLoading, isError, error, isFetching } = useRanking()
 
   return (
-    <>
-      <NavLayout>
         <Wrapper>
           <SubWrapper>
             <ExploreBannerContainer>
@@ -56,8 +53,6 @@ const ItemDetails = () => {
             </MainContentWrapper>
           </SubWrapper>
         </Wrapper>
-      </NavLayout>
-    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import StarHalfOutlinedIcon from '@mui/icons-material/StarHalfOutlined'
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined'
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
 export const NavPageLinks = [
   {
@@ -16,7 +17,7 @@ export const NavPageLinks = [
     link: '/ranking/novel?lead=male&genre=all',
   },
   {
-    Icon: StarHalfOutlinedIcon,
+    Icon: BorderColorOutlinedIcon,
     label: 'Create',
     path: '/create',
     link: '/create/dashboard/stories',

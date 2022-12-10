@@ -27,18 +27,15 @@ import {
 import Image from 'next/image'
 import { IoIosAddCircle } from 'react-icons/io'
 import RatingStar from '../../Components/RatingComp/Rating'
-import { Box, Typography } from '@mui/material'
+import {  Typography } from '@mui/material'
 import RecommendedCards from './RecommendedCards'
 import ReviewSectionCom from './ReviewSectionCom'
 import MuiTabs from '../../Components/MuiTabs/MuiTabs'
 import { bookAboutAndContentDetailMuiTabList } from '../../hooks/useMuiTabComp'
-import NavLayout from '../../Components/Layouts/NavLayout'
-import { Category } from '@mui/icons-material'
 
 const BookDetail = () => {
   const router = useRouter()
   const { data, isLoading, isError, error, isFetching } = useBookDetail(router.query.book)
-  console.log(data?.data?.data, 'book detail ')
 
   if (isLoading) {
     return <h1>LOADING ... </h1>
@@ -50,67 +47,65 @@ const BookDetail = () => {
 
   return (
     <>
-      <NavLayout>
-        {data?.data?.data.map(book => (
-          <Wrapper>
-            <SubWrapper>
-              <BookDetailCard>
-                <BookDetailCardLeftSection>
-                  <Img src={book?.cover_img} />
-                </BookDetailCardLeftSection>
-                <BookDetailCardRightSection>
-                  <TitleFantasyViewSection>
-                    <Title>{book?.book_name}</Title>
-                    <FantasyAndViewSection>
-                      {book?.category?.map(category => (
-                        <Text>{category?.name}</Text>
-                      ))}
-
-                      <Text>
-                        <Image src={Chapter} /> {book?.chapter_count} Chapters
-                      </Text>
-                      <Text>
-                        <GrFormView /> 2.1 M Views
-                      </Text>
-                    </FantasyAndViewSection>
-                  </TitleFantasyViewSection>
-                  <TitleFantasyViewSection>
-                    <FantasyAndViewSection>
-                      <Author>Author :</Author>
-                      <AuthorText>Fruit of Chaos</AuthorText>
-                    </FantasyAndViewSection>
-                    <FantasyAndViewSection>
-                      <RatingStar value={book?.rating?.rate__avg} size="large" />
-                      <StarText>{book?.rating?.rate__avg}</StarText>
-                      <RatingSectionComp>(300 rating)</RatingSectionComp>
-                    </FantasyAndViewSection>
-                  </TitleFantasyViewSection>
-
+      {data?.data?.data.map(book => (
+        <Wrapper>
+          <SubWrapper>
+            <BookDetailCard>
+              <BookDetailCardLeftSection>
+                <Img src={book?.cover_img} />
+              </BookDetailCardLeftSection>
+              <BookDetailCardRightSection>
+                <TitleFantasyViewSection>
+                  <Title>{book?.book_name}</Title>
                   <FantasyAndViewSection>
-                    <ReadButton>READ</ReadButton>
-                    <AddToLibraryButton>
-                      <IoIosAddCircle size="30" />
-                      ADD TO LIBRARY
-                    </AddToLibraryButton>
+                    {book?.category?.map(category => (
+                      <Text>{category?.name}</Text>
+                    ))}
+
+                    <Text>
+                      <Image src={Chapter} /> {book?.chapter_count} Chapters
+                    </Text>
+                    <Text>
+                      <GrFormView /> 2.1 M Views
+                    </Text>
                   </FantasyAndViewSection>
-                  <MuiTabWrapper>
-                    <MuiTabs muiTab={bookAboutAndContentDetailMuiTabList} styles={styles} />
-                  </MuiTabWrapper>
-                </BookDetailCardRightSection>
-              </BookDetailCard>
-            </SubWrapper>
-            <RecommendedCards />
-            <SubWrapper>
-              <FantasyAndViewSection>
-                <RecommendedCardsHeading>139 Reviews</RecommendedCardsHeading>
-                <RatingStar value="4" />
-                <Typography sx={{ color: 'black' }}>4.0</Typography>
-              </FantasyAndViewSection>
-              <ReviewSectionCom book={book} />
-            </SubWrapper>
-          </Wrapper>
-        ))}
-      </NavLayout>
+                </TitleFantasyViewSection>
+                <TitleFantasyViewSection>
+                  <FantasyAndViewSection>
+                    <Author>Author :</Author>
+                    <AuthorText>Fruit of Chaos</AuthorText>
+                  </FantasyAndViewSection>
+                  <FantasyAndViewSection>
+                    <RatingStar value={book?.rating?.rate__avg} size="large" />
+                    <StarText>{book?.rating?.rate__avg}</StarText>
+                    <RatingSectionComp>(300 rating)</RatingSectionComp>
+                  </FantasyAndViewSection>
+                </TitleFantasyViewSection>
+
+                <FantasyAndViewSection>
+                  <ReadButton>READ</ReadButton>
+                  <AddToLibraryButton>
+                    <IoIosAddCircle size="30" />
+                    ADD TO LIBRARY
+                  </AddToLibraryButton>
+                </FantasyAndViewSection>
+                <MuiTabWrapper>
+                  <MuiTabs muiTab={bookAboutAndContentDetailMuiTabList} styles={styles} />
+                </MuiTabWrapper>
+              </BookDetailCardRightSection>
+            </BookDetailCard>
+          </SubWrapper>
+          <RecommendedCards />
+          <SubWrapper>
+            <FantasyAndViewSection>
+              <RecommendedCardsHeading>139 Reviews</RecommendedCardsHeading>
+              <RatingStar value="4" />
+              <Typography sx={{ color: 'black' }}>4.0</Typography>
+            </FantasyAndViewSection>
+            <ReviewSectionCom book={book} />
+          </SubWrapper>
+        </Wrapper>
+      ))}
     </>
   )
 }

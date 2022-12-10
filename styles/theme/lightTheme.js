@@ -26,15 +26,27 @@ const lightTheme = createTheme({
     fontFamily: ['Inter', 'sans-serif'].join(','),
   },
   mixins: {
-    // drawer: {
-    //   minWidth: 170,
-    //   width: 170,
-    // },
+    drawer: {
+      minWidth: 200,
+      width: 200,
+    },
     toolbar: {
       minHeight: 72,
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&&': {
+            textTransform: 'capitalize',
+            '.MuiButton-label': {
+              textTransform: 'capitalize',
+            },
+          },
+        },
+      },
+    },
     MuiTooltip: {
       styleOverrides: {
         root: {},
