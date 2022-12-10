@@ -1,6 +1,7 @@
-import React from 'react'
 import Ranking from 'Container/FeatureSection/Pages/Ranking'
-const index = () => {
+import React from 'react'
+
+const poem = () => {
   return (
     <>
       <Ranking />
@@ -8,4 +9,4 @@ const index = () => {
   )
 }
 
-export default index
+export default poem

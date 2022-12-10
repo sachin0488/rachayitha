@@ -2,11 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { styles } from './MuiTabStyles'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { Wrapper, SubWrapper } from '../Explore/ExploreStyle'
 import { GrFormView } from 'react-icons/gr'
 import Chapter from '../../public/chapter.png'
 import useBookDetail from './api/bookDetail.hook'
 import {
+  Wrapper,
+  SubWrapper,
   BookDetailCard,
   BookDetailCardLeftSection,
   BookDetailCardRightSection,
@@ -27,11 +28,12 @@ import {
 import Image from 'next/image'
 import { IoIosAddCircle } from 'react-icons/io'
 import RatingStar from '../../Components/RatingComp/Rating'
-import {  Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import RecommendedCards from './RecommendedCards'
 import ReviewSectionCom from './ReviewSectionCom'
 import MuiTabs from '../../Components/MuiTabs/MuiTabs'
 import { bookAboutAndContentDetailMuiTabList } from '../../hooks/useMuiTabComp'
+import { img_url } from './RecommendedCards'
 
 const BookDetail = () => {
   const router = useRouter()
@@ -52,7 +54,7 @@ const BookDetail = () => {
           <SubWrapper>
             <BookDetailCard>
               <BookDetailCardLeftSection>
-                <Img src={book?.cover_img} />
+                <Img src={img_url} />
               </BookDetailCardLeftSection>
               <BookDetailCardRightSection>
                 <TitleFantasyViewSection>
@@ -94,9 +96,8 @@ const BookDetail = () => {
                 </MuiTabWrapper>
               </BookDetailCardRightSection>
             </BookDetailCard>
-          </SubWrapper>
-          <RecommendedCards />
-          <SubWrapper>
+
+            <RecommendedCards />
             <FantasyAndViewSection>
               <RecommendedCardsHeading>139 Reviews</RecommendedCardsHeading>
               <RatingStar value="4" />

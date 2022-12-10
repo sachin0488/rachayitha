@@ -5,15 +5,19 @@ export const styles = {
     },
     '& .MuiButtonBase-root': {
       fontSize: '21px',
-      margin: '0px 20px',
+      marginRight: ' 20px',
       textTransform: 'capitalize',
     },
     '& .MuiTabs-indicator ': {},
   },
   wrapper: {
     width: '100%',
+    paddingLeft: '0px',
+    '& .css-19midj6': {
+      paddingLeft: '0px',
+    },
     '@media (min-width:1100px)': {
-      width: '90%',
+      width: '100%',
     },
   },
   tabPanel: {

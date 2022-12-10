@@ -9,7 +9,7 @@ const SortBy = () => {
   return (
     <>
       <SortByWrapper>
-        <MuiAccordion text="Sort By" high="300px">
+        <MuiAccordion text="Select Genre" high="300px">
           {ExploreTextAndNestedRoute.map(comp => (
             <>
               <Typography marginBottom="15px" fontSize="20px">

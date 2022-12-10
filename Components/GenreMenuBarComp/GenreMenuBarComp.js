@@ -1,14 +1,16 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import { GenreMenuBar } from '../../Container/Explore/ExploreStyle'
-import GenreMenuBarLeftSection from './Components/GenreMenuBarLeftSection'
-import GenreMenuBarRightSection from './Components/GenreMenuBarRightSection'
+import ExploreGenreMenuBarLeftSection from './Components/ExploreGenreMenuBarLeftSection'
+import RankingGenreMenuBarLeftSection from './Components/RankingGenreMenuBarLeftSection'
 
-const GenreMenuBarComp = ({ sectionName }) => {
+const GenreMenuBarComp = () => {
+  const router = useRouter()
+  const section = router.pathname.split('/')[1]
   return (
     <>
       <GenreMenuBar>
-        <GenreMenuBarLeftSection sectionName={sectionName} />
-        <GenreMenuBarRightSection />
+        {section == 'explore' ? <ExploreGenreMenuBarLeftSection /> : <RankingGenreMenuBarLeftSection />}
       </GenreMenuBar>
     </>
   )

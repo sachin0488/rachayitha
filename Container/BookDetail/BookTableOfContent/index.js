@@ -7,6 +7,7 @@ import Chapter from './Components/Chapter'
 const BookTableOfContent = () => {
   const router = useRouter()
   const { data } = useBookDetail(router.query.book)
+
   return (
     <ContentWrapper>
       <>
