@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { Box, Button, Typography } from '@mui/material'
 import { laptop, laptopM, laptopS, mobileL, mobileM, tablet, tabletS } from '../../../styles/mediaQuery/breakPoints'
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 
 export const BannerContainer = styled(Box)`
   position: relative;
@@ -45,17 +47,25 @@ export const Wrapper = styled(Box)`
 export const SubWrapper = styled(Box)`
   width: 100%;
   height: 100%;
-  padding: 30px 25px;
+  padding: 30px 15px;
   max-width: 1920px;
+  padding-top: 105px;
 
   @media ${mobileM} {
+    padding: 30px 20px;
+    padding-top: 105px;
+  }
+  @media ${tabletS} {
     padding: 30px 40px;
+    padding-top: 105px;
   }
   @media ${laptopS} {
     padding: 40px 80px;
+    padding-top: 105px;
   }
   @media ${laptopM} {
     padding: 40px 106px;
+    padding-top: 105px;
   }
   display: flex;
   justify-content: start;
@@ -102,10 +112,10 @@ export const LeftSideGenreMenuBar = styled(Box)`
   gap: 20px;
   width: 100%;
   @media ${tablet} {
-    width: 50%;
+    width: 75%;
   }
   @media ${laptopM} {
-    width: 40%;
+    width: 80%;
   }
 `
 export const RightSideGenreMenuBar = styled(Box)`
@@ -130,9 +140,17 @@ export const RightSideGenreMenuBar = styled(Box)`
 export const MenuItem = styled.div`
   display: flex;
   justify-content: center;
-  gap: 2px;
+  gap: 4px;
+  padding-bottom: 5px;
   align-items: center;
   cursor: pointer;
+  color: #ffffff;
+  opacity: 0.5;
+  border: 2px solid transparent;
+  &.genre {
+    border-bottom: 2px solid white;
+    opacity: 1;
+  }
 `
 
 export const GenreTitle = styled(Typography)`
@@ -141,7 +159,7 @@ export const GenreTitle = styled(Typography)`
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
-  padding-bottom: 5px;
+
   @media ${mobileM} {
     font-size: 19px;
     line-height: 20px;
@@ -450,4 +468,11 @@ export const Buttons = styled(Button)`
 export const HashTagComp = styled(Typography)`
   color: #673ccc;
   font-size: 13px;
+`
+
+export const NovelIcon = styled(MenuBookRoundedIcon)`
+  color: white;
+`
+export const PoemIcon = styled(DriveFileRenameOutlineOutlinedIcon)`
+  color: white;
 `

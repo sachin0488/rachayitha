@@ -29,4 +29,7 @@ const ChapterName = styled(Typography)`
   font-size: 16px;
   line-height: 32px;
   color: #02428c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `

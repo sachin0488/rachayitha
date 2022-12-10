@@ -65,7 +65,7 @@ export const GenreMenuBar = styled(Box)`
   position: absolute;
   bottom: -28px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   width: 95%;
@@ -96,10 +96,10 @@ export const LeftSideGenreMenuBar = styled(Box)`
   gap: 20px;
   width: 100%;
   @media ${tablet} {
-    width: 50%;
+    width: 75%;
   }
   @media ${laptopM} {
-    width: 40%;
+    width: 80%;
   }
 `
 export const RightSideGenreMenuBar = styled(Box)`
@@ -402,11 +402,13 @@ export const ButtonContainer = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 6px;
-  flex-wrap: wrap;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   @media ${mobileL} {
     gap: 13px;
   }
-  flex-wrap: wrap;
 `
 
 export const ParagraphText = styled(Typography)`
@@ -427,7 +429,10 @@ export const Buttons = styled(Button)`
   letter-spacing: 0.1em;
   border-radius: 16px;
   padding: 5px 12px;
+  min-width: 85px;
   border: 1px solid #e7e7e7;
+  color: black;
+  text-transform: capitalize;
   &.genre {
     background-color: #673ccb;
     color: white;

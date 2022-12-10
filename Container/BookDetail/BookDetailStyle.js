@@ -12,9 +12,42 @@ import {
   tabletS,
 } from '../../styles/mediaQuery/breakPoints'
 
+export const Wrapper = styled(Box)`
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 13px 11px 13px rgba(0, 0, 0, 0.2);
+  padding-top: 80px;
+`
+
+export const SubWrapper = styled(Box)`
+  width: 100%;
+  height: 100%;
+  padding: 30px 25px;
+  max-width: 1926px;
+  @media ${mobileM} {
+    padding: 30px 40px;
+  }
+  @media ${laptopS} {
+    padding: 40px 80px;
+  }
+  @media ${laptopM} {
+    padding: 40px 106px;
+  }
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  gap: 42px;
+`
+
 export const BookDetailCard = styled(Box)`
   width: 100%;
-  height: 1150px;
+
   display: flex;
   justify-content: start;
   align-items: center;
@@ -56,6 +89,7 @@ export const BookDetailCardLeftSection = styled(Box)`
     height: 90%;
   }
   @media ${laptop} {
+    width: 32%;
     height: 95%;
   }
   @media ${laptopS} {
@@ -255,18 +289,8 @@ export const ReviewSectionAddToLibraryButton = styled(Box)`
 `
 
 export const RecommendedCardsWrapper = styled(Box)`
-  padding: 0px 0px 0px 40px;
-  @media ${laptop} {
-    padding: 0px 0px 0px 40px;
-  }
-  @media ${laptopS} {
-    padding: 0px 0px 0px 86px;
-  }
-  @media ${laptopM} {
-    padding: 0px 0px 0px 106px;
-  }
   width: 100%;
-  height: 355px;
+
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -287,8 +311,9 @@ export const RecommendedCardsContainer = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
+  padding: 5px;
   gap: 36px;
-  height: 92%;
+
   width: 100%;
   overflow-x: auto;
   &::-webkit-scrollbar {
@@ -307,6 +332,12 @@ export const IndividualRecommendedCardContainer = styled(Box)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   padding: 0px 0px 5px 0px;
+  border: 2px solid transparent;
+  &:hover {
+    border-color: #582ac5;
+    transform: scale(1.03, 1.03);
+    transition-duration: 0.7s;
+  }
 `
 export const CardImg = styled.img`
   padding: 11px 13px;
@@ -321,6 +352,9 @@ export const IndividualRecommendedCardTitle = styled(Typography)`
   line-height: 16px;
   color: #000000;
   padding: 0px 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 export const Fantasy = styled(Typography)`
@@ -337,7 +371,7 @@ export const RatingSection = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 10px;
-  padding: 0px 13px;
+  padding: 0px 13px 10px 13px;
 `
 export const AllCategoryRatingSection = styled(Box)`
   display: flex;

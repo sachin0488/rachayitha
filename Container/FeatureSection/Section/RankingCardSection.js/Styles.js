@@ -32,12 +32,15 @@ export const Cards = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 30px;
+  @media ${mobileL} {
+    gap: 30px;
+  }
+  gap: 20px;
 `
 export const LeftSideCardPart = styled(Box)`
   width: 15%;
   @media ${mobileL} {
-    width: 15%;
+    width: 16%;
   }
   @media ${tablet} {
     width: 10%;
@@ -125,7 +128,7 @@ export const RatingContainer = styled(Box)`
 
 export const Img = styled.img`
   width: 100%;
-  height: 45%;
+  height: 55%;
   @media ${mobileM} {
     width: 100%;
     height: 70%;

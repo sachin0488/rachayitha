@@ -19,7 +19,8 @@ export const AccordionDashBoardComp = styled(Accordion)`
 
 export const AccordionSummaryComp = styled(AccordionSummary)`
   &.${accordionSummaryClasses.root} {
-    width: 150px;
+    width: 180px;
+    padding-left: 0px;
   }
   @media ${laptop} {
     min-width: 250px;
@@ -48,6 +49,7 @@ export const AccordionSummaryDashBoardComp = styled(AccordionSummary)`
 export const AccordionDetailsComp = styled(AccordionDetails)`
   &.${accordionDetailsClasses.root} {
     margin-top: -10px;
+    padding-left: 0px;
   }
 `
 

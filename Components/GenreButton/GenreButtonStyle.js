@@ -7,9 +7,10 @@ export const GenreButtons = styled(Button)`
   font-size: 15px;
   line-height: 18px;
   padding: 8px 12px;
-  border-radius: 12px;
+  border-radius: 19px;
   border: none;
   letter-spacing: 0.1em;
+  color: black;
   &.genre {
     background-color: #673ccb;
     color: white;
@@ -21,7 +22,7 @@ export const GenreButtons = styled(Button)`
 `
 export const GenreButtonWrapper = styled(Box)`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: 10px 0px;
 `
