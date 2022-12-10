@@ -92,10 +92,11 @@ export const NewArrivalContentCard = styled(Box)`
   }
   gap: 10px;
   padding: 16px 6px;
-  min-width: 265px;
+  min-width: 220px;
   @media ${tablet} {
     padding: 16px 14px;
     min-width: 312px;
+    height: 98%;
   }
   height: 98%;
   background: #ffffff;
@@ -132,8 +133,12 @@ export const StoryHeading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
-  font-size: 25px;
-  line-height: 29px;
+  font-size: 14px;
+  line-height: 16px;
+  @media ${tablet} {
+    font-size: 25px;
+    line-height: 29px;
+  }
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -143,8 +148,12 @@ export const StoryHeading = styled(Typography)`
 `
 export const ImgWrapper = styled(Box)`
   border-radius: 10px;
-  width: 235px;
-  height: 285px;
+  width: 190px;
+  height: 205px;
+  @media ${mobileM} {
+    width: 235px;
+    height: 285px;
+  }
   @media ${tablet} {
     width: 282px;
     height: 331px;

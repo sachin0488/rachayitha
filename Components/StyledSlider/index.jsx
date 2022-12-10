@@ -48,20 +48,24 @@ const Root = styled.div`
   gap: 20px;
   align-items: center;
   width: 100%;
-  height: 232px;
+  min-height: 232px;
   padding-left: var(--element-left-spacing);
 
   @media ${mobileM} {
-    height: 315px;
+    height: 100%;
+    min-height: 315px;
+
     gap: 30px;
   }
 
   @media ${tablet} {
-    height: 409px;
+    height: 100%;
+    min-height: 426px;
   }
 
   overflow-x: auto;
   padding-bottom: 20px;
+  padding-top: 10px;
   @media (min-width: 500px) {
     &::-webkit-scrollbar {
       width: 5px; /* width of the entire scrollbar */
