@@ -18,7 +18,7 @@ export const useAddToLibraryAPI = () => {
     },
     onError: error => {
       enqueueSnackbar('Request Failed !', {
-        variant: 'success',
+        variant: 'error',
       })
     },
   })
