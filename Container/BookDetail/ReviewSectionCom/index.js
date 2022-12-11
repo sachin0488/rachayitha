@@ -19,7 +19,7 @@ import {
 
 import WriteReviewModal from './Components/WriteReviewModal'
 
-const ReviewSectionCom = ({ book }) => {
+const ReviewSectionCom = () => {
   return (
     <>
       <AllCategoryRatingSection>
@@ -48,7 +48,7 @@ const ReviewSectionCom = ({ book }) => {
         </AllCategoryRatingRightSection>
       </AllCategoryRatingSection>
       <CommentSectionWrapper>
-        <MuiTabs muiTabsProp={book} muiTab={bookLikedAndNewReviewDetailMuiTabList} styles={styles} />
+        <MuiTabs muiTab={bookLikedAndNewReviewDetailMuiTabList} styles={styles} />
       </CommentSectionWrapper>
     </>
   )

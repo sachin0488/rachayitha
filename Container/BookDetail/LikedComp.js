@@ -27,7 +27,7 @@ const LikedComp = () => {
   return (
     <>
       {data?.data?.data.map(comment => (
-        <CommentSectionSubWrapper>
+        <CommentSectionSubWrapper key={comment?.id}>
           <Image src={ProfileImg} />
           <CommentSectionSubWrapperRightSideContent>
             <UserName>Guiltythree</UserName> <RatingStar value="5" />

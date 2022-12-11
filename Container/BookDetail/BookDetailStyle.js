@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Box, Tab, Tabs, TextareaAutosize, Typography } from '@mui/material'
+import { Box, Button, Tab, Tabs, TextareaAutosize, Typography } from '@mui/material'
 import React from 'react'
 import {
   laptop,
@@ -172,7 +172,7 @@ export const AuthorText = styled(Typography)`
   color: #5a2cc6;
 `
 
-export const ReadButton = styled.button`
+export const ReadButton = styled(Button)`
   background: #5a2cc6;
   border: 1px solid #5a2cc6;
   border-radius: 23px;
@@ -182,7 +182,10 @@ export const ReadButton = styled.button`
   font-size: 20px;
   line-height: 23px;
   text-transform: uppercase;
-
+  &:hover {
+    background-color: #5a2cc6;
+    color: white;
+  }
   color: #ffffff;
   cursor: pointer;
   padding: 6px 18px;
@@ -193,16 +196,16 @@ export const ReadButton = styled.button`
     padding: 9px 26px;
   }
   @media ${laptopS} {
-    padding: 12px 35px;
+    padding: 10px 35px;
   }
 `
-export const AddToLibraryButton = styled(Box)`
+export const AddToLibraryButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
   color: #5b2ec7;
-  padding: 9px 15px;
-  gap: 7px;
+  /* padding: 9px 15px; */
+  gap: -3px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -221,12 +224,12 @@ export const AddToLibraryButton = styled(Box)`
     line-height: 18px;
   }
   @media ${laptop} {
-    padding: 5px 15px;
-    font-size: 16px;
+    padding: 10px 15px;
+    font-size: 18px;
     line-height: 20px;
   }
   @media ${laptopS} {
-    padding: 6px 18px;
+    padding: 10px 18px;
     font-size: 20px;
     line-height: 23px;
   }
@@ -250,12 +253,11 @@ export const RatingSectionComp = styled(Box)`
   font-weight: 200;
 `
 
-export const ReviewSectionAddToLibraryButton = styled(Box)`
+export const ReviewSectionAddToLibraryButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 9px 15px;
-  gap: 7px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -609,17 +611,8 @@ export const CardRatingText = styled(Typography)`
 `
 
 export const WriteReviewModalWrapper = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 600px;
-  background-color: white;
-
-  border-top: 5px solid #5a2cc6;
-  box-shadow: 24;
-  padding: 16px;
+  width: 100%;
+  height: 100%;
 `
 
 export const PostCommentText = styled(TextareaAutosize)`
@@ -627,7 +620,7 @@ export const PostCommentText = styled(TextareaAutosize)`
   background-color: transparent;
   padding: 0px 16px;
   margin-top: 14px;
-  min-height: 500px;
+  min-height: 300px;
   border: none;
   font-size: 20px;
   outline: none;

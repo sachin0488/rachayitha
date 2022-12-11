@@ -28,8 +28,8 @@ const RecommendedCards = () => {
       <RecommendedCardsWrapper>
         <RecommendedCardsHeading>You may also Like</RecommendedCardsHeading>
         <RecommendedCardsContainer>
-          {List?.map(card => (
-            <IndividualRecommendedCardContainer key={card.id}>
+          {List?.map((card, index) => (
+            <IndividualRecommendedCardContainer key={index}>
               <CardImg src={img_url} />
               <IndividualRecommendedCardTitle>{card.book_name}</IndividualRecommendedCardTitle>
               <Fantasy>{card.genre}</Fantasy>

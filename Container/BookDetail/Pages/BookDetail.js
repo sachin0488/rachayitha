@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
-import { styles } from './MuiTabStyles'
+import styles from '../MuiTabStyles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { GrFormView } from 'react-icons/gr'
-import Chapter from '../../public/chapter.png'
-import useBookDetail from './api/bookDetail.hook'
+import Chapter from '../../../public/chapter.png'
+import useBookDetail, { useAddToLibraryAPI } from '../api/bookDetail.hook'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import {
   Wrapper,
   SubWrapper,
@@ -24,21 +24,21 @@ import {
   StarText,
   Author,
   MuiTabWrapper,
-} from './BookDetailStyle'
+} from '../BookDetailStyle'
 import Image from 'next/image'
-import { IoIosAddCircle } from 'react-icons/io'
-import RatingStar from '../../Components/RatingComp/Rating'
+import RatingStar from '../../../Components/RatingComp/Rating'
 import { Typography } from '@mui/material'
-import RecommendedCards from './RecommendedCards'
-import ReviewSectionCom from './ReviewSectionCom'
-import MuiTabs from '../../Components/MuiTabs/MuiTabs'
-import { bookAboutAndContentDetailMuiTabList } from '../../hooks/useMuiTabComp'
-import { img_url } from './RecommendedCards'
+import RecommendedCards from '../RecommendedCards'
+import ReviewSectionCom from '../ReviewSectionCom'
+import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
+import { bookAboutAndContentDetailMuiTabList } from '../../../hooks/useMuiTabComp'
+import { img_url } from '../RecommendedCards'
+import styled from '@emotion/styled'
 
 const BookDetail = () => {
   const router = useRouter()
   const { data, isLoading, isError, error, isFetching } = useBookDetail(router.query.book)
-
+  const { handleAddToLibrary } = useAddToLibraryAPI()
   if (isLoading) {
     return <h1>LOADING ... </h1>
   }
@@ -47,12 +47,17 @@ const BookDetail = () => {
     return <h1>{error?.message}</h1>
   }
 
+  const handleClick = () => {
+    console.log(router.query.book, 'id')
+    handleAddToLibrary(router.query.book)
+  }
+
   return (
     <>
-      {data?.data?.data.map(book => (
+      {data?.data?.data.map((book, index) => (
         <Wrapper>
           <SubWrapper>
-            <BookDetailCard>
+            <BookDetailCard key={index}>
               <BookDetailCardLeftSection>
                 <Img src={img_url} />
               </BookDetailCardLeftSection>
@@ -86,8 +91,7 @@ const BookDetail = () => {
 
                 <FantasyAndViewSection>
                   <ReadButton>READ</ReadButton>
-                  <AddToLibraryButton>
-                    <IoIosAddCircle size="30" />
+                  <AddToLibraryButton onClick={handleClick} startIcon={<AddCircleOutlinedIcon style={IconStyle} />}>
                     ADD TO LIBRARY
                   </AddToLibraryButton>
                 </FantasyAndViewSection>
@@ -103,7 +107,7 @@ const BookDetail = () => {
               <RatingStar value="4" />
               <Typography sx={{ color: 'black' }}>4.0</Typography>
             </FantasyAndViewSection>
-            <ReviewSectionCom book={book} />
+            <ReviewSectionCom />
           </SubWrapper>
         </Wrapper>
       ))}
@@ -112,3 +116,16 @@ const BookDetail = () => {
 }
 
 export default BookDetail
+
+const IconStyle = {
+  color: '#5b2ec7',
+  fontSize: '24px',
+  // '@media (min-width:600px)': {
+  //   fontSize: '27px',
+  // },
+}
+
+const Form = styled.form`
+  width: 100%;
+  height: 100%;
+`
