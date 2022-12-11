@@ -1,28 +1,31 @@
-import React from "react";
-import { Modal, Button, Box, Typography } from "@mui/material";
-import {
-  EditProfileButton,
-  EditProfileModalWrapper,
-  UserProfileHeading,
-} from "./UserProfileStyle";
-import { AiFillEdit } from "react-icons/ai";
+import React from 'react'
+import { Modal, Button, Box, Typography } from '@mui/material'
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
+import { EditProfileButton, EditProfileModalWrapper, UserProfileHeading } from './UserProfileStyle'
+import { AiFillEdit } from 'react-icons/ai'
 
 const UserProfileModal = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   return (
     <>
-      <EditProfileButton onClick={handleOpen}>
-        <AiFillEdit color="#5225C2" size={21} />
-        <UserProfileHeading>Edit Profile</UserProfileHeading>
+      <EditProfileButton
+        startIcon={
+          <BorderColorOutlinedIcon
+            style={{
+              fontSize: '18px',
+            }}
+          />
+        }
+        onClick={handleOpen}>
+        Edit Profile
       </EditProfileButton>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <EditProfileModalWrapper>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
@@ -33,7 +36,7 @@ const UserProfileModal = () => {
         </EditProfileModalWrapper>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default UserProfileModal;
+export default UserProfileModal

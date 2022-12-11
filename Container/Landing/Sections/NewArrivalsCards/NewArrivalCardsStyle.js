@@ -84,7 +84,7 @@ export const NewArrivalContentCard = styled(Box)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-
+  position: relative;
   &:hover {
     border-color: #582ac5;
     transform: scale(1.01, 1.01);

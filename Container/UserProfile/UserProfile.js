@@ -1,10 +1,11 @@
 import React from 'react'
-import { SubWrapper } from '../Explore/ExploreStyle'
+
 import RedMudra from '../../public/redMudra.png'
 import GreenMudra from '../../public/greenMudra.png'
 import BlueMudra from '../../public/blueMudra.png'
 import {
   Wrapper,
+  SubWrapper,
   Img,
   ImgBox,
   UserProfileLowerSection,
@@ -15,6 +16,8 @@ import {
   EditProfileContainer,
   Username,
   ImgComp,
+  DateContainer,
+  EditProfileContainerTwo,
 } from './UserProfileStyle'
 import Image from 'next/image'
 import { Typography } from '@mui/material'
@@ -34,13 +37,16 @@ const UserProfile = () => {
       <SubWrapper>
         <ImgBox>
           <Img src={bannerImgUrl} />
-          <ImgComp src={ProfileImg} />
         </ImgBox>
         <UserProfileLowerSection>
           <UserProfileLowerLeftSection>
+            <ImgComp src={ProfileImg} />
+            <EditProfileContainerTwo>
+              <UserProfileModal />
+            </EditProfileContainerTwo>
             <Username>Shubham Kr Kurrey</Username>
             <Typography
-              style={{
+              sx={{
                 color: ' #93968E',
                 fontWeight: '300',
                 fontSize: '15px',
@@ -49,32 +55,32 @@ const UserProfile = () => {
               ID: 4300893892
             </Typography>
             <MudraContainer>
-              <IndividualMudraContainer style={{ justifyContent: 'start' }}>
+              <IndividualMudraContainer>
                 <Image src={RedMudra} />
                 <Typography color="black">0</Typography>
               </IndividualMudraContainer>
-              <IndividualMudraContainer style={{ justifyContent: 'start' }}>
+              <IndividualMudraContainer>
                 <Image src={GreenMudra} />
                 <Typography color="black">2</Typography>
               </IndividualMudraContainer>
-              <IndividualMudraContainer style={{ justifyContent: 'start' }}>
+              <IndividualMudraContainer>
                 <Image src={BlueMudra} />
                 <Typography color="black">3</Typography>
               </IndividualMudraContainer>
             </MudraContainer>
             <Typography color="black">30 Mudra</Typography>
             <MudraContainer>
-              <IndividualMudraContainer style={{ justifyContent: 'center' }}>
+              <IndividualMudraContainer>
                 <FaMale color="black" />
                 <Typography color="black">Male</Typography>
               </IndividualMudraContainer>
             </MudraContainer>
-            <MudraContainer>
-              <IndividualMudraContainer style={{ justifyContent: 'center' }}>
+            <DateContainer>
+              <IndividualMudraContainer>
                 <ImLocation color="black" />
                 <Typography color="black">28-06-2022 Joined</Typography>
               </IndividualMudraContainer>
-            </MudraContainer>
+            </DateContainer>
           </UserProfileLowerLeftSection>
           <UserProfileLowerRightSection>
             <EditProfileContainer>
