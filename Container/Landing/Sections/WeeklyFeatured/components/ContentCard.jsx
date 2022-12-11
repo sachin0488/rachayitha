@@ -4,7 +4,8 @@ import React, { useCallback } from 'react'
 import { IoIosAddCircle } from 'react-icons/io'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-import { useAddToLibraryAPI } from 'container/BookDetail/api/bookDetail.hook'
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import { cloudinary } from '../../NewArrivalsCards/components/ContentCard'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
@@ -16,7 +17,7 @@ const ContentCard = ({ item }) => {
       </AddIcon>
       <ImgBox>
         <Img
-          src={item.cover_img}
+          src={cloudinary}
           width="full"
           style={{
             position: 'absolute',
@@ -38,6 +39,8 @@ const ContentCard = ({ item }) => {
     </Root>
   )
 }
+
+export default ContentCard
 
 const Root = styled.div`
   display: flex;
@@ -154,7 +157,7 @@ const Img = styled.img`
   height: 100%;
 `
 
-const AddIcon = styled(Button)`
+export const AddIcon = styled(Button)`
   /* background: #ffffff; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
@@ -172,5 +175,3 @@ const AddIcon = styled(Button)`
   justify-content: center;
   align-items: center;
 `
-
-export default ContentCard
