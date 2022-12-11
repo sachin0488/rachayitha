@@ -16,7 +16,7 @@ export const fetchCommentSection = book => {
   })
 }
 
-export const addToLibraryAPI = ({ book_id }) => {
+export const addToLibraryAPI = book_id => {
   return ApiInstance({
     url: '/userbooklibrary/',
     method: 'POST',

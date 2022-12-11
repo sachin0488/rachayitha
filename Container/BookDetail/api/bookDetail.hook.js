@@ -12,16 +12,14 @@ export const useAddToLibraryAPI = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(addToLibraryAPI, {
     onSuccess({ data }) {
-      console.log(hello)
-      enqueueSnackbar(data.message, {
+      enqueueSnackbar('Book Added to Library !', {
         variant: 'success',
       })
     },
     onError: error => {
-      if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
-          variant: 'error',
-        })
+      enqueueSnackbar('Request Failed !', {
+        variant: 'success',
+      })
     },
   })
 
