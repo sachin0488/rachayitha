@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material'
 import useLibraryApi from 'Container/UserProfile/api/userProfile.hook'
 import React from 'react'
 import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
+import Link from 'next/link'
 
 const UserLibrary = () => {
   const { data } = useLibraryApi()
@@ -11,13 +12,15 @@ const UserLibrary = () => {
     <>
       <Root>
         {data?.data?.resources?.data?.map(card => (
-          <Card>
-            <CardImg src={cloudinary} />
-            <CardBelowSection>
-              <CardHeading>My legendary class is Husband</CardHeading>
-              <CardSubHeading>Progress 1/470</CardSubHeading>
-            </CardBelowSection>
-          </Card>
+          <Link href={`/book/${card?.id}`}>
+            <Card>
+              <CardImg src={cloudinary} />
+              <CardBelowSection>
+                <CardHeading>My legendary class is Husband</CardHeading>
+                <CardSubHeading>Progress 1/470</CardSubHeading>
+              </CardBelowSection>
+            </Card>
+          </Link>
         ))}
       </Root>
     </>
@@ -31,7 +34,7 @@ const Root = styled(Box)`
   justify-content: start;
   align-items: center;
   gap: 25px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   width: 100%;
 `
 const Card = styled(Box)`

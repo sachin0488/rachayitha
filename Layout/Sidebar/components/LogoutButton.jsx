@@ -2,9 +2,23 @@ import styled from '@emotion/styled'
 import React from 'react'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { Button } from '@mui/material'
+import { useLogoutUserAPI } from 'Container/Auth/api/auth.hook'
 
-const LogoutButton = () => {
-  return <Root startIcon={<LogoutOutlinedIcon style={IconStyle} />}>Logout</Root>
+const LogoutButton = ({ setIsOpen }) => {
+  const { handleLogoutUser } = useLogoutUserAPI()
+  const handleClick = () => {
+    handleLogoutUser()
+    setIsOpen(false)
+  }
+  return (
+    <Root
+      onClick={() => {
+        handleClick()
+      }}
+      startIcon={<LogoutOutlinedIcon style={IconStyle} />}>
+      Logout
+    </Root>
+  )
 }
 
 const IconStyle = {}

@@ -326,6 +326,7 @@ export const RecommendedCardsContainer = styled(Box)`
 export const IndividualRecommendedCardContainer = styled(Box)`
   display: flex;
   flex-direction: column;
+  position: relative;
   justify-content: start;
   align-items: flex-start;
   gap: 8px;
