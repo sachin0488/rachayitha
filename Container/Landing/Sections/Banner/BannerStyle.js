@@ -49,8 +49,8 @@ export const BannerUpperContent = styled(Box)`
     gap: 50px;
   }
   @media ${tablet} {
-    padding: 18px 80px;
-    flex-direction: row;
+    padding: 200px 80px 18px 80px;
+    flex-direction: column;
   }
   @media ${laptop} {
     padding: 22px 90px;
@@ -109,8 +109,8 @@ export const BannerMiddleContentSubWrapper = styled(Box)`
     flex-direction: column;
   }
   @media ${tablet} {
-    padding: 18px 80px;
-    flex-direction: row;
+    padding: 28px 80px;
+    flex-direction: column;
   }
   @media ${laptop} {
     padding: 22px 90px;
@@ -143,11 +143,10 @@ export const BannerLowerContent = styled(Box)`
   }
   @media ${tabletS} {
     padding: 18px 80px;
-    flex-direction: column;
   }
   @media ${tablet} {
-    padding: 18px 0px 18px 80px;
-    flex-direction: row;
+    padding: 18px 80px;
+    flex-direction: column;
   }
   @media ${laptop} {
     padding: 22px 20px 22px 90px;
@@ -166,7 +165,7 @@ export const BannerLowerContent = styled(Box)`
 export const LeftSideContent = styled(Box)`
   width: 100%;
   height: 100%;
-  @media ${tablet} {
+  @media ${laptop} {
     width: 55%;
   }
   display: flex;
@@ -221,10 +220,10 @@ export const Heading = styled(Typography)`
   }
   @media ${tablet} {
     font-weight: 600;
-    font-size: 51px;
-    line-height: 70px;
+    font-size: 74px;
+    line-height: 90px;
 
-    text-align: start;
+    text-align: center;
   }
   @media ${laptop} {
     font-weight: 600;
@@ -285,9 +284,9 @@ export const SubHeading = styled(Typography)`
 
   @media ${tablet} {
     font-weight: 300;
-    font-size: 26px;
-    line-height: 31px;
-    text-align: start;
+    font-size: 33px;
+    line-height: 39px;
+    text-align: center;
   }
   @media ${laptop} {
     font-weight: 300;
@@ -367,9 +366,9 @@ export const LowerCardContent = styled(Box)`
   }
 
   @media ${tablet} {
-    width: 370px;
+    width: 440px;
     height: 250px;
-    margin-left: 60px;
+    gap: 40px;
   }
 
   @media ${laptop} {
@@ -396,7 +395,11 @@ export const LowerSubCardContent = styled(Box)`
   width: 40%;
 
   @media ${tabletS} {
-    width: 41%;
+    width: 40%;
+    gap: 14px;
+  }
+  @media ${tablet} {
+    width: 36%;
     gap: 14px;
   }
   @media ${laptop} {

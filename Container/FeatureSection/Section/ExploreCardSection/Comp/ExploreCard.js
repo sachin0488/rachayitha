@@ -11,6 +11,7 @@ import {
   HashTagComp,
 } from '../../../Common/Common.styles'
 import Link from 'next/link'
+import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 const ExploreCard = ({ card, index }) => {
   return (
     <>
@@ -18,7 +19,7 @@ const ExploreCard = ({ card, index }) => {
         <CardsSubWrapper key={index}>
           <Cards>
             <CardLeftSideContent>
-              <Img src={card?.cover_img} />
+              <Img src={cloudinary} />
             </CardLeftSideContent>
             <CardRightSideContent>
               <ButtonContainer>

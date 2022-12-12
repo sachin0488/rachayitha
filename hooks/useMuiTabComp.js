@@ -1,16 +1,16 @@
 import React from 'react'
-import BookAboutContent from '../Container/BookDetail/BookAboutContent'
-import BookTableOfContent from '../Container/BookDetail/BookTableOfContent'
-import LikedComp from '../Container/BookDetail/LikedComp'
-import NewestComp from '../Container/BookDetail/NewestComp'
+import BookAboutContent from '../Container/BookDetail/Section/MuiTabComponent/BookAboutContent'
+import BookTableOfContent from '../Container/BookDetail/Section/MuiTabComponent/BookTableOfContent'
+import LikedComp from '../Container/BookDetail/Section/MuiTabComponent/LikedComp'
 import CollectionGrowth from '../Container/Create/DashBoardSection/DashBoardStoriesSection/Components/MuiTabComp.js/CollectionGrowth'
 import CumulativeCollection from '../Container/Create/DashBoardSection/DashBoardStoriesSection/Components/MuiTabComp.js/CumulativeCollection'
 import DraftMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/DraftMuiTabComp'
 import PublishedMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/PublishedMuiTabComp'
 import TrashMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/TrashMuiTabComp'
-import Badges from '../Container/UserProfile/Badges'
-import UserLibrary from '../Container/UserProfile/UserLibrary'
-import UserWorks from '../Container/UserProfile/UserWorks'
+import Badges from '../Container/UserProfile/Section/MuiTabComponents/Badges'
+import UserLibrary from '../Container/UserProfile/Section/MuiTabComponents/UserLibrary'
+import UserWorks from '../Container/UserProfile/Section/MuiTabComponents/UserWorks'
+import NewestComp from 'Container/BookDetail/Section/MuiTabComponent/NewestComp'
 
 export const genreLeadMuiTabList = [
   {
@@ -53,8 +53,8 @@ export const UserProfileMuiTabList = [
     labelComp: [{ label: 'Library' }, { label: 'Activity' }, { label: 'Original Works' }],
     component: [
       { com: <UserLibrary />, index: 0 },
-      { com: <Badges />, index: 1 },
-      { com: <UserWorks />, index: 2 },
+      // { com: <Badges />, index: 1 },
+      // { com: <UserWorks />, index: 2 },
     ],
   },
 ]

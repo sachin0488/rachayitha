@@ -1,9 +1,9 @@
-import { GenreAccordionContainer } from 'Container/Explore/ExploreStyle'
 import React from 'react'
 import AccordionContainer from './Comp/AccordionContainer'
 import { ExploreTextAndNestedRoute } from '../ExploreCardSection/Comp/SortBy'
 import { useRouter } from 'next/router'
 import { RankingTextAndNestedRoute } from 'Container/FeatureSection/Common/Config'
+import { GenreAccordionContainer } from 'Container/FeatureSection/Common/Common.styles'
 
 const index = () => {
   const router = useRouter()

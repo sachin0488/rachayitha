@@ -6,37 +6,48 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import { cloudinary } from '../../NewArrivalsCards/components/ContentCard'
+import { useSelector } from 'react-redux'
+import { selectUser } from 'store/slices/global/user.slice'
+import Link from 'next/link'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
+  const { isLoggedIn } = useSelector(selectUser)
 
   return (
-    <Root key={item.id}>
-      <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-        <AddOutlinedIcon />
-      </AddIcon>
-      <ImgBox>
-        <Img
-          src={cloudinary}
-          width="full"
-          style={{
-            position: 'absolute',
-            objectFit: 'cover',
-            top: '0',
-            left: '0',
-          }}
-        />
-      </ImgBox>
-      <StoryHeading>{item.book_name}</StoryHeading>
-      <RatingAndFantasySection>
-        {item.category.map(category => (
-          <>
-            <Fantasy>{category.name}</Fantasy>
-            <Rating>{category.id}</Rating>
-          </>
-        ))}
-      </RatingAndFantasySection>
-    </Root>
+    <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+      <Root key={item.id}>
+        {isLoggedIn ? (
+          <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+            <AddOutlinedIcon />
+          </AddIcon>
+        ) : (
+          <></>
+        )}
+
+        <ImgBox>
+          <Img
+            src={cloudinary}
+            width="full"
+            style={{
+              position: 'absolute',
+              objectFit: 'cover',
+              top: '0',
+              left: '0',
+            }}
+          />
+        </ImgBox>
+        <StoryHeading>{item.book_name}</StoryHeading>
+        <RatingAndFantasySection>
+          {item.category.map(category => (
+            <>
+              <Fantasy>{category.name}</Fantasy>
+              <Rating>{category.id}</Rating>
+            </>
+          ))}
+        </RatingAndFantasySection>
+      </Root>
+    </Link>
   )
 }
 

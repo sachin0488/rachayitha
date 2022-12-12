@@ -32,19 +32,19 @@ export default SortBy
 export const ExploreTextAndNestedRoute = [
   {
     text: 'Genre of Novels',
-    explore: 'explore/novel',
+    explore: 'explore',
     section: 'novel',
     high: '480px',
   },
   {
     text: 'Genre of Poems',
-    explore: 'explore/poem',
+    explore: 'explore',
     section: 'poem',
     high: '480px',
   },
   {
     text: 'Genre of Shorts',
-    explore: 'explore/short',
+    explore: 'explore',
     section: 'short',
     high: '480px',
   },

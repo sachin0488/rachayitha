@@ -33,16 +33,14 @@ export const useBookCommentAPI = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation(bookCommentAPI, {
     onSuccess({ data }) {
-      console.log(hello)
-      enqueueSnackbar(data.message, {
+      enqueueSnackbar('Comment added !', {
         variant: 'success',
       })
     },
     onError: error => {
-      if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
-          variant: 'error',
-        })
+      enqueueSnackbar('Request Failed !', {
+        variant: 'error',
+      })
     },
   })
 

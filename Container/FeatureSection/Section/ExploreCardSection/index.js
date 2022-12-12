@@ -10,12 +10,18 @@ const ExploreCardSection = () => {
   if (isError) {
     return <h1>{error?.message}</h1>
   }
+  const List = [
+    ...(data?.data?.resources?.data || []),
+    ...(data?.data?.resources?.data || []),
+    ...(data?.data?.resources?.data || []),
+    ...(data?.data?.resources?.data || []),
+  ]
   return (
     <>
       <ShowQueryContainer>
         <SortBy />
         <CardsWrapper>
-          {data?.data?.resources?.data?.map((card, index) =>
+          {List?.map((card, index) =>
             isLoading ? <ExploreLoading card={card} index={index} /> : <ExploreCard card={card} index={index} />,
           )}
         </CardsWrapper>

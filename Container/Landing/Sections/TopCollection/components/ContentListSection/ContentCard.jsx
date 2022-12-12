@@ -1,21 +1,27 @@
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { selectUser } from 'store/slices/global/user.slice'
 import { laptopS } from 'styles/mediaQuery/breakPoints'
 
 const ContentCard = ({ item }) => {
+  const { isLoggedIn } = useSelector(selectUser)
   return (
-    <Root>
-      <ImageSection>
-        <Image alt="book image" src={item.img} width="90px" height="115px" />
-      </ImageSection>
-      <InfoSection>
-        <Title>{item.title}</Title>
-        <Fantasy>{item.fantasy}</Fantasy>
-        <Rating>{item.rating}</Rating>
-      </InfoSection>
-    </Root>
+    <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+      <Root>
+        <ImageSection>
+          <Image alt="book image" src={item.img} width="90px" height="115px" />
+        </ImageSection>
+        <InfoSection>
+          <Title>{item.title}</Title>
+          <Fantasy>{item.fantasy}</Fantasy>
+          <Rating>{item.rating}</Rating>
+        </InfoSection>
+      </Root>
+    </Link>
   )
 }
 

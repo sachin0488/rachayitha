@@ -19,34 +19,44 @@ import {
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import { selectUser } from 'store/slices/global/user.slice'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
+  const { isLoggedIn } = useSelector(selectUser)
   return (
     <>
-      <PotentialStarletContentCard key={item.id}>
-        <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-          <AddOutlinedIcon />
-        </AddIcon>
-        <ImgBox>
-          {' '}
-          <LeftSideImgContent>
-            <Img src={item.img_url} />
-          </LeftSideImgContent>
-          <RightSideImgContent>
-            <SmallImg src={item?.img_url} />
-            <SmallImg src={item.img_url} />
-            <SmallImg src={item.img_url} />
-          </RightSideImgContent>
-        </ImgBox>
-        <StoryHeading>{item?.title}</StoryHeading>
-        <AlignRatingAndFantasySection>
-          <RatingAndFantasySection>
-            <Fantasy>{item?.fantasy}</Fantasy>
-            <Rating>{item?.rating}</Rating>
-          </RatingAndFantasySection>
-        </AlignRatingAndFantasySection>
-      </PotentialStarletContentCard>
+      <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+        <PotentialStarletContentCard key={item.id}>
+          {isLoggedIn ? (
+            <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+              <AddOutlinedIcon />
+            </AddIcon>
+          ) : (
+            <></>
+          )}
+          <ImgBox>
+            {' '}
+            <LeftSideImgContent>
+              <Img src={item.img_url} />
+            </LeftSideImgContent>
+            <RightSideImgContent>
+              <SmallImg src={item?.img_url} />
+              <SmallImg src={item.img_url} />
+              <SmallImg src={item.img_url} />
+            </RightSideImgContent>
+          </ImgBox>
+          <StoryHeading>{item?.title}</StoryHeading>
+          <AlignRatingAndFantasySection>
+            <RatingAndFantasySection>
+              <Fantasy>{item?.fantasy}</Fantasy>
+              <Rating>{item?.rating}</Rating>
+            </RatingAndFantasySection>
+          </AlignRatingAndFantasySection>
+        </PotentialStarletContentCard>
+      </Link>
     </>
   )
 }
