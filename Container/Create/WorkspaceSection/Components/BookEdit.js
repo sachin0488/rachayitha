@@ -11,8 +11,8 @@ import {
   MuiTabWrapper,
   Title,
   TitleFantasyViewSection,
-} from '../../../BookDetail/BookDetailStyle'
-import { styles } from '../../../BookDetail/MuiTabStyles'
+} from '../../../BookDetail/Common/BookDetailStyle'
+import { styles } from '../../../BookDetail/Section/MuiTabComponent/MuiTabStyles'
 import CreatePageLeftSection from '../../Components/CreatePageLeftSection'
 import {
   RightSideHeaderSectionWrapper,

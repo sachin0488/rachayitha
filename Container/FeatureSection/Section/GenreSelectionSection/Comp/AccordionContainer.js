@@ -6,7 +6,7 @@ const AccordionContainer = ({ text, high, explore, section }) => {
   const [genreLead, setGenreLead] = useState('male')
   return (
     <>
-      <MuiAccordion text={text} high={high}>
+      <MuiAccordion text={text} high={high} section={section}>
         <>
           <GenreButtonList explore={explore} section={section} genreLead={genreLead} />
         </>

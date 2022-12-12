@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { GenreMenuBar } from '../../Container/Explore/ExploreStyle'
+import { GenreMenuBar } from 'Container/FeatureSection/Common/Common.styles'
 import ExploreGenreMenuBarLeftSection from './Components/ExploreGenreMenuBarLeftSection'
 import RankingGenreMenuBarLeftSection from './Components/RankingGenreMenuBarLeftSection'
 

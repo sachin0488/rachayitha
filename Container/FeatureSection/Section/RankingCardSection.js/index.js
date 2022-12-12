@@ -1,5 +1,5 @@
+import { useRanking } from 'Container/FeatureSection/api/ranking.hook'
 import { HorizontalRule, ShowQueryContainer, SortByHeading } from 'Container/FeatureSection/Common/Common.styles'
-import { useRanking } from 'Container/Ranking/api/ranking.hook'
 
 import React from 'react'
 import RankingCard from './Components/RankingCard'

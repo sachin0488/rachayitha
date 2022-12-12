@@ -83,9 +83,9 @@ export const useLoginAPI = () => {
       setRefresh(data?.user?.tokens?.refresh)
       dispatch({ type: LOGIN_SUCCESS })
       router.push('/')
-      enqueueSnackbar(data?.message, {
-        variant: 'success',
-      })
+      // enqueueSnackbar(data?.message, {
+      //   variant: 'success',
+      // })
     },
     onError: error => {
       if (error.response?.data?.message)

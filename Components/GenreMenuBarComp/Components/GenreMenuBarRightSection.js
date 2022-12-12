@@ -1,6 +1,7 @@
 import React from 'react'
-import { ContentType, FilterText, RightSideGenreMenuBar } from '../../../Container/Explore/ExploreStyle'
+
 import MuiSelect from './MuiSelect'
+import { ContentType, FilterText, RightSideGenreMenuBar } from 'Container/FeatureSection/Common/Common.styles'
 
 const GenreMenuBarRightSection = () => {
   const menuItems = [
