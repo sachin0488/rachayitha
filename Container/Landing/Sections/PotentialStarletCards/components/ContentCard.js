@@ -1,4 +1,5 @@
 import React from 'react'
+import { AddIcon } from '../../WeeklyFeatured/components/ContentCard'
 import {
   PotentialStarletContent,
   Heading,
@@ -15,11 +16,18 @@ import {
   AlignRatingAndFantasySection,
   SmallImg,
 } from '../PotentialStartletCardsStyle'
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 const ContentCard = ({ item }) => {
+  const { handleAddToLibrary } = useAddToLibraryAPI()
   return (
     <>
       <PotentialStarletContentCard key={item.id}>
+        <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+          <AddOutlinedIcon />
+        </AddIcon>
         <ImgBox>
           {' '}
           <LeftSideImgContent>

@@ -1,9 +1,9 @@
-import { ApiInstance } from '../../../../../api/global.api'
+import { ApiInstance } from 'api/global.api'
 
 // const API_URL = '/potentialstartletbook/'
-const Url = '/potentialstartletbook/'
 
 export const weeklyAPI = () => {
+  const Url = '/potentialstartletbook/'
   return ApiInstance({
     url: Url,
     method: 'GET',

@@ -1,12 +1,12 @@
-import React from "react";
-import BookDetail from "../../Container/BookDetail/BookDetail";
+import React from 'react'
+import BookDetail from 'Container/BookDetail/Pages/BookDetail'
 
 const book = () => {
   return (
     <>
       <BookDetail />
     </>
-  );
-};
+  )
+}
 
-export default book;
+export default book

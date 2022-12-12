@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box, Tabs, Tab } from '@mui/material'
 import TabPanel from './Tabpanel'
 
-const MuiTabs = ({ muiTab, styles, muiTabsProp }) => {
+const MuiTabs = ({ muiTab, styles }) => {
   const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {

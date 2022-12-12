@@ -15,3 +15,23 @@ export const fetchCommentSection = book => {
     method: 'GET',
   })
 }
+
+export const addToLibraryAPI = book_id => {
+  return ApiInstance({
+    url: '/userbooklibrary/',
+    method: 'POST',
+    data: { book_id },
+  })
+}
+
+export const bookCommentAPI = ({ book_id, comments, parent_comment_id }) => {
+  return ApiInstance({
+    url: '/bookcomment/',
+    method: 'POST',
+    data: {
+      book_id,
+      comments,
+      parent_comment_id,
+    },
+  })
+}

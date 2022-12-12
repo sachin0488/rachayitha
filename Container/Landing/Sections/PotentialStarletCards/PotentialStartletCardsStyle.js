@@ -88,7 +88,7 @@ export const PotentialStarletContentCard = styled(Box)`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-
+  position: relative;
   &:hover {
     border-color: #582ac5;
     transform: scale(1.03, 1.03);

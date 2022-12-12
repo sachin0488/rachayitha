@@ -1,15 +1,23 @@
 import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
-import React from 'react'
+import { Button, IconButton, Typography } from '@mui/material'
+import React, { useCallback } from 'react'
 import { IoIosAddCircle } from 'react-icons/io'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import { cloudinary } from '../../NewArrivalsCards/components/ContentCard'
 
 const ContentCard = ({ item }) => {
+  const { handleAddToLibrary } = useAddToLibraryAPI()
+
   return (
     <Root key={item.id}>
+      <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+        <AddOutlinedIcon />
+      </AddIcon>
       <ImgBox>
         <Img
-          src={item.cover_img}
+          src={cloudinary}
           width="full"
           style={{
             position: 'absolute',
@@ -18,9 +26,6 @@ const ContentCard = ({ item }) => {
             left: '0',
           }}
         />
-        <AddIcon>
-          <IoIosAddCircle size={26} color="#069CF6" />
-        </AddIcon>
       </ImgBox>
       <StoryHeading>{item.book_name}</StoryHeading>
       <RatingAndFantasySection>
@@ -35,12 +40,14 @@ const ContentCard = ({ item }) => {
   )
 }
 
+export default ContentCard
+
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-
+  position: relative;
   &:hover {
     border-color: #582ac5;
     transform: scale(1.01, 1.01);
@@ -150,19 +157,21 @@ const Img = styled.img`
   height: 100%;
 `
 
-const AddIcon = styled.div`
-  background: #ffffff;
+export const AddIcon = styled(Button)`
+  /* background: #ffffff; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
-  top: 8px;
-  right: 7px;
-  border-radius: 999px;
+  top: 0px;
+  right: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   z-index: 10;
-  width: 30px;
-  height: 30px;
+  padding: 0px;
+  min-width: 35px;
+  min-height: 35px;
+  /* 
+  height: 30px; */
   display: flex;
   justify-content: center;
   align-items: center;
 `
-
-export default ContentCard
