@@ -1,4 +1,4 @@
-import styles from '../MuiTabStyles'
+import styles from '../Section/MuiTabComponent/MuiTabStyles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { GrFormView } from 'react-icons/gr'
@@ -24,15 +24,15 @@ import {
   StarText,
   Author,
   MuiTabWrapper,
-} from '../BookDetailStyle'
+} from '../Common/BookDetailStyle'
 import Image from 'next/image'
 import RatingStar from '../../../Components/RatingComp/Rating'
 import { Typography } from '@mui/material'
-import RecommendedCards from '../RecommendedCards'
-import ReviewSectionCom from '../ReviewSectionCom'
+import RecommendedCards from '../Section/RecommendedCard'
+import ReviewSectionCom from '../Section/ReviewSectionCom'
 import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
 import { bookAboutAndContentDetailMuiTabList } from '../../../hooks/useMuiTabComp'
-import { img_url } from '../RecommendedCards'
+import { img_url } from '../Section/RecommendedCard'
 import styled from '@emotion/styled'
 
 const BookDetail = () => {

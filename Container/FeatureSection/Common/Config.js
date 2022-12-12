@@ -7,17 +7,17 @@ import { FaBookReader } from 'react-icons/fa'
 
 export const ExploreLinkList = [
   {
-    href: '/explore/novel?lead=male',
+    href: '/explore?content_type=novel&lead=male',
     img_url: <NovelIcon />,
     genretitle: 'Novels',
   },
   {
-    href: '/explore/short?lead=male',
+    href: '/explore?content_type=short&lead=male',
     img_url: <PoemIcon />,
     genretitle: 'Shorts',
   },
   {
-    href: '/explore/poem?lead=male',
+    href: '/explore?content_type=poem&lead=male',
     img_url: <PoemIcon />,
     genretitle: 'Poems',
   },
@@ -26,19 +26,19 @@ export const ExploreLinkList = [
 export const RankingTextAndNestedRoute = [
   {
     text: 'Novel Ranking',
-    explore: 'ranking/novel',
+    explore: 'ranking',
     section: 'novel',
     high: '',
   },
   {
     text: 'Poems Ranking',
-    explore: 'ranking/poem',
+    explore: 'ranking',
     section: 'poem',
     high: '',
   },
   {
     text: 'Shorts Ranking',
-    explore: 'ranking/short',
+    explore: 'ranking',
     section: 'short',
     high: '',
   },

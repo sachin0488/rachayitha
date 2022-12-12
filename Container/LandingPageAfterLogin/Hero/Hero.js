@@ -16,6 +16,7 @@ import {
   StyledButton,
   TextSection,
 } from './HeroStyle'
+import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 
 const Hero = () => {
   const { data, isLoading, isError, error, isFetching } = useHero()
