@@ -29,9 +29,9 @@ import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
 import { UserProfileMuiTabList } from '../../../hooks/useMuiTabComp'
 import { UserProfileStylesTab } from '../Section/MuiTabComponents/UserProfileStylesTab'
 
+export const bannerImgUrl = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568486/bannerProfileImg_kdid5i.png'
+export const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
 const UserProfile = () => {
-  const bannerImgUrl = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568486/bannerProfileImg_kdid5i.png'
-  const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
   return (
     <Wrapper>
       <SubWrapper>

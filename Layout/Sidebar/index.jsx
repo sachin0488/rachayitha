@@ -45,7 +45,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
             <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
           ))}
           <Divider />
-          <LogoutButton />
+          <LogoutButton setIsOpen={setIsOpen} />
         </NavButtonWarper>
       </Main>
     </Drawer>

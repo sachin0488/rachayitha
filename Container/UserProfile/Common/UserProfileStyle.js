@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
-import { laptopM, laptopS, mobileM, mobileS, tabletS } from 'styles/mediaQuery/breakPoints'
+import { laptopM, laptopS, mobileL, mobileM, mobileS, tabletS } from 'styles/mediaQuery/breakPoints'
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -59,7 +59,7 @@ export const Img = styled.img`
 export const UserProfileLowerSection = styled(Box)`
   width: 100%;
   height: 100%;
-  min-height: 320px;
+  min-height: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,7 +76,7 @@ export const UserProfileLowerLeftSection = styled(Box)`
   align-items: center;
   flex-direction: column;
   gap: 11px;
-  height: 405px;
+  height: 395px;
   width: 100%;
   @media (min-width: 1040px) {
     width: 35%;
@@ -117,7 +117,7 @@ export const UserProfileLowerRightSection = styled(Box)`
   align-items: flex-start;
   gap: 10px;
   width: 100%;
-  min-height: 290px;
+  height: 400px;
   margin-top: 50px;
   @media (min-width: 1040px) {
     margin-top: 10px;
@@ -181,18 +181,22 @@ export const EditProfileModalWrapper = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 600px;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(3.5px);
-  -webkit-backdrop-filter: blur(3.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 350px;
+
+  background-color: white;
 
   border-top: 5px solid #5a2cc6;
 
   padding: 16px;
+  @media ${mobileM} {
+    width: 400px;
+  }
+  @media ${mobileL} {
+    width: 500px;
+  }
+  @media ${tabletS} {
+    width: 700px;
+  }
 `
 
 export const BadgesWrapper = styled(Box)`
