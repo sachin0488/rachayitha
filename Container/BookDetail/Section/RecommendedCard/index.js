@@ -11,7 +11,7 @@ import {
   CardImg,
   CardRatingText,
 } from '../../Common/BookDetailStyle'
-import useExplore from '../../../Explore/api/explore.hook'
+import useExplore from 'Container/FeatureSection/api/explore.hook'
 
 export const img_url = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png'
 const RecommendedCards = () => {

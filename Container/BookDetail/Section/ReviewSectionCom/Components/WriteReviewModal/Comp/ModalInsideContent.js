@@ -57,7 +57,7 @@ const Form = styled.form`
   transform: translate(-50%, -50%);
   width: 700px;
   height: 400px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(3.5px);
