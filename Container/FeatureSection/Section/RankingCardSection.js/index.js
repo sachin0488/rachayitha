@@ -4,6 +4,7 @@ import { HorizontalRule, ShowQueryContainer, SortByHeading } from 'Container/Fea
 import React from 'react'
 import RankingCard from './Components/RankingCard'
 import RankingLoading from './Components/RankingLoading'
+import SelectGenre from './Components/SelectGenre'
 import { CardsWrapper } from './Styles'
 
 const RankingCardSection = () => {
@@ -11,7 +12,7 @@ const RankingCardSection = () => {
   return (
     <>
       <ShowQueryContainer>
-        <SortByHeading>Power Ranking</SortByHeading>
+        <SelectGenre />
         <HorizontalRule style={{ width: '100%' }} />
         <CardsWrapper>
           {data?.map((card, index) =>

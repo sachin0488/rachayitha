@@ -17,7 +17,7 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
               explore={explore}
               section={section}
               platformApi={platform.name}
-              width="47%"
+              width="40%"
               platformButton={platform.buttonName}
               genreLead={genreLead}
             />
@@ -26,7 +26,7 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
             <RankingGenreButton
               explore={explore}
               section={section}
-              width="47%"
+              width="40%"
               platformApi={platform.name}
               platformButton={platform.buttonName}
               genreLead={genreLead}

@@ -81,8 +81,8 @@ export const GenreMenuBar = styled(Box)`
   position: absolute;
   bottom: -28px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
 
   width: 95%;
   padding: 20px 17px;
@@ -248,6 +248,17 @@ export const GenreAccordionContainer = styled(Box)`
   justify-content: start;
   display: none;
   @media ${laptop} {
+    width: 25%;
+    display: block;
+    display: flex;
+  }
+  @media (min-width: 1250px) {
+    width: 19%;
+    display: block;
+    display: flex;
+  }
+  @media ${laptopM} {
+    width: 19%;
     display: block;
     display: flex;
   }
@@ -425,12 +436,11 @@ export const ButtonContainer = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 26px;
+  overflow-x: auto;
   @media ${mobileL} {
     gap: 13px;
   }
-  flex-wrap: wrap;
 `
 
 export const ParagraphText = styled(Typography)`
@@ -446,6 +456,8 @@ export const ParagraphText = styled(Typography)`
 `
 export const Buttons = styled(Button)`
   font-weight: 300;
+  min-width: 90px;
+
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.1em;

@@ -633,4 +633,11 @@ export const PostCommentText = styled(TextareaAutosize)`
   font-size: 20px;
   outline: none;
   color: black;
+  font-size: 17px;
+  @media ${mobileM} {
+    font-size: 18px;
+  }
+  @media ${tabletS} {
+    font-size: 20px;
+  }
 `

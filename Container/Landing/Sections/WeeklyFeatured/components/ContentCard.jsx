@@ -66,8 +66,8 @@ const Root = styled.div`
   }
 
   gap: 3px;
-  padding: 7px 5px;
-  width: 138px;
+  padding: 12px 9px 0px 9px;
+  width: 148px;
   height: 193px;
   @media ${mobileM} {
     width: 200px;
@@ -149,12 +149,12 @@ const StoryHeading = styled(Typography)`
 
 const ImgBox = styled.div`
   border-radius: 10px;
-  width: 123px;
-  height: 121px;
+  width: 115px;
+  height: 113px;
 
   @media ${mobileM} {
-    width: 160px;
-    height: 170px;
+    width: 150px;
+    height: 160px;
   }
   @media ${tablet} {
     width: 221px;

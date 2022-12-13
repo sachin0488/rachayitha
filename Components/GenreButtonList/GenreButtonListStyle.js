@@ -15,8 +15,8 @@ export const GenreButtonListMobileWrapper = styled(Box)`
   width: 100%;
   height: 60px;
   display: flex;
-  gap: 14px;
-  justify-content: space-between;
+  gap: 18px;
+  justify-content: start;
   align-items: flex-start;
   overflow-x: auto;
   &::-webkit-scrollbar {

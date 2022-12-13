@@ -10,6 +10,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import CommentSchema from './CommentSchema'
 import { useRouter } from 'next/router'
+import { mobileL, mobileM, tabletS } from 'styles/mediaQuery/breakPoints'
 const ModalInsideContent = ({ setOpen }) => {
   const methods = useForm({
     resolver: yupResolver(CommentSchema),
@@ -67,6 +68,16 @@ const Form = styled.form`
   border-top: 5px solid #5a2cc6;
 
   padding: 16px;
+  width: 350px;
+  @media ${mobileM} {
+    width: 400px;
+  }
+  @media ${mobileL} {
+    width: 500px;
+  }
+  @media ${tabletS} {
+    width: 700px;
+  }
 `
 
 const EmojiAndPostButtonWrapper = styled.div`

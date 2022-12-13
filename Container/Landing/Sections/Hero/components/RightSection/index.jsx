@@ -8,31 +8,33 @@ import { BannerImgContainer, ImgContainer, StyledImage } from './styles'
 const RightSection = () => {
   const { data } = useHero()
 
+  const List = [...(data || []), ...(data || [])]
+
   return (
     <Root>
       <BannerImgContainer sx={{ margin: '0px 0px -131px 0px' }}>
-        {data?.map((bannerImg, index) => (
+        {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
             <StyledImage src={bannerImg.img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '-56px 0px 0px 0px' }}>
-        {data?.map((bannerImg, index) => (
+        {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
             <StyledImage src={bannerImg.img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '45px 0px 0px 0px' }}>
-        {data?.map((bannerImg, index) => (
+        {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
             <StyledImage src={bannerImg.img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '-169px 0px 0px 0px' }}>
-        {data?.map((bannerImg, index) => (
+        {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
             <StyledImage src={bannerImg.img} width="218px" height="253px" />
           </ImgContainer>
