@@ -90,7 +90,7 @@ const BookDetail = () => {
                 </TitleFantasyViewSection>
 
                 <FantasyAndViewSection>
-                  <ReadButton>READ</ReadButton>
+                  <ReadButton variant="contained">READ</ReadButton>
                   <AddToLibraryButton onClick={handleClick} startIcon={<AddCircleOutlinedIcon style={IconStyle} />}>
                     ADD TO LIBRARY
                   </AddToLibraryButton>

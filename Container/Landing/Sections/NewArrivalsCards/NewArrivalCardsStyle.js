@@ -93,6 +93,16 @@ export const NewArrivalContentCard = styled(Box)`
   gap: 10px;
   padding: 16px 6px;
   min-width: 220px;
+  @media ${mobileL} {
+    padding: 16px 6px;
+    min-width: 240px;
+    height: 98%;
+  }
+  @media ${tabletS} {
+    padding: 16px 14px;
+    min-width: 240px;
+    height: 98%;
+  }
   @media ${tablet} {
     padding: 16px 14px;
     min-width: 312px;
@@ -151,7 +161,7 @@ export const ImgWrapper = styled(Box)`
   width: 190px;
   height: 205px;
   @media ${mobileM} {
-    width: 235px;
+    width: 205px;
     height: 285px;
   }
   @media ${tablet} {

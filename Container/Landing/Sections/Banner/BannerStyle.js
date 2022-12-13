@@ -190,9 +190,9 @@ export const RightSideContent = styled(Box)`
 `
 export const Heading = styled(Typography)`
   font-style: normal;
-  line-height: 105%;
-  font-weight: 600;
-  font-size: 36px;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 115%;
 
   text-align: center;
 
@@ -213,14 +213,14 @@ export const Heading = styled(Typography)`
 
   @media ${tabletS} {
     font-weight: 600;
-    font-size: 74px;
+    font-size: 65px;
     line-height: 81px;
 
     text-align: center;
   }
   @media ${tablet} {
     font-weight: 600;
-    font-size: 74px;
+    font-size: 68px;
     line-height: 90px;
 
     text-align: center;
@@ -252,9 +252,8 @@ export const SubHeading = styled(Typography)`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  font-size: 23px;
-  line-height: 24px;
-
+  font-size: 18px;
+  line-height: 27px;
   text-align: center;
   margin-bottom: 30px;
 
@@ -374,10 +373,12 @@ export const LowerCardContent = styled(Box)`
   @media ${laptop} {
     width: 395px;
     height: 270px;
+    margin-left: 50px;
   }
   @media ${laptopS} {
     width: 420px;
     height: 290px;
+    margin-left: 0px;
   }
   @media ${laptopM} {
     width: 440px;

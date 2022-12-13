@@ -19,7 +19,7 @@ export const CardsWrapper = styled(Box)`
     gap: 20px;
   }
   @media ${tabletS} {
-    padding: 30px;
+    padding: 0px;
   }
   display: flex;
   flex-direction: column;

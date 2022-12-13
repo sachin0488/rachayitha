@@ -1,23 +1,20 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { genreName, GenreName } from '../../hooks/useGenreButton'
+import { genreName } from 'hooks/useGenreButton'
 import { GenreButtonListMobileWrapper, GenreButtonsMobile } from './GenreButtonListStyle'
-const GenreButtonLIstMobile = ({ explore, section }) => {
+const RankingGenreButtonLIstMobile = ({ explore, section }) => {
   const router = useRouter()
   const { sub_genre, genre } = router.query
 
   return (
     <>
       <GenreButtonListMobileWrapper>
-        {GenreName.map(button => (
-          <Link href={`/${explore}?content_type=${section}&lead=male&genre=${button.name}&sub_genre=${sub_genre}`}>
+        {genreName.map(button => (
+          <Link href={`/${explore}?content_type=${section}&lead=male&genre=${button.name}`}>
             <GenreButtonsMobile
               className={
-                router.asPath ===
-                `/${explore}?content_type=${section}&lead=male&genre=${button.name}&sub_genre=${sub_genre}`
-                  ? 'genre'
-                  : ''
+                router.asPath === `/${explore}?content_type=${section}&lead=male&genre=${button.name}` ? 'genre' : ''
               }>
               {button.buttonName}
             </GenreButtonsMobile>
@@ -28,4 +25,4 @@ const GenreButtonLIstMobile = ({ explore, section }) => {
   )
 }
 
-export default GenreButtonLIstMobile
+export default RankingGenreButtonLIstMobile

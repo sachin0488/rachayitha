@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 import React from 'react'
 import { laptopS, tabletS } from 'styles/mediaQuery/breakPoints'
 import { ButtonContainer, Heading, ParagraphText, StyledButton, SubHeading, TextSection } from './styles'
 
 const LeftSection = () => {
+  const link = `/explore?content_type=novel&lead=male&genre=all&sub_genre=power`
   return (
     <Root>
       <TextSection>
@@ -12,8 +14,12 @@ const LeftSection = () => {
         <ParagraphText>India’s Largest online Reading Platform</ParagraphText>
       </TextSection>
       <ButtonContainer>
-        <StyledButton variant="contained">Explore</StyledButton>
-        <StyledButton variant="outlined">Create</StyledButton>
+        <Link href={link}>
+          <StyledButton variant="contained">Explore</StyledButton>
+        </Link>
+        <Link href={`/create/dashboard/stories`}>
+          <StyledButton variant="outlined">Create</StyledButton>
+        </Link>
       </ButtonContainer>
     </Root>
   )
