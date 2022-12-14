@@ -1,5 +1,4 @@
 import React from 'react'
-import CreatePageLeftSection from '../../../Components/CreatePageLeftSection'
 import { BsArrowLeft } from 'react-icons/bs'
 import {
   NewChapterHeading,
@@ -18,12 +17,13 @@ import {
   WrapperRightSideSection,
 } from '../../../CreateStyle'
 import Link from 'next/link'
+import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
 
 const NewChapter = () => {
   return (
     <>
       <Wrapper>
-        <CreatePageLeftSection />
+        <LeftSideHeader />
         <WrapperRightSideSection>
           <RightSideHeaderSectionWrapper>
             <RightSideHeaderSubSectionWrapper>

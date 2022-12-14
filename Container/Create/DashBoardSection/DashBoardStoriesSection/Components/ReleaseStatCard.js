@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   CollectionDataTextSize,
   DashBoardSectionWrapper,
@@ -14,9 +14,9 @@ import {
   ReleaseStatisticsText,
   WordCountData,
   WordCountText,
-} from "../../../CreateStyle";
-import { BsArrowUp } from "react-icons/bs";
-import { Typography } from "@mui/material";
+} from '../../../CreateStyle'
+import { BsArrowUp } from 'react-icons/bs'
+import { Typography } from '@mui/material'
 
 const ReleaseStatCard = ({ heading, count }) => {
   return (
@@ -38,7 +38,7 @@ const ReleaseStatCard = ({ heading, count }) => {
         </ReleaseStatCardRightSectionWrapper>
       </DashBoardStoriesReleaseStatSubWrapperCard>
     </>
-  );
-};
+  )
+}
 
-export default ReleaseStatCard;
+export default ReleaseStatCard

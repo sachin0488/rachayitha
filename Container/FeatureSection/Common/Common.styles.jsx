@@ -258,7 +258,7 @@ export const GenreAccordionContainer = styled(Box)`
     display: flex;
   }
   @media ${laptopM} {
-    width: 19%;
+    width: 18%;
     display: block;
     display: flex;
   }

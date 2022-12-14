@@ -1,17 +1,17 @@
-import React from "react";
-import CreatePageLeftSection from "../../../../Container/Create/Components/CreatePageLeftSection";
-import { Wrapper } from "../../../../Container/Create/CreateStyle";
-import DashBoardStoriesSection from "../../../../Container/Create/DashBoardSection/DashBoardStoriesSection/DashBoardStoriesSection";
+import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
+import React from 'react'
+import { Wrapper } from '../../../../Container/Create/CreateStyle'
+import DashBoardStoriesSection from '../../../../Container/Create/DashBoardSection/DashBoardStoriesSection/DashBoardStoriesSection'
 
 const index = () => {
   return (
     <>
       <Wrapper>
-        <CreatePageLeftSection />
+        <LeftSideHeader />
         <DashBoardStoriesSection />
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default index;
+export default index

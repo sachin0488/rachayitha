@@ -1,7 +1,7 @@
-import React from "react";
-import { WrapperRightSideSection } from "../../CreateStyle";
-import DashBoard from "../DashBoardSection";
-import DashBoardStoriesMainContent from "./Components/DashBoardStoriesMainContent";
+import React from 'react'
+import { WrapperRightSideSection } from '../../CreateStyle'
+import DashBoard from '../DashBoardSection'
+import DashBoardStoriesMainContent from './Components/DashBoardStoriesMainContent'
 
 const DashBoardStoriesSection = () => {
   return (
@@ -11,7 +11,7 @@ const DashBoardStoriesSection = () => {
         <DashBoardStoriesMainContent />
       </WrapperRightSideSection>
     </>
-  );
-};
+  )
+}
 
-export default DashBoardStoriesSection;
+export default DashBoardStoriesSection

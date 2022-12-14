@@ -34,9 +34,11 @@ import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
 import { bookAboutAndContentDetailMuiTabList } from '../../../hooks/useMuiTabComp'
 import { img_url } from '../Section/RecommendedCard'
 import styled from '@emotion/styled'
+import Link from 'next/link'
 
 const BookDetail = () => {
   const router = useRouter()
+  const { book } = router.query
   const { data, isLoading, isError, error, isFetching } = useBookDetail(router.query.book)
   const { handleAddToLibrary } = useAddToLibraryAPI()
   if (isLoading) {
@@ -54,7 +56,7 @@ const BookDetail = () => {
 
   return (
     <>
-      {data?.data?.data.map((book, index) => (
+      {data?.data?.data.map((item, index) => (
         <Wrapper>
           <SubWrapper>
             <BookDetailCard key={index}>
@@ -63,14 +65,14 @@ const BookDetail = () => {
               </BookDetailCardLeftSection>
               <BookDetailCardRightSection>
                 <TitleFantasyViewSection>
-                  <Title>{book?.book_name}</Title>
+                  <Title>{item?.book_name}</Title>
                   <FantasyAndViewSection>
-                    {book?.category?.map(category => (
+                    {item?.category?.map(category => (
                       <Text>{category?.name}</Text>
                     ))}
 
                     <Text>
-                      <Image src={Chapter} /> {book?.chapter_count} Chapters
+                      <Image src={Chapter} /> {item?.chapter_count} Chapters
                     </Text>
                     <Text>
                       <GrFormView /> 2.1 M Views
@@ -83,14 +85,16 @@ const BookDetail = () => {
                     <AuthorText>Fruit of Chaos</AuthorText>
                   </FantasyAndViewSection>
                   <FantasyAndViewSection>
-                    <RatingStar value={book?.rating?.rate__avg} size="large" />
-                    <StarText>{book?.rating?.rate__avg}</StarText>
+                    <RatingStar value={item?.rating?.rate__avg} size="large" />
+                    <StarText>{item?.rating?.rate__avg}</StarText>
                     <RatingSectionComp>(300 rating)</RatingSectionComp>
                   </FantasyAndViewSection>
                 </TitleFantasyViewSection>
 
                 <FantasyAndViewSection>
-                  <ReadButton variant="contained">READ</ReadButton>
+                  <Link href={`/book/${book}/${item?.chapter[0]?.id}`}>
+                    <ReadButton variant="contained">READ</ReadButton>
+                  </Link>
                   <AddToLibraryButton onClick={handleClick} startIcon={<AddCircleOutlinedIcon style={IconStyle} />}>
                     ADD TO LIBRARY
                   </AddToLibraryButton>

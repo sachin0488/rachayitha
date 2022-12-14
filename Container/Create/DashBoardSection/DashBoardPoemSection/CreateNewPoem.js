@@ -1,10 +1,11 @@
 import { TextField } from '@mui/material'
+import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
 import React from 'react'
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { HiDownload } from 'react-icons/hi'
 import MuiSelect from '../../../../Components/GenreMenuBarComp/Components/MuiSelect'
 import RadioGroupMui from '../../../../Components/RadioGroup/RadioGroupMui'
-import CreatePageLeftSection from '../../Components/CreatePageLeftSection'
+
 import {
   CoverPhotoText,
   CreateNewButtonComp,
@@ -45,7 +46,7 @@ const CreateNewPoem = () => {
   return (
     <>
       <Wrapper>
-        <CreatePageLeftSection />
+        <LeftSideHeader />
         <WrapperRightSideSection>
           <DashBoard />
           <CreateNewWrapper>
