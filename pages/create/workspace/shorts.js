@@ -1,15 +1,15 @@
-import React from "react";
-import CreatePageLeftSection from "../../../Container/Create/Components/CreatePageLeftSection";
-import { Wrapper } from "../../../Container/Create/CreateStyle";
+import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
+import React from 'react'
+import { Wrapper } from '../../../Container/Create/CreateStyle'
 
 const shorts = () => {
   return (
     <>
       <Wrapper>
-        <CreatePageLeftSection />
+        <LeftSideHeader />
       </Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default shorts;
+export default shorts

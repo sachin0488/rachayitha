@@ -1,4 +1,5 @@
 import { Typography } from '@mui/material'
+import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
 import Link from 'next/link'
 import React from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
@@ -13,7 +14,7 @@ import {
   TitleFantasyViewSection,
 } from '../../../BookDetail/Common/BookDetailStyle'
 import { styles } from '../../../BookDetail/Section/MuiTabComponent/MuiTabStyles'
-import CreatePageLeftSection from '../../Components/CreatePageLeftSection'
+
 import {
   RightSideHeaderSectionWrapper,
   RightSideHeaderSubSectionWrapper,
@@ -36,7 +37,7 @@ const BookEdit = () => {
   return (
     <>
       <Wrapper>
-        <CreatePageLeftSection />
+        <LeftSideHeader />
         <WrapperRightSideSection>
           <RightSideHeaderSectionWrapper>
             <RightSideHeaderSubSectionWrapper>

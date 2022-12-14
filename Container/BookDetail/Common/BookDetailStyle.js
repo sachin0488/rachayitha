@@ -537,7 +537,7 @@ export const CommentSectionSubWrapper = styled(Box)`
   min-height: 230px;
   border-bottom: 1px solid #747474;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `
 
 export const CommentSectionSubWrapperRightSideContent = styled(Box)`
@@ -569,7 +569,7 @@ export const LikeAndCommentSection = styled(Box)`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 6px;
+  gap: 15px;
   width: 50%;
   padding-right: 20px;
 `

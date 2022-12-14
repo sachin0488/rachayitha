@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Box, Button, TextareaAutosize, TextField, textFieldClasses, Typography } from '@mui/material'
+import { laptopS } from 'styles/mediaQuery/breakPoints'
 
 export const Wrapper = styled(Box)`
   width: 100%;
@@ -20,6 +21,11 @@ export const WrapperLeftSideSection = styled(Box)`
   gap: 35px;
   flex-direction: column;
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+  @media ${laptopS} {
+    display: block;
+    display: flex;
+  }
 `
 
 export const LinkContainer = styled(Box)`
@@ -58,8 +64,11 @@ export const IndividualLinkText = styled(Typography)`
 `
 
 export const WrapperRightSideSection = styled(Box)`
-  width: 82%;
+  width: 100%;
   height: 100%;
+  @media ${laptopS} {
+    width: 82%;
+  }
 `
 
 export const RightSideHeaderSectionWrapper = styled(Box)`
@@ -69,8 +78,9 @@ export const RightSideHeaderSectionWrapper = styled(Box)`
   align-items: center;
   height: 60px;
   padding: 20px 10px 0px 20px;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  @media ${laptopS} {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  }
 `
 export const RightSideHeaderSubSectionWrapper = styled(Box)`
   width: 80%;
@@ -315,7 +325,7 @@ export const ReleaseStatisticsText = styled(Typography)`
 `
 export const DashBoardStoriesReleaseStatSubWrapper = styled(Box)`
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   gap: 6px;
   padding: 20px 20px;
@@ -331,6 +341,7 @@ export const DashBoardStoriesReleaseStatSubWrapperCard = styled(Box)`
   width: 24%;
   height: 190px;
   background-color: white;
+  width: 50%;
 `
 
 export const ReleaseStatCardLeftSectionWrapper = styled(Box)`

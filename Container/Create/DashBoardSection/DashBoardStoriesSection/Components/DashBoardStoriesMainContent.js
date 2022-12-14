@@ -20,9 +20,10 @@ import {
 import { BsArrowUp } from 'react-icons/bs'
 import AccordionDetailNovelComp from './AccordionDetailNovelComp'
 import Image from 'next/image'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import ReleaseStatCard from './ReleaseStatCard'
 import DashBoardReadingStatistics from './DashBoardReadingStatistics'
+import styled from '@emotion/styled'
 
 const DashBoardStoriesMainContent = () => {
   const releaseStatIcon = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1668427518/stats_1_pzjlez.png'
@@ -43,10 +44,14 @@ const DashBoardStoriesMainContent = () => {
             </ReleaseStatisticsIconTextWrapper>
 
             <DashBoardStoriesReleaseStatSubWrapper>
-              <ReleaseStatCard heading="WORD COUNT" count="0" />
-              <ReleaseStatCard heading="CHAPTERS RELEASED" count="0" />
-              <ReleaseStatCard heading="RELEASE DATE" count="0" />
-              <ReleaseStatCard heading="AVERAGE WORDS / CH" count="744" />
+              <ReleaseStatCardWrapper>
+                <ReleaseStatCard heading="WORD COUNT" count="0" />
+                <ReleaseStatCard heading="CHAPTERS RELEASED" count="0" />
+              </ReleaseStatCardWrapper>
+              <ReleaseStatCardWrapper>
+                <ReleaseStatCard heading="RELEASE DATE" count="0" />
+                <ReleaseStatCard heading="AVERAGE WORDS / CH" count="744" />
+              </ReleaseStatCardWrapper>
             </DashBoardStoriesReleaseStatSubWrapper>
           </DashBoardStoriesReleaseStatWrapper>
           <DashBoardReadingStatistics />
@@ -57,3 +62,11 @@ const DashBoardStoriesMainContent = () => {
 }
 
 export default DashBoardStoriesMainContent
+
+const ReleaseStatCardWrapper = styled(Box)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 6px;
+  width: 50%;
+`

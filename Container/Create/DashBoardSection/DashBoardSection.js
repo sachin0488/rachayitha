@@ -1,16 +1,13 @@
-import React from "react";
-import { RightSideHeaderSectionWrapper, UserGuide } from "../CreateStyle";
-import CreatePageRightSideHeader from "../Components/CreatePageRightSideHeader";
+import React from 'react'
+import { RightSideHeaderSectionWrapper, UserGuide } from '../CreateStyle'
+import RightSideHeader from '../Layout/header/RightSideHeader'
 
 const DashBoard = () => {
   return (
     <>
-      <RightSideHeaderSectionWrapper>
-        <CreatePageRightSideHeader section="dashboard" />
-        <UserGuide>user guide</UserGuide>
-      </RightSideHeaderSectionWrapper>
+      <RightSideHeader />
     </>
-  );
-};
+  )
+}
 
-export default DashBoard;
+export default DashBoard
