@@ -1,81 +1,65 @@
 import styled from '@emotion/styled'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TextareaAutosize, TextField, Box, RadioGroup, InputLabel, Typography, Button } from '@mui/material'
+import StyledTextField from 'components/form-components/StyledTextField'
 import RadioGroupMui from 'Components/RadioGroup/RadioGroupMui'
 import { ProfileImg } from 'Container/UserProfile/Pages/UserProfile'
 import useFormError from 'hooks/useFormError'
 import Image from 'next/image'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+import { selectUser } from 'store/slices/global/user.slice'
 import { mobileL, mobileM, tabletS } from 'styles/mediaQuery/breakPoints'
+import { generateUserName } from 'utility/generateUserName'
 import Schema from './UserProfileSchema'
 
 const ModelInsideContent = () => {
+  const user = useSelector(selectUser)
+
   const methods = useForm({
     resolver: yupResolver(Schema),
   })
-  //   const { handleLogin, isLoading } = useLoginAPI()
+
   const { handleFormError } = useFormError()
-  const handleClick = () => {}
+
+  const handleClick = useCallback(() => {
+
+  }, [])
+
   return (
     <>
       <Form onSubmit={methods.handleSubmit(handleClick, handleFormError)}>
         <FormProvider {...methods}>
           <InputFieldWrapper>
             <ProfileImage src={ProfileImg} width />
-            <RadioGroupWrapper>
-              <Heading>Hi...</Heading>
-            </RadioGroupWrapper>
+
+            <Heading>Hi, {generateUserName(user.data.username)}</Heading>
           </InputFieldWrapper>
+
           <InputFieldWrapper>
             <Label>Username</Label>
-            <RadioGroupWrapper>
-              <InputField
-                type="text"
-                name="username"
-                {...methods.register('username')}
-                required
-                id="outlined-basic"
-                label="Add Username"
-                variant="outlined"></InputField>
-            </RadioGroupWrapper>
+            <StyledTextField label="Username here..." name="username" required />
           </InputFieldWrapper>
+
           <InputFieldWrapper>
             <Label>Email</Label>
-            <RadioGroupWrapper>
-              <InputField
-                type="email"
-                name="email"
-                {...methods.register('email')}
-                required
-                id="outlined-basic"
-                label="Add Username"
-                variant="outlined"></InputField>
-            </RadioGroupWrapper>
+            <StyledTextField type="email" label="Email here..." name="email" required />
           </InputFieldWrapper>
+
           <InputFieldWrapper>
             <Label>Gender</Label>
-            <RadioGroupWrapper>
-              <RadioGroupMui />
-            </RadioGroupWrapper>
+            <RadioGroupMui />
           </InputFieldWrapper>
+
           <InputFieldWrapper>
-            <Label>About</Label>
-            <RadioGroupWrapper>
-              <TextArea
-                type="text"
-                name="about"
-                {...methods.register('about')}
-                required
-                style={{ height: '70px' }}
-                variant="outlined"></TextArea>
-            </RadioGroupWrapper>
+            <Label>Bio</Label>
+            <StyledTextField multiline label="Your Bio here..." name="about" required />
           </InputFieldWrapper>
-          <ButtonWrapper>
-            <SaveChanges type="submit" variant="contained">
-              Save Changes
-            </SaveChanges>
-          </ButtonWrapper>
+
+          <SaveChanges type="submit" variant="contained">
+            Save Changes
+          </SaveChanges>
         </FormProvider>
       </Form>
     </>
@@ -85,7 +69,7 @@ const ModelInsideContent = () => {
 export default ModelInsideContent
 
 const Form = styled.form`
-  padding: 10px 15px;
+  padding: 15px 0px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -106,15 +90,17 @@ const Form = styled.form`
     gap: 25px;
   }
 `
-const InputFieldWrapper = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  @media ${tabletS} {
-    width: 70%;
-  }
-
+const InputFieldWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px 10px;
   padding: 10px 0px;
+  /* width: 70%; */
+  width: 100%;
+  @media (max-width: 600px) {
+    grid-template-columns: 0.7fr 1.3fr;
+  }
 `
 const ProfileImage = styled.img`
   object-fit: cover;
@@ -126,6 +112,7 @@ const ProfileImage = styled.img`
 const Heading = styled(Typography)`
   font-size: 26px;
   font-weight: 500;
+  align-self: center;
 `
 const InputField = styled(TextField)`
   width: 180px;
@@ -160,10 +147,6 @@ const RadioGroupWrapper = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 240px;
-  @media ${mobileL} {
-    width: 280px;
-  }
 `
 
 const ButtonWrapper = styled(Box)`
@@ -178,4 +161,5 @@ const SaveChanges = styled(Button)`
   text-transform: capitalize;
   padding: 10px 17px;
   font-size: 15px;
+  align-self: flex-end;
 `

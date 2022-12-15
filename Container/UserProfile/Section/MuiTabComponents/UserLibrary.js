@@ -11,8 +11,8 @@ const UserLibrary = () => {
   return (
     <>
       <Root>
-        {data?.data?.resources?.data?.map(card => (
-          <Link href={`/book/${card?.id}`}>
+        {data?.data?.resources?.data?.map((card, index) => (
+          <Link href={`/book/${card?.id}`} key={index}>
             <Card>
               <CardImg src={cloudinary} />
               <CardBelowSection>

@@ -116,7 +116,7 @@ export const UserProfileLowerRightSection = styled(Box)`
   justify-content: start;
   align-items: flex-start;
   gap: 10px;
-  width: 100%;
+  /* width: 100%; */
   height: 400px;
   margin-top: 50px;
   @media (min-width: 1040px) {

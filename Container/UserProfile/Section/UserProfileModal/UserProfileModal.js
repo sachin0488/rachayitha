@@ -1,9 +1,10 @@
 import React from 'react'
-import { Modal, Button, Box, Typography } from '@mui/material'
+import { Modal } from '@mui/material'
+import { EditProfileButton, EditProfileModalWrapper } from '../../Common/UserProfileStyle'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import { EditProfileButton, EditProfileModalWrapper, UserProfileHeading } from '../../Common/UserProfileStyle'
-import { AiFillEdit } from 'react-icons/ai'
 import ModelInsideContent from './ModelInsideContent'
+import { StyledModal } from 'components/StyledModal'
+import styled from '@emotion/styled'
 
 const UserProfileModal = () => {
   const [open, setOpen] = React.useState(false)
@@ -22,17 +23,32 @@ const UserProfileModal = () => {
         onClick={handleOpen}>
         Edit Profile
       </EditProfileButton>
-      <Modal
+      <Root
+        disableHeader
+        customBarackPoint={480}
         open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <EditProfileModalWrapper>
+        handleClose={handleClose}
+        maxWidth="40rem"
+        maxHeight="fit-content">
+        <Main>
           <ModelInsideContent />
-        </EditProfileModalWrapper>
-      </Modal>
+        </Main>
+      </Root>
     </>
   )
 }
+
+const Root = styled(StyledModal)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+const Main = styled.main`
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  width: 100%;
+`
 
 export default UserProfileModal

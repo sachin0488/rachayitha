@@ -28,6 +28,7 @@ import UserProfileModal from '../Section/UserProfileModal/UserProfileModal'
 import MuiTabs from '../../../Components/MuiTabs/MuiTabs'
 import { UserProfileMuiTabList } from '../../../hooks/useMuiTabComp'
 import { UserProfileStylesTab } from '../Section/MuiTabComponents/UserProfileStylesTab'
+import TabSection from '../Section/TabSection'
 
 export const bannerImgUrl = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568486/bannerProfileImg_kdid5i.png'
 export const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
@@ -86,7 +87,8 @@ const UserProfile = () => {
             <EditProfileContainer>
               <UserProfileModal />
             </EditProfileContainer>
-            <MuiTabs muiTab={UserProfileMuiTabList} styles={UserProfileStylesTab} />
+            {/* <MuiTabs muiTab={UserProfileMuiTabList} styles={UserProfileStylesTab} /> */}
+            <TabSection/>
           </UserProfileLowerRightSection>
         </UserProfileLowerSection>
       </SubWrapper>
