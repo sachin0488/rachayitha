@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { FormControl, formControlClasses, InputLabel, MenuItem, Select, selectClasses } from '@mui/material'
 import React, { useState } from 'react'
-import { laptop } from '../../../styles/mediaQuery/breakPoints'
+import { laptop } from '../../../../../../../styles/mediaQuery/breakPoints'
 
 export default function MuiSelect({ label, menuItems, textColor, background, selectMargin }) {
   const [content, setContent] = useState('')
