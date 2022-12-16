@@ -3,7 +3,7 @@ import { Modal } from '@mui/material'
 import { EditProfileButton, EditProfileModalWrapper } from '../../Common/UserProfileStyle'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import ModelInsideContent from './ModelInsideContent'
-import { StyledModal } from 'components/StyledModal'
+import { StyledModal } from '../../../../Components/StyledModal'
 import styled from '@emotion/styled'
 
 const UserProfileModal = () => {

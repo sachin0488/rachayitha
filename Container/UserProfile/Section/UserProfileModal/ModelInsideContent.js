@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TextareaAutosize, TextField, Box, RadioGroup, InputLabel, Typography, Button } from '@mui/material'
-import StyledTextField from 'components/form-components/StyledTextField'
+import StyledTextField from '../../../../Components/form-components/StyledTextField'
 import RadioGroupMui from 'Components/RadioGroup/RadioGroupMui'
 import { ProfileImg } from 'Container/UserProfile/Pages/UserProfile'
 import useFormError from 'hooks/useFormError'
@@ -23,9 +23,7 @@ const ModelInsideContent = () => {
 
   const { handleFormError } = useFormError()
 
-  const handleClick = useCallback(() => {
-
-  }, [])
+  const handleClick = useCallback(() => {}, [])
 
   return (
     <>

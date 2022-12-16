@@ -1,5 +1,5 @@
 import React from 'react'
-import { GenreName, genreName } from '../../hooks/useGenreButton'
+import { GenreName } from 'hooks/useGenreButton'
 import { GenreButtonListWrapper } from './GenreButtonListStyle'
 import { useRouter } from 'next/router'
 import RankingGenreButton from '../GenreButton/Components/RankingGenreButton'
@@ -22,7 +22,7 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
               genreLead={genreLead}
             />
           ))
-        : genreName.map(platform => (
+        : GenreName.map(platform => (
             <RankingGenreButton
               explore={explore}
               section={section}

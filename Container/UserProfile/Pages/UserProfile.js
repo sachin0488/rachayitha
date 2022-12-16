@@ -88,7 +88,7 @@ const UserProfile = () => {
               <UserProfileModal />
             </EditProfileContainer>
             {/* <MuiTabs muiTab={UserProfileMuiTabList} styles={UserProfileStylesTab} /> */}
-            <TabSection/>
+            <TabSection />
           </UserProfileLowerRightSection>
         </UserProfileLowerSection>
       </SubWrapper>

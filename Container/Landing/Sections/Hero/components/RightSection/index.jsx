@@ -15,28 +15,28 @@ const RightSection = () => {
       <BannerImgContainer sx={{ margin: '0px 0px -131px 0px' }}>
         {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
-            <StyledImage src={bannerImg.img} width="218px" height="253px" />
+            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '-56px 0px 0px 0px' }}>
         {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
-            <StyledImage src={bannerImg.img} width="218px" height="253px" />
+            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '45px 0px 0px 0px' }}>
         {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
-            <StyledImage src={bannerImg.img} width="218px" height="253px" />
+            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>
       <BannerImgContainer sx={{ margin: '-169px 0px 0px 0px' }}>
         {List?.map((bannerImg, index) => (
           <ImgContainer key={index}>
-            <StyledImage src={bannerImg.img} width="218px" height="253px" />
+            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
           </ImgContainer>
         ))}
       </BannerImgContainer>

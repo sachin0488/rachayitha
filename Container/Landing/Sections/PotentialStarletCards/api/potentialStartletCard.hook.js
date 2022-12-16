@@ -1,9 +1,12 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchPotentialStarletCard } from './potentialStarletCard.api'
+import { potentialStarletApi, fakePotentialStarletApi } from './potentialStarletCard.api'
 
-const potentialStartletCardHook = () => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(['use-potential'], fetchPotentialStarletCard)
+const potentialStartletCardHook = ({ isReal }) => {
+  const { data, isLoading, isError, error, isFetching } = useQuery(
+    ['use-potential'],
+    isReal ? potentialStarletApi : fakePotentialStarletApi,
+  )
   return { data, isLoading, isError, error, isFetching }
 }
 

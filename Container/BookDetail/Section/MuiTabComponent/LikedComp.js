@@ -22,9 +22,9 @@ import useBookDetail, { useBookComment } from '../../api/bookDetail.hook'
 import styled from '@emotion/styled'
 const LikedComp = () => {
   const router = useRouter()
-  // const { data } = useBookDetail(router.query.book)
+
   const { data } = useBookComment(router.query.book)
-  // console.log(data.data.data, 'comment data')
+
   return (
     <>
       {data?.data?.data.map(comment => (

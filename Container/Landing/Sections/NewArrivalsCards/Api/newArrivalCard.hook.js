@@ -1,29 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { useSnackbar } from 'notistack'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../../store/slices/global/user.slice'
-import { newArrivalAPI } from './newArrivalCards.api'
+import { newArrivalAPI, fakeNewArrivalApi } from './newArrivalCards.api'
 
-const useNewArrivalApi = () => {
-  const { isLoggedIn } = useSelector(selectUser)
-  const { enqueueSnackbar } = useSnackbar()
+const useNewArrivalApi = ({ isReal }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
-    ['use-new-arrival', newArrivalAPI],
-    () => newArrivalAPI(isLoggedIn),
-    {
-      //   enabled: false,
-      //   onSuccess({ data }) {
-      //     enqueueSnackbar(data?.message, {
-      //       variant: 'success',
-      //     })
-      //   },
-      onError: error => {
-        if (error.response?.data?.message)
-          enqueueSnackbar(error.response?.data?.message, {
-            variant: 'error',
-          })
-      },
-    },
+    ['use-new-arrival'],
+    isReal ? newArrivalAPI : fakeNewArrivalApi,
   )
   return { data, isLoading, isError, error, isFetching }
 }

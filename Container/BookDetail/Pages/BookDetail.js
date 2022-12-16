@@ -50,7 +50,6 @@ const BookDetail = () => {
   }
 
   const handleClick = () => {
-    console.log(router.query.book, 'id')
     handleAddToLibrary(router.query.book)
   }
 

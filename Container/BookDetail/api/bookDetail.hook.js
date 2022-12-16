@@ -50,7 +50,6 @@ export const useBookCommentAPI = () => {
 }
 
 const useBookDetail = book => {
-  console.log(book, 'book')
   const { data, isLoading, isError, error, isFetching } = useQuery(['use-book', book], () => fetchBookDetail(book), {
     onSuccess({ data }) {},
   })

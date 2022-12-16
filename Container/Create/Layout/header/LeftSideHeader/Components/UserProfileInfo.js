@@ -2,9 +2,8 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import React from 'react'
 import { UserProfileImgNameWrapper, ImgComp } from '../../../../CreateStyle'
-
+export const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
 const UserProfileInfo = () => {
-  const ProfileImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667568485/Ellipse_252_vypxjo.png'
   return (
     <>
       <UserProfileImgNameWrapper>

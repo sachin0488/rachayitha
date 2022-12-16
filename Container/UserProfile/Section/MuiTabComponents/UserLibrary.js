@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const UserLibrary = () => {
   const { data } = useLibraryApi()
-  console.log(data?.data?.resources?.data, 'get library')
+  // console.log(data?.data?.resources?.data, 'get library')
   return (
     <>
       <Root>

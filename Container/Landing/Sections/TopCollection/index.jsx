@@ -26,7 +26,9 @@ const collectionTimeList = [
 
 const TopCollection = () => {
   const isTabletXSM = useMediaQuery('(min-width:900px)')
-  const { data } = useTopCollection()
+  const { data } = useTopCollection({ isReal: false })
+  // console.log(data?.data?.novels, 'data')
+  const item = data?.data?.novels
 
   const methods = useForm({
     defaultValues: {
@@ -35,11 +37,11 @@ const TopCollection = () => {
   })
 
   const List = [
-    <ContentListSection key={1} contentName="Novel" contentList={data} />,
-    <ContentListSection key={2} contentName="Poems" contentList={data} />,
-    <ContentListSection key={3} contentName="Shorts" contentList={data} />,
+    <ContentListSection key={1} contentName="Novel" contentList={item} />,
+    <ContentListSection key={2} contentName="Poems" contentList={item} />,
+    <ContentListSection key={3} contentName="Shorts" contentList={item} />,
   ]
-  // console.log(methods.watch('selectedTime'))
+
   return (
     <Root>
       <FormProvider {...methods}>
@@ -50,9 +52,9 @@ const TopCollection = () => {
           </Heading>
           {isTabletXSM ? (
             <CollectionList>
-              <ContentListSection contentName="Novel" contentList={data} />
-              <ContentListSection contentName="Poems" contentList={data} />
-              <ContentListSection contentName="Shorts" contentList={data} />
+              <ContentListSection contentName="Novel" contentList={item} />
+              <ContentListSection contentName="Poems" contentList={item} />
+              <ContentListSection contentName="Shorts" contentList={item} />
             </CollectionList>
           ) : (
             <CarouselList List={List} />

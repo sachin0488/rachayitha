@@ -12,20 +12,20 @@ const RankingGenreMenuBarLeftSection = () => {
   return (
     <>
       <LeftSideGenreMenuBar>
-        <Link href={`/ranking?content_type=novel&lead=male&genre=${genre}`}>
-          <MenuItem className={router.asPath === `/ranking?content_type=novel&lead=male&genre=${genre}` ? 'genre' : ''}>
+        <Link href={`/ranking?content_type=novel&genre=${genre}`}>
+          <MenuItem className={router.asPath === `/ranking?content_type=novel&genre=${genre}` ? 'genre' : ''}>
             <NovelIcon />
             <GenreTitle>Novel</GenreTitle>
           </MenuItem>
         </Link>
-        <Link href={`/ranking?content_type=short&lead=male&genre=${genre}`}>
-          <MenuItem className={router.asPath === `/ranking?content_type=short&lead=male&genre=${genre}` ? 'genre' : ''}>
+        <Link href={`/ranking?content_type=short&genre=${genre}`}>
+          <MenuItem className={router.asPath === `/ranking?content_type=short&genre=${genre}` ? 'genre' : ''}>
             <FaBookReader />
             <GenreTitle>Short</GenreTitle>
           </MenuItem>
         </Link>
-        <Link href={`/ranking?content_type=poem&lead=male&genre=${genre}`}>
-          <MenuItem className={router.asPath === `/ranking?content_type=poem&lead=male&genre=${genre}` ? 'genre' : ''}>
+        <Link href={`/ranking?content_type=poem&genre=${genre}`}>
+          <MenuItem className={router.asPath === `/ranking?content_type=poem&genre=${genre}` ? 'genre' : ''}>
             <PoemIcon />
             <GenreTitle>Poem</GenreTitle>
           </MenuItem>

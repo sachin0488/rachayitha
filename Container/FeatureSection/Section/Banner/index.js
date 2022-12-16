@@ -1,4 +1,4 @@
-import GenreMenuBarComp from 'Components/GenreMenuBarComp/GenreMenuBarComp'
+import GenreMenuBarComp from './Comp/GenreMenuBarComp'
 import {
   BannerContainer,
   BannerHeading,
@@ -17,7 +17,7 @@ const Banner = () => {
           <BannerImg src={bannerImg} alt="bannerImg" />
           <BannerHeading>Explore</BannerHeading>
         </BannerImageContainer>
-        <GenreMenuBarComp sectionName={ExploreLinkList} />
+        <GenreMenuBarComp />
       </BannerContainer>
     </>
   )

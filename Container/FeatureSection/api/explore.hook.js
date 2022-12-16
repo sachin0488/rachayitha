@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchExploreSection } from './explore.api'
+import { fakeExploreApi, exploreApi } from './explore.api'
 
 const useExplore = () => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(['use-explore'], () => fetchExploreSection(), {
-    onSuccess({ data }) {
-      console.log(data.resources.data, 'data explore')
-    },
-  })
+  const isReal = true
+  const { data, isLoading, isError, error, isFetching } = useQuery(
+    ['use-explore'],
+    isReal ? exploreApi : fakeExploreApi,
+  )
   return { data, isLoading, isError, error, isFetching }
 }
 
