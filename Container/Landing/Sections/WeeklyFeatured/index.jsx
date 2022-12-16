@@ -10,7 +10,7 @@ import ContentCard from './components/ContentCard'
 import useWeeklyApi from './api/WeeklyCard.hook'
 
 const WeeklyFeatured = () => {
-  const { data } = useWeeklyApi()
+  const { data } = useWeeklyApi({ isReal: true })
 
   const List = [
     ...(data?.data?.data || []),

@@ -13,12 +13,15 @@ const ContentCard = ({ item }) => {
     <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
       <Root>
         <ImageSection>
-          <Image alt="book image" src={item.img} width="90px" height="115px" />
+          <Image alt="book image" src={item.cover_img} width="90px" height="115px" />
         </ImageSection>
         <InfoSection>
-          <Title>{item.title}</Title>
-          <Fantasy>{item.fantasy}</Fantasy>
-          <Rating>{item.rating}</Rating>
+          <Title>{item.book_name}</Title>
+          {item?.category?.map(cat => (
+            <Fantasy>{cat.name}</Fantasy>
+          ))}
+
+          <Rating>{item?.rating?.rate__avg}</Rating>
         </InfoSection>
       </Root>
     </Link>

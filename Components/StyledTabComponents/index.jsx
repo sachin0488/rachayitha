@@ -4,6 +4,7 @@ import Tab, { tabClasses } from '@mui/material/Tab'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { wrap } from 'popmotion'
+import { mobileM } from 'styles/mediaQuery/breakPoints'
 
 const TabDisplay = ({ page, direction, section, sectionIndex }) => {
   return (
@@ -147,21 +148,29 @@ const TabSection = styled.div`
 
 const StyledTab = styled(Tab)`
   display: flex;
-  justify-content: flex-start;
+  justify-content: start;
   color: ${({ theme }) => theme.palette.text.icon};
   text-transform: capitalize;
   font-weight: 500;
 
   &.${tabClasses.root} {
+    background: ${({ theme }) => theme.palette.primary.main}11;
     display: flex;
     align-items: center;
     justify-content: center;
     line-height: 0.6;
-    font-size: 0.8991rem;
+
     border-radius: 7.5px;
     min-height: 8.2px;
     white-space: nowrap;
-    padding-inline: 32.4px;
+
+    font-size: 0.7691rem;
+    /* width: 120px; */
+    @media ${mobileM} {
+      padding-inline: 32.4px;
+      font-size: 0.8991rem;
+      min-width: 110px;
+    }
   }
   &.${tabClasses.selected} {
     color: #fff;
@@ -172,8 +181,17 @@ const StyledTab = styled(Tab)`
 
 const StyledTabs = styled(Tabs)`
   overflow: visible;
+  display: flex;
+
+  & .css-heg063-MuiTabs-flexContainer {
+    justify-content: start;
+    gap: 10px;
+    @media ${mobileM} {
+      gap: 40px;
+    }
+  }
   & .${tabsClasses.scroller} {
-    background: ${({ theme }) => theme.palette.primary.main}11;
+    background: white;
     height: 100%;
     border-radius: 7.5px;
     overflow: visible;
@@ -186,7 +204,6 @@ const StyledTabs = styled(Tabs)`
     border-radius: 7.5px;
     z-index: -1;
   }
-  max-width: fit-content;
 `
 
 function a11yProps(index) {

@@ -3,7 +3,7 @@ import LeftSideHeader from 'Container/Create/Layout/header/LeftSideHeader'
 import React from 'react'
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { HiDownload } from 'react-icons/hi'
-import MuiSelect from '../../../../Components/GenreMenuBarComp/Components/MuiSelect'
+import MuiSelect from 'Container/FeatureSection/Section/Banner/Comp/GenreMenuBarComp/Components/MuiSelect'
 import RadioGroupMui from '../../../../Components/RadioGroup/RadioGroupMui'
 
 import {

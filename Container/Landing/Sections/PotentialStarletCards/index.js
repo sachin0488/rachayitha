@@ -11,7 +11,7 @@ import ContentCard from './components/ContentCard'
 import potentialStartletCardHook from './api/potentialStartletCard.hook'
 
 const PotentialStarletCards = () => {
-  const { data, isLoading, isError, error, isFetching } = potentialStartletCardHook()
+  const { data, isLoading, isError, error, isFetching } = potentialStartletCardHook({ isReal: false })
 
   if (isLoading) {
     return <h1>LOADING ... </h1>
@@ -25,7 +25,7 @@ const PotentialStarletCards = () => {
     <Root>
       <Main>
         <Heading>Potential Starlet</Heading>
-        <StyledSlider CardComponent={ContentCard} List={data} />
+        <StyledSlider CardComponent={ContentCard} List={data?.data?.data} />
       </Main>
     </Root>
   )

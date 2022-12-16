@@ -1,29 +1,5 @@
 import React from 'react'
-import {
-  Wrapper,
-  SubWrapper,
-  ExploreBannerImageContainer,
-  GenreMenuBar,
-  RightSideGenreMenuBar,
-  LeftSideGenreMenuBar,
-  GenreTitle,
-  FilterText,
-  ContentType,
-  ContentTypeText,
-  ExploreBannerContainer,
-  MenuItem,
-  MainContentWrapper,
-  GenreAccordionContainer,
-  ShowQueryContainer,
-  SortByHeading,
-  HorizontalRule,
-  Title,
-  ParagraphText,
-  ButtonContainer,
-  Button,
-  MaleAndFemaleLeadContainer,
-  GenderBox,
-} from '../../../Common/Common.styles'
+import { Title, ParagraphText, ButtonContainer } from '../../../Common/Common.styles'
 import {
   ExploreBannerImg,
   Cards,
@@ -51,7 +27,7 @@ const RankingCard = ({ card, index }) => {
     <>
       <Cards>
         <LeftSideCardPart>
-          <Img src={card.img} />
+          <Img src={card?.cover_img} />
         </LeftSideCardPart>
         <RightSideCardPart>
           <HashtagAndButtonSection>
@@ -68,12 +44,12 @@ const RankingCard = ({ card, index }) => {
               <ReadButton>Read</ReadButton>
             </ButtonSection>
           </HashtagAndButtonSection>
-          <Title>{card.title}</Title>
+          <Title>{card?.book_name}</Title>
           <ParagraphText>{card.paragraph}</ParagraphText>
           <RatingGenreAuthorContainer>
             <RatingContainer>
               <AiOutlineLike color="black" />
-              <CardRatingText>{card.rating}</CardRatingText>
+              <CardRatingText>{card?.rating}</CardRatingText>
             </RatingContainer>
             <CardGenreText>{card.genre}</CardGenreText>
             <CardGenreText>{card.author}</CardGenreText>

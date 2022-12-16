@@ -40,19 +40,22 @@ const ContentCard = ({ item }) => {
           <ImgBox>
             {' '}
             <LeftSideImgContent>
-              <Img src={item.img_url} />
+              <Img src={item.cover_img} />
             </LeftSideImgContent>
             <RightSideImgContent>
-              <SmallImg src={item?.img_url} />
-              <SmallImg src={item.img_url} />
-              <SmallImg src={item.img_url} />
+              <SmallImg src={item?.cover_img} />
+              <SmallImg src={item.cover_img} />
+              <SmallImg src={item.cover_img} />
             </RightSideImgContent>
           </ImgBox>
-          <StoryHeading>{item?.title}</StoryHeading>
+          <StoryHeading>{item?.book_name}</StoryHeading>
           <AlignRatingAndFantasySection>
             <RatingAndFantasySection>
-              <Fantasy>{item?.fantasy}</Fantasy>
-              <Rating>{item?.rating}</Rating>
+              {item?.category?.map((category, index) => (
+                <Fantasy key={category?.id}>{category?.name}</Fantasy>
+              ))}
+
+              <Rating>{item?.rating?.rate__avg}</Rating>
             </RatingAndFantasySection>
           </AlignRatingAndFantasySection>
         </PotentialStarletContentCard>

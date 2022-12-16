@@ -8,7 +8,7 @@ import ContentCard from './components/ContentCard'
 import useNewArrivalApi from './Api/newArrivalCard.hook'
 
 const NewArrivalsCards = () => {
-  const { data, isLoading, isError, error, isFetching } = useNewArrivalApi()
+  const { data, isLoading, isError, error, isFetching } = useNewArrivalApi({ isReal: true })
 
   if (isLoading) {
     return <h1>LOADING ... </h1>

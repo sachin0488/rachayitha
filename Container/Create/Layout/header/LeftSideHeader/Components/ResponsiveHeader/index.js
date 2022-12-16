@@ -1,8 +1,19 @@
 import styled from '@emotion/styled'
+import { ImgComp } from 'Container/Create/CreateStyle'
 import React from 'react'
+import { ProfileImg, Username } from '../UserProfileInfo'
 
 const index = () => {
-  return <></>
+  return (
+    <>
+      <Root>
+        <LogoWrapper>
+          <ImgComp src={ProfileImg} />
+          <Username>Utkarsh Kumar Singh</Username>
+        </LogoWrapper>
+      </Root>
+    </>
+  )
 }
 
 export default index

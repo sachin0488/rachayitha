@@ -1,26 +1,22 @@
 import { Typography } from '@mui/material'
-import GenreButtonLIstMobile from 'Components/GenreButtonList/GenreButtonLIstMobile'
-import RankingGenreButtonLIstMobile from 'Components/GenreButtonList/RankingGenreButtonList'
-import MuiAccordion from 'Components/MuiAccordion/MuiAccordion'
-import SubGenreButton from 'Components/SubGenreButton/SubGenreButton'
-import { HorizontalRule, SortByHeading, SortByWrapper } from 'Container/FeatureSection/Common/Common.styles'
-import { RankingTextAndNestedRoute } from 'Container/FeatureSection/Common/Config'
+import RankingGenreButtonLIstMobile from '../../GenreSelectionSection/GenreButtonList/RankingGenreButtonList'
+import { SortByHeading, SortByWrapper } from 'Container/FeatureSection/Common/Common.styles'
+
+import { useRouter } from 'next/router'
 import React from 'react'
+import MobileVersionGenreSection from '../../ExploreCardSection/Comp/MobileVersionGenreSection'
+import { GenreHeading } from '../../ExploreCardSection/Comp/SortBy'
 
 const SelectGenre = () => {
+  const router = useRouter()
+  const { content_type } = router.query
   return (
     <>
       <SortByWrapper>
-        <MuiAccordion text="Select Genre" high="300px">
-          {RankingTextAndNestedRoute.map(comp => (
-            <>
-              <Typography marginBottom="15px" fontSize="20px">
-                {comp.text}
-              </Typography>
-              <RankingGenreButtonLIstMobile explore={comp.explore} section={comp.section} />
-            </>
-          ))}
-        </MuiAccordion>
+        <MobileVersionGenreSection>
+          <GenreHeading>Genre of {content_type}</GenreHeading>
+          <RankingGenreButtonLIstMobile explore={router.pathname} section={content_type} />
+        </MobileVersionGenreSection>
       </SortByWrapper>
       <SortByHeading>Select Genre</SortByHeading>
     </>

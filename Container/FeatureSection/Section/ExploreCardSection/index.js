@@ -6,7 +6,8 @@ import SortBy from './Comp/SortBy'
 import ExploreCard from './Comp/ExploreCard'
 
 const ExploreCardSection = () => {
-  const { data, isLoading, isError, error } = useExplore()
+  const { data, isLoading, isError, error } = useExplore({ isReal: true })
+  console.log(data, 'explore')
   if (isError) {
     return <h1>{error?.message}</h1>
   }

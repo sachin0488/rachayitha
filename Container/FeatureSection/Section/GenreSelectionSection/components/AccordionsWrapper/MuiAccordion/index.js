@@ -7,15 +7,10 @@ import {
   HorizontalRuleComp,
 } from './MuiAccordionStyles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { useState } from 'react'
+
 import { useRouter } from 'next/router'
 
 export default function MuiAccordion({ isOpened, setOpenedIdx, idx, text, high, section, children }) {
-  // const [expanded, setExpanded] = React.useState(false)
-
-  // const handleChange = panel => (event, isExpanded) => {
-  //   setExpanded(isExpanded ? panel : false)
-  // }
   const router = useRouter()
   const { content_type } = router.query
 
