@@ -34,11 +34,11 @@ const LoginForm = () => {
     <Form onSubmit={methods.handleSubmit(handleLogin, handleFormError)}>
       <FormProvider {...methods}>
         <LoginProviderWrapper>
-          <Divider>
+          {/* <Divider>
             <DividerSidePart />
             <DividerMiddlePart>OR</DividerMiddlePart>
             <DividerSidePart />
-          </Divider>
+          </Divider> */}
           <LoginThroughEmailAndPassword>
             <MdEmail color="black" size={38} />
             <EmailPasswordLabelAndInput>
@@ -76,7 +76,9 @@ const LoginForm = () => {
             </RememberMeContainer>
             <ForgetPasswordButton variant="text">Forgot Password?</ForgetPasswordButton>
           </CheckboxAndForgetPass>
-          <LoginButton type="submit">Login</LoginButton>
+          <LoginButton variant="contained" type="submit">
+            Login
+          </LoginButton>
         </LoginProviderWrapper>
       </FormProvider>{' '}
     </Form>

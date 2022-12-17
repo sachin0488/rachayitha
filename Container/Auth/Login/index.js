@@ -23,7 +23,7 @@ const LoginCard = () => {
           <Heading>
             Welcome to <HighlightedHeading>E-BOOK</HighlightedHeading>
           </Heading>
-          <LoginProviderWrapper>
+          {/* <LoginProviderWrapper>
             <LoginProviderCard>
               <FcGoogle size={35} />
               <LoginProviderName sx={{ color: '#2f2f2f' }}>Login with Google</LoginProviderName>
@@ -32,7 +32,7 @@ const LoginCard = () => {
               <ImFacebook color="#3B5999" size={35} />
               <LoginProviderName sx={{ color: '#2f2f2f' }}>Login with Facebook</LoginProviderName>
             </LoginProviderCard>
-          </LoginProviderWrapper>
+          </LoginProviderWrapper> */}
           <LoginForm />
           <LoginProviderWrapper>
             <RegisterContainer>

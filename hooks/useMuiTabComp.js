@@ -1,7 +1,9 @@
+import LikedComp from 'Container/BookDetail/Section/ReviewSectionCom/Components/Comment/MuiTabComponent/LikedComp'
+import NewestComp from 'Container/BookDetail/Section/ReviewSectionCom/Components/Comment/MuiTabComponent/NewestComp'
 import React from 'react'
-import BookAboutContent from '../Container/BookDetail/Section/MuiTabComponent/BookAboutContent'
-import BookTableOfContent from '../Container/BookDetail/Section/MuiTabComponent/BookTableOfContent'
-import LikedComp from '../Container/BookDetail/Section/MuiTabComponent/LikedComp'
+import BookAboutContent from '../Container/BookDetail/Section/UpperSection/Components/UpperTopSection/MuiTabComponent/BookAboutContent'
+import BookTableOfContent from '../Container/BookDetail/Section/UpperSection/Components/UpperTopSection/MuiTabComponent/BookTableOfContent'
+
 import CollectionGrowth from '../Container/Create/DashBoardSection/DashBoardStoriesSection/Components/MuiTabComp.js/CollectionGrowth'
 import CumulativeCollection from '../Container/Create/DashBoardSection/DashBoardStoriesSection/Components/MuiTabComp.js/CumulativeCollection'
 import DraftMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/DraftMuiTabComp'
@@ -10,7 +12,6 @@ import TrashMuiTabComp from '../Container/Create/WorkspaceSection/Components/Wor
 import Badges from '../Container/UserProfile/Section/MuiTabComponents/Badges'
 import UserLibrary from '../Container/UserProfile/Section/MuiTabComponents/UserLibrary'
 import UserWorks from '../Container/UserProfile/Section/MuiTabComponents/UserWorks'
-import NewestComp from 'Container/BookDetail/Section/MuiTabComponent/NewestComp'
 
 export const genreLeadMuiTabList = [
   {

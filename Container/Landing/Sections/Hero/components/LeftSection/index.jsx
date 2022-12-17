@@ -1,11 +1,10 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React from 'react'
-import { laptopS, tabletS } from 'styles/mediaQuery/breakPoints'
 import { ButtonContainer, Heading, ParagraphText, StyledButton, SubHeading, TextSection } from './styles'
 
 const LeftSection = () => {
-  const link = `/explore?content_type=novel&genre=all&sub_genre=power`
+  const link = `/explore?content_type=novel&genre=1&sub_genre=power`
   return (
     <Root>
       <TextSection>

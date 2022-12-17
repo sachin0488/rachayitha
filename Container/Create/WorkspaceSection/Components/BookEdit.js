@@ -13,7 +13,7 @@ import {
   Title,
   TitleFantasyViewSection,
 } from '../../../BookDetail/Common/BookDetailStyle'
-import { styles } from '../../../BookDetail/Section/MuiTabComponent/MuiTabStyles'
+import { styles } from '../../../BookDetail/Section/UpperSection/Components/UpperTopSection/MuiTabComponent/MuiTabStyles'
 
 import {
   RightSideHeaderSectionWrapper,

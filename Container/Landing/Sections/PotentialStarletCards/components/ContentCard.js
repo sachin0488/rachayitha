@@ -1,9 +1,6 @@
 import React from 'react'
 import { AddIcon } from '../../WeeklyFeatured/components/ContentCard'
 import {
-  PotentialStarletContent,
-  Heading,
-  SubWrapper,
   PotentialStarletContentCard,
   RatingAndFantasySection,
   StoryHeading,

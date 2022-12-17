@@ -18,44 +18,50 @@ import {
   CardRatingText,
   CardGenreText,
 } from '../Styles'
-import { Typography } from '@mui/material'
-import { IoIosAddCircle } from 'react-icons/io'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import { AiOutlineLike } from 'react-icons/ai'
+import Link from 'next/link'
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import {
+  LikeIcon,
+  Wrap,
+  LikedText,
+} from 'Container/BookDetail/Section/ReviewSectionCom/Components/Comment/MuiTabComponent/LikedComp'
 
 const RankingCard = ({ card, index }) => {
+  const { handleAddToLibrary } = useAddToLibraryAPI()
   return (
     <>
-      <Cards>
-        <LeftSideCardPart>
-          <Img src={card?.cover_img} />
-        </LeftSideCardPart>
-        <RightSideCardPart>
-          <HashtagAndButtonSection>
-            <ButtonContainer>
-              {card.hashtag.map(hash => (
-                <HashtagContainer>{hash}</HashtagContainer>
-              ))}
-            </ButtonContainer>
-            <ButtonSection>
-              <AddButton>
-                <IoIosAddCircle size={24} color="#069CF6" />
-                <AddButtonText>Add</AddButtonText>
-              </AddButton>
-              <ReadButton>Read</ReadButton>
-            </ButtonSection>
-          </HashtagAndButtonSection>
-          <Title>{card?.book_name}</Title>
-          <ParagraphText>{card.paragraph}</ParagraphText>
-          <RatingGenreAuthorContainer>
-            <RatingContainer>
-              <AiOutlineLike color="black" />
-              <CardRatingText>{card?.rating}</CardRatingText>
-            </RatingContainer>
-            <CardGenreText>{card.genre}</CardGenreText>
-            <CardGenreText>{card.author}</CardGenreText>
-          </RatingGenreAuthorContainer>
-        </RightSideCardPart>
-      </Cards>
+      <Link href={`/book/1`}>
+        <Cards>
+          <LeftSideCardPart>
+            <Img src={card?.cover_img} />
+          </LeftSideCardPart>
+          <RightSideCardPart>
+            <HashtagAndButtonSection>
+              <ButtonContainer>
+                {card.hashtag.map(hash => (
+                  <HashtagContainer>{hash}</HashtagContainer>
+                ))}
+              </ButtonContainer>
+              <ButtonSection>
+                <AddButton startIcon={<AddCircleOutlinedIcon />} onClick={() => handleAddToLibrary(1)}>
+                  Add
+                </AddButton>
+                <ReadButton>Read</ReadButton>
+              </ButtonSection>
+            </HashtagAndButtonSection>
+            <Title>{card?.book_name}</Title>
+            <ParagraphText>{card.paragraph}</ParagraphText>
+            <RatingGenreAuthorContainer>
+              <LikedText startIcon={<LikeIcon />}>123</LikedText>
+
+              <CardGenreText>{card.genre}</CardGenreText>
+              <CardGenreText>{card.author}</CardGenreText>
+            </RatingGenreAuthorContainer>
+          </RightSideCardPart>
+        </Cards>
+      </Link>
     </>
   )
 }

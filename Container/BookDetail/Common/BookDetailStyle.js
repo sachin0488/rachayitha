@@ -485,11 +485,10 @@ export const AllCategoryRatingRightSection = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
   height: 100%;
   min-width: 100%;
   height: 100%;
-  padding: 0px 0px 20px 0px;
+  padding: 0px 0px 37px 0px;
   @media ${mobileL} {
     min-width: 48%;
     height: 100%;
@@ -525,7 +524,7 @@ export const CommentSectionWrapper = styled(Box)`
 
   width: 100%;
   min-height: 510px;
-  margin: 0px 0px 40px 0px;
+  margin: 0px 0px 20px 0px;
 `
 
 export const CommentSectionSubWrapper = styled(Box)`
@@ -535,9 +534,14 @@ export const CommentSectionSubWrapper = styled(Box)`
   gap: 7px;
   width: 100%;
   min-height: 230px;
+  height: 100%;
   border-bottom: 1px solid #747474;
   margin-top: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
+  @media (min-width: 500px) {
+    padding-bottom: 15px;
+  }
+  /* margin-bottom: 20px; */
 `
 
 export const CommentSectionSubWrapperRightSideContent = styled(Box)`

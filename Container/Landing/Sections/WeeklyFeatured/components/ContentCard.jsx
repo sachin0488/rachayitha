@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import { Button, IconButton, Typography } from '@mui/material'
 import React, { useCallback } from 'react'
-import { IoIosAddCircle } from 'react-icons/io'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
@@ -66,9 +65,9 @@ const Root = styled.div`
   }
 
   gap: 3px;
-  padding: 12px 9px 0px 9px;
+  padding: 12px 10px 0px 10px;
   width: 148px;
-  height: 193px;
+  height: 186px;
   @media ${mobileM} {
     width: 200px;
     height: 280px;
@@ -98,7 +97,7 @@ const RatingAndFantasySection = styled.div`
 
 const Fantasy = styled.div`
   font-weight: 400;
-  font-size: 7.77468px;
+  font-size: 10.77468px;
   line-height: 9px;
   @media ${mobileM} {
     font-weight: 400;

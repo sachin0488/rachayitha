@@ -2,12 +2,9 @@ import React from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
-
 import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
-
 import ContentCard from './components/ContentCard'
-
 import potentialStartletCardHook from './api/potentialStartletCard.hook'
 
 const PotentialStarletCards = () => {
