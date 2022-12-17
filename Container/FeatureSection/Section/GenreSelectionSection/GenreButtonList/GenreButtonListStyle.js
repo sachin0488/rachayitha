@@ -20,6 +20,7 @@ export const GenreButtonListMobileWrapper = styled(Box)`
   align-items: flex-start;
   flex-direction: column;
   overflow-y: auto;
+
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -34,15 +35,20 @@ export const GenreButtonsMobile = styled(Button)`
   transition: box-shadow 0.35s ease-in-out;
   text-transform: capitalize;
   letter-spacing: 0.5px;
+  /* width: 100%; */
+  width: 120px;
+  justify-content: start;
+
   &.genre {
     transition: box-shadow 0.35s ease-in-out;
+    /* background: ${({ theme }) => theme.palette.primary.main}; */
     color: ${({ theme }) => theme.palette.primary.main};
     box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59;
   }
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}01;
     color: ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59;
+    /* box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59; */
   }
   .MuiButton-startIcon {
     margin-right: 4x;

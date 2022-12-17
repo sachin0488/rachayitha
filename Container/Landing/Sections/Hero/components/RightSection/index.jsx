@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import React from 'react'
 import { useHero } from '../../api/hero.hook'
-
 import { BannerImgContainer, ImgContainer, StyledImage } from './styles'
 
 const RightSection = () => {

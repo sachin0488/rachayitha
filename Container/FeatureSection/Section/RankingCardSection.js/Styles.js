@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
 import { laptop, laptopM, laptopS, mobileL, mobileM, tablet, tabletS } from '../../../../styles/mediaQuery/breakPoints'
 
@@ -12,7 +12,7 @@ export const ExploreBannerImg = styled.img`
 export const CardsWrapper = styled(Box)`
   width: 100%;
   min-height: 800px;
-  padding: 5px;
+
   gap: 40px;
   @media ${mobileM} {
     padding: 10px;
@@ -32,16 +32,17 @@ export const Cards = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
+  gap: 10px;
   @media ${mobileL} {
     gap: 30px;
   }
-  gap: 20px;
 `
 export const LeftSideCardPart = styled(Box)`
-  width: 15%;
-  @media ${mobileL} {
+  width: 18%;
+  @media (min-width: 450px) {
     width: 16%;
   }
+
   @media ${tablet} {
     width: 10%;
   }
@@ -95,18 +96,49 @@ export const ButtonSection = styled(Box)`
     gap: 12px;
   }
 `
-export const AddButton = styled(Box)`
-  display: flex;
-  justify-content: center;
-  gap: 3px;
-  align-items: center;
+export const AddButton = styled(Button)`
+  font-weight: 500;
+  font-size: 0.81rem;
+  padding: 5px 9px;
+  color: #069cf6;
+  text-transform: capitalize;
+  float: right;
+  @media (min-width: 500px) {
+    font-size: 1.2rem;
+    padding: 5px 13px;
+  }
+  & .css-gcc2o7-MuiButton-startIcon > *:nth-of-type(1) {
+    font-size: 1rem;
+    @media (min-width: 500px) {
+      font-size: 1.2rem;
+    }
+  }
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.main};
+  }
+  .MuiButton-startIcon {
+    margin-right: 0x;
+    margin-left: -4px;
+  }
+  .MuiButton-endIcon {
+    margin-right: -4px;
+    margin-left: 12px;
+  }
+  &.selected {
+    color: ${({ theme }) => theme.palette.primary.main};
+  }
 `
-export const ReadButton = styled.button`
-  padding: 5px 11px;
+export const ReadButton = styled(Button)`
+  padding: 2px 10px;
   background-color: #069cf6;
   border-radius: 13px;
+  text-transform: capitalize;
   color: white;
   border: none;
+  font-size: small;
+  &:hover {
+    background-color: #069cf6;
+  }
 `
 export const RatingGenreAuthorContainer = styled(Box)`
   width: 100%;
@@ -147,7 +179,7 @@ export const Img = styled.img`
 
 export const HashtagContainer = styled(Typography)`
   color: #673ccc;
-  font-size: 12px;
+  font-size: 9px;
 
   @media ${tabletS} {
     font-size: 16px;

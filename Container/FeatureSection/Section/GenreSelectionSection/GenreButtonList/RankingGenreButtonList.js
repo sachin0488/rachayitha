@@ -6,20 +6,24 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import { GenreButtonListMobileWrapper, GenreButtonsMobile } from './GenreButtonListStyle'
+import useCategoryApi from 'Container/FeatureSection/api/category.hook'
+import { isFake } from './GenreButtonList'
 const RankingGenreButtonLIstMobile = ({ explore, section }) => {
+  const { data } = useCategoryApi()
   const router = useRouter()
+  const list = data?.data?.data
   const { genre } = router.query
   const path = `?content_type=${section}&genre=`
   return (
     <>
       <GenreButtonListMobileWrapper>
-        {GenreName.map((button, index) => (
-          <Link href={`${explore}${path}${button.name}`}>
+        {(isFake ? GenreName : list)?.map((button, index) => (
+          <Link href={`/${explore}${path}${button.id}`}>
             <GenreButtonsMobile
               key={index}
-              startIcon={genre === button.name ? <CheckBoxRoundedIcon /> : <CheckBoxOutlineBlankRoundedIcon />}
-              className={router.asPath === `${explore}${path}${button.name}` ? 'genre' : ''}>
-              {button.buttonName}
+              startIcon={button.id == genre ? <CheckBoxRoundedIcon /> : <CheckBoxOutlineBlankRoundedIcon />}
+              className={router.asPath === `${explore}${path}${button.id}` ? 'genre' : ''}>
+              {button.category_name}
             </GenreButtonsMobile>
           </Link>
         ))}

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { Box, Typography, Checkbox, Button } from '@mui/material'
+import { mobileL, mobileM } from 'styles/mediaQuery/breakPoints'
 
 export const LoginWrapper = styled(Box)`
   width: 100%;
@@ -17,7 +18,13 @@ export const SubWrapper = styled(Box)`
   flex-direction: column;
   gap: 30px;
   justify-content: start;
-  padding: 45px 60px;
+  padding: 50px 20px;
+  @media ${mobileM} {
+    padding: 25px 40px;
+  }
+  @media ${mobileL} {
+    padding: 45px 60px;
+  }
 `
 
 export const Heading = styled(Typography)`
@@ -69,7 +76,7 @@ export const LoginProviderCard = styled(Box)`
 
 export const LoginButton = styled(Button)`
   width: 100%;
-  height: 78px;
+  height: 58px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,6 +90,9 @@ export const LoginButton = styled(Button)`
   cursor: pointer;
   &:hover {
     color: ${props => props.theme.palette.primary.main};
+  }
+  @media (min-width: 500px) {
+    height: 78px;
   }
 `
 
@@ -124,11 +134,15 @@ export const LoginThroughEmailAndPassword = styled(Box)`
   justify-content: start;
   align-items: center;
   padding: 0px 23px;
-  gap: 30px;
+  gap: 20px;
   background-color: #ececec;
   border-radius: 8px;
   width: 100%;
-  min-height: 80px;
+  min-height: 60px;
+  @media (min-width: 500px) {
+    min-height: 80px;
+    gap: 30px;
+  }
 `
 
 export const EmailPasswordLabelAndInput = styled(Box)`
@@ -160,9 +174,11 @@ export const RememberMeContainer = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 25%;
   height: 100%;
-  gap: 15px;
+  gap: 5px;
+  @media (min-width: 500px) {
+    gap: 15px;
+  }
 `
 
 export const ForgetPasswordButton = styled(Button)`
@@ -179,9 +195,12 @@ export const RememberMeText = styled(Typography)`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 135.5%;
   color: #2f2f2f;
+  @media (min-width: 500px) {
+    font-size: 16px;
+  }
 `
 
 export const InputField = styled.input`

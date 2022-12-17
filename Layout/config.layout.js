@@ -8,13 +8,13 @@ export const NavPageLinks = [
     Icon: AutoStoriesOutlinedIcon,
     label: 'Explore',
     path: '/explore',
-    link: '/explore?content_type=novel&genre=all&sub_genre=power',
+    link: '/explore?content_type=novel&genre=1&sub_genre=power',
   },
   {
     Icon: StarHalfOutlinedIcon,
     label: 'Ranking',
     path: '/ranking',
-    link: '/ranking?content_type=novel&genre=all',
+    link: '/ranking?content_type=novel&genre=1',
   },
   {
     Icon: BorderColorOutlinedIcon,

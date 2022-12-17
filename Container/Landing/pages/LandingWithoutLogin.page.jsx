@@ -1,7 +1,5 @@
 import React from 'react'
-
 import Banner from '../Sections/Banner/Banner'
-
 import { RootContainer } from '../common/common.styles'
 import WeeklyFeatured from '../Sections/WeeklyFeatured'
 import PotentialStarletCards from '../Sections/PotentialStarletCards'
@@ -16,17 +14,6 @@ const LandingPageWithoutLogin = () => {
       <WeeklyFeatured />
       <PotentialStarletCards />
       <NewArrivalsCards />
-      {/* <Wrapper padding="100px 0px 0px 0px">
-        <WeeklyFeaturedCards />
-      </Wrapper>
-      <SubMainContainer>
-        <PotentialCardWrapper>
-          <PotentialStarletCards />
-        </PotentialCardWrapper>
-        <ArrivalCardWrapper>
-          <NewArrivalsCards />
-        </ArrivalCardWrapper>
-      </SubMainContainer> */}
     </RootContainer>
   )
 }

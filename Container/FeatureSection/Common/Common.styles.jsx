@@ -436,7 +436,7 @@ export const ButtonContainer = styled(Box)`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 26px;
+  gap: 6px;
   overflow-x: auto;
   @media ${mobileL} {
     gap: 13px;

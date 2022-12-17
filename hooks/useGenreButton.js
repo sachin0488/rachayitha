@@ -1,86 +1,86 @@
-import React from "react";
+import React from 'react'
 export const genreName = [
   {
-    buttonName: "Power",
-    name: "power",
+    buttonName: 'Power',
+    name: 'power',
   },
   {
-    buttonName: "Trending",
-    name: "trending",
+    buttonName: 'Trending',
+    name: 'trending',
   },
   {
-    buttonName: "Collect",
-    name: "collect",
+    buttonName: 'Collect',
+    name: 'collect',
   },
   {
-    buttonName: "Popular",
-    name: "popular",
+    buttonName: 'Popular',
+    name: 'popular',
   },
   {
-    buttonName: "Update",
-    name: "update",
+    buttonName: 'Update',
+    name: 'update',
   },
   {
-    buttonName: "Active",
-    name: "active",
+    buttonName: 'Active',
+    name: 'active',
   },
   {
-    buttonName: "Fandom",
-    name: "fandom",
+    buttonName: 'Fandom',
+    name: 'fandom',
   },
-];
+]
 
 export const GenreName = [
   {
-    buttonName: "All",
-    name: "all",
+    id: 1,
+    category_name: 'All',
   },
   {
-    buttonName: "Eastern",
-    name: "eastern",
+    id: 2,
+    category_name: 'Eastern',
   },
   {
-    buttonName: "Fantasy",
-    name: "fantasy",
+    id: 3,
+    category_name: 'Fantasy',
   },
   {
-    buttonName: "Horror",
-    name: "horror",
+    id: 4,
+    category_name: 'Horror',
   },
   {
-    buttonName: "Action",
-    name: "action",
+    id: 5,
+    category_name: 'Action',
   },
   {
-    buttonName: "ACG",
-    name: "acg",
+    id: 6,
+    category_name: 'AGC',
   },
   {
-    buttonName: "Urban",
-    name: "urban",
+    id: 7,
+    category_name: 'Urban',
   },
   {
-    buttonName: "Games",
-    name: "games",
+    id: 8,
+    category_name: 'Games',
   },
   {
-    buttonName: "Sci-fi",
-    name: "sci-fi",
+    id: 9,
+    category_name: 'Sci-fi',
   },
   {
-    buttonName: "Sports",
-    name: "sports",
+    id: 10,
+    category_name: 'Sports',
   },
   {
-    buttonName: "Realistic",
-    name: "realistic",
+    id: 11,
+    category_name: 'Realistic',
   },
   {
-    buttonName: "War",
-    name: "war",
+    id: 12,
+    category_name: 'War',
   },
   {
-    buttonName: "History",
-    name: "history",
+    id: 13,
+    category_name: 'History',
   },
-];
+]

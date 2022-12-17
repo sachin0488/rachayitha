@@ -9,7 +9,7 @@ export const fetchBookDetail = book => {
 }
 
 export const fetchCommentSection = book => {
-  const Url = `/bookcomment?book_id=1`
+  const Url = `/bookcomment?book_id=${book}`
   return ApiInstance({
     url: Url,
     method: 'GET',

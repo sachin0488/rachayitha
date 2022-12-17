@@ -12,9 +12,9 @@ const MobileVersionGenreSection = ({ children }) => {
       </StyledButton>
 
       <Drawer anchor="bottom" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width="100%" height="500px">
+        <Content p={2} width="100%" height="500px">
           {children}
-        </Box>
+        </Content>
       </Drawer>
     </>
   )
@@ -22,19 +22,25 @@ const MobileVersionGenreSection = ({ children }) => {
 
 export default MobileVersionGenreSection
 
+const Content = styled(Box)``
+
 const StyledButton = styled(Button)`
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 0.87rem;
   padding: 5px 13px;
   color: #000000cb;
   border-radius: 8px;
   transition: box-shadow 0.35s ease-in-out;
   text-transform: capitalize;
   letter-spacing: 0.5px;
+  float: right;
+  @media (min-width: 500px) {
+    font-size: 1.2rem;
+  }
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}01;
     color: ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59;
+    /* box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59; */
   }
   .MuiButton-startIcon {
     margin-right: 4x;
