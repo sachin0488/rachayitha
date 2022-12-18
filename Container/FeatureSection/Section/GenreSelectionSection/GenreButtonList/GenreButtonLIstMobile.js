@@ -8,7 +8,7 @@ import { GenreButtonListMobileWrapper, GenreButtonsMobile } from './GenreButtonL
 import useCategoryApi from 'Container/FeatureSection/api/category.hook'
 import { isFake } from './GenreButtonList'
 
-const GenreButtonLIstMobile = ({ explore, section }) => {
+const GenreButtonListMobile = ({ explore, section }) => {
   const { data } = useCategoryApi()
   const router = useRouter()
   const list = data?.data?.data
@@ -34,4 +34,4 @@ const GenreButtonLIstMobile = ({ explore, section }) => {
   )
 }
 
-export default GenreButtonLIstMobile
+export default GenreButtonListMobile
