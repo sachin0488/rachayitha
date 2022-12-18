@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import {
   AccordionComp,
   AccordionSummaryComp,
@@ -8,12 +8,7 @@ import {
 } from './MuiAccordionStyles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import { useRouter } from 'next/router'
-
 export default function MuiAccordion({ isOpened, setOpenedIdx, idx, text, high, section, children }) {
-  const router = useRouter()
-  const { content_type } = router.query
-
   return (
     <>
       <AccordionComp expanded={isOpened}>
@@ -26,8 +21,7 @@ export default function MuiAccordion({ isOpened, setOpenedIdx, idx, text, high, 
               style={{ color: '#5426C3', fontSize: '32px' }}
             />
           }
-          aria-controls="panel1a-content"
-          id="panel1a-header">
+          aria-controls="panel1a-content">
           <GenreHeadingComp>{text}</GenreHeadingComp>
         </AccordionSummaryComp>
         <AccordionDetailsComp sx={{ height: high }}>{children}</AccordionDetailsComp>

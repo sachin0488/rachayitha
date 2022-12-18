@@ -1,22 +1,28 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import AccordionContainer from './AccordionContainer'
 
-const AccordionsWrapper = ({ accordionsData }) => {
-  const [initialOpenedIndex, setInitialOpenedIndex] = useState(0)
-  const [openedIdx, setOpenedIdx] = useState(initialOpenedIndex)
-  const router = useRouter()
-  const { content_type } = router.query
+const getSectionIndexByName = sectionName => {
+  switch (sectionName.toLocaleLowerCase()) {
+    case 'novel':
+      return 0
+    case 'poem':
+      return 1
+    case 'short':
+      return 2
+    default:
+      return ''
+  }
+}
 
-  useEffect(() => {
-    if (content_type === 'novel') {
-      setInitialOpenedIndex(0)
-    } else if (content_type === 'poem') {
-      setInitialOpenedIndex(1)
-    } else {
-      setInitialOpenedIndex(2)
-    }
-    console.log(initialOpenedIndex, 'index')
+const AccordionsWrapper = ({ accordionsData }) => {
+  const { query } = useRouter()
+  const { content_type } = query
+
+  const [openedIdx, setOpenedIdx] = useState('')
+
+  useLayoutEffect(() => {
+    setOpenedIdx(getSectionIndexByName(String(content_type)))
   }, [content_type])
 
   return (
