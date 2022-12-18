@@ -7,17 +7,20 @@ import { GenreName } from '../../../../../hooks/useGenreButton'
 import { GenreButtonListMobileWrapper, GenreButtonsMobile } from './GenreButtonListStyle'
 import useCategoryApi from 'Container/FeatureSection/api/category.hook'
 import { isFake } from './GenreButtonList'
+
 const GenreButtonLIstMobile = ({ explore, section }) => {
   const { data } = useCategoryApi()
   const router = useRouter()
   const list = data?.data?.data
   const { sub_genre, genre } = router.query
+
   const path = `?content_type=${section}&genre=`
+
   return (
     <>
       <GenreButtonListMobileWrapper>
         {(isFake ? GenreName : list)?.map((button, index) => (
-          <Link href={`${explore}${path}${button?.id}&sub_genre=${sub_genre}`}>
+          <Link key={index} href={`${explore}${path}${button?.id}&sub_genre=${sub_genre}`}>
             <GenreButtonsMobile
               key={index}
               startIcon={genre == button?.id ? <CheckBoxRoundedIcon /> : <CheckBoxOutlineBlankRoundedIcon />}

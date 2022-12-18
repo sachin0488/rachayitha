@@ -66,7 +66,7 @@ const Root = styled.div`
   overflow-x: auto;
   padding-bottom: 20px;
   padding-top: 10px;
-  @media (min-width: 500px) {
+  @media (min-width: 430px) {
     &::-webkit-scrollbar {
       width: 5px; /* width of the entire scrollbar */
       height: 7px;
@@ -113,7 +113,7 @@ const StyledIconButton = styled(IconButton)`
   .MuiSvgIcon-root {
     font-size: 35px;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 430px) {
     display: none;
   }
 `

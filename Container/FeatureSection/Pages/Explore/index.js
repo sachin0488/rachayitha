@@ -1,6 +1,6 @@
 import React from 'react'
 import { Wrapper, SubWrapper, MainContentWrapper } from '../../Common/Common.styles'
-import GenreSelectionSection from '../../Section/GenreSelectionSection'
+import GenreSelectionSection from 'Container/FeatureSection/Section/GenreSelectionSection'
 import ExploreCardSection from 'Container/FeatureSection/Section/ExploreCardSection'
 import Banner from 'Container/FeatureSection/Section/Banner'
 

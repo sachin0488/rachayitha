@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
-import GenreButtonLIstMobile from '../../GenreSelectionSection/GenreButtonList/GenreButtonLIstMobile'
+import GenreButtonListMobile from '../../GenreSelectionSection/GenreButtonList/GenreButtonListMobile'
 import SubGenreButton from 'Components/SubGenreButton/SubGenreButton'
 import { HorizontalRule, SortByHeading, SortByWrapper } from 'Container/FeatureSection/Common/Common.styles'
 import { useRouter } from 'next/router'
@@ -15,7 +15,7 @@ const SortBy = () => {
       <SortByWrapper>
         <MobileVersionGenreSection>
           <GenreHeading>Genre of {content_type}</GenreHeading>
-          <GenreButtonLIstMobile explore={router.pathname} section={content_type} />
+          <GenreButtonListMobile explore={router.pathname} section={content_type} />
         </MobileVersionGenreSection>
       </SortByWrapper>
       <SortByHeading>Sort By</SortByHeading>
@@ -28,10 +28,10 @@ const SortBy = () => {
 export default SortBy
 
 export const GenreHeading = styled(Typography)`
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-size: 22px;
-
   height: 30px;
+  font-weight: 600;
 `
 
 export const ExploreTextAndNestedRoute = [

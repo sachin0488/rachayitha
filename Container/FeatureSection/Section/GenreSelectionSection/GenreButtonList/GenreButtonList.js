@@ -5,7 +5,9 @@ import { GenreButtonListWrapper } from './GenreButtonListStyle'
 import { useRouter } from 'next/router'
 import RankingGenreButton from '../GenreButton/Components/RankingGenreButton'
 import ExploreGenreButton from '../GenreButton/Components/ExploreGenreButton'
+
 export const isFake = true
+
 const GenreButtonList = ({ explore, section, genreLead }) => {
   const { data } = useCategoryApi()
   const router = useRouter()
@@ -16,8 +18,9 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
   return (
     <GenreButtonListWrapper>
       {type === 'explore'
-        ? (isFake ? GenreName : list)?.map(platform => (
+        ? (isFake ? GenreName : list)?.map((platform, index) => (
             <ExploreGenreButton
+              key={index}
               explore={explore}
               section={section}
               platformApi={platform.id}
@@ -25,8 +28,9 @@ const GenreButtonList = ({ explore, section, genreLead }) => {
               platformButton={platform.category_name}
             />
           ))
-        : (isFake ? GenreName : list)?.map(platform => (
+        : (isFake ? GenreName : list)?.map((platform, index) => (
             <RankingGenreButton
+              key={index}
               explore={explore}
               section={section}
               width="40%"

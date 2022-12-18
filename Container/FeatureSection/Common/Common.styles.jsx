@@ -286,15 +286,17 @@ export const GenderBox = styled(Box)`
   color: #5426c3;
 `
 
-export const ShowQueryContainer = styled(Box)`
+export const ShowQueryContainer = styled.div`
   height: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: flex-start;
-  gap: 27px;
+  gap: 12px;
   width: 100%;
+  margin-top: -30px;
   @media ${laptop} {
+    margin-top: 0px;
     width: 72%;
   }
 `

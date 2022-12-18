@@ -11,12 +11,9 @@ const ExploreCardSection = () => {
   if (isError) {
     return <h1>{error?.message}</h1>
   }
-  const List = [
-    ...(data?.data?.resources?.data || []),
-    ...(data?.data?.resources?.data || []),
-    ...(data?.data?.resources?.data || []),
-    ...(data?.data?.resources?.data || []),
-  ]
+
+  const List = [...(data?.data?.resources?.data || [])]
+
   return (
     <>
       <ShowQueryContainer>
