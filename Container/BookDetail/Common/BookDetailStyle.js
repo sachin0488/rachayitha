@@ -559,7 +559,7 @@ export const ReplyLikeAndCommentSection = styled(Box)`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `
 export const RepliesSection = styled(Box)`
   display: flex;

@@ -96,19 +96,16 @@ export const NewArrivalContentCard = styled(Box)`
   @media ${mobileL} {
     padding: 16px 6px;
     min-width: 240px;
-    height: 98%;
   }
   @media ${tabletS} {
     padding: 16px 14px;
     min-width: 240px;
-    height: 98%;
   }
   @media ${tablet} {
     padding: 16px 14px;
     min-width: 312px;
-    height: 98%;
   }
-  height: 98%;
+
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
@@ -140,14 +137,13 @@ export const Heading = styled(Typography)`
   color: ${props => props.theme.palette.headingColor.main};
 `
 export const StoryHeading = styled(Typography)`
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   @media ${tablet} {
     font-size: 25px;
     line-height: 29px;
+    padding-top: 6px;
   }
   overflow: hidden;
   white-space: nowrap;

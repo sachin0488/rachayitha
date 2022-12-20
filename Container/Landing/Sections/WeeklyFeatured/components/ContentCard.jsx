@@ -14,7 +14,7 @@ const ContentCard = ({ item }) => {
   const { isLoggedIn } = useSelector(selectUser)
 
   return (
-    <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+    <>
       <Root key={item.id}>
         {isLoggedIn ? (
           <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
@@ -23,30 +23,33 @@ const ContentCard = ({ item }) => {
         ) : (
           <></>
         )}
-
-        <ImgBox>
-          <Img
-            src={cloudinary}
-            width="full"
-            style={{
-              position: 'absolute',
-              objectFit: 'cover',
-              top: '0',
-              left: '0',
-            }}
-          />
-        </ImgBox>
-        <StoryHeading>{item.book_name}</StoryHeading>
-        <RatingAndFantasySection>
-          {item.category.map(category => (
-            <>
-              <Fantasy>{category.name}</Fantasy>
-              <Rating>{category.id}</Rating>
-            </>
-          ))}
-        </RatingAndFantasySection>
+        <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+          <SubRoot>
+            <ImgBox>
+              <Img
+                src={cloudinary}
+                width="full"
+                style={{
+                  position: 'absolute',
+                  objectFit: 'cover',
+                  top: '0',
+                  left: '0',
+                }}
+              />
+            </ImgBox>
+            <StoryHeading>{item.book_name}</StoryHeading>
+            <RatingAndFantasySection>
+              {item.category.map(category => (
+                <>
+                  <Fantasy>{category.name}</Fantasy>
+                  <Rating>{category.id}</Rating>
+                </>
+              ))}
+            </RatingAndFantasySection>
+          </SubRoot>
+        </Link>
       </Root>
-    </Link>
+    </>
   )
 }
 
@@ -63,9 +66,7 @@ const Root = styled.div`
     transform: scale(1.01, 1.01);
     transition-duration: 0.7s;
   }
-
-  gap: 3px;
-  padding: 12px 10px 0px 10px;
+  padding: 9px 10px 0px 10px;
   width: 148px;
   height: 186px;
   @media ${mobileM} {
@@ -82,6 +83,20 @@ const Root = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   border: 1px solid #ffffff;
+`
+
+const SubRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  &:hover {
+    border-color: #582ac5;
+    transform: scale(1.01, 1.01);
+    transition-duration: 0.7s;
+  }
+
+  gap: 3px;
 `
 
 const RatingAndFantasySection = styled.div`
@@ -163,6 +178,7 @@ const ImgBox = styled.div`
 `
 
 const Img = styled.img`
+  border-radius: 5px;
   width: 100%;
   height: 100%;
 `

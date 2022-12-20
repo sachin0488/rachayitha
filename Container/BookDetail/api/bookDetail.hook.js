@@ -3,8 +3,14 @@ import { useSnackbar } from 'notistack'
 import { addToLibraryAPI, bookCommentAPI, fetchBookDetail, fetchCommentSection } from './bookDetail.api'
 
 export const useBookComment = book => {
-  const { data, isLoading, isError, error } = useQuery(['use-comment', book], () => fetchCommentSection(book))
-  return { data, isLoading, isError, error }
+  const { data, isLoading, isError, error, refetch } = useQuery(
+    ['use-comment', book],
+    () => fetchCommentSection(book),
+    {
+      refetchIntervalInBackground: true,
+    },
+  )
+  return { data, isLoading, isError, error, refetch }
 }
 
 export const useAddToLibraryAPI = () => {
@@ -31,18 +37,22 @@ export const useAddToLibraryAPI = () => {
 export const useBookCommentAPI = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const { mutate, isLoading, isSuccess } = useMutation(bookCommentAPI, {
-    onSuccess({ data }) {
-      enqueueSnackbar('Comment added !', {
-        variant: 'success',
-      })
+  const { mutate, isLoading, isSuccess } = useMutation(
+    bookCommentAPI,
+
+    {
+      onSuccess({ data }) {
+        enqueueSnackbar('Comment added !', {
+          variant: 'success',
+        })
+      },
+      onError: error => {
+        enqueueSnackbar('Request Failed !', {
+          variant: 'error',
+        })
+      },
     },
-    onError: error => {
-      enqueueSnackbar('Request Failed !', {
-        variant: 'error',
-      })
-    },
-  })
+  )
 
   const handleBookComment = mutate
 

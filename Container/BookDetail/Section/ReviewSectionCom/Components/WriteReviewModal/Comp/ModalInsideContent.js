@@ -11,15 +11,16 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import CommentSchema from './CommentSchema'
 import { useRouter } from 'next/router'
 import { mobileL, mobileM, tabletS } from 'styles/mediaQuery/breakPoints'
-const ModalInsideContent = ({ setOpen }) => {
+const ModalInsideContent = ({ setOpen, comment, id }) => {
   const methods = useForm({
     resolver: yupResolver(CommentSchema),
   })
   const { handleBookComment, isLoading } = useBookCommentAPI()
   const { handleFormError } = useFormError()
+
   const router = useRouter()
   const handleBookCommentSubmit = data => {
-    handleBookComment({ ...data, book_id: router.query.book, parent_comment_id: '' })
+    handleBookComment({ ...data, book_id: router.query.book, parent_comment_id: comment ? '' : id })
     setOpen(false)
   }
   return (
