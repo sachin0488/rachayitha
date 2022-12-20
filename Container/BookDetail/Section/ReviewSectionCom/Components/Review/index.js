@@ -36,7 +36,7 @@ const Review = () => {
         <AllCategoryRatingRightSection>
           <AllCategoryRatingLeftSectionThirdPart>
             <ShareFontSize>Share your thoughts with others</ShareFontSize>
-            <WriteReviewModal />
+            <WriteReviewModal comment={true} />
           </AllCategoryRatingLeftSectionThirdPart>
         </AllCategoryRatingRightSection>
       </AllCategoryRatingSection>

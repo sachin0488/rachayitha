@@ -19,32 +19,40 @@ import {
 import { useRouter } from 'next/router'
 import useBookDetail, { useBookComment } from '../../../../../api/bookDetail.hook'
 import styled from '@emotion/styled'
+import WriteReviewModal from '../../WriteReviewModal'
+import ReplySection from './ReplySection'
 const LikedComp = () => {
   const router = useRouter()
 
   const { data } = useBookComment(router.query.book)
-
   return (
     <>
-      {data?.data?.data.map(comment => (
-        <CommentSectionSubWrapper key={comment?.id}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          <CommentSectionSubWrapperRightSideContent>
-            <UserName>Guiltythree</UserName> <RatingStar value="5" />
-            <ShareFontSize>{comment?.comments}</ShareFontSize>
-            <Months>12 months</Months>
-            <ReplyLikeAndCommentSection>
-              <LikedText startIcon={<ReplyIcon />}>23</LikedText>
+      {data?.data?.data
+        .filter(comment => comment?.parent_comment_id == null)
+        .map(filteredComment => (
+          <CommentSectionSubWrapper key={filteredComment?.id}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <CommentSectionSubWrapperRightSideContent>
+              <UserName>Guiltythree</UserName>{' '}
+              <LikedWrapper>
+                <RatingStar value="5" />
+                <LikeAndCommentSection>
+                  <LikedText startIcon={<LikeIcon />}>123</LikedText>
 
-              <LikeAndCommentSection>
-                <LikedText startIcon={<LikeIcon />}>123</LikedText>
-
-                <LikedText startIcon={<CommentIcon />}>123</LikedText>
-              </LikeAndCommentSection>
-            </ReplyLikeAndCommentSection>
-          </CommentSectionSubWrapperRightSideContent>
-        </CommentSectionSubWrapper>
-      ))}
+                  <LikedText startIcon={<CommentIcon />}>123</LikedText>
+                </LikeAndCommentSection>
+              </LikedWrapper>
+              <ShareFontSize>{filteredComment?.comments}</ShareFontSize>
+              <Wrap>
+                <Months>12 months</Months>
+                <WriteReviewModal comment={false} id={filteredComment.id} />
+              </Wrap>
+              <ReplyLikeAndCommentSection>
+                <ReplySection />
+              </ReplyLikeAndCommentSection>
+            </CommentSectionSubWrapperRightSideContent>
+          </CommentSectionSubWrapper>
+        ))}
     </>
   )
 }
@@ -72,7 +80,7 @@ export const CommentIcon = styled(CommentBankOutlinedIcon)`
   }
   opacity: 0.5;
 `
-const ReplyIcon = styled(QuickreplyOutlinedIcon)`
+export const ReplyIcon = styled(QuickreplyOutlinedIcon)`
   color: #000000;
   &:hover {
     color: #5a2cc6;
@@ -90,4 +98,10 @@ export const Wrap = styled(Box)`
 export const LikedText = styled(Button)`
   color: black;
   opacity: 0.7;
+`
+export const LikedWrapper = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `

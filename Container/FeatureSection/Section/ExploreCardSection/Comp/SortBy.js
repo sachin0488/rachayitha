@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
-import GenreButtonListMobile from 'Container/FeatureSection/Section/GenreSelectionSection/GenreButtonList/GenreButtonListMobile'
+import GenreButtonListMobile from '../../GenreSelectionSection/GenreButtonList/GenreButtonLIstMobile'
 import SubGenreButton from 'Components/SubGenreButton/SubGenreButton'
 import { HorizontalRule, SortByHeading, SortByWrapper } from 'Container/FeatureSection/Common/Common.styles'
 import { useRouter } from 'next/router'
