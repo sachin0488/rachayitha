@@ -1,5 +1,5 @@
 import React from 'react'
-import { Buttons, ButtonContainer } from 'Container/FeatureSection/Common/Common.styles'
+import { Buttons, ButtonContainer } from 'container/FeatureSection/Common/common.styles'
 import { genreName } from '../../hooks/useGenreButton'
 import { useRouter } from 'next/router'
 import Link from 'next/link'

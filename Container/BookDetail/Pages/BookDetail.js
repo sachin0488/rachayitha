@@ -2,9 +2,9 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import useBookDetail, { useAddToLibraryAPI } from '../api/bookDetail.hook'
 import { Wrapper, SubWrapper } from '../Common/BookDetailStyle'
-import RecommendedCards from '../Section/UpperSection/Components/RecommendedCard'
 import ReviewSectionCom from '../Section/ReviewSectionCom'
 import UpperSection from '../Section/UpperSection'
+import RecommendationSection from '../Section/RecommendationSection'
 
 const BookDetail = () => {
   const router = useRouter()
@@ -20,12 +20,12 @@ const BookDetail = () => {
 
   return (
     <>
-      {data?.data?.data.map(item => (
-        <Wrapper>
+      {data?.data?.data.map((item, index) => (
+        <Wrapper key={index}>
           <SubWrapper>
             <UpperSection item={item} />
 
-            <RecommendedCards />
+            <RecommendationSection />
 
             <ReviewSectionCom />
           </SubWrapper>

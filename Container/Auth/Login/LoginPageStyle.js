@@ -28,7 +28,6 @@ export const SubWrapper = styled(Box)`
 `
 
 export const Heading = styled(Typography)`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -37,7 +36,6 @@ export const Heading = styled(Typography)`
   color: #2f2f2f;
 `
 export const HighlightedHeading = styled.span`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -97,7 +95,6 @@ export const LoginButton = styled(Button)`
 `
 
 export const LoginProviderName = styled(Typography)`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -121,7 +118,7 @@ export const DividerMiddlePart = styled(Box)`
   justify-content: center;
   align-items: center;
   width: 10%;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -154,7 +151,6 @@ export const EmailPasswordLabelAndInput = styled(Box)`
   width: 70%;
 `
 export const Label = styled.label`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -182,7 +178,6 @@ export const RememberMeContainer = styled(Box)`
 `
 
 export const ForgetPasswordButton = styled(Button)`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -192,7 +187,6 @@ export const ForgetPasswordButton = styled(Button)`
 
 export const RememberMeCheckbox = styled(Checkbox)``
 export const RememberMeText = styled(Typography)`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -204,7 +198,6 @@ export const RememberMeText = styled(Typography)`
 `
 
 export const InputField = styled.input`
-  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -228,7 +221,7 @@ export const RegisterButton = styled.button`
   color: ${props => props.theme.palette.primary.main};
   border: none;
   outline: none;
-  font-family: 'Poppins';
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

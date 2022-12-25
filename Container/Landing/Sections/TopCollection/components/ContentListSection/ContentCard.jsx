@@ -17,8 +17,9 @@ const ContentCard = ({ item }) => {
         </ImageSection>
         <InfoSection>
           <Title>{item.book_name}</Title>
-          {item?.category?.map(cat => (
-            <Fantasy>{cat.name}</Fantasy>
+
+          {item?.category?.map((cat, idx) => (
+            <Fantasy key={idx}>{cat.name}</Fantasy>
           ))}
 
           <Rating>{item?.rating?.rate__avg}</Rating>
@@ -41,7 +42,6 @@ const Root = styled.div`
   padding: 8px 9px;
 
   border: 2px solid transparent;
-  /* border: 2px solid red; */
   transition: 0.3s ease-in-out;
   &:hover {
     border: 2px solid #562ac5;

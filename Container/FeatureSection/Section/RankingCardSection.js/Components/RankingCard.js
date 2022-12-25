@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, ParagraphText, ButtonContainer } from '../../../Common/Common.styles'
+import { Title, ParagraphText, ButtonContainer } from '../../../Common/common.styles'
 import {
   ExploreBannerImg,
   Cards,

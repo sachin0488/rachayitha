@@ -9,7 +9,7 @@ import {
   ParagraphText,
   ButtonContainer,
   HashTagComp,
-} from '../../../Common/Common.styles'
+} from '../../../Common/common.styles'
 import Link from 'next/link'
 import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 

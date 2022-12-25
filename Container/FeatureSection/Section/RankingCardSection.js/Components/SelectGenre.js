@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import RankingGenreButtonLIstMobile from '../../GenreSelectionSection/GenreButtonList/RankingGenreButtonList'
-import { SortByHeading, SortByWrapper } from 'Container/FeatureSection/Common/Common.styles'
+import { SortByHeading, SortByWrapper } from 'container/FeatureSection/Common/common.styles'
 
 import { useRouter } from 'next/router'
 import React from 'react'

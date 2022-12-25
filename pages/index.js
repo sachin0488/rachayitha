@@ -7,5 +7,5 @@ import LandingPageWithoutLogin from 'Container/Landing/pages/LandingWithoutLogin
 export default function Home() {
   const { isLoggedIn } = useSelector(state => state.user)
 
-  return <>{isLoggedIn ? <LandingPageAfterLogin /> : <LandingPageWithoutLogin />}; </>
+  return <>{isLoggedIn ? <LandingPageAfterLogin /> : <LandingPageWithoutLogin />} </>
 }

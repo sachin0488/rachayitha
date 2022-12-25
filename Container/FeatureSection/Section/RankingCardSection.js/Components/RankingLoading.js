@@ -1,6 +1,6 @@
 import React from 'react'
 import { Skeleton } from '@mui/material'
-import { ButtonContainer } from 'Container/FeatureSection/Common/Common.styles'
+import { ButtonContainer } from 'container/FeatureSection/Common/common.styles'
 import {
   Cards,
   LeftSideCardPart,

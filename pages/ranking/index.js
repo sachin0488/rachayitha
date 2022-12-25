@@ -1,4 +1,4 @@
-import Ranking from 'Container/FeatureSection/Pages/Ranking'
+import Ranking from 'container/FeatureSection/Pages/Ranking.page'
 import React from 'react'
 
 const ranking = () => {

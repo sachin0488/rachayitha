@@ -1,21 +1,23 @@
-import styled from '@emotion/styled'
-import { Button, IconButton, Typography } from '@mui/material'
-import React, { useCallback } from 'react'
-import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
-import { cloudinary } from '../../NewArrivalsCards/components/ContentCard'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
+import React from 'react'
 import Link from 'next/link'
+import styled from '@emotion/styled'
+import { useSelector } from 'react-redux'
+import { Button, ButtonBase, Typography } from '@mui/material'
+
+import { selectUser } from 'store/slices/global/user.slice'
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+
+export const cloudinary = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
   const { isLoggedIn } = useSelector(selectUser)
 
   return (
-    <>
-      <Root key={item.id}>
+    <Root>
+      <Main>
         {isLoggedIn ? (
           <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
             <AddOutlinedIcon />
@@ -23,168 +25,97 @@ const ContentCard = ({ item }) => {
         ) : (
           <></>
         )}
-        <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
-          <SubRoot>
-            <ImgBox>
-              <Img
-                src={cloudinary}
-                width="full"
-                style={{
-                  position: 'absolute',
-                  objectFit: 'cover',
-                  top: '0',
-                  left: '0',
-                }}
-              />
-            </ImgBox>
-            <StoryHeading>{item.book_name}</StoryHeading>
-            <RatingAndFantasySection>
-              {item.category.map(category => (
-                <>
-                  <Fantasy>{category.name}</Fantasy>
-                  <Rating>{category.id}</Rating>
-                </>
-              ))}
-            </RatingAndFantasySection>
-          </SubRoot>
-        </Link>
-      </Root>
-    </>
+
+        <Image alt="" src={cloudinary} />
+        <InfoSection>
+          <InfoLeft>
+            <TitleName variant="h6">{item?.book_name}</TitleName>
+            <CategoryName variant="subtitle2">{item?.category?.map(item => item.name)?.join(', ')}</CategoryName>
+          </InfoLeft>
+          <InfoRight>
+            <Rating variant="subtitle2">{item?.rating?.rate__avg || 'N/A'}</Rating>
+          </InfoRight>
+        </InfoSection>
+      </Main>
+      <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+        <a>
+          <StyledButton color="primary" />
+        </a>
+      </Link>
+    </Root>
   )
 }
 
 export default ContentCard
 
 const Root = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
   position: relative;
-  &:hover {
-    border-color: #582ac5;
-    transform: scale(1.01, 1.01);
-    transition-duration: 0.7s;
+  padding: 15px;
+  box-shadow: 10px 10px 35px 5px rgba(98, 0, 255, 0.14);
+  border-radius: 18px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  border: 2px solid transparent;
+  :hover {
+    border: 2px solid #562ac5;
+    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
+    transform: scale(1.02);
   }
-  padding: 9px 10px 0px 10px;
-  width: 148px;
-  height: 186px;
-  @media ${mobileM} {
-    width: 200px;
-    height: 280px;
-    gap: 10px;
-    padding: 16px 14px;
-  }
-  @media ${tablet} {
-    width: 250px;
-    height: 349px;
-  }
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  border: 1px solid #ffffff;
 `
 
-const SubRoot = styled.div`
+const StyledButton = styled(ButtonBase)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 18px;
+  background-color: transparent;
+`
+
+const Main = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  &:hover {
-    border-color: #582ac5;
-    transform: scale(1.01, 1.01);
-    transition-duration: 0.7s;
-  }
-
-  gap: 3px;
+  gap: 10px;
 `
 
-const RatingAndFantasySection = styled.div`
+const Image = styled.img``
+
+const InfoSection = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  @media ${mobileM} {
-    gap: 80px;
-  }
-  align-items: flex-end;
-  padding: 0px 5px 0px 5px;
+  align-items: center;
 `
 
-const Fantasy = styled.div`
+const InfoLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const InfoRight = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const TitleName = styled(Typography)`
+  font-weight: 700;
+  font-size: 1.2rem;
+`
+
+const CategoryName = styled(Typography)`
   font-weight: 400;
-  font-size: 10.77468px;
-  line-height: 9px;
-  @media ${mobileM} {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-  }
-
-  color: #8d8e99;
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.palette.primary.main}bc;
 `
 
-const Rating = styled.div`
+const Rating = styled(Typography)`
+  color: ${({ theme }) => theme.palette.primary.main};
   font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  @media ${mobileM} {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-  }
+  font-size: 1.2rem;
 `
 
-const StoryHeading = styled(Typography)`
-  font-weight: 600;
-  padding: 5px 5px;
-  color: black;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  font-weight: 600;
-  font-size: 12.2174px;
-  line-height: 14px;
-  height: 28px;
-  @media ${mobileM} {
-    font-size: 16px;
-    line-height: 21px;
-    height: 60px;
-    padding: 16px 5px;
-  }
-  @media ${tablet} {
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 26px;
-    height: 63px;
-  }
-`
-
-const ImgBox = styled.div`
-  border-radius: 10px;
-  width: 115px;
-  height: 113px;
-
-  @media ${mobileM} {
-    width: 150px;
-    height: 160px;
-  }
-  @media ${tablet} {
-    width: 221px;
-    height: 219px;
-  }
-  position: relative;
-`
-
-const Img = styled.img`
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-`
-
-export const AddIcon = styled(Button)`
-  /* background: #ffffff; */
+const AddIcon = styled(Button)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 0px;
@@ -195,8 +126,6 @@ export const AddIcon = styled(Button)`
   padding: 0px;
   min-width: 35px;
   min-height: 35px;
-  /* 
-  height: 30px; */
   display: flex;
   justify-content: center;
   align-items: center;

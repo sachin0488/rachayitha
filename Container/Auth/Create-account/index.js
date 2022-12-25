@@ -124,7 +124,6 @@ const CreateAccountCard = () => {
           <RegisterContainer>
             <h1
               style={{
-                fontFamily: 'Poppins',
                 fontWeight: '400',
                 fontSize: '16px',
                 color: 'black',

@@ -5,31 +5,25 @@ import { Typography } from '@mui/material'
 import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import ContentCard from './components/ContentCard'
-import useNewArrivalApi from './Api/newArrivalCard.hook'
+import usePotentialStartletList from './api/potentialStartletCard.hook'
+import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
 
-const NewArrivalsCards = () => {
-  const { data, isLoading, isError, error, isFetching } = useNewArrivalApi({ isReal: true })
-
-  if (isLoading) {
-    return <h1>LOADING ... </h1>
-  }
-
-  if (isError) {
-    return <h1>{error?.message}</h1>
-  }
-
-  const List = [
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-  ]
+const PotentialStarletCards = () => {
+  const { data, isLoading, isError } = usePotentialStartletList({ isReal: false })
 
   return (
     <Root>
       <Main>
-        <Heading>New Arrivals</Heading>
-        <StyledSlider CardComponent={ContentCard} List={List} />
+        <Heading>Potential Starlet</Heading>
+        {isLoading ? (
+          <LoadingBar />
+        ) : isError ? (
+          <ErrorBar />
+        ) : (data?.data?.data || []).length === 0 ? (
+          <NotAvailableBar />
+        ) : (
+          <StyledSlider CardComponent={ContentCard} List={data?.data?.data} />
+        )}{' '}
       </Main>
     </Root>
   )
@@ -41,22 +35,23 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
+  height: 100%;
+  @media ${mobileM} {
+    min-height: 520px;
+  }
 `
 
 const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  padding-block: 40px;
-  gap: 10px;
-  overflow: hidden;
-  @media ${mobileM} {
-    padding-block: 0px;
-  }
+  height: 100%;
+  padding-block: 10px;
   @media ${tablet} {
     padding-block: 40px;
   }
+  gap: 10px;
+  overflow: hidden;
 
   /* Styled Slider Settings ----- */
   --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
@@ -78,4 +73,4 @@ export const Heading = styled(Typography)`
   padding-left: var(--element-left-spacing);
 `
 
-export default NewArrivalsCards
+export default PotentialStarletCards

@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
-import { Box, Button, Tab, Tabs, TextareaAutosize, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, TextareaAutosize, Typography } from '@mui/material'
 import {
   laptop,
   laptopM,

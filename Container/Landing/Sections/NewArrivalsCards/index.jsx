@@ -2,27 +2,37 @@ import React from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
-import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
+
+import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
+import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import ContentCard from './components/ContentCard'
-import potentialStartletCardHook from './api/potentialStartletCard.hook'
 
-const PotentialStarletCards = () => {
-  const { data, isLoading, isError, error, isFetching } = potentialStartletCardHook({ isReal: false })
+import useNewArrivalApi from './Api/newArrivalCard.hook'
 
-  if (isLoading) {
-    return <h1>LOADING ... </h1>
-  }
+const NewArrivalsCards = () => {
+  const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })
 
-  if (isError) {
-    return <h1>{error?.message}</h1>
-  }
+  const List = [
+    ...(data?.data?.data || []),
+    ...(data?.data?.data || []),
+    ...(data?.data?.data || []),
+    ...(data?.data?.data || []),
+  ]
 
   return (
     <Root>
       <Main>
-        <Heading>Potential Starlet</Heading>
-        <StyledSlider CardComponent={ContentCard} List={data?.data?.data} />
+        <Heading>New Arrivals</Heading>
+        {isLoading ? (
+          <LoadingBar />
+        ) : isError ? (
+          <ErrorBar />
+        ) : (data?.data?.data || []).length === 0 ? (
+          <NotAvailableBar />
+        ) : (
+          <StyledSlider CardComponent={ContentCard} List={List} />
+        )}
       </Main>
     </Root>
   )
@@ -34,23 +44,22 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
-  height: 100%;
-  @media ${mobileM} {
-    min-height: 520px;
-  }
 `
 
 const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding-block: 10px;
+
+  padding-block: 40px;
+  gap: 10px;
+  overflow: hidden;
+  @media ${mobileM} {
+    padding-block: 0px;
+  }
   @media ${tablet} {
     padding-block: 40px;
   }
-  gap: 10px;
-  overflow: hidden;
 
   /* Styled Slider Settings ----- */
   --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
@@ -72,4 +81,4 @@ export const Heading = styled(Typography)`
   padding-left: var(--element-left-spacing);
 `
 
-export default PotentialStarletCards
+export default NewArrivalsCards

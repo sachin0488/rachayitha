@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useRef } from 'react'
 import { IconButton } from '@mui/material'
@@ -7,15 +7,30 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
+import { useIntersectionObserver } from 'react-intersection-observer-hook'
 
 const StyledSlider = ({ List, CardComponent }) => {
   const ref = useRef()
+  const [ScrollLeft, setScrollLeft] = useState(ref.current?.scrollLeft)
+
+  useEffect(() => {
+    if (ref.current) {
+      setScrollLeft(ref.current?.scrollLeft)
+    }
+  }, [])
 
   return (
-    <Root ref={ref}>
+    <Root
+      ref={ref}
+      onScroll={() => {
+        console.log(ref.current?.scrollLeft)
+        console.log(ScrollLeft <= ref.current?.firstChild?.offsetWidth * 1.5)
+        setScrollLeft(ref.current?.scrollLeft)
+      }}>
       {List?.map(item => (
         <CardComponent key={item?.id} item={item} />
       ))}
+
       <StyledIconButton
         className="next"
         onClick={() => {
@@ -27,8 +42,10 @@ const StyledSlider = ({ List, CardComponent }) => {
         }}>
         <KeyboardArrowRightRoundedIcon color="primary" />
       </StyledIconButton>
+
       <StyledIconButton
         className="prev"
+        style={{ transform: ScrollLeft <= ref.current?.firstChild?.offsetWidth * 1 ? 'scale(0)' : 'scale(1)' }}
         onClick={() => {
           ref.current.scrollBy({
             top: 0,
@@ -66,25 +83,23 @@ const Root = styled.div`
   overflow-x: auto;
   padding-bottom: 20px;
   padding-top: 10px;
-  @media (min-width: 430px) {
-    &::-webkit-scrollbar {
-      width: 5px; /* width of the entire scrollbar */
-      height: 7px;
-      height: 0px;
-    }
 
-    &::-webkit-scrollbar-track {
-      background: #fff; /* color of the tracking area */
-      border-radius: 1px;
-    }
+  &::-webkit-scrollbar {
+    width: 0px; /* width of the entire scrollbar */
+    height: 0px;
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: ${props => props.theme.palette.primary.main}77; /* creates padding around scroll thumb */
-      border-radius: 1px;
-    }
-    &::-webkit-scrollbar-corner {
-      background: #1c252e; /* color of the tracking area */
-    }
+  &::-webkit-scrollbar-track {
+    background: #fff; /* color of the tracking area */
+    border-radius: 1px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.palette.primary.main}77; /* creates padding around scroll thumb */
+    border-radius: 1px;
+  }
+  &::-webkit-scrollbar-corner {
+    background: #1c252e; /* color of the tracking area */
   }
 `
 

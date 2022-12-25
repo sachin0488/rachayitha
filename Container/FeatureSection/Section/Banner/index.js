@@ -5,7 +5,7 @@ import {
   BannerHeading,
   BannerImageContainer,
   BannerImg,
-} from 'Container/FeatureSection/Common/Common.styles'
+} from 'container/FeatureSection/Common/common.styles'
 
 const Banner = () => {
   const bannerImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png'

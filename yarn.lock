@@ -1891,6 +1891,7 @@ __metadata:
     react-dom: 18.2.0
     react-hook-form: ^7.37.0
     react-icons: ^4.6.0
+    react-intersection-observer-hook: ^2.0.6
     react-redux: ^8.0.4
     redux-persist: ^6.0.0
     validator: ^13.7.0
@@ -4280,6 +4281,15 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: a08375d4563e381e156d826a8d551dd26c1bf7c424a79139173bf4c8df71e884badd7d4f5fe9faa0d73d18ace265bcc89891b65fd8f808812b1011b612ebbc53
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer-hook@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "react-intersection-observer-hook@npm:2.0.6"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: f1ba5d3b44013c4d8c7493cb32e68130cb3196a916df274637f978f376afb752e800afe99dea28e1f2d3b173f6ca0fd6ca5f57a26023f56f2337665b3f0c6c10
   languageName: node
   linkType: hard
 
