@@ -8,7 +8,7 @@ import { mobileM } from 'styles/mediaQuery/breakPoints'
 
 import ContentCard from './components/ContentCard'
 import useWeeklyApi from './api/WeeklyCard.hook'
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
+import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
 
 const WeeklyFeatured = () => {
   const { isLoading, isError, data } = useWeeklyApi({ isReal: true })

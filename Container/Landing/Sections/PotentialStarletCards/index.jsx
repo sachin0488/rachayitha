@@ -6,7 +6,7 @@ import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import ContentCard from './components/ContentCard'
 import usePotentialStartletList from './api/potentialStartletCard.hook'
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
+import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
 
 const PotentialStarletCards = () => {
   const { data, isLoading, isError } = usePotentialStartletList({ isReal: false })
