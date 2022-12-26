@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded'
-import { mainMaxWidth } from 'container/Landing/common/common.styles'
+import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 
 export const NotAvailableBar = () => {
   return (
@@ -47,7 +47,7 @@ const LoadingBarRoot = styled.div`
     align-items: center;
     gap: 35px;
   }
-  
+
   height: 370px;
   --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
   @media (max-width: ${mainMaxWidth}px) {

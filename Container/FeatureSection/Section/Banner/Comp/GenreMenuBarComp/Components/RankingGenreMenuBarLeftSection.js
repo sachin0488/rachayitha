@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { LeftSideGenreMenuBar } from 'container/FeatureSection/Common/common.styles'
+import { LeftSideGenreMenuBar } from 'Container/FeatureSection/Common/Common.styles'
 import Link from 'next/link'
-import { GenreTitle, MenuItem, NovelIcon, PoemIcon } from 'container/FeatureSection/Common/common.styles'
+import { GenreTitle, MenuItem, NovelIcon, PoemIcon } from 'Container/FeatureSection/Common/Common.styles'
 import { FaBookReader } from 'react-icons/fa'
 
 const RankingGenreMenuBarLeftSection = () => {

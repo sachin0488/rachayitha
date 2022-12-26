@@ -4,7 +4,7 @@ import React from 'react'
 import { ButtonContainer, Heading, ParagraphText, StyledButton, SubHeading, TextSection } from './styles'
 
 const LeftSection = () => {
-  const link = `/explore?content_type=novel&genre=1&sub_genre=power`
+  const link = `/explore?content_type=novel&category=1&sort_by=Hot`
   return (
     <Root>
       <TextSection>

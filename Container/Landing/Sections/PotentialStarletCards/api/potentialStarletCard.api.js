@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ApiInstance } from 'api/global.api'
 export const fakePotentialStarletApi = async () => {
-  const URL = 'https://novel-jsonserver-production.up.railway.app/potentialstartletbook'
+  const URL = 'https://novel-jsonserver.vercel.app/potentialstartletbook'
   const res = await axios.get(URL)
   return {
     data: { data: res.data },

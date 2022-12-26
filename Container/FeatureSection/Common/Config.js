@@ -2,8 +2,9 @@ import NovelImg from '../../../public/novel.svg'
 import PoemImg from '../../../public/poem.png'
 import ShortImg from '../../../public/shorts.svg'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
-import { NovelIcon, PoemIcon } from './common.styles'
+
 import { FaBookReader } from 'react-icons/fa'
+import { NovelIcon, PoemIcon } from './Common.styles'
 
 export const ExploreLinkList = [
   {

@@ -4,7 +4,8 @@ import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
+import { ErrorBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
+import { LoadingBar } from 'Container/Landing/components/CardComponents'
 import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import ContentCard from './components/ContentCard'
 
