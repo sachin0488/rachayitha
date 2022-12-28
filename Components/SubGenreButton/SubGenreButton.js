@@ -1,5 +1,5 @@
 import React from 'react'
-import { Buttons, ButtonContainer } from 'container/FeatureSection/Common/common.styles'
+
 import { genreName } from '../../hooks/useGenreButton'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
 import styled from '@emotion/styled'
+import { Buttons } from 'Container/FeatureSection/Common/Common.styles'
 
 const SubGenreButton = () => {
   const router = useRouter()

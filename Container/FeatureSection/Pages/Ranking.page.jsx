@@ -1,6 +1,6 @@
 import { Toolbar } from '@mui/material'
 import React from 'react'
-import { BodyContainer, MainContainer, RootContainer } from '../Common/common.styles'
+import { BodyContainer, MainContainer, RootContainer } from '../Common/Common.styles'
 import BannerSection from '../Section/BannerSection'
 import CategorySection from '../Section/CategorySection'
 import ContentSection from '../Section/ContentSection'

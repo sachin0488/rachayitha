@@ -3,11 +3,10 @@ import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
-
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'container/Landing/components/CardComponents'
+import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
 import { mainMaxWidth } from 'Container/Landing/common/common.styles'
 import ContentCard from './components/ContentCard'
-import useNewArrivalApi from 'container/Landing/Sections/NewArrivalsCards/Api/newArrivalCard.hook'
+import useNewArrivalApi from 'Container/Landing/Sections/NewArrivalsCards/Api/newArrivalCard.hook'
 
 const RecommendationSection = () => {
   const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })
