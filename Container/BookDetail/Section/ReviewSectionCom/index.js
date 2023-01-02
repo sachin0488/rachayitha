@@ -1,6 +1,6 @@
 import React from 'react'
 import RatingStar from '../../../../Components/RatingComp/Rating'
-import { FantasyAndViewSection, RecommendedCardsHeading } from '../../Common/BookDetailStyle'
+import { FantasyAndViewSection, RecommendedCardsHeading } from '../../common/common.styles'
 
 import { Typography } from '@mui/material'
 import Review from './Components/Review'

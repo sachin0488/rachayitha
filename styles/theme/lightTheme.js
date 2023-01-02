@@ -7,7 +7,7 @@ const lightTheme = createTheme({
       main: '#5122C0',
     },
     secondary: {
-      main: '#5629C5',
+      main: '#2F2D5C',
     },
     headingColor: {
       main: '#2F2D5C',
@@ -24,6 +24,7 @@ const lightTheme = createTheme({
   },
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
+    color: '#2F2D5C',
   },
   mixins: {
     drawer: {
@@ -55,7 +56,7 @@ const lightTheme = createTheme({
           //   "linear-gradient(rgb(34 84 82 / 12%), rgb(26 38 46 / 18%))",
           backdropFilter: 'blur(5px)',
           backgroundColor: '#ffffff55',
-          color: '#000000',
+          color: '#2F2D5C',
           borderRadius: 5,
           paddingBottom: 3,
           // boxShadow:

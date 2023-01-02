@@ -38,8 +38,13 @@ const Root = styled.div`
   padding: 20px;
   padding-right: 0px;
   @media (max-width: 800px) {
-      padding-left: 0px;
-      padding-top: 15px;
+    padding-left: 0px;
+    padding-top: 15px;
+  }
+
+  @media (max-width: 400px) {
+    padding-top: 5px;
+    padding-bottom: 15px;
   }
 `
 

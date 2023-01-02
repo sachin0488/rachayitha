@@ -1,6 +1,6 @@
 import useExplore from 'Container/FeatureSection/api/explore.hook'
 import ExploreLoading from './Comp/ExploreLoading'
-import { CardsWrapper, ShowQueryContainer } from 'Container/FeatureSection/Common/Common.styles'
+import { CardsWrapper, ShowQueryContainer } from 'container/FeatureSection/common/common.styles'
 import React from 'react'
 import SortBy from './Comp/SortBy'
 import ExploreCard from './Comp/ExploreCard'

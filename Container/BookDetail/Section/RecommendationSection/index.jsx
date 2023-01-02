@@ -4,9 +4,10 @@ import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
-import { mainMaxWidth } from 'Container/Landing/common/common.styles'
+
 import ContentCard from './components/ContentCard'
 import useNewArrivalApi from 'Container/Landing/Sections/NewArrivalsCards/Api/newArrivalCard.hook'
+import { mainMaxWidth } from 'container/BookDetail/common/common.styles'
 
 const RecommendationSection = () => {
   const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })
@@ -40,7 +41,7 @@ const Root = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  margin-top: 10px;
+  margin-top: 0px;
   width: 100%;
 `
 
@@ -49,20 +50,18 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding-block: 40px;
+  padding-block: 30px;
   gap: 10px;
   overflow: hidden;
-  @media ${mobileM} {
-    padding-block: 0px;
-  }
-  @media ${tablet} {
-    padding-block: 40px;
-  }
-
   /* Styled Slider Settings ----- */
   --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
   @media (max-width: ${mainMaxWidth}px) {
     --element-left-spacing: var(--main-side-spacing);
+  }
+  margin-top: 30px;
+  @media (min-width: 600px) {
+    border-top: 2px solid ${({ theme }) => theme.palette.primary.main}18;
+    border-bottom: 2px solid ${({ theme }) => theme.palette.primary.main}18;
   }
 `
 

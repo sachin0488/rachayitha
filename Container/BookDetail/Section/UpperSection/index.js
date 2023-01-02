@@ -1,4 +1,4 @@
-import { BookDetailCard } from 'Container/BookDetail/Common/BookDetailStyle'
+import { BookDetailCard } from 'container/BookDetail/common/common.styles'
 import React from 'react'
 import UpperTopSection from './Components/UpperTopSection'
 

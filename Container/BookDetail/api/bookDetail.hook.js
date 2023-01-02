@@ -1,6 +1,13 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { addToLibraryAPI, bookCommentAPI, fetchBookDetail, fetchCommentSection } from './bookDetail.api'
+import {
+  addToLibraryAPI,
+  bookCommentAPI,
+  createBookCommentAPI,
+  fetchBookDetail,
+  fetchCommentList,
+  fetchCommentSection,
+} from './bookDetail.api'
 
 export const useBookComment = book => {
   const { data, isLoading, isError, error, refetch } = useQuery(
@@ -34,36 +41,71 @@ export const useAddToLibraryAPI = () => {
   return { mutate, handleAddToLibrary, isLoading, isSuccess }
 }
 
-export const useBookCommentAPI = () => {
+export const useBookCommentListAPI = ({ bookId, commentId, ...props }) => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const { mutate, isLoading, isSuccess } = useMutation(
-    bookCommentAPI,
-
+  const { data, isSuccess, isLoading, isError, refetch } = useQuery(
+    ['comment-list', bookId, commentId],
+    () => fetchCommentList({ bookId, commentId }),
     {
-      onSuccess({ data }) {
-        enqueueSnackbar('Comment added !', {
-          variant: 'success',
-        })
-      },
+      enabled: !Boolean(props?.disableAPI),
+      refetchIntervalInBackground: true,
       onError: error => {
-        enqueueSnackbar('Request Failed !', {
+        enqueueSnackbar('Something went wrong !', {
           variant: 'error',
         })
       },
     },
   )
 
-  const handleBookComment = mutate
-
-  return { handleBookComment, isLoading, isSuccess }
+  return { CommentList: data?.data?.data, isLoading, isSuccess, isError, refetch }
 }
 
-const useBookDetail = book => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(['use-book', book], () => fetchBookDetail(book), {
-    onSuccess({ data }) {},
+export const useCreateBookCommentAPI = ({ bookId, ...props }) => {
+  const { refetch } = useBookCommentListAPI({
+    bookId: bookId,
+    commentId: Boolean(props?.commentId) ? commentId : null,
+    disableAPI: true,
   })
-  return { data, isLoading, isError, error, isFetching }
+  const { enqueueSnackbar } = useSnackbar()
+
+  const { mutate, isLoading, isSuccess, isError } = useMutation(
+    data =>
+      createBookCommentAPI({
+        ...data,
+        book_id: bookId,
+        parent_comment_id: Boolean(props?.commentId) ? commentId : null,
+      }),
+    {
+      onSuccess({ data }) {
+        refetch()
+        enqueueSnackbar('Your comment has been added !', {
+          variant: 'success',
+        })
+      },
+      onError: error => {
+        enqueueSnackbar('Unable to post comment !', {
+          variant: 'error',
+        })
+      },
+    },
+  )
+
+  const handleCreateBookComment = mutate
+
+  return { handleCreateBookComment, isLoading, isSuccess, isError }
+}
+
+const useBookDetail = bookId => {
+  const { data, isLoading, isError, error, isFetching } = useQuery(
+    ['book-details', bookId],
+    () => fetchBookDetail(bookId),
+    {
+      enabled: Boolean(bookId),
+      onSuccess({ data }) {},
+    },
+  )
+  return { BookDetail: data?.data?.data[0], isLoading, isError, error, isFetching }
 }
 
 export default useBookDetail

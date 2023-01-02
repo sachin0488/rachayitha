@@ -1,30 +1,24 @@
 import { ApiInstance } from '../../../api/global.api'
 
-export const fetchBookDetail = book => {
-  const Url = `book/${book}`
+export const fetchBookDetail = bookId => {
   return ApiInstance({
-    url: Url,
+    url: `book/${bookId}`,
     method: 'GET',
   })
 }
 
-export const fetchCommentSection = book => {
-  const Url = `/bookcomment?book_id=${book}`
+export const fetchCommentList = ({ bookId, commentId }) => {
   return ApiInstance({
-    url: Url,
     method: 'GET',
+    url: `/bookcomment`,
+    params: {
+      book_id: bookId,
+      parent_comment_id: commentId,
+    },
   })
 }
 
-export const addToLibraryAPI = book_id => {
-  return ApiInstance({
-    url: '/userbooklibrary/',
-    method: 'POST',
-    data: { book_id },
-  })
-}
-
-export const bookCommentAPI = ({ book_id, comments, parent_comment_id }) => {
+export const createBookCommentAPI = ({ book_id, comments, parent_comment_id }) => {
   return ApiInstance({
     url: '/bookcomment/',
     method: 'POST',
@@ -33,5 +27,13 @@ export const bookCommentAPI = ({ book_id, comments, parent_comment_id }) => {
       comments,
       parent_comment_id,
     },
+  })
+}
+
+export const addToLibraryAPI = book_id => {
+  return ApiInstance({
+    url: '/userbooklibrary/',
+    method: 'POST',
+    data: { book_id },
   })
 }

@@ -14,7 +14,7 @@ import {
   Text,
   Title,
   TitleFantasyViewSection,
-} from 'Container/BookDetail/Common/BookDetailStyle'
+} from 'container/BookDetail/common/common.styles'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import Image from 'next/image'
 import Link from 'next/link'

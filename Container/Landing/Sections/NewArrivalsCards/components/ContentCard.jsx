@@ -9,7 +9,7 @@ import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
-export const cloudinary = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png'
+export const cloudinary = '/book_image.jpg'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
@@ -51,16 +51,17 @@ export default ContentCard
 const Root = styled.div`
   position: relative;
   padding: 15px;
-  box-shadow: 10px 10px 35px 5px rgba(98, 0, 255, 0.14);
+  box-shadow: 3px 3px 21px 1px rgba(98, 0, 255, 0.1);
   border-radius: 18px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   border: 2px solid transparent;
   :hover {
-    border: 2px solid #562ac5;
+    border: 2px solid ${({ theme }) => theme.palette.primary.main};
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
   }
+  min-width: 260px;
 `
 
 const StyledButton = styled(ButtonBase)`
@@ -70,7 +71,7 @@ const StyledButton = styled(ButtonBase)`
   left: 0;
   bottom: 0;
   z-index: 1;
-  border-radius: 18px;
+  border-radius: 16px;
   background-color: transparent;
 `
 
@@ -80,7 +81,12 @@ const Main = styled.div`
   gap: 10px;
 `
 
-const Image = styled.img``
+const Image = styled.img`
+  width: 100%;
+  height: 285px;
+  object-fit: cover;
+  border-radius: 10px;
+`
 
 const InfoSection = styled.div`
   display: flex;
@@ -101,12 +107,13 @@ const InfoRight = styled.div`
 const TitleName = styled(Typography)`
   font-weight: 700;
   font-size: 1.2rem;
+  color: ${({ theme }) => theme.palette.headingColor.main};
 `
 
 const CategoryName = styled(Typography)`
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.palette.primary.main}bc;
+  color: ${({ theme }) => theme.palette.headingColor.main}aa;
 `
 
 const Rating = styled(Typography)`
@@ -120,6 +127,8 @@ const AddIcon = styled(Button)`
   position: absolute;
   top: 0px;
   right: 0px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
   z-index: 10;

@@ -10,7 +10,7 @@ const StyledChip = ({ item }) => {
     <Link href={`/${pathname}?content_type=${query.content_type}&category=${query.category}&sort_by=${item.label}`}>
       <a>
         <Root
-          color={query?.sort_by?.toLowerCase() === item.label.toLowerCase() ? 'primary' : 'default'}
+          className={query?.sort_by?.toLowerCase() === item.label.toLowerCase() ? 'active' : ''}
           label={item.label}
           onClick={() => {}}
         />
@@ -21,6 +21,13 @@ const StyledChip = ({ item }) => {
 
 const Root = styled(Chip)`
   font-weight: 600;
+  color: ${({ theme }) => theme.palette.headingColor.main};
+  background: ${({ theme }) => theme.palette.primary.main}11;
+  transition: 0.25s ease-in;
+  &.active {
+    background: ${({ theme }) => theme.palette.primary.main};
+    color: ${({ theme }) => theme.palette.primary.contrastText};
+  }
 `
 
 export default StyledChip

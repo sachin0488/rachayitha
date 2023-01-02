@@ -1,6 +1,6 @@
 import EmojiPicker from 'emoji-picker-react'
 import React, { useState } from 'react'
-import { PostCommentText, WriteReviewModalWrapper } from '../../../../../Common/BookDetailStyle'
+import { PostCommentText, WriteReviewModalWrapper } from '../../../../../common/common.styles'
 import { BsEmojiSmile } from 'react-icons/bs'
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'

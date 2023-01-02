@@ -21,7 +21,11 @@ const TabBox = ({ TabList }) => {
 
   const handleNavigate = useCallback(
     item => () => {
-      router.push(`/${router.pathname}?content_type=${item.contentType}&category=${item.category}&sort_by=${router.query.sort_by}`)
+      router.push(
+        `/${router.pathname}?content_type=${item.contentType}&category=${item.category}${
+          router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
+        }`,
+      )
     },
     [router],
   )

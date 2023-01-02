@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Box, Typography } from '@mui/material'
 import { AiFillEdit } from 'react-icons/ai'
-import { ReviewSectionAddToLibraryButton } from '../../../../Common/BookDetailStyle'
+import { ReviewSectionAddToLibraryButton } from '../../../../common/common.styles'
 import ModalInsideContent from './Comp/ModalInsideContent'
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined'
 import { useBookComment } from 'Container/BookDetail/api/bookDetail.hook'

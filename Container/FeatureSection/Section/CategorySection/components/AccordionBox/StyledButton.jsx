@@ -7,7 +7,10 @@ import React from 'react'
 const StyledButton = ({ contentType, category }) => {
   const router = useRouter()
   return (
-    <Link href={`/${router.pathname}?content_type=${contentType}&category=${category.id}&sort_by=${router.query.sort_by}`}>
+    <Link
+      href={`/${router.pathname}?content_type=${contentType}&category=${category.id}${
+        router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
+      }`}>
       <a>
         <Root
           className={
@@ -30,8 +33,9 @@ const Root = styled(Button)`
   display: flex;
   min-width: fit-content;
   width: 100%;
-  color: black;
-  background-color: ${({ theme }) => theme.palette.primary.main}18;
+  color: ${({ theme }) => theme.palette.headingColor.main};
+  background: ${({ theme }) => theme.palette.primary.main}11;
+
   &.selected {
     background-color: ${({ theme }) => theme.palette.primary.main};
     color: white;

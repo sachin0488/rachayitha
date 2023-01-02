@@ -12,7 +12,7 @@ import {
   MuiTabWrapper,
   Title,
   TitleFantasyViewSection,
-} from '../../../BookDetail/Common/BookDetailStyle'
+} from '../../../BookDetail/common/common.styles'
 import { styles } from '../../../BookDetail/Section/UpperSection/Components/UpperTopSection/MuiTabComponent/MuiTabStyles'
 
 import {

@@ -78,13 +78,13 @@ const StyledButton = styled(Button)`
   font-weight: 600;
   font-size: 0.87rem;
   padding: 5px 13px 4px;
-  background: #00000014;
+  color: ${({ theme }) => theme.palette.headingColor.main};
+  background: ${({ theme }) => theme.palette.primary.main}11;
   border-radius: 11px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;
   letter-spacing: 0.5px;
   float: right;
-  color: #000;
   align-self: flex-end;
   @media (min-width: 500px) {
     padding: 5px 13px 3px;

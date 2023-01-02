@@ -8,7 +8,7 @@ import {
   AllCategoryRatingRightSection,
   AllCategoryRatingSection,
   ShareFontSize,
-} from 'Container/BookDetail/Common/BookDetailStyle'
+} from 'container/BookDetail/common/common.styles'
 import React from 'react'
 import WriteReviewModal from '../WriteReviewModal'
 

@@ -116,6 +116,9 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  @media (max-width: 800px) {
+    margin-bottom: 20px;
+  }
 `
 
 export default CategorySection

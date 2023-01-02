@@ -19,6 +19,12 @@ const Layout = ({ children }) => {
     router.pathname.includes('/create')
   )
 
+  const isFooterVisible = !(
+    router.pathname === '/login' ||
+    router.pathname === '/create-account' ||
+    router.pathname.includes('/read')
+  )
+
   const handleSidebarOpen = useCallback(() => {
     setIsSideBarOpen(true)
   }, [])
@@ -30,7 +36,7 @@ const Layout = ({ children }) => {
 
       <Main>{children}</Main>
 
-      <Footer />
+      {isFooterVisible && <Footer />}
     </Root>
   )
 }

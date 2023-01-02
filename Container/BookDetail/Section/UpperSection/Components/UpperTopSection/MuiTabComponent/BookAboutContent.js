@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 import { BsFillFlagFill } from 'react-icons/bs'
-import { AboutSectionWrapper, AboutSectionUpperContent } from '../../../../../Common/BookDetailStyle'
+import { AboutSectionWrapper, AboutSectionUpperContent } from '../../../../../common/common.styles'
 const BookAboutContent = () => {
   return (
     <>

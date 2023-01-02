@@ -10,14 +10,14 @@ import {
   RecommendedCardsContainer,
   CardImg,
   CardRatingText,
-} from '../../../../Common/BookDetailStyle'
+} from '../../../../common/common.styles'
 import useExplore from 'Container/FeatureSection/api/explore.hook'
 import { AddIcon } from 'Container/Landing/Sections/WeeklyFeatured/components/ContentCard'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import Link from 'next/link'
 
-export const img_url = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1666521938/Rectangle_137_mmfqe3.png'
+export const img_url = "/book_image.jpg"
 const RecommendedCards = () => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
   const { data } = useExplore()

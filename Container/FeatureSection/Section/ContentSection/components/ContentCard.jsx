@@ -117,7 +117,7 @@ const Root = styled.div`
   border: 1px solid transparent;
   border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
   :hover {
-    border: 1px solid #562ac5;
+    border: 1px solid ${({ theme }) => theme.palette.primary.main};
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
   }
@@ -153,7 +153,10 @@ const Main = styled.div`
   }
 `
 
-const Image = styled.img``
+const Image = styled.img`
+  object-fit: cover;
+  border-radius: 7px;
+`
 
 const InfoSection = styled.div`
   display: flex;

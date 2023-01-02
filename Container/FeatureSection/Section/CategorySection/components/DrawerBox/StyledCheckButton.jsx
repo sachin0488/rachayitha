@@ -9,7 +9,10 @@ import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutline
 const StyledCheckButton = ({ contentType, category }) => {
   const { pathname, query } = useRouter()
   return (
-    <Link href={`/${pathname}?content_type=${contentType}&category=${category.id}&sort_by=${query.sort_by}`}>
+    <Link
+      href={`/${pathname}?content_type=${contentType}&category=${category.id}${
+        query.sort_by ? `&sort_by=${query.sort_by}` : ''
+      }`}>
       <a>
         <Root
           startIcon={query.category == category?.id ? <CheckBoxRoundedIcon /> : <CheckBoxOutlineBlankRoundedIcon />}

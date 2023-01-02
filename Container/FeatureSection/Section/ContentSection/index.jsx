@@ -1,12 +1,10 @@
 import styled from '@emotion/styled'
 import useExplore from 'Container/FeatureSection/api/explore.hook'
-import React from 'react'
-import ExploreContentCard from './components/ExploreContentCard'
-import RankingContentCard from './components/RankingContentCard'
+import ContentCard from './components/ContentCard'
 
 const ContentSection = ({ ranking }) => {
   const { data, isLoading, isError, error } = useExplore({ isReal: true })
-  console.log(data, 'explore')
+
   if (isError) {
     return <h1>{error?.message}</h1>
   }
@@ -15,9 +13,9 @@ const ContentSection = ({ ranking }) => {
 
   return (
     <Root>
-      {ranking
-        ? List?.map((item, index) => <RankingContentCard key={index} item={item} index={index} />)
-        : List?.map((item, index) => <ExploreContentCard key={index} item={item} index={index} />)}
+      {List?.map((item, index) => (
+        <ContentCard key={index} item={item} index={index} ranking={ranking} />
+      ))}
     </Root>
   )
 }
@@ -37,6 +35,12 @@ const Root = styled.div`
   @media (max-width: 800px) {
     padding: 0;
   }
+
+  @media (max-width: 400px) {
+    padding-top: 0px;
+    margin-top: -5px;
+  }
+  isolation: isolate;
 `
 
 export default ContentSection

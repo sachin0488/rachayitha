@@ -1,4 +1,4 @@
-import { ApiInstance } from '../../../api/global.api'
+import { ApiInstance } from 'api/global.api'
 
 export const createAccountAPI = ({ username, email, password, bio, full_name }) => {
   return ApiInstance({

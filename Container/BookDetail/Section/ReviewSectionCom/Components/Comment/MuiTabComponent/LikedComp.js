@@ -15,7 +15,7 @@ import {
   LikeAndCommentSection,
   Months,
   UserName,
-} from '../../../../../Common/BookDetailStyle'
+} from '../../../../../common/common.styles'
 import { useRouter } from 'next/router'
 import useBookDetail, { useBookComment } from '../../../../../api/bookDetail.hook'
 import styled from '@emotion/styled'

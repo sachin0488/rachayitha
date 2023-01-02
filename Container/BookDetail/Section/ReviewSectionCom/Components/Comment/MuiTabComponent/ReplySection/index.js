@@ -8,7 +8,7 @@ import {
   ReplyLikeAndCommentSection,
   ShareFontSize,
   UserName,
-} from 'Container/BookDetail/Common/BookDetailStyle'
+} from 'container/BookDetail/common/common.styles'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { CommentIcon, LikedText, LikeIcon, Wrap } from '../LikedComp'

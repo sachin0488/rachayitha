@@ -44,7 +44,7 @@ const Root = styled.div`
   border: 2px solid transparent;
   transition: 0.3s ease-in-out;
   &:hover {
-    border: 2px solid #562ac5;
+    border: 2px solid ${({ theme }) => theme.palette.primary.main};
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.05);
   }

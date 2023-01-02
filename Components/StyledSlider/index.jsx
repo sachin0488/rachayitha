@@ -70,7 +70,7 @@ const Root = styled.div`
 
   @media ${mobileM} {
     height: 100%;
-    min-height: 315px;
+    min-height: 335px;
 
     gap: 30px;
   }
@@ -81,8 +81,8 @@ const Root = styled.div`
   }
 
   overflow-x: auto;
-  padding-bottom: 20px;
-  padding-top: 10px;
+  padding-bottom: 25px;
+  padding-top: 18px;
 
   &::-webkit-scrollbar {
     width: 0px; /* width of the entire scrollbar */

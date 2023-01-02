@@ -80,14 +80,16 @@ const Root = styled.div`
     width: calc(100% - (var(--main-side-spacing) * 2 + 25px));
   }
 
-  @media (max-width: 340px) {
-    width: calc(100% - (var(--main-side-spacing) * 2 + 12px));
-
+  @media (max-width: 400px) {
+    width: calc(100% - (var(--main-side-spacing) * 2 - 12px));
+    position: sticky;
+    top: 80px;
+    z-index:1 ;
+    border-radius: 12px;
     --main-height: 50px;
     --top-spacing: 4px;
-    --bottom-spacing: 2px;
+    --bottom-spacing: 6px;
     --tab-button-gap: 0px;
-    border-radius: 18px;
   }
   padding-top: var(--top-spacing);
   padding-bottom: var(--bottom-spacing);

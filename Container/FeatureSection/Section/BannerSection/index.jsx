@@ -33,8 +33,11 @@ const Root = styled.div`
     height: 220px;
   }
 
-  @media (max-width: 320px) {
-    height: 200px;
+  @media (max-width: 400px) {
+    height: 170px;
+    width: calc(100%);
+    border-radius: 0px;
+    margin-top: 0px;
   }
 `
 

@@ -5,7 +5,7 @@ import {
   CardLeftSideContent,
   CardRightSideContent,
   ButtonContainer,
-} from '../../../Common/Common.styles'
+} from '../../../common/common.styles'
 import React from 'react'
 
 const Loading = ({ card, index }) => {

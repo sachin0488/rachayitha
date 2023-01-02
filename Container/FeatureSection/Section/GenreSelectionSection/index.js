@@ -1,8 +1,8 @@
 import React from 'react'
 import { ExploreTextAndNestedRoute } from '../ExploreCardSection/Comp/SortBy'
 import { useRouter } from 'next/router'
-import { RankingTextAndNestedRoute } from 'Container/FeatureSection/Common/Config'
-import { GenreAccordionContainer } from 'Container/FeatureSection/Common/Common.styles'
+import { RankingTextAndNestedRoute } from 'container/FeatureSection/common/Config'
+import { GenreAccordionContainer } from 'container/FeatureSection/common/common.styles'
 import AccordionsWrapper from './components/AccordionsWrapper'
 
 const GenreSelectionSection = () => {
