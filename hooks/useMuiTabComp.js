@@ -9,9 +9,7 @@ import CumulativeCollection from '../Container/Create/DashBoardSection/DashBoard
 import DraftMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/DraftMuiTabComp'
 import PublishedMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/PublishedMuiTabComp'
 import TrashMuiTabComp from '../Container/Create/WorkspaceSection/Components/WorkSpaceMuiTabComp/TrashMuiTabComp'
-import Badges from '../Container/UserProfile/Section/MuiTabComponents/Badges'
 import UserLibrary from '../Container/UserProfile/Section/MuiTabComponents/UserLibrary'
-import UserWorks from '../Container/UserProfile/Section/MuiTabComponents/UserWorks'
 
 export const genreLeadMuiTabList = [
   {
