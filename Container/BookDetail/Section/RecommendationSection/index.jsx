@@ -7,7 +7,7 @@ import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/compone
 
 import ContentCard from './components/ContentCard'
 import useNewArrivalApi from 'Container/Landing/Sections/NewArrivalsCards/Api/newArrivalCard.hook'
-import { mainMaxWidth } from 'container/BookDetail/common/common.styles'
+import { mainMaxWidth } from 'container/BookDetail/common/styles'
 
 const RecommendationSection = () => {
   const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })

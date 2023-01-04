@@ -1,13 +1,14 @@
-import { useRouter } from 'next/router'
 import React from 'react'
-import useBookDetail, { useAddToLibraryAPI } from '../api/bookDetail.hook'
-import { Wrapper, SubWrapper, RootContainer, MainContainer } from '../common/common.styles'
-import ReviewSectionCom from '../Section/ReviewSectionCom'
-import UpperSection from '../Section/UpperSection'
+import { useRouter } from 'next/router'
+
+import { RootContainer, MainContainer } from '../common/styles'
+
 import RecommendationSection from '../Section/RecommendationSection'
 import DetailsSection from '../Section/DetailsSection'
 import ReviewSection from '../Section/ReviewSection'
 import CommentSection from '../Section/CommentSection'
+
+import useBookDetail from '../api/bookDetail.hook'
 
 const BookDetail = () => {
   const router = useRouter()

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const mainMaxWidth = 1720
+export const mainMaxWidth = 1240
 
 export const RootContainer = styled.div`
   display: flex;
@@ -24,24 +24,19 @@ export const RootContainer = styled.div`
 
 export const MainContainer = styled.div`
   display: flex;
-  margin-inline: var(--main-side-spacing);
-  max-width: var(--main-max-width);
-  width: calc(100% - var(--main-side-spacing) * 2);
-  align-self: center;
-  margin-top: 15px;
-  @media (max-width: 800px) {
-    flex-direction: column;
-    gap: ${({ page }) => page === 'ranking' && '15px'};
-  }
-
-  @media (max-width: 400px) {
-    gap: ${({ page }) => page === 'ranking' && '5px'};
-  }
+  flex-direction: column;
+  margin-top: 72px;
 `
 
 export const BodyContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  margin-inline: var(--main-side-spacing);
+  max-width: var(--main-max-width);
+  width: calc(100% - var(--main-side-spacing) * 2);
+  align-self: center;
+  gap: 20px;
+  @media (max-width: 730px) {
+    gap: 0px;
+    flex-direction: column;
+  }
 `

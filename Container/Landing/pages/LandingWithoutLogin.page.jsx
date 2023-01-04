@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from '../Sections/Banner'
-import { RootContainer } from '../common/common.styles'
+import { RootContainer } from '../common/styles'
 import WeeklyFeatured from '../Sections/WeeklyFeatured'
 import PotentialStarletCards from '../Sections/PotentialStarletCards'
 import NewArrivalsCards from '../Sections/NewArrivalsCards/index'

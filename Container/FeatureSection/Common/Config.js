@@ -4,7 +4,7 @@ import ShortImg from '../../../public/shorts.svg'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 
 import { FaBookReader } from 'react-icons/fa'
-import { NovelIcon, PoemIcon } from './Common.styles'
+import { NovelIcon, PoemIcon } from './styles'
 
 export const ExploreLinkList = [
   {

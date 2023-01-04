@@ -9,7 +9,7 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
 import styled from '@emotion/styled'
-import { Buttons } from 'container/FeatureSection/common/common.styles'
+import { Buttons } from 'container/FeatureSection/common/styles'
 
 const SubGenreButton = () => {
   const router = useRouter()

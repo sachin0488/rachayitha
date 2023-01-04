@@ -1,6 +1,7 @@
-import { Toolbar, useMediaQuery } from '@mui/material'
 import React from 'react'
-import { BodyContainer, MainContainer, RootContainer } from '../common/common.styles'
+import { Toolbar, useMediaQuery } from '@mui/material'
+import { BodyContainer, MainContainer, RootContainer } from 'container/FeatureSection/common/styles'
+
 import BannerSection from '../Section/BannerSection'
 import CategorySection from '../Section/CategorySection'
 import ContentSection from '../Section/ContentSection'

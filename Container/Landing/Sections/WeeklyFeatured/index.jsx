@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 
-import { mainMaxWidth } from 'Container/Landing/common/common.styles'
+import { mainMaxWidth } from 'Container/Landing/common/styles'
 import { mobileM } from 'styles/mediaQuery/breakPoints'
 
 import ContentCard from './components/ContentCard'

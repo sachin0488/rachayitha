@@ -14,8 +14,5 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  @media (max-width: 800px) {
-    gap: 5px;
-  }
 `
 export default NewestCommentListTab

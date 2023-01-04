@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import LogoBox from './components/LogoBox'
 import SignInButton from './components/SignInButton'
 import SelectLanguage from './components/SelectLanguage'
-// import { mainMaxWidth } from 'container/Landing/common/common.styles'
+// import { mainMaxWidth } from 'container/Landing/common/styles'
 import { useMediaQuery } from '@mui/material'
 
 const Header = () => {

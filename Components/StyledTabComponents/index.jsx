@@ -32,7 +32,7 @@ const TabDisplay = ({ page, direction, section, sectionIndex }) => {
 const TabNav = ({ handleTabBar, handleChange, value, ariaLabel, tabButtonList, flexSizeEnable }) => {
   const [TabStyles, setTabStyles] = useState({})
 
-  const generateTabStyles = () => {
+  const generateTabStyles = useCallback(() => {
     let styles = {}
     flexSizeEnable.forEach((size, index) => {
       styles[`&:nth-child(${index + 1})`] = {
@@ -40,11 +40,11 @@ const TabNav = ({ handleTabBar, handleChange, value, ariaLabel, tabButtonList, f
       }
     })
     return styles
-  }
+  }, [flexSizeEnable])
 
   useEffect(() => {
     if (flexSizeEnable.length) setTabStyles(generateTabStyles())
-  }, [flexSizeEnable.length])
+  }, [flexSizeEnable.length, generateTabStyles])
 
   return (
     <TabSection>

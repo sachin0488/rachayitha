@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded'
-import { mainMaxWidth } from 'Container/Landing/common/common.styles'
+import { mainMaxWidth } from 'Container/Landing/common/styles'
 
 export const NotAvailableBar = () => {
   return (

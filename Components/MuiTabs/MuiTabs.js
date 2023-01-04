@@ -11,17 +11,17 @@ const MuiTabs = ({ muiTab, styles }) => {
 
   return (
     <>
-      {muiTab?.map(tab => (
-        <Box sx={styles?.wrapper}>
+      {muiTab?.map((tab, index) => (
+        <Box sx={styles?.wrapper} key={index}>
           <Box sx={styles?.subWrapper}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={styles?.tabs}>
-              {tab.labelComp?.map(label => (
-                <Tab label={label.label} />
+              {tab.labelComp?.map((label, index) => (
+                <Tab label={label.label} key={index} />
               ))}
             </Tabs>
           </Box>
-          {tab.component.map(comp => (
-            <TabPanel sx={styles?.tabPanel} value={value} index={comp.index}>
+          {tab.component.map((comp, index) => (
+            <TabPanel sx={styles?.tabPanel} value={value} index={comp.index} key={index}>
               {comp.com}
             </TabPanel>
           ))}

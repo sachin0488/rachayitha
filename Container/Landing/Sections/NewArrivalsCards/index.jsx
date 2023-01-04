@@ -6,7 +6,7 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
 import { ErrorBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
 import { LoadingBar } from 'Container/Landing/components/CardComponents'
-import { mainMaxWidth } from 'Container/Landing/common/common.styles'
+import { mainMaxWidth } from 'Container/Landing/common/styles'
 import ContentCard from './components/ContentCard'
 
 import useNewArrivalApi from './Api/newArrivalCard.hook'

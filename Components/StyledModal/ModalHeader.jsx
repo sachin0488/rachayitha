@@ -7,7 +7,9 @@ const ModalHeader = ({ onClose, refetch, refetchLoading }) => {
   return (
     <Root>
       {refetch && <RefetchButton {...{ refetch, refetchLoading }} />}
-      <IconButton color="primary" onClick={onClose} children={<CloseRoundedIcon />} />
+      <IconButton color="primary" onClick={onClose}>
+        <CloseRoundedIcon />
+      </IconButton>
     </Root>
   )
 }

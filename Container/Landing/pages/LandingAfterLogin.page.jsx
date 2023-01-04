@@ -1,5 +1,5 @@
 import React from 'react'
-import { RootContainer } from '../common/common.styles'
+import { RootContainer } from '../common/styles'
 
 import Hero from '../Sections/Hero'
 import NewArrivalsCards from '../Sections/NewArrivalsCards'
