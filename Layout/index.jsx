@@ -16,12 +16,14 @@ const Layout = ({ children }) => {
     (router.pathname === '/' && isLoggedIn === false) ||
     router.pathname === '/login' ||
     router.pathname === '/create-account' ||
+    router.pathname === '/otp' ||
     router.pathname.includes('/create')
   )
 
   const isFooterVisible = !(
     router.pathname === '/login' ||
     router.pathname === '/create-account' ||
+    router.pathname === '/otp' ||
     router.pathname.includes('/read')
   )
 

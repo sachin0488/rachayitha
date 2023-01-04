@@ -1,13 +1,12 @@
 import React from 'react'
 import ExplorePage from 'Container/FeatureSection/Pages/Explore.page'
 
-const index = () => {
+const Explore = () => {
   return (
     <>
-      {/* <Explore /> */}
       <ExplorePage />
     </>
   )
 }
 
-export default index
+export default Explore

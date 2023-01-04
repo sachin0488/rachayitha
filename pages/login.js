@@ -1,12 +1,13 @@
+import LoginPage from 'container/Auth/pages/Login'
 import React from 'react'
 import LoginCard from '../Container/Auth/Login'
 
-const login = () => {
+const Login = () => {
   return (
     <>
-      <LoginCard />
+      <LoginPage />
     </>
   )
 }
 
-export default login
+export default Login

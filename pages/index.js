@@ -1,6 +1,4 @@
-// import LandingPageAfterLogin from '../Container/LandingPageAfterLogin/LandingPageAfterLogin'
-;[]
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import LandingPageAfterLogin from 'Container/Landing/pages/LandingAfterLogin.page'
 import LandingPageWithoutLogin from 'Container/Landing/pages/LandingWithoutLogin.page'
 

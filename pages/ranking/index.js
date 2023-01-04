@@ -1,12 +1,8 @@
-import Ranking from 'Container/FeatureSection/Pages/Ranking.page'
 import React from 'react'
+import RankingPage from 'Container/FeatureSection/Pages/ranking.page'
 
-const ranking = () => {
-  return (
-    <>
-      <Ranking />
-    </>
-  )
+const Ranking = () => {
+  return <RankingPage />
 }
 
-export default ranking
+export default Ranking
