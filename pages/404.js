@@ -46,7 +46,7 @@ export default ErrorPage
 //   vertical-align: baseline;
 //   background: transparent;
 //   text-decoration: none;
-//   color: #000;
+//   color: ${({ theme }) => theme.palette.primary.main};
 // }
 
 // input, select, button, textarea {

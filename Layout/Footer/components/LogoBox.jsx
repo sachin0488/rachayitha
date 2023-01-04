@@ -10,7 +10,7 @@ const LogoBox = () => {
         <Root>
           <AutoStoriesOutlinedIcon
             style={{
-              fontSize: 29,
+              fontSize: 35,
             }}
           />
           <Text>E Book</Text>
@@ -24,13 +24,13 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const Text = styled.div`
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   white-space: nowrap;
 `
 

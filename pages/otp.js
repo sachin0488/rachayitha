@@ -1,5 +1,5 @@
-import OTPPage from 'container/Auth/pages/OTP'
 import React from 'react'
+import OTPPage from 'container/Auth/pages/OTP'
 
 const OTP = () => {
   return <OTPPage />

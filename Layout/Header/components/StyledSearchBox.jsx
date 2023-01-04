@@ -48,7 +48,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: '#000000cb',
+  color: '${({ theme }) => theme.palette.secondary.main}',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -61,13 +61,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
   '& .MuiInputBase-input::placeholder': {
-    color: '#000000cb',
+    color: '${({ theme }) => theme.palette.secondary.main}',
     opacity: 0.9,
   },
 }))
 
 // const Root = styled.div`
-//   color: #000;
+//   color: ${({ theme }) => theme.palette.primary.main};
 // `
 
 export default StyledSearchBox

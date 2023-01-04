@@ -32,7 +32,7 @@ const Root = styled(Button)`
   padding: 6px 20px;
 
   /* box-shadow: 3px 3px 10px -0.5px ${({ theme }) => theme.palette.primary.main}30; */
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
   border-radius: 8px;
   transition: box-shadow 0.35s ease-in-out;
   text-transform: capitalize;

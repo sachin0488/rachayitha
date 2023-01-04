@@ -33,7 +33,7 @@ const Root = styled(Button)`
 `
 
 const Username = styled(Typography)`
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
   font-weight: 600;
   font-style: 28px;
   margin-left: 10px;

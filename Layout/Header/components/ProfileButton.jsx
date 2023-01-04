@@ -69,7 +69,7 @@ const ProfileButton = () => {
 }
 
 const Root = styled.div`
-  color: #000;
+  color: ${({ theme }) => theme.palette.primary.main};
 `
 
 export default ProfileButton

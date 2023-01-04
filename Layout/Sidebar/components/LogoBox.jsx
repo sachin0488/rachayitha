@@ -24,7 +24,7 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const Text = styled.div`

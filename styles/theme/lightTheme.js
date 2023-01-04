@@ -13,7 +13,7 @@ const lightTheme = createTheme({
       main: '#2F2D5C',
     },
     subHeadingColor: {
-      main: '#000000',
+      main: '${({ theme }) => theme.palette.primary.main}',
     },
     lightColor: {
       main: 'white',
