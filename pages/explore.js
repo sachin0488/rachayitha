@@ -1,5 +1,5 @@
 import React from 'react'
-import ExplorePage from 'Container/FeatureSection/pages/explore.page'
+import ExplorePage from 'Container/FeatureSection/Pages/Explore.page'
 
 const Explore = () => {
   return (
