@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
-import { fakeExploreApi, exploreApi } from './explore.api'
+import { useRouter } from 'next/router'
+import { fetchExploreApi } from './explore.api'
 
-const useExplore = () => {
-  const isReal = true
+const useExplore = ({ categoryId }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
-    ['use-explore'],
-    isReal ? exploreApi : fakeExploreApi,
+    ['explore-list', categoryId],
+    () => fetchExploreApi({ categoryId }),
+    {
+      enabled: Boolean(categoryId),
+    },
   )
+
   return { data, isLoading, isError, error, isFetching }
 }
 

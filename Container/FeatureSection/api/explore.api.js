@@ -10,10 +10,9 @@ export const fakeExploreApi = async () => {
 }
 // data?.data?.resources?.data
 
-export const exploreApi = () => {
-  const Url = '/explorebook?category_id=1&page=2'
+export const fetchExploreApi = ({ categoryId }) => {
   return ApiInstance({
-    url: Url,
+    url: `/explorebook?category_id=${categoryId}`,
     method: 'GET',
   })
 }

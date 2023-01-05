@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 import useExplore from 'Container/FeatureSection/api/explore.hook'
+import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
 
 const ContentSection = ({ ranking }) => {
-  const { data, isLoading, isError, error } = useExplore({ isReal: true })
+  const { query } = useRouter()
+  const { data, isLoading, isError, error } = useExplore({ categoryId: query?.category })
 
   if (isError) {
     return <h1>{error?.message}</h1>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material'
+import useCategoryApi from 'Container/FeatureSection/api/category.hook'
 import { useRouter } from 'next/router'
 import React, { useLayoutEffect, useState } from 'react'
 import AccordionBox from './components/AccordionBox'
@@ -22,7 +23,7 @@ const CategorySection = () => {
   const is800x = useMediaQuery('(max-width: 800px)')
   const { query } = useRouter()
   const { content_type } = query
-
+  const { data, isLoading } = useCategoryApi()
   const [openedIdx, setOpenedIdx] = useState('')
 
   useLayoutEffect(() => {
@@ -32,7 +33,7 @@ const CategorySection = () => {
   const List = [
     {
       contentType: 'Novel',
-      categoryList: categoryList,
+      categoryList: data?.data?.data,
     },
     {
       contentType: 'Poem',

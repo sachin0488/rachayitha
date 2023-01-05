@@ -8,7 +8,7 @@ const StyledButton = ({ contentType, category }) => {
   const router = useRouter()
   return (
     <Link
-      href={`/${router.pathname}?content_type=${contentType}&category=${category.id}${
+      href={`${router.pathname}?content_type=${contentType}&category=${category.id}${
         router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
       }`}>
       <a>

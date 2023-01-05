@@ -22,7 +22,7 @@ const AccordionBox = ({ isOpened, setOpenedIdx, item, idx }) => {
         <Heading>{item.contentType}</Heading>
       </Summary>
       <Details>
-        {item.categoryList.map((category, idx) => (
+        {item?.categoryList?.map((category, idx) => (
           <StyledButton key={idx} category={category} contentType={item.contentType.toLowerCase()} />
         ))}
       </Details>
