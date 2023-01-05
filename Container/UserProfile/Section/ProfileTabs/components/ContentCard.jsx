@@ -80,7 +80,7 @@ const StyledButton = styled(ButtonBase)`
   left: 0;
   bottom: 0;
   z-index: 1;
-  border-radius: 10px;
+  border-radius: 13px;
   background-color: transparent;
 `
 
@@ -137,8 +137,8 @@ const AddIcon = styled(Button)`
   position: absolute;
   top: 0px;
   right: 0px;
-  border-top-right-radius: 16px;
-  border-bottom-left-radius: 16px;
+  border-top-right-radius: 13px;
+  border-bottom-left-radius: 13px;
   border-top-left-radius: 0px;
   border-bottom-right-radius: 0px;
   z-index: 10;

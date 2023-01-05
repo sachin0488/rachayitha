@@ -29,7 +29,7 @@ const Root = styled.div`
 const ContentName = styled.div`
   font-weight: 600;
   font-size: 27px;
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
   line-height: 3;
 `
 

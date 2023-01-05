@@ -92,7 +92,7 @@ const StyledButton = styled(Button)`
   }
 
   &:hover {
-    background: #0000001f;
+    background: ${({ theme }) => theme.palette.primary.main}1f;
   }
 
   .MuiButton-label {

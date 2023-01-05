@@ -34,6 +34,7 @@ const StyledTextField = ({ name, label, rules, required, ...props }) => {
 
 export const StyledTextFieldRoot = styled(TextField)`
   .MuiInputBase-input {
+    box-shadow: black !important;
     -webkit-box-shadow: black !important;
   }
 
@@ -55,6 +56,7 @@ export const StyledTextFieldRoot = styled(TextField)`
     padding-block: 12px;
     /* padding: 8.5px 14px; */
     -webkit-autofill {
+      box-shadow: none;
       -webkit-box-shadow: none;
       -webkit-text-fill-color: none;
     }

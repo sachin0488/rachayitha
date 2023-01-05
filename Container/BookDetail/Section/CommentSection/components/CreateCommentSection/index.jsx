@@ -1,16 +1,15 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 
 import { Avatar, Button, CircularProgress, Rating, Typography } from '@mui/material'
+import { FormProvider, useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
+
+import { useCreateBookCommentAPI } from 'container/BookDetail/api/bookDetail.hook'
 
 import StarIcon from '@mui/icons-material/Star'
-import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
-import CommentBankRoundedIcon from '@mui/icons-material/CommentBankRounded'
-import { FormProvider, useForm } from 'react-hook-form'
-import StyledTextField from 'components/form-components/StyledTextField'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
-import { useCreateBookCommentAPI } from 'container/BookDetail/api/bookDetail.hook'
-import { useRouter } from 'next/router'
+import StyledTextField from 'components/form-components/StyledTextField'
 
 const CreateCommentSection = ({ commentId }) => {
   const { query } = useRouter()

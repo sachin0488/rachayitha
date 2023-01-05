@@ -71,12 +71,13 @@ const InfoSection = styled.div`
 const Title = styled(Typography)`
   font-weight: 600;
   font-size: 20px;
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const Fantasy = styled(Typography)`
-  font-weight: 300;
+  font-weight: 500;
   font-size: 13px;
-  color: #888994;
+  color: ${({ theme }) => theme.palette.secondary.main}78;
 `
 
 const Rating = styled(Typography)`

@@ -91,6 +91,7 @@ const Heading = styled(Typography)`
   @media (max-width: 350px) {
     font-size: 25px;
   }
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const CollectionList = styled.div`

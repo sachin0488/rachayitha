@@ -28,7 +28,7 @@ const Root = styled(Button)`
   font-weight: 500;
   font-size: 1rem;
   padding: 5px 13px;
-  color: #000000;
+  color: ${({ theme }) => theme.palette.primary.main};
   border-radius: 8px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;

@@ -247,7 +247,7 @@ const VoteCount = styled(Typography)`
   justify-content: center;
   padding: 2px 2px 2px 8px;
   border-radius: 6px;
-  color: #000;
+  color: ${({ theme }) => theme.palette.primary.main};
   background: ${({ theme }) => theme.palette.primary.main}11;
 `
 
@@ -257,7 +257,7 @@ const CommentCount = styled(Typography)`
   justify-content: center;
   padding: 3px 8px 3px 8px;
   border-radius: 6px;
-  color: #000;
+  color: ${({ theme }) => theme.palette.primary.main};
   background: ${({ theme }) => theme.palette.primary.main}11;
 `
 

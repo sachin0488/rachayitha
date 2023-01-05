@@ -46,6 +46,7 @@ const Root = styled.div`
     align-items: center;
     padding-left: 0px;
   }
+  margin-top: -70px;
 `
 
 export default LeftSection

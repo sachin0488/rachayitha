@@ -243,7 +243,7 @@ export const ShowBarContainer = styled.div`
   gap: 4px 7px;
   justify-content: center;
   justify-items: center;
-  background: #000;
+  background: ${({ theme }) => theme.palette.primary.main};
 `
 
 export const ShowBar = styled(motion.div)`

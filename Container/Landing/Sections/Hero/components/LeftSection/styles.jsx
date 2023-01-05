@@ -64,7 +64,7 @@ export const SubHeading = styled(Typography)`
 export const ParagraphText = styled(Typography)`
   font-weight: 300;
   font-size: 17px;
-  color: #000000;
+  color: ${({ theme }) => theme.palette.primary.main};
   text-align: start;
   @media (max-width: 900px) {
     text-align: center;

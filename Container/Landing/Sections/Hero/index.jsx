@@ -39,6 +39,7 @@ const Main = styled.div`
     justify-content: center;
     align-items: center;
   }
+  margin-top: 70px;
   height: calc(100vh - 70px);
   max-height: 1090px;
 `

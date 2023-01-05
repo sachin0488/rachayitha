@@ -20,7 +20,7 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #000000cb;
+  color: ${({ theme }) => theme.palette.secondary.main};
   .MuiSvgIcon-root {
     font-size: 36px;
   }
