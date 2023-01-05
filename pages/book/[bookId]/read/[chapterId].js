@@ -1,4 +1,4 @@
-import ReadSection from 'container/ReadSection/pages/read.page'
+import ReadSection from 'container/ReadSection/Pages/read.page'
 import React from 'react'
 
 const Chapter = () => {

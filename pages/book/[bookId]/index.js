@@ -1,5 +1,5 @@
 import React from 'react'
-import BookDetail from 'container/BookDetail/pages/bookDetail.page'
+import BookDetail from 'container/BookDetail/Pages/bookDetail.page'
 
 const book = () => {
   return (
