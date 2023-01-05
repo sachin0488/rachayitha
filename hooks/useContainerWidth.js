@@ -1,16 +1,16 @@
 import { useLayoutEffect, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 
-const useContainerWidth = containerRef => {
-  const [containerWidth, setContainerWidth] = useState(0)
+const useContainerWidth = ContainerRef => {
+  const [ContainerWidth, setContainerWidth] = useState(0)
 
   useLayoutEffect(() => {
-    setContainerWidth(containerRef.current.getBoundingClientRect().width)
-  }, [containerRef])
+    setContainerWidth(ContainerRef.current.getBoundingClientRect().width)
+  }, [ContainerRef])
 
-  useResizeObserver(containerRef, entry => setContainerWidth(entry.contentRect.width))
+  useResizeObserver(ContainerRef, entry => setContainerWidth(entry.contentRect.width))
 
-  return containerWidth
+  return ContainerWidth
 }
 
 export default useContainerWidth

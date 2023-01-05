@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import userReducer from './slices/global/user.slice'
-import chapterReducer from 'container/ReadSection/slices/chapter.slice'
-import libraryReducer from 'container/UserProfile/slices/library.slice'
+import chapterReducer from 'Container/ReadSection/slices/chapter.slice'
+import libraryReducer from 'Container/UserProfile/slices/library.slice'
 
 const rootReducer = combineReducers({
   user: userReducer,
