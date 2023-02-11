@@ -70,7 +70,7 @@ export const Heading = styled(Typography)`
     font-size: 25px;
     line-height: 29px;
   }
-  color: ${props => props.theme.palette.headingColor.main};
+  color: ${props => props.theme.palette.secondary.main};
   padding-left: var(--element-left-spacing);
 `
 

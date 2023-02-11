@@ -32,9 +32,9 @@ const ContentCard = ({ item }) => {
         <ImageSection>
           <Image alt="" src={item?.cover_img} />
           <SmallImageList>
-            <SmallImage alt="" src={item?.side_upper_cover_img} />
-            <SmallImage alt="" src={item?.side_middle_cover_img} />
-            <SmallImage alt="" src={item?.side_lower_cover_img} />
+            <SmallImage alt="" src={item?.cover_img2} />
+            <SmallImage alt="" src={item?.cover_img3} />
+            <SmallImage alt="" src={item?.cover_img4} />
           </SmallImageList>
         </ImageSection>
 
@@ -143,13 +143,13 @@ const InfoRight = styled.div`
 const TitleName = styled(Typography)`
   font-weight: 700;
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const CategoryName = styled(Typography)`
   font-weight: 500;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.palette.headingColor.main}aa;
+  color: ${({ theme }) => theme.palette.secondary.main}aa;
 `
 
 const Rating = styled(Typography)`

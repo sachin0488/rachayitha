@@ -43,7 +43,7 @@ const TopCollection = () => {
   const List = [
     <ContentListSection key={1} contentName="Novel" contentList={Obj?.novels} />,
     <ContentListSection key={2} contentName="Poems" contentList={Obj?.poem} />,
-    <ContentListSection key={3} contentName="Shorts" contentList={Obj?.shorts} />,
+    // <ContentListSection key={3} contentName="Shorts" contentList={Obj?.shorts} />,
   ]
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const TopCollection = () => {
             <CollectionList>
               <ContentListSection contentName="Novel" contentList={Obj?.novels} />
               <ContentListSection contentName="Poems" contentList={Obj?.poems} />
-              <ContentListSection contentName="Shorts" contentList={Obj?.shorts} />
+              {/* <ContentListSection contentName="Shorts" contentList={Obj?.shorts} /> */}
             </CollectionList>
           ) : (
             <CarouselList List={List} />

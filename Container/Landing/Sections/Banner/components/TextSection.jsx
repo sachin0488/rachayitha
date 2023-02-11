@@ -15,7 +15,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   gap: 17px;
-  color: ${({ color, theme }) => (color === 'secondary' ? theme.palette.headingColor.main : 'white')};
+  color: ${({ color, theme }) => (color === 'secondary' ? theme.palette.secondary.main : 'white')};
   font-size: 19px;
   @media (max-width: 1560px) {
     font-size: 17px;

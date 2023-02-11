@@ -9,7 +9,7 @@ const lightTheme = createTheme({
     secondary: {
       main: '#2F2D5C',
     },
-    headingColor: {
+    secondary: {
       main: '#2F2D5C',
     },
     subHeadingColor: {

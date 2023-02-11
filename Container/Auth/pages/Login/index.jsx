@@ -7,11 +7,12 @@ import { Button, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import StyledTextField from './components/StyledTextField'
-import StyledCheckbox from './components/StyledCheckbox'
 import Link from 'next/link'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import { useLoginAPI } from 'Container/Auth/api/auth.hook'
+import StyledCheckbox from '../OTP/components/StyledCheckbox'
+import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
+import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
 
 const LoginPage = () => {
   const methods = useForm()
@@ -34,7 +35,7 @@ const LoginPage = () => {
               Icon={AlternateEmailRoundedIcon}
               placeholder="Enter your email ..."
             />
-            <StyledTextField
+            <StyledPasswordField
               name="password"
               label="Password"
               Icon={LockOutlinedIcon}
@@ -49,7 +50,7 @@ const LoginPage = () => {
                 </a>
               </Link>
             </BottomSection>
-            
+
             <Nav>
               <Link href="/create-account">
                 <a>
@@ -99,7 +100,7 @@ const Body = styled.div`
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`

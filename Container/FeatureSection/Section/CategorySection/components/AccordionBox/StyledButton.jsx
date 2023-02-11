@@ -33,7 +33,7 @@ const Root = styled(Button)`
   display: flex;
   min-width: fit-content;
   width: 100%;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   background: ${({ theme }) => theme.palette.primary.main}11;
 
   &.selected {

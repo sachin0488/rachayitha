@@ -9,6 +9,7 @@ import ReviewSection from '../Section/ReviewSection'
 import CommentSection from '../Section/CommentSection'
 
 import useBookDetail from '../api/bookDetail.hook'
+import VoteSection from '../Section/VoteSection'
 
 const BookDetail = () => {
   const router = useRouter()
@@ -27,8 +28,9 @@ const BookDetail = () => {
       <MainContainer>
         <DetailsSection item={BookDetail} />
         <RecommendationSection />
-        <ReviewSection  item={BookDetail} />
-        <CommentSection item={BookDetail}/>
+        <VoteSection item={BookDetail} />
+        <ReviewSection item={BookDetail} />
+        <CommentSection item={BookDetail} />
 
         {/* <ReviewSectionCom /> */}
       </MainContainer>

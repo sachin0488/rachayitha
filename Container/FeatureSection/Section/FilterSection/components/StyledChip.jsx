@@ -21,7 +21,7 @@ const StyledChip = ({ item }) => {
 
 const Root = styled(Chip)`
   font-weight: 600;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   background: ${({ theme }) => theme.palette.primary.main}11;
   transition: 0.25s ease-in;
   &.active {

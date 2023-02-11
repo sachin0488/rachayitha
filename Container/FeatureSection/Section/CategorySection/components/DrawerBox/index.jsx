@@ -78,7 +78,7 @@ const StyledButton = styled(Button)`
   font-weight: 600;
   font-size: 0.87rem;
   padding: 5px 13px 4px;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   background: ${({ theme }) => theme.palette.primary.main}11;
   border-radius: 11px;
   transition: 0.35s ease-in-out;

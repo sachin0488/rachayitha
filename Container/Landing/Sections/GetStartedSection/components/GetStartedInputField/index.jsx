@@ -1,16 +1,27 @@
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { mobileL, mobileM, tabletS } from 'styles/mediaQuery/breakPoints'
 
 const GetStartedInputField = () => {
-  const { register } = useForm()
+  const { register, handleSubmit } = useForm()
+  const { push } = useRouter()
+
+  const handleRedirectToLoginPage = useCallback(
+    data => {
+      const { email } = data
+      localStorage.setItem('new-email', email)
+      push('/create-account')
+    },
+    [push],
+  )
 
   return (
     <Root>
       <InputField placeholder="Write your email here..." {...register('email')} />
-      <GetStartedButton color="primary" variant="contained">
+      <GetStartedButton color="primary" variant="contained" onClick={handleSubmit(handleRedirectToLoginPage)}>
         GET STARTED
       </GetStartedButton>
     </Root>

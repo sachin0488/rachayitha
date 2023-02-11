@@ -4,14 +4,46 @@ import { Button, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import StyledTextField from './components/StyledTextField'
-import StyledCheckbox from './components/StyledCheckbox'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import { useCreateAccountAPI } from 'Container/Auth/api/auth.hook'
 import Link from 'next/link'
+import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
+import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
+import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
+import StyledCheckbox from 'Container/Auth/components/FormComponents/StyledCheckbox'
+import {
+  StyledFieldGroup,
+  StyledFormLabel,
+  StyledRadioBox,
+  StyledRadioGroup,
+} from 'Container/Auth/components/FormComponents/StyledRadio'
+
+const GenderList = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+  {
+    label: 'Others',
+    value: 'others',
+  },
+]
 
 const CreateAccountPage = () => {
-  const methods = useForm()
+  const methods = useForm({
+    defaultValues: {
+      full_name: '',
+      username: '',
+      email: localStorage.getItem('new-email') || '',
+      bio: '',
+      password: '',
+      agree: false,
+    },
+  })
   const { handleCreateAccount, isLoading, isSuccess } = useCreateAccountAPI()
 
   return (
@@ -28,8 +60,18 @@ const CreateAccountPage = () => {
             <StyledTextField name="full_name" label="Name" placeholder="Enter your name..." />
             <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
             <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
+            <StyledDateSelector name="birth_date" label="Birth Date" placeholder="Chapter name here..." />
+
             <StyledTextField name="bio" label="Bio" placeholder="Enter your email ..." multiline />
-            <StyledTextField
+            <StyledFieldGroup>
+              <StyledFormLabel>Select Gender</StyledFormLabel>
+              <StyledRadioGroup name="gender" row>
+                {GenderList.map(({ label, value }) => (
+                  <StyledRadioBox key={value} label={label} value={value} />
+                ))}
+              </StyledRadioGroup>
+            </StyledFieldGroup>
+            <StyledPasswordField
               name="password"
               label="Password"
               Icon={LockOutlinedIcon}
@@ -71,16 +113,23 @@ const Root = styled.div`
     background: ${({ theme }) => theme.palette.primary.main};
     background: linear-gradient(141deg, rgba(81, 34, 192, 1) 0%, #966afc 100%);
   }
+  @media (max-width: 480px) {
+    min-height: 900px;
+    overflow: hidden;
+    width: 100%;
+  }
 `
 
 const Main = styled.div`
   display: grid;
-  width: 100%;
   max-width: 400px;
   @media (min-width: 480px) {
     box-shadow: 10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}20,
       10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}10;
     border-radius: 10px;
+  }
+  @media (min-width: 480px) {
+    overflow: hidden;
   }
 `
 
@@ -91,6 +140,11 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   gap: 17px;
+
+  @media (min-width: 480px) {
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+  }
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`

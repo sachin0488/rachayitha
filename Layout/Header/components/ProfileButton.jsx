@@ -9,10 +9,13 @@ import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import { useLogoutUserAPI } from 'Container/Auth/api/auth.hook'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import { selectUser } from 'store/slices/global/user.slice'
 
 const settings = ['Profile', 'Logout']
 
 const ProfileButton = () => {
+  const { data } = useSelector(selectUser)
   const [anchorElUser, setAnchorElUser] = useState(null)
   const { handleLogoutUser } = useLogoutUserAPI()
   const handleOpenUserMenu = event => {
@@ -26,7 +29,11 @@ const ProfileButton = () => {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Your Profile">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar src="https://mui.com/static/images/avatar/2.jpg" />
+          <Avatar
+            alt={data?.full_name}
+            src={data?.profile_pic}
+            sx={{ background: theme => theme.palette.primary.main, fontWeight: 600 }}
+          />
         </IconButton>
       </Tooltip>
       <Menu

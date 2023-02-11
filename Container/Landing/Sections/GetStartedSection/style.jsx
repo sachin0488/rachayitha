@@ -4,7 +4,7 @@ import { laptop, mobileL, mobileM, mobileS, tablet, tabletS } from '../../../../
 
 export const Heading = styled(Typography)`
   text-align: center;
-  color: ${props => props.theme.palette.headingColor.main};
+  color: ${props => props.theme.palette.secondary.main};
   font-weight: 800;
   font-size: 4.5em;
   line-height: 1.35;
@@ -17,5 +17,5 @@ export const SubHeading = styled(Typography)`
   font-weight: 300;
   font-size: 1.75em;
   text-align: center;
-  color: ${props => props.theme.palette.headingColor.main};
+  color: ${props => props.theme.palette.secondary.main};
 `

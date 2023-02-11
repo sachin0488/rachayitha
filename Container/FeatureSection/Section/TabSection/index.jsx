@@ -13,15 +13,15 @@ const TabList = [
     category: 1,
     icon: <MenuBookRoundedIcon color="white" />,
   },
+  // {
+  //   id: 1,
+  //   name: 'Short',
+  //   contentType: 'short',
+  //   category: 1,
+  //   icon: <LocalLibraryRoundedIcon color="white" />,
+  // },
   {
     id: 1,
-    name: 'Short',
-    contentType: 'short',
-    category: 1,
-    icon: <LocalLibraryRoundedIcon color="white" />,
-  },
-  {
-    id: 2,
     name: 'Poem',
     contentType: 'poem',
     category: 1,

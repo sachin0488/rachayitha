@@ -29,7 +29,7 @@ const ContentCard = ({ item, index, ranking }) => {
             </RankingNumber>
           </RankingRoot>
         )}
-        <Image alt={item?.book_name + ' Image'} src={cloudinary} />
+        <Image alt={item?.book_name + ' Image'} src={item?.cover_img} />
         <InfoSection>
           <HashtagList>
             {item?.tag?.map(tag => {
@@ -40,7 +40,8 @@ const ContentCard = ({ item, index, ranking }) => {
           <TitleName variant="subtitle2">
             {item?.book_name} <Status variant="caption">{item?.status}</Status>
           </TitleName>
-          <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText>
+          {/* <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText> */}
+          <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
 
           {!isMobile && (
             <InfoNav>
@@ -181,7 +182,7 @@ const Hashtag = styled(Typography)`
 `
 const TitleName = styled(Typography)`
   font-weight: 600;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   font-size: 1.15rem;
   display: flex;
   align-items: center;
@@ -191,8 +192,8 @@ const TitleName = styled(Typography)`
   }
 `
 
-const ParagraphText = styled(Typography)`
-  color: ${({ theme }) => theme.palette.headingColor.main};
+const Synopsis = styled(Typography)`
+  color: ${({ theme }) => theme.palette.secondary.main};
   && {
     overflow: hidden;
     text-overflow: ellipsis;

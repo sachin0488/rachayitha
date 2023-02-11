@@ -181,7 +181,7 @@ const Hashtag = styled(Typography)`
 `
 const TitleName = styled(Typography)`
   font-weight: 600;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   font-size: 1.15rem;
   display: flex;
   align-items: center;
@@ -192,7 +192,7 @@ const TitleName = styled(Typography)`
 `
 
 const ParagraphText = styled(Typography)`
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
   && {
     overflow: hidden;
     text-overflow: ellipsis;

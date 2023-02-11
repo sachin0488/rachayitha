@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, Typography } from '@mui/material'
+import { Avatar, Button, Typography } from '@mui/material'
 import moment from 'moment'
 import React, { useState } from 'react'
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
@@ -20,7 +20,7 @@ import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
 const InfoSection = () => {
   const { data } = useSelector(selectUser)
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
- 
+
   const genderIcon = gender => {
     return gender === 'male' ? MaleOutlinedIcon : gender === 'female' ? FemaleOutlinedIcon : TransgenderOutlinedIcon
   }
@@ -32,7 +32,12 @@ const InfoSection = () => {
         <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
       </StyledEditButton>
       <ImageWarper>
-        <StyledProfileImage src={data?.profile_pic} />
+        <StyledProfileImage
+          alt={data?.full_name}
+          src={data?.profile_pic}
+          sx={{ bgcolor: theme => theme.palette.primary.main, fontSize: 70 }}>
+          {data?.full_name?.slice(0, 1)}
+        </StyledProfileImage>
       </ImageWarper>
       <Main>
         <NameSection>
@@ -94,7 +99,7 @@ const ImageWarper = styled.div`
   box-shadow: 3px 3px 27px 1px rgba(98, 0, 255, 0.2);
 `
 
-const StyledProfileImage = styled.img`
+const StyledProfileImage = styled(Avatar)`
   width: auto;
   height: 100%;
 `

@@ -109,13 +109,13 @@ const InfoRight = styled.div`
 const TitleName = styled(Typography)`
   font-weight: 700;
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const CategoryName = styled(Typography)`
   font-weight: 500;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.palette.headingColor.main}aa;
+  color: ${({ theme }) => theme.palette.secondary.main}aa;
 `
 
 const Rating = styled(Typography)`

@@ -37,12 +37,12 @@ const CategorySection = () => {
     },
     {
       contentType: 'Poem',
-      categoryList: categoryList,
+      categoryList: data?.data?.data,
     },
-    {
-      contentType: 'Short',
-      categoryList: categoryList,
-    },
+    // {
+    //   contentType: 'Short',
+    //   categoryList: categoryList,
+    // },
   ]
 
   return (

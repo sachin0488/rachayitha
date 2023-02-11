@@ -73,7 +73,7 @@ const Root = styled.div`
 
 const BookName = styled(Typography)`
   font-weight: 600;
-  color: ${({ theme }) => theme.palette.headingColor.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const InfoChipList = styled.div`

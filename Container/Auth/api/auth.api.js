@@ -1,10 +1,10 @@
 import { ApiInstance } from 'api/global.api'
 
-export const createAccountAPI = ({ username, email, password, bio, full_name }) => {
+export const createAccountAPI = ({ username, email, password, bio, full_name, birth_date, gender }) => {
   return ApiInstance({
     url: '/register/',
     method: 'POST',
-    data: { user: { username, email, password, bio, full_name } },
+    data: { user: { username, email, password, bio, full_name, birth_date, gender } },
   })
 }
 

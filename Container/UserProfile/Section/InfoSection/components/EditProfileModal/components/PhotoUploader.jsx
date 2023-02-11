@@ -94,4 +94,5 @@ const ImagePreview = styled.img`
   width: auto;
   height: 100%;
   aspect-ratio: 1/1;
+  object-fit: cover;
 `

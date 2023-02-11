@@ -15,7 +15,7 @@ export const TextSection = styled.div`
 export const Heading = styled(Typography)`
   font-weight: 700;
   line-height: 1.43;
-  color: ${props => props.theme.palette.headingColor.main};
+  color: ${props => props.theme.palette.secondary.main};
   max-width: 540px;
   text-align: start;
   font-size: 50px;

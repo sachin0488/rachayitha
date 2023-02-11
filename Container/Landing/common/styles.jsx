@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import React from 'react'
 
 // export const mainMaxWidth = 1920
 export const mainMaxWidth = 1720
