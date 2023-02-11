@@ -3,12 +3,12 @@ import styled from '@emotion/styled'
 
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button, Typography } from '@mui/material'
-import { StyledModal } from 'components/StyledModal'
+import { StyledModal } from 'Components/StyledModal'
 
 import { useSelector } from 'react-redux'
 import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
 
-import StyledTextField from 'components/form-components/StyledTextField'
+import StyledTextField from 'Components/form-components/StyledTextField'
 import StyledRatingField from './components/StyledRatingField'
 import { useCreateBookRatingAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
