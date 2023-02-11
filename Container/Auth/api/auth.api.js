@@ -57,7 +57,7 @@ export const verifyEmailAPI = ({ email, otp }) => {
 
 export const fetchUserDataAPI = () => {
   return ApiInstance({
-    url: '/user',
+    url: '/user/',
     method: 'GET',
   })
 }

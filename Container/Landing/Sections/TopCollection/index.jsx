@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import { Typography, useMediaQuery } from '@mui/material'
 
@@ -8,39 +8,47 @@ import CarouselList from './components/CarouselList'
 import { FormProvider, useForm } from 'react-hook-form'
 import SelectSelectedTime from './components/SelectSelectedTime'
 import moment from 'moment/moment'
+import { useTopCollectionList } from 'Container/Landing/api/landing.hooks'
 
 const collectionTimeList = [
   {
     label: 'Last week',
-    value: moment().subtract(7, 'days'),
+    value: moment().subtract(7, 'days').format('YYYY-MM-DD'),
   },
   {
     label: 'Last month',
-    value: moment().subtract(30, 'days'),
+    value: moment().subtract(30, 'days').format('YYYY-MM-DD'),
   },
   {
     label: 'Last year',
-    value: moment().subtract(365, 'days'),
+    value: moment().subtract(365, 'days').format('YYYY-MM-DD'),
   },
 ]
 
 const TopCollection = () => {
   const isTabletXSM = useMediaQuery('(min-width:900px)')
-  const { data } = useTopCollection({ isReal: false })
-  // console.log(data?.data?.novels, 'data')
-  const item = data?.data?.novels
-
   const methods = useForm({
     defaultValues: {
       selectedTime: collectionTimeList[0].value,
     },
   })
 
+  const selectedTime = methods.watch('selectedTime')
+
+  const { Obj, refetch } = useTopCollectionList({
+    startDate: selectedTime,
+    endDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+  })
+
   const List = [
-    <ContentListSection key={1} contentName="Novel" contentList={item} />,
-    <ContentListSection key={2} contentName="Poems" contentList={item} />,
-    <ContentListSection key={3} contentName="Shorts" contentList={item} />,
+    <ContentListSection key={1} contentName="Novel" contentList={Obj?.novels} />,
+    <ContentListSection key={2} contentName="Poems" contentList={Obj?.poem} />,
+    <ContentListSection key={3} contentName="Shorts" contentList={Obj?.shorts} />,
   ]
+
+  useEffect(() => {
+    refetch()
+  }, [selectedTime, refetch])
 
   return (
     <Root>
@@ -52,9 +60,9 @@ const TopCollection = () => {
           </Heading>
           {isTabletXSM ? (
             <CollectionList>
-              <ContentListSection contentName="Novel" contentList={item} />
-              <ContentListSection contentName="Poems" contentList={item} />
-              <ContentListSection contentName="Shorts" contentList={item} />
+              <ContentListSection contentName="Novel" contentList={Obj?.novels} />
+              <ContentListSection contentName="Poems" contentList={Obj?.poems} />
+              <ContentListSection contentName="Shorts" contentList={Obj?.shorts} />
             </CollectionList>
           ) : (
             <CarouselList List={List} />

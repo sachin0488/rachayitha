@@ -27,8 +27,8 @@ const BookDetail = () => {
       <MainContainer>
         <DetailsSection item={BookDetail} />
         <RecommendationSection />
-        <ReviewSection />
-        <CommentSection />
+        <ReviewSection  item={BookDetail} />
+        <CommentSection item={BookDetail}/>
 
         {/* <ReviewSectionCom /> */}
       </MainContainer>

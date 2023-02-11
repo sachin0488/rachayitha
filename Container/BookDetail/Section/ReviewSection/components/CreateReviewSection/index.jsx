@@ -1,12 +1,17 @@
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
+import CreateReviewModal from './CreateReviewModal'
 
-const CreateReviewSection = () => {
+const CreateReviewSection = ({bookId}) => {
+  const [open, setOpen] = useState(false)
   return (
     <Root>
+      <CreateReviewModal bookId={bookId} open={open} setOpen={setOpen} />
       <InfoText variant="subtitle1">Share your thoughts with others</InfoText>
-      <Button variant="contained">Write a review</Button>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        Write a review
+      </Button>
     </Root>
   )
 }

@@ -5,11 +5,11 @@ import { Typography } from '@mui/material'
 import { mainMaxWidth } from 'Container/Landing/common/styles'
 import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import ContentCard from './components/ContentCard'
-import usePotentialStartletList from './api/potentialStartletCard.hook'
 import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
+import { usePotentialStartletList } from 'Container/Landing/api/landing.hooks'
 
 const PotentialStarletCards = () => {
-  const { data, isLoading, isError } = usePotentialStartletList({ isReal: false })
+  const { List, isLoading, isError } = usePotentialStartletList()
 
   return (
     <Root>
@@ -19,10 +19,10 @@ const PotentialStarletCards = () => {
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : (data?.data?.data || []).length === 0 ? (
+        ) : List.length === 0 ? (
           <NotAvailableBar />
         ) : (
-          <StyledSlider CardComponent={ContentCard} List={data?.data?.data} />
+          <StyledSlider CardComponent={ContentCard} List={List} />
         )}{' '}
       </Main>
     </Root>

@@ -9,9 +9,16 @@ import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import MoreOptions from './MoreOptions'
 import { useRouter } from 'next/router'
+import { useAddToLibraryAPI, useLikeBookAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 
 const InfoArea = ({ item }) => {
   const { query } = useRouter()
+  const { handleAddToLibrary } = useAddToLibraryAPI()
+  const { handleLikeBook } = useLikeBookAPI({
+    bookId: item?.id,
+  })
+
   return (
     <Root>
       <BookName variant="h3">{item?.book_name}</BookName>
@@ -20,22 +27,22 @@ const InfoArea = ({ item }) => {
           <StyledChip label={name} key={id} />
         ))}
         <StyledChip label={`${item?.chapter_count} Chapters`} Icon={CollectionsBookmarkRoundedIcon} />
-        <StyledChip label={`${item?.chapter_count} Views`} Icon={RemoveRedEyeRoundedIcon} />
+        <StyledChip label={`${item?.view_count} Views`} Icon={RemoveRedEyeRoundedIcon} />
       </InfoChipList>
       <Author color="secondary">
-        Author: <b>{item?.alternate_name}</b>
+        Author: <b>{item?.author_name}</b>
       </Author>
       <RatingRoot>
         <Rating
           color="primary"
           sx={{ color: theme => theme.palette.primary.main }}
-          value={item?.rating?.rate__avg}
+          value={Number(item?.rating?.rate__avg).toFixed(1)}
           readOnly
           size="large"
           precision={0.1}
           emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
         />
-        {<TotalRating color="secondary" variant="subtitle2">{`(42 ratings)`}</TotalRating>}
+        {<TotalRating color="secondary" variant="subtitle2">{`(${item?.rating?.rate__count})`}</TotalRating>}
       </RatingRoot>
       <ButtonList>
         <a href={`/book/${query?.bookId}/read/${item?.chapter[0]?.id}`} target="_blank" rel="noopener noreferrer">
@@ -43,8 +50,11 @@ const InfoArea = ({ item }) => {
             Read
           </Button>
         </a>
-        <Button variant="contained" startIcon={<LibraryAddRoundedIcon />}>
-          Add to library
+        <Button variant="contained" sx={{ minWidth: 40, width: 40 }} onClick={() => handleAddToLibrary(item?.id)}>
+          <LibraryAddRoundedIcon fontSize="small" />
+        </Button>
+        <Button variant="contained" onClick={handleLikeBook} startIcon={<ThumbUpRoundedIcon />}>
+          {item?.like_count}
         </Button>
         <MoreOptions />
       </ButtonList>

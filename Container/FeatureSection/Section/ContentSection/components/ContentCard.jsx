@@ -11,8 +11,10 @@ import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
 import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 import Link from 'next/link'
+import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 const ContentCard = ({ item, index, ranking }) => {
+  const { handleAddToLibrary } = useAddToLibraryAPI()
   const isMobile = useMediaQuery('(max-width: 465px)')
 
   return (
@@ -30,17 +32,15 @@ const ContentCard = ({ item, index, ranking }) => {
         <Image alt={item?.book_name + ' Image'} src={cloudinary} />
         <InfoSection>
           <HashtagList>
-            <Hashtag>#Adventure</Hashtag>
-            <Hashtag>#Action</Hashtag>
+            {item?.tag?.map(tag => {
+              return <Hashtag key={tag?.name}>#{tag?.name}</Hashtag>
+            })}
           </HashtagList>
 
           <TitleName variant="subtitle2">
             {item?.book_name} <Status variant="caption">{item?.status}</Status>
           </TitleName>
-          <ParagraphText variant="subtitle2">
-            The human Race is at war with the Vicious Dalki and when they needed the Vicious Dalki and when they needed
-            the Vicious ...
-          </ParagraphText>
+          <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText>
 
           {!isMobile && (
             <InfoNav>
@@ -48,20 +48,20 @@ const ContentCard = ({ item, index, ranking }) => {
                 <Rating
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
-                  value={3.5}
+                  value={Number(item?.rating?.rate__avg).toFixed(1) || 0}
                   readOnly
                   precision={0.5}
                   emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
                 />
               </RatingRoot>
               <VoteCount variant="subtitle2">
-                6
+                {item?.vote_count}
                 <ArrowDropUpRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
                 />
               </VoteCount>
               <CommentCount variant="subtitle2">
-                6
+                {item?.comment_count}
                 <ModeCommentRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
                 />
@@ -69,7 +69,7 @@ const ContentCard = ({ item, index, ranking }) => {
             </InfoNav>
           )}
         </InfoSection>
-        <AddIcon variant="contained">
+        <AddIcon variant="contained" onClick={() => handleAddToLibrary(item?.id)}>
           <AddOutlinedIcon />
         </AddIcon>
       </Main>
@@ -156,6 +156,7 @@ const Main = styled.div`
 const Image = styled.img`
   object-fit: cover;
   border-radius: 7px;
+  aspect-ratio: 350/466;
 `
 
 const InfoSection = styled.div`

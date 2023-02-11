@@ -2,22 +2,19 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import React from 'react'
 
-const AboutTab = () => {
+const AboutTab = ({ item }) => {
   return (
     <Root>
       <Label variant="h6" color="secondary">
         Synopsis
       </Label>
-      <Synopsis>
-        “Discovered the corpse of an ordinary human, loot to receive Super-strength Pill, extract?” <br />
-        “Yes!” <br />
-        “Yes!” <br />
-        “Discovered the Demonic Body of the Hellbound Domination Emperor, loot to receive Sun-swallowing Cerberus,
-        extract?”
-      </Synopsis>
+      <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
       <HashtagList>
-        <Hashtag variant="subtitle2">#Adventure</Hashtag>
-        <Hashtag variant="subtitle2">#Action</Hashtag>
+        {item?.tags?.map(name => (
+          <Hashtag variant="subtitle2" key={name}>
+            #{name}
+          </Hashtag>
+        ))}
       </HashtagList>
     </Root>
   )

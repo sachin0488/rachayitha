@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
+import { Tab, tabClasses, Tabs, tabsClasses, Typography } from '@mui/material'
 
 import LikedCommentListTab from './LikedCommentListTab'
 import NewestCommentListTab from './NewestCommentListTab'
@@ -19,8 +19,11 @@ const CommentListView = ({ item }) => {
       <StyledTabs value={value} onChange={handleChange} aria-label="Comment List">
         <StyledTab label="Liked" {...a11yProps(0)} />
         <StyledTab label="Newest" {...a11yProps(1)} />
+        <CommentCountText variant="h6" color="secondary">
+          ({item?.comment_count} Comments)
+        </CommentCountText>
       </StyledTabs>
-      <CreateCommentSection />
+
       <TabPanel value={value} index={0}>
         <LikedCommentListTab item={item} />
       </TabPanel>
@@ -48,6 +51,11 @@ const a11yProps = index => {
     'aria-controls': `tabpanel-${index}`,
   }
 }
+
+const CommentCountText = styled(Typography)`
+  font-weight: 600;
+  align-self: center;
+`
 
 const StyledTab = styled(Tab)`
   display: flex;
@@ -79,7 +87,7 @@ const StyledTabs = styled(Tabs)`
   display: flex;
 
   @media (max-width: 530px) {
-    width: 90%;
+    width: 100%;
   }
   & .${tabsClasses.flexContainer} {
     display: flex;

@@ -14,7 +14,8 @@ export const useChapterList = (bookId, chapterId) => {
     {
       enabled: Boolean(bookId),
       onSuccess({ data }) {
-        dispatch(setChapterList(data))
+        console.log(data);
+        dispatch(setChapterList(data?.resources?.data))
         dispatch(setChapterLoadedById(chapterId))
       },
     },

@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { alpha, InputBase, styled, useMediaQuery } from '@mui/material'
+import SearchModal from './SearchModal'
 
 const StyledSearchBox = () => {
+  const [isModalOpen, setModalOpen] = useState(false)
   const isTabletSM = useMediaQuery('(min-width:1070px)')
 
   return (
-    <Search>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder={isTabletSM ? 'Search novels, poems and many more…' : 'Search here...'}
-        inputProps={{ 'aria-label': 'search' }}
-      />
-    </Search>
+    <>
+      <SearchModal open={isModalOpen} setOpen={setModalOpen} />
+      <Search onClick={() => setModalOpen(true)}>
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder={isTabletSM ? 'Search novels, poems and many more…' : 'Search here...'}
+          inputProps={{ 'aria-label': 'search' }}
+        />
+      </Search>
+    </>
   )
 }
 

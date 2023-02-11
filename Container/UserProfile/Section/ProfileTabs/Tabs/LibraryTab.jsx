@@ -5,7 +5,7 @@ import ContentCard from '../components/ContentCard'
 
 const LibraryTab = () => {
   const { ContentList } = useLibraryAPI()
-  console.log(ContentList)
+
   return (
     <Root>
       {ContentList?.map(item => (

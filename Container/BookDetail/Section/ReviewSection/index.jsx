@@ -5,7 +5,7 @@ import CreateReviewSection from './components/CreateReviewSection'
 import Heading from './components/Heading'
 import RatingSection from './components/RatingSection'
 
-const ReviewSection = () => {
+const ReviewSection = ({ item }) => {
   const isTablet = useMediaQuery('(max-width: 735px)')
 
   return (
@@ -13,11 +13,11 @@ const ReviewSection = () => {
       <StyledDivider />
       <Body>
         <Main>
-          <Heading />
-          <RatingSection />
+          <Heading item={item} />
+          <RatingSection item={item} />
         </Main>
         {isTablet && <StyledDivider />}
-        <CreateReviewSection />
+        <CreateReviewSection bookId={item?.id} />
       </Body>
       <StyledDivider />
     </Root>

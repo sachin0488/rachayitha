@@ -7,18 +7,11 @@ import { mainMaxWidth } from 'Container/Landing/common/styles'
 import { mobileM } from 'styles/mediaQuery/breakPoints'
 
 import ContentCard from './components/ContentCard'
-import useWeeklyApi from './api/WeeklyCard.hook'
 import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
+import { useWeaklyFeaturedList } from 'Container/Landing/api/landing.hooks'
 
 const WeeklyFeatured = () => {
-  const { isLoading, isError, data } = useWeeklyApi({ isReal: true })
-
-  const List = [
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-  ]
+  const { List, isLoading, isError } = useWeaklyFeaturedList()
 
   return (
     <Root>
@@ -30,7 +23,7 @@ const WeeklyFeatured = () => {
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : (data?.data?.data || []).length === 0 ? (
+        ) : List.length === 0 ? (
           <NotAvailableBar />
         ) : (
           <StyledSlider CardComponent={ContentCard} List={List} />

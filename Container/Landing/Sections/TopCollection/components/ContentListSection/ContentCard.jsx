@@ -10,19 +10,19 @@ import { laptopS } from 'styles/mediaQuery/breakPoints'
 const ContentCard = ({ item }) => {
   const { isLoggedIn } = useSelector(selectUser)
   return (
-    <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+    <Link href={isLoggedIn ? `/book/${item?.id}` : `/login`}>
       <Root>
         <ImageSection>
-          <Image alt="book image" src={item.cover_img} width="90px" height="115px" />
+          <StyledImage alt="book image" src={item?.cover_img} width="90px" height="115px" />
         </ImageSection>
         <InfoSection>
-          <Title>{item.book_name}</Title>
+          <Title>{item?.book_name}</Title>
 
           {item?.category?.map((cat, idx) => (
-            <Fantasy key={idx}>{cat.name}</Fantasy>
+            <Fantasy key={idx}>{cat?.name}</Fantasy>
           ))}
 
-          <Rating>{item?.rating?.rate__avg}</Rating>
+          <Rating>{Number(item?.rating?.rate__avg).toFixed(1)}</Rating>
         </InfoSection>
       </Root>
     </Link>
@@ -56,6 +56,10 @@ const ImageSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+const StyledImage = styled.img`
+  border-radius: 8px;
 `
 
 const InfoSection = styled.div`

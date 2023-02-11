@@ -8,15 +8,15 @@ const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
   return (
     <Root>
       <Top>
-        <Field variant="subtitle2">
+        {/* <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: red[500] }} /> {redStone}
-        </Field>
+        </Field> */}
         <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: blue[500] }} /> {blueStone}
         </Field>
-        <Field variant="subtitle2">
+        {/* <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: green[500] }} /> {greenStone}
-        </Field>
+        </Field> */}
       </Top>
 
       <Bottom>

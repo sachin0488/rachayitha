@@ -8,18 +8,10 @@ import { ErrorBar, NotAvailableBar } from 'Container/Landing/components/CardComp
 import { LoadingBar } from 'Container/Landing/components/CardComponents'
 import { mainMaxWidth } from 'Container/Landing/common/styles'
 import ContentCard from './components/ContentCard'
-
-import useNewArrivalApi from './Api/newArrivalCard.hook'
+import { useNewArrivalList } from 'Container/Landing/api/landing.hooks'
 
 const NewArrivalsCards = () => {
-  const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })
-
-  const List = [
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-  ]
+  const { List, isLoading, isError } = useNewArrivalList()
 
   return (
     <Root>
@@ -29,7 +21,7 @@ const NewArrivalsCards = () => {
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : (data?.data?.data || []).length === 0 ? (
+        ) : List.length === 0 ? (
           <NotAvailableBar />
         ) : (
           <StyledSlider CardComponent={ContentCard} List={List} />

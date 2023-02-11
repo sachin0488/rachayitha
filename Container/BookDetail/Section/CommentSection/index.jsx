@@ -3,10 +3,10 @@ import React from 'react'
 import CommentListView from './components/CommentListView'
 import CreateCommentSection from './components/CreateCommentSection'
 
-const CommentSection = () => {
+const CommentSection = ({ item }) => {
   return (
     <Root>
-      <CommentListView />
+      <CommentListView item={item} />
     </Root>
   )
 }

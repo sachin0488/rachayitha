@@ -14,7 +14,7 @@ const ChapterListTab = ({ item }) => {
           paid={chapter.paid}
         />
       ))}
-      <ChapterBar ChapterNumber={3} text="paid chapter example" paid />
+      {/* <ChapterBar ChapterNumber={3} text="paid chapter example" paid /> */}
     </Root>
   )
 }

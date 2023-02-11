@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
 import { createAccountAPI, fetchUserDataAPI, loginAPI } from './auth.api'
-import useLocalStorage from '../../../hooks/useLocalStorage'
 import useAuthTokens from '../../../api/global.hook'
 
 export const useFetchUserDataAPI = (props, work) => {
@@ -16,6 +15,8 @@ export const useFetchUserDataAPI = (props, work) => {
     enabled: false,
     onSuccess({ data }) {
       dispatch(setUserData(data.user))
+
+      dispatch({ type: LOGIN_SUCCESS })
 
       if (typeof props?.onSuccess === 'function') {
         props.onSuccess(data)

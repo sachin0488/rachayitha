@@ -6,18 +6,11 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
 
 import ContentCard from './components/ContentCard'
-import useNewArrivalApi from 'Container/Landing/Sections/NewArrivalsCards/Api/newArrivalCard.hook'
 import { mainMaxWidth } from 'Container/BookDetail/common/styles'
+import { useNewArrivalList } from 'Container/Landing/api/landing.hooks'
 
 const RecommendationSection = () => {
-  const { data, isLoading, isError } = useNewArrivalApi({ isReal: true })
-
-  const List = [
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-    ...(data?.data?.data || []),
-  ]
+  const { List, isLoading, isError } = useNewArrivalList()
 
   return (
     <Root>
@@ -27,7 +20,7 @@ const RecommendationSection = () => {
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : (data?.data?.data || []).length === 0 ? (
+        ) : List.length === 0 ? (
           <NotAvailableBar />
         ) : (
           <StyledSlider CardComponent={ContentCard} List={List} />

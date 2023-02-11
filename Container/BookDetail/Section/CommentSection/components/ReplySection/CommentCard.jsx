@@ -7,27 +7,36 @@ import StarIcon from '@mui/icons-material/Star'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import CommentBankRoundedIcon from '@mui/icons-material/CommentBankRounded'
 import ReplySection from '../ReplySection'
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
+import { useLikeBookCommentAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
-const CommentCard = () => {
+const CommentCard = ({ item, parentCommentId }) => {
+  const [likes, setLikes] = useState(item?.like_count)
+  const { handleLikeBookComment } = useLikeBookCommentAPI({
+    bookId: item?.book_id,
+    commentId: item?.id,
+    parentCommentId: parentCommentId,
+    setLikes,
+  })
   const [isReplyOpen, setIsReplyOpen] = useState(false)
+
   return (
     <Root className={isReplyOpen ? 'replyOpen' : ''}>
       <Header>
         <StyledAvatar
           sx={{ bgcolor: theme => theme.palette.primary.main }}
           variant="rounded"
-          alt="?"
-          src="/static/images/avatar/1.jpg"
+          alt={item?.commentby}
+          src={item?.profile_pic || '..'}
         />
         <Username variant="h6" color="secondary">
-          Guiltythree
+          {item?.commentby}
         </Username>
         <Rating
           color="primary"
           sx={{ ml: 'auto', color: theme => theme.palette.primary.main }}
-          //   value={item?.rating?.rate__avg}
-          value={4.3}
+          //   value={Number(item?.rating?.rate__avg).toFixed(1)}
+          value={0}
           readOnly
           size="medium"
           precision={0.1}
@@ -35,12 +44,13 @@ const CommentCard = () => {
         />
       </Header>
       <CommentText color="secondary" variant="body1">
-        Discovered the Demonic Body of the Hellbound Domination Emperor, loot to receive Sun-swallowing Cerberus,
-        extract?
+        {item?.comments}
       </CommentText>
 
       <ActionList>
-        <StyledButton startIcon={<ThumbUpRoundedIcon />}>23</StyledButton>
+        <StyledButton startIcon={<ThumbUpRoundedIcon />} onClick={handleLikeBookComment}>
+          {likes}
+        </StyledButton>
         <StyledButton
           onClick={() => setIsReplyOpen(!isReplyOpen)}
           startIcon={<CommentBankRoundedIcon />}
@@ -49,11 +59,12 @@ const CommentCard = () => {
               sx={{ transition: '.25s ease-in-out', rotate: isReplyOpen ? '180deg' : '90deg' }}
             />
           }>
-          23
+          {item?.comment_count}
         </StyledButton>
+        <CommentedOn variant="subtitle2">{item?.created_at}</CommentedOn>
       </ActionList>
 
-      {isReplyOpen && <ReplySection />}
+      {isReplyOpen && <ReplySection commentId={item?.id} />}
     </Root>
   )
 }
@@ -88,6 +99,16 @@ const Header = styled.div`
   @media (max-width: 400px) {
     gap: 8px;
   }
+`
+
+const CommentedOn = styled(Typography)`
+  font-weight: 500;
+  color: ${({ theme }) => theme.palette.secondary.main}bb;
+  font-size: 0.7rem;
+  @media (max-width: 400px) {
+  }
+  align-self: end;
+  margin-left: auto;
 `
 
 const CommentText = styled(Typography)`

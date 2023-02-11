@@ -10,13 +10,16 @@ import { useCreateBookCommentAPI } from 'Container/BookDetail/api/bookDetail.hoo
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
+import { useSelector } from 'react-redux'
 
-const CreateCommentSection = ({ commentId }) => {
+const CreateCommentSection = ({ commentId, sortBy }) => {
   const { query } = useRouter()
+  const { data } = useSelector(store => store.user)
 
   const { handleCreateBookComment, isLoading } = useCreateBookCommentAPI({
     bookId: query?.bookId,
     commentId: commentId,
+    sortBy,
   })
 
   const methods = useForm({
@@ -35,17 +38,17 @@ const CreateCommentSection = ({ commentId }) => {
           <StyledAvatar
             sx={{ bgcolor: theme => theme.palette.primary.main }}
             variant="rounded"
-            alt="?"
-            src="/static/images/avatar/1.jpg"
+            alt={data?.username}
+            src={data?.profile_pic}
           />
           <Username variant="h6" color="secondary">
-            Guiltythree
+            {data?.username}
           </Username>
           <Rating
             color="primary"
             sx={{ ml: 'auto', color: theme => theme.palette.primary.main }}
-            //   value={item?.rating?.rate__avg}
-            value={4.3}
+            //   value={Number(item?.rating?.rate__avg).toFixed(1)}
+            value={0}
             readOnly
             size="medium"
             precision={0.1}

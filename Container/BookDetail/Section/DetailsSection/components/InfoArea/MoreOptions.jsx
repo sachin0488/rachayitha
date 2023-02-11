@@ -22,8 +22,9 @@ const MoreOptions = () => {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}>
-        <Grid4x4RoundedIcon />
+        onClick={handleClick}
+        sx={{ minWidth: 36, width: 36 }}>
+        <Grid4x4RoundedIcon fontSize="small" />
       </Button>
 
       <StyledMenu

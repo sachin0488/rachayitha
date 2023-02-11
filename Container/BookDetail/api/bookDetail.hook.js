@@ -2,11 +2,13 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import {
   addToLibraryAPI,
-  bookCommentAPI,
   createBookCommentAPI,
+  createBookRating,
   fetchBookDetail,
   fetchCommentList,
   fetchCommentSection,
+  likeBookAPI,
+  likeBookCommentAPI,
 } from './bookDetail.api'
 
 export const useBookComment = book => {
@@ -41,16 +43,17 @@ export const useAddToLibraryAPI = () => {
   return { mutate, handleAddToLibrary, isLoading, isSuccess }
 }
 
-export const useBookCommentListAPI = ({ bookId, commentId, ...props }) => {
+export const useBookCommentListAPI = ({ bookId, commentId, sortBy, ...props }) => {
   const { enqueueSnackbar } = useSnackbar()
 
   const { data, isSuccess, isLoading, isError, refetch } = useQuery(
-    ['comment-list', bookId, commentId],
-    () => fetchCommentList({ bookId, commentId }),
+    ['comment-list', bookId, commentId, sortBy],
+    () => fetchCommentList({ bookId, commentId, sortBy }),
     {
       enabled: !Boolean(props?.disableAPI),
       refetchIntervalInBackground: true,
       onError: error => {
+        console.log(error)
         enqueueSnackbar('Something went wrong !', {
           variant: 'error',
         })
@@ -61,10 +64,11 @@ export const useBookCommentListAPI = ({ bookId, commentId, ...props }) => {
   return { CommentList: data?.data?.data, isLoading, isSuccess, isError, refetch }
 }
 
-export const useCreateBookCommentAPI = ({ bookId, ...props }) => {
+export const useCreateBookCommentAPI = ({ bookId, sortBy, ...props }) => {
   const { refetch } = useBookCommentListAPI({
     bookId: bookId,
-    commentId: Boolean(props?.commentId) ? commentId : null,
+    commentId: Boolean(props?.commentId) ? props?.commentId : null,
+    sortBy: sortBy,
     disableAPI: true,
   })
   const { enqueueSnackbar } = useSnackbar()
@@ -74,7 +78,7 @@ export const useCreateBookCommentAPI = ({ bookId, ...props }) => {
       createBookCommentAPI({
         ...data,
         book_id: bookId,
-        parent_comment_id: Boolean(props?.commentId) ? commentId : null,
+        parent_comment_id: Boolean(props?.commentId) ? props?.commentId : null,
       }),
     {
       onSuccess({ data }) {
@@ -94,6 +98,99 @@ export const useCreateBookCommentAPI = ({ bookId, ...props }) => {
   const handleCreateBookComment = mutate
 
   return { handleCreateBookComment, isLoading, isSuccess, isError }
+}
+
+export const useLikeBookAPI = ({ bookId, ...props }) => {
+  const { enqueueSnackbar } = useSnackbar()
+
+  const { mutate, isLoading, isSuccess, isError } = useMutation(
+    data =>
+      likeBookAPI({
+        bookId,
+      }),
+    {
+      onSuccess({ data }) {
+        // setLikes(pre => pre + 1)
+
+        enqueueSnackbar('Your like has been added !', {
+          variant: 'success',
+        })
+      },
+      onError: error => {
+        enqueueSnackbar('Unable to like book !', {
+          variant: 'error',
+        })
+      },
+    },
+  )
+
+  const handleLikeBook = mutate
+
+  return { handleLikeBook, isLoading, isSuccess, isError }
+}
+export const useLikeBookCommentAPI = ({ bookId, setLikes, ...props }) => {
+  const { refetch } = useBookCommentListAPI({
+    bookId: bookId,
+    commentId: Boolean(props?.parentCommentId) ? props?.parentCommentId : null,
+    disableAPI: true,
+  })
+  const { enqueueSnackbar } = useSnackbar()
+
+  const { mutate, isLoading, isSuccess, isError } = useMutation(
+    data =>
+      likeBookCommentAPI({
+        bookId,
+        commentId: props?.commentId,
+      }),
+    {
+      onSuccess({ data }) {
+        setLikes(pre => pre + 1)
+        refetch()
+        enqueueSnackbar('Your like has been added !', {
+          variant: 'success',
+        })
+      },
+      onError: error => {
+        enqueueSnackbar('Unable to like comment !', {
+          variant: 'error',
+        })
+      },
+    },
+  )
+
+  const handleLikeBookComment = mutate
+
+  return { handleLikeBookComment, isLoading, isSuccess, isError }
+}
+
+export const useCreateBookRatingAPI = ({ bookId, ...props }) => {
+  const { handleCreateBookComment } = useCreateBookCommentAPI({ bookId, ...props })
+
+  const { enqueueSnackbar } = useSnackbar()
+
+  const { mutate, isLoading, isSuccess, isError } = useMutation(
+    data => {
+      handleCreateBookComment({ comments: data?.comments })
+      return createBookRating(bookId)({ ...data, comments: undefined })
+    },
+    {
+      onSuccess({ data }) {
+        enqueueSnackbar('Your review has been posted !', {
+          variant: 'success',
+        })
+      },
+      onError: error => {
+        console.log(error)
+        enqueueSnackbar('Unable to post review !', {
+          variant: 'error',
+        })
+      },
+    },
+  )
+
+  const handleCreateBookRating = mutate
+
+  return { handleCreateBookRating, isLoading, isSuccess, isError }
 }
 
 const useBookDetail = bookId => {

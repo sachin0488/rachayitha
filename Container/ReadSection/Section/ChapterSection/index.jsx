@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectChapter, setIsLoading } from 'Container/ReadSection/slices/chapter.slice'
 import { useIntersectionObserver, useTrackVisibility } from 'react-intersection-observer-hook'
 import { InView, useInView } from 'react-intersection-observer'
+import draftToHtml from 'draftjs-to-html'
 
 const ChapterSection = ({ item, mainRef }) => {
   const { query, push } = useRouter()
@@ -50,7 +51,7 @@ const ChapterSection = ({ item, mainRef }) => {
         <ChapterName variant="h5" color="secondary">
           Chapter: {item?.chapter_sequence} {item?.chapter_title}
         </ChapterName>
-        {JSON.stringify(ChapterContent)}
+        <ChapterContentText dangerouslySetInnerHTML={{ __html: ChapterContent }} />
         <DividerBar style={{ marginTop: 'auto' }} />
       </Root>
     </InView>
@@ -68,6 +69,11 @@ const Root = styled.div`
 
 const ChapterName = styled(Typography)`
   font-weight: 600;
+`
+
+const ChapterContentText = styled(Typography)`
+  margin-top: 5px;
+  color: ${({ theme }) => theme.palette.secondary.main}ee;
 `
 
 export default ChapterSection

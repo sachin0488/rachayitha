@@ -23,6 +23,7 @@ const Root = styled(Typography)`
     font-size: 1.5rem;
   }
   span {
+    text-transform: capitalize;
     margin-top: 2px;
     margin-bottom: 2px;
     @media (max-width: 400px) {

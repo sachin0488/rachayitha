@@ -26,14 +26,16 @@ const ContentCard = ({ item }) => {
           <></>
         )}
 
-        <Image alt="" src={cloudinary} />
+        <Image alt="" src={item?.cover_img} />
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6">{item?.book_name}</TitleName>
-            <CategoryName variant="subtitle2">{item?.category?.map(item => item.name)?.join(', ')}</CategoryName>
+            <CategoryName variant="subtitle2">
+              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
           <InfoRight>
-            <Rating variant="subtitle2">{item?.rating?.rate__avg || 'N/A'}</Rating>
+            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
           </InfoRight>
         </InfoSection>
       </Main>
@@ -86,6 +88,7 @@ const Image = styled.img`
   height: 285px;
   object-fit: cover;
   border-radius: 10px;
+  aspect-ratio: 355/466;
 `
 
 const InfoSection = styled.div`

@@ -13,14 +13,14 @@ const DetailsSection = ({ item }, ref) => {
   return (
     <Root ref={ref}>
       <ImageContainer>
-        <StyledImage src="/book_image.jpg" />
-        <StyledImage className="blur" src="/book_image.jpg" />
+        <StyledImage src={BookDetail?.cover_img} />
+        <StyledImage className="blur" src={BookDetail?.cover_img} />
       </ImageContainer>
 
       <InfoSection>
         <BookName variant="h4">{BookDetail?.book_name}</BookName>
         <AuthorName variant="h6">
-          Author: <span className="name"> Jone </span>
+          Author: <span className="name"> {BookDetail?.author_name} </span>
         </AuthorName>
       </InfoSection>
       <Copyright>

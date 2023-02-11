@@ -7,8 +7,8 @@ const DetailsSection = ({ item }) => {
   return (
     <Root>
       <ImageContainer>
-        <StyledImage src="/book_image.jpg" />
-        <StyledImage className="blur" src="/book_image.jpg" />
+        <StyledImage src={item?.cover_img} />
+        <StyledImage className="blur" src={item?.cover_img} />
       </ImageContainer>
 
       <InfoSection>
@@ -41,7 +41,6 @@ const ImageContainer = styled.div`
   align-self: center;
   @media (max-width: 400px) {
     /* margin-top: 15px; */
-    
   }
 `
 

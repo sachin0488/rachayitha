@@ -9,12 +9,10 @@ import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
-export const cloudinary = '/book_image.jpg'
-
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
   const { isLoggedIn } = useSelector(selectUser)
-
+  console.log(item?.category)
   return (
     <Root>
       <Main>
@@ -26,14 +24,16 @@ const ContentCard = ({ item }) => {
           <></>
         )}
 
-        <Image alt="" src={cloudinary} />
+        <Image alt="" src={item?.cover_img} />
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6">{item?.book_name}</TitleName>
-            <CategoryName variant="subtitle2">{item?.category?.map(item => item.name)?.join(', ')}</CategoryName>
+            <CategoryName variant="subtitle2">
+              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
           <InfoRight>
-            <Rating variant="subtitle2">{item?.rating?.rate__avg || 'N/A'}</Rating>
+            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
           </InfoRight>
         </InfoSection>
       </Main>

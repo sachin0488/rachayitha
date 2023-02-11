@@ -1,5 +1,6 @@
 import React from 'react'
 import { RootContainer } from '../common/styles'
+import ContinueReadingCards from '../Sections/ContinueReadingCards'
 
 import Hero from '../Sections/Hero'
 import NewArrivalsCards from '../Sections/NewArrivalsCards'
@@ -15,6 +16,7 @@ const LandingPageAfterLogin = () => {
       <WeeklyFeatured />
       <PotentialStarletCards />
       <NewArrivalsCards />
+      <ContinueReadingCards />
     </RootContainer>
   )
 }

@@ -11,9 +11,9 @@ const ProfileButton = () => {
   const user = useSelector(selectUser)
 
   return (
-    <Link href={`/profile/1`}>
+    <Link href={`/profile/self`}>
       <Root sx={{ flexGrow: 0 }}>
-        <Avatar variant="rounded" src="https://mui.com/static/images/avatar/2.jpg" />
+        <Avatar variant="rounded" alt={user.data.username} src={user?.data?.profile_pic} />
         <Username>{user.data.username}</Username>
       </Root>
     </Link>

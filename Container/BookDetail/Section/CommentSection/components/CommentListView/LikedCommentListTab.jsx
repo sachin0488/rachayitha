@@ -5,19 +5,32 @@ import { useBookCommentListAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import { useRouter } from 'next/router'
 
 import CommentCard from './CommentCard'
+import CreateCommentSection from '../CreateCommentSection'
+import { Skeleton } from '@mui/material'
 
 const LikedCommentListTab = () => {
   const { query } = useRouter()
-  const { CommentList } = useBookCommentListAPI({ bookId: query?.bookId, commentId: null })
+  const { CommentList, isLoading } = useBookCommentListAPI({ bookId: query?.bookId, commentId: null, sortBy: 'like' })
 
   return (
     <Root>
-      {CommentList?.map(item => (
-        <CommentCard key={item.id} item={item} />
-      ))}
+      <CreateCommentSection sortBy="like" />
+      {isLoading ? (
+        <>
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+        </>
+      ) : (
+        CommentList?.map(item => <CommentCard key={item.id} item={item} />)
+      )}
     </Root>
   )
 }
+
+const StyledSkeleton = styled(Skeleton)`
+  max-width: 650px;
+`
 
 const Root = styled.div`
   display: flex;

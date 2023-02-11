@@ -6,6 +6,7 @@ const ContentListSection = ({ contentName, contentList }) => {
   return (
     <Root>
       <ContentName>{contentName}</ContentName>
+      {contentList?.length === 0 && <div>No content</div>}
       {contentList?.map(item => (
         <ContentCard key={item.id} item={item} />
       ))}

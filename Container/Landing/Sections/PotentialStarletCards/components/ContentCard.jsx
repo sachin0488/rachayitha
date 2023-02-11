@@ -19,28 +19,34 @@ const ContentCard = ({ item }) => {
     <Root>
       <Main>
         {isLoggedIn ? (
-          <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+          <AddIcon
+            disable={Boolean(item?.library_added)}
+            color="primary"
+            variant="contained"
+            onClick={() => handleAddToLibrary(item.id)}>
             <AddOutlinedIcon />
           </AddIcon>
         ) : (
           <></>
         )}
         <ImageSection>
-          <Image alt="" src={cloudinary} />
+          <Image alt="" src={item?.cover_img} />
           <SmallImageList>
-            <SmallImage alt="" src={cloudinary} />
-            <SmallImage alt="" src={cloudinary} />
-            <SmallImage alt="" src={cloudinary} />
+            <SmallImage alt="" src={item?.side_upper_cover_img} />
+            <SmallImage alt="" src={item?.side_middle_cover_img} />
+            <SmallImage alt="" src={item?.side_lower_cover_img} />
           </SmallImageList>
         </ImageSection>
 
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6">{item?.book_name}</TitleName>
-            <CategoryName variant="subtitle2">{item?.category?.map(item => item.name)?.join(', ')}</CategoryName>
+            <CategoryName variant="subtitle2">
+              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
           <InfoRight>
-            <Rating variant="subtitle2">{item?.rating?.rate__avg || 'N/A'}</Rating>
+            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
           </InfoRight>
         </InfoSection>
       </Main>
@@ -99,12 +105,13 @@ const Image = styled.img`
   height: 285px;
   object-fit: cover;
   border-radius: 10px;
+  aspect-ratio: 355/466;
 `
 
 const SmallImageList = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 285px;
   width: 66px;
   gap: 10px;
 `
@@ -113,6 +120,8 @@ const SmallImage = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
+  aspect-ratio: 355/476;
+  border: 0px;
 `
 
 const InfoSection = styled.div`

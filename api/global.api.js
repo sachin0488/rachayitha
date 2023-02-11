@@ -17,6 +17,14 @@ export const silentRenewalAPI = data => {
   })
 }
 
+export const fetchSearchAPI = (page, keyword) => {
+  return ApiInstance({
+    url: '/book/',
+    method: 'GET',
+    params: { book_name: keyword },
+  })
+}
+
 const handleLogout = () => {
   window.localStorage.clear()
   window.location.replace('/login')

@@ -49,9 +49,9 @@ const MyApp = props => {
             <SnackbarProvider Components={snackbarComponents}>
               <QueryClientProvider client={queryClient}>
                 <CssBaseline />
-                <LoadToken />
                 <Layout>
                   <Component {...pageProps} />
+                  <LoadToken />
                 </Layout>
               </QueryClientProvider>
             </SnackbarProvider>
