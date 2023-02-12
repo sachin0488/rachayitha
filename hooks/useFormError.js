@@ -1,18 +1,24 @@
-import { useSnackbar } from "notistack";
-import { useCallback } from "react";
+import { useSnackbar } from 'notistack'
+import { useCallback } from 'react'
 
 export default function useFormError() {
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleFormError = useCallback(
-    (error) => {
-      const [field, info] = Object.entries(error)?.[0];
+    error => {
+      const [field, info] = Object.entries(error)?.[0]
       enqueueSnackbar(info.message, {
-        variant: "error",
-      });
+        variant: 'error',
+      })
     },
-    [enqueueSnackbar]
-  );
+    [enqueueSnackbar],
+  )
 
-  return { handleFormError };
+  return { handleFormError }
+}
+
+export const getFormErrorMessage = error => {
+  const [field, message] = Object.entries(error)?.[0]
+
+  if (field && message?.[0]) return message?.[0]
 }

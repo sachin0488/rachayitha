@@ -6,6 +6,7 @@ import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
 import { createAccountAPI, fetchUserDataAPI, loginAPI } from './auth.api'
 import useAuthTokens from '../../../api/global.hook'
+import { getFormErrorMessage } from 'hooks/useFormError'
 
 export const useFetchUserDataAPI = (props, work) => {
   const { enqueueSnackbar } = useSnackbar()
@@ -59,6 +60,10 @@ export const useCreateAccountAPI = () => {
       })
     },
     onError: error => {
+      enqueueSnackbar(getFormErrorMessage(error.response?.data?.errors), {
+        variant: 'error',
+      })
+
       if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
           variant: 'error',
@@ -89,6 +94,10 @@ export const useLoginAPI = () => {
       // })
     },
     onError: error => {
+      enqueueSnackbar(error.response?.data?.user?.error[0], {
+        variant: 'error',
+      })
+
       if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
           variant: 'error',

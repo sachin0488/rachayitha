@@ -3,19 +3,21 @@ import styled from '@emotion/styled'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
 
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Link from 'next/link'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
 import StyledCheckbox from '../OTP/components/StyledCheckbox'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
+import { useLoginAPI } from 'Container/Auth/api/auth.hook'
+import useFormError from 'hooks/useFormError'
 
 const LoginPage = () => {
   const methods = useForm()
+  const { handleFormError } = useFormError()
   const { handleLogin, isLoading, isSuccess } = useLoginAPI()
 
   return (
@@ -39,7 +41,7 @@ const LoginPage = () => {
               name="password"
               label="Password"
               Icon={LockOutlinedIcon}
-              placeholder="Enter your email ..."
+              placeholder="Enter your password ..."
             />
 
             <BottomSection>
@@ -57,7 +59,15 @@ const LoginPage = () => {
                   <StyledButton>Create Account</StyledButton>
                 </a>
               </Link>
-              <StyledButton variant="contained" onClick={methods.handleSubmit(handleLogin)}>
+              <StyledButton
+                disabled={isLoading}
+                startIcon={
+                  isLoading && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
+                variant="contained"
+                onClick={methods.handleSubmit(handleLogin, handleFormError)}>
                 Login
               </StyledButton>
             </Nav>

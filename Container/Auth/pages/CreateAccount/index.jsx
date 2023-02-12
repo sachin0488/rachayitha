@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
@@ -11,12 +11,15 @@ import StyledTextField from 'Container/Auth/components/FormComponents/StyledText
 import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledCheckbox from 'Container/Auth/components/FormComponents/StyledCheckbox'
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
   StyledFieldGroup,
   StyledFormLabel,
   StyledRadioBox,
   StyledRadioGroup,
 } from 'Container/Auth/components/FormComponents/StyledRadio'
+import useFormError from 'hooks/useFormError'
+import * as yup from 'yup'
 
 const GenderList = [
   {
@@ -33,8 +36,19 @@ const GenderList = [
   },
 ]
 
+const schema = yup.object().shape({
+  full_name: yup.string().required('Name is required'),
+  username: yup.string().required('Username is required'),
+  birth_date: yup.string().required('birthday is required'),
+  bio: yup.string().required('Bio is required'),
+  gender: yup.string().required('Gender is required'),
+  password: yup.string().required('Password is required'),
+})
+
 const CreateAccountPage = () => {
+  const { handleFormError } = useFormError()
   const methods = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
       full_name: '',
       username: '',
@@ -44,7 +58,7 @@ const CreateAccountPage = () => {
       agree: false,
     },
   })
-  const { handleCreateAccount, isLoading, isSuccess } = useCreateAccountAPI()
+  const { handleCreateAccount, isLoading, isSuccess } = useCreateAccountAPI(handleFormError)
 
   return (
     <Root>
@@ -60,9 +74,9 @@ const CreateAccountPage = () => {
             <StyledTextField name="full_name" label="Name" placeholder="Enter your name..." />
             <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
             <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
-            <StyledDateSelector name="birth_date" label="Birth Date" placeholder="Chapter name here..." />
+            <StyledDateSelector name="birth_date" label="Birth Date" />
 
-            <StyledTextField name="bio" label="Bio" placeholder="Enter your email ..." multiline />
+            <StyledTextField name="bio" label="Bio" placeholder="Enter your bio ..." multiline />
             <StyledFieldGroup>
               <StyledFormLabel>Select Gender</StyledFormLabel>
               <StyledRadioGroup name="gender" row>
@@ -75,7 +89,7 @@ const CreateAccountPage = () => {
               name="password"
               label="Password"
               Icon={LockOutlinedIcon}
-              placeholder="Enter your email ..."
+              placeholder="Enter your password ..."
             />
             <BottomSection>
               <StyledCheckbox label="I agree to the Terms of Service and Privacy Policy !" name="agree" />
@@ -83,13 +97,19 @@ const CreateAccountPage = () => {
             <Nav>
               <Link href="/login">
                 <a>
-                  <StyledButton>Login</StyledButton>
+                  <StyledButton disabled={isLoading}>Login</StyledButton>
                 </a>
               </Link>
+
               <StyledButton
+                disabled={!methods.watch('agree') || isLoading}
+                startIcon={
+                  isLoading && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
                 variant="contained"
-                onClick={methods.handleSubmit(handleCreateAccount)}
-                disabled={isLoading}>
+                onClick={methods.handleSubmit(handleCreateAccount, handleFormError)}>
                 Create Account
               </StyledButton>
             </Nav>
