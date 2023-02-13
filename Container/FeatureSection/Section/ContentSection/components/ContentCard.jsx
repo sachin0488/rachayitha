@@ -24,12 +24,15 @@ const ContentCard = ({ item, index, ranking }) => {
         {ranking && (
           <RankingRoot>
             <RankingNumber variant="subtitle2">
-              <RankingPlaceholder>{index + 1 <= 9 ? '0' : index + 1 <= 99 ? '0' : ''}</RankingPlaceholder>
+              <RankingPlaceholder>{index + 1 <= 9 ? '0' : index + 1 <= 99 ? '' : ''}</RankingPlaceholder>
               {index + 1}
             </RankingNumber>
           </RankingRoot>
         )}
-        <Image alt={item?.book_name + ' Image'} src={item?.cover_img} />
+        <Image
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
         <InfoSection>
           <HashtagList>
             {item?.tag?.map(tag => {

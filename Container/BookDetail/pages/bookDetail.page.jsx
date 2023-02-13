@@ -15,10 +15,6 @@ const BookDetail = () => {
   const router = useRouter()
   const { BookDetail, isLoading, isError, error } = useBookDetail(router.query.bookId)
 
-  if (isLoading) {
-    return <h1>LOADING ... </h1>
-  }
-
   if (isError) {
     return <h1>{error?.message}</h1>
   }
@@ -26,11 +22,11 @@ const BookDetail = () => {
   return (
     <RootContainer>
       <MainContainer>
-        <DetailsSection item={BookDetail} />
+        <DetailsSection item={BookDetail} isLoading={isLoading} />
         <RecommendationSection />
-        <VoteSection item={BookDetail} />
-        <ReviewSection item={BookDetail} />
-        <CommentSection item={BookDetail} />
+        <VoteSection item={BookDetail} isLoading={isLoading} />
+        <ReviewSection item={BookDetail} isLoading={isLoading} />
+        <CommentSection item={BookDetail} isLoading={isLoading} />
 
         {/* <ReviewSectionCom /> */}
       </MainContainer>

@@ -29,7 +29,7 @@ const CommentCard = ({ item, parentCommentId }) => {
           alt={item?.commentby}
           src={item?.profile_pic || '..'}
         />
-        <Username variant="h6" color="secondary">
+        <Username variant="h6" component="div" color="secondary">
           {item?.commentby}
         </Username>
         <Rating

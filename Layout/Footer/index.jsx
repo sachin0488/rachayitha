@@ -13,7 +13,9 @@ const Footer = () => {
     <Root>
       <Main>
         <Section>
-          <Heading variant="h5">Discover</Heading>
+          <Heading variant="h5" component="div">
+            Discover
+          </Heading>
           <Link href="/">
             <a>
               <LinkButton>Home</LinkButton>
@@ -32,7 +34,9 @@ const Footer = () => {
         </Section>
         <Divider />
         <Section>
-          <Heading variant="h5">Create</Heading>
+          <Heading variant="h5" component="div">
+            Create
+          </Heading>
           <Link href="/">
             <a>
               <LinkButton>Novel</LinkButton>
@@ -51,7 +55,9 @@ const Footer = () => {
         </Section>
         <Divider />
         <Section>
-          <Heading variant="h5">About us</Heading>
+          <Heading variant="h5" component="div">
+            About us
+          </Heading>
           <Link href="/privacy-policy">
             <a>
               <LinkButton>Privacy Policy</LinkButton>
@@ -66,7 +72,9 @@ const Footer = () => {
         <Extra />
         <Divider />
         <Section>
-          <Heading variant="h5">Follow us</Heading>
+          <Heading variant="h5" component="div">
+            Follow us
+          </Heading>
 
           <SocialLinks>
             <BsFacebook size={35} color="#673CCB" />

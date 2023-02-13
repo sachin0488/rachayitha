@@ -17,9 +17,13 @@ const PlanCard = ({ Icon, name, description, heightLight }) => {
         <InfoSection>
           <Icon color="primary" sx={{ fontSize: 120 }} />
           <InfoBottom>
-            <TitleName variant="h6">{name}</TitleName>
+            <TitleName variant="h6" component="div">
+              {name}
+            </TitleName>
             <Description variant="subtitle2">{description}</Description>
-            <Highlight variant="h6">{heightLight}</Highlight>
+            <Highlight variant="h6" component="div">
+              {heightLight}
+            </Highlight>
           </InfoBottom>
         </InfoSection>
       </Main>

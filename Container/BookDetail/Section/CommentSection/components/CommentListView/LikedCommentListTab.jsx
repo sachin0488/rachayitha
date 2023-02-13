@@ -8,14 +8,14 @@ import CommentCard from './CommentCard'
 import CreateCommentSection from '../CreateCommentSection'
 import { Skeleton } from '@mui/material'
 
-const LikedCommentListTab = () => {
+const LikedCommentListTab = ({ isLoading: isBookLoading }) => {
   const { query } = useRouter()
   const { CommentList, isLoading } = useBookCommentListAPI({ bookId: query?.bookId, commentId: null, sortBy: 'like' })
 
   return (
     <Root>
       <CreateCommentSection sortBy="like" />
-      {isLoading ? (
+      {isLoading || isBookLoading ? (
         <>
           <StyledSkeleton variant="rounded" height={160} />
           <StyledSkeleton variant="rounded" height={160} />

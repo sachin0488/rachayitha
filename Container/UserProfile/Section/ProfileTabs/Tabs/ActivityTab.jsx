@@ -7,6 +7,7 @@ const ActivityTab = () => {
     <Root>
       <Typography
         variant="h4"
+        component="div"
         sx={{
           color: theme => theme.palette.primary.main + 70,
           fontWeight: 700,

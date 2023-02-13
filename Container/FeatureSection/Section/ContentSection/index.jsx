@@ -1,17 +1,40 @@
 import styled from '@emotion/styled'
+import { Skeleton, Typography } from '@mui/material'
 import useExplore from 'Container/FeatureSection/api/explore.hook'
 import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
+import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
   const { data, isLoading, isError, error } = useExplore({ categoryId: query?.category })
 
+  const List = data?.data?.resources?.data || []
+
   if (isError) {
     return <h1>{error?.message}</h1>
   }
 
-  const List = [...(data?.data?.resources?.data || [])]
+  if (isLoading)
+    return (
+      <Root>
+        <StyledSkeleton variant="rounded" height={160} />
+        <StyledSkeleton variant="rounded" height={160} />
+        <StyledSkeleton variant="rounded" height={160} />
+        <StyledSkeleton variant="rounded" height={160} />
+        <StyledSkeleton variant="rounded" height={160} />
+      </Root>
+    )
+
+  if (List?.length === 0)
+    return (
+      <NotAvailableBar>
+        <ClearAllRoundedIcon sx={{ fontSize: 90 }} color="primary" />
+        <Typography variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary">
+          Content Not Available
+        </Typography>
+      </NotAvailableBar>
+    )
 
   return (
     <Root>
@@ -21,6 +44,28 @@ const ContentSection = ({ ranking }) => {
     </Root>
   )
 }
+
+const NotAvailableBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+`
+
+const StyledSkeleton = styled(Skeleton)`
+  max-width: 550px;
+  height: 184px;
+  @media (max-width: 800px) {
+    max-width: 100%;
+  }
+  @media (max-width: 465px) {
+    height: 184px;
+  }
+  @media (max-width: 400px) {
+    height: 168px;
+  }
+`
 
 const Root = styled.div`
   display: grid;

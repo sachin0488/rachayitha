@@ -13,7 +13,12 @@ const ContentCard = ({ item }) => {
     <Link href={isLoggedIn ? `/book/${item?.id}` : `/login`}>
       <Root>
         <ImageSection>
-          <StyledImage alt="book image" src={item?.cover_img} width="90px" height="115px" />
+          <StyledImage
+            alt="Cover Image"
+            src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+            width="90px"
+            height="115px"
+          />
         </ImageSection>
         <InfoSection>
           <Title>{item?.book_name}</Title>

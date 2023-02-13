@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
-import { Button, Typography, useMediaQuery } from '@mui/material'
+import { Button, Skeleton, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
@@ -9,8 +9,17 @@ import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
 import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 
-const VoteSection = () => {
+const VoteSection = ({ isLoading }) => {
   const isMobile = useMediaQuery('(max-width: 500px)')
+
+  if (isLoading)
+    return (
+      <Root>
+        <LoadingMain>
+          <StyledSkeleton variant="rounded" />
+        </LoadingMain>
+      </Root>
+    )
 
   const isVoted = false
   return (
@@ -24,13 +33,13 @@ const VoteSection = () => {
           <InfoSection>
             <VoteInfoField>
               <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" color="secondary">
+              <HighlightedText variant="h6" component="div" color="secondary">
                 #200
               </HighlightedText>
             </VoteInfoField>
             <VoteInfoField>
               <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" color="secondary">
+              <HighlightedText variant="h6" component="div" color="secondary">
                 600
               </HighlightedText>
             </VoteInfoField>
@@ -53,6 +62,25 @@ const VoteSection = () => {
   )
 }
 
+const LoadingMain = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  @media (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+`
+
+const StyledSkeleton = styled(Skeleton)`
+  min-height: 103px;
+  width: 100%;
+  max-width: 100%;
+  @media (max-width: 780px) {
+    min-height: 153px;
+  }
+`
+
 const Root = styled.div`
   width: 100%;
   gap: 30px;
@@ -60,10 +88,13 @@ const Root = styled.div`
   max-width: var(--main-max-width);
   width: calc(100% - var(--main-side-spacing) * 2);
   align-self: center;
-  margin-top: 15px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  @media (max-width: 780px) {
+    margin-top: 10px;
+  }
 `
 
 const Main = styled.div`
@@ -78,7 +109,6 @@ const Main = styled.div`
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
   }
-  min-width: 260px;
   display: flex;
   justify-content: space-between;
   gap: 10px;

@@ -13,21 +13,15 @@ import { useIncompleteList } from 'Container/Landing/api/landing.hooks'
 const ContinueReadingCards = () => {
   const { List, isLoading, isError } = useIncompleteList()
 
+  if (List.length === 0) return null
+
   return (
     <Root>
       <Main>
         <Heading>Continue Reading</Heading>
         {isLoading && <LoadingBar />}
         {isError && <ErrorBar />}
-        {isLoading ? (
-          <LoadingBar />
-        ) : isError ? (
-          <ErrorBar />
-        ) : List.length === 0 ? (
-          <NotAvailableBar />
-        ) : (
-          <StyledSlider CardComponent={ContentCard} List={List} />
-        )}
+        {isLoading ? <LoadingBar /> : isError ? <ErrorBar /> : <StyledSlider CardComponent={ContentCard} List={List} />}
       </Main>
     </Root>
   )

@@ -7,7 +7,7 @@ import LikedCommentListTab from './LikedCommentListTab'
 import NewestCommentListTab from './NewestCommentListTab'
 import CreateCommentSection from '../CreateCommentSection'
 
-const CommentListView = ({ item }) => {
+const CommentListView = ({ item, isLoading }) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
@@ -19,17 +19,17 @@ const CommentListView = ({ item }) => {
       <StyledTabs value={value} onChange={handleChange} aria-label="Comment List">
         <StyledTab label="Liked" {...a11yProps(0)} />
         <StyledTab label="Newest" {...a11yProps(1)} />
-        <CommentCountText variant="h6" color="secondary">
+        <CommentCountText variant="h6" component="div" color="secondary">
           ({item?.comment_count} Comments)
         </CommentCountText>
       </StyledTabs>
 
       <TabPanel value={value} index={0}>
-        <LikedCommentListTab item={item} />
+        <LikedCommentListTab item={item} isLoading={isLoading} />
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <NewestCommentListTab item={item} />
+        <NewestCommentListTab item={item} isLoading={isLoading} />
       </TabPanel>
     </Root>
   )

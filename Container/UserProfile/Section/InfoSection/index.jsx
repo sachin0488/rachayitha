@@ -16,6 +16,7 @@ import { selectUser } from 'store/slices/global/user.slice'
 import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
 import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
 import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
+import Link from 'next/link'
 
 const InfoSection = () => {
   const { data } = useSelector(selectUser)
@@ -41,7 +42,9 @@ const InfoSection = () => {
       </ImageWarper>
       <Main>
         <NameSection>
-          <NameText variant="h5">{data?.full_name}</NameText>
+          <NameText variant="h5" component="div">
+            {data?.full_name}
+          </NameText>
           <UsernameText variant="body2">@{data?.username}</UsernameText>
           <BioText variant="subtitle2">{data?.bio}</BioText>
         </NameSection>
@@ -51,6 +54,22 @@ const InfoSection = () => {
         <InfoField Icon={genderIcon(data?.gender?.toLocaleLowerCase())} text={data?.gender} />
         <InfoField Icon={DateRangeOutlinedIcon} text={`birthday - ${moment(data?.birth_date).format('DD/MM/YYYY')}`} />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
+        <NavList>
+          <Link href="/coin-plan">
+            <a>
+              <StyledAddCoinButton color="primary" variant="contained">
+                Buy coin
+              </StyledAddCoinButton>
+            </a>
+          </Link>
+          <Link href="/subscription-plan">
+            <a>
+              <StyledSubscribeButton color="secondary" variant="contained">
+                Subscribe
+              </StyledSubscribeButton>
+            </a>
+          </Link>
+        </NavList>
       </Main>
     </Root>
   )
@@ -86,6 +105,20 @@ const StyledEditButton = styled(Button)`
   justify-content: center;
   align-items: center;
 `
+const NavList = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+`
+const StyledAddCoinButton = styled(Button)`
+  white-space: nowrap;
+  flex: 1;
+`
+
+const StyledSubscribeButton = styled(Button)`
+  white-space: nowrap;
+  flex: 1;
+`
 
 const ImageWarper = styled.div`
   position: absolute;
@@ -110,9 +143,9 @@ const Main = styled.div`
   flex-direction: column;
   gap: 12px;
   padding-top: 85px;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
   border-radius: 15px;
   border: 2px solid ${({ theme }) => theme.palette.primary.main}1a;
   @media (max-width: 730px) {

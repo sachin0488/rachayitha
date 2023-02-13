@@ -10,8 +10,12 @@ const PaymentSuccessPage = () => {
     <Root>
       <Main>
         <DoneAllRoundedIcon color="primary" sx={{ fontSize: 150 }} />
-        <Heading variant="h5">Payment Success</Heading>
-        <ParagraphText variant="h6">{`Now you can checkout paid chapters of your favorite books 👍 !`}</ParagraphText>
+        <Heading variant="h5" component="div">
+          Payment Success
+        </Heading>
+        <ParagraphText
+          variant="h6"
+          component="div">{`Now you can checkout paid chapters of your favorite books 👍 !`}</ParagraphText>
 
         <Link href={`/`}>
           <ReturnHomeButton variant="outlined">Back to home</ReturnHomeButton>

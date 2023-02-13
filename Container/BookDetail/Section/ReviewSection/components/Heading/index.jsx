@@ -8,7 +8,7 @@ const Heading = ({ item }) => {
 
   return (
     <Root>
-      <HeadingText variant="h5" color="secondary">
+      <HeadingText variant="h5" component="div" color="secondary">
         {item?.rating?.rate__count} Reviews
       </HeadingText>
       <Rating
@@ -20,7 +20,7 @@ const Heading = ({ item }) => {
         precision={0.1}
         emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
       />
-      <RatingText variant="h5" color="secondary">
+      <RatingText variant="h5" component="div" color="secondary">
         {Number(Number(item?.rating?.rate__avg).toFixed(1)).toFixed(1) || 'N / A'}
       </RatingText>
     </Root>

@@ -35,14 +35,14 @@ const TopCollection = () => {
 
   const selectedTime = methods.watch('selectedTime')
 
-  const { Obj, refetch } = useTopCollectionList({
+  const { Obj, isLoading, refetch } = useTopCollectionList({
     startDate: selectedTime,
     endDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
   })
 
   const List = [
-    <ContentListSection key={1} contentName="Novel" contentList={Obj?.novels} />,
-    <ContentListSection key={2} contentName="Poems" contentList={Obj?.poem} />,
+    <ContentListSection key={1} contentName="Novel" contentList={Obj?.novels} isLoading={isLoading} />,
+    <ContentListSection key={2} contentName="Poems" contentList={Obj?.poems} isLoading={isLoading} />,
     // <ContentListSection key={3} contentName="Shorts" contentList={Obj?.shorts} />,
   ]
 
@@ -60,8 +60,8 @@ const TopCollection = () => {
           </Heading>
           {isTabletXSM ? (
             <CollectionList>
-              <ContentListSection contentName="Novel" contentList={Obj?.novels} />
-              <ContentListSection contentName="Poems" contentList={Obj?.poems} />
+              <ContentListSection contentName="Novel" contentList={Obj?.novels} isLoading={isLoading} />
+              <ContentListSection contentName="Poems" contentList={Obj?.poems} isLoading={isLoading} />
               {/* <ContentListSection contentName="Shorts" contentList={Obj?.shorts} /> */}
             </CollectionList>
           ) : (

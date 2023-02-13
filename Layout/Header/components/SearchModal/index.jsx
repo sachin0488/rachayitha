@@ -27,7 +27,7 @@ const SearchModal = ({ open, setOpen }) => {
   return (
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
       <Main>
-        <Title variant="h4" color="secondary">
+        <Title variant="h4" component="div" color="secondary">
           Search Your interest...
         </Title>
         <StyledSearchBox SearchText={SearchText} setSearchText={setSearchText} />

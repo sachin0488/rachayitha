@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
+import { Skeleton } from '@mui/material'
 import React from 'react'
 import CommentListView from './components/CommentListView'
-import CreateCommentSection from './components/CreateCommentSection'
 
-const CommentSection = ({ item }) => {
+const CommentSection = ({ item, isLoading }) => {
   return (
     <Root>
-      <CommentListView item={item} />
+      <CommentListView item={item} isLoading={isLoading} />
     </Root>
   )
 }

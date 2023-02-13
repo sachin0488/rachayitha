@@ -21,7 +21,9 @@ const InfoArea = ({ item }) => {
 
   return (
     <Root>
-      <BookName variant="h3">{item?.book_name}</BookName>
+      <BookName variant="h3" component="div">
+        {item?.book_name}
+      </BookName>
       <InfoChipList>
         {item?.category?.map(({ name, id }) => (
           <StyledChip label={name} key={id} />

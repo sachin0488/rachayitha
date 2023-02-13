@@ -9,5 +9,6 @@ const ConditionalRedirect = ({ condition, path }) => {
       router.push(path)
     }
   }, [condition, path, router])
+  return null
 }
 export default ConditionalRedirect

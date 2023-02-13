@@ -43,7 +43,7 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
   return (
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
       <Main>
-        <Title variant="h4" color="secondary">
+        <Title variant="h4" component="div" color="secondary">
           Share your experience
         </Title>
         <FormProvider {...methods}>

@@ -30,17 +30,31 @@ const ContentCard = ({ item }) => {
           <></>
         )}
         <ImageSection>
-          <Image alt="" src={item?.cover_img} />
+          <Image
+            alt="Cover Image"
+            src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          />
           <SmallImageList>
-            <SmallImage alt="" src={item?.cover_img2} />
-            <SmallImage alt="" src={item?.cover_img3} />
-            <SmallImage alt="" src={item?.cover_img4} />
+            <SmallImage
+              alt="Cover Image"
+              src={item?.cover_img2 && item?.cover_img2.includes('http') ? item?.cover_img2 : '/alt-img.svg'}
+            />
+            <SmallImage
+              alt="Cover Image"
+              src={item?.cover_img3 && item?.cover_img3.includes('http') ? item?.cover_img3 : '/alt-img.svg'}
+            />
+            <SmallImage
+              alt="Cover Image"
+              src={item?.cover_img4 && item?.cover_img4.includes('http') ? item?.cover_img4 : '/alt-img.svg'}
+            />
           </SmallImageList>
         </ImageSection>
 
         <InfoSection>
           <InfoLeft>
-            <TitleName variant="h6">{item?.book_name}</TitleName>
+            <TitleName variant="h6" component="div">
+              {item?.book_name}
+            </TitleName>
             <CategoryName variant="subtitle2">
               {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>

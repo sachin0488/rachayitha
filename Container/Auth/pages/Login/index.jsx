@@ -28,7 +28,9 @@ const LoginPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4">Welcome</TitleText>
+              <TitleText variant="h4" component="div">
+                Welcome
+              </TitleText>
               <DescriptionText variant="subtitle2">Welcome back ! Please Enter Your details</DescriptionText>
             </TextSection>
             <StyledTextField

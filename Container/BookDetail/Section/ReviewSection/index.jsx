@@ -1,12 +1,26 @@
 import styled from '@emotion/styled'
-import { useMediaQuery } from '@mui/material'
+import { Skeleton, useMediaQuery } from '@mui/material'
 import React from 'react'
 import CreateReviewSection from './components/CreateReviewSection'
 import Heading from './components/Heading'
 import RatingSection from './components/RatingSection'
 
-const ReviewSection = ({ item }) => {
+const ReviewSection = ({ item, isLoading }) => {
   const isTablet = useMediaQuery('(max-width: 735px)')
+
+  if (isLoading)
+    return (
+      <Root>
+        <StyledDivider />
+        <Body>
+          <StyledSkeletonHr variant="rounded" />
+
+          {isTablet && <StyledDivider />}
+          <StyledSkeletonCr variant="rounded" />
+        </Body>
+        <StyledDivider />
+      </Root>
+    )
 
   return (
     <Root>
@@ -23,6 +37,26 @@ const ReviewSection = ({ item }) => {
     </Root>
   )
 }
+
+const StyledSkeletonHr = styled(Skeleton)`
+  min-height: 184px;
+  width: 100%;
+  max-width: 100%;
+  @media (max-width: 780px) {
+    min-height: 178px;
+  }
+`
+
+const StyledSkeletonCr = styled(Skeleton)`
+  min-height: 104px;
+
+  width: 100%;
+  max-width: 100%;
+  @media (max-width: 780px) {
+    width: 100%;
+    max-width: 100%;
+  }
+`
 
 const Root = styled.div`
   width: 100%;
@@ -48,7 +82,7 @@ const Main = styled.div`
 const Body = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   @media (max-width: 735px) {
     align-items: stretch;
     flex-direction: column;

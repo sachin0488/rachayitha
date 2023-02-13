@@ -48,7 +48,7 @@ const ChapterSection = ({ item, mainRef }) => {
         }
       }}>
       <Root>
-        <ChapterName variant="h5" color="secondary">
+        <ChapterName variant="h5" component="div" color="secondary">
           Chapter: {item?.chapter_sequence} {item?.chapter_title}
         </ChapterName>
         <ChapterContentText dangerouslySetInnerHTML={{ __html: ChapterContent }} />

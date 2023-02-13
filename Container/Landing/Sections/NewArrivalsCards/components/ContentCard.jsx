@@ -26,10 +26,15 @@ const ContentCard = ({ item }) => {
           <></>
         )}
 
-        <Image alt="" src={item?.cover_img} />
+        <Image
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
         <InfoSection>
           <InfoLeft>
-            <TitleName variant="h6">{item?.book_name}</TitleName>
+            <TitleName variant="h6" component="div">
+              {item?.book_name}
+            </TitleName>
             <CategoryName variant="subtitle2">
               {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>

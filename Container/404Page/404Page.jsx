@@ -8,7 +8,9 @@ const ErrorPageComp = () => {
     <Root>
       <Main>
         <Heading variant="h1">404</Heading>
-        <ParagraphText variant="h6">{`OOPS, THE PAGE YOU ARE LOOKING FOR CAN'T BE FOUND!`}</ParagraphText>
+        <ParagraphText
+          variant="h6"
+          component="div">{`OOPS, THE PAGE YOU ARE LOOKING FOR CAN'T BE FOUND!`}</ParagraphText>
 
         <Link href={`/`}>
           <ReturnHomeButton variant="outlined">Back to home</ReturnHomeButton>

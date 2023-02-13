@@ -9,7 +9,7 @@ const CoinPlanPage = () => {
     <Root>
       <Main>
         <TextSection>
-          <Heading variant="h3" color="primary">
+          <Heading variant="h3" component="div" color="primary">
             Chose Your Plan
           </Heading>
           <Description variant="subtitle2" color="secondary">

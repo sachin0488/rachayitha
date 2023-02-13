@@ -1,14 +1,35 @@
 import styled from '@emotion/styled'
+import { Skeleton } from '@mui/material'
 import React from 'react'
 import InfoArea from './components/InfoArea'
 import TabArea from './components/TabArea'
 
-const DetailsSection = ({ item }) => {
+const DetailsSection = ({ item, isLoading }) => {
+  if (isLoading)
+    return (
+      <Root>
+        <StyledSkeletonCover variant="rounded" />
+        <LoadingInfo>
+          <StyledSkeletonInfo variant="rounded" />
+          <StyledSkeletonInfo variant="rounded" />
+          <StyledSkeletonInfo variant="rounded" />
+          <StyledSkeletonInfo variant="rounded" />
+          <StyledSkeletonInfo variant="rounded" />
+        </LoadingInfo>
+      </Root>
+    )
   return (
     <Root>
       <ImageContainer>
-        <StyledImage src={item?.cover_img} />
-        <StyledImage className="blur" src={item?.cover_img} />
+        <StyledImage
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
+        <StyledImage
+          className="blur"
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
       </ImageContainer>
 
       <InfoSection>
@@ -18,6 +39,26 @@ const DetailsSection = ({ item }) => {
     </Root>
   )
 }
+
+const LoadingInfo = styled.div`
+  display: flex;
+  gap: 20px 20px;
+  width: 100%;
+  flex-direction: column;
+`
+
+const StyledSkeletonCover = styled(Skeleton)`
+  min-height: 466px;
+  height: 466px;
+  max-width: 350px;
+  aspect-ratio: 350/466;
+  align-self: center;
+`
+
+const StyledSkeletonInfo = styled(Skeleton)`
+  min-height: 50px;
+  max-width: 100%;
+`
 
 const Root = styled.div`
   display: flex;
@@ -30,7 +71,7 @@ const Root = styled.div`
   margin-top: 15px;
   @media (max-width: 800px) {
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
   }
 `
 

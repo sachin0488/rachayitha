@@ -11,7 +11,7 @@ const ProfileButton = () => {
   const user = useSelector(selectUser)
 
   return (
-    <Link href={`/profile/self`}>
+    <Link href={`/profile`}>
       <Root sx={{ flexGrow: 0 }}>
         <Avatar variant="rounded" alt={user.data.username} src={user?.data?.profile_pic} />
         <Username>{user.data.username}</Username>

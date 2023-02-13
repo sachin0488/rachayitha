@@ -29,7 +29,10 @@ const ContentCard = ({ item, index, ranking }) => {
             </RankingNumber>
           </RankingRoot>
         )}
-        <Image alt={item?.book_name + ' Image'} src={item?.cover_img} />
+        <Image
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
         <InfoSection>
           <HashtagList>
             {item?.tag?.map(tag => {

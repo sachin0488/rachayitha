@@ -21,7 +21,9 @@ const List = [
 const FilterSection = () => {
   return (
     <Root>
-      <Heading variant="h6">Sort By</Heading>
+      <Heading variant="h6" component="div">
+        Sort By
+      </Heading>
       <Main>
         {List.map((item, index) => (
           <StyledChip item={item} key={index} />

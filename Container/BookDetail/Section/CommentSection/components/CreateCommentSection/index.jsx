@@ -41,7 +41,7 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
             alt={data?.username}
             src={data?.profile_pic}
           />
-          <Username variant="h6" color="secondary">
+          <Username variant="h6" component="div" color="secondary">
             {data?.username}
           </Username>
           <Rating

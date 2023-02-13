@@ -5,7 +5,7 @@ import React from 'react'
 const AboutTab = ({ item }) => {
   return (
     <Root>
-      <Label variant="h6" color="secondary">
+      <Label variant="h6" component="div" color="secondary">
         Synopsis
       </Label>
       <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />

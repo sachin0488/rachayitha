@@ -23,8 +23,13 @@ const Root = styled.div`
   padding: 5px;
   display: flex;
   flex-direction: column;
+  max-height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   @media (max-width: 800px) {
     gap: 5px;
+    max-height: auto;
+    overflow: auto;
   }
 `
 

@@ -7,10 +7,7 @@ import { Button, ButtonBase, Typography } from '@mui/material'
 import { selectUser } from 'store/slices/global/user.slice'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
-
-export const cloudinary = '/book_image.jpg'
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
@@ -21,16 +18,21 @@ const ContentCard = ({ item }) => {
       <Main>
         {isLoggedIn ? (
           <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-            <DeleteOutlineRoundedIcon sx={{ fontSize: 17 }} />
+            <RemoveRoundedIcon sx={{ fontSize: 22 }} />
           </AddIcon>
         ) : (
           <></>
         )}
 
-        <Image alt="" src={item?.cover_img} />
+        <Image
+          alt="Cover Image"
+          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+        />
         <InfoSection>
           <InfoLeft>
-            <TitleName variant="h6">{item?.book_name}</TitleName>
+            <TitleName variant="h6" component="div">
+              {item?.book_name}
+            </TitleName>
             <CategoryName variant="subtitle2">
               {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>

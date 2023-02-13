@@ -26,7 +26,7 @@ export const NavPageLinks = [
     Icon: BookOutlinedIcon,
     label: 'Library',
     path: '/profile',
-    link: '/profile/1',
+    link: '/profile',
   },
 ]
 
