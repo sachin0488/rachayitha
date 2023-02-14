@@ -2,12 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { fetchExploreApi } from './explore.api'
 
-const useExplore = ({ categoryId }) => {
+const useExplore = ({ categoryId, contentType }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
-    ['explore-list', categoryId],
-    () => fetchExploreApi({ categoryId }),
+    ['explore-list', categoryId, contentType],
+    () => fetchExploreApi({ categoryId, contentType }),
     {
-      enabled: Boolean(categoryId),
+      enabled: Boolean(categoryId && contentType),
     },
   )
 

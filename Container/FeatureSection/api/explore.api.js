@@ -10,9 +10,12 @@ export const fakeExploreApi = async () => {
 }
 // data?.data?.resources?.data
 
-export const fetchExploreApi = ({ categoryId }) => {
+export const fetchExploreApi = ({ categoryId, contentType }) => {
   return ApiInstance({
-    url: `/explorebook?category_id=${categoryId}`,
+    url:
+      contentType?.toLocaleLowerCase() === 'poem'
+        ? `/explorepoem?category_id=${categoryId}`
+        : `/explorebook?category_id=${categoryId}`,
     method: 'GET',
   })
 }

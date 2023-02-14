@@ -7,7 +7,10 @@ import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
-  const { data, isLoading, isError, error } = useExplore({ categoryId: query?.category })
+  const { data, isLoading, isError, error } = useExplore({
+    categoryId: query?.category,
+    contentType: query?.content_type,
+  })
 
   const List = data?.data?.resources?.data || []
 

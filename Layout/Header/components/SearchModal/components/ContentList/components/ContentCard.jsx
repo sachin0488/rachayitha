@@ -43,7 +43,7 @@ const ContentCard = ({ item, index, ranking }) => {
           <TitleName variant="subtitle2">
             {item?.book_name} <Status variant="caption">{item?.status}</Status>
           </TitleName>
-          <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText>
+          <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText>
 
           {!isMobile && (
             <InfoNav>
