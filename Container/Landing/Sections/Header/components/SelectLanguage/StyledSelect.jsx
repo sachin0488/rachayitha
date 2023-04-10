@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { FormControl, FormHelperText } from '@mui/material'
+import { FormControl } from '@mui/material'
 import { Select, MenuItem } from '@mui/material'
 import { useController, useFormContext } from 'react-hook-form'
 

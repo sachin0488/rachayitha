@@ -48,11 +48,14 @@ export const useCreateAccountAPI = () => {
   const { enqueueSnackbar } = useSnackbar()
   const router = useRouter()
   const dispatch = useDispatch()
+  const { setAccess, setRefresh } = useAuthTokens()
 
   const { mutate, isLoading, isSuccess } = useMutation(createAccountAPI, {
     onSuccess({ data }) {
       dispatch(setUserData(data.user))
       dispatch(setLoginToken(data.token))
+      setAccess(data?.user?.tokens?.access)
+      setRefresh(data?.user?.tokens?.refresh)
       dispatch({ type: LOGIN_SUCCESS })
       router.push('/otp')
       enqueueSnackbar(data.message, {

@@ -5,6 +5,10 @@ export const createAccountAPI = ({ username, email, password, bio, full_name, bi
     url: '/register/',
     method: 'POST',
     data: { user: { username, email, password, bio, full_name, birth_date, gender } },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: undefined,
+    },
   })
 }
 
@@ -13,6 +17,10 @@ export const loginAPI = ({ email, password }) => {
     url: '/login/',
     method: 'POST',
     data: { user: { email, password } },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: undefined,
+    },
   })
 }
 

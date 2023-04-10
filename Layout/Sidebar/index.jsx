@@ -28,7 +28,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
   const DrawerProps = {
     onClose: handleSideBarClose,
     open: isOpen,
-    variant: 'temperary',
+    variant: 'temporary',
     anchor: 'right',
     BackdropProps,
     sx: DrawerSx(isMobile, pathname),

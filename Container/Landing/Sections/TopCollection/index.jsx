@@ -54,10 +54,10 @@ const TopCollection = () => {
     <Root>
       <FormProvider {...methods}>
         <Main>
-          <Heading>
-            Top collection over
+          <HeadingBox>
+            <Heading>Top collection over</Heading>
             <SelectSelectedTime name="selectedTime" menuList={collectionTimeList} />
-          </Heading>
+          </HeadingBox>
           {isTabletXSM ? (
             <CollectionList>
               <ContentListSection contentName="Novel" contentList={Obj?.novels} isLoading={isLoading} />
@@ -90,6 +90,11 @@ const Main = styled.div`
   padding-block: 40px;
   gap: 10px;
   overflow: hidden;
+`
+
+const HeadingBox = styled.div`
+  display: flex;
+  gap: 8px;
 `
 
 const Heading = styled(Typography)`

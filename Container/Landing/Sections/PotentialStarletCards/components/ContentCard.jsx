@@ -20,7 +20,7 @@ const ContentCard = ({ item }) => {
       <Main>
         {isLoggedIn ? (
           <AddIcon
-            disable={Boolean(item?.library_added)}
+            disable={Boolean(item?.library_added) ? true : undefined}
             color="primary"
             variant="contained"
             onClick={() => handleAddToLibrary(item.id)}>

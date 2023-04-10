@@ -60,9 +60,7 @@ export const useTopCollectionList = ({ startDate, endDate }) => {
     ['topCollection-list'],
     () => fetchTopCollectionListAPI({ startDate, endDate }),
     {
-      onSuccess() {
-        console.log('ss')
-      },
+      onSuccess() {},
     },
   )
   return {

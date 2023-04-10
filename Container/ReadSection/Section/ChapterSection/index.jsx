@@ -25,7 +25,7 @@ const ChapterSection = ({ item, mainRef }) => {
   }, [dispatch, isLoading, item?.id, loadingForChapterId])
 
   if (isLoading) {
-    return <LoadingBox />
+    return <>{/* <LoadingBox /> */}</>
   }
 
   return (
@@ -63,8 +63,9 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 40px;
-  margin-top: 20px;
   min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 10px;
 `
 
 const ChapterName = styled(Typography)`

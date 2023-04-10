@@ -37,12 +37,12 @@ const ReadPage = () => {
   useWrapTimeout(() => {
     if (!isScrollUpOnce) {
       mainRef.current?.scrollBy({
-        top: 10,
+        top: 0,
         left: 0,
       })
       setIsScrollUpOnce(true)
     }
-  }, 500)
+  }, 50)
 
   const { ChapterList } = useChapterList(query.bookId, query.chapterId)
 
@@ -127,12 +127,14 @@ const Main = styled.div`
   width: 100%;
   height: calc(100vh - ${({ theme }) => theme.mixins.toolbar.minHeight}px);
   margin-top: ${({ theme }) => theme.mixins.toolbar.minHeight}px;
-  overflow-y: scroll;
+
   max-width: 1826px;
   background-color: ${({ theme }) => theme.palette.primary.main}22;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
 `
 
 const Body = styled.div`
@@ -148,7 +150,7 @@ const Body = styled.div`
   @media (max-width: 480px) {
     padding: 10px 18px;
   }
-
+  padding-top: 0px;
   background-color: ${({ theme }) => theme.palette.background.paper};
-  gap: 20px;
+
 `
