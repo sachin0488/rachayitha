@@ -16,7 +16,13 @@ import { useLoginAPI } from 'Container/Auth/api/auth.hook'
 import useFormError from 'hooks/useFormError'
 
 const LoginPage = () => {
-  const methods = useForm()
+  const methods = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+      remember_me: true,
+    },
+  })
   const { handleFormError } = useFormError()
   const { handleLogin, isLoading, isSuccess } = useLoginAPI()
 
@@ -47,7 +53,7 @@ const LoginPage = () => {
             />
 
             <BottomSection>
-              <StyledCheckbox name="remember_me" label="Remember me" />
+              {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}
               <Link href="/forgot-password">
                 <a>
                   <StyledForgotPassword>Forgot Password !</StyledForgotPassword>
@@ -172,6 +178,7 @@ const BottomSection = styled.div`
   justify-content: space-between;
   gap: 5px;
   align-items: center;
+  justify-content: flex-end;
 `
 
 const Nav = styled.div`

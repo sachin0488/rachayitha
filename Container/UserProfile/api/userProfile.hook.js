@@ -12,29 +12,33 @@ export const useLibraryAPI = () => {
   const { list, v, previous_page, next_page } = useSelector(selectLibraryList)
   const dispatch = useDispatch()
 
-  const { isLoading, isError, error, isFetching } = useQuery(['library-list', page], () => fetchLibraryAPI(page), {
-    onSuccess: ({ data }) => {
-      if (v === 0) {
-        dispatch(
-          setLibraryList({
-            list: data?.data,
-            // list: data?.resources?.data,
-            // next_page: data?.resources?.next_page,
-            // previous_page: data?.resources?.previous_page,
-          }),
-        )
-      } else {
-        dispatch(
-          addContentToLibraryList({
-            list: data?.data,
-            // list: data?.resources?.data,
-            // next_page: data?.resources?.next_page,
-            // previous_page: data?.resources?.previous_page,
-          }),
-        )
-      }
+  const { isLoading, isError, error, isFetching, refetch } = useQuery(
+    ['library-list', page],
+    () => fetchLibraryAPI(page),
+    {
+      onSuccess: ({ data }) => {
+        if (v === 0) {
+          dispatch(
+            setLibraryList({
+              list: data?.data || [],
+              // list: data?.resources?.data,
+              // next_page: data?.resources?.next_page,
+              // previous_page: data?.resources?.previous_page,
+            }),
+          )
+        } else {
+          dispatch(
+            addContentToLibraryList({
+              list: data?.data || [],
+              // list: data?.resources?.data,
+              // next_page: data?.resources?.next_page,
+              // previous_page: data?.resources?.previous_page,
+            }),
+          )
+        }
+      },
     },
-  })
+  )
 
   const handleNextPage = () => {
     setPage(next_page)
@@ -44,7 +48,7 @@ export const useLibraryAPI = () => {
     setPage(previous_page)
   }
 
-  return { ContentList: list, handleNextPage, handlePrevPage, isLoading, isError, error, isFetching }
+  return { ContentList: list, handleNextPage, handlePrevPage, isLoading, isError, error, isFetching, refetch, setPage }
 }
 
 export const useUpdateProfileAPI = () => {

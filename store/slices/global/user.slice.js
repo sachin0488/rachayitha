@@ -7,6 +7,7 @@ export const userSlice = createSlice({
       _id: '',
       username: '',
       email: '',
+      gender: '',
     },
     token: '',
     isLoggedIn: false,
@@ -18,8 +19,9 @@ export const userSlice = createSlice({
           _id: '',
           username: '',
           email: '',
+          gender: '',
         },
-        token: '',
+        // token: '',
         isLoggedIn: false,
       }
     },
@@ -29,13 +31,14 @@ export const userSlice = createSlice({
         data: {
           ...state.data,
           ...action.payload,
+          tokens: undefined,
         },
       }
     },
     setLoginToken(state, action) {
       return {
         ...state,
-        token: action.payload,
+        // token: action.payload,
         isLoggedIn: true,
       }
     },

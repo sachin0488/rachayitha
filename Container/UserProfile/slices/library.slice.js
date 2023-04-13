@@ -9,6 +9,14 @@ export const librarySlice = createSlice({
     previous_page: null,
   },
   reducers: {
+    resetLibraryList(state, action) {
+      return {
+        list: [],
+        v: 0,
+        next_page: null,
+        previous_page: null,
+      }
+    },
     setLibraryList(state, action) {
       return {
         list: action.payload.list,
@@ -28,7 +36,7 @@ export const librarySlice = createSlice({
   },
 })
 
-export const { setLibraryList, addContentToLibraryList } = librarySlice.actions
+export const { resetLibraryList, setLibraryList, addContentToLibraryList } = librarySlice.actions
 
 export const selectLibraryList = state => state.library
 

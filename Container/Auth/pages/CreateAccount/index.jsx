@@ -20,6 +20,7 @@ import {
 } from 'Container/Auth/components/FormComponents/StyledRadio'
 import useFormError from 'hooks/useFormError'
 import * as yup from 'yup'
+import TermsAndPrivacyPolicyCheckbox from './components/TermsAndPrivacyPolicyCheckbox'
 
 const GenderList = [
   {
@@ -43,6 +44,10 @@ const schema = yup.object().shape({
   bio: yup.string().required('Bio is required'),
   gender: yup.string().required('Gender is required'),
   password: yup.string().required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
+    .required('Confirm Password is required'),
 })
 
 const CreateAccountPage = () => {
@@ -93,8 +98,14 @@ const CreateAccountPage = () => {
               Icon={LockOutlinedIcon}
               placeholder="Enter your password ..."
             />
+            <StyledPasswordField
+              name="confirmPassword"
+              label="Confirm Password"
+              Icon={LockOutlinedIcon}
+              placeholder="Enter your confirm password ..."
+            />
             <BottomSection>
-              <StyledCheckbox label="I agree to the Terms of Service and Privacy Policy !" name="agree" />
+              <TermsAndPrivacyPolicyCheckbox name="agree" />
             </BottomSection>
             <Nav>
               <Link href="/login">
@@ -136,7 +147,7 @@ const Root = styled.div`
     background: linear-gradient(141deg, rgba(81, 34, 192, 1) 0%, #966afc 100%);
   }
   @media (max-width: 480px) {
-    min-height: 900px;
+    min-height: 980px;
     overflow: hidden;
     width: 100%;
   }

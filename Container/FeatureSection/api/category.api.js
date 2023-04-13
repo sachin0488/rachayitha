@@ -1,9 +1,8 @@
 import { ApiInstance } from 'api/global.api'
 
-export const categoryApi = () => {
-  const Url = '/category'
+export const fetchCategoryAPT = () => {
   return ApiInstance({
-    url: Url,
+    url: '/category/',
     method: 'GET',
   })
 }

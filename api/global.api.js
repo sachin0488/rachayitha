@@ -26,6 +26,9 @@ export const fetchSearchAPI = (page, keyword) => {
 }
 
 const handleLogout = () => {
+  console.log('====================================')
+  console.log('Logout')
+  console.log('====================================')
   window.localStorage.clear()
   window.location.replace('/login')
 }
@@ -56,7 +59,8 @@ export const mutationCache = new MutationCache({
           })
         }
       } catch (error) {
-        if (error?.response?.data?.status === 401) handleLogout()
+        if (Number(error?.response?.status) === 400) handleLogout()
+        if (Number(error?.response?.status) === 401) handleLogout()
       }
     }
   },
@@ -80,7 +84,8 @@ export const queryCache = new QueryCache({
           })
         }
       } catch (error) {
-        if (error?.response?.data?.status === 401) handleLogout()
+        if (Number(error?.response?.status) === 400) handleLogout()
+        if (Number(error?.response?.status) === 401) handleLogout()
       }
     }
   },

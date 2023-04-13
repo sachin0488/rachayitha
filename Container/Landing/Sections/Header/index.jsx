@@ -14,8 +14,9 @@ const Header = () => {
     <Root>
       <LogoBox />
       <NavSection>
-        <SelectLanguage />
-        {!isMobile327sx && <SignInButton />}
+        {/* <SelectLanguage /> */}
+        {/* {!isMobile327sx && <SignInButton />} */}
+        <SignInButton />
       </NavSection>
     </Root>
   )

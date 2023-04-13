@@ -32,7 +32,11 @@ const ProfileButton = () => {
           <Avatar
             alt={data?.full_name}
             src={data?.profile_pic}
-            sx={{ background: theme => theme.palette.primary.main, fontWeight: 600 }}
+            sx={{
+              bgcolor: data?.profile_pic ? '#fff' : theme => theme.palette.primary.main,
+              fontWeight: 600,
+              fontSize: 70,
+            }}
           />
         </IconButton>
       </Tooltip>

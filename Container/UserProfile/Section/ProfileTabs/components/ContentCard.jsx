@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
-import { Button, ButtonBase, Typography } from '@mui/material'
+import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
@@ -17,9 +17,16 @@ const ContentCard = ({ item }) => {
     <Root>
       <Main>
         {isLoggedIn ? (
-          <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-            <RemoveRoundedIcon sx={{ fontSize: 22 }} />
-          </AddIcon>
+          <Tooltip title="Remove from Library">
+            <RemoveIcon
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                // handleAddToLibrary(item.id)
+              }}>
+              <RemoveRoundedIcon sx={{ fontSize: 22 }} />
+            </RemoveIcon>
+          </Tooltip>
         ) : (
           <></>
         )}
@@ -134,7 +141,7 @@ const Rating = styled(Typography)`
   font-size: 0.9rem;
 `
 
-const AddIcon = styled(Button)`
+const RemoveIcon = styled(Button)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 0px;

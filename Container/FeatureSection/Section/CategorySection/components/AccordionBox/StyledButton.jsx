@@ -1,11 +1,19 @@
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
+import {
+  resetFeaturedList,
+  selectFeaturedList,
+  setFeaturedListPage,
+} from 'Container/FeatureSection/slices/featured.slice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const StyledButton = ({ contentType, category }) => {
   const router = useRouter()
+  const dispatch = useDispatch()
+  const featured = useSelector(selectFeaturedList)
   return (
     <Link
       href={`${router.pathname}?content_type=${contentType}&category=${category.id}${
@@ -15,8 +23,14 @@ const StyledButton = ({ contentType, category }) => {
         <Root
           className={
             router.query.category === String(category.id) && router.query.content_type === contentType ? 'selected' : ''
-          }>
-          {category.category_name}
+          }
+          onClick={() => {
+            const address = `${category.id}/${router.query.content_type}/${router.query.sort_by}`
+            if (featured?.address !== address) {
+              dispatch(resetFeaturedList())
+            }
+          }}>
+          {category.category_name}{' '}
         </Root>
       </a>
     </Link>

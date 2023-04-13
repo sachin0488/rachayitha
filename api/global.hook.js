@@ -1,23 +1,11 @@
-// import React from "react";
-// import { useQuery } from "@tanstack/react-query";
-// import { fetchUsers } from "./global.api";
-
-// export const useStoryApi = () => {
-//   const { data, isLoading, isError, error, isFetching } = useQuery(
-//     ["use-story"],
-//     fetchUsers
-//   );
-//   return { data, isLoading, isError, error, isFetching };
-// };
-
 import { useQuery } from '@tanstack/react-query'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addContentToSearchList, selectSearchList, setSearchList } from 'store/slices/global/search.slice'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { fetchSearchAPI } from './global.api'
 
-const useAuthTokens = () => {
+export const useAuthTokens = () => {
   const [access, setAccess] = useLocalStorage('access', '', true)
   const [refresh, setRefresh] = useLocalStorage('refresh', '', true)
 
@@ -86,5 +74,3 @@ export const authTokenHandles = () => {
 
   return { getAccess, getRefresh, setAccess, setRefresh }
 }
-
-export default useAuthTokens

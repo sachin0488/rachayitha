@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../store'
 import { selectUser, setUserLogout } from '../../store/slices/global/user.slice'
 import { useFetchUserDataAPI } from './api/auth.hook'
+import { useAuthTokens } from 'api/global.hook'
 
 const blockList = [
   '/payment-plan',
@@ -20,18 +21,30 @@ const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 const LoadToken = () => {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
-  const { isError, refetch, status } = useFetchUserDataAPI()
+  const { access } = useAuthTokens()
   const { push, pathname } = useRouter()
+  const { isError, refetch, status } = useFetchUserDataAPI(
+    {
+      enabled: !Boolean(
+        pathname.includes('/login') ||
+          pathname.includes('/create-account') ||
+          pathname.includes('/forgot-password') ||
+          pathname.includes('/terms-and-conditions') ||
+          pathname.includes('/privacy-policy') ||
+          pathname.includes('/otp') ||
+          pathname.includes('/'),
+      ),
+    },
+    'auth-check',
+  )
 
   useEffect(() => {
     dispatch({ type: LOGIN_SUCCESS })
   }, [dispatch])
 
-  useEffect(() => {
-    if (user.token) {
-      refetch()
-    }
-  }, [refetch, user.token])
+  // useEffect(() => {
+  //   refetch()
+  // }, [refetch])
 
   useEffect(() => {
     if (isError && Number(status) === 401) {

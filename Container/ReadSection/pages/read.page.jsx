@@ -127,8 +127,6 @@ const Main = styled.div`
   width: 100%;
   height: calc(100vh - ${({ theme }) => theme.mixins.toolbar.minHeight}px);
   margin-top: ${({ theme }) => theme.mixins.toolbar.minHeight}px;
-
-  max-width: 1826px;
   background-color: ${({ theme }) => theme.palette.primary.main}22;
   display: flex;
   flex-direction: column;
@@ -145,12 +143,10 @@ const Body = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-
   padding: 20px 28px;
   @media (max-width: 480px) {
     padding: 10px 18px;
   }
   padding-top: 0px;
   background-color: ${({ theme }) => theme.palette.background.paper};
-
 `

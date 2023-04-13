@@ -5,15 +5,16 @@ import { useDispatch } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
 import { createAccountAPI, fetchUserDataAPI, loginAPI } from './auth.api'
-import useAuthTokens from '../../../api/global.hook'
+import { useAuthTokens } from 'api/global.hook'
 import { getFormErrorMessage } from 'hooks/useFormError'
 
 export const useFetchUserDataAPI = (props, work) => {
   const { enqueueSnackbar } = useSnackbar()
   const dispatch = useDispatch()
+  const { access, refresh } = useAuthTokens()
 
   const { data, isFetching, isSuccess, refetch, isError } = useQuery([`user-data-${work}`], fetchUserDataAPI, {
-    enabled: false,
+    enabled: props?.enabled,
     onSuccess({ data }) {
       dispatch(setUserData(data.user))
 
@@ -85,11 +86,14 @@ export const useLoginAPI = () => {
   const dispatch = useDispatch()
   const { setAccess, setRefresh } = useAuthTokens()
   const { mutate, isLoading, isSuccess } = useMutation(loginAPI, {
-    onSuccess({ data }) {
+    onSuccess({ data }, variables) {
       dispatch(setUserData(data?.user))
       dispatch(setLoginToken(data?.user?.tokens))
-      setAccess(data?.user?.tokens?.access)
-      setRefresh(data?.user?.tokens?.refresh)
+      if (variables?.remember_me) {
+        localStorage.setItem('remember_me', 'true')
+        setAccess(data?.user?.tokens?.access)
+        setRefresh(data?.user?.tokens?.refresh)
+      }
       dispatch({ type: LOGIN_SUCCESS })
       router.push('/')
       // enqueueSnackbar(data?.message, {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
-import { Button, Skeleton, Typography, useMediaQuery } from '@mui/material'
+import { Button, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
@@ -31,31 +31,37 @@ const VoteSection = ({ isLoading }) => {
         </Field>
         <Bottom>
           <InfoSection>
-            <VoteInfoField>
-              <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" component="div" color="secondary">
-                #200
-              </HighlightedText>
-            </VoteInfoField>
-            <VoteInfoField>
-              <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" component="div" color="secondary">
-                600
-              </HighlightedText>
-            </VoteInfoField>
+            <Tooltip title="Ranking">
+              <VoteInfoField>
+                <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
+                <HighlightedText variant="h6" component="div" color="secondary">
+                  #200
+                </HighlightedText>
+              </VoteInfoField>
+            </Tooltip>
+            <Tooltip title="Total Votes">
+              <VoteInfoField>
+                <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
+                <HighlightedText variant="h6" component="div" color="secondary">
+                  600
+                </HighlightedText>
+              </VoteInfoField>
+            </Tooltip>
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
-          <VoteButton
-            disabled={isVoted}
-            is_voted={String(isVoted)}
-            variant="contained"
-            color={isVoted ? 'secondary' : 'primary'}>
-            {isVoted ? (
-              <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
-            ) : (
-              <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
-            )}
-          </VoteButton>
+          <Tooltip title="Vote This novel">
+            <VoteButton
+              disabled={isVoted}
+              is_voted={String(isVoted)}
+              variant="contained"
+              color={isVoted ? 'secondary' : 'primary'}>
+              {isVoted ? (
+                <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+              ) : (
+                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+              )}
+            </VoteButton>
+          </Tooltip>
         </Bottom>
       </Main>
     </Root>

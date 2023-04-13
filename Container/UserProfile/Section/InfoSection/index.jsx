@@ -36,7 +36,7 @@ const InfoSection = () => {
         <StyledProfileImage
           alt={data?.full_name}
           src={data?.profile_pic}
-          sx={{ bgcolor: theme => theme.palette.primary.main, fontSize: 70 }}>
+          sx={{ bgcolor: data?.profile_pic ? '#fff' : theme => theme.palette.primary.main, fontSize: 70 }}>
           {data?.full_name?.slice(0, 1)}
         </StyledProfileImage>
       </ImageWarper>
@@ -51,8 +51,11 @@ const InfoSection = () => {
 
         <StoneSection redStone={0} blueStone={data?.coins?.votetoken} greenStone={0} greyStone={data?.coins?.coin} />
 
-        <InfoField Icon={genderIcon(data?.gender?.toLocaleLowerCase())} text={data?.gender} />
-        <InfoField Icon={DateRangeOutlinedIcon} text={`birthday - ${moment(data?.birth_date).format('DD/MM/YYYY')}`} />
+        <InfoField Icon={genderIcon(data?.gender?.toLocaleLowerCase())} text={data?.gender || 'N/A'} />
+        <InfoField
+          Icon={DateRangeOutlinedIcon}
+          text={`birthday - ${data?.birth_date ? moment(data?.birth_date).format('DD/MM/YYYY') : 'N/A'}`}
+        />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
         <NavList>
           <Link href="/coin-plan">

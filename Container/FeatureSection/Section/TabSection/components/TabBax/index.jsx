@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
 import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
+import { resetFeaturedList, selectFeaturedList, setFeaturedListPage } from 'Container/FeatureSection/slices/featured.slice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 function a11yProps(index) {
   return {
@@ -14,7 +16,8 @@ function a11yProps(index) {
 const TabBox = ({ TabList }) => {
   const router = useRouter()
   const [value, setValue] = useState(0)
-
+  const dispatch = useDispatch()
+  const featured = useSelector(selectFeaturedList)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -26,8 +29,13 @@ const TabBox = ({ TabList }) => {
           router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
         }`,
       )
+
+      const address = `${router.query.category}/${item.contentType}/${router.query.sort_by}`
+      if (featured?.address !== address) {
+        dispatch(resetFeaturedList())
+      }
     },
-    [router],
+    [dispatch, featured?.address, router],
   )
 
   const selectedTab = TabList.find(item => item.contentType === router.query?.content_type)?.id

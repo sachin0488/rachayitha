@@ -4,21 +4,24 @@ import useExplore from 'Container/FeatureSection/api/explore.hook'
 import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
 import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
+import { InView } from 'react-intersection-observer'
+import { useEffect, useRef } from 'react'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
-  const { data, isLoading, isError, error } = useExplore({
+  const mainRef = useRef(null)
+
+  const { ContentList, handleNextPage, isLoading, isError, error } = useExplore({
     categoryId: query?.category,
     contentType: query?.content_type,
+    sortBy: ranking ? 'ranking' : query?.sort_by,
   })
-
-  const List = data?.data?.resources?.data || []
 
   if (isError) {
     return <h1>{error?.message}</h1>
   }
 
-  if (isLoading)
+  if (ContentList?.length === 0 && isLoading)
     return (
       <Root>
         <StyledSkeleton variant="rounded" height={160} />
@@ -29,7 +32,7 @@ const ContentSection = ({ ranking }) => {
       </Root>
     )
 
-  if (List?.length === 0)
+  if (ContentList?.length === 0)
     return (
       <NotAvailableBar>
         <ClearAllRoundedIcon sx={{ fontSize: 90 }} color="primary" />
@@ -40,10 +43,32 @@ const ContentSection = ({ ranking }) => {
     )
 
   return (
-    <Root>
-      {List?.map((item, index) => (
+    <Root ref={mainRef}>
+      {ContentList?.map((item, index) => (
         <ContentCard key={index} item={item} index={index} ranking={ranking} />
       ))}
+      {ContentList?.length !== 0 && (
+        <InView
+          id="content-load-more"
+          as="div"
+          threshold={1}
+          delay={500}
+          onChange={(inView, entry) => {
+            console.log('inView', inView)
+            if (inView) {
+              handleNextPage()
+            }
+          }}
+        />
+      )}
+
+      {ContentList?.length !== 0 && isLoading && (
+        <>
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+        </>
+      )}
     </Root>
   )
 }

@@ -52,7 +52,7 @@ const ContentCard = ({ item, index, ranking }) => {
                 <Rating
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
-                  value={Number(item?.rating?.rate__avg).toFixed(1) || 0}
+                  value={Number(Number(item?.rating?.rate__avg).toFixed(1) || 0)}
                   readOnly
                   precision={0.5}
                   emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
@@ -64,6 +64,7 @@ const ContentCard = ({ item, index, ranking }) => {
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
                 />
               </VoteCount>
+
               <CommentCount variant="subtitle2">
                 {item?.comment_count}
                 <ModeCommentRoundedIcon
@@ -95,6 +96,7 @@ const ContentCard = ({ item, index, ranking }) => {
               sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
             />
           </VoteCount>
+
           <CommentCount variant="subtitle2">
             6
             <ModeCommentRoundedIcon
@@ -120,11 +122,11 @@ const Root = styled.div`
   cursor: pointer;
   border: 1px solid transparent;
   border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
-  :hover {
+  /* :hover {
     border: 1px solid ${({ theme }) => theme.palette.primary.main};
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
-  }
+  } */
   max-width: 550px;
   overflow: hidden;
   @media (max-width: 800px) {

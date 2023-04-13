@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, Rating, Typography } from '@mui/material'
+import { Button, Rating, Tooltip, Typography } from '@mui/material'
 import React from 'react'
 import StyledChip from './StyledChip'
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
@@ -52,9 +52,11 @@ const InfoArea = ({ item }) => {
             Read
           </Button>
         </a>
-        <Button variant="contained" sx={{ minWidth: 40, width: 40 }} onClick={() => handleAddToLibrary(item?.id)}>
-          <LibraryAddRoundedIcon fontSize="small" />
-        </Button>
+        <Tooltip title="Add to Library">
+          <Button variant="contained" sx={{ minWidth: 40, width: 40 }} onClick={() => handleAddToLibrary(item?.id)}>
+            <LibraryAddRoundedIcon fontSize="small" />
+          </Button>
+        </Tooltip>
         <Button variant="contained" onClick={handleLikeBook} startIcon={<ThumbUpRoundedIcon />}>
           {item?.like_count}
         </Button>

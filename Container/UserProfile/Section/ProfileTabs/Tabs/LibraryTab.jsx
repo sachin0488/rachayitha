@@ -3,9 +3,21 @@ import { Skeleton } from '@mui/material'
 import { useLibraryAPI } from 'Container/UserProfile/api/userProfile.hook'
 import React from 'react'
 import ContentCard from '../components/ContentCard'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { resetLibraryList } from 'Container/UserProfile/slices/library.slice'
 
 const LibraryTab = () => {
-  const { ContentList, isLoading } = useLibraryAPI()
+  const dispatch = useDispatch()
+  const { ContentList, isLoading, refetch, setPage } = useLibraryAPI()
+
+  useEffect(() => {
+    refetch()
+    return () => {
+      setPage(1)
+      dispatch(resetLibraryList())
+    }
+  }, [refetch, setPage, dispatch])
 
   if (isLoading)
     return (

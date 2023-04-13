@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
-import { Box, Button, ButtonBase, CircularProgress, Typography } from '@mui/material'
+import { Box, Button, ButtonBase, CircularProgress, Tooltip, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
@@ -17,9 +17,11 @@ const ContentCard = ({ item }) => {
     <Root>
       <Main>
         {isLoggedIn ? (
-          <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-            <AddOutlinedIcon />
-          </AddIcon>
+          <Tooltip title="Add to Library">
+            <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+              <AddOutlinedIcon />
+            </AddIcon>
+          </Tooltip>
         ) : (
           <></>
         )}
