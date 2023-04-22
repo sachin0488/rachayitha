@@ -15,7 +15,7 @@ import StyledTextField from 'Container/Auth/components/FormComponents/StyledText
 import { useLoginAPI } from 'Container/Auth/api/auth.hook'
 import useFormError from 'hooks/useFormError'
 
-const LoginPage = () => {
+const NewPasswordPage = () => {
   const methods = useForm({
     defaultValues: {
       email: '',
@@ -34,43 +34,33 @@ const LoginPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4" component="div">
-                Welcome Back !
+              <TitleText variant="h4" component="div" noWrap>
+                Choose a new{' '}
+                <TitleText variant="h5" component="div">
+                  Password?
+                </TitleText>
               </TitleText>
               <DescriptionText variant="subtitle2">
-                Please enter your credentials below to log in and access your account.
+                Please enter your new password below to save the changes and regain access to your account.
               </DescriptionText>
             </TextSection>
-            <StyledTextField
-              name="email"
-              label="Email"
-              Icon={AlternateEmailRoundedIcon}
-              placeholder="Enter your email ..."
-            />
             <StyledPasswordField
               name="password"
               label="Password"
               Icon={LockOutlinedIcon}
               placeholder="Enter your password ..."
             />
-
-            <BottomSection>
-              {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}
-              <Link href="/forgot-password">
-                <a>
-                  <StyledForgotPassword>Forgot Password !</StyledForgotPassword>
-                </a>
-              </Link>
-            </BottomSection>
+            <StyledPasswordField
+              name="passwordConfirm"
+              label="Password Confirm"
+              Icon={LockOutlinedIcon}
+              placeholder="Enter your Confirm Password ..."
+            />
 
             <Nav>
-              <Link href="/create-account">
-                <a>
-                  <StyledButton>Create Account</StyledButton>
-                </a>
-              </Link>
               <StyledButton
                 disabled={isLoading}
+                sx={{ ml: 'auto' }}
                 startIcon={
                   isLoading && (
                     <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
@@ -78,7 +68,7 @@ const LoginPage = () => {
                 }
                 variant="contained"
                 onClick={methods.handleSubmit(handleLogin, handleFormError)}>
-                Login
+                Save
               </StyledButton>
             </Nav>
           </FormProvider>
@@ -184,7 +174,7 @@ const BottomSection = styled.div`
 `
 
 const Nav = styled.div`
-  margin-top: 0px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
 `
@@ -196,9 +186,9 @@ const StyledButton = styled(Button)`
   font-weight: 600;
 `
 
-const StyledForgotPassword = styled(Button)`
+const StyledNewPassword = styled(Button)`
   padding: 2px 7px 2px;
   border-radius: 4px;
 `
 
-export default LoginPage
+export default NewPasswordPage

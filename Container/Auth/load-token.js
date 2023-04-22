@@ -31,6 +31,8 @@ const LoadToken = () => {
           pathname.includes('/forgot-password') ||
           pathname.includes('/terms-and-conditions') ||
           pathname.includes('/privacy-policy') ||
+          pathname.includes('/new-password') ||
+          pathname.includes('/forgot-password') ||
           pathname.includes('/otp') ||
           pathname.includes('/'),
       ),

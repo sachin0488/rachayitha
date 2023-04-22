@@ -74,9 +74,12 @@ const CreateAccountPage = () => {
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h4" component="div">
-                Welcome
+                Welcome !
               </TitleText>
-              <DescriptionText variant="subtitle2">Welcome back ! Please Enter Your details</DescriptionText>
+              <DescriptionText variant="subtitle2">
+                Join us today and start enjoying all the benefits of being a member. Please fill out the form below to
+                create your account.
+              </DescriptionText>
             </TextSection>
             <StyledTextField name="full_name" label="Name" placeholder="Enter your name..." />
             <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
@@ -228,7 +231,7 @@ const TitleText = styled(Typography)`
 
 const DescriptionText = styled(Typography)`
   font-weight: 500;
-  margin-left: 4px;
+  /* margin-left: 4px; */
   color: ${({ theme }) => theme.palette.secondary.main}a2;
 `
 
