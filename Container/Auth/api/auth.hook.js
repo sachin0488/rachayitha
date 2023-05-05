@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import { useDispatch } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
-import { createAccountAPI, fetchUserDataAPI, loginAPI } from './auth.api'
+import { createAccountAPI, fetchUserDataAPI, loginAPI, resetPasswordByTokenAPI, sendResetPasswordLinkByEmailAPI } from './auth.api'
 import { useAuthTokens } from 'api/global.hook'
 import { getFormErrorMessage } from 'hooks/useFormError'
 
@@ -115,6 +115,67 @@ export const useLoginAPI = () => {
   const handleLogin = mutate
 
   return { handleLogin, isLoading, isSuccess }
+}
+
+export const useSendResetPasswordLinkAPI = () => {
+  const { enqueueSnackbar } = useSnackbar()
+  const { push } = useRouter()
+  const { mutate, isLoading, isSuccess } = useMutation(sendResetPasswordLinkByEmailAPI, {
+    onSuccess({ data }, variables) {
+      push('/forgot-password?status=success')
+
+      enqueueSnackbar('Reset Password Link Sent successfully !', {
+        variant: 'success',
+      })
+    },
+    onError: error => {
+      enqueueSnackbar(error.response?.data?.user?.error[0], {
+        variant: 'error',
+      })
+
+      if (error.response?.data?.message)
+        enqueueSnackbar(error.response?.data?.message, {
+          variant: 'error',
+        })
+    },
+  })
+
+  const handleSendLinkByEmail = mutate
+
+  return { handleSendLinkByEmail, isLoading, isSuccess }
+}
+
+export const useResetPasswordAPI = () => {
+  const { enqueueSnackbar } = useSnackbar()
+  const { push } = useRouter()
+
+  const { mutate, isLoading, isSuccess } = useMutation(resetPasswordByTokenAPI, {
+    onSuccess({ data }, variables) {
+      push('/new-password?status=success')
+
+      console.log('====================================')
+      console.log(data)
+      console.log('====================================')
+
+      enqueueSnackbar('Reset Password Link Sent successfully !', {
+        variant: 'success',
+      })
+    },
+    onError: error => {
+      enqueueSnackbar(error.response?.data?.user?.error[0], {
+        variant: 'error',
+      })
+
+      if (error.response?.data?.message)
+        enqueueSnackbar(error.response?.data?.message, {
+          variant: 'error',
+        })
+    },
+  })
+
+  const handleResetPasswordByToken = mutate
+
+  return { handleResetPasswordByToken, isLoading, isSuccess }
 }
 
 export const useLogoutUserAPI = () => {

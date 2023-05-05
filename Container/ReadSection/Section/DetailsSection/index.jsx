@@ -46,7 +46,7 @@ const Root = styled.div`
   align-items: center;
   width: 100%;
   gap: 40px;
-  margin-top: 20px;
+  padding-top: 20px;
 `
 
 const ImageContainer = styled.div`

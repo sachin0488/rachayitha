@@ -76,3 +76,19 @@ export const logoutUserAPI = () => {
     method: 'POST',
   })
 }
+
+export const sendResetPasswordLinkByEmailAPI = data => {
+  return ApiInstance({
+    url: '/password_reset/',
+    method: 'POST',
+    data,
+  })
+}
+
+export const resetPasswordByTokenAPI = data => {
+  return ApiInstance({
+    url: '/password_reset/confirm/',
+    method: 'POST',
+    data,
+  })
+}

@@ -29,11 +29,11 @@ const ChapterSection = ({ item, mainRef }) => {
   }
 
   return (
-    <InView
+    <Root
       id={`chapter-${item?.id}`}
       as="div"
       root={mainRef?.current}
-      rootMargin="72px"
+      // rootMargin="0px"
       threshold={0.3}
       delay={200}
       onChange={(inView, entry) => {
@@ -47,18 +47,16 @@ const ChapterSection = ({ item, mainRef }) => {
           )
         }
       }}>
-      <Root>
-        <ChapterName variant="h5" component="div" color="secondary">
-          Chapter: {item?.chapter_sequence} {item?.chapter_title}
-        </ChapterName>
-        <ChapterContentText dangerouslySetInnerHTML={{ __html: ChapterContent }} />
-        <DividerBar style={{ marginTop: 'auto' }} />
-      </Root>
-    </InView>
+      <ChapterName variant="h5" component="div" color="secondary">
+        Chapter: {item?.chapter_sequence} {item?.chapter_title}
+      </ChapterName>
+      <ChapterContentText dangerouslySetInnerHTML={{ __html: ChapterContent }} />
+      <DividerBar style={{ marginTop: 'auto' }} />
+    </Root>
   )
 }
 
-const Root = styled.div`
+const Root = styled(InView)`
   display: flex;
   flex-direction: column;
   width: 100%;

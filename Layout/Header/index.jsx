@@ -9,9 +9,13 @@ import StyledNavButton from './components/StyledNavButton'
 import StyledSearchBox from './components/StyledSearchBox'
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetFeaturedList, selectFeaturedList } from 'Container/FeatureSection/slices/featured.slice'
 
 const Header = ({ handleSidebarOpen }) => {
   const isTabletXSM = useMediaQuery('(min-width:900px)')
+  const featured = useSelector(selectFeaturedList)
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -30,7 +34,16 @@ const Header = ({ handleSidebarOpen }) => {
             {isTabletXSM && (
               <NavButtonWarper>
                 {NavPageLinks.map((Item, index) => (
-                  <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
+                  <StyledNavButton
+                    key={index}
+                    {...Item}
+                    Icon={Item.Icon}
+                    onClick={() => {
+                      if (featured?.address !== Item.link) {
+                        dispatch(resetFeaturedList())
+                      }
+                    }}
+                  />
                 ))}
               </NavButtonWarper>
             )}

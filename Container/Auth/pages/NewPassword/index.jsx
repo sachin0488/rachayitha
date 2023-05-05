@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
@@ -12,68 +12,95 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import StyledCheckbox from '../OTP/components/StyledCheckbox'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
+import { useLoginAPI, useResetPasswordAPI } from 'Container/Auth/api/auth.hook'
 import useFormError from 'hooks/useFormError'
+import SuccessCard from './SuccessCard'
+import { useRouter } from 'next/router'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+const schema = yup.object().shape({
+  password: yup.string().required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
+    .required('Confirm Password is required'),
+})
 
 const NewPasswordPage = () => {
+  const { query } = useRouter()
+
+  const { handleFormError } = useFormError()
+  const { handleResetPasswordByToken, isLoading } = useResetPasswordAPI()
+
   const methods = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
-      email: '',
       password: '',
-      remember_me: true,
+      token: query?.token || 'ff8b90f37ebea1',
     },
   })
-  const { handleFormError } = useFormError()
-  const { handleLogin, isLoading, isSuccess } = useLoginAPI()
+
+  useEffect(() => {
+    if (query?.token) {
+      methods.setValue('token', query?.token)
+    }
+  }, [methods, query?.token])
 
   return (
     <Root>
       <DeignsIcon />
-
-      <Main>
-        <Body>
-          <FormProvider {...methods}>
-            <TextSection>
-              <TitleText variant="h4" component="div" noWrap>
-                Choose a new{' '}
-                <TitleText variant="h5" component="div">
-                  Password?
+      {query.status === 'success' ? (
+        <SuccessCard />
+      ) : (
+        <Main>
+          <Body>
+            <FormProvider {...methods}>
+              <TextSection>
+                <TitleText variant="h4" component="div" noWrap>
+                  Choose a new{' '}
+                  <TitleText variant="h5" component="div">
+                    Password?
+                  </TitleText>
                 </TitleText>
-              </TitleText>
-              <DescriptionText variant="subtitle2">
-                Please enter your new password below to save the changes and regain access to your account.
-              </DescriptionText>
-            </TextSection>
-            <StyledPasswordField
-              name="password"
-              label="Password"
-              Icon={LockOutlinedIcon}
-              placeholder="Enter your password ..."
-            />
-            <StyledPasswordField
-              name="passwordConfirm"
-              label="Password Confirm"
-              Icon={LockOutlinedIcon}
-              placeholder="Enter your Confirm Password ..."
-            />
+                <DescriptionText variant="subtitle2">
+                  Please enter your new password below to save the changes and regain access to your account.
+                </DescriptionText>
+              </TextSection>
+              <StyledPasswordField
+                name="password"
+                label="Password"
+                Icon={LockOutlinedIcon}
+                placeholder="Enter your password ..."
+              />
+              <StyledPasswordField
+                name="confirmPassword"
+                label="Password Confirm"
+                Icon={LockOutlinedIcon}
+                placeholder="Enter your Confirm Password ..."
+              />
 
-            <Nav>
-              <StyledButton
-                disabled={isLoading}
-                sx={{ ml: 'auto' }}
-                startIcon={
-                  isLoading && (
-                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-                  )
-                }
-                variant="contained"
-                onClick={methods.handleSubmit(handleLogin, handleFormError)}>
-                Save
-              </StyledButton>
-            </Nav>
-          </FormProvider>
-        </Body>
-      </Main>
+              <Nav>
+                <StyledButton
+                  disabled={isLoading}
+                  sx={{ ml: 'auto' }}
+                  startIcon={
+                    isLoading && (
+                      <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                    )
+                  }
+                  variant="contained"
+                  onClick={methods.handleSubmit(
+                    data => handleResetPasswordByToken({ ...data, confirmPassword: undefined }),
+                    handleFormError,
+                  )}>
+                  Save
+                </StyledButton>
+              </Nav>
+            </FormProvider>
+          </Body>
+        </Main>
+      )}
     </Root>
   )
 }

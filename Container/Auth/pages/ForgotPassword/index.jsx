@@ -1,78 +1,76 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
-
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Link from 'next/link'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import StyledCheckbox from '../OTP/components/StyledCheckbox'
-import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
+import { useSendResetPasswordLinkAPI } from 'Container/Auth/api/auth.hook'
 import useFormError from 'hooks/useFormError'
+import { useRouter } from 'next/router'
+import SuccessCard from './SuccessCard'
 
 const ForgotPasswordPage = () => {
+  const { query } = useRouter()
+  const { handleSendLinkByEmail, isLoading, isSuccess } = useSendResetPasswordLinkAPI()
+  const { handleFormError } = useFormError()
   const methods = useForm({
     defaultValues: {
       email: '',
-      password: '',
-      remember_me: true,
     },
   })
-  const { handleFormError } = useFormError()
-  const { handleLogin, isLoading, isSuccess } = useLoginAPI()
 
   return (
     <Root>
       <DeignsIcon />
-
-      <Main>
-        <Body>
-          <FormProvider {...methods}>
-            <TextSection>
-              <TitleText variant="h4" component="div" noWrap>
-                Lost Your{' '}
-                <TitleText variant="h5" component="div">
-                  Password?
+      {query.status === 'success' ? (
+        <SuccessCard />
+      ) : (
+        <Main>
+          <Body>
+            <FormProvider {...methods}>
+              <TextSection>
+                <TitleText variant="h4" component="div" noWrap>
+                  Lost Your{' '}
+                  <TitleText variant="h5" component="div">
+                    Password?
+                  </TitleText>
                 </TitleText>
-              </TitleText>
-              <DescriptionText variant="subtitle2">
-                Please enter the email associated with your account to reset your password.
-              </DescriptionText>
-            </TextSection>
-            <StyledTextField
-              name="email"
-              label="Email"
-              Icon={AlternateEmailRoundedIcon}
-              placeholder="Enter your email ..."
-            />
+                <DescriptionText variant="subtitle2">
+                  Please enter the email associated with your account to reset your password.
+                </DescriptionText>
+              </TextSection>
+              <StyledTextField
+                name="email"
+                label="Email"
+                Icon={AlternateEmailRoundedIcon}
+                placeholder="Enter your email ..."
+              />
 
-            <DescriptionText variant="subtitle2">We will send a email to change your password.</DescriptionText>
-            <Nav>
-              <Link href="/login">
-                <a>
-                  <StyledButton>Login</StyledButton>
-                </a>
-              </Link>
-              <StyledButton
-                disabled={isLoading}
-                startIcon={
-                  isLoading && (
-                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-                  )
-                }
-                variant="contained"
-                onClick={methods.handleSubmit(handleLogin, handleFormError)}>
-                Send
-              </StyledButton>
-            </Nav>
-          </FormProvider>
-        </Body>
-      </Main>
+              <DescriptionText variant="subtitle2">We will send a email to change your password.</DescriptionText>
+              <Nav>
+                <Link href="/login">
+                  <a>
+                    <StyledButton>Login</StyledButton>
+                  </a>
+                </Link>
+                <StyledButton
+                  disabled={isLoading}
+                  startIcon={
+                    isLoading && (
+                      <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                    )
+                  }
+                  variant="contained"
+                  onClick={methods.handleSubmit(handleSendLinkByEmail, handleFormError)}>
+                  Send
+                </StyledButton>
+              </Nav>
+            </FormProvider>
+          </Body>
+        </Main>
+      )}
     </Root>
   )
 }

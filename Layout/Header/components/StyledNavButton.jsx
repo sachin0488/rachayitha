@@ -4,12 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const StyledNavButton = ({ Icon, label, link, path }) => {
+const StyledNavButton = ({ Icon, label, link, path, onClick }) => {
   const router = useRouter()
 
   return (
     <Link href={link}>
-      <a>
+      <a onClick={onClick}>
         <Root className={router.pathname.includes(path) && 'selected'} startIcon={<Icon style={IconStyle} />}>
           {label}
         </Root>
