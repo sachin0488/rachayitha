@@ -6,7 +6,6 @@ import { Button, Typography } from '@mui/material'
 import { StyledModal } from 'Components/StyledModal'
 
 import { useSelector } from 'react-redux'
-import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
 
 import StyledTextField from 'Components/form-components/StyledTextField'
 import StyledRatingField from './components/StyledRatingField'

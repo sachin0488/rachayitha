@@ -1,11 +1,10 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
-import { Button } from '@mui/material'
+import { Button, CircularProgress, Tooltip } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
 import { useController, useForm } from 'react-hook-form'
-import { ListItemButton } from '@mui/material'
 import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
 import { useSelector } from 'react-redux'
 import { selectUser } from 'store/slices/global/user.slice'
@@ -73,14 +72,23 @@ const BannerSection = ({ text }) => {
   return (
     <Root>
       {filePreview && (
-        <StyledSaveButton onClick={handleSubmit(handleUpdateProfile)} color="secondary" variant="contained">
-          Save
+        <StyledSaveButton
+          disabled={isLoading}
+          onClick={handleSubmit(handleUpdateProfile)}
+          color="secondary"
+          variant="contained">
+          {isLoading ? (
+            <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} />
+          ) : (
+            'Save'
+          )}
         </StyledSaveButton>
       )}
-
-      <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained">
-        <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
-      </StyledEditButton>
+      <Tooltip title="Updated Banner Image!">
+        <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained">
+          <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
+        </StyledEditButton>
+      </Tooltip>
 
       {filePreview && <StyledImage src={filePreview} alt="Profile Art" />}
       {!filePreview && <PhotoCameraIcon fontSize="large" color="secondary" />}

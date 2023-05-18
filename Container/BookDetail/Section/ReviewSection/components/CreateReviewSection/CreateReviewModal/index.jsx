@@ -2,18 +2,17 @@ import React, { useCallback, useEffect } from 'react'
 import styled from '@emotion/styled'
 
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import { StyledModal } from 'Components/StyledModal'
 
 import { useSelector } from 'react-redux'
-import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
 
 import StyledTextField from 'Components/form-components/StyledTextField'
 import StyledRatingField from './components/StyledRatingField'
 import { useCreateBookRatingAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 const CreateReviewModal = ({ open, setOpen, bookId }) => {
-  const { handleCreateBookRating, isLoading, isSuccess } = useCreateBookRatingAPI({ bookId })
+  const { handleCreateBookRating, isLoading } = useCreateBookRatingAPI({ bookId })
   const { data } = useSelector(store => store.user)
 
   const handleClose = useCallback(() => {
@@ -52,14 +51,25 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
           <StyledRatingField label="Story Development" name="parameter3" />
           <StyledRatingField label="Character Design" name="parameter4" />
           <StyledRatingField label="World Background" name="parameter5" />
-          <StyledTextField name="comments" label="Your thoughts here..." placeholder="Bio here..." multiline />
+          <StyledTextField
+            name="comments"
+            label="Your thoughts here..."
+            placeholder="Tell us what you think about this book..."
+            multiline
+          />
         </FormProvider>
 
         <Bottom>
           <StyledButton variant="outlined" onClick={() => setOpen(false)}>
             Cancel
           </StyledButton>
-          <StyledButton variant="contained" onClick={methods.handleSubmit(handleCreateBookRating)}>
+          <StyledButton
+            disabled={isLoading}
+            startIcon={
+              isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+            }
+            variant="contained"
+            onClick={methods.handleSubmit(handleCreateBookRating)}>
             Save
           </StyledButton>
         </Bottom>

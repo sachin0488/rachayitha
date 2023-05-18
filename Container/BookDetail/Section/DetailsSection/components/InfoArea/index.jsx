@@ -10,7 +10,9 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import MoreOptions from './MoreOptions'
 import { useRouter } from 'next/router'
 import { useAddToLibraryAPI, useLikeBookAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
+import ThumbDownOffAltRoundedIcon from '@mui/icons-material/ThumbDownOffAltRounded'
 
 const InfoArea = ({ item }) => {
   const { query } = useRouter()
@@ -54,10 +56,23 @@ const InfoArea = ({ item }) => {
         </a>
         <Tooltip title="Add to Library">
           <Button variant="contained" sx={{ minWidth: 40, width: 40 }} onClick={() => handleAddToLibrary(item?.id)}>
-            <LibraryAddRoundedIcon fontSize="small" />
+            {Boolean(item?.library_added) ? (
+              <LibraryAddCheckIcon fontSize="small" />
+            ) : (
+              <LibraryAddRoundedIcon fontSize="small" />
+            )}
           </Button>
         </Tooltip>
-        <Button variant="contained" onClick={handleLikeBook} startIcon={<ThumbUpRoundedIcon />}>
+        <Button
+          variant="contained"
+          onClick={handleLikeBook}
+          startIcon={
+            Boolean(item?.library_added) ? (
+              <ThumbUpRoundedIcon />
+            ) : (
+              <ThumbDownOffAltRoundedIcon sx={{ rotate: '180deg' }} />
+            )
+          }>
           {item?.like_count}
         </Button>
         <MoreOptions />

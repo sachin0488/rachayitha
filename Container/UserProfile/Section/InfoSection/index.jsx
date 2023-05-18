@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Avatar, Button, Typography } from '@mui/material'
+import { Avatar, Button, Tooltip, Typography } from '@mui/material'
 import moment from 'moment'
 import React, { useState } from 'react'
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
@@ -29,9 +29,11 @@ const InfoSection = () => {
   return (
     <Root>
       <EditProfileModal open={isEditProfileModalOpen} setOpen={setIsEditProfileModalOpen} />
-      <StyledEditButton color="primary" variant="contained" onClick={() => setIsEditProfileModalOpen(true)}>
-        <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
-      </StyledEditButton>
+      <Tooltip title="Updated Your Profile!">
+        <StyledEditButton color="primary" variant="contained" onClick={() => setIsEditProfileModalOpen(true)}>
+          <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
+        </StyledEditButton>
+      </Tooltip>
       <ImageWarper>
         <StyledProfileImage
           alt={data?.full_name}

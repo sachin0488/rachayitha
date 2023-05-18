@@ -67,6 +67,20 @@ export const likeBookCommentAPI = ({ bookId, commentId }) => {
   })
 }
 
+export const fetchBookVoteAPI = ({ bookId }) => {
+  return ApiInstance({
+    url: `/bookvote/${bookId}`,
+    method: 'GET',
+  })
+}
+
+export const createBookVoteAPI = ({ bookId }) => {
+  return ApiInstance({
+    url: `/bookvote/${bookId}`,
+    method: 'POST',
+  })
+}
+
 export const addToLibraryAPI = book_id => {
   return ApiInstance({
     url: '/userbooklibrary/',

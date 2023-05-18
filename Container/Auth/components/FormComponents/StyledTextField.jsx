@@ -23,11 +23,9 @@ const StyledTextField = ({ name, label, rules, required, ...props }) => {
   const rootProps = {
     size: 'medium',
     error: isError ? isError : undefined,
-
     required: required || Boolean(rules?.required),
-    ...field,
-    value: formContext.watch(name),
     ...props,
+    ...field,
   }
   return (
     <Root>

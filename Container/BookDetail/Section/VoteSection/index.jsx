@@ -1,18 +1,24 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
-import { Button, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
+import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
 import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
+import { useBookVoteAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import { useRouter } from 'next/router'
 
 const VoteSection = ({ isLoading }) => {
   const isMobile = useMediaQuery('(max-width: 500px)')
+  const { query } = useRouter()
+  const { isFetching, isMutating, handleVoteBook, isAlreadyVoted, totalVotesByUser } = useBookVoteAPI({
+    bookId: query?.bookId,
+  })
 
-  if (isLoading)
+  if (isLoading || isFetching)
     return (
       <Root>
         <LoadingMain>
@@ -21,7 +27,6 @@ const VoteSection = ({ isLoading }) => {
       </Root>
     )
 
-  const isVoted = false
   return (
     <Root>
       <Main>
@@ -49,18 +54,35 @@ const VoteSection = ({ isLoading }) => {
             </Tooltip>
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
+          {isAlreadyVoted && (
+            <Tooltip title="Your vote for this novel">
+              <VoteButton
+                is_voted={String(isAlreadyVoted)}
+                is_mutating={String(isFetching)}
+                variant="contained"
+                color={isAlreadyVoted ? 'secondary' : 'primary'}>
+                {isFetching ? (
+                  <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
+                ) : (
+                  <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+                )}
+                {totalVotesByUser}
+              </VoteButton>
+            </Tooltip>
+          )}
           <Tooltip title="Vote This novel">
-            <VoteButton
-              disabled={isVoted}
-              is_voted={String(isVoted)}
+            <AddVoteButton
+              disabled={isMutating}
+              is_mutating={String(isMutating)}
               variant="contained"
-              color={isVoted ? 'secondary' : 'primary'}>
-              {isVoted ? (
-                <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+              color={'primary'}
+              onClick={handleVoteBook}>
+              {isMutating ? (
+                <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
               ) : (
                 <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
               )}
-            </VoteButton>
+            </AddVoteButton>
           </Tooltip>
         </Bottom>
       </Main>
@@ -192,11 +214,30 @@ const InfoSection = styled.div`
 const VoteButton = styled(Button)`
   border-radius: 15px;
   box-shadow: none;
+  min-width: 75px;
+  /* width: 75px; */
+  && {
+    color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
+    background: ${({ theme, is_voted, is_mutating }) =>
+      is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
+  }
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  gap: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+`
+
+const AddVoteButton = styled(Button)`
+  border-radius: 15px;
+  box-shadow: none;
   min-width: 69px;
   width: 69px;
   && {
     color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
-    background: ${({ theme, is_voted }) => is_voted === 'true' && theme.palette.secondary.main};
+    background: ${({ theme, is_voted, is_mutating }) =>
+      is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
   }
 `
 

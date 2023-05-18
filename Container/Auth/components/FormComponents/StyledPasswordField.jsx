@@ -35,12 +35,10 @@ const StyledPasswordField = ({ name, label, rules, required, ...props }) => {
   const rootProps = {
     size: 'medium',
     error: isError ? isError : undefined,
-
     required: required || Boolean(rules?.required),
-    ...field,
     type: showPassword ? 'text' : 'password',
-    value: formContext.watch(name),
     ...props,
+    ...field,
   }
   return (
     <Root>

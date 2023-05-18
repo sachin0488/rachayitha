@@ -73,9 +73,7 @@ const CreateAccountPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4" component="div">
-                Welcome !
-              </TitleText>
+              <TitleText variant="h4">Welcome !</TitleText>
               <DescriptionText variant="subtitle2">
                 Join us today and start enjoying all the benefits of being a member. Please fill out the form below to
                 create your account.
@@ -98,13 +96,11 @@ const CreateAccountPage = () => {
             <StyledPasswordField
               name="password"
               label="Password"
-              Icon={LockOutlinedIcon}
               placeholder="Enter your password ..."
             />
             <StyledPasswordField
               name="confirmPassword"
               label="Confirm Password"
-              Icon={LockOutlinedIcon}
               placeholder="Enter your confirm password ..."
             />
             <BottomSection>

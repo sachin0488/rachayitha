@@ -4,7 +4,13 @@ import { useSnackbar } from 'notistack'
 import { useDispatch } from 'react-redux'
 import { LOGIN_SUCCESS } from '../../../store'
 import { setLoginToken, setUserData, setUserLogout } from '../../../store/slices/global/user.slice'
-import { createAccountAPI, fetchUserDataAPI, loginAPI, resetPasswordByTokenAPI, sendResetPasswordLinkByEmailAPI } from './auth.api'
+import {
+  createAccountAPI,
+  fetchUserDataAPI,
+  loginAPI,
+  resetPasswordByTokenAPI,
+  sendResetPasswordLinkByEmailAPI,
+} from './auth.api'
 import { useAuthTokens } from 'api/global.hook'
 import { getFormErrorMessage } from 'hooks/useFormError'
 
@@ -153,18 +159,15 @@ export const useResetPasswordAPI = () => {
     onSuccess({ data }, variables) {
       push('/new-password?status=success')
 
-      console.log('====================================')
-      console.log(data)
-      console.log('====================================')
-
       enqueueSnackbar('Reset Password Link Sent successfully !', {
         variant: 'success',
       })
     },
     onError: error => {
-      enqueueSnackbar(error.response?.data?.user?.error[0], {
-        variant: 'error',
-      })
+      if (error.response?.data?.errors?.password?.length > 0)
+        enqueueSnackbar(error.response?.data?.errors?.password?.[0], {
+          variant: 'error',
+        })
 
       if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {

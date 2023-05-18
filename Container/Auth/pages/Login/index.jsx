@@ -1,20 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
+import Link from 'next/link'
 
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
-import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
+import { useLoginAPI } from 'Container/Auth/api/auth.hook'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Link from 'next/link'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import StyledCheckbox from '../OTP/components/StyledCheckbox'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
 import useFormError from 'hooks/useFormError'
 
+import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
 const LoginPage = () => {
   const methods = useForm({
     defaultValues: {
@@ -34,9 +31,7 @@ const LoginPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4" component="div">
-                Welcome Back !
-              </TitleText>
+              <TitleText variant="h4">Welcome Back !</TitleText>
               <DescriptionText variant="subtitle2">
                 Please enter your credentials below to log in and access your account.
               </DescriptionText>
@@ -44,13 +39,11 @@ const LoginPage = () => {
             <StyledTextField
               name="email"
               label="Email"
-              Icon={AlternateEmailRoundedIcon}
               placeholder="Enter your email ..."
             />
             <StyledPasswordField
               name="password"
               label="Password"
-              Icon={LockOutlinedIcon}
               placeholder="Enter your password ..."
             />
 
@@ -137,23 +130,6 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
   }
 `
 
-const BackgroundIcon = styled.img`
-  position: absolute;
-  width: 300px;
-  bottom: 0px;
-  right: 25px;
-  rotate: -25deg;
-
-  @media (max-width: 480px) {
-    width: 250px;
-    bottom: 0px;
-    right: 15px;
-    rotate: -25deg;
-  }
-
-  /* width: 300px; */
-`
-
 const TextSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -171,7 +147,6 @@ const TitleText = styled(Typography)`
 
 const DescriptionText = styled(Typography)`
   font-weight: 500;
-  /* margin-left: 4px; */
   color: ${({ theme }) => theme.palette.secondary.main}a2;
 `
 

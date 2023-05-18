@@ -70,13 +70,11 @@ const NewPasswordPage = () => {
               <StyledPasswordField
                 name="password"
                 label="Password"
-                Icon={LockOutlinedIcon}
                 placeholder="Enter your password ..."
               />
               <StyledPasswordField
                 name="confirmPassword"
                 label="Password Confirm"
-                Icon={LockOutlinedIcon}
                 placeholder="Enter your Confirm Password ..."
               />
 

@@ -7,7 +7,7 @@ export const RootContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-
+  min-height: calc(100vh - 100px);
   --main-max-width: ${mainMaxWidth}px;
   --main-side-spacing: 30px;
   @media (max-width: 1000px) {

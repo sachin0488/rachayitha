@@ -51,12 +51,14 @@ export const useLibraryAPI = () => {
   return { ContentList: list, handleNextPage, handlePrevPage, isLoading, isError, error, isFetching, refetch, setPage }
 }
 
-export const useUpdateProfileAPI = () => {
+export const useUpdateProfileAPI = props => {
   const { enqueueSnackbar } = useSnackbar()
   const dispatch = useDispatch()
 
   const { mutate, isLoading, isSuccess } = useMutation(UpdateUserProfileAPI, {
     onSuccess({ data }) {
+      if (props?.handleClose !== undefined) props.handleClose()
+
       enqueueSnackbar('Profile Updated Successfully!', {
         variant: 'success',
       })

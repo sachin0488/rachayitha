@@ -17,8 +17,14 @@ export const fetchLibraryAPI = () => {
 export const UpdateUserProfileAPI = data => {
   const form = new FormData()
 
-  if (data?.profile_pic?.length && typeof data?.profile_pic[0] !== 'string')
+  if (
+    data?.profile_pic?.length &&
+    typeof data?.profile_pic[0] !== 'string' &&
+    data?.profile_pic[0] !== null &&
+    data?.profile_pic[0] !== undefined
+  )
     form.append('profile_pic', data.profile_pic[0])
+
   if (data?.profile_banner?.length) form.append('profile_banner', data.profile_banner[0])
 
   if (data?.full_name) form.append('full_name', data?.full_name)

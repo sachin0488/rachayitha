@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, FormLabel, Typography } from '@mui/material'
+import { Button, CircularProgress, FormLabel, Typography } from '@mui/material'
 import StyledDateSelector from 'Components/form-components/StyledDateSelector'
 import { StyledRadioBox, StyledRadioGroup } from 'Components/form-components/StyledRadio'
 import StyledTextField from 'Components/form-components/StyledTextField'
@@ -26,12 +26,13 @@ const GenderList = [
 ]
 
 const EditProfileModal = ({ open, setOpen }) => {
-  const { handleUpdateProfile, isLoading, isSuccess } = useUpdateProfileAPI()
-  const { data } = useSelector(store => store.user)
-
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
+
+  const { handleUpdateProfile, isLoading, isSuccess } = useUpdateProfileAPI({ handleClose })
+
+  const { data } = useSelector(store => store.user)
 
   const methods = useForm({
     defaultValues: {
@@ -81,8 +82,16 @@ const EditProfileModal = ({ open, setOpen }) => {
         </FormProvider>
 
         <Bottom>
-          <StyledButton variant="outlined">Cancel</StyledButton>
-          <StyledButton variant="contained" onClick={methods.handleSubmit(handleUpdateProfile)}>
+          <StyledButton variant="outlined" onClick={handleClose}>
+            Cancel
+          </StyledButton>
+          <StyledButton
+            disabled={isLoading}
+            startIcon={
+              isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+            }
+            variant="contained"
+            onClick={methods.handleSubmit(handleUpdateProfile)}>
             Save
           </StyledButton>
         </Bottom>

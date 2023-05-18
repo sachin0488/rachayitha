@@ -29,6 +29,8 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
     },
   })
 
+  const comments = methods.watch('comments')
+
   const { handleSubmit } = methods
 
   return (
@@ -63,7 +65,7 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
             Cancel
           </StyledButton>
           <StyledButton
-            disabled={isLoading}
+            disabled={isLoading || !comments}
             endIcon={
               isLoading ? (
                 <CircularProgress

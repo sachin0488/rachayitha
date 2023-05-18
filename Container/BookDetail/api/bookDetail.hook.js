@@ -4,7 +4,9 @@ import {
   addToLibraryAPI,
   createBookCommentAPI,
   createBookRating,
+  createBookVoteAPI,
   fetchBookDetail,
+  fetchBookVoteAPI,
   fetchCommentList,
   fetchCommentSection,
   likeBookAPI,
@@ -128,6 +130,7 @@ export const useLikeBookAPI = ({ bookId, ...props }) => {
 
   return { handleLikeBook, isLoading, isSuccess, isError }
 }
+
 export const useLikeBookCommentAPI = ({ bookId, setLikes, ...props }) => {
   const { refetch } = useBookCommentListAPI({
     bookId: bookId,
@@ -203,6 +206,49 @@ const useBookDetail = bookId => {
     },
   )
   return { BookDetail: data?.data?.data[0], isLoading, isError, error, isFetching }
+}
+
+export const useBookVoteAPI = ({ bookId }) => {
+  const { enqueueSnackbar } = useSnackbar()
+
+  const {
+    data,
+    isLoading: isFetching,
+    refetch,
+  } = useQuery(['book-vote', bookId], () => fetchBookVoteAPI({ bookId }), {
+    enabled: Boolean(bookId),
+    onSuccess({ data }) {},
+  })
+
+  const { mutate, isLoading: isMutating } = useMutation(
+    () =>
+      createBookVoteAPI({
+        bookId,
+      }),
+    {
+      onSuccess({ data }) {
+        enqueueSnackbar('Your Vote has been added !', {
+          variant: 'success',
+        })
+        refetch()
+      },
+      onError: error => {
+        // enqueueSnackbar('Unable to like book !', {
+        //   variant: 'error',
+        // })
+      },
+    },
+  )
+
+  const handleVoteBook = mutate
+
+  return {
+    handleVoteBook,
+    isMutating,
+    isFetching,
+    isAlreadyVoted: data?.data?.data?.length > 0,
+    totalVotesByUser: data?.data?.data?.length,
+  }
 }
 
 export default useBookDetail

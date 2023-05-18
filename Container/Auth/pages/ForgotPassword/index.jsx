@@ -31,7 +31,7 @@ const ForgotPasswordPage = () => {
           <Body>
             <FormProvider {...methods}>
               <TextSection>
-                <TitleText variant="h4" component="div" noWrap>
+                <TitleText variant="h4" noWrap>
                   Lost Your{' '}
                   <TitleText variant="h5" component="div">
                     Password?
@@ -41,12 +41,7 @@ const ForgotPasswordPage = () => {
                   Please enter the email associated with your account to reset your password.
                 </DescriptionText>
               </TextSection>
-              <StyledTextField
-                name="email"
-                label="Email"
-                Icon={AlternateEmailRoundedIcon}
-                placeholder="Enter your email ..."
-              />
+              <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
 
               <DescriptionText variant="subtitle2">We will send a email to change your password.</DescriptionText>
               <Nav>
