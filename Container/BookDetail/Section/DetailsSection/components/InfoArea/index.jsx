@@ -1,80 +1,52 @@
-import styled from '@emotion/styled'
-import { Button, Rating, Tooltip, Typography } from '@mui/material'
 import React from 'react'
+import styled from '@emotion/styled'
 import StyledChip from './StyledChip'
+import { Button, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+
+import ToggleToLibraryButton from './ToggleToLibraryButton'
+import MoreOptions from './MoreOptions'
+import RatingBar from './RatingBar'
+import LikeButton from './LikeButton'
+
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
 import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded'
-import StarIcon from '@mui/icons-material/Star'
-import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
-import MoreOptions from './MoreOptions'
-import { useRouter } from 'next/router'
-import { useAddToLibraryAPI, useLikeBookAPI } from 'Container/BookDetail/api/bookDetail.hook'
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
-import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
-import ThumbDownOffAltRoundedIcon from '@mui/icons-material/ThumbDownOffAltRounded'
 
-const InfoArea = ({ item }) => {
+const InfoArea = () => {
   const { query } = useRouter()
-  const { handleAddToLibrary } = useAddToLibraryAPI()
-  const { handleLikeBook } = useLikeBookAPI({
-    bookId: item?.id,
-  })
+  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
 
   return (
     <Root>
       <BookName variant="h3" component="div">
-        {item?.book_name}
+        {Data?.bookName}
       </BookName>
+
       <InfoChipList>
-        {item?.category?.map(({ name, id }) => (
+        {Data?.category?.map(({ name, id }) => (
           <StyledChip label={name} key={id} />
         ))}
-        <StyledChip label={`${item?.chapter_count} Chapters`} Icon={CollectionsBookmarkRoundedIcon} />
-        <StyledChip label={`${item?.view_count} Views`} Icon={RemoveRedEyeRoundedIcon} />
+        <StyledChip label={`${Data?.chapterCount} Chapters`} Icon={CollectionsBookmarkRoundedIcon} />
+        <StyledChip label={`${Data?.viewCount} Views`} Icon={RemoveRedEyeRoundedIcon} />
       </InfoChipList>
+
       <Author color="secondary">
-        Author: <b>{item?.author_name}</b>
+        Author: <b>{Data?.authorName}</b>
       </Author>
-      <RatingRoot>
-        <Rating
-          color="primary"
-          sx={{ color: theme => theme.palette.primary.main }}
-          value={Number(item?.rating?.rate__avg).toFixed(1)}
-          readOnly
-          size="large"
-          precision={0.1}
-          emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
-        />
-        {<TotalRating color="secondary" variant="subtitle2">{`(${item?.rating?.rate__count})`}</TotalRating>}
-      </RatingRoot>
+
+      <RatingBar avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data?.totalRatingCount} />
+
       <ButtonList>
-        <a href={`/book/${query?.bookId}/read/${item?.chapter[0]?.id}`} target="_blank" rel="noopener noreferrer">
+        <a href={`/book/${query?.bookId}/read/${Data?.chapter?.[0]?.id}`} target="_blank" rel="noopener noreferrer">
           <Button variant="contained" endIcon={<ArrowForwardRoundedIcon />}>
             Read
           </Button>
         </a>
-        <Tooltip title="Add to Library">
-          <Button variant="contained" sx={{ minWidth: 40, width: 40 }} onClick={() => handleAddToLibrary(item?.id)}>
-            {Boolean(item?.library_added) ? (
-              <LibraryAddCheckIcon fontSize="small" />
-            ) : (
-              <LibraryAddRoundedIcon fontSize="small" />
-            )}
-          </Button>
-        </Tooltip>
-        <Button
-          variant="contained"
-          onClick={handleLikeBook}
-          startIcon={
-            Boolean(item?.library_added) ? (
-              <ThumbUpRoundedIcon />
-            ) : (
-              <ThumbDownOffAltRoundedIcon sx={{ rotate: '180deg' }} />
-            )
-          }>
-          {item?.like_count}
-        </Button>
+        <ToggleToLibraryButton bookId={query?.bookId} libraryAdded={Data?.libraryAdded} />
+        <LikeButton bookId={query?.bookId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
         <MoreOptions />
       </ButtonList>
     </Root>

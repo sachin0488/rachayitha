@@ -13,6 +13,17 @@ import {
   likeBookCommentAPI,
 } from './bookDetail.api'
 
+export const useBookDetail = bookId => {
+  const { data, isLoading, isError, error, isFetching } = useQuery(
+    ['book-details', bookId],
+    () => fetchBookDetail(bookId),
+    {
+      enabled: Boolean(bookId),
+    },
+  )
+  return { BookDetail: data?.data?.data[0], isLoading, isError, error, isFetching }
+}
+
 export const useBookComment = book => {
   const { data, isLoading, isError, error, refetch } = useQuery(
     ['use-comment', book],
@@ -196,18 +207,6 @@ export const useCreateBookRatingAPI = ({ bookId, ...props }) => {
   return { handleCreateBookRating, isLoading, isSuccess, isError }
 }
 
-const useBookDetail = bookId => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(
-    ['book-details', bookId],
-    () => fetchBookDetail(bookId),
-    {
-      enabled: Boolean(bookId),
-      onSuccess({ data }) {},
-    },
-  )
-  return { BookDetail: data?.data?.data[0], isLoading, isError, error, isFetching }
-}
-
 export const useBookVoteAPI = ({ bookId }) => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -250,5 +249,3 @@ export const useBookVoteAPI = ({ bookId }) => {
     totalVotesByUser: data?.data?.data?.length,
   }
 }
-
-export default useBookDetail

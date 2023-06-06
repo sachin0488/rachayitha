@@ -1,27 +1,28 @@
 import styled from '@emotion/styled'
-import { Box } from '@mui/material'
-import Image from 'next/image'
-import { tabletS } from 'styles/mediaQuery/breakPoints'
 
-export const BannerImgContainer = styled(Box)`
+export const ImageRow = styled.div`
   flex-direction: column;
-  justify-content: space-between;
   gap: 15px;
-  align-items: flex-start;
   width: 215px;
-  display: none;
-  @media ${tabletS} {
-    display: block;
-    display: flex;
+  &:nth-of-type(even) {
+    margin-bottom: -175px;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (max-height: 874px) {
+    width: 195px;
+  }
+  position: relative;
 `
 
-export const ImgContainer = styled(Box)`
-  width: 218px;
-  height: 253px;
+export const StyledImage = styled.img`
+  height: auto;
+  aspect-ratio: 9/12;
+  width: 100%;
   overflow: hidden;
-  box-shadow: 4px 4px 9px 0rem rgb(81 34 192 / 28%);
-  border-radius: 15px;
+  margin-top: 8px;
+  box-shadow: 4px 4px 15px 0rem rgb(81 34 192 / 20%);
+  border-radius: 10px;
 `
-
-export const StyledImage = styled(Image)``

@@ -35,7 +35,7 @@ const TabNav = ({ handleTabBar, handleChange, value, ariaLabel, tabButtonList, f
   const generateTabStyles = useCallback(() => {
     let styles = {}
     flexSizeEnable.forEach((size, index) => {
-      styles[`&:nth-child(${index + 1})`] = {
+      styles[`&:nth-of-type(${index + 1})`] = {
         minWidth: `${size}px`,
       }
     })

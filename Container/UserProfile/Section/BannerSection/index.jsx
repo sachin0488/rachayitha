@@ -4,7 +4,7 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import { Button, CircularProgress, Tooltip } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
-import { useController, useForm } from 'react-hook-form'
+import { set, useController, useForm } from 'react-hook-form'
 import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
 import { useSelector } from 'react-redux'
 import { selectUser } from 'store/slices/global/user.slice'
@@ -12,21 +12,22 @@ import { selectUser } from 'store/slices/global/user.slice'
 const BannerSection = ({ text }) => {
   const { data } = useSelector(selectUser)
 
-  const { handleUpdateProfile, isLoading, isSuccess } = useUpdateProfileAPI()
-  const [filePreview, setFilePreview] = useState('')
-
-  const name = 'profile_banner'
-
-  const { control, handleSubmit } = useForm({
+  const { reset, control, handleSubmit } = useForm({
     defaultValues: {
       profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
     },
   })
 
+  const { handleUpdateProfile, isLoading, isSuccess, isUserFetchedSuccessfully, isUserFetching } = useUpdateProfileAPI()
+
+  const [filePreview, setFilePreview] = useState('')
+
+  const name = 'profile_banner'
+
   const { field } = useController({
     name,
     control,
-    profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
+    defaultValue: data?.profile_banner ? [data?.profile_banner] : [],
   })
 
   const { onChange, value } = field
@@ -41,6 +42,14 @@ const BannerSection = ({ text }) => {
   // 	setFilePreview('')
   // 	onChange([])
   // }
+
+  useEffect(() => {
+    if (isSuccess && isUserFetchedSuccessfully) {
+      reset({
+        profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
+      })
+    }
+  }, [data?.profile_banner, isSuccess, isUserFetchedSuccessfully, reset])
 
   const handleFileInput = e => {
     const file = e.target.files[0]
@@ -71,13 +80,13 @@ const BannerSection = ({ text }) => {
 
   return (
     <Root>
-      {filePreview && (
+      {filePreview && typeof value?.[0] !== 'string' && (
         <StyledSaveButton
-          disabled={isLoading}
+          disabled={isLoading || isUserFetching}
           onClick={handleSubmit(handleUpdateProfile)}
           color="secondary"
           variant="contained">
-          {isLoading ? (
+          {isLoading || isUserFetching ? (
             <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} />
           ) : (
             'Save'

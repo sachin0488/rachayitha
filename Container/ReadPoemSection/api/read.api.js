@@ -1,14 +1,14 @@
-import { ApiInstance } from 'api/global.api'
+import { APIInstance } from 'api/global.api'
 
 export const fetchChapterListAPI = ({ poemId }) => {
-  return ApiInstance({
+  return APIInstance({
     url: `/poem/${poemId}/chapter`,
     method: 'GET',
   })
 }
 
 export const fetchChapterContentAPI = ({ poemId, chapterId }) => {
-  return ApiInstance({
+  return APIInstance({
     url: `/poem/${poemId}/chapter/${chapterId}`,
     method: 'GET',
   })

@@ -50,8 +50,8 @@ const MyApp = props => {
               <QueryClientProvider client={queryClient}>
                 <CssBaseline />
                 <Layout>
-                  <Component {...pageProps} />
                   <LoadToken />
+                  <Component {...pageProps} />
                 </Layout>
               </QueryClientProvider>
             </SnackbarProvider>

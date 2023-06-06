@@ -1,36 +1,35 @@
-import { ApiInstance } from 'api/global.api'
+import { APIInstance } from 'api/global.api'
 
 export const fetchNewArrivalAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/newarrivalbook',
     method: 'GET',
   })
 }
 
 export const fetchPotentialStarletListAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/potentialstartletbook/',
     method: 'GET',
   })
 }
 
 export const fetchWeaklyFeaturedListAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/weeklybook/',
     method: 'GET',
   })
 }
 
 export const fetchIncompleteListAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/incompletebookwatch/',
     method: 'GET',
   })
 }
 
 export const fetchTopCollectionListAPI = ({ startDate, endDate }) => {
-
-  return ApiInstance({
+  return APIInstance({
     url: '/topbooklist/',
     params: {
       startDate,

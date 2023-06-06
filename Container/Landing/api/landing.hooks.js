@@ -56,13 +56,10 @@ export const useIncompleteList = () => {
 }
 
 export const useTopCollectionList = ({ startDate, endDate }) => {
-  const { refetch, data, isLoading, isError, error, isFetching } = useQuery(
-    ['topCollection-list'],
-    () => fetchTopCollectionListAPI({ startDate, endDate }),
-    {
-      onSuccess() {},
-    },
+  const { refetch, data, isLoading, isError, error, isFetching } = useQuery(['topCollection-list'], () =>
+    fetchTopCollectionListAPI({ startDate, endDate }),
   )
+  
   return {
     Obj: data?.data?.data || {
       novel: [],

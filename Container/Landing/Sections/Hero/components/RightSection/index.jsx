@@ -2,43 +2,26 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import React from 'react'
 import { useHero } from '../../api/hero.hook'
-import { BannerImgContainer, ImgContainer, StyledImage } from './styles'
+import { ImageRow, ImgContainer, StyledImage } from './styles'
 
 const RightSection = () => {
   const { data } = useHero()
 
-  const List = [...(data || []), ...(data || [])]
-
+  // const List = [...(data || []), ...(data || [])]
+  const RowList = [
+    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
+    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
+    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
+  ]
   return (
     <Root>
-      <BannerImgContainer sx={{ margin: '0px 0px -131px 0px' }}>
-        {List?.map((bannerImg, index) => (
-          <ImgContainer key={index}>
-            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
-          </ImgContainer>
-        ))}
-      </BannerImgContainer>
-      <BannerImgContainer sx={{ margin: '-56px 0px 0px 0px' }}>
-        {List?.map((bannerImg, index) => (
-          <ImgContainer key={index}>
-            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
-          </ImgContainer>
-        ))}
-      </BannerImgContainer>
-      <BannerImgContainer sx={{ margin: '45px 0px 0px 0px' }}>
-        {List?.map((bannerImg, index) => (
-          <ImgContainer key={index}>
-            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
-          </ImgContainer>
-        ))}
-      </BannerImgContainer>
-      <BannerImgContainer sx={{ margin: '-169px 0px 0px 0px' }}>
-        {List?.map((bannerImg, index) => (
-          <ImgContainer key={index}>
-            <StyledImage src={bannerImg.cover_img} width="218px" height="253px" />
-          </ImgContainer>
-        ))}
-      </BannerImgContainer>
+      {RowList?.map((ImageList, index) => (
+        <ImageRow key={index} sx={{ margin: '0px 0px -131px 0px' }}>
+          {ImageList?.map((imgSrc, index) => (
+            <StyledImage key={index} src={imgSrc} width="218px" height="253px" />
+          ))}
+        </ImageRow>
+      ))}
     </Root>
   )
 }
@@ -51,8 +34,36 @@ const Root = styled.div`
   @media (max-width: 1310px) {
     width: 40%;
   }
+  margin-right: 15px;
   @media (max-width: 1169px) {
-    height: 100%;
+  }
+  margin-top: -40px;
+  @media (max-height: 1200px) {
+    margin-top: -100px;
+  }
+  @media (max-height: 1140px) {
+    margin-top: -200px;
+  }
+  @media (max-height: 1055px) {
+    margin-top: -300px;
+  }
+  @media (max-height: 954px) {
+    margin-top: -400px;
+  }
+  @media (max-height: 874px) {
+    margin-top: -500px;
+  }
+  @media (max-height: 670px) {
+    margin-top: -600px;
+  }
+  @media (max-height: 609px) {
+    margin-top: -650px;
+  }
+  @media (max-height: 563px) {
+    margin-top: -700px;
+  }
+  @media (max-height: 524px) {
+    margin-top: -750px;
   }
 `
 

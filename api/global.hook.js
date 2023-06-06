@@ -1,9 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addContentToSearchList, selectSearchList, setSearchList } from 'store/slices/global/search.slice'
 import useLocalStorage from '../hooks/useLocalStorage'
-import { fetchSearchAPI } from './global.api'
 
 export const useAuthTokens = () => {
   const [access, setAccess] = useLocalStorage('access', '', true)
@@ -12,50 +7,6 @@ export const useAuthTokens = () => {
   return { access, refresh, setAccess, setRefresh }
 }
 
-export const useSearchList = keyword => {
-  const [page, setPage] = useState(1)
-
-  const { list, v, previous_page, next_page } = useSelector(selectSearchList)
-  const dispatch = useDispatch()
-
-  const { isLoading, isError, error, isFetching } = useQuery(
-    ['Search-list', page, keyword],
-    () => fetchSearchAPI(page, keyword),
-    {
-      onSuccess: ({ data }) => {
-        if (data?.resources?.previous_page === null) {
-          dispatch(
-            setSearchList({
-              // list: data?.data,
-              list: data?.resources?.data,
-              next_page: data?.resources?.next_page,
-              previous_page: data?.resources?.previous_page,
-            }),
-          )
-        } else {
-          dispatch(
-            addContentToSearchList({
-              // list: data?.data,
-              list: data?.resources?.data,
-              next_page: data?.resources?.next_page,
-              previous_page: data?.resources?.previous_page,
-            }),
-          )
-        }
-      },
-    },
-  )
-
-  const handleNextPage = () => {
-    setPage(next_page)
-  }
-
-  const handlePrevPage = () => {
-    setPage(previous_page)
-  }
-
-  return { ContentList: list, handleNextPage, handlePrevPage, isLoading, isError, error, isFetching }
-}
 
 export const authTokenHandles = () => {
   const access = 'access'

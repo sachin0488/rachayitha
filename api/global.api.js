@@ -2,51 +2,40 @@ import axios from 'axios'
 
 import { MutationCache, QueryCache } from '@tanstack/react-query'
 import { authTokenHandles } from './global.hook'
+import { isBrowser } from 'utility/ssr.utility'
 
 const API_URL = 'https://rachayitha.com/api/v1/'
+const AUTHORIZATION = 'Authorization'
+const { setAccess, setRefresh, getRefresh, getAccess } = authTokenHandles()
 
-export const ApiInstance = axios.create({
+export const APIInstance = axios.create({
   baseURL: `${API_URL}`,
 })
 
+APIInstance.defaults.headers.common['Content-Type'] = 'application/json'
+
 export const silentRenewalAPI = data => {
-  return ApiInstance({
+  return APIInstance({
     url: '/token/refresh/',
     method: 'POST',
     data,
   })
 }
 
-export const fetchSearchAPI = (page, keyword) => {
-  return ApiInstance({
-    url: '/book/',
-    method: 'GET',
-    params: { book_name: keyword },
-  })
-}
-
 const handleLogout = () => {
-  console.log('====================================')
-  console.log('Logout')
-  console.log('====================================')
   window.localStorage.clear()
   window.location.replace('/login')
 }
 
 const handleToken = res => {
-  const { setAccess, setRefresh } = authTokenHandles()
-
   setRefresh(res.data.refresh)
   setAccess(res.data.access)
-  setAuthToken(res.data.access)
 }
 
 export const mutationCache = new MutationCache({
   onError: async (error, variables, context, mutation) => {
     if (error?.response?.status === 401) {
       try {
-        const { getRefresh } = authTokenHandles()
-
         const res = await silentRenewalAPI({ refresh: getRefresh })
 
         if (res.status === 200) {
@@ -54,9 +43,9 @@ export const mutationCache = new MutationCache({
 
           mutation.execute()
 
-          enqueueSnackbar('Token has been updated  mutation!', {
-            variant: 'success',
-          })
+          // enqueueSnackbar('Token has been updated  mutation!', {
+          //   variant: 'success',
+          // })
         }
       } catch (error) {
         if (Number(error?.response?.status) === 400) handleLogout()
@@ -70,8 +59,6 @@ export const queryCache = new QueryCache({
   onError: async (error, query) => {
     if (error?.response?.status === 401) {
       try {
-        const { getRefresh } = authTokenHandles()
-
         const res = await silentRenewalAPI({ refresh: getRefresh })
 
         if (res.status === 200) {
@@ -79,9 +66,9 @@ export const queryCache = new QueryCache({
 
           query.fetch()
 
-          enqueueSnackbar('Token has been updated !', {
-            variant: 'success',
-          })
+          // enqueueSnackbar('Token has been updated !', {
+          //   variant: 'success',
+          // })
         }
       } catch (error) {
         if (Number(error?.response?.status) === 400) handleLogout()
@@ -91,33 +78,20 @@ export const queryCache = new QueryCache({
   },
 })
 
-export function setAuthToken(token) {
-  const AUTHORIZATION = 'Authorization'
+APIInstance.interceptors.request.use(
+  config => {
+    try {
+      const isExternal = !!config?.url?.startsWith('http')
+      const accessToken = isBrowser ? getAccess : null
 
-  const instances = [axios, ApiInstance]
-
-  instances.forEach(item => {
-    item.defaults.headers.common[AUTHORIZATION] = token && `Bearer ${token}`
-  })
-
-  instances.forEach(item => {
-    if (item === 'instance') {
-      item.interceptors.request.use(
-        config => {
-          return config
-        },
-        error => {
-          return Promise.reject(error)
-        },
-      )
-      item.interceptors.response.use(
-        config => {
-          return config
-        },
-        error => {
-          return Promise.reject(error)
-        },
-      )
+      if (accessToken && !isExternal) {
+        config.headers[AUTHORIZATION] = `Bearer ${accessToken}`
+      }
+      return config
+    } catch (error) {
+      console.log(error)
     }
-  })
-}
+  },
+  error => Promise.reject(error),
+)
+

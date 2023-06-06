@@ -24,6 +24,10 @@ const Root = styled.div`
   margin-top: 10px;
   width: 100%;
   overflow: hidden;
+  height: 110vh;
+  margin-bottom: -10vh;
+  min-height: 500px;
+  
 `
 
 const Main = styled.div`

@@ -21,32 +21,21 @@ const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 const LoadToken = () => {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
-  const { access } = useAuthTokens()
   const { push, pathname } = useRouter()
-  const { isError, refetch, status } = useFetchUserDataAPI(
-    {
-      enabled: !Boolean(
-        pathname.includes('/login') ||
-          pathname.includes('/create-account') ||
-          pathname.includes('/forgot-password') ||
-          pathname.includes('/terms-and-conditions') ||
-          pathname.includes('/privacy-policy') ||
-          pathname.includes('/new-password') ||
-          pathname.includes('/forgot-password') ||
-          pathname.includes('/otp') ||
-          pathname.includes('/'),
-      ),
-    },
-    'auth-check',
-  )
 
-  useEffect(() => {
-    dispatch({ type: LOGIN_SUCCESS })
-  }, [dispatch])
-
-  // useEffect(() => {
-  //   refetch()
-  // }, [refetch])
+  const { isError, refetch, status } = useFetchUserDataAPI({
+    enabled: !Boolean(
+      pathname.includes('/login') ||
+        pathname.includes('/create-account') ||
+        pathname.includes('/forgot-password') ||
+        pathname.includes('/terms-and-conditions') ||
+        pathname.includes('/privacy-policy') ||
+        pathname.includes('/new-password') ||
+        pathname.includes('/forgot-password') ||
+        pathname.includes('/otp') ||
+        pathname === '/',
+    ),
+  })
 
   useEffect(() => {
     if (isError && Number(status) === 401) {

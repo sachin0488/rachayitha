@@ -8,27 +8,23 @@ import DetailsSection from '../Section/DetailsSection'
 import ReviewSection from '../Section/ReviewSection'
 import CommentSection from '../Section/CommentSection'
 
-import useBookDetail from '../api/bookDetail.hook'
 import VoteSection from '../Section/VoteSection'
+import { useNovelDetailsService } from '../services/NovelDetails.service'
 
 const BookDetail = () => {
-  const router = useRouter()
-  const { BookDetail, isLoading, isError, error } = useBookDetail(router.query.bookId)
+  const { query } = useRouter()
+  const { error } = useNovelDetailsService({ bookId: query?.bookId })
 
-  if (isError) {
-    return <h1>{error?.message}</h1>
-  }
+  if (error) return <div>Something went wrong!</div>
 
   return (
     <RootContainer>
       <MainContainer>
-        <DetailsSection item={BookDetail} isLoading={isLoading} />
+        <DetailsSection />
         <RecommendationSection />
-        <VoteSection item={BookDetail} isLoading={isLoading} />
-        <ReviewSection item={BookDetail} isLoading={isLoading} />
-        <CommentSection item={BookDetail} isLoading={isLoading} />
-
-        {/* <ReviewSectionCom /> */}
+        <VoteSection />
+        <ReviewSection />
+        <CommentSection />
       </MainContainer>
     </RootContainer>
   )

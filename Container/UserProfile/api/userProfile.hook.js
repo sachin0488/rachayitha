@@ -1,67 +1,34 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUserData } from 'store/slices/global/user.slice'
-import { addContentToLibraryList, selectLibraryList, setLibraryList } from '../slices/library.slice'
-import { fetchLibraryAPI, UpdateUserProfileAPI } from './userProfile.api'
+import { UpdateUserProfileAPI } from './userProfile.api'
+import { AuthQuery } from 'Container/Auth/constants/query.address'
+import { useFetchUserDataAPI } from 'Container/Auth/api/auth.hook'
 
-export const useLibraryAPI = () => {
-  const [page, setPage] = useState(1)
-
-  const { list, v, previous_page, next_page } = useSelector(selectLibraryList)
-  const dispatch = useDispatch()
-
-  const { isLoading, isError, error, isFetching, refetch } = useQuery(
-    ['library-list', page],
-    () => fetchLibraryAPI(page),
-    {
-      onSuccess: ({ data }) => {
-        if (v === 0) {
-          dispatch(
-            setLibraryList({
-              list: data?.data || [],
-              // list: data?.resources?.data,
-              // next_page: data?.resources?.next_page,
-              // previous_page: data?.resources?.previous_page,
-            }),
-          )
-        } else {
-          dispatch(
-            addContentToLibraryList({
-              list: data?.data || [],
-              // list: data?.resources?.data,
-              // next_page: data?.resources?.next_page,
-              // previous_page: data?.resources?.previous_page,
-            }),
-          )
-        }
-      },
-    },
-  )
-
-  const handleNextPage = () => {
-    setPage(next_page)
-  }
-
-  const handlePrevPage = () => {
-    setPage(previous_page)
-  }
-
-  return { ContentList: list, handleNextPage, handlePrevPage, isLoading, isError, error, isFetching, refetch, setPage }
+const propsType = {
+  handleClose: Function,
 }
 
-export const useUpdateProfileAPI = props => {
+export const useUpdateProfileAPI = ({ handleClose } = propsType) => {
   const { enqueueSnackbar } = useSnackbar()
   const dispatch = useDispatch()
+  const {
+    refetch,
+    isLoading: isUserFetching,
+    isSuccess: isUserFetchedSuccessfully,
+  } = useFetchUserDataAPI({ enabled: true })
 
   const { mutate, isLoading, isSuccess } = useMutation(UpdateUserProfileAPI, {
     onSuccess({ data }) {
-      if (props?.handleClose !== undefined) props.handleClose()
+      refetch()
+
+      if (handleClose !== undefined) handleClose()
 
       enqueueSnackbar('Profile Updated Successfully!', {
         variant: 'success',
       })
+
       dispatch(setUserData(data?.user))
     },
     onError: error => {
@@ -74,5 +41,5 @@ export const useUpdateProfileAPI = props => {
 
   const handleUpdateProfile = mutate
 
-  return { handleUpdateProfile, isLoading, isSuccess }
+  return { handleUpdateProfile, isLoading, isSuccess, isUserFetchedSuccessfully, isUserFetching }
 }

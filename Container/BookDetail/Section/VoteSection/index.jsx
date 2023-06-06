@@ -10,10 +10,13 @@ import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDouble
 import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 import { useBookVoteAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import { useRouter } from 'next/router'
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
 
-const VoteSection = ({ isLoading }) => {
+const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
   const { query } = useRouter()
+  const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
+
   const { isFetching, isMutating, handleVoteBook, isAlreadyVoted, totalVotesByUser } = useBookVoteAPI({
     bookId: query?.bookId,
   })
@@ -40,7 +43,7 @@ const VoteSection = ({ isLoading }) => {
               <VoteInfoField>
                 <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
-                  #200
+                  #{Data?.bookRank}
                 </HighlightedText>
               </VoteInfoField>
             </Tooltip>
@@ -48,7 +51,7 @@ const VoteSection = ({ isLoading }) => {
               <VoteInfoField>
                 <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
-                  600
+                  {Data?.totalVote || 0}
                 </HighlightedText>
               </VoteInfoField>
             </Tooltip>

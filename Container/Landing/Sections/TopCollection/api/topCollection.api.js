@@ -1,4 +1,4 @@
-import { ApiInstance } from 'api/global.api'
+import { APIInstance } from 'api/global.api'
 import axios from 'axios'
 
 export const fakeTopCollectionApi = async () => {
@@ -17,7 +17,7 @@ export const fakeTopCollectionApi = async () => {
 
 export const topCollectionAPI = () => {
   const Url = '/topbooklist?startDate=2022-12-01&endDate=2022-12-07'
-  return ApiInstance({
+  return APIInstance({
     url: Url,
     method: 'GET',
   })

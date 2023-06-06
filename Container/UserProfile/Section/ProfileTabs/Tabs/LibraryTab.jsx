@@ -1,25 +1,15 @@
-import styled from '@emotion/styled'
-import { Skeleton } from '@mui/material'
-import { useLibraryAPI } from 'Container/UserProfile/api/userProfile.hook'
 import React from 'react'
+import styled from '@emotion/styled'
+import { Skeleton, Typography } from '@mui/material'
 import ContentCard from '../components/ContentCard'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { resetLibraryList } from 'Container/UserProfile/slices/library.slice'
+import { InView } from 'react-intersection-observer'
+import useLibraryService from 'Container/UserProfile/services/library.service'
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 
 const LibraryTab = () => {
-  const dispatch = useDispatch()
-  const { ContentList, isLoading, refetch, setPage } = useLibraryAPI()
+  const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useLibraryService()
 
-  useEffect(() => {
-    refetch()
-    return () => {
-      setPage(1)
-      dispatch(resetLibraryList())
-    }
-  }, [refetch, setPage, dispatch])
-
-  if (isLoading)
+  if (isFetching)
     return (
       <Root>
         <StyledSkeleton variant="rounded" />
@@ -33,11 +23,43 @@ const LibraryTab = () => {
       </Root>
     )
 
+  if (ContentList?.length === 0)
+    return (
+      <NotAvailableBar>
+        <LibraryAddCheckIcon sx={{ fontSize: 55 }} color="primary" />
+        <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
+          Add Your First Novel or Poem to Library
+        </Typography>
+      </NotAvailableBar>
+    )
+
   return (
     <Root>
       {ContentList?.map(item => (
         <ContentCard key={item.id} item={item} />
       ))}
+
+      {ContentList?.length !== 0 && isFetchingNextPage && (
+        <>
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+          <StyledSkeleton variant="rounded" height={160} />
+        </>
+      )}
+      {ContentList?.length !== 0 && hasNextPage && (
+        <InView
+          id="library-list-load-more"
+          as="div"
+          threshold={1}
+          delay={500}
+          disabled={isFetching || isFetchingNextPage || !hasNextPage}
+          onChange={(inView, entry) => {
+            if (inView && hasNextPage) {
+              fetchNextPage()
+            }
+          }}
+        />
+      )}
     </Root>
   )
 }
@@ -52,6 +74,17 @@ const StyledSkeleton = styled(Skeleton)`
     max-width: 100%;
     height: 238px;
   }
+`
+
+const NotAvailableBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 300px;
+  max-width: 240px;
+  align-self: center;
 `
 
 const Root = styled.div`

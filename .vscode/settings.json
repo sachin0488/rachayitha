@@ -4,12 +4,14 @@
         "bookvote",
         "Collaction",
         "commentby",
+        "commentuser",
         "explorebook",
         "explorepoem",
         "persistor",
         "potentialstartletbook",
         "Startlet",
         "tanstack",
+        "userbooklibrary",
         "votetoken"
     ]
 }

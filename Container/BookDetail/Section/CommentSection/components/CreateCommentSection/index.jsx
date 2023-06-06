@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 
 import { Avatar, Button, CircularProgress, Rating, Typography } from '@mui/material'
@@ -11,25 +11,31 @@ import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
 import { useSelector } from 'react-redux'
+import { useCreateCommentService } from 'Container/BookDetail/services/CreateComment.service'
 
-const CreateCommentSection = ({ commentId, sortBy }) => {
+const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
   const { data } = useSelector(store => store.user)
 
-  const { handleCreateBookComment, isLoading } = useCreateBookCommentAPI({
+  const { mutate, isLoading, isSuccess } = useCreateCommentService({
     bookId: query?.bookId,
-    commentId: commentId,
+    parentCommentId: parentCommentId || null,
     sortBy,
   })
 
   const methods = useForm({
-    // resolver: yupResolver(schema),
     defaultValues: {
-      comments: '',
+      comment: '',
     },
   })
 
-  const comments = methods.watch('comments')
+  useEffect(() => {
+    if (isSuccess) {
+      methods.reset({ comment: '' })
+    }
+  }, [isSuccess, methods])
+
+  const comment = methods.watch('comment')
 
   const { handleSubmit } = methods
 
@@ -57,15 +63,15 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
             emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
           />
         </Header>
-        <CommentText color="secondary" variant="body1">
-          <CommentField placeholder="Add Comment here ..." variant="filled" name="comments" multiline />
-        </CommentText>
+
+        <CommentField placeholder="Add Comment here ..." variant="filled" name="comment" multiline />
+
         <ActionList>
-          <StyledButton disabled={isLoading} onClick={() => methods.reset({ comments: '' })}>
+          <StyledButton disabled={isLoading} onClick={() => methods.reset({ comment: '' })}>
             Cancel
           </StyledButton>
           <StyledButton
-            disabled={isLoading || !comments}
+            disabled={isLoading || !comment}
             endIcon={
               isLoading ? (
                 <CircularProgress
@@ -78,7 +84,7 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
                 <SendRoundedIcon />
               )
             }
-            onClick={handleSubmit(handleCreateBookComment)}>
+            onClick={handleSubmit(mutate)}>
             Comment
           </StyledButton>
         </ActionList>

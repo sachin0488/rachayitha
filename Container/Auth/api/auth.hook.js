@@ -13,26 +13,17 @@ import {
 } from './auth.api'
 import { useAuthTokens } from 'api/global.hook'
 import { getFormErrorMessage } from 'hooks/useFormError'
+import { AuthQuery } from '../constants/query.address'
 
-export const useFetchUserDataAPI = (props, work) => {
+export const useFetchUserDataAPI = ({ enabled }) => {
   const { enqueueSnackbar } = useSnackbar()
   const dispatch = useDispatch()
-  const { access, refresh } = useAuthTokens()
 
-  const { data, isFetching, isSuccess, refetch, isError } = useQuery([`user-data-${work}`], fetchUserDataAPI, {
-    enabled: props?.enabled,
+  const { data, isFetching, isSuccess, refetch, isError } = useQuery([AuthQuery.USER_DATA], {
+    queryFn: fetchUserDataAPI,
+    enabled: enabled,
     onSuccess({ data }) {
       dispatch(setUserData(data.user))
-
-      dispatch({ type: LOGIN_SUCCESS })
-
-      if (typeof props?.onSuccess === 'function') {
-        props.onSuccess(data)
-      }
-
-      // enqueueSnackbar(data.message, {
-      //   variant: "success",
-      // });
     },
     onError: error => {
       if (error.response?.data?.message)
@@ -63,7 +54,6 @@ export const useCreateAccountAPI = () => {
       dispatch(setLoginToken(data.token))
       setAccess(data?.user?.tokens?.access)
       setRefresh(data?.user?.tokens?.refresh)
-      dispatch({ type: LOGIN_SUCCESS })
       router.push('/otp')
       enqueueSnackbar(data.message, {
         variant: 'success',
@@ -190,6 +180,7 @@ export const useLogoutUserAPI = () => {
     dispatch(setUserLogout())
     router.push('/')
     window && window.localStorage.setItem('persist:root', '')
+    window && window.localStorage.clear()
   }
 
   // const { mutate, isLoading, isSuccess } = useMutation(logoutUserAPI, {

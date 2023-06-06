@@ -1,10 +1,10 @@
-import { ApiInstance } from 'api/global.api'
+import { APIInstance } from 'api/global.api'
 import moment from 'moment'
 
 // const API_URL = '/potentialstartletbook/'
 
 export const fetchLibraryAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/userbooklibrary/',
     method: 'GET',
     // headers: {
@@ -34,7 +34,7 @@ export const UpdateUserProfileAPI = data => {
   if (data?.bio) form.append('bio', data?.bio)
   if (data?.gender) form.append('gender', data?.gender)
 
-  return ApiInstance({
+  return APIInstance({
     url: '/user/',
     method: 'PUT',
     data: form,

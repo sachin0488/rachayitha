@@ -1,7 +1,7 @@
-import { ApiInstance } from 'api/global.api'
+import { APIInstance } from 'api/global.api'
 
 export const createAccountAPI = ({ username, email, password, bio, full_name, birth_date, gender }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/register/',
     method: 'POST',
     data: { user: { username, email, password, bio, full_name, birth_date, gender } },
@@ -13,7 +13,7 @@ export const createAccountAPI = ({ username, email, password, bio, full_name, bi
 }
 
 export const loginAPI = ({ email, password }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/login/',
     method: 'POST',
     data: { user: { email, password } },
@@ -25,7 +25,7 @@ export const loginAPI = ({ email, password }) => {
 }
 
 export const generateOTPByEmailAPI = ({ email }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/generateOTP',
     method: 'POST',
     data: { email },
@@ -33,14 +33,14 @@ export const generateOTPByEmailAPI = ({ email }) => {
 }
 
 export const generateOTPByTokenAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/generateOTP',
     method: 'GET',
   })
 }
 
 export const changeEmailAPI = ({ email, otp }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/changeEmail',
     method: 'PATCH',
     data: { email, otp },
@@ -48,7 +48,7 @@ export const changeEmailAPI = ({ email, otp }) => {
 }
 
 export const changePasswordAPI = ({ email, otp, password }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/changePassword',
     method: 'POST',
     data: { email, otp, password },
@@ -56,7 +56,7 @@ export const changePasswordAPI = ({ email, otp, password }) => {
 }
 
 export const verifyEmailAPI = ({ email, otp }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/verifyEmail',
     method: 'POST',
     data: { email, otp },
@@ -64,21 +64,21 @@ export const verifyEmailAPI = ({ email, otp }) => {
 }
 
 export const fetchUserDataAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/user/',
     method: 'GET',
   })
 }
 
 export const logoutUserAPI = () => {
-  return ApiInstance({
+  return APIInstance({
     url: '/logout/',
     method: 'POST',
   })
 }
 
 export const sendResetPasswordLinkByEmailAPI = data => {
-  return ApiInstance({
+  return APIInstance({
     url: '/password_reset/',
     method: 'POST',
     data,
@@ -86,7 +86,7 @@ export const sendResetPasswordLinkByEmailAPI = data => {
 }
 
 export const resetPasswordByTokenAPI = data => {
-  return ApiInstance({
+  return APIInstance({
     url: '/password_reset/confirm/',
     method: 'POST',
     data,

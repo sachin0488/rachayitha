@@ -4,8 +4,6 @@ import rootReducer from './root.reducer'
 import storage from '../utility/webStore'
 import { FLUSH, REHYDRATE, PAUSE } from 'redux-persist'
 import { PERSIST, PURGE, REGISTER } from 'redux-persist'
-import { setAuthToken } from '../api/global.api'
-import { selectUser } from './slices/global/user.slice'
 import { authTokenHandles } from '../api/global.hook'
 
 const persistConfig = {
@@ -22,9 +20,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const saveAuthToken = store => next => action => {
   const { getAccess } = authTokenHandles()
 
-  if (action.type === LOGIN_SUCCESS) {
-    setAuthToken(getAccess)
-  }
+ 
 
   return next(action)
 }

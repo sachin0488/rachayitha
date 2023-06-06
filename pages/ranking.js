@@ -1,5 +1,5 @@
 import React from 'react'
-import RankingPage from 'Container/FeatureSection/Pages/Ranking.page'
+import RankingPage from 'Container/Explore/pages/Ranking.page'
 
 const Ranking = () => {
   return <RankingPage />

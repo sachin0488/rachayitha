@@ -1,22 +1,22 @@
-import styled from '@emotion/styled'
-import { Avatar, Button, Tooltip, Typography } from '@mui/material'
-import moment from 'moment'
 import React, { useState } from 'react'
-import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
-import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
-import { blue, green, grey, red } from '@mui/material/colors'
+import { useSelector } from 'react-redux'
+import { Avatar, Button, Tooltip, Typography } from '@mui/material'
+import styled from '@emotion/styled'
+import Link from 'next/link'
+import moment from 'moment'
+
 import InfoField from './components/InfoField'
 import StoneSection from './components/StoneSection'
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
-import EditProfileModal from './components/EditProfileModal'
-import { useSelector } from 'react-redux'
+import EditProfileModal from './EditProfileModal'
+
 import { selectUser } from 'store/slices/global/user.slice'
 
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
+import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
 import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
 import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
-import Link from 'next/link'
 
 const InfoSection = () => {
   const { data } = useSelector(selectUser)

@@ -1,14 +1,14 @@
-import { ApiInstance } from '../../../api/global.api'
+import { APIInstance } from '../../../api/global.api'
 
 export const fetchPoemDetail = poemId => {
-  return ApiInstance({
+  return APIInstance({
     url: `poem/${poemId}`,
     method: 'GET',
   })
 }
 
 export const createPoemRating = poemId => data => {
-  return ApiInstance({
+  return APIInstance({
     url: `/poemrate/`,
     method: 'POST',
     data: {
@@ -23,7 +23,7 @@ export const createPoemRating = poemId => data => {
 }
 
 export const fetchCommentList = ({ poemId, commentId, sortBy }) => {
-  return ApiInstance({
+  return APIInstance({
     method: 'GET',
     url: `/poemcomment/`,
     params: {
@@ -35,7 +35,7 @@ export const fetchCommentList = ({ poemId, commentId, sortBy }) => {
 }
 
 export const createPoemCommentAPI = ({ poem_id, comments, parent_comment_id }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/poemcomment/',
     method: 'POST',
     data: {
@@ -47,7 +47,7 @@ export const createPoemCommentAPI = ({ poem_id, comments, parent_comment_id }) =
 }
 
 export const likePoemAPI = ({ poemId }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/poemlike/',
     method: 'POST',
     data: {
@@ -57,7 +57,7 @@ export const likePoemAPI = ({ poemId }) => {
 }
 
 export const likePoemCommentAPI = ({ poemId, commentId }) => {
-  return ApiInstance({
+  return APIInstance({
     url: '/poemlike/',
     method: 'POST',
     data: {
@@ -68,7 +68,7 @@ export const likePoemCommentAPI = ({ poemId, commentId }) => {
 }
 
 export const addToLibraryAPI = poem_id => {
-  return ApiInstance({
+  return APIInstance({
     url: '/userpoemlibrary/',
     method: 'POST',
     data: { poem_id: poem_id },

@@ -4,8 +4,13 @@ import React from 'react'
 import CreateReviewSection from './components/CreateReviewSection'
 import Heading from './components/Heading'
 import RatingSection from './components/RatingSection'
+import { useRouter } from 'next/router'
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
 
-const ReviewSection = ({ item, isLoading }) => {
+const ReviewSection = () => {
+  const { query } = useRouter()
+  const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
+
   const isTablet = useMediaQuery('(max-width: 735px)')
 
   if (isLoading)
@@ -27,11 +32,11 @@ const ReviewSection = ({ item, isLoading }) => {
       <StyledDivider />
       <Body>
         <Main>
-          <Heading item={item} />
-          <RatingSection item={item} />
+          <Heading avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data.totalRatingCount} />
+          <RatingSection ratingParams={Data?.ratingParams} />
         </Main>
         {isTablet && <StyledDivider />}
-        <CreateReviewSection bookId={item?.id} />
+        <CreateReviewSection bookId={query?.bookId} />
       </Body>
       <StyledDivider />
     </Root>
