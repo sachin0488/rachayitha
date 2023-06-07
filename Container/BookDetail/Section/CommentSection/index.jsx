@@ -24,9 +24,9 @@ const TabList = [
 ]
 
 const CommentSection = () => {
-  const { query } = useRouter()
   const [value, setValue] = useState(0)
 
+  const { query } = useRouter()
   const { Data } = useNovelDetailsService({ bookId: query?.bookId })
 
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError } = useCommentListService({
@@ -125,6 +125,11 @@ const a11yProps = index => {
 const CommentCountText = styled(Typography)`
   font-weight: 600;
   align-self: center;
+  white-space: nowrap;
+  @media (max-width: 420px) {
+    font-weight: 500;
+    font-size: 14px;
+  }
 `
 
 const StyledTab = styled(Tab)`
@@ -156,9 +161,6 @@ const StyledTabs = styled(Tabs)`
   overflow: visible;
   display: flex;
 
-  @media (max-width: 530px) {
-    width: 100%;
-  }
   & .${tabsClasses.flexContainer} {
     display: flex;
     gap: 20px;

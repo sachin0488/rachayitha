@@ -12,10 +12,12 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
 import { useSelector } from 'react-redux'
 import { useCreateCommentService } from 'Container/BookDetail/services/CreateComment.service'
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
 
 const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
   const { data } = useSelector(store => store.user)
+  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
 
   const { mutate, isLoading, isSuccess } = useCreateCommentService({
     bookId: query?.bookId,
@@ -55,8 +57,7 @@ const CreateCommentSection = ({ parentCommentId, sortBy }) => {
           <Rating
             color="primary"
             sx={{ ml: 'auto', color: theme => theme.palette.primary.main }}
-            //   value={Number(item?.rating?.rate__avg).toFixed(1)}
-            value={0}
+            value={Data?.bookRatingByUser || 0}
             readOnly
             size="medium"
             precision={0.1}

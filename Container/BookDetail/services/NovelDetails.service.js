@@ -61,6 +61,7 @@ const fetchBookDetail = async bookId => {
     status: item?.status,
     tags: item?.tags,
     synopsis: item?.synopsis,
+    bookRatingByUser: item?.user_book_rate,
 
     coverImage: item?.cover_img,
     coverImage2: item?.cover_img2,

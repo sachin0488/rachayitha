@@ -5,15 +5,15 @@ import { Avatar, Button, Rating, Typography } from '@mui/material'
 
 import StarIcon from '@mui/icons-material/Star'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
+import ThumbDownOffAltRoundedIcon from '@mui/icons-material/ThumbDownOffAltRounded'
 import CommentBankRoundedIcon from '@mui/icons-material/CommentBankRounded'
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
 import ReplySection from './ReplySection'
-import { useLikeBookCommentAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import { useCommentLikeService } from 'Container/BookDetail/services/CommentLike.service'
 
 const CommentCard = ({ item, sortBy }) => {
   const { mutate, isLoading } = useCommentLikeService({
-    bookId:item?.bookId,
+    bookId: item?.bookId,
     commentId: item?.commentId,
     parentCommentId: null,
     sortBy,
@@ -49,7 +49,9 @@ const CommentCard = ({ item, sortBy }) => {
       </CommentText>
 
       <ActionList>
-        <StyledButton startIcon={<ThumbUpRoundedIcon />} onClick={mutate}>
+        <StyledButton
+          startIcon={item?.isLiked ? <ThumbUpRoundedIcon /> : <ThumbDownOffAltRoundedIcon sx={{ rotate: '180deg' }} />}
+          onClick={mutate}>
           {item?.likeCount}
         </StyledButton>
         <StyledButton
