@@ -3,7 +3,7 @@ import { NovelDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 
-const createCommentAPI = ({ bookId, parentCommentId, comment }) => {
+export const createCommentAPI = ({ bookId, parentCommentId, comment }) => {
   return APIInstance({
     url: '/bookcomment/',
     method: 'POST',

@@ -109,6 +109,13 @@ const Nav = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  @media (max-width: 320px) {
+    gap: 0px;
+    justify-content: space-between;
+    & > :nth-of-type(2) {
+      display: none;
+    }
+  }
 `
 
 const StyledSkeleton = styled(Skeleton)`
@@ -149,6 +156,10 @@ const StyledTab = styled(Tab)`
     white-space: nowrap;
     font-weight: 500;
   }
+  @media (max-width: 350px) {
+    padding: 0px;
+    width: fit-content;
+  }
 
   &.${tabClasses.selected} {
     color: ${({ theme }) => theme.palette.primary.main};
@@ -164,6 +175,9 @@ const StyledTabs = styled(Tabs)`
   & .${tabsClasses.flexContainer} {
     display: flex;
     gap: 20px;
+    @media (max-width: 350px) {
+      gap: 0px;
+    }
   }
 
   & .${tabsClasses.scroller} {

@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+import { useToggleToLibraryService } from 'Container/BookDetail/services/ToggleToLibrary.service'
 
 const ContentCard = ({ item }) => {
-  const { handleAddToLibrary } = useAddToLibraryAPI()
+  const { mutate } = useToggleToLibraryService({ bookId: item?.id, isAdded: item?.is_added })
   const { isLoggedIn } = useSelector(selectUser)
 
   return (
@@ -18,7 +18,7 @@ const ContentCard = ({ item }) => {
       <Main>
         {isLoggedIn ? (
           <Tooltip title="Add to Library">
-            <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
+            <AddIcon color="primary" variant="contained" onClick={mutate}>
               <AddOutlinedIcon />
             </AddIcon>
           </Tooltip>

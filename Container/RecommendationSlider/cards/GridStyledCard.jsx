@@ -2,51 +2,64 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
-import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
+import { ButtonBase, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 
-export const cloudinary = '/book_image.jpg'
-
-const ContentCard = ({ item }) => {
-  const { handleAddToLibrary } = useAddToLibraryAPI()
+const GridStyledCard = ({ item, queryKey }) => {
   const { isLoggedIn } = useSelector(selectUser)
 
   return (
     <Root>
       <Main>
         {isLoggedIn ? (
-          <Tooltip title="Add to Library">
-            <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-              <AddOutlinedIcon />
-            </AddIcon>
-          </Tooltip>
+          <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} queryKey={queryKey} />
         ) : (
           <></>
         )}
 
-        <Image
-          alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
-        />
+        <ImageSection>
+          <Image
+            alt="Cover Image"
+            src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
+          />
+          <SmallImageList>
+            <SmallImage
+              alt="Cover Image"
+              src={item?.coverImage2 && item?.coverImage2.includes('http') ? item?.coverImage2 : '/alt-img.svg'}
+            />
+            <SmallImage
+              alt="Cover Image"
+              src={item?.coverImage3 && item?.coverImage3.includes('http') ? item?.coverImage3 : '/alt-img.svg'}
+            />
+            <SmallImage
+              alt="Cover Image"
+              src={item?.coverImage4 && item?.coverImage4.includes('http') ? item?.coverImage4 : '/alt-img.svg'}
+            />
+          </SmallImageList>
+        </ImageSection>
+
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.book_name}
+              {item?.bookName}
             </TitleName>
+
             <CategoryName variant="subtitle2">
-              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
           </InfoLeft>
+
           <InfoRight>
-            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
+            <Rating variant="subtitle2">
+              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
+            </Rating>
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+      <Link href={isLoggedIn ? `/book/${item.bookId}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>
@@ -55,7 +68,7 @@ const ContentCard = ({ item }) => {
   )
 }
 
-export default ContentCard
+export default GridStyledCard
 
 const Root = styled.div`
   position: relative;
@@ -70,7 +83,7 @@ const Root = styled.div`
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
   }
-  min-width: 260px;
+  min-width: 324px;
 `
 
 const StyledButton = styled(ButtonBase)`
@@ -80,7 +93,7 @@ const StyledButton = styled(ButtonBase)`
   left: 0;
   bottom: 0;
   z-index: 1;
-  border-radius: 16px;
+  border-radius: 18px;
   background-color: transparent;
 `
 
@@ -90,12 +103,34 @@ const Main = styled.div`
   gap: 10px;
 `
 
+const ImageSection = styled.div`
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+`
+
 const Image = styled.img`
   width: 100%;
   height: 285px;
   object-fit: cover;
   border-radius: 10px;
   aspect-ratio: 355/466;
+`
+
+const SmallImageList = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 285px;
+  width: 66px;
+  gap: 10px;
+`
+
+const SmallImage = styled.img`
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  aspect-ratio: 355/476;
+  border: 0px;
 `
 
 const InfoSection = styled.div`
@@ -130,22 +165,4 @@ const Rating = styled(Typography)`
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: 600;
   font-size: 1.2rem;
-`
-
-const AddIcon = styled(Button)`
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-top-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-top-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  z-index: 10;
-  padding: 0px;
-  min-width: 35px;
-  min-height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `

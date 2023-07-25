@@ -3,7 +3,7 @@ import { Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CreateReviewModal from './CreateReviewModal'
 
-const CreateReviewSection = ({bookId}) => {
+const CreateReviewSection = ({ bookId }) => {
   const [open, setOpen] = useState(false)
   return (
     <Root>

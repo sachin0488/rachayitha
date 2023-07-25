@@ -48,8 +48,8 @@ export const mutationCache = new MutationCache({
           // })
         }
       } catch (error) {
-        if (Number(error?.response?.status) === 400) handleLogout()
-        if (Number(error?.response?.status) === 401) handleLogout()
+        if (parseInt(error?.response?.status) === 400) handleLogout()
+        if (parseInt(error?.response?.status) === 401) handleLogout()
       }
     }
   },
@@ -71,8 +71,8 @@ export const queryCache = new QueryCache({
           // })
         }
       } catch (error) {
-        if (Number(error?.response?.status) === 400) handleLogout()
-        if (Number(error?.response?.status) === 401) handleLogout()
+        if (parseInt(error?.response?.status) === 400) handleLogout()
+        if (parseInt(error?.response?.status) === 401) handleLogout()
       }
     }
   },

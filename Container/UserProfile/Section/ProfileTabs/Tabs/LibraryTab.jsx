@@ -36,7 +36,7 @@ const LibraryTab = () => {
   return (
     <Root>
       {ContentList?.map(item => (
-        <ContentCard key={item.id} item={item} />
+        <ContentCard key={item.bookId} item={item} />
       ))}
 
       {ContentList?.length !== 0 && isFetchingNextPage && (

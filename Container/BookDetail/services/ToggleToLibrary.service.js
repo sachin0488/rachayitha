@@ -49,6 +49,8 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
               : item
           })
 
+        console.log('oldData', oldData)
+
         return oldData
           ? {
               ...oldData,

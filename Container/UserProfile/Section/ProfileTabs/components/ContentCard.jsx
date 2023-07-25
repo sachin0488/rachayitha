@@ -2,55 +2,41 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
-import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
+import { Button, ButtonBase, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
-import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded'
+import ToggleToLibraryButton from './ToggleToLibraryButton'
 
 const ContentCard = ({ item }) => {
-  const { handleAddToLibrary } = useAddToLibraryAPI()
   const { isLoggedIn } = useSelector(selectUser)
-
   return (
     <Root>
       <Main>
-        {isLoggedIn ? (
-          <Tooltip title="Remove from Library">
-            <RemoveIcon
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                // handleAddToLibrary(item.id)
-              }}>
-              <RemoveRoundedIcon sx={{ fontSize: 22 }} />
-            </RemoveIcon>
-          </Tooltip>
-        ) : (
-          <></>
-        )}
+        {isLoggedIn ? <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} /> : <></>}
 
         <Image
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
         />
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.book_name}
+              {item?.bookName}
             </TitleName>
             <CategoryName variant="subtitle2">
-              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
           </InfoLeft>
           <InfoRight>
-            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
+            <Rating variant="subtitle2">
+              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
+            </Rating>
           </InfoRight>
         </InfoSection>
       </Main>
 
-      <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+      <Link href={isLoggedIn ? `/book/${item.bookId}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>
@@ -65,7 +51,7 @@ const Root = styled.div`
   position: relative;
   padding: 8px;
   box-shadow: none;
-  border-radius: 14px;
+  border-radius: 16px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.palette.primary.main}18;

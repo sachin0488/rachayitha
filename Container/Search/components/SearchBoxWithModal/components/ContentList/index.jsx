@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
-import { useSearchList } from 'api/global.hook'
-import useExplore from 'Container/Explore/services/explore.service'
-import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
 import useSearchService from 'Container/Search/services/search.service'
+
 import { InView } from 'react-intersection-observer'
 import { Skeleton } from '@mui/material'
 
@@ -19,7 +17,7 @@ const ContentSection = ({ ranking, SearchKeyword }) => {
   return (
     <Root>
       {ContentList?.map((item, index) => (
-        <ContentCard key={index} item={item} index={index} ranking={ranking} />
+        <ContentCard key={index} item={item} index={index} ranking={ranking} SearchKeyword={SearchKeyword} />
       ))}
 
       {(isFetching || isFetchingNextPage) && (

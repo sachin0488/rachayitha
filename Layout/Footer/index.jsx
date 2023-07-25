@@ -96,6 +96,7 @@ const Root = styled.div`
   display: flex;
   padding: 30px 20px;
   justify-content: center;
+  margin-top: auto;
 `
 
 const Main = styled.div`

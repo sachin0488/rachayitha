@@ -5,48 +5,44 @@ import { useSelector } from 'react-redux'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-
-export const cloudinary = '/book_image.jpg'
-
-const ContentCard = ({ item }) => {
-  const { handleAddToLibrary } = useAddToLibraryAPI()
+const MinimalCard = ({ item, queryKey }) => {
   const { isLoggedIn } = useSelector(selectUser)
 
   return (
     <Root>
       <Main>
         {isLoggedIn ? (
-          <Tooltip title="Add to Library">
-            <AddIcon color="primary" variant="contained" onClick={() => handleAddToLibrary(item.id)}>
-              <AddOutlinedIcon />
-            </AddIcon>
-          </Tooltip>
+          <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} queryKey={queryKey} />
         ) : (
           <></>
         )}
 
         <Image
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
         />
+
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.book_name}
+              {item?.bookName}
             </TitleName>
+
             <CategoryName variant="subtitle2">
-              {item?.category?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
           </InfoLeft>
+
           <InfoRight>
-            <Rating variant="subtitle2">{Number(item?.rating?.rate__avg).toFixed(1) || 'N/A'}</Rating>
+            <Rating variant="subtitle2">
+              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
+            </Rating>
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/book/${item.id}` : `/login`}>
+      <Link href={isLoggedIn ? `/book/${item.bookId}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>
@@ -55,7 +51,7 @@ const ContentCard = ({ item }) => {
   )
 }
 
-export default ContentCard
+export default MinimalCard
 
 const Root = styled.div`
   position: relative;

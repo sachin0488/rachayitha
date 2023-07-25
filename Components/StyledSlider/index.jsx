@@ -7,9 +7,9 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
-import { useIntersectionObserver } from 'react-intersection-observer-hook'
+// import { useIntersectionObserver } from 'react-intersection-observer-hook'
 
-const StyledSlider = ({ List, CardComponent }) => {
+const StyledSlider = ({ List, CardComponent, ...props }) => {
   const ref = useRef()
   const [ScrollLeft, setScrollLeft] = useState(ref.current?.scrollLeft)
 
@@ -23,12 +23,10 @@ const StyledSlider = ({ List, CardComponent }) => {
     <Root
       ref={ref}
       onScroll={() => {
-        console.log(ref.current?.scrollLeft)
-        console.log(ScrollLeft <= ref.current?.firstChild?.offsetWidth * 1.5)
         setScrollLeft(ref.current?.scrollLeft)
       }}>
       {List?.map(item => (
-        <CardComponent key={item?.id} item={item} />
+        <CardComponent key={item?.bookId || item?.id} item={item} {...props} />
       ))}
 
       <StyledIconButton

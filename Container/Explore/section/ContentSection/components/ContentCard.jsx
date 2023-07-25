@@ -1,22 +1,23 @@
 import React from 'react'
+import Link from 'next/link'
 import styled from '@emotion/styled'
 
 import { Button, ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
 
 import StarIcon from '@mui/icons-material/Star'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 
-import Link from 'next/link'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import ToggleToLibraryButton from './ToggleToLibraryButton'
 
 const ContentCard = ({ item, index, ranking }) => {
-  const { handleAddToLibrary } = useAddToLibraryAPI()
   const isMobile = useMediaQuery('(max-width: 465px)')
 
+  console.log('====================================')
+  console.log(item?.libraryAdded)
+  console.log('====================================')
   return (
     <Root>
       <DeignsIcon />
@@ -31,17 +32,17 @@ const ContentCard = ({ item, index, ranking }) => {
         )}
         <Image
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
         />
         <InfoSection>
           <HashtagList>
-            {item?.tag?.map(tag => {
-              return <Hashtag key={tag?.name}>#{tag?.name}</Hashtag>
+            {item?.tags?.map(name => {
+              return <Hashtag key={name}>#{name}</Hashtag>
             })}
           </HashtagList>
 
           <TitleName variant="subtitle2">
-            {item?.book_name} <Status variant="caption">{item?.status}</Status>
+            {item?.bookName} <Status variant="caption">{item?.status}</Status>
           </TitleName>
           {/* <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText> */}
           <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
@@ -52,19 +53,19 @@ const ContentCard = ({ item, index, ranking }) => {
                 <Rating
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
-                  value={Number(Number(item?.rating?.rate__avg).toFixed(1) || 0)}
+                  value={parseFloat(parseFloat(item?.avgRatingValue).toFixed(1) || 0)}
                   readOnly
                   precision={0.5}
                   emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
                 />
               </RatingRoot>
               <LikeCount variant="subtitle2">
-                {item?.like_count}
+                {item?.likeCount}
                 <ThumbUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 1, mr: 1 }} />
               </LikeCount>
 
               <CommentCount variant="subtitle2">
-                {item?.comment_count}
+                {item?.commentCount}
                 <ModeCommentRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
                 />
@@ -72,9 +73,7 @@ const ContentCard = ({ item, index, ranking }) => {
             </InfoNav>
           )}
         </InfoSection>
-        <AddIcon variant="contained" onClick={() => handleAddToLibrary(item?.id)}>
-          <AddOutlinedIcon />
-        </AddIcon>
+        <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} ranking={ranking} />
       </Main>
       {isMobile && (
         <InfoNav>
@@ -82,19 +81,19 @@ const ContentCard = ({ item, index, ranking }) => {
             <Rating
               color="primary"
               sx={{ color: theme => theme.palette.primary.main }}
-              value={3.5}
+              value={parseFloat(parseFloat(item?.avgRatingValue).toFixed(1) || 0)}
               readOnly
               precision={0.5}
               emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
             />
           </RatingRoot>
           <LikeCount variant="subtitle2">
-            6
+            {item?.likeCount}
             <ThumbUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 1, mr: 1 }} />
           </LikeCount>
 
           <CommentCount variant="subtitle2">
-            6
+            {item?.commentCount}
             <ModeCommentRoundedIcon
               sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
             />

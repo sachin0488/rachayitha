@@ -2,29 +2,31 @@ import React from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
-import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
-import { ErrorBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
-import { LoadingBar } from 'Container/Landing/components/CardComponents'
 import { mainMaxWidth } from 'Container/Landing/common/styles'
-import ContentCard from './components/ContentCard'
-import { useNewArrivalList } from 'Container/Landing/api/landing.hooks'
 
-const NewArrivalsCards = () => {
-  const { List, isLoading, isError } = useNewArrivalList()
+import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/components'
+import { useContinueReadingService } from '../services/ContinueReading.service'
+
+import MinimalCard from '../cards/MinimalCard'
+
+const ContinueReadingSliders = () => {
+  const { List, isLoading, isError, queryKey } = useContinueReadingService()
+
+  if (List.length === 0) return null
 
   return (
     <Root>
       <Main>
-        <Heading>New Arrivals</Heading>
+        <Heading>Continue Reading</Heading>
+        {isLoading && <LoadingBar />}
+        {isError && <ErrorBar />}
         {isLoading ? (
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : List.length === 0 ? (
-          <NotAvailableBar />
         ) : (
-          <StyledSlider CardComponent={ContentCard} List={List} />
+          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} />
         )}
       </Main>
     </Root>
@@ -47,12 +49,6 @@ const Main = styled.div`
   padding-block: 40px;
   gap: 10px;
   overflow: hidden;
-  @media ${mobileM} {
-    padding-block: 0px;
-  }
-  @media ${tablet} {
-    padding-block: 40px;
-  }
 
   /* Styled Slider Settings ----- */
   --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
@@ -61,17 +57,12 @@ const Main = styled.div`
   }
 `
 
-export const Heading = styled(Typography)`
+const Heading = styled(Typography)`
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
-  @media ${mobileM} {
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 29px;
-  }
   color: ${props => props.theme.palette.secondary.main};
   padding-left: var(--element-left-spacing);
 `
 
-export default NewArrivalsCards
+export default ContinueReadingSliders

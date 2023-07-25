@@ -1,11 +1,12 @@
 import React from 'react'
 import Banner from '../Sections/Banner'
 import { RootContainer } from '../common/styles'
-import WeeklyFeatured from '../Sections/WeeklyFeatured'
-import PotentialStarletCards from '../Sections/PotentialStarletCards'
-import NewArrivalsCards from '../Sections/NewArrivalsCards/index'
+
 import Header from '../Sections/Header'
 import GetStartedSection from '../Sections/GetStartedSection'
+import WeeklyFeaturedSliders from 'Container/RecommendationSlider/sliders/WeeklyFeaturedSliders'
+import PotentialStarletSliders from 'Container/RecommendationSlider/sliders/PotentialStarletSliders'
+import NewArrivalsSliders from 'Container/RecommendationSlider/sliders/NewArrivalsSliders'
 
 const LandingPageWithoutLogin = () => {
   return (
@@ -13,9 +14,9 @@ const LandingPageWithoutLogin = () => {
       <Header />
       <GetStartedSection />
       <Banner />
-      <WeeklyFeatured />
-      <PotentialStarletCards />
-      <NewArrivalsCards />
+      <WeeklyFeaturedSliders />
+      <PotentialStarletSliders />
+      <NewArrivalsSliders />
     </RootContainer>
   )
 }

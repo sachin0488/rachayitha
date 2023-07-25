@@ -4,24 +4,30 @@ import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 
 import { mainMaxWidth } from 'Container/Landing/common/styles'
-import { mobileM } from 'styles/mediaQuery/breakPoints'
 
-import ContentCard from './components/ContentCard'
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
-import { useIncompleteList } from 'Container/Landing/api/landing.hooks'
+import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/components'
+import { usePotentialStarletService } from '../services/PotentialStarlet.service'
 
-const ContinueReadingCards = () => {
-  const { List, isLoading, isError } = useIncompleteList()
+import GridStyledCard from '../cards/GridStyledCard'
+
+const PotentialStarletSliders = () => {
+  const { List, isLoading, isError, queryKey } = usePotentialStarletService()
 
   if (List.length === 0) return null
 
   return (
     <Root>
       <Main>
-        <Heading>Continue Reading</Heading>
+        <Heading>Potential Starlet</Heading>
         {isLoading && <LoadingBar />}
         {isError && <ErrorBar />}
-        {isLoading ? <LoadingBar /> : isError ? <ErrorBar /> : <StyledSlider CardComponent={ContentCard} List={List} />}
+        {isLoading ? (
+          <LoadingBar />
+        ) : isError ? (
+          <ErrorBar />
+        ) : (
+          <StyledSlider CardComponent={GridStyledCard} List={List} queryKey={queryKey} />
+        )}
       </Main>
     </Root>
   )
@@ -51,17 +57,12 @@ const Main = styled.div`
   }
 `
 
-export const Heading = styled(Typography)`
+const Heading = styled(Typography)`
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
-  @media ${mobileM} {
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 29px;
-  }
   color: ${props => props.theme.palette.secondary.main};
   padding-left: var(--element-left-spacing);
 `
 
-export default ContinueReadingCards
+export default PotentialStarletSliders

@@ -1,22 +1,22 @@
 import React from 'react'
 import { RootContainer } from '../common/styles'
-import ContinueReadingCards from '../Sections/ContinueReadingCards'
 
 import Hero from '../Sections/Hero'
-import NewArrivalsCards from '../Sections/NewArrivalsCards'
-import PotentialStarletCards from '../Sections/PotentialStarletCards'
 import TopCollection from '../Sections/TopCollection'
-import WeeklyFeatured from '../Sections/WeeklyFeatured'
+import WeeklyFeaturedSliders from 'Container/RecommendationSlider/sliders/WeeklyFeaturedSliders'
+import ContinueReadingSliders from 'Container/RecommendationSlider/sliders/ContinueReadingSliders'
+import NewArrivalsSliders from 'Container/RecommendationSlider/sliders/NewArrivalsSliders'
+import PotentialStarletSliders from 'Container/RecommendationSlider/sliders/PotentialStarletSliders'
 
 const LandingPageAfterLogin = () => {
   return (
     <RootContainer>
       <Hero />
       <TopCollection />
-      <WeeklyFeatured />
-      <PotentialStarletCards />
-      <NewArrivalsCards />
-      <ContinueReadingCards />
+      <WeeklyFeaturedSliders />
+      <PotentialStarletSliders />
+      <NewArrivalsSliders />
+      <ContinueReadingSliders />
     </RootContainer>
   )
 }

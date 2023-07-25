@@ -3,23 +3,27 @@ import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
 import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
+
+import { useRouter } from 'next/router'
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useCreateVoteService } from 'Container/BookDetail/services/CreateVote.service'
+import { useFetchVoteService } from 'Container/BookDetail/services/FetchVote.service'
+
+import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
-import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
-import { useBookVoteAPI } from 'Container/BookDetail/api/bookDetail.hook'
-import { useRouter } from 'next/router'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
 
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
   const { query } = useRouter()
   const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
 
-  const { isFetching, isMutating, handleVoteBook, isAlreadyVoted, totalVotesByUser } = useBookVoteAPI({
-    bookId: query?.bookId,
-  })
+  const { isFetching, Data: VoteData } = useFetchVoteService({ bookId: query?.bookId })
+  const { isLoading: isMutating, mutate } = useCreateVoteService({ bookId: query?.bookId })
+
+  const isAlreadyVoted = VoteData?.isAlreadyVoted
+  const totalVotesByUser = VoteData?.voteCount
 
   if (isLoading || isFetching)
     return (
@@ -34,14 +38,14 @@ const VoteSection = () => {
     <Root>
       <Main>
         <Field>
-          <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
+          <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
           <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Novel</Text>
         </Field>
         <Bottom>
           <InfoSection>
             <Tooltip title="Ranking">
               <VoteInfoField>
-                <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
+                <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
                   #{Data?.bookRank}
                 </HighlightedText>
@@ -49,7 +53,7 @@ const VoteSection = () => {
             </Tooltip>
             <Tooltip title="Total Votes">
               <VoteInfoField>
-                <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
+                <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
                   {Data?.totalVote || 0}
                 </HighlightedText>
@@ -67,7 +71,7 @@ const VoteSection = () => {
                 {isFetching ? (
                   <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
                 ) : (
-                  <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+                  <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 28 : 45 }} />
                 )}
                 {totalVotesByUser}
               </VoteButton>
@@ -79,11 +83,11 @@ const VoteSection = () => {
               is_mutating={String(isMutating)}
               variant="contained"
               color={'primary'}
-              onClick={handleVoteBook}>
+              onClick={mutate}>
               {isMutating ? (
                 <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
               ) : (
-                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
+                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
               )}
             </AddVoteButton>
           </Tooltip>
@@ -175,6 +179,12 @@ const Bottom = styled.div`
   @media (max-width: 780px) {
     justify-content: space-between;
   }
+  @media (max-width: 375px) {
+    /* flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `
 
 const Text = styled(Typography)`
@@ -198,6 +208,10 @@ const VoteInfoField = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 5px;
+  @media (max-width: 400px) {
+    padding: 2.5px 7px 2.5px 2.5px;
+    align-items: center;
+  }
 `
 
 const HighlightedText = styled(Typography)`
@@ -211,6 +225,11 @@ const InfoSection = styled.div`
   @media (max-width: 780px) {
     margin-left: 0px;
     margin-right: auto;
+  }
+  @media (max-width: 375px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 `
 
@@ -230,6 +249,10 @@ const VoteButton = styled(Button)`
   gap: 6px;
   padding-left: 15px;
   padding-right: 15px;
+  @media (max-width: 400px) {
+    padding: 2.5px 7px 2.5px 2.5px;
+    align-items: center;
+  }
 `
 
 const AddVoteButton = styled(Button)`
@@ -241,6 +264,10 @@ const AddVoteButton = styled(Button)`
     color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
     background: ${({ theme, is_voted, is_mutating }) =>
       is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
   }
 `
 

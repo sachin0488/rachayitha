@@ -5,8 +5,6 @@ import { Avatar, Button, CircularProgress, Rating, Typography } from '@mui/mater
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
-import { useCreateBookCommentAPI } from 'Container/BookDetail/api/bookDetail.hook'
-
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'

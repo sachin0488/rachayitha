@@ -9,72 +9,61 @@ import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
-import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 import Link from 'next/link'
-import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import ToggleToLibraryButton from './ToggleToLibraryButton'
 
-const ContentCard = ({ item, index, ranking }) => {
+const ContentCard = ({ item, SearchKeyword }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
-  const { handleAddToLibrary } = useAddToLibraryAPI()
 
   return (
     <Root>
       <DeignsIcon />
       <Main>
-        {ranking && (
-          <RankingRoot>
-            <RankingNumber variant="subtitle2">
-              <RankingPlaceholder>{index + 1 <= 9 ? '0' : index + 1 <= 99 ? '0' : ''}</RankingPlaceholder>
-              {index + 1}
-            </RankingNumber>
-          </RankingRoot>
-        )}
         <Image
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
         />
         <InfoSection>
+          <TitleName variant="subtitle2">
+            {item?.bookName} <Status variant="caption">{item?.status}</Status>
+          </TitleName>
+
           <HashtagList>
-            {item?.tag?.map(tag => {
-              return <Hashtag key={tag?.name}>#{tag?.name}</Hashtag>
+            {item?.tags?.map(name => {
+              return <Hashtag key={name}>#{name}</Hashtag>
             })}
           </HashtagList>
-
-          <TitleName variant="subtitle2">
-            {item?.book_name} <Status variant="caption">{item?.status}</Status>
-          </TitleName>
-          <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText>
+          {/* <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText> */}
 
           {!isMobile && (
             <InfoNav>
-              {/* <RatingRoot>
+              <RatingRoot>
                 <Rating
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
-                  value={Number(item?.rating?.rate__avg).toFixed(1) || 0}
+                  value={Number(Number(item?.avgRatingValue).toFixed(1)) || 0}
                   readOnly
                   precision={0.5}
                   emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
                 />
               </RatingRoot>
               <VoteCount variant="subtitle2">
-                {item?.vote_count}
+                {item?.viewCount}
                 <ArrowDropUpRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
                 />
               </VoteCount>
               <CommentCount variant="subtitle2">
-                {item?.comment_count}
+                {item?.commentCount}
                 <ModeCommentRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
                 />
-              </CommentCount> */}
+              </CommentCount>
             </InfoNav>
           )}
         </InfoSection>
-        <AddIcon variant="contained" onClick={() => handleAddToLibrary(item?.id)}>
-          <AddOutlinedIcon />
-        </AddIcon>
+
+        {/* <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} SearchKeyword={SearchKeyword} /> */}
       </Main>
       {isMobile && (
         <InfoNav>
@@ -82,20 +71,20 @@ const ContentCard = ({ item, index, ranking }) => {
             <Rating
               color="primary"
               sx={{ color: theme => theme.palette.primary.main }}
-              value={3.5}
+              value={Number(Number(item?.avgRatingValue).toFixed(1)) || 0}
               readOnly
               precision={0.5}
               emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
             />
           </RatingRoot>
           <VoteCount variant="subtitle2">
-            6
+            {item?.viewCount}
             <ArrowDropUpRoundedIcon
               sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
             />
           </VoteCount>
           <CommentCount variant="subtitle2">
-            6
+            {item?.commentCount}
             <ModeCommentRoundedIcon
               sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
             />
@@ -289,31 +278,6 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
   @media (max-width: 465px) {
     font-size: 150px;
     color: ${({ theme }) => theme.palette.primary.main}09;
-  }
-`
-
-const AddIcon = styled(Button)`
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-radius: 13px;
-  border-top-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  z-index: 10;
-  padding: 0px;
-  min-width: 34px;
-  min-height: 34px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.15);
-  @media (max-width: 400px) {
-    min-width: 30px;
-    min-height: 30px;
-    .MuiSvgIcon-root {
-      font-size: 1.2rem;
-    }
   }
 `
 

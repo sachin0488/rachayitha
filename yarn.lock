@@ -1819,6 +1819,7 @@ __metadata:
     react-icons: ^4.6.0
     react-intersection-observer: ^9.4.1
     react-intersection-observer-hook: ^2.0.6
+    react-razorpay: ^1.2.0
     react-redux: ^8.0.4
     redux-persist: ^6.0.0
     validator: ^13.7.0
@@ -3975,6 +3976,15 @@ __metadata:
   version: 18.2.0
   resolution: "react-is@npm:18.2.0"
   checksum: e72d0ba81b5922759e4aff17e0252bd29988f9642ed817f56b25a3e217e13eea8a7f2322af99a06edb779da12d5d636e9fda473d620df9a3da0df2a74141d53e
+  languageName: node
+  linkType: hard
+
+"react-razorpay@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "react-razorpay@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: f55800738ea02718c89b3fc1bcfa4fc6bee2658e88f63c3bb770112b1dedffb02a6df0ee76ea20ef20cd08508c419e20175fd9c64d17f30f63c4da43ec819f8f
   languageName: node
   linkType: hard
 

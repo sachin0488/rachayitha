@@ -8,7 +8,6 @@ import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import CommentBankRoundedIcon from '@mui/icons-material/CommentBankRounded'
 import ReplySection from '.'
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
-import { useLikeBookCommentAPI } from 'Container/BookDetail/api/bookDetail.hook'
 import { useCommentLikeService } from 'Container/BookDetail/services/CommentLike.service'
 
 const ReplyCard = ({ item, parentCommentId, sortBy }) => {

@@ -4,14 +4,16 @@ import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 
 import { mainMaxWidth } from 'Container/Landing/common/styles'
-import { mobileM } from 'styles/mediaQuery/breakPoints'
 
-import ContentCard from './components/ContentCard'
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'Container/Landing/components/CardComponents'
-import { useWeaklyFeaturedList } from 'Container/Landing/api/landing.hooks'
+import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/components'
+import { useWeeklyBookService } from '../services/WeeklyFeatured.service'
 
-const WeeklyFeatured = () => {
-  const { List, isLoading, isError } = useWeaklyFeaturedList()
+import MinimalCard from '../cards/MinimalCard'
+
+const WeeklyFeaturedSliders = () => {
+  const { List, isLoading, isError, queryKey } = useWeeklyBookService()
+
+  if (List.length === 0) return null
 
   return (
     <Root>
@@ -23,10 +25,8 @@ const WeeklyFeatured = () => {
           <LoadingBar />
         ) : isError ? (
           <ErrorBar />
-        ) : List.length === 0 ? (
-          <NotAvailableBar />
         ) : (
-          <StyledSlider CardComponent={ContentCard} List={List} />
+          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} />
         )}
       </Main>
     </Root>
@@ -57,17 +57,12 @@ const Main = styled.div`
   }
 `
 
-export const Heading = styled(Typography)`
+const Heading = styled(Typography)`
   font-weight: 600;
   font-size: 25px;
   line-height: 29px;
-  @media ${mobileM} {
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 29px;
-  }
   color: ${props => props.theme.palette.secondary.main};
   padding-left: var(--element-left-spacing);
 `
 
-export default WeeklyFeatured
+export default WeeklyFeaturedSliders

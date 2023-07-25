@@ -1,12 +1,13 @@
-import styled from '@emotion/styled'
-import { useBookCommentListAPI } from 'Container/BookDetail/api/bookDetail.hook'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-import CreateCommentSection from '../../CreateCommentSection'
-import ReplyCard from './ReplyCard'
-import useCommentListService from 'Container/BookDetail/services/CommentList.service'
-import { InView } from 'react-intersection-observer'
 import { Skeleton } from '@mui/material'
+import { InView } from 'react-intersection-observer'
+import styled from '@emotion/styled'
+
+import ReplyCard from './ReplyCard'
+import CreateCommentSection from '../../CreateCommentSection'
+
+import useCommentListService from 'Container/BookDetail/services/CommentList.service'
 
 const ReplySection = ({ commentId, setCommentCount }) => {
   const { query } = useRouter()

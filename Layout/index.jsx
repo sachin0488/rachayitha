@@ -48,6 +48,8 @@ const Layout = ({ children }) => {
 }
 
 const Root = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
   background-color: #fff;
@@ -55,7 +57,6 @@ const Root = styled.div`
 
 const Main = styled.main`
   width: 100%;
-  margin-top: ${props => props.margin_top};
 `
 
 export default Layout

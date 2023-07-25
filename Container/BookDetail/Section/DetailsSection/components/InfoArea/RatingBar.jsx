@@ -9,7 +9,7 @@ const RatingBar = ({ avgRatingValue, totalRatingCount }) => {
       <Rating
         color="primary"
         sx={{ color: theme => theme.palette.primary.main }}
-        value={parseFloat(parseFloat(avgRatingValue).toFixed(1))}
+        value={avgRatingValue ? parseFloat(parseFloat(avgRatingValue).toFixed(1)) : 0}
         readOnly
         size="large"
         precision={0.1}

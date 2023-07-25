@@ -54,11 +54,13 @@ const LoadingInfo = styled.div`
 `
 
 const StyledSkeletonCover = styled(Skeleton)`
-  min-height: 466px;
-  height: 466px;
+  height: 380px;
   max-width: 350px;
-  aspect-ratio: 350/466;
+  aspect-ratio: 3/4;
   align-self: center;
+  @media (max-width: 480px) {
+    max-width: calc(100vw - 30px);
+  }
 `
 
 const StyledSkeletonInfo = styled(Skeleton)`

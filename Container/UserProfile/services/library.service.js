@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
+import { UserProfileQuery } from '../constants/query.address'
 
 const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
   const res = await APIInstance({
@@ -11,7 +12,26 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
   })
 
   return await {
-    data: res?.data?.data,
+    data: res?.data?.data?.map(item => {
+      return {
+        bookId: item?.book_id_id,
+        bookName: item?.book_name,
+        authorName: item?.author_name,
+        category: item?.category?.category,
+        commentCount: item?.comment_count,
+        avgRatingValue: item?.rating?.rate__avg,
+        totalRatingCount: item?.rating?.rate__count,
+        likeCount: item?.like_count,
+        libraryAdded: false,
+        status: item?.status,
+        tags: item?.tags,
+        synopsis: item?.synopsis,
+        coverImage: item?.cover_img,
+        coverImage2: item?.cover_img2,
+        coverImage3: item?.cover_img3,
+        coverImage4: item?.cover_img4,
+      }
+    }),
     nextCursor: res?.data?.next_page || undefined,
     previousCursor: res?.data?.previous_page || undefined,
   }
@@ -20,7 +40,7 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
 const useLibraryService = () => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['library-list'],
+      queryKey: [UserProfileQuery.LIBRARY_LIST],
       queryFn: fetchLibraryListAPI,
       getNextPageParam: (lastPage, pages) => {
         return lastPage.nextCursor

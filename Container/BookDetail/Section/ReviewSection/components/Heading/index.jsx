@@ -14,14 +14,14 @@ const Heading = ({ totalRatingCount, avgRatingValue }) => {
       <Rating
         color="primary"
         sx={{ color: theme => theme.palette.primary.main }}
-        value={parseFloat(parseFloat(avgRatingValue).toFixed(1)) || 0}
+        value={avgRatingValue ? parseFloat(parseFloat(avgRatingValue).toFixed(1)) : 0}
         readOnly
         size={isTablet ? 'medium' : 'large'}
         precision={0.1}
         emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
       />
       <RatingText variant="h5" component="div" color="secondary">
-        {parseFloat(avgRatingValue).toFixed(1) || 'N / A'}
+        {avgRatingValue ? parseFloat(avgRatingValue).toFixed(1) : 0}
       </RatingText>
     </Root>
   )

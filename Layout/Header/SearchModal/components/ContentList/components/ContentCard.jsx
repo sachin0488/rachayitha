@@ -9,8 +9,8 @@ import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
-import { cloudinary } from 'Container/Landing/Sections/NewArrivalsCards/components/ContentCard'
 import Link from 'next/link'
+
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 const ContentCard = ({ item, index, ranking }) => {
