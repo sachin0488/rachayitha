@@ -1,15 +1,16 @@
 import styled from '@emotion/styled'
-import React from 'react'
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import { Button, CircularProgress, Tooltip } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
-import { set, useController, useForm } from 'react-hook-form'
-import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
+import { useController, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { selectUser } from 'store/slices/global/user.slice'
 
-const BannerSection = ({ text }) => {
+import { useUpdateProfileService } from 'Container/UserProfile/services/UpdateProfile.service'
+
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
+
+const BannerSection = () => {
   const { data } = useSelector(selectUser)
 
   const { reset, control, handleSubmit } = useForm({
@@ -18,7 +19,7 @@ const BannerSection = ({ text }) => {
     },
   })
 
-  const { handleUpdateProfile, isLoading, isSuccess, isUserFetchedSuccessfully, isUserFetching } = useUpdateProfileAPI()
+  const { mutate, isLoading, isSuccess } = useUpdateProfileService()
 
   const [filePreview, setFilePreview] = useState('')
 
@@ -44,12 +45,12 @@ const BannerSection = ({ text }) => {
   // }
 
   useEffect(() => {
-    if (isSuccess && isUserFetchedSuccessfully) {
+    if (isSuccess) {
       reset({
         profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
       })
     }
-  }, [data?.profile_banner, isSuccess, isUserFetchedSuccessfully, reset])
+  }, [data?.profile_banner, isSuccess, reset])
 
   const handleFileInput = e => {
     const file = e.target.files[0]
@@ -81,12 +82,8 @@ const BannerSection = ({ text }) => {
   return (
     <Root>
       {filePreview && typeof value?.[0] !== 'string' && (
-        <StyledSaveButton
-          disabled={isLoading || isUserFetching}
-          onClick={handleSubmit(handleUpdateProfile)}
-          color="secondary"
-          variant="contained">
-          {isLoading || isUserFetching ? (
+        <StyledSaveButton disabled={isLoading} onClick={handleSubmit(mutate)} color="secondary" variant="contained">
+          {isLoading ? (
             <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} />
           ) : (
             'Save'
@@ -94,7 +91,7 @@ const BannerSection = ({ text }) => {
         </StyledSaveButton>
       )}
       <Tooltip title="Updated Banner Image!">
-        <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained">
+        <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained" disabled={isLoading}>
           <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
         </StyledEditButton>
       </Tooltip>

@@ -1,40 +1,47 @@
+import * as yup from 'yup'
 import styled from '@emotion/styled'
+
 import { Button, CircularProgress, FormLabel, Typography } from '@mui/material'
-import StyledDateSelector from 'Components/form-components/StyledDateSelector'
-import { StyledRadioBox, StyledRadioGroup } from 'Components/form-components/StyledRadio'
-import StyledTextField from 'Components/form-components/StyledTextField'
-import { StyledModal } from 'Components/StyledModal'
-import { useUpdateProfileAPI } from 'Container/UserProfile/api/userProfile.hook'
-import React, { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import { StyledModal } from 'Components/StyledModal'
+import { StyledRadioBox, StyledRadioGroup } from 'Components/form-components/StyledRadio'
+
+import StyledTextField from 'Components/form-components/StyledTextField'
+import StyledDateSelector from 'Components/form-components/StyledDateSelector'
 import PhotoUploader from './components/PhotoUploader'
 
-const GenderList = [
-  {
-    label: 'Male',
-    value: 'male',
-  },
-  {
-    label: 'Female',
-    value: 'female',
-  },
-  {
-    label: 'Others',
-    value: 'others',
-  },
-]
+import { useUpdateProfileService } from 'Container/UserProfile/services/UpdateProfile.service'
+
+const schema = yup.object().shape({
+  full_name: yup.string().required('Name is required'),
+  username: yup.string().required('Username is required'),
+  email: yup.string().email().required('Email is required'),
+  birth_date: yup.string().required('birthday is required'),
+  bio: yup.string().required('Bio is required'),
+  gender: yup.string().required('Gender is required'),
+})
 
 const EditProfileModal = ({ open, setOpen }) => {
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
 
-  const { handleUpdateProfile, isLoading, isSuccess } = useUpdateProfileAPI({ handleClose })
+  const { mutate, isLoading, isSuccess } = useUpdateProfileService()
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleClose()
+    }
+  }, [isSuccess, handleClose])
 
   const { data } = useSelector(store => store.user)
 
   const methods = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
       profile_pic: [data.profile_pic],
       full_name: data.full_name,
@@ -91,7 +98,7 @@ const EditProfileModal = ({ open, setOpen }) => {
               isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
             }
             variant="contained"
-            onClick={methods.handleSubmit(handleUpdateProfile)}>
+            onClick={methods.handleSubmit(mutate)}>
             Save
           </StyledButton>
         </Bottom>
@@ -99,6 +106,21 @@ const EditProfileModal = ({ open, setOpen }) => {
     </Root>
   )
 }
+
+const GenderList = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+  {
+    label: 'Others',
+    value: 'others',
+  },
+]
 
 const Root = styled(StyledModal)`
   padding: 25px;

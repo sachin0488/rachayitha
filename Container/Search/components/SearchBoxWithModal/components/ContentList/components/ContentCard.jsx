@@ -91,7 +91,7 @@ const ContentCard = ({ item, SearchKeyword }) => {
           </CommentCount>
         </InfoNav>
       )}
-      <Link href={`/book/${item?.id}`}>
+      <Link href={`/book/${item?.bookId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

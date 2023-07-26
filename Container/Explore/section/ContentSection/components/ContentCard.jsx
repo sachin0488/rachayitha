@@ -15,9 +15,6 @@ import ToggleToLibraryButton from './ToggleToLibraryButton'
 const ContentCard = ({ item, index, ranking }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
 
-  console.log('====================================')
-  console.log(item?.libraryAdded)
-  console.log('====================================')
   return (
     <Root>
       <DeignsIcon />
@@ -100,7 +97,7 @@ const ContentCard = ({ item, index, ranking }) => {
           </CommentCount>
         </InfoNav>
       )}
-      <Link href={`/book/${item?.id}`}>
+      <Link href={`/book/${item?.bookId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

@@ -19,7 +19,8 @@ export const useFetchUserDataAPI = ({ enabled }) => {
   const { enqueueSnackbar } = useSnackbar()
   const dispatch = useDispatch()
 
-  const { data, isFetching, isSuccess, refetch, isError } = useQuery([AuthQuery.USER_DATA], {
+  const { data, isFetching, isSuccess, refetch, isError } = useQuery({
+    queryKey: [AuthQuery.USER_DATA],
     queryFn: fetchUserDataAPI,
     enabled: enabled,
     onSuccess({ data }) {

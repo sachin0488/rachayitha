@@ -22,7 +22,7 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
         avgRatingValue: item?.rating?.rate__avg,
         totalRatingCount: item?.rating?.rate__count,
         likeCount: item?.like_count,
-        libraryAdded: false,
+        libraryAdded: true,
         status: item?.status,
         tags: item?.tags,
         synopsis: item?.synopsis,

@@ -2,34 +2,34 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 
-import useBookDetail from 'Container/BookDetail/api/bookDetail.hook'
 import { Typography } from '@mui/material'
-import DividerBar from 'Container/ReadSection/components/DividerBar'
+import DividerBar from 'Container/ReadBookSection/components/DividerBar'
+import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
 
-const DetailsSection = ({ item }, ref) => {
+const DetailsSection = () => {
   const { query } = useRouter()
-  const { BookDetail, isLoading, isError, error } = useBookDetail(query.bookId)
+  const { Data, isLoading, isError, error } = useNovelDetailsService({ bookId: query?.bookId })
 
   return (
-    <Root ref={ref}>
+    <Root>
       <ImageContainer>
         <StyledImage
           alt="Cover Image"
-          src={BookDetail?.cover_img && BookDetail?.cover_img.includes('http') ? BookDetail?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
         <StyledImage
           className="blur"
           alt="Cover Image"
-          src={BookDetail?.cover_img && BookDetail?.cover_img.includes('http') ? BookDetail?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
       </ImageContainer>
 
       <InfoSection>
         <BookName variant="h4" component="div">
-          {BookDetail?.book_name}
+          {Data?.bookName}
         </BookName>
         <AuthorName variant="h6" component="div">
-          Author: <span className="name"> {BookDetail?.author_name} </span>
+          Author: <span className="name"> {Data?.authorName} </span>
         </AuthorName>
       </InfoSection>
       <Copyright>
@@ -123,4 +123,4 @@ const Copyright = styled(Typography)`
   }
 `
 
-export default React.forwardRef(DetailsSection)
+export default DetailsSection

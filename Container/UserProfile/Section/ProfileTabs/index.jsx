@@ -1,4 +1,4 @@
-import React from 'react'
+import { useCallback, useState } from 'react'
 import styled from '@emotion/styled'
 
 import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
@@ -8,11 +8,11 @@ import ActivityTab from './Tabs/ActivityTab'
 import LibraryTab from './Tabs/LibraryTab'
 
 const ProfileTabs = ({ item }) => {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0)
 
-  const handleChange = (event, newValue) => {
+  const handleChange = useCallback((event, newValue) => {
     setValue(newValue)
-  }
+  }, [])
 
   return (
     <Root>
@@ -75,7 +75,7 @@ const StyledTabs = styled(Tabs)`
   overflow: visible;
   display: flex;
   width: fit-content;
-  
+
   & .${tabsClasses.flexContainer} {
     display: flex;
     justify-content: space-between;

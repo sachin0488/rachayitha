@@ -134,7 +134,7 @@ const ImageWarper = styled.div`
   border-radius: 50%;
   overflow: hidden;
   background: ${({ theme }) => theme.palette.primary.main}aa;
-  box-shadow: 3px 3px 27px 1px rgba(98, 0, 255, 0.2);
+  box-shadow: 3px 3px 27px 1px rgba(54, 18, 77, 0.2);
 `
 
 const StyledProfileImage = styled(Avatar)`

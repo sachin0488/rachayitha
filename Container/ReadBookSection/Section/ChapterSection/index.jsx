@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Typography } from '@mui/material'
 import { InView } from 'react-intersection-observer'
 
-import DividerBar from 'Container/ReadPoemSection/components/DividerBar'
+import DividerBar from 'Container/ReadBookSection/components/DividerBar'
 
 const ChapterSection = ({ item }) => {
   const { query, push } = useRouter()
@@ -18,7 +18,7 @@ const ChapterSection = ({ item }) => {
         if (inView) {
           push(
             {
-              pathname: `/poem/${query.poemId}/read/${item?.chapterId}`,
+              pathname: `/book/${query.bookId}/read/${item?.chapterId}`,
             },
             undefined,
             { shallow: true },

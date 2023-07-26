@@ -42,6 +42,7 @@ const schema = yup.object().shape({
   username: yup.string().required('Username is required'),
   birth_date: yup.string().required('birthday is required'),
   bio: yup.string().required('Bio is required'),
+  email: yup.string().email().required('Email is required'),
   gender: yup.string().required('Gender is required'),
   password: yup.string().required('Password is required'),
   confirmPassword: yup
@@ -93,11 +94,7 @@ const CreateAccountPage = () => {
                 ))}
               </StyledRadioGroup>
             </StyledFieldGroup>
-            <StyledPasswordField
-              name="password"
-              label="Password"
-              placeholder="Enter your password ..."
-            />
+            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
             <StyledPasswordField
               name="confirmPassword"
               label="Confirm Password"

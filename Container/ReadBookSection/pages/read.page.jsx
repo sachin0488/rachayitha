@@ -33,10 +33,10 @@ const useReadPageMetaStore = create(set => ({
   },
 }))
 
-const ReadPoemPage = () => {
+const ReadBookPage = () => {
   const router = useRouter()
 
-  const poemId = parseInt(router?.query?.poemId)
+  const bookId = parseInt(router?.query?.bookId)
   const chapterId = parseInt(router?.query?.chapterId)
 
   const mainRef = useRef() // container with scrollbar
@@ -49,9 +49,9 @@ const ReadPoemPage = () => {
   const isResetScrollPositionRequired = useReadPageMetaStore(state => state.isResetScrollPositionRequired)
   const setResetScrollPositionRequired = useReadPageMetaStore(state => state.setResetScrollPositionRequired)
 
-  const { mutateAsync, isLoading } = useChapterContentService({ poemId: poemId })
+  const { mutateAsync, isLoading } = useChapterContentService({ bookId: bookId })
   const { ChapterList, setChapterLoadedById, isSuccess } = useChapterListService({
-    poemId: poemId,
+    bookId: bookId,
     chapterId: chapterId,
   })
 
@@ -192,7 +192,7 @@ const ReadPoemPage = () => {
     </Root>
   )
 }
-export default memo(ReadPoemPage)
+export default memo(ReadBookPage)
 
 const Root = styled.div`
   width: 100%;

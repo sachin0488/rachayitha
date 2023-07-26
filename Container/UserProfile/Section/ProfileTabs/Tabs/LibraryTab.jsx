@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { Skeleton, Typography } from '@mui/material'
 import ContentCard from '../components/ContentCard'
 import { InView } from 'react-intersection-observer'
-import useLibraryService from 'Container/UserProfile/services/library.service'
+import useLibraryService from 'Container/UserProfile/services/Library.service'
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 
 const LibraryTab = () => {

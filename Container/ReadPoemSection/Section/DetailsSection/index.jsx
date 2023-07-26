@@ -2,34 +2,34 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 
-import usePoemDetail from 'Container/PoemDetail/api/poemDetail.hook'
 import { Typography } from '@mui/material'
-import DividerBar from 'Container/ReadSection/components/DividerBar'
+import DividerBar from 'Container/ReadPoemSection/components/DividerBar'
+import { useNovelDetailsService } from 'Container/PoemDetail/services/NovelDetails.service'
 
-const DetailsSection = ({ item }, ref) => {
+const DetailsSection = () => {
   const { query } = useRouter()
-  const { PoemDetail, isLoading, isError, error } = usePoemDetail(query.poemId)
+  const { Data, isLoading, isError, error } = useNovelDetailsService({ poemId: query?.poemId })
 
   return (
-    <Root ref={ref}>
+    <Root>
       <ImageContainer>
         <StyledImage
           alt="Cover Image"
-          src={PoemDetail?.cover_img && PoemDetail?.cover_img.includes('http') ? PoemDetail?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
         <StyledImage
           className="blur"
           alt="Cover Image"
-          src={PoemDetail?.cover_img && PoemDetail?.cover_img.includes('http') ? PoemDetail?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
       </ImageContainer>
 
       <InfoSection>
         <PoemName variant="h4" component="div">
-          {PoemDetail?.poem_name}
+          {Data?.poemName}
         </PoemName>
         <AuthorName variant="h6" component="div">
-          Author: <span className="name"> {PoemDetail?.author_name} </span>
+          Author: <span className="name"> {Data?.authorName} </span>
         </AuthorName>
       </InfoSection>
       <Copyright>
@@ -46,7 +46,7 @@ const Root = styled.div`
   align-items: center;
   width: 100%;
   gap: 40px;
-  margin-top: 20px;
+  padding-top: 20px;
 `
 
 const ImageContainer = styled.div`
@@ -123,4 +123,4 @@ const Copyright = styled(Typography)`
   }
 `
 
-export default React.forwardRef(DetailsSection)
+export default DetailsSection

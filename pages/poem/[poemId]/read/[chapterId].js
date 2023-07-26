@@ -1,10 +1,10 @@
-import ReadSection from 'Container/ReadSection/pages/read.page'
 import React from 'react'
+import ReadPoemPage from 'Container/ReadPoemSection/pages/read.page'
 
 const Chapter = () => {
   return (
     <>
-      <ReadSection />
+      <ReadPoemPage />
     </>
   )
 }

@@ -2,15 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useSelector } from 'react-redux'
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 
 import { selectUser } from 'store/slices/global/user.slice'
 
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 
-const PlanCard = ({ Icon, name, description, heightLight }) => {
-  const { isLoggedIn } = useSelector(selectUser)
-
+const PlanCard = ({ Icon, name, description, highLight, onPayClick, isLoading, isSelected }) => {
   return (
     <Root>
       <Main>
@@ -22,7 +20,7 @@ const PlanCard = ({ Icon, name, description, heightLight }) => {
             </TitleName>
             <Description variant="subtitle2">{description}</Description>
             <Highlight variant="h6" component="div">
-              {heightLight}
+              {highLight}
             </Highlight>
           </InfoBottom>
         </InfoSection>
@@ -30,7 +28,13 @@ const PlanCard = ({ Icon, name, description, heightLight }) => {
       <ContinueButton
         variant="contained"
         color="primary"
-        endIcon={<KeyboardBackspaceRoundedIcon sx={{ rotate: '180deg' }} />}>
+        endIcon={<KeyboardBackspaceRoundedIcon sx={{ rotate: '180deg' }} />}
+        startIcon={
+          isLoading &&
+          isSelected && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+        }
+        disabled={isLoading}
+        onClick={onPayClick}>
         Pay
       </ContinueButton>
     </Root>
