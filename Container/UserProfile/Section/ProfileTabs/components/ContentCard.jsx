@@ -1,15 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { useSelector } from 'react-redux'
 import { Button, ButtonBase, Typography } from '@mui/material'
-
-import { selectUser } from 'store/slices/global/user.slice'
 
 import ToggleToLibraryButton from './ToggleToLibraryButton'
 
+import { useUserService } from 'Container/Auth/service/User.service'
+
 const ContentCard = ({ item }) => {
-  const { isLoggedIn } = useSelector(selectUser)
+  const { isLoggedIn } = useUserService()
   return (
     <Root>
       <Main>

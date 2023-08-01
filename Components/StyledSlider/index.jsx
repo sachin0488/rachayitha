@@ -7,7 +7,6 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
-// import { useIntersectionObserver } from 'react-intersection-observer-hook'
 
 const StyledSlider = ({ List, CardComponent, ...props }) => {
   const ref = useRef()

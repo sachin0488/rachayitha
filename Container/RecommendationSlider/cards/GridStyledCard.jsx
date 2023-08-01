@@ -1,15 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { useSelector } from 'react-redux'
 import { ButtonBase, Typography } from '@mui/material'
 
-import { selectUser } from 'store/slices/global/user.slice'
-
 import ToggleToLibraryButton from './components/ToggleToLibraryButton'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const GridStyledCard = ({ item, queryKey }) => {
-  const { isLoggedIn } = useSelector(selectUser)
+  const { isLoggedIn } = useUserService()
 
   return (
     <Root>

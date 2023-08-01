@@ -5,15 +5,15 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Button, Typography } from '@mui/material'
 import { StyledModal } from 'Components/StyledModal'
 
-import { useSelector } from 'react-redux'
-
 import StyledTextField from 'Components/form-components/StyledTextField'
 import StyledRatingField from './components/StyledRatingField'
+
 import { useCreatePoemRatingAPI } from 'Container/PoemDetail/api/poemDetail.hook'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const CreateReviewModal = ({ open, setOpen, poemId }) => {
   const { handleCreatePoemRating, isLoading, isSuccess } = useCreatePoemRatingAPI({ poemId })
-  const { data } = useSelector(store => store.user)
+  const { user } = useUserService()
 
   const handleClose = useCallback(() => {
     setOpen(false)
@@ -37,7 +37,7 @@ const CreateReviewModal = ({ open, setOpen, poemId }) => {
       parameter4: 0,
       parameter5: 0,
     })
-  }, [open, data, methods])
+  }, [open, user, methods])
 
   return (
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>

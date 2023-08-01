@@ -15,11 +15,6 @@ const LibraryTab = () => {
         <StyledSkeleton variant="rounded" />
         <StyledSkeleton variant="rounded" />
         <StyledSkeleton variant="rounded" />
-        <StyledSkeleton variant="rounded" />
-        <StyledSkeleton variant="rounded" />
-        <StyledSkeleton variant="rounded" />
-        <StyledSkeleton variant="rounded" />
-        <StyledSkeleton variant="rounded" />
       </Root>
     )
 

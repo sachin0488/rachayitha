@@ -1,87 +1,103 @@
 import styled from '@emotion/styled'
-import { Button, CircularProgress, Tooltip } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useMemo } from 'react'
+import { Button, CircularProgress, Skeleton, Tooltip } from '@mui/material'
 import { useController, useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
-
-import { useUpdateProfileService } from 'Container/UserProfile/services/UpdateProfile.service'
 
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
+import LandscapeRoundedIcon from '@mui/icons-material/LandscapeRounded'
+
+import { useUpdateProfileService } from 'Container/UserProfile/services/UpdateProfile.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const BannerSection = () => {
-  const { data } = useSelector(selectUser)
+  const name = 'profileBanner'
+
+  const { user, isLoading: isBannerLoading } = useUserService()
+  const { mutate, isLoading } = useUpdateProfileService()
 
   const { reset, control, handleSubmit } = useForm({
     defaultValues: {
-      profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
+      profileBanner: user?.profileBanner ? [user?.profileBanner] : [],
     },
   })
 
-  const { mutate, isLoading, isSuccess } = useUpdateProfileService()
-
-  const [filePreview, setFilePreview] = useState('')
-
-  const name = 'profile_banner'
-
-  const { field } = useController({
+  const { onChange, value } = useController({
     name,
     control,
-    defaultValue: data?.profile_banner ? [data?.profile_banner] : [],
-  })
-
-  const { onChange, value } = field
+    defaultValue: user?.profileBanner ? [user?.profileBanner] : [],
+  }).field
 
   const fileInput = useRef(null)
 
-  const handleBrowseButton = () => {
-    fileInput.current?.click()
-  }
-
-  // const handleDeleteFile = () => {
-  // 	setFilePreview('')
-  // 	onChange([])
-  // }
-
   useEffect(() => {
-    if (isSuccess) {
-      reset({
-        profile_banner: data?.profile_banner ? [data?.profile_banner] : [],
-      })
-    }
-  }, [data?.profile_banner, isSuccess, reset])
+    reset({
+      profileBanner: user?.profileBanner ? [user?.profileBanner] : [],
+    })
+  }, [reset, user?.profileBanner])
 
-  const handleFileInput = e => {
-    const file = e.target.files[0]
-    if (file) setFilePreview(URL.createObjectURL(file))
-
-    // if (file.size === 0) 'File size cannot exceed more than 1MB'
-    // else
-
-    const files = e.target.files
-    if (files.length) {
-      const newFilePreviewList = []
-      for (let index = 0; index < files.length; index += 1) {
-        const file = files[index]
-        newFilePreviewList.push(file)
+  const previewImage = useMemo(() => {
+    if (value.length) {
+      if (typeof value?.[0] === 'string') {
+        return value?.[0]
       }
-
-      onChange(newFilePreviewList)
+      return URL.createObjectURL(value?.[0])
     }
-  }
-
-  useEffect(() => {
-    if (value.length && value?.[0]?.length > 6) {
-      setFilePreview(value?.[0])
-    }
-
-    return () => {}
+    return ''
   }, [value])
+
+  const isPreviewAvailable = Boolean(value.length)
+
+  const handleBrowseButton = useCallback(() => {
+    fileInput.current?.click()
+  }, [])
+
+  const handleFileInput = useCallback(
+    e => {
+      const files = e.target.files
+      if (files.length) {
+        const newFilePreviewList = []
+
+        for (let index = 0; index < files.length; index += 1) {
+          const file = files[index]
+          newFilePreviewList.push(file)
+        }
+
+        onChange(newFilePreviewList)
+      }
+    },
+    [onChange],
+  )
+
+  if (isBannerLoading) {
+    return (
+      <Root>
+        <Skeleton
+          variant="rounded"
+          width="100%"
+          height="100%"
+          animation="pulse"
+          sx={{
+            background: theme => theme.palette.primary.main + '29',
+          }}
+        />
+        <LandscapeRoundedIcon
+          color="secondary"
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            opacity: 0.5,
+            fontSize: 100,
+          }}
+        />
+      </Root>
+    )
+  }
 
   return (
     <Root>
-      {filePreview && typeof value?.[0] !== 'string' && (
+      {isPreviewAvailable && typeof value?.[0] !== 'string' && (
         <StyledSaveButton disabled={isLoading} onClick={handleSubmit(mutate)} color="secondary" variant="contained">
           {isLoading ? (
             <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} />
@@ -96,8 +112,9 @@ const BannerSection = () => {
         </StyledEditButton>
       </Tooltip>
 
-      {filePreview && <StyledImage src={filePreview} alt="Profile Art" />}
-      {!filePreview && <PhotoCameraIcon fontSize="large" color="secondary" />}
+      {isPreviewAvailable && <StyledImage src={previewImage} alt="Profile Art" />}
+      {!isPreviewAvailable && <LandscapeRoundedIcon fontSize="large" color="secondary" />}
+
       <input
         name={name}
         type="file"

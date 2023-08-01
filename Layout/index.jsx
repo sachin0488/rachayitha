@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
 import styled from '@emotion/styled'
 import Header from './Header'
 import Footer from './Footer'
-import { useRouter } from 'next/router'
 import SideBar from './Sidebar'
+import { useRouter } from 'next/router'
+
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const Layout = ({ children }) => {
   const router = useRouter()
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
-  const { isLoggedIn } = useSelector(selectUser)
+  const { isLoggedIn } = useUserService()
 
   const isHeaderVisible = !(
     (router.pathname === '/' && isLoggedIn === false) ||

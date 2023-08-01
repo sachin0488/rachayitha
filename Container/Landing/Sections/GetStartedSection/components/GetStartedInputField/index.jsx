@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/router'
-import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { mobileL, mobileM, tabletS } from 'styles/mediaQuery/breakPoints'
+import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 
 const GetStartedInputField = () => {
   const { register, handleSubmit } = useForm()

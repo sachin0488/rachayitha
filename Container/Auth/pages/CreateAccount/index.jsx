@@ -1,62 +1,32 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Button, CircularProgress, Typography } from '@mui/material'
-import { FormProvider, useForm } from 'react-hook-form'
-
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import { useCreateAccountAPI } from 'Container/Auth/api/auth.hook'
 import Link from 'next/link'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Button, CircularProgress, Typography } from '@mui/material'
+
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
 import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
-import StyledCheckbox from 'Container/Auth/components/FormComponents/StyledCheckbox'
-import { yupResolver } from '@hookform/resolvers/yup'
-import {
-  StyledFieldGroup,
-  StyledFormLabel,
-  StyledRadioBox,
-  StyledRadioGroup,
-} from 'Container/Auth/components/FormComponents/StyledRadio'
-import useFormError from 'hooks/useFormError'
-import * as yup from 'yup'
 import TermsAndPrivacyPolicyCheckbox from './components/TermsAndPrivacyPolicyCheckbox'
+import { StyledFieldGroup, StyledFormLabel } from 'Container/Auth/components/FormComponents/StyledRadio'
+import { StyledRadioBox, StyledRadioGroup } from 'Container/Auth/components/FormComponents/StyledRadio'
 
-const GenderList = [
-  {
-    label: 'Male',
-    value: 'male',
-  },
-  {
-    label: 'Female',
-    value: 'female',
-  },
-  {
-    label: 'Others',
-    value: 'others',
-  },
-]
+import useFormError from 'hooks/useFormError'
 
-const schema = yup.object().shape({
-  full_name: yup.string().required('Name is required'),
-  username: yup.string().required('Username is required'),
-  birth_date: yup.string().required('birthday is required'),
-  bio: yup.string().required('Bio is required'),
-  email: yup.string().email().required('Email is required'),
-  gender: yup.string().required('Gender is required'),
-  password: yup.string().required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
-    .required('Confirm Password is required'),
-})
+import { useCreateAccountService } from 'Container/Auth/service/CreateUser.service'
+
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 
 const CreateAccountPage = () => {
+  const { handleCreateAccount, isLoading } = useCreateAccountService()
   const { handleFormError } = useFormError()
+
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      full_name: '',
+      fullName: '',
       username: '',
       email: localStorage.getItem('new-email') || '',
       bio: '',
@@ -64,7 +34,6 @@ const CreateAccountPage = () => {
       agree: false,
     },
   })
-  const { handleCreateAccount, isLoading, isSuccess } = useCreateAccountAPI(handleFormError)
 
   return (
     <Root>
@@ -80,10 +49,10 @@ const CreateAccountPage = () => {
                 create your account.
               </DescriptionText>
             </TextSection>
-            <StyledTextField name="full_name" label="Name" placeholder="Enter your name..." />
+            <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
             <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
             <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
-            <StyledDateSelector name="birth_date" label="Birth Date" />
+            <StyledDateSelector name="birthDate" label="Birth Date" />
 
             <StyledTextField name="bio" label="Bio" placeholder="Enter your bio ..." multiline />
             <StyledFieldGroup>
@@ -128,6 +97,35 @@ const CreateAccountPage = () => {
     </Root>
   )
 }
+
+const GenderList = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+  {
+    label: 'Others',
+    value: 'others',
+  },
+]
+
+const schema = yup.object().shape({
+  fullName: yup.string().required('Name is required'),
+  username: yup.string().required('Username is required'),
+  birthDate: yup.string().required('birthday is required'),
+  bio: yup.string().required('Bio is required'),
+  email: yup.string().email().required('Email is required'),
+  gender: yup.string().required('Gender is required'),
+  password: yup.string().required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
+    .required('Confirm Password is required'),
+})
 
 const Root = styled.div`
   height: 100vh;

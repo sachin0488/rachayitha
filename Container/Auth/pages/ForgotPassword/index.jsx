@@ -1,20 +1,24 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Button, CircularProgress, Typography } from '@mui/material'
-import { FormProvider, useForm } from 'react-hook-form'
-import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
 import Link from 'next/link'
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import { useSendResetPasswordLinkAPI } from 'Container/Auth/api/auth.hook'
-import useFormError from 'hooks/useFormError'
 import { useRouter } from 'next/router'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Button, CircularProgress, Typography } from '@mui/material'
+
+import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
 import SuccessCard from './SuccessCard'
+import useFormError from 'hooks/useFormError'
+
+import { useSendResetPasswordLinkService } from 'Container/Auth/service/SendResetPassword.service'
+
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 
 const ForgotPasswordPage = () => {
   const { query } = useRouter()
-  const { handleSendLinkByEmail, isLoading, isSuccess } = useSendResetPasswordLinkAPI()
+
+  const { handleSendLinkByEmail, isLoading } = useSendResetPasswordLinkService()
   const { handleFormError } = useFormError()
+
   const methods = useForm({
     defaultValues: {
       email: '',

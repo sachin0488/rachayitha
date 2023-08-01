@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
 import styled from '@emotion/styled'
@@ -6,58 +6,53 @@ import { ListItemButton } from '@mui/material'
 import { useController, useFormContext } from 'react-hook-form'
 
 const PhotoUploader = ({ name }) => {
-  const [filePreview, setFilePreview] = useState('')
   const { control } = useFormContext()
 
-  const { field } = useController({
+  const { onChange, value } = useController({
     name,
     control,
     defaultValue: [],
-  })
-  const { onChange, value } = field
+  }).field
 
   const fileInput = useRef(null)
 
-  const handleBrowseButton = () => {
-    fileInput.current?.click()
-  }
-
-  // const handleDeleteFile = () => {
-  // 	setFilePreview('')
-  // 	onChange([])
-  // }
-
-  const handleFileInput = e => {
-    const file = e.target.files[0]
-    if (file) setFilePreview(URL.createObjectURL(file))
-
-    // if (file.size === 0) 'File size cannot exceed more than 1MB'
-    // else
-
-    const files = e.target.files
-    if (files.length) {
-      const newFilePreviewList = []
-      for (let index = 0; index < files.length; index += 1) {
-        const file = files[index]
-        newFilePreviewList.push(file)
+  const previewImage = useMemo(() => {
+    if (value.length) {
+      if (typeof value?.[0] === 'string') {
+        return value?.[0]
       }
-
-      onChange(newFilePreviewList)
+      return URL.createObjectURL(value?.[0])
     }
-  }
-
-  useEffect(() => {
-    if (value.length && value?.[0]?.length > 6) {
-      setFilePreview(value?.[0])
-    }
-
-    return () => {}
+    return ''
   }, [value])
+
+  const isPreviewAvailable = Boolean(value.length)
+
+  const handleBrowseButton = useCallback(() => {
+    fileInput.current?.click()
+  }, [])
+
+  const handleFileInput = useCallback(
+    e => {
+      const files = e.target.files
+      if (files.length) {
+        const newFilePreviewList = []
+
+        for (let index = 0; index < files.length; index += 1) {
+          const file = files[index]
+          newFilePreviewList.push(file)
+        }
+
+        onChange(newFilePreviewList)
+      }
+    },
+    [onChange],
+  )
 
   return (
     <Root onClick={handleBrowseButton}>
-      {filePreview && <ImagePreview src={filePreview} alt="" />}
-      {!filePreview && <PhotoCameraIcon color="secondary" />}
+      {isPreviewAvailable && <ImagePreview src={previewImage} alt="" />}
+      {!isPreviewAvailable && <PhotoCameraIcon color="secondary" />}
       <input
         name={name}
         type="file"

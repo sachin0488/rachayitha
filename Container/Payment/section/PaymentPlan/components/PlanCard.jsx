@@ -1,15 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { useSelector } from 'react-redux'
 import { Button, Typography } from '@mui/material'
 
-import { selectUser } from 'store/slices/global/user.slice'
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 
 const PlanCard = ({ Icon, name, description, heightLight, link }) => {
-  const { isLoggedIn } = useSelector(selectUser)
-
   return (
     <Root>
       <Main>

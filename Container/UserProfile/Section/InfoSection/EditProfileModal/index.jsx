@@ -2,9 +2,8 @@ import * as yup from 'yup'
 import styled from '@emotion/styled'
 
 import { Button, CircularProgress, FormLabel, Typography } from '@mui/material'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useLayoutEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 import { StyledModal } from 'Components/StyledModal'
@@ -15,22 +14,25 @@ import StyledDateSelector from 'Components/form-components/StyledDateSelector'
 import PhotoUploader from './components/PhotoUploader'
 
 import { useUpdateProfileService } from 'Container/UserProfile/services/UpdateProfile.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const schema = yup.object().shape({
-  full_name: yup.string().required('Name is required'),
+  fullName: yup.string().required('Name is required'),
   username: yup.string().required('Username is required'),
   email: yup.string().email().required('Email is required'),
-  birth_date: yup.string().required('birthday is required'),
+  birthDate: yup.string().required('birthday is required'),
   bio: yup.string().required('Bio is required'),
   gender: yup.string().required('Gender is required'),
 })
 
 const EditProfileModal = ({ open, setOpen }) => {
+  const { mutate, isLoading, isSuccess } = useUpdateProfileService()
+
+  const { user } = useUserService()
+
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
-
-  const { mutate, isLoading, isSuccess } = useUpdateProfileService()
 
   useEffect(() => {
     if (isSuccess) {
@@ -38,32 +40,31 @@ const EditProfileModal = ({ open, setOpen }) => {
     }
   }, [isSuccess, handleClose])
 
-  const { data } = useSelector(store => store.user)
-
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      profile_pic: [data.profile_pic],
-      full_name: data.full_name,
-      username: data.username,
-      email: data.email,
-      birth_date: data.birth_date,
-      gender: data.gender,
-      bio: data.bio,
+      profilePic: [user.profilePic],
+      fullName: user.fullName,
+      username: user.username,
+      email: user.email,
+      birthDate: user.birthDate,
+      gender: user.gender,
+      bio: user.bio,
     },
   })
 
-  useEffect(() => {
-    methods.reset({
-      profile_pic: [data.profile_pic],
-      full_name: data.full_name,
-      username: data.username,
-      email: data.email,
-      birth_date: data.birth_date,
-      gender: data.gender,
-      bio: data.bio,
-    })
-  }, [open, data, methods])
+  useLayoutEffect(() => {
+    if (open)
+      methods.reset({
+        profilePic: [user.profilePic],
+        fullName: user.fullName,
+        username: user.username,
+        email: user.email,
+        birthDate: user.birthDate,
+        gender: user.gender,
+        bio: user.bio,
+      })
+  }, [open])
 
   return (
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
@@ -72,11 +73,11 @@ const EditProfileModal = ({ open, setOpen }) => {
           Update Profile
         </Title>
         <FormProvider {...methods}>
-          <PhotoUploader name="profile_pic" />
-          <StyledTextField name="full_name" label="Full Name" placeholder="Full here..." />
+          <PhotoUploader name="profilePic" />
+          <StyledTextField name="fullName" label="Full Name" placeholder="Full here..." />
           <StyledTextField name="username" label="Username" placeholder="Username here..." />
           <StyledTextField name="email" type="email" label="Email" placeholder="Email here..." />
-          <StyledDateSelector name="birth_date" label="Birth Date" placeholder="Chapter name here..." />
+          <StyledDateSelector name="birthDate" label="Birth Date" placeholder="Chapter name here..." />
           <StyledTextField name="bio" label="Bio" placeholder="Bio here..." multiline />
           <FieldGroup>
             <StyledFormLabel>Select Gender</StyledFormLabel>

@@ -1,21 +1,19 @@
 import React from 'react'
+import Link from 'next/link'
 import styled from '@emotion/styled'
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
 
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
-import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+
 import StyledTextField from './components/StyledTextField'
 import StyledCheckbox from './components/StyledCheckbox'
-import Link from 'next/link'
+
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
+import { useLoginService } from 'Container/Auth/service/Login.service'
 
 const OTPPage = () => {
   const methods = useForm()
-  const { handleLogin, isLoading, isSuccess } = useLoginAPI()
+  const { handleLogin, isLoading } = useLoginService()
 
   return (
     <Root>
@@ -48,7 +46,17 @@ const OTPPage = () => {
                   <StyledButton>Back</StyledButton>
                 </a>
               </Link>
-              <StyledButton variant="contained" onClick={methods.handleSubmit(handleLogin)}>
+
+              <StyledButton
+                disabled={isLoading}
+                sx={{ ml: 'auto' }}
+                startIcon={
+                  isLoading && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
+                variant="contained"
+                onClick={methods.handleSubmit(handleLogin, handleFormError)}>
                 Verify
               </StyledButton>
             </Nav>

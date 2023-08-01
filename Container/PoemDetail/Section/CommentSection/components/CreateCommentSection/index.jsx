@@ -10,11 +10,12 @@ import { useCreatePoemCommentAPI } from 'Container/PoemDetail/api/poemDetail.hoo
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
-import { useSelector } from 'react-redux'
+
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const CreateCommentSection = ({ commentId, sortBy }) => {
   const { query } = useRouter()
-  const { data } = useSelector(store => store.user)
+  const { user } = useUserService()
 
   const { handleCreatePoemComment, isLoading } = useCreatePoemCommentAPI({
     poemId: query?.poemId,
@@ -38,11 +39,11 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
           <StyledAvatar
             sx={{ bgcolor: theme => theme.palette.primary.main }}
             variant="rounded"
-            alt={data?.username}
-            src={data?.profile_pic}
+            alt={user?.username}
+            src={user?.profilePic}
           />
           <Username variant="h6" component="div" color="secondary">
-            {data?.username}
+            {user?.username}
           </Username>
           <Rating
             color="primary"

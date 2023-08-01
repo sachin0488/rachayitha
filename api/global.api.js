@@ -5,7 +5,9 @@ import { authTokenHandles } from './global.hook'
 import { isBrowser } from 'utility/ssr.utility'
 
 const API_URL = 'https://rachayitha.com/api/v1/'
-const AUTHORIZATION = 'Authorization'
+
+export const AUTHORIZATION = 'Authorization'
+
 const { setAccess, setRefresh, getRefresh, getAccess } = authTokenHandles()
 
 export const APIInstance = axios.create({

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -7,33 +8,34 @@ import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
-import { useLogoutUserAPI } from 'Container/Auth/api/auth.hook'
-import Link from 'next/link'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
 
-const settings = ['Profile', 'Logout']
+import { useUserService } from 'Container/Auth/service/User.service'
+import { useLogoutService } from 'Container/Auth/service/Logout.service'
+import { useCallback } from 'react'
 
 const ProfileButton = () => {
-  const { data } = useSelector(selectUser)
   const [anchorElUser, setAnchorElUser] = useState(null)
-  const { handleLogoutUser } = useLogoutUserAPI()
-  const handleOpenUserMenu = event => {
-    setAnchorElUser(event.currentTarget)
-  }
 
-  const handleCloseUserMenu = () => {
+  const { user } = useUserService()
+  const { handleLogout } = useLogoutService()
+
+  const handleOpenUserMenu = useCallback(event => {
+    setAnchorElUser(event.currentTarget)
+  }, [])
+
+  const handleCloseUserMenu = useCallback(() => {
     setAnchorElUser(null)
-  }
+  }, [])
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Your Profile">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar
-            alt={data?.full_name}
-            src={data?.profile_pic}
+            alt={user?.fullName}
+            src={user?.profilePic}
             sx={{
-              bgcolor: data?.profile_pic ? '#fff' : theme => theme.palette.primary.main,
+              bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main,
               fontWeight: 600,
               fontSize: 70,
             }}
@@ -61,11 +63,7 @@ const ProfileButton = () => {
         </Link>
 
         <MenuItem onClick={handleCloseUserMenu}>
-          <Typography
-            onClick={() => {
-              handleLogoutUser()
-            }}
-            textAlign="center">
+          <Typography onClick={handleLogout} textAlign="center">
             Logout
           </Typography>
         </MenuItem>

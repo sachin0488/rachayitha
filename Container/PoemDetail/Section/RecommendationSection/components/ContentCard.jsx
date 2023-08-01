@@ -1,17 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { useSelector } from 'react-redux'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
-import { selectUser } from 'store/slices/global/user.slice'
 import { useAddToLibraryAPI } from 'Container/PoemDetail/api/poemDetail.hook'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
 const ContentCard = ({ item }) => {
   const { handleAddToLibrary } = useAddToLibraryAPI()
-  const { isLoggedIn } = useSelector(selectUser)
+  const { isLoggedIn } = useUserService()
 
   return (
     <Root>

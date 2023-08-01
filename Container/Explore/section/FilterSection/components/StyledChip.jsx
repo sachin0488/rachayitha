@@ -1,9 +1,9 @@
-import styled from '@emotion/styled'
-import { Chip } from '@mui/material'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link'
+import styled from '@emotion/styled'
+
+import { Chip } from '@mui/material'
+import { useRouter } from 'next/router'
 
 const StyledChip = ({ item }) => {
   const { query, pathname } = useRouter()

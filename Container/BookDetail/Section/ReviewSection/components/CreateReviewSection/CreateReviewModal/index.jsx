@@ -5,16 +5,15 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { StyledModal } from 'Components/StyledModal'
 
-import { useSelector } from 'react-redux'
-
 import StyledTextField from 'Components/form-components/StyledTextField'
 import StyledRatingField from './components/StyledRatingField'
 
 import { useCreateReviewService } from 'Container/BookDetail/services/CreateReview.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const CreateReviewModal = ({ open, setOpen, bookId }) => {
   const { mutate, isLoading, isSuccess } = useCreateReviewService({ bookId, sortBy: '-date' })
-  const { data } = useSelector(store => store.user)
+  const { user } = useUserService()
 
   const handleClose = useCallback(() => {
     setOpen(false)
@@ -40,7 +39,7 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
       parameter5: 0,
       comment: '',
     })
-  }, [open, data, methods])
+  }, [open, user, methods])
 
   useEffect(() => {
     if (isSuccess) {

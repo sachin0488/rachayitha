@@ -8,7 +8,6 @@ import ProfileButton from './components/ProfileButton'
 import StyledNavButton from './components/StyledNavButton'
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
-import { useDispatch, useSelector } from 'react-redux'
 import SearchBoxWithModal from 'Container/Search/components/SearchBoxWithModal'
 
 const Header = ({ handleSidebarOpen }) => {

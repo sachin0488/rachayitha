@@ -1,19 +1,17 @@
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import Avatar from '@mui/material/Avatar'
-import { useState } from 'react'
-import { useLogoutUserAPI } from 'Container/Auth/api/auth.hook'
 import { Button, Typography } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
+
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const ProfileButton = () => {
-  const user = useSelector(selectUser)
+  const { user } = useUserService()
 
   return (
     <Link href={`/profile`}>
       <Root sx={{ flexGrow: 0 }}>
-        <Avatar variant="rounded" alt={user.data.username} src={user?.data?.profile_pic} />
+        <Avatar variant="rounded" alt={user.data.username} src={user?.data?.profilePic} />
         <Username>{user.data.username}</Username>
       </Root>
     </Link>

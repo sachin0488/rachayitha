@@ -40,19 +40,19 @@ const UpdateUserProfileAPI = async data => {
   const form = new FormData()
 
   if (
-    data?.profile_pic?.length &&
-    typeof data?.profile_pic[0] !== 'string' &&
-    data?.profile_pic[0] !== null &&
-    data?.profile_pic[0] !== undefined
+    data?.profilePic?.length &&
+    typeof data?.profilePic[0] !== 'string' &&
+    data?.profilePic[0] !== null &&
+    data?.profilePic[0] !== undefined
   )
-    form.append('profile_pic', data.profile_pic[0])
+    form.append('profile_pic', data.profilePic[0])
 
-  if (data?.profile_banner?.length) form.append('profile_banner', data.profile_banner[0])
+  if (data?.profileBanner?.length) form.append('profile_banner', data.profileBanner[0])
 
-  if (data?.full_name) form.append('full_name', data?.full_name)
+  if (data?.fullName) form.append('full_name', data?.fullName)
   if (data?.username) form.append('username', data?.username)
   if (data?.email) form.append('email', data?.email)
-  if (data?.birth_date) form.append('birth_date', moment(data?.birth_date).format('YYYY-MM-DD'))
+  if (data?.birthDate) form.append('birth_date', moment(data?.birthDate).format('YYYY-MM-DD'))
   if (data?.bio) form.append('bio', data?.bio)
   if (data?.gender) form.append('gender', data?.gender)
 

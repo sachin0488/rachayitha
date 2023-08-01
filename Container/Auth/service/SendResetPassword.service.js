@@ -3,24 +3,23 @@ import { APIInstance } from 'api/global.api'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 
-export const useResetPasswordService = () => {
+export const useSendResetPasswordLinkService = () => {
   const { enqueueSnackbar } = useSnackbar()
   const { push } = useRouter()
 
   const { mutate, isLoading, isSuccess } = useMutation({
-    mutationFn: resetPasswordByTokenAPI,
+    mutationFn: sendResetPasswordLinkByEmailAPI,
     onSuccess({ data }) {
-      push('/new-password?status=success')
+      push('/forgot-password?status=success')
 
       enqueueSnackbar('Reset Password Link Sent successfully !', {
         variant: 'success',
       })
     },
     onError: error => {
-      if (error.response?.data?.errors?.password?.length > 0)
-        enqueueSnackbar(error.response?.data?.errors?.password?.[0], {
-          variant: 'error',
-        })
+      enqueueSnackbar(error.response?.data?.user?.error[0], {
+        variant: 'error',
+      })
 
       if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
@@ -29,15 +28,17 @@ export const useResetPasswordService = () => {
     },
   })
 
-  const handleResetPasswordByToken = mutate
+  const handleSendLinkByEmail = mutate
 
-  return { handleResetPasswordByToken, isLoading, isSuccess }
+  return { handleSendLinkByEmail, isLoading, isSuccess }
 }
 
-export const resetPasswordByTokenAPI = data => {
+const sendResetPasswordLinkByEmailAPI = ({ email }) => {
   return APIInstance({
-    url: '/password_reset/confirm/',
+    url: '/password_reset/',
     method: 'POST',
-    data,
+    data: {
+      email: email,
+    },
   })
 }

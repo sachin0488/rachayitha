@@ -8,13 +8,13 @@ import { useRouter } from 'next/router'
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
-import { useSelector } from 'react-redux'
 import { useCreateCommentService } from 'Container/BookDetail/services/CreateComment.service'
 import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
-  const { data } = useSelector(store => store.user)
+  const { user } = useUserService()
   const { Data } = useNovelDetailsService({ bookId: query?.bookId })
 
   const { mutate, isLoading, isSuccess } = useCreateCommentService({
@@ -46,11 +46,11 @@ const CreateCommentSection = ({ parentCommentId, sortBy }) => {
           <StyledAvatar
             sx={{ bgcolor: theme => theme.palette.primary.main }}
             variant="rounded"
-            alt={data?.username}
-            src={data?.profile_pic}
+            alt={user?.username}
+            src={user?.profilePic}
           />
           <Username variant="h6" component="div" color="secondary">
-            {data?.username}
+            {user?.username}
           </Username>
           <Rating
             color="primary"

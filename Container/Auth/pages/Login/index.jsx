@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useLoginAPI } from 'Container/Auth/api/auth.hook'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
 import useFormError from 'hooks/useFormError'
 
-import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
+import { useLoginService } from 'Container/Auth/service/Login.service'
+
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+
 const LoginPage = () => {
+  const { handleLogin, isLoading } = useLoginService()
+  const { handleFormError } = useFormError()
+
   const methods = useForm({
     defaultValues: {
       email: '',
@@ -20,8 +23,6 @@ const LoginPage = () => {
       remember_me: true,
     },
   })
-  const { handleFormError } = useFormError()
-  const { handleLogin, isLoading, isSuccess } = useLoginAPI()
 
   return (
     <Root>
@@ -36,16 +37,8 @@ const LoginPage = () => {
                 Please enter your credentials below to log in and access your account.
               </DescriptionText>
             </TextSection>
-            <StyledTextField
-              name="email"
-              label="Email"
-              placeholder="Enter your email ..."
-            />
-            <StyledPasswordField
-              name="password"
-              label="Password"
-              placeholder="Enter your password ..."
-            />
+            <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
+            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
 
             <BottomSection>
               {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}

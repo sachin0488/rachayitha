@@ -27,7 +27,7 @@ const CommentCard = ({ item, parentCommentId }) => {
           sx={{ bgcolor: theme => theme.palette.primary.main }}
           variant="rounded"
           alt={item?.commentby}
-          src={item?.profile_pic || '..'}
+          src={item?.profilePic || '..'}
         />
         <Username variant="h6" component="div" color="secondary">
           {item?.commentby}

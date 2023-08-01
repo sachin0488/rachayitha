@@ -1,37 +1,24 @@
-import React, { useEffect } from 'react'
+import * as yup from 'yup'
 import styled from '@emotion/styled'
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
-
-import { Button, CircularProgress, Typography } from '@mui/material'
-import { FormProvider, useForm } from 'react-hook-form'
-import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Link from 'next/link'
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import StyledCheckbox from '../OTP/components/StyledCheckbox'
-import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
-import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import { useLoginAPI, useResetPasswordAPI } from 'Container/Auth/api/auth.hook'
-import useFormError from 'hooks/useFormError'
-import SuccessCard from './SuccessCard'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { FormProvider, useForm } from 'react-hook-form'
+import { Button, CircularProgress, Typography } from '@mui/material'
 
-const schema = yup.object().shape({
-  password: yup.string().required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
-    .required('Confirm Password is required'),
-})
+import SuccessCard from './SuccessCard'
+import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
+import useFormError from 'hooks/useFormError'
+
+import { useResetPasswordService } from 'Container/Auth/service/ResetPassword.service'
+
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 
 const NewPasswordPage = () => {
   const { query } = useRouter()
 
   const { handleFormError } = useFormError()
-  const { handleResetPasswordByToken, isLoading } = useResetPasswordAPI()
+  const { handleResetPasswordByToken, isLoading } = useResetPasswordService()
 
   const methods = useForm({
     resolver: yupResolver(schema),
@@ -67,11 +54,7 @@ const NewPasswordPage = () => {
                   Please enter your new password below to save the changes and regain access to your account.
                 </DescriptionText>
               </TextSection>
-              <StyledPasswordField
-                name="password"
-                label="Password"
-                placeholder="Enter your password ..."
-              />
+              <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
               <StyledPasswordField
                 name="confirmPassword"
                 label="Password Confirm"
@@ -102,6 +85,14 @@ const NewPasswordPage = () => {
     </Root>
   )
 }
+
+const schema = yup.object().shape({
+  password: yup.string().required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Confirm Password should be equal to Password')
+    .required('Confirm Password is required'),
+})
 
 const Root = styled.div`
   position: fixed;
@@ -152,23 +143,6 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
   }
 `
 
-const BackgroundIcon = styled.img`
-  position: absolute;
-  width: 300px;
-  bottom: 0px;
-  right: 25px;
-  rotate: -25deg;
-
-  @media (max-width: 480px) {
-    width: 250px;
-    bottom: 0px;
-    right: 15px;
-    rotate: -25deg;
-  }
-
-  /* width: 300px; */
-`
-
 const TextSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -186,7 +160,6 @@ const TitleText = styled(Typography)`
 
 const DescriptionText = styled(Typography)`
   font-weight: 500;
-  /* margin-left: 4px; */
   color: ${({ theme }) => theme.palette.secondary.main}a2;
 `
 
@@ -209,11 +182,6 @@ const StyledButton = styled(Button)`
   box-shadow: none;
   font-size: 0.95rem;
   font-weight: 600;
-`
-
-const StyledNewPassword = styled(Button)`
-  padding: 2px 7px 2px;
-  border-radius: 4px;
 `
 
 export default NewPasswordPage

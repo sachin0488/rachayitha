@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Avatar, Button, Tooltip, Typography } from '@mui/material'
 import styled from '@emotion/styled'
 import Link from 'next/link'
@@ -9,17 +8,16 @@ import InfoField from './components/InfoField'
 import StoneSection from './components/StoneSection'
 import EditProfileModal from './EditProfileModal'
 
-import { selectUser } from 'store/slices/global/user.slice'
-
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
 import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
 import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const InfoSection = () => {
-  const { data } = useSelector(selectUser)
+  const { user } = useUserService()
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
 
   const genderIcon = gender => {
@@ -36,27 +34,27 @@ const InfoSection = () => {
       </Tooltip>
       <ImageWarper>
         <StyledProfileImage
-          alt={data?.full_name}
-          src={data?.profile_pic}
-          sx={{ bgcolor: data?.profile_pic ? '#fff' : theme => theme.palette.primary.main, fontSize: 70 }}>
-          {data?.full_name?.slice(0, 1)}
+          alt={user?.fullName}
+          src={user?.profilePic}
+          sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main, fontSize: 70 }}>
+          {user?.fullName?.slice(0, 1)}
         </StyledProfileImage>
       </ImageWarper>
       <Main>
         <NameSection>
           <NameText variant="h5" component="div">
-            {data?.full_name}
+            {user?.fullName}
           </NameText>
-          <UsernameText variant="body2">@{data?.username}</UsernameText>
-          <BioText variant="subtitle2">{data?.bio}</BioText>
+          <UsernameText variant="body2">@{user?.username}</UsernameText>
+          <BioText variant="subtitle2">{user?.bio}</BioText>
         </NameSection>
 
-        <StoneSection redStone={0} blueStone={data?.coins?.votetoken} greenStone={0} greyStone={data?.coins?.coin} />
+        <StoneSection redStone={0} blueStone={user?.coins?.votetoken} greenStone={0} greyStone={user?.coins?.coin} />
 
-        <InfoField Icon={genderIcon(data?.gender?.toLocaleLowerCase())} text={data?.gender || 'N/A'} />
+        <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={user?.gender || 'N/A'} />
         <InfoField
           Icon={DateRangeOutlinedIcon}
-          text={`birthday - ${data?.birth_date ? moment(data?.birth_date).format('DD/MM/YYYY') : 'N/A'}`}
+          text={`birthday - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
         />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
         <NavList>

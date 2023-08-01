@@ -1,14 +1,15 @@
-import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectUser } from 'store/slices/global/user.slice'
+import Link from 'next/link'
+import styled from '@emotion/styled'
+
+import { Typography } from '@mui/material'
+
 import { laptopS } from 'styles/mediaQuery/breakPoints'
 
+import { useUserService } from 'Container/Auth/service/User.service'
+
 const ContentCard = ({ item }) => {
-  const { isLoggedIn } = useSelector(selectUser)
+  const { isLoggedIn } = useUserService()
   return (
     <Link href={isLoggedIn ? `/book/${item?.id}` : `/login`}>
       <Root>
@@ -38,7 +39,7 @@ const Root = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  @media ${laptopS} {
+  @media (min-width: 1368px) {
     gap: 48px;
   }
   border-radius: 13px;
