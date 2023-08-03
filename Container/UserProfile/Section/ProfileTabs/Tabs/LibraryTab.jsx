@@ -5,7 +5,7 @@ import { Skeleton, Typography } from '@mui/material'
 
 import ContentCard from '../components/ContentCard'
 
-import { useLibraryService } from 'Container/UserProfile/services/Library.service'
+import useLibraryService from 'Container/UserProfile/services/Library.service'
 
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 
