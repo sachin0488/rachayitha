@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "serve-json": "json-server --watch json_server/weeklyFeature.json  --port 4000"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.3",
@@ -19,10 +18,10 @@
     "@fontsource/roboto": "^4.5.8",
     "@hookform/resolvers": "^2.9.8",
     "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.8",
+    "@mui/material": "^5.14.3",
     "@mui/styles": "^5.10.10",
-    "@mui/x-date-pickers": "^5.0.16",
-    "@tanstack/react-query": "^4.29.12",
+    "@mui/x-date-pickers": "^6.10.2",
+    "@tanstack/react-query": "^4.32.1",
     "@uidotdev/usehooks": "^2.0.1",
     "axios": "^1.1.2",
     "draftjs-to-html": "^0.9.1",
@@ -39,7 +38,7 @@
     "react-intersection-observer": "^9.4.1",
     "react-razorpay": "^2.0.1",
     "yup": "^0.32.11",
-    "zustand": "^4.3.8"
+    "zustand": "^4.4.0"
   },
   "devDependencies": {
     "eslint": "8.25.0",
