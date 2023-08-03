@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'

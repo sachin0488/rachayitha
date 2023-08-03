@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { AuthQuery } from '../constants/query.address'
 import { useSnackbar } from 'notistack'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { useEffect } from 'react'
 import { AuthTokenStore } from 'utility/authTokenStore'
 

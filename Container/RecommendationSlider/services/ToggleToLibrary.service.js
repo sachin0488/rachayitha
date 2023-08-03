@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { APIInstance } from "api/global.api"
-import { useSnackbar } from "notistack"
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { APIInstance } from 'services/global.service'
+import { useSnackbar } from 'notistack'
 
 export const toggleToLibraryAPI = ({ bookId, addToLibrary }) => {
   if (addToLibrary)

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { UserProfileQuery } from '../constants/query.address'
 

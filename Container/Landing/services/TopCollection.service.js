@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { LandingQuery } from '../constants/query.address'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 
 export const useTopCollectionService = ({ startDate, endDate }) => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 
 export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id, razorpay_signature }) => {

@@ -1,4 +1,4 @@
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { PoemDetailsQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 

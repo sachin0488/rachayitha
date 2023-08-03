@@ -1,4 +1,4 @@
-import { APIInstance, AUTHORIZATION } from 'api/global.api'
+import { APIInstance, AUTHORIZATION } from 'services/global.service'
 import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'

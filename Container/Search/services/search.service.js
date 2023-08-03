@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { SearchQuery } from '../constants/query.address'
 //  APIInstance({
 //     url: '/book/',

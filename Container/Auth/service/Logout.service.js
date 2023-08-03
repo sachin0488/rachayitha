@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { useCallback } from 'react'
 import { AuthTokenStore } from 'utility/authTokenStore'
 

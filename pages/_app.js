@@ -10,7 +10,7 @@ import createEmotionCache from 'utility/createEmotionCache'
 import lightTheme from 'styles/theme/lightTheme'
 import 'styles/globals.css'
 
-import { queryCache, mutationCache } from 'api/global.api'
+import { queryCache, mutationCache } from 'services/global.service'
 
 import Layout from 'Layout'
 import AuthProvider from 'Container/Auth/AuthProvider'
@@ -32,7 +32,6 @@ const queryClient = new QueryClient({
   mutationCache,
   queryCache,
 })
-
 
 const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props

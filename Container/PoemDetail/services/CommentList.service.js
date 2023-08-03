@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { APIInstance } from 'api/global.api'
+import { APIInstance } from 'services/global.service'
 import { PoemDetailsQuery } from '../constants/query.address'
 
 const fetchCommentListAPI = async ({ pageParam = 1, poemId, parentCommentId, sortBy }) => {
