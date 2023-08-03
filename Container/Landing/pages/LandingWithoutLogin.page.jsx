@@ -1,7 +1,5 @@
-import React from 'react'
-import Banner from '../Sections/Banner'
 import { RootContainer } from '../common/styles'
-
+import Banner from '../Sections/Banner'
 import Header from '../Sections/Header'
 import GetStartedSection from '../Sections/GetStartedSection'
 import WeeklyFeaturedSliders from 'Container/RecommendationSlider/sliders/WeeklyFeaturedSliders'

@@ -3,12 +3,12 @@ import { Skeleton } from '@mui/material'
 import React from 'react'
 import InfoArea from './components/InfoArea'
 import TabArea from './components/TabArea'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 import { useRouter } from 'next/router'
 
 const DetailsSection = () => {
   const { query } = useRouter()
-  const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data, isLoading } = useBookDetailsService({ bookId: query?.bookId })
 
   if (isLoading)
     return (

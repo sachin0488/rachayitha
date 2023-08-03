@@ -3,13 +3,13 @@ import React from 'react'
 import TabBox from './components/TabBax'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
-import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded'
+// import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded'
 
 const TabList = [
   {
     id: 0,
     name: 'Novel',
-    contentType: 'novel',
+    contentType: 'book',
     category: 1,
     icon: <MenuBookRoundedIcon color="white" />,
   },
@@ -84,7 +84,7 @@ const Root = styled.div`
     width: calc(100% - (var(--main-side-spacing) * 2 - 12px));
     position: sticky;
     top: 80px;
-    z-index:1 ;
+    z-index: 1;
     border-radius: 12px;
     --main-height: 50px;
     --top-spacing: 4px;

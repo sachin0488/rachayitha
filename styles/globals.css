@@ -18,3 +18,28 @@ a {
   tap-highlight-color: transparent;
   box-sizing: border-box;
 }
+
+@media (min-width: 500px) {
+  *::-webkit-scrollbar {
+    /* width of the entire scrollbar */
+    width: 9px;
+    height: 9px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent; /* color of the tracking area */
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #cab9f1; /* creates padding around scroll thumb */
+    border-radius: 2px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #b297f0; /* creates padding around scroll thumb */
+    border-radius: 2px;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent; /* color of the tracking area */
+  }
+}

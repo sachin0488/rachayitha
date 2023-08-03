@@ -24,7 +24,6 @@ export const RootContainer = styled.div`
 
 export const MainContainer = styled.div`
   display: flex;
-
   flex-direction: column;
   margin-top: 90px;
 `

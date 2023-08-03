@@ -2,14 +2,11 @@ import moment from 'moment'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
 import { useSnackbar } from 'notistack'
-import { useDispatch } from 'react-redux'
-import { setUserData } from 'store/slices/global/user.slice'
 import { AuthQuery } from 'Container/Auth/constants/query.address'
 
 export const useUpdateProfileService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const dispatch = useDispatch()
   const queryClient = useQueryClient()
   const isUserFetching = queryClient.isFetching
 
@@ -21,8 +18,6 @@ export const useUpdateProfileService = () => {
       enqueueSnackbar('Profile Updated Successfully!', {
         variant: 'success',
       })
-
-      dispatch(setUserData(data?.user))
     },
     onError: error => {
       console.log(error)
@@ -47,7 +42,13 @@ const UpdateUserProfileAPI = async data => {
   )
     form.append('profile_pic', data.profilePic[0])
 
-  if (data?.profileBanner?.length) form.append('profile_banner', data.profileBanner[0])
+  if (
+    data?.profileBanner?.length &&
+    typeof data?.profileBanner[0] !== 'string' &&
+    data?.profileBanner[0] !== null &&
+    data?.profileBanner[0] !== undefined
+  )
+    form.append('profile_banner', data.profileBanner[0])
 
   if (data?.fullName) form.append('full_name', data?.fullName)
   if (data?.username) form.append('username', data?.username)

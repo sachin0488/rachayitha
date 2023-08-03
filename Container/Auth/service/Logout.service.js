@@ -1,17 +1,15 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
+import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { AuthQuery } from '../constants/query.address'
-import { APIInstance, AUTHORIZATION } from 'api/global.api'
-import { authTokenHandles } from 'api/global.hook'
+import { APIInstance } from 'api/global.api'
 import { useCallback } from 'react'
+import { AuthTokenStore } from 'utility/authTokenStore'
 
-const { setAccess, setRefresh, getAccess, getRefresh } = authTokenHandles()
+const { setAccess, setRefresh, getAccess, getRefresh } = AuthTokenStore()
 
 export const useLogoutService = () => {
   const { enqueueSnackbar } = useSnackbar()
   const router = useRouter()
-  // const queryClient = useQueryClient()
 
   const clearLoginInfo = useCallback(() => {
     window && window.localStorage.setItem('persist:root', '')

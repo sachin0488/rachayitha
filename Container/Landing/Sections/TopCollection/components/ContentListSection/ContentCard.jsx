@@ -4,12 +4,11 @@ import styled from '@emotion/styled'
 
 import { Typography } from '@mui/material'
 
-import { laptopS } from 'styles/mediaQuery/breakPoints'
-
 import { useUserService } from 'Container/Auth/service/User.service'
 
 const ContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
+  
   return (
     <Link href={isLoggedIn ? `/book/${item?.id}` : `/login`}>
       <Root>

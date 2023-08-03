@@ -1,18 +1,13 @@
 import styled from '@emotion/styled'
-import Image from 'next/image'
-import React from 'react'
-import { useHero } from '../../api/hero.hook'
-import { ImageRow, ImgContainer, StyledImage } from './styles'
+import { ImageRow, StyledImage } from './styles'
 
 const RightSection = () => {
-  const { data } = useHero()
-
-  // const List = [...(data || []), ...(data || [])]
   const RowList = [
     ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
     ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
     ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
   ]
+
   return (
     <Root>
       {RowList?.map((ImageList, index) => (

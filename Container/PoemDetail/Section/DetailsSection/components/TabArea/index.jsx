@@ -5,8 +5,13 @@ import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
 
 import AboutTab from './AboutTab'
 import ChapterListTab from './ChapterListTab'
+import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
+import { useRouter } from 'next/router'
 
-const TabArea = ({ item }) => {
+const TabArea = () => {
+  const { query } = useRouter()
+  const { Data } = usePoemDetailsService({ poemId: query?.poemId })
+
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
@@ -21,10 +26,10 @@ const TabArea = ({ item }) => {
       </StyledTabs>
 
       <TabPanel value={value} index={0}>
-        <AboutTab item={item} />
+        <AboutTab tags={Data?.tags} synopsis={Data?.synopsis} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ChapterListTab item={item}/>
+        <ChapterListTab chapter={Data?.chapter} />
       </TabPanel>
     </Root>
   )

@@ -10,13 +10,13 @@ import StyledSearchBox from './components/StyledSearchBox'
 
 const SearchModal = ({ open, setOpen }) => {
   const [SearchText, setSearchText] = useState('')
-  
+
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
 
   return (
-    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
+    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={400}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
           Search Your interest...

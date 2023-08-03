@@ -1,20 +1,20 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
 import { useCallback } from 'react'
-import { NovelReadQuery } from '../constants/query.address'
+import { BookReadQuery } from '../constants/query.address'
 
 export const useChapterListService = ({ bookId, chapterId }) => {
   const queryClient = useQueryClient()
 
   const { data, isLoading, isError, isSuccess, isFetching } = useQuery({
-    queryKey: [NovelReadQuery.CHAPTER_LIST, { bookId }],
+    queryKey: [BookReadQuery.CHAPTER_LIST, { bookId }],
     queryFn: () => fetchChapterListAPI({ bookId, chapterId }),
     enabled: Boolean(bookId && chapterId),
   })
 
   const setChapterLoadedById = useCallback(
     chapterId => {
-      queryClient.setQueryData([NovelReadQuery.CHAPTER_LIST, { bookId }], preData => {
+      queryClient.setQueryData([BookReadQuery.CHAPTER_LIST, { bookId }], preData => {
         return {
           ChapterList: preData?.ChapterList?.map(chapter => {
             if (chapter.chapterId !== chapterId) return chapter

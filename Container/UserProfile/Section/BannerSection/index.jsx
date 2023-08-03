@@ -113,7 +113,19 @@ const BannerSection = () => {
       </Tooltip>
 
       {isPreviewAvailable && <StyledImage src={previewImage} alt="Profile Art" />}
-      {!isPreviewAvailable && <LandscapeRoundedIcon fontSize="large" color="secondary" />}
+      {!isPreviewAvailable && (
+        <LandscapeRoundedIcon
+          color="secondary"
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            opacity: 0.5,
+            fontSize: 100,
+          }}
+        />
+      )}
 
       <input
         name={name}

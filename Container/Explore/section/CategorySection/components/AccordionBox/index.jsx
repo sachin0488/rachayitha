@@ -21,7 +21,7 @@ const AccordionBox = ({ isOpened, setOpenedIdx, item, idx, isLoading }) => {
           setOpenedIdx(isOpened ? '' : idx)
         }}
         expandIcon={<ExpandMoreRoundedIcon style={{ color: '#5426C3', fontSize: '32px' }} />}>
-        <Heading>{item.contentType}</Heading>
+        <Heading>{item.name}</Heading>
       </Summary>
       <Details>
         {isLoading ? (

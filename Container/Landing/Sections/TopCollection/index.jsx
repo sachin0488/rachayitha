@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
+import moment from 'moment/moment'
+import { useEffect } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Typography, useMediaQuery } from '@mui/material'
 
-import { useTopCollection } from './api/topCollection.hook'
-import ContentListSection from './components/ContentListSection'
 import CarouselList from './components/CarouselList'
-import { FormProvider, useForm } from 'react-hook-form'
+import ContentListSection from './components/ContentListSection'
 import SelectSelectedTime from './components/SelectSelectedTime'
-import moment from 'moment/moment'
-import { useTopCollectionList } from 'Container/Landing/api/landing.hooks'
+
+import { useTopCollectionService } from 'Container/Landing/services/TopCollection.service'
 
 const collectionTimeList = [
   {
@@ -35,15 +35,15 @@ const TopCollection = () => {
 
   const selectedTime = methods.watch('selectedTime')
 
-  const { Obj, isLoading, refetch } = useTopCollectionList({
+  const { data, isLoading, refetch } = useTopCollectionService({
     startDate: selectedTime,
     endDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
   })
 
   const List = [
-    <ContentListSection key={1} contentName="Novel" contentList={Obj?.novels} isLoading={isLoading} />,
-    <ContentListSection key={2} contentName="Poems" contentList={Obj?.poems} isLoading={isLoading} />,
-    // <ContentListSection key={3} contentName="Shorts" contentList={Obj?.shorts} />,
+    <ContentListSection key={1} contentName="Book" contentList={data?.books} isLoading={isLoading} />,
+    <ContentListSection key={2} contentName="Poems" contentList={data?.poems} isLoading={isLoading} />,
+    // <ContentListSection key={3} contentName="Shorts" contentList={data?.shorts} />,
   ]
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const TopCollection = () => {
           </HeadingBox>
           {isTabletXSM ? (
             <CollectionList>
-              <ContentListSection contentName="Novel" contentList={Obj?.novels} isLoading={isLoading} />
+              <ContentListSection contentName="Book" contentList={Obj?.books} isLoading={isLoading} />
               <ContentListSection contentName="Poems" contentList={Obj?.poems} isLoading={isLoading} />
               {/* <ContentListSection contentName="Shorts" contentList={Obj?.shorts} /> */}
             </CollectionList>

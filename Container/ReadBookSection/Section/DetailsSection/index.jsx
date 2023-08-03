@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 
 import { Typography } from '@mui/material'
 import DividerBar from 'Container/ReadBookSection/components/DividerBar'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 
 const DetailsSection = () => {
   const { query } = useRouter()
-  const { Data, isLoading, isError, error } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data, isLoading, isError, error } = useBookDetailsService({ bookId: query?.bookId })
 
   return (
     <Root>

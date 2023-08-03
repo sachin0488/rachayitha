@@ -17,7 +17,7 @@ const SearchModal = ({ open, setOpen }) => {
   }, [setOpen])
 
   return (
-    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={550}>
+    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={550}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
           Search Your interest...

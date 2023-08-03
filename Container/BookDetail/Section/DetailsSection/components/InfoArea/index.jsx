@@ -9,7 +9,7 @@ import MoreOptions from './MoreOptions'
 import RatingBar from './RatingBar'
 import LikeButton from './LikeButton'
 
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
 import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded'
@@ -17,7 +17,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 
 const InfoArea = () => {
   const { query } = useRouter()
-  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data } = useBookDetailsService({ bookId: query?.bookId })
 
   return (
     <Root>

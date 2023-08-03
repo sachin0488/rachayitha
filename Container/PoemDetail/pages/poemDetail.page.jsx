@@ -3,32 +3,28 @@ import { useRouter } from 'next/router'
 
 import { RootContainer, MainContainer } from '../common/styles'
 
-import RecommendationSection from '../Section/RecommendationSection'
 import DetailsSection from '../Section/DetailsSection'
 import ReviewSection from '../Section/ReviewSection'
 import CommentSection from '../Section/CommentSection'
 
-import usePoemDetail from '../api/poemDetail.hook'
 import VoteSection from '../Section/VoteSection'
+import { usePoemDetailsService } from '../services/PoemDetails.service'
+import RecommendationSection from 'Container/RecommendationSlider/sliders/RecommendationSlider'
 
 const PoemDetail = () => {
-  const router = useRouter()
-  const { PoemDetail, isLoading, isError, error } = usePoemDetail(router.query.poemId)
+  const { query } = useRouter()
+  const { error } = usePoemDetailsService({ poemId: query?.poemId })
 
-  if (isError) {
-    return <h1>{error?.message}</h1>
-  }
+  if (error) return <div>Something went wrong!</div>
 
   return (
     <RootContainer>
       <MainContainer>
-        <DetailsSection item={PoemDetail} isLoading={isLoading} />
+        <DetailsSection />
         <RecommendationSection />
-        <VoteSection item={PoemDetail} isLoading={isLoading} />
-        <ReviewSection item={PoemDetail} isLoading={isLoading} />
-        <CommentSection item={PoemDetail} isLoading={isLoading} />
-
-        {/* <ReviewSectionCom /> */}
+        <VoteSection />
+        <ReviewSection />
+        <CommentSection />
       </MainContainer>
     </RootContainer>
   )

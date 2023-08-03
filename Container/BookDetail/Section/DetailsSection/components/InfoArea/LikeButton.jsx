@@ -2,7 +2,7 @@ import React from 'react'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import ThumbDownOffAltRoundedIcon from '@mui/icons-material/ThumbDownOffAltRounded'
 import { Button } from '@mui/material'
-import { useBookLikeService } from 'Container/BookDetail/services/NovelLike.service'
+import { useBookLikeService } from 'Container/BookDetail/services/BookLike.service'
 
 const LikeButton = ({ bookId, isLiked, likeCount }) => {
   const { mutate } = useBookLikeService({ bookId })

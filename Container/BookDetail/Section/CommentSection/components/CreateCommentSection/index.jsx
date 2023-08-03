@@ -9,13 +9,13 @@ import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
 import { useCreateCommentService } from 'Container/BookDetail/services/CreateComment.service'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 import { useUserService } from 'Container/Auth/service/User.service'
 
 const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
   const { user } = useUserService()
-  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data } = useBookDetailsService({ bookId: query?.bookId })
 
   const { mutate, isLoading, isSuccess } = useCreateCommentService({
     bookId: query?.bookId,

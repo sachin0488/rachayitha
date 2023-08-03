@@ -1,5 +1,5 @@
 import { APIInstance } from 'api/global.api'
-import { NovelDetailsQuery } from '../constants/query.address'
+import { BookDetailsQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 
 const fetchVoteDetail = async bookId => {
@@ -31,13 +31,11 @@ const fetchVoteDetail = async bookId => {
 }
 
 export const useFetchVoteService = ({ bookId }) => {
-  const { data, isLoading, isError, error, isFetching } = useQuery(
-    [NovelDetailsQuery.NOVEL_VOTE, { bookId: parseInt(bookId) }],
-    () => fetchVoteDetail(bookId),
-    {
-      enabled: Boolean(bookId),
-    },
-  )
+  const { data, isLoading, isError, error, isFetching } = useQuery({
+    queryKey: [BookDetailsQuery.BOOK_VOTE, { bookId: parseInt(bookId) }],
+    queryFn: () => fetchVoteDetail(bookId),
+    enabled: Boolean(bookId),
+  })
 
   return { Data: data, isLoading, isError, error, isFetching }
 }

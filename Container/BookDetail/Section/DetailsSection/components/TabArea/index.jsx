@@ -5,12 +5,12 @@ import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
 
 import AboutTab from './AboutTab'
 import ChapterListTab from './ChapterListTab'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 import { useRouter } from 'next/router'
 
 const TabArea = () => {
   const { query } = useRouter()
-  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data } = useBookDetailsService({ bookId: query?.bookId })
 
   const [value, setValue] = React.useState(0)
 

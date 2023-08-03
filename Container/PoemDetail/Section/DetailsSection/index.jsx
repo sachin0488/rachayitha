@@ -3,8 +3,13 @@ import { Skeleton } from '@mui/material'
 import React from 'react'
 import InfoArea from './components/InfoArea'
 import TabArea from './components/TabArea'
+import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
+import { useRouter } from 'next/router'
 
-const DetailsSection = ({ item, isLoading }) => {
+const DetailsSection = () => {
+  const { query } = useRouter()
+  const { Data, isLoading } = usePoemDetailsService({ poemId: query?.poemId })
+
   if (isLoading)
     return (
       <Root>
@@ -18,23 +23,24 @@ const DetailsSection = ({ item, isLoading }) => {
         </LoadingInfo>
       </Root>
     )
+
   return (
     <Root>
       <ImageContainer>
         <StyledImage
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
         <StyledImage
           className="blur"
           alt="Cover Image"
-          src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
       </ImageContainer>
 
       <InfoSection>
-        <InfoArea item={item} />
-        <TabArea item={item} />
+        <InfoArea />
+        <TabArea />
       </InfoSection>
     </Root>
   )
@@ -48,11 +54,13 @@ const LoadingInfo = styled.div`
 `
 
 const StyledSkeletonCover = styled(Skeleton)`
-  min-height: 466px;
-  height: 466px;
+  height: 380px;
   max-width: 350px;
-  aspect-ratio: 350/466;
+  aspect-ratio: 3/4;
   align-self: center;
+  @media (max-width: 480px) {
+    max-width: calc(100vw - 30px);
+  }
 `
 
 const StyledSkeletonInfo = styled(Skeleton)`

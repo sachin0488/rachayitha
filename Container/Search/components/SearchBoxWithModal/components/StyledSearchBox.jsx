@@ -14,7 +14,7 @@ const StyledSearchBox = ({ SearchText, setSearchText }) => {
         <StyledInputBase
           value={SearchText}
           onChange={e => setSearchText(e.target.value)}
-          placeholder={isTabletSM ? 'Search novels, poems and many more…' : 'Search here...'}
+          placeholder={isTabletSM ? 'Search books, poems and many more…' : 'Search here...'}
           inputProps={{ 'aria-label': 'search' }}
         />
       </Search>

@@ -31,15 +31,17 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
   })
 
   useEffect(() => {
-    methods.reset({
-      parameter1: 0,
-      parameter2: 0,
-      parameter3: 0,
-      parameter4: 0,
-      parameter5: 0,
-      comment: '',
-    })
-  }, [open, user, methods])
+    if (open) {
+      methods.reset({
+        parameter1: 0,
+        parameter2: 0,
+        parameter3: 0,
+        parameter4: 0,
+        parameter5: 0,
+        comment: '',
+      })
+    }
+  }, [open])
 
   useEffect(() => {
     if (isSuccess) {
@@ -59,7 +61,7 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
   const isAllDirty = [parameter1, parameter2, parameter3, parameter4, parameter5, comment].includes(false)
 
   return (
-    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
+    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={400}>
       <Main onSubmit={methods.handleSubmit(mutate)}>
         <Title variant="h4" component="div" color="secondary">
           Share your experience

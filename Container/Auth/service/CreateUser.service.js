@@ -1,16 +1,14 @@
 import { APIInstance, AUTHORIZATION } from 'api/global.api'
-import { AuthQuery } from '../constants/query.address'
-import { authTokenHandles } from 'api/global.hook'
 import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
+import { AuthTokenStore } from 'utility/authTokenStore'
 
-const { setAccess, setRefresh } = authTokenHandles()
+const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useCreateAccountService = () => {
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
-  // const queryClient = useQueryClient()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: createAccountAPI,
@@ -25,10 +23,6 @@ export const useCreateAccountService = () => {
         },
         error => Promise.reject(error),
       )
-
-      // setTimeout(() => {
-      //   queryClient.invalidateQueries([AuthQuery.USER_DATA])
-      // }, 1500)
 
       router.push('/otp')
 

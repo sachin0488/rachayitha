@@ -67,7 +67,7 @@ const EditProfileModal = ({ open, setOpen }) => {
   }, [open])
 
   return (
-    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} customBarackPoint={400}>
+    <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={400}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
           Update Profile

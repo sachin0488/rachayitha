@@ -1,18 +1,31 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
-import { Button, Skeleton, Typography, useMediaQuery } from '@mui/material'
+import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
+
+import { useRouter } from 'next/router'
+import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
+import { useCreateVoteService } from 'Container/PoemDetail/services/CreateVote.service'
+import { useFetchVoteService } from 'Container/PoemDetail/services/FetchVote.service'
+
+import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
-import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 
-const VoteSection = ({ isLoading }) => {
+const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
+  const { query } = useRouter()
+  const { Data, isLoading } = usePoemDetailsService({ poemId: query?.poemId })
 
-  if (isLoading)
+  const { isFetching, Data: VoteData } = useFetchVoteService({ poemId: query?.poemId })
+  const { isLoading: isMutating, mutate } = useCreateVoteService({ poemId: query?.poemId })
+
+  const isAlreadyVoted = VoteData?.isAlreadyVoted
+  const totalVotesByUser = VoteData?.voteCount
+
+  if (isLoading || isFetching)
     return (
       <Root>
         <LoadingMain>
@@ -21,41 +34,63 @@ const VoteSection = ({ isLoading }) => {
       </Root>
     )
 
-  const isVoted = false
   return (
     <Root>
       <Main>
         <Field>
-          <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
-          <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Novel</Text>
+          <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
+          <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Poem</Text>
         </Field>
         <Bottom>
           <InfoSection>
-            <VoteInfoField>
-              <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" component="div" color="secondary">
-                #200
-              </HighlightedText>
-            </VoteInfoField>
-            <VoteInfoField>
-              <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 40 : 55 }} />
-              <HighlightedText variant="h6" component="div" color="secondary">
-                600
-              </HighlightedText>
-            </VoteInfoField>
+            <Tooltip title="Ranking">
+              <VoteInfoField>
+                <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
+                <HighlightedText variant="h6" component="div" color="secondary">
+                  #{Data?.poemRank}
+                </HighlightedText>
+              </VoteInfoField>
+            </Tooltip>
+            <Tooltip title="Total Votes">
+              <VoteInfoField>
+                <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} />
+                <HighlightedText variant="h6" component="div" color="secondary">
+                  {Data?.totalVote || 0}
+                </HighlightedText>
+              </VoteInfoField>
+            </Tooltip>
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
-          <VoteButton
-            disabled={isVoted}
-            is_voted={String(isVoted)}
-            variant="contained"
-            color={isVoted ? 'secondary' : 'primary'}>
-            {isVoted ? (
-              <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
-            ) : (
-              <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 35 : 45 }} />
-            )}
-          </VoteButton>
+          {isAlreadyVoted && (
+            <Tooltip title="Your vote for this Poem">
+              <VoteButton
+                is_voted={String(isAlreadyVoted)}
+                is_mutating={String(isFetching)}
+                variant="contained"
+                color={isAlreadyVoted ? 'secondary' : 'primary'}>
+                {isFetching ? (
+                  <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
+                ) : (
+                  <AddTaskRoundedIcon sx={{ fontSize: isMobile ? 28 : 45 }} />
+                )}
+                {totalVotesByUser}
+              </VoteButton>
+            </Tooltip>
+          )}
+          <Tooltip title="Vote This poem">
+            <AddVoteButton
+              disabled={isMutating}
+              is_mutating={String(isMutating)}
+              variant="contained"
+              color={'primary'}
+              onClick={mutate}>
+              {isMutating ? (
+                <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
+              ) : (
+                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
+              )}
+            </AddVoteButton>
+          </Tooltip>
         </Bottom>
       </Main>
     </Root>
@@ -144,6 +179,12 @@ const Bottom = styled.div`
   @media (max-width: 780px) {
     justify-content: space-between;
   }
+  @media (max-width: 375px) {
+    /* flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `
 
 const Text = styled(Typography)`
@@ -167,6 +208,10 @@ const VoteInfoField = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 5px;
+  @media (max-width: 400px) {
+    padding: 2.5px 7px 2.5px 2.5px;
+    align-items: center;
+  }
 `
 
 const HighlightedText = styled(Typography)`
@@ -181,16 +226,48 @@ const InfoSection = styled.div`
     margin-left: 0px;
     margin-right: auto;
   }
+  @media (max-width: 375px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 const VoteButton = styled(Button)`
+  border-radius: 15px;
+  box-shadow: none;
+  min-width: 75px;
+  /* width: 75px; */
+  && {
+    color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
+    background: ${({ theme, is_voted, is_mutating }) =>
+      is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
+  }
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  gap: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media (max-width: 400px) {
+    padding: 2.5px 7px 2.5px 2.5px;
+    align-items: center;
+  }
+`
+
+const AddVoteButton = styled(Button)`
   border-radius: 15px;
   box-shadow: none;
   min-width: 69px;
   width: 69px;
   && {
     color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
-    background: ${({ theme, is_voted }) => is_voted === 'true' && theme.palette.secondary.main};
+    background: ${({ theme, is_voted, is_mutating }) =>
+      is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
   }
 `
 

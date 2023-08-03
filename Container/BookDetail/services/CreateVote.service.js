@@ -1,7 +1,7 @@
 import { APIInstance } from 'api/global.api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { NovelDetailsQuery } from '../constants/query.address'
+import { BookDetailsQuery } from '../constants/query.address'
 
 const createVoteAPI = async ({ bookId }) => {
   return APIInstance({
@@ -22,7 +22,7 @@ export const useCreateVoteService = ({ bookId }) => {
     },
     onSuccess({ data }) {
       queryClient.invalidateQueries({
-        queryKey: [NovelDetailsQuery.NOVEL_VOTE, { bookId: parseInt(bookId) }],
+        queryKey: [BookDetailsQuery.BOOK_VOTE, { bookId: parseInt(bookId) }],
       })
       enqueueSnackbar('Your Vote has been Added !', {
         variant: 'success',

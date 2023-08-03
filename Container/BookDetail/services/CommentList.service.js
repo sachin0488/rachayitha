@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
-import { NovelDetailsQuery } from '../constants/query.address'
+import { BookDetailsQuery } from '../constants/query.address'
 
 const fetchCommentListAPI = async ({ pageParam = 1, bookId, parentCommentId, sortBy }) => {
   const res = await APIInstance({
@@ -40,7 +40,7 @@ const useCommentListService = ({ bookId, parentCommentId, sortBy }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: [
-        NovelDetailsQuery.COMMENT_LIST,
+        BookDetailsQuery.COMMENT_LIST,
         { bookId: parseInt(bookId), parentCommentId: parseInt(parentCommentId), sortBy },
       ],
       queryFn: ({ pageParam }) => fetchCommentListAPI({ pageParam, bookId, parentCommentId, sortBy }),

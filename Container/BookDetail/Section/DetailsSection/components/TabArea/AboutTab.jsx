@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import React from 'react'
 
-const AboutTab = ({  tags, synopsis }) => {
+const AboutTab = ({ tags, synopsis }) => {
   return (
     <Root>
       <Label variant="h6" component="div" color="secondary">
@@ -22,6 +22,10 @@ const AboutTab = ({  tags, synopsis }) => {
 
 const Root = styled.div`
   padding: 6px;
+  min-height: 250px;
+  @media (max-width: 800px) {
+    min-height: auto;
+  }
 `
 
 const Label = styled(Typography)``

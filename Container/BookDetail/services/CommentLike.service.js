@@ -1,5 +1,5 @@
 import { APIInstance } from 'api/global.api'
-import { NovelDetailsQuery } from '../constants/query.address'
+import { BookDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 
@@ -31,7 +31,7 @@ export const useCommentLikeService = ({ bookId, commentId, parentCommentId, sort
     },
     onSuccess({ data }) {
       queryClient.setQueryData(
-        [NovelDetailsQuery.COMMENT_LIST, { bookId, parentCommentId, sortBy }],
+        [BookDetailsQuery.COMMENT_LIST, { bookId, parentCommentId, sortBy }],
 
         oldData => {
           return oldData

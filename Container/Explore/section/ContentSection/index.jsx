@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
 import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 import { InView } from 'react-intersection-observer'
-import { useEffect, useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
@@ -18,10 +18,7 @@ const ContentSection = ({ ranking }) => {
   })
 
   const renderContentList = useMemo(
-    () =>
-      ContentList?.map((item, index) => (
-        <ContentCard key={index} item={item} index={index} ranking={ranking} />
-      )),
+    () => ContentList?.map((item, index) => <ContentCard key={index} item={item} index={index} ranking={ranking} />),
     [ContentList, ranking],
   )
 

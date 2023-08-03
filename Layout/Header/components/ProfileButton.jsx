@@ -56,7 +56,7 @@ const ProfileButton = () => {
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}>
-        <Link href={`/profile/1`}>
+        <Link href={`/profile`}>
           <MenuItem onClick={handleCloseUserMenu}>
             <Typography textAlign="center">Profile</Typography>
           </MenuItem>

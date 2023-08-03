@@ -1,5 +1,5 @@
 import { APIInstance } from 'api/global.api'
-// import { NovelDetailsQuery } from '../constants/query.address'
+// import { BookDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import useRazorpay from 'react-razorpay'
@@ -92,7 +92,7 @@ export const useCreateCoinPurchaseService = () => {
     onSuccess({ data }) {
       //   queryClient.invalidateQueries({
       //     queryKey: [
-      //       NovelDetailsQuery.COMMENT_LIST,
+      //       BookDetailsQuery.COMMENT_LIST,
       //       { bookId: parseInt(bookId), parentCommentId: parseInt(parentCommentId), sortBy },
       //     ],
       //   })

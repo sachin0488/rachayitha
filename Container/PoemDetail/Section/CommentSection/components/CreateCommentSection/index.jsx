@@ -1,34 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 
 import { Avatar, Button, CircularProgress, Rating, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
-import { useCreatePoemCommentAPI } from 'Container/PoemDetail/api/poemDetail.hook'
-
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
-
+import { useCreateCommentService } from 'Container/PoemDetail/services/CreateComment.service'
+import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
 import { useUserService } from 'Container/Auth/service/User.service'
 
-const CreateCommentSection = ({ commentId, sortBy }) => {
+const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
   const { user } = useUserService()
+  const { Data } = usePoemDetailsService({ poemId: query?.poemId })
 
-  const { handleCreatePoemComment, isLoading } = useCreatePoemCommentAPI({
+  const { mutate, isLoading, isSuccess } = useCreateCommentService({
     poemId: query?.poemId,
-    commentId: commentId,
+    parentCommentId: parentCommentId || null,
     sortBy,
   })
 
   const methods = useForm({
-    // resolver: yupResolver(schema),
     defaultValues: {
-      comments: '',
+      comment: '',
     },
   })
+
+  useEffect(() => {
+    if (isSuccess) {
+      methods.reset({ comment: '' })
+    }
+  }, [isSuccess, methods])
+
+  const comment = methods.watch('comment')
 
   const { handleSubmit } = methods
 
@@ -48,23 +55,22 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
           <Rating
             color="primary"
             sx={{ ml: 'auto', color: theme => theme.palette.primary.main }}
-            //   value={Number(item?.rating?.rate__avg).toFixed(1)}
-            value={0}
+            value={Data?.poemRatingByUser || 0}
             readOnly
             size="medium"
             precision={0.1}
             emptyIcon={<StarIcon fontSize="inherit" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
           />
         </Header>
-        <CommentText color="secondary" variant="body1">
-          <CommentField placeholder="Add Comment here ..." variant="filled" name="comments" multiline />
-        </CommentText>
+
+        <CommentField placeholder="Add Comment here ..." variant="filled" name="comment" multiline />
+
         <ActionList>
-          <StyledButton disabled={isLoading} onClick={() => methods.reset({ comments: '' })}>
+          <StyledButton disabled={isLoading} onClick={() => methods.reset({ comment: '' })}>
             Cancel
           </StyledButton>
           <StyledButton
-            disabled={isLoading}
+            disabled={isLoading || !comment}
             endIcon={
               isLoading ? (
                 <CircularProgress
@@ -77,7 +83,7 @@ const CreateCommentSection = ({ commentId, sortBy }) => {
                 <SendRoundedIcon />
               )
             }
-            onClick={handleSubmit(handleCreatePoemComment)}>
+            onClick={handleSubmit(mutate)}>
             Comment
           </StyledButton>
         </ActionList>

@@ -5,11 +5,11 @@ import CreateReviewSection from './components/CreateReviewSection'
 import Heading from './components/Heading'
 import RatingSection from './components/RatingSection'
 import { useRouter } from 'next/router'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 
 const ReviewSection = () => {
   const { query } = useRouter()
-  const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data, isLoading } = useBookDetailsService({ bookId: query?.bookId })
 
   const isTablet = useMediaQuery('(max-width: 735px)')
 

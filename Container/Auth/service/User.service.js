@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import { AuthQuery } from '../constants/query.address'
 import { useSnackbar } from 'notistack'
 import { APIInstance } from 'api/global.api'
-import { authTokenHandles } from 'api/global.hook'
 import { useEffect } from 'react'
+import { AuthTokenStore } from 'utility/authTokenStore'
 
 export const useUserService = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -46,7 +46,7 @@ export const useUserService = () => {
   }
 }
 
-const { setAccess, setRefresh, getRefresh, getAccess } = authTokenHandles()
+const { setAccess, setRefresh, getRefresh, getAccess } = AuthTokenStore()
 
 const userAuthAPI = async () => {
   if (!getRefresh || !getAccess) return formatUnAuthData()

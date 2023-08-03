@@ -1,5 +1,5 @@
-export const NovelDetailsQuery = {
-  NOVEL_DETAILS: 'novel-details',
+export const BookDetailsQuery = {
+  BOOK_DETAILS: 'book-details',
   COMMENT_LIST: 'comment-list',
-  NOVEL_VOTE: 'novel-vote',
+  BOOK_VOTE: 'book-vote',
 }

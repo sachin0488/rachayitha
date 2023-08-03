@@ -12,7 +12,9 @@
         "potentialstartletbook",
         "Startlet",
         "tanstack",
+        "topbooklist",
         "userbooklibrary",
+        "userpoemlibrary",
         "votetoken"
     ]
 }

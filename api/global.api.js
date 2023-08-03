@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 import { MutationCache, QueryCache } from '@tanstack/react-query'
-import { authTokenHandles } from './global.hook'
 import { isBrowser } from 'utility/ssr.utility'
+import { AuthTokenStore } from 'utility/authTokenStore'
 
 const API_URL = 'https://rachayitha.com/api/v1/'
 
 export const AUTHORIZATION = 'Authorization'
 
-const { setAccess, setRefresh, getRefresh, getAccess } = authTokenHandles()
+const { setAccess, setRefresh, getRefresh, getAccess } = AuthTokenStore()
 
 export const APIInstance = axios.create({
   baseURL: `${API_URL}`,
@@ -96,4 +96,3 @@ APIInstance.interceptors.request.use(
   },
   error => Promise.reject(error),
 )
-

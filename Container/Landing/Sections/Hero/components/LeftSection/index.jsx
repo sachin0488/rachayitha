@@ -4,7 +4,6 @@ import React from 'react'
 import { ButtonContainer, Heading, ParagraphText, StyledButton, SubHeading, TextSection } from './styles'
 
 const LeftSection = () => {
-  const link = `/explore?content_type=novel&category=1&sort_by=Hot`
   return (
     <Root>
       <TextSection>
@@ -13,7 +12,7 @@ const LeftSection = () => {
         <ParagraphText>India’s Largest online Reading Platform</ParagraphText>
       </TextSection>
       <ButtonContainer>
-        <Link href={link}>
+        <Link href={`/explore?content_type=book&category=1&sort_by=Hot`}>
           <StyledButton variant="contained">Explore</StyledButton>
         </Link>
         <Link href={`/create/dashboard/stories`}>

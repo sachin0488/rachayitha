@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
+import { SearchQuery } from '../constants/query.address'
 //  APIInstance({
 //     url: '/book/',
 //     method: 'GET',
@@ -84,7 +85,7 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
 const useSearchService = ({ SearchKeyword }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['search-list', SearchKeyword],
+      queryKey: [SearchQuery.SEARCH_LIST, SearchKeyword],
       queryFn: ({ pageParam }) => fetchSearchListAPI({ pageParam, SearchKeyword }),
       getNextPageParam: (lastPage, pages) => {
         return lastPage.nextCursor

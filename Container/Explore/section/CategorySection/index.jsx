@@ -8,7 +8,7 @@ import DrawerBox from './components/DrawerBox'
 
 const getSectionIndexByName = sectionName => {
   switch (sectionName.toLocaleLowerCase()) {
-    case 'novel':
+    case 'book':
       return 0
     case 'poem':
       return 1
@@ -23,7 +23,7 @@ const CategorySection = () => {
   const is800x = useMediaQuery('(max-width: 800px)')
   const { query } = useRouter()
   const { content_type } = query
-  const { CategoryList, isLoading } = useCategoryApi()
+  const { CategoryList, isLoading } = useCategoryService()
   const [openedIdx, setOpenedIdx] = useState('')
 
   useLayoutEffect(() => {
@@ -32,11 +32,13 @@ const CategorySection = () => {
 
   const List = [
     {
-      contentType: 'Novel',
+      name: 'Novel',
+      contentType: 'book',
       CategoryList,
     },
     {
-      contentType: 'Poem',
+      name: 'Poem',
+      contentType: 'poem',
       CategoryList,
     },
     // {

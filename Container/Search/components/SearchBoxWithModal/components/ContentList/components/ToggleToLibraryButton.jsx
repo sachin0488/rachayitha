@@ -10,9 +10,7 @@ const ToggleToLibraryButton = ({ bookId, libraryAdded, SearchKeyword }) => {
     bookId: bookId,
     queryKey: ['search-list', SearchKeyword],
   })
-  console.log('====================================')
-  console.log(libraryAdded)
-  console.log('====================================')
+  
   return (
     <Tooltip title={libraryAdded ? 'Remove from Library' : 'Add to Library'}>
       <ToggleToLibraryStyledButton

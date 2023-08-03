@@ -1,3 +1,4 @@
-export const NovelReadQuery = {
-  CHAPTER_LIST: 'chapter-list',
+export const BookReadQuery = {
+  CHAPTER_LIST: 'CHAPTER_LIST',
+  CHAPTER_CONTENT: 'CHAPTER_CONTENT',
 }

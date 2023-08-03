@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Skeleton, Tab, tabClasses, Tabs, tabsClasses, Typography } from '@mui/material'
 
 import { useRouter } from 'next/router'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 import useCommentListService from 'Container/BookDetail/services/CommentList.service'
 import CreateCommentSection from './components/CreateCommentSection'
 import CommentCard from './components/CommentCard'
@@ -27,7 +27,7 @@ const CommentSection = () => {
   const [value, setValue] = useState(0)
 
   const { query } = useRouter()
-  const { Data } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data } = useBookDetailsService({ bookId: query?.bookId })
 
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError } = useCommentListService({
     bookId: query?.bookId,

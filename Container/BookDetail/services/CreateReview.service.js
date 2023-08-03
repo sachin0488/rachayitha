@@ -1,7 +1,7 @@
 import { APIInstance } from 'api/global.api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import { NovelDetailsQuery } from '../constants/query.address'
+import { BookDetailsQuery } from '../constants/query.address'
 
 const createReviewAPI = async ({ bookId, comment, parameter1, parameter2, parameter3, parameter4, parameter5 }) => {
   const commentAPI = APIInstance({
@@ -50,7 +50,7 @@ export const useCreateReviewService = ({ bookId, sortBy }) => {
     },
     onSuccess({ data }) {
       queryClient.invalidateQueries({
-        queryKey: [NovelDetailsQuery.COMMENT_LIST, { bookId: parseInt(bookId), parentCommentId: null, sortBy }],
+        queryKey: [BookDetailsQuery.COMMENT_LIST, { bookId: parseInt(bookId), parentCommentId: null, sortBy }],
       })
       enqueueSnackbar('Your review has been posted !', {
         variant: 'success',

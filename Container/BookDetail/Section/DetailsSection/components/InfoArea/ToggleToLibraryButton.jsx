@@ -3,12 +3,12 @@ import { Button, Tooltip } from '@mui/material'
 import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import { useToggleToLibraryService } from 'Container/BookDetail/services/ToggleToLibrary.service'
-import { NovelDetailsQuery } from 'Container/BookDetail/constants/query.address'
+import { BookDetailsQuery } from 'Container/BookDetail/constants/query.address'
 
 const ToggleToLibraryButton = ({ bookId, libraryAdded }) => {
   const { mutate, isLoading } = useToggleToLibraryService({
     bookId,
-    queryKey: [NovelDetailsQuery.NOVEL_DETAILS, { bookId: parseInt(bookId) }],
+    queryKey: [BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }],
   })
 
   return (

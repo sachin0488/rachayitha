@@ -23,7 +23,7 @@ const LibraryTab = () => {
       <NotAvailableBar>
         <LibraryAddCheckIcon sx={{ fontSize: 55 }} color="primary" />
         <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
-          Add Your First Novel or Poem to Library
+          Add Your First Book or Poem to Library
         </Typography>
       </NotAvailableBar>
     )

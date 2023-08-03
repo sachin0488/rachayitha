@@ -2,15 +2,15 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import React from 'react'
 
-const AboutTab = ({ item }) => {
+const AboutTab = ({ tags, synopsis }) => {
   return (
     <Root>
       <Label variant="h6" component="div" color="secondary">
         Synopsis
       </Label>
-      <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
+      <Synopsis dangerouslySetInnerHTML={{ __html: synopsis }} />
       <HashtagList>
-        {item?.tags?.map(name => (
+        {tags?.map(name => (
           <Hashtag variant="subtitle2" key={name}>
             #{name}
           </Hashtag>
@@ -22,6 +22,10 @@ const AboutTab = ({ item }) => {
 
 const Root = styled.div`
   padding: 6px;
+  min-height: 250px;
+  @media (max-width: 800px) {
+    min-height: auto;
+  }
 `
 
 const Label = styled(Typography)``

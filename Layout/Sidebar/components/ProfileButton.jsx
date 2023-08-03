@@ -11,8 +11,8 @@ const ProfileButton = () => {
   return (
     <Link href={`/profile`}>
       <Root sx={{ flexGrow: 0 }}>
-        <Avatar variant="rounded" alt={user.data.username} src={user?.data?.profilePic} />
-        <Username>{user.data.username}</Username>
+        <Avatar variant="rounded" alt={user?.username} src={user?.profilePic} />
+        <Username>{user?.username}</Username>
       </Root>
     </Link>
   )

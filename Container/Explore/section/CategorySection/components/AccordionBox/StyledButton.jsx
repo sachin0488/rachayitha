@@ -10,15 +10,17 @@ const StyledButton = ({ contentType, category }) => {
 
   return (
     <Link
-      href={`${router.pathname}?content_type=${contentType}&category=${category.id}${
+      href={`${router.pathname}?content_type=${contentType}&category=${category.categoryId}${
         router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
       }`}>
       <a>
         <Root
           className={
-            router.query.category === String(category.id) && router.query.content_type === contentType ? 'selected' : ''
+            router.query.category === String(category.categoryId) && router.query.content_type === contentType
+              ? 'selected'
+              : ''
           }>
-          {category.category_name}{' '}
+          {category.categoryName}{' '}
         </Root>
       </a>
     </Link>

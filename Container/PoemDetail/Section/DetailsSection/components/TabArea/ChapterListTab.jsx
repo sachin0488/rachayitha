@@ -2,10 +2,10 @@ import styled from '@emotion/styled'
 import React from 'react'
 import ChapterBar from './ChapterBar'
 
-const ChapterListTab = ({ item }) => {
+const ChapterListTab = ({ chapter }) => {
   return (
     <Root>
-      {item?.chapter?.map(chapter => (
+      {chapter?.map(chapter => (
         <ChapterBar
           key={chapter.id}
           chapterId={chapter.id}
@@ -14,7 +14,6 @@ const ChapterListTab = ({ item }) => {
           paid={chapter.paid}
         />
       ))}
-      {/* <ChapterBar ChapterNumber={3} text="paid chapter example" paid /> */}
     </Root>
   )
 }

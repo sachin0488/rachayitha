@@ -5,7 +5,7 @@ import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery 
 import { blue } from '@mui/material/colors'
 
 import { useRouter } from 'next/router'
-import { useNovelDetailsService } from 'Container/BookDetail/services/NovelDetails.service'
+import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
 import { useCreateVoteService } from 'Container/BookDetail/services/CreateVote.service'
 import { useFetchVoteService } from 'Container/BookDetail/services/FetchVote.service'
 
@@ -17,7 +17,7 @@ import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDouble
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
   const { query } = useRouter()
-  const { Data, isLoading } = useNovelDetailsService({ bookId: query?.bookId })
+  const { Data, isLoading } = useBookDetailsService({ bookId: query?.bookId })
 
   const { isFetching, Data: VoteData } = useFetchVoteService({ bookId: query?.bookId })
   const { isLoading: isMutating, mutate } = useCreateVoteService({ bookId: query?.bookId })
@@ -62,7 +62,7 @@ const VoteSection = () => {
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
           {isAlreadyVoted && (
-            <Tooltip title="Your vote for this novel">
+            <Tooltip title="Your vote for this Novel">
               <VoteButton
                 is_voted={String(isAlreadyVoted)}
                 is_mutating={String(isFetching)}
@@ -77,7 +77,7 @@ const VoteSection = () => {
               </VoteButton>
             </Tooltip>
           )}
-          <Tooltip title="Vote This novel">
+          <Tooltip title="Vote This book">
             <AddVoteButton
               disabled={isMutating}
               is_mutating={String(isMutating)}

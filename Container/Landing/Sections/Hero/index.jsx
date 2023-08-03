@@ -1,7 +1,7 @@
-import React from 'react'
+import styled from '@emotion/styled'
 import LeftSection from './components/LeftSection'
 import RightSection from './components/RightSection'
-import styled from '@emotion/styled'
+
 import { useMediaQuery } from '@mui/material'
 
 const Hero = () => {
@@ -27,7 +27,6 @@ const Root = styled.div`
   height: 110vh;
   margin-bottom: -10vh;
   min-height: 500px;
-  
 `
 
 const Main = styled.div`
@@ -46,20 +45,6 @@ const Main = styled.div`
   margin-top: 70px;
   height: calc(100vh - 70px);
   max-height: 1090px;
-`
-
-const ShadowBox = styled.div`
-  position: absolute;
-  z-index: 1;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  width: 100%;
-  /* height: 30px; */
-  height: 0px;
-  background: #f00;
-  /* background: #f2effbfe; */
-  margin-bottom: -25px;
 `
 
 export default Hero

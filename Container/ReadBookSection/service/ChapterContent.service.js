@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
-import { NovelReadQuery } from '../constants/query.address'
+import { BookReadQuery } from '../constants/query.address'
 
 export const useChapterContentService = ({ bookId }) => {
   const queryClient = useQueryClient()
@@ -8,7 +8,7 @@ export const useChapterContentService = ({ bookId }) => {
   const { mutateAsync, isLoading, isSuccess } = useMutation({
     mutationFn: ({ chapterId }) => fetchChapterContentAPI({ bookId, chapterId }),
     onSuccess: data => {
-      queryClient.setQueryData([NovelReadQuery.CHAPTER_LIST, { bookId }], preData => {
+      queryClient.setQueryData([BookReadQuery.CHAPTER_LIST, { bookId }], preData => {
         return {
           ChapterList: preData?.ChapterList?.map(chapter => {
             if (chapter.chapterId !== data.chapterId) return chapter

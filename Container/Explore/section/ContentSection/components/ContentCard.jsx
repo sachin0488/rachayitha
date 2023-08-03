@@ -10,7 +10,7 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 
-import ToggleToLibraryButton from './ToggleToLibraryButton'
+import ToggleToLibraryButton from './ContentCard/ToggleToLibraryButton'
 
 const ContentCard = ({ item, index, ranking }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
