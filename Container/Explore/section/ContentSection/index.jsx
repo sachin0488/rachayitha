@@ -18,8 +18,17 @@ const ContentSection = ({ ranking }) => {
   })
 
   const renderContentList = useMemo(
-    () => ContentList?.map((item, index) => <ContentCard key={index} item={item} index={index} ranking={ranking} />),
-    [ContentList, ranking],
+    () =>
+      ContentList?.map((item, index) => (
+        <ContentCard
+          key={index}
+          item={item}
+          index={index}
+          ranking={ranking}
+          contentType={query?.content_type?.toLocaleLowerCase()}
+        />
+      )),
+    [ContentList, query?.content_type, ranking],
   )
 
   if (isError) {
