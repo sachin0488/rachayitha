@@ -2,6 +2,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { useController, useFormContext } from 'react-hook-form'
 import styled from '@emotion/styled'
+import moment from 'moment'
 
 const StyledDateSelector = ({ name, label, rules, required, ...props }) => {
   const { control, errors } = useFormContext()
@@ -9,6 +10,7 @@ const StyledDateSelector = ({ name, label, rules, required, ...props }) => {
   const { field } = useController({
     name,
     control,
+    defaultValue: null,
     rules: {
       valueAsDate: true,
       required: required,
@@ -25,17 +27,16 @@ const StyledDateSelector = ({ name, label, rules, required, ...props }) => {
     label: label,
     required: required || Boolean(rules?.required),
     disableFuture: true,
-    value: field.value,
+    value: moment(field.value),
     name: field.fieldName,
     inputRef: field.ref,
     onBlur: field.onBlur,
     onChange: field.onChange,
-    format: 'DD/MM/YYYY',
   }
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
-      <StyledDatePicker {...rootProps} slotProps={{ textField: { size: 'medium' } }} {...props} />
+      <StyledDatePicker {...rootProps} slotProps={{ textField: { size: '' } }} {...props} />
     </LocalizationProvider>
   )
 }
@@ -46,13 +47,14 @@ const StyledDatePicker = styled(DatePicker)`
   }
 
   .MuiFormLabel-root {
-    font-size: 0.94rem;
-    line-height: 1.245;
+    font-size: 0.9rem;
+    color: ${({ theme }) => theme.palette?.secondary?.main}d1;
+    font-weight: 600;
+    line-height: 1;
   }
 
   .MuiFormLabel-asterisk {
-    font-size: 0.84rem;
-    line-height: 1;
+    font-size: 0.9rem;
   }
 
   .MuiOutlinedInput-root {
@@ -60,7 +62,8 @@ const StyledDatePicker = styled(DatePicker)`
   }
 
   .MuiOutlinedInput-input {
-    padding: 8.5px 14px;
+    padding-inline: 14px;
+    padding-block: 12px;
     -webkit-autofill {
       box-shadow: none;
       -webkit-text-fill-color: none;
@@ -68,8 +71,8 @@ const StyledDatePicker = styled(DatePicker)`
   }
 
   .MuiOutlinedInput-notchedOutline {
-    border-color: ${({ theme }) => theme.palette.text.tertiary}93;
-    border-width: 1.5px;
+    border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+    border-width: 2px;
   }
 
   .MuiSvgIcon-root {

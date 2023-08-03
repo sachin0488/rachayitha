@@ -2,7 +2,7 @@ import * as yup from 'yup'
 import styled from '@emotion/styled'
 
 import { Button, CircularProgress, FormLabel, Typography } from '@mui/material'
-import { useCallback, useEffect, useLayoutEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
@@ -53,7 +53,7 @@ const EditProfileModal = ({ open, setOpen }) => {
     },
   })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (open)
       methods.reset({
         profilePic: [user.profilePic],

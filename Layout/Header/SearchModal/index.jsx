@@ -1,10 +1,9 @@
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
-import StyledDateSelector from 'Components/form-components/StyledDateSelector'
-import StyledTextField from 'Components/form-components/StyledTextField'
+import { useCallback, useState } from 'react'
+
 import { StyledModal } from 'Components/StyledModal'
-import React, { useCallback, useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+
 import ContentSection from './components/ContentList'
 import StyledSearchBox from './components/StyledSearchBox'
 

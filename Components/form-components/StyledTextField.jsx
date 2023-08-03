@@ -35,15 +35,13 @@ const StyledTextField = ({ name, label, rules, required, Icon, ...props }) => {
 export const StyledTextFieldRoot = styled(TextField)`
   .MuiInputBase-input {
     box-shadow: black !important;
-    -webkit-box-shadow: black !important;
-  }
-
-  .MuiInputLabel-asterisk {
-    font-size: 0.9rem;
-    line-height: 1.445;
   }
 
   .MuiOutlinedInput-root {
+    font-size: 0.9rem;
+  }
+
+  .MuiInputLabel-asterisk {
     font-size: 0.9rem;
   }
 
@@ -56,6 +54,7 @@ export const StyledTextFieldRoot = styled(TextField)`
     font-size: 0.9rem;
     color: ${({ theme }) => theme.palette?.secondary?.main}d1;
     font-weight: 600;
+    line-height: 1;
   }
 
   .MuiInputLabel-root.Mui-focused {
@@ -68,7 +67,6 @@ export const StyledTextFieldRoot = styled(TextField)`
 
     -webkit-autofill {
       box-shadow: none;
-      -webkit-box-shadow: none;
       -webkit-text-fill-color: none;
     }
   }

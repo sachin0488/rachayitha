@@ -8,12 +8,16 @@ import { FormProvider, useForm } from 'react-hook-form'
 import StyledTextField from './components/StyledTextField'
 import StyledCheckbox from './components/StyledCheckbox'
 
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import useFormError from 'hooks/useFormError'
+
 import { useLoginService } from 'Container/Auth/service/Login.service'
+
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 
 const OTPPage = () => {
   const methods = useForm()
   const { handleLogin, isLoading } = useLoginService()
+  const { handleFormError } = useFormError()
 
   return (
     <Root>

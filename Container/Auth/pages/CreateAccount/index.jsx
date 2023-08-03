@@ -7,7 +7,6 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Button, CircularProgress, Typography } from '@mui/material'
 
 import StyledTextField from 'Container/Auth/components/FormComponents/StyledTextField'
-import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
 import StyledPasswordField from 'Container/Auth/components/FormComponents/StyledPasswordField'
 import TermsAndPrivacyPolicyCheckbox from './components/TermsAndPrivacyPolicyCheckbox'
 import { StyledFieldGroup, StyledFormLabel } from 'Container/Auth/components/FormComponents/StyledRadio'
@@ -18,6 +17,7 @@ import useFormError from 'hooks/useFormError'
 import { useCreateAccountService } from 'Container/Auth/service/CreateUser.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import StyledDateSelector from 'Components/form-components/StyledDateSelector'
 
 const CreateAccountPage = () => {
   const { handleCreateAccount, isLoading } = useCreateAccountService()
@@ -28,7 +28,7 @@ const CreateAccountPage = () => {
     defaultValues: {
       fullName: '',
       username: '',
-      email: localStorage.getItem('new-email') || '',
+      email: (typeof window !== 'undefined' && window.localStorage.getItem('new-email')) || '',
       bio: '',
       password: '',
       agree: false,

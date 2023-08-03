@@ -1,10 +1,12 @@
 import styled from '@emotion/styled'
-import { CircularProgress, useMediaQuery } from '@mui/material'
-import useCategoryApi from 'Container/Explore/services/category.service'
 import { useRouter } from 'next/router'
-import React, { useLayoutEffect, useState } from 'react'
+import { useMediaQuery } from '@mui/material'
+import { useLayoutEffect, useState } from 'react'
+
 import AccordionBox from './components/AccordionBox'
 import DrawerBox from './components/DrawerBox'
+
+import useCategoryService from 'Container/Explore/services/category.service'
 
 const getSectionIndexByName = sectionName => {
   switch (sectionName.toLocaleLowerCase()) {

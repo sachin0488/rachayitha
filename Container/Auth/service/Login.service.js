@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import { APIInstance } from 'api/global.api'
-import { AuthTokenStore } from 'api/global.hook'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
+import { AuthTokenStore } from 'utility/authTokenStore'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
