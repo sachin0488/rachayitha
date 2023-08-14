@@ -18,8 +18,6 @@ export const SubWrapper = styled(Box)`
   justify-content: center;
   align-items: center;
   gap: 45px;
-  /* box-shadow: 0rem 0.4rem 0.45rem 0rem rgba(0, 0, 30, 0.5);
-  border-radius: 39px; */
 `;
 
 export const ConfirmButton = styled(Button)`

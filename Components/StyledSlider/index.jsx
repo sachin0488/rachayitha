@@ -87,7 +87,7 @@ const Root = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #fff; /* color of the tracking area */
+    background: ${({ theme }) => theme.palette.background.paper}; /* color of the tracking area */
     border-radius: 1px;
   }
 
@@ -114,12 +114,12 @@ const StyledIconButton = styled(IconButton)`
   &.prev {
     left: 4px;
   }
-  background: #fff;
+  background: ${({ theme }) => theme.palette.background.paper};
   box-shadow: 2px 2px 20px ${props => props.theme.palette.primary.main}55;
   padding: 5px;
   transition: 0.2s ease-in;
   &:hover {
-    background: #fff;
+    background: ${({ theme }) => theme.palette.background.paper};
     transform: scale(1.1);
   }
   .MuiSvgIcon-root {

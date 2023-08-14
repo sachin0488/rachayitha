@@ -263,7 +263,7 @@ const Status = styled(Typography)`
   border-radius: 13px;
   text-transform: capitalize;
   color: ${({ theme }) => theme.palette.primary.main};
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   background: ${({ theme }) => theme.palette.primary.main};
   font-weight: 400;
 `
@@ -305,7 +305,7 @@ const RankingRoot = styled.div`
 `
 
 const RankingNumber = styled(Typography)`
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   font-weight: 700;
   font-size: 2.5rem;
   text-align: center;
@@ -321,8 +321,8 @@ const RankingNumber = styled(Typography)`
 
 const RankingPlaceholder = styled(Typography)`
   display: inline;
-  color: #fff;
-  -webkit-text-stroke: 1px #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
+  -webkit-text-stroke: 1px ${({ theme }) => theme.palette.background.paper};
   -webkit-text-fill-color: transparent;
   font-weight: 700;
   font-size: 2.5rem;

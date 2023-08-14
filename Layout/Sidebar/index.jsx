@@ -84,7 +84,7 @@ const DrawerSx = (isMobile, pathname) => {
       boxSizing: 'border-box',
       boxShadow: '4px 4px 17px #864dff1f',
       backdropFilter: 'blur(40px)',
-      background: '#ffffffd6',
+      background: ({ palette }) => palette.background.paper,
       borderWidth: '0px',
       overflow: 'hidden',
     },

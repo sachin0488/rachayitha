@@ -18,10 +18,10 @@ const Header = ({ handleSidebarOpen }) => {
       <AppBar
         position="fixed"
         sx={{
-          boxShadow: '4px 4px 17px #864dff1f',
+          boxShadow: ({ palette }) => `4px 4px 17px ${palette.primary.shadowLevel01}`,
           backdropFilter: 'blur(66px)',
           borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
-          background: '#ffffffd9',
+          background: ({ palette }) => palette.background.paper,
         }}>
         <Toolbar>
           <LogoBox />

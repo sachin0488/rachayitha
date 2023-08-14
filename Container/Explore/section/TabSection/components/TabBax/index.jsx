@@ -67,7 +67,7 @@ const StyledTab = styled(Tab)`
     min-height: var(--main-height);
     white-space: nowrap;
     font-size: 1.2rem;
-    color: #ffffffbb;
+    color: ${({ theme }) => theme.palette.background.accent}bb;
     font-weight: 500;
     border-radius: 12px;
 
@@ -98,7 +98,7 @@ const StyledTab = styled(Tab)`
   }
 
   &.${tabClasses.selected} {
-    color: #fff;
+    color: ${({ theme }) => theme.palette.background.accent};
   }
 
   transition: 0.1s ease-in 150ms;
@@ -131,7 +131,7 @@ const StyledTabs = styled(Tabs)`
     height: 4px;
     border-radius: 2px;
     z-index: 1;
-    background: #fff;
+    background: ${({ theme }) => theme.palette.background.paper};
     font-weight: 500;
   }
 `

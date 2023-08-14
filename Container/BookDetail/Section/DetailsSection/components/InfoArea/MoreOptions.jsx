@@ -47,7 +47,7 @@ const StyledMenu = styled(Menu)`
   .MuiMenu-paper {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background: #fff;
+    background: ${({ theme }) => theme.palette.background.paper};
   }
 
   .MuiList-padding {

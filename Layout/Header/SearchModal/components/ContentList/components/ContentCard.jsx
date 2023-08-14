@@ -3,18 +3,18 @@ import styled from '@emotion/styled'
 
 import { Button, ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
 
-import StarIcon from '@mui/icons-material/Star'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
+// import StarIcon from '@mui/icons-material/Star'
+// import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
+// import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
 import Link from 'next/link'
 
 import { useAddToLibraryAPI } from 'Container/BookDetail/api/bookDetail.hook'
 
 const ContentCard = ({ item, index, ranking }) => {
-  const isMobile = useMediaQuery('(max-width: 465px)')
+  // const isMobile = useMediaQuery('(max-width: 465px)')
   const { handleAddToLibrary } = useAddToLibraryAPI()
 
   return (
@@ -45,9 +45,9 @@ const ContentCard = ({ item, index, ranking }) => {
           </TitleName>
           <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText>
 
-          {!isMobile && (
+          {/* {!isMobile && (
             <InfoNav>
-              {/* <RatingRoot>
+              <RatingRoot>
                 <Rating
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
@@ -58,7 +58,7 @@ const ContentCard = ({ item, index, ranking }) => {
                 />
               </RatingRoot>
               <VoteCount variant="subtitle2">
-                {item?.vote_count}
+              {item?.comment_count}
                 <ArrowDropUpRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
                 />
@@ -68,40 +68,40 @@ const ContentCard = ({ item, index, ranking }) => {
                 <ModeCommentRoundedIcon
                   sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
                 />
-              </CommentCount> */}
+              </CommentCount>
             </InfoNav>
-          )}
+          )} */}
         </InfoSection>
         <AddIcon variant="contained" onClick={() => handleAddToLibrary(item?.id)}>
           <AddOutlinedIcon />
         </AddIcon>
       </Main>
-      {isMobile && (
+      {/* {isMobile && (
         <InfoNav>
           <RatingRoot>
             <Rating
               color="primary"
               sx={{ color: theme => theme.palette.primary.main }}
-              value={3.5}
+              value={Number(item?.rating?.rate__avg).toFixed(1) || 0}
               readOnly
               precision={0.5}
               emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
             />
           </RatingRoot>
           <VoteCount variant="subtitle2">
-            6
+          {item?.comment_count}
             <ArrowDropUpRoundedIcon
               sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
             />
           </VoteCount>
           <CommentCount variant="subtitle2">
-            6
+           {item?.comment_count}
             <ModeCommentRoundedIcon
               sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
             />
           </CommentCount>
         </InfoNav>
-      )}
+      )} */}
       <Link href={`/book/${item?.id}`}>
         <a>
           <StyledButton color="primary" />
@@ -274,7 +274,7 @@ const Status = styled(Typography)`
   border-radius: 13px;
   text-transform: capitalize;
   color: ${({ theme }) => theme.palette.primary.main};
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   background: ${({ theme }) => theme.palette.primary.main};
   font-weight: 400;
 `
@@ -341,7 +341,7 @@ const RankingRoot = styled.div`
 `
 
 const RankingNumber = styled(Typography)`
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   font-weight: 700;
   font-size: 2.5rem;
   text-align: center;
@@ -357,8 +357,8 @@ const RankingNumber = styled(Typography)`
 
 const RankingPlaceholder = styled(Typography)`
   display: inline;
-  color: #fff;
-  -webkit-text-stroke: 1px #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
+  -webkit-text-stroke: 1px ${({ theme }) => theme.palette.background.paper};
   -webkit-text-fill-color: transparent;
   font-weight: 700;
   font-size: 2.5rem;

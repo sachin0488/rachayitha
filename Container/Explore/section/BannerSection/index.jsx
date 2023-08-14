@@ -42,7 +42,7 @@ const Root = styled.div`
 `
 
 const Heading = styled.div`
-  color: #2f2d5c;
+  color: ${({ theme }) => theme.palette.secondary.main};
   font-size: 40px;
   font-weight: 700;
 

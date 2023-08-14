@@ -55,14 +55,15 @@ export default MinimalCard
 const Root = styled.div`
   position: relative;
   padding: 15px;
-  box-shadow: 3px 3px 21px 1px rgba(98, 0, 255, 0.1);
+  box-shadow: 5px 6px 35px 0px ${({ theme }) => theme.palette.primary.shadowLevel01};
   border-radius: 18px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   border: 2px solid transparent;
+  background-image: ${({ theme }) => theme.palette.background.paperImage};
   :hover {
     border: 2px solid ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 5px 4px 25px 0px ${({ theme }) => theme.palette.primary.shadowLevel02};
     transform: scale(1.02);
   }
   min-width: 260px;

@@ -43,7 +43,7 @@ const CreateAccountPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4">Welcome !</TitleText>
+              <TitleText variant="h4">Welcome</TitleText>
               <DescriptionText variant="subtitle2">
                 Join us today and start enjoying all the benefits of being a member. Please fill out the form below to
                 create your account.
@@ -175,8 +175,7 @@ const Body = styled.div`
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`
-  color: ${({ theme }) => theme.palette.primary.main}11;
-  color: #ffffff11;
+  color: ${({ theme }) => theme.palette.background.accent}11;
   font-size: 400px;
   position: absolute;
   top: -50px;

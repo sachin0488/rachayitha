@@ -20,7 +20,7 @@ const AccordionBox = ({ isOpened, setOpenedIdx, item, idx, isLoading }) => {
         onClick={() => {
           setOpenedIdx(isOpened ? '' : idx)
         }}
-        expandIcon={<ExpandMoreRoundedIcon style={{ color: '#5426C3', fontSize: '32px' }} />}>
+        expandIcon={<ExpandMoreRoundedIcon sx={{ color: ({ palette }) => palette.primary.main, fontSize: '32px' }} />}>
         <Heading>{item.name}</Heading>
       </Summary>
       <Details>
@@ -48,6 +48,8 @@ const Root = styled(Accordion)`
   width: 100%;
   margin-bottom: -5px;
   padding: 0px;
+  background-color: ${({ theme }) => theme.palette.background.default};
+  background-image: none;
   && {
     &::before {
       height: 3px;

@@ -107,8 +107,7 @@ const Body = styled.div`
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`
-  color: ${({ theme }) => theme.palette.primary.main}11;
-  color: #ffffff11;
+  color: ${({ theme }) => theme.palette.background.accent}11;
   font-size: 400px;
   position: absolute;
   top: -50px;

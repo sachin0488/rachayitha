@@ -14,6 +14,7 @@ import { queryCache, mutationCache } from 'services/global.service'
 
 import Layout from 'Layout'
 import AuthProvider from 'Container/Auth/AuthProvider'
+import darkTheme from 'styles/theme/darkTheme'
 
 const clientSideEmotionCache = createEmotionCache()
 

@@ -44,6 +44,8 @@ const Root = styled(Dialog)`
     height: ${({ max_height }) => (max_height === 'fit-content' ? max_height : `86vh`)};
     overflow: hidden;
     border-radius: 5px;
+    background-color: ${({ theme }) => theme.palette.background.default};
+    /* background-image: none; */
   }
 
   @media (max-width: ${({ custom_barack_point }) => custom_barack_point}px) {

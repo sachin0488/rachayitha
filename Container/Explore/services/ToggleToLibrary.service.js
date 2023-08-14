@@ -52,20 +52,23 @@ export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) 
     },
     onSuccess({ data }) {
       queryClient.setQueryData(queryKey, oldData => {
-        let message
+        // let message
 
-        if (contentType?.toLocaleLowerCase() === 'book')
-          message = oldData?.libraryAdded
-            ? 'Your Book has been added to Library!'
-            : 'Your Book has been removed from Library!'
+        // if (contentType?.toLocaleLowerCase() === 'book')
+        //   message = oldData?.libraryAdded
+        //     ? 'Your Book has been added to Library!'
+        //     : 'Your Book has been removed from Library!'
 
-        if (contentType?.toLocaleLowerCase() === 'poem')
-          message = oldData?.libraryAdded
-            ? 'Your Poem has been added to Library!'
-            : 'Your Poem has been removed from Library!'
+        // if (contentType?.toLocaleLowerCase() === 'poem')
+        //   message = oldData?.libraryAdded
+        //     ? 'Your Poem has been added to Library!'
+        //     : 'Your Poem has been removed from Library!'
 
-        enqueueSnackbar(message, {
-          variant: 'success',
+        const message = data?.info?.visible?.message
+        const status = message?.includes('already in library') ? 'info' : 'success'
+        
+        enqueueSnackbar(data?.info?.visible?.message, {
+          variant: status,
         })
 
         return {

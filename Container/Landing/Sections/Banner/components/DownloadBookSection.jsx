@@ -81,7 +81,7 @@ const Image = styled.img`
 const DownloadBar = styled.div`
   position: absolute;
   bottom: 25px;
-  background-color: #ffffffc4;
+  background-color: ${({ theme }) => theme.palette.background.accent}c4;
   backdrop-filter: blur(8px);
   border-radius: 10px;
   width: 115%;

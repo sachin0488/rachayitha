@@ -2,14 +2,14 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#5122C0',
+      main: '#8868d4',
       shadowLevel01: '#864dff1f',
       shadowLevel02: '#6323ff42',
     },
     secondary: {
-      main: '#2F2D5C',
+      main: '#7270a1',
     },
     text: {
       // primary: '#ffffffb3',
@@ -19,10 +19,11 @@ const theme = createTheme({
       // divider: '#304352',
     },
     background: {
-      dark: '#f5f5f5',
-      accent: '#ffffff',
-      default: '#ffffff',
-      paper: '#ffffff',
+      dark: '#050505',
+      accent: '#000000',
+      default: '#000000',
+      paper: '#191426',
+      paperImage: 'linear-gradient(#8868d41f, #7270a129)',
     },
   },
   shape: {
@@ -43,6 +44,14 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'linear-gradient(#8868d41f, #7270a129)',
+          backdropFilter: 'blur(10px)',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -80,6 +89,6 @@ const theme = createTheme({
   },
 })
 
-const lightTheme = responsiveFontSizes(theme)
+const darkTheme = responsiveFontSizes(theme)
 
-export default lightTheme
+export default darkTheme

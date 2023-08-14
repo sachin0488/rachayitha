@@ -32,7 +32,7 @@ const LoginPage = () => {
         <Body>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4">Welcome Back !</TitleText>
+              <TitleText variant="h4">Welcome Back</TitleText>
               <DescriptionText variant="subtitle2">
                 Please enter your credentials below to log in and access your account.
               </DescriptionText>
@@ -110,8 +110,7 @@ const Body = styled.div`
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`
-  color: ${({ theme }) => theme.palette.primary.main}11;
-  color: #ffffff11;
+  color: ${({ theme }) => theme.palette.background.accent}11;
   font-size: 400px;
   position: absolute;
   top: -50px;

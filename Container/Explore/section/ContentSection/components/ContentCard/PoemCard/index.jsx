@@ -112,11 +112,13 @@ const Root = styled.div`
   cursor: pointer;
   border: 1px solid transparent;
   border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
-  /* :hover {
+  /* :hover {Explore
     border: 1px solid ${({ theme }) => theme.palette.primary.main};
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.02);
   } */
+  background-image: ${({ theme }) => theme.palette.background.paperImage};
+
   max-width: 550px;
   overflow: hidden;
   @media (max-width: 800px) {
@@ -137,6 +139,7 @@ const StyledButton = styled(ButtonBase)`
   border-radius: 16px;
   background-color: transparent;
 `
+
 const Main = styled.div`
   display: flex;
   gap: 15px;
@@ -175,6 +178,7 @@ const Hashtag = styled(Typography)`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.palette.primary.main};
 `
+
 const TitleName = styled(Typography)`
   font-weight: 600;
   color: ${({ theme }) => theme.palette.secondary.main};
@@ -269,7 +273,7 @@ const Status = styled(Typography)`
   border-radius: 13px;
   text-transform: capitalize;
   color: ${({ theme }) => theme.palette.primary.main};
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   background: ${({ theme }) => theme.palette.primary.main};
   font-weight: 400;
 `
@@ -336,7 +340,7 @@ const RankingRoot = styled.div`
 `
 
 const RankingNumber = styled(Typography)`
-  color: #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
   font-weight: 700;
   font-size: 2.5rem;
   text-align: center;
@@ -352,8 +356,8 @@ const RankingNumber = styled(Typography)`
 
 const RankingPlaceholder = styled(Typography)`
   display: inline;
-  color: #fff;
-  -webkit-text-stroke: 1px #fff;
+  color: ${({ theme }) => theme.palette.background.paper};
+  -webkit-text-stroke: 1px ${({ theme }) => theme.palette.background.paper};
   -webkit-text-fill-color: transparent;
   font-weight: 700;
   font-size: 2.5rem;

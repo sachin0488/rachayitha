@@ -54,7 +54,7 @@ const Root = styled.div`
     transform: scale(1.02);
   }
   min-width: 260px;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.background.paper};
   max-width: 200px;
 `
 

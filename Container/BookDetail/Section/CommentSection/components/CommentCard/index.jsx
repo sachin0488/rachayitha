@@ -79,7 +79,7 @@ const Root = styled.div`
   height: fit-content;
   transition: 0.3s ease-in-out;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main}10;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -92,7 +92,7 @@ const Root = styled.div`
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.01);
   }
-  background: #fff;
+  background-image: ${({ theme }) => theme.palette.background.paperImage};
 `
 
 const Header = styled.div`

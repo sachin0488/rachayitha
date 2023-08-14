@@ -62,7 +62,6 @@ const ContentSection = ({ ranking }) => {
 
       {ContentList?.length !== 0 && (
         <InView
-          id="content-load-more"
           as="div"
           threshold={1}
           delay={500}

@@ -26,7 +26,7 @@ const Root = styled.section`
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: ${({ theme }) => theme.palette.background.dark};
 `
 
 const Main = styled.div`
@@ -46,7 +46,7 @@ const ReturnHomeButton = styled(Button)`
   :hover {
     border: 2px solid ${({ theme }) => theme.palette.primary.main};
     background-color: ${({ theme }) => theme.palette.primary.main};
-    color: #fff;
+    color: ${({ theme }) => theme.palette.background.dark};
   }
 `
 

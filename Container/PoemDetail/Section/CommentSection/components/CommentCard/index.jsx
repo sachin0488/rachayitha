@@ -92,7 +92,7 @@ const Root = styled.div`
     box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
     transform: scale(1.01);
   }
-  background: #fff;
+  background: ${({ theme }) => theme.palette.background.paper};
 `
 
 const Header = styled.div`

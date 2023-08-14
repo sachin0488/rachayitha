@@ -48,7 +48,7 @@ const ReturnHomeButton = styled(Button)`
   :hover {
     border: 2px solid ${({ theme }) => theme.palette.primary.main};
     background-color: ${({ theme }) => theme.palette.primary.main};
-    color: #fff;
+    color: ${({ theme }) => theme.palette.background.paper};
   }
 `
 

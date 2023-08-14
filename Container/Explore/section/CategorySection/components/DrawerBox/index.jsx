@@ -54,22 +54,21 @@ const Content = styled(Box)`
   gap: 12px;
   @media (min-width: 430px) {
     &::-webkit-scrollbar {
-      width: 7px; /* width of the entire scrollbar */
+      width: 7px;
       height: 7px;
-      /* height: px; */
     }
 
     &::-webkit-scrollbar-track {
-      background: #fff; /* color of the tracking area */
+      background: ${({ theme }) => theme.palette.background.paper};
       border-radius: 1px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: ${props => props.theme.palette.primary.main}77; /* creates padding around scroll thumb */
+      background-color: ${props => props.theme.palette.primary.main}77;
       border-radius: 1px;
     }
     &::-webkit-scrollbar-corner {
-      background: #1c252e; /* color of the tracking area */
+      background: #1c252e;
     }
   }
 `

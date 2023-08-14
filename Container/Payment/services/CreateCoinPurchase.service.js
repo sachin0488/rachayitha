@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import useRazorpay from 'react-razorpay'
 import { useVerifyPaymentAPI } from './VerifyPayment.service'
 import { useCallback } from 'react'
+import { useTheme } from '@mui/material'
 
 export const createCoinPurchaseAPI = async ({ amount, qty }) => {
   const form = new FormData()
@@ -28,6 +29,7 @@ export const createCoinPurchaseAPI = async ({ amount, qty }) => {
 
 export const useCreateCoinPurchaseService = () => {
   const { enqueueSnackbar } = useSnackbar()
+  const theme = useTheme()
 
   const [Razorpay, isLoaded] = useRazorpay()
   //   const queryClient = useQueryClient()
@@ -66,7 +68,7 @@ export const useCreateCoinPurchaseService = () => {
           address: 'Razorpay Corporate Office',
         },
         theme: {
-          color: '#5122C0',
+          color: theme.palette.primary.main,
         },
         handler: handleVerifyPayment,
       }

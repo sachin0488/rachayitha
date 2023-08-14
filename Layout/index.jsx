@@ -52,7 +52,7 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.palette.background.default};
 `
 
 const Main = styled.main`

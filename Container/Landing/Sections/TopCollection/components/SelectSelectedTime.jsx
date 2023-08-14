@@ -71,7 +71,7 @@ const Root = styled(FormControl)`
   }
 
   .MuiSvgIcon-root {
-    color: #5122c0;
+    color: ${({ theme }) => theme.palette.primary.main};
     font-size: 35px;
     margin-right: -15px;
   }

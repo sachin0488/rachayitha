@@ -63,9 +63,8 @@ const Main = styled.div`
 const Heading = styled(Typography)`
   margin-right: auto;
   font-weight: 700;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.background.default};
   white-space: nowrap;
-  box-shadow: 5px 0px 20px 20px #ffffff9e;
   z-index: 1;
   @media (max-width: 415px) {
     display: none;
