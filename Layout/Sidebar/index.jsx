@@ -9,10 +9,8 @@ import StyledNavButton from './components/StyledNavButton'
 // Icons ---
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded'
 import { useCallback } from 'react'
-import ProfileButton from './components/ProfileButton'
 import LogoBox from './components/LogoBox'
 import Background from './components/Background'
-import LogoutButton from './components/LogoutButton'
 // ---
 
 const SideBar = ({ isOpen, setIsOpen }) => {
@@ -39,13 +37,11 @@ const SideBar = ({ isOpen, setIsOpen }) => {
       <Background />
       <HeaderBar {...{ isMobile, handleSideBarClose }} />
       <Main>
-        <ProfileButton />
         <NavButtonWarper>
           {NavPageLinks.map((Item, index) => (
             <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
           ))}
           <Divider />
-          <LogoutButton setIsOpen={setIsOpen} />
         </NavButtonWarper>
       </Main>
     </Drawer>

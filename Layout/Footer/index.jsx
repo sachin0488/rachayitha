@@ -1,7 +1,4 @@
 import React from 'react'
-import { BsFacebook } from 'react-icons/bs'
-import { FaInstagramSquare } from 'react-icons/fa'
-import { AiFillTwitterCircle } from 'react-icons/ai'
 
 import LogoBox from './components/LogoBox'
 import styled from '@emotion/styled'
@@ -77,9 +74,9 @@ const Footer = () => {
           </Heading>
 
           <SocialLinks>
-            <BsFacebook size={35} color="#673CCB" />
+            {/* <BsFacebook size={35} color="#673CCB" />
             <FaInstagramSquare size={35} color="#673CCB" />
-            <AiFillTwitterCircle size={37} color="#673CCB" />
+            <AiFillTwitterCircle size={37} color="#673CCB" /> */}
           </SocialLinks>
           <LogoBox />
           <Description variant="subtitle2">

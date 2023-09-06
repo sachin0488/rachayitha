@@ -10,9 +10,7 @@ const StyledNavButton = ({ Icon, label, link, path, onClick }) => {
   return (
     <Link href={link}>
       <a onClick={onClick}>
-        <Root className={router.pathname.includes(path) && 'selected'} startIcon={<Icon style={IconStyle} />}>
-          {label}
-        </Root>
+        <Root className={router.pathname.includes(path) && 'selected'}>{label}</Root>
       </a>
     </Link>
   )
@@ -33,7 +31,7 @@ const Root = styled(Button)`
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}01;
     color: ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59;
+    /* box-shadow: 3px 3px 12px 0px ${({ theme }) => theme.palette.primary.main}59; */
   }
   .MuiButton-startIcon {
     margin-right: 4x;
