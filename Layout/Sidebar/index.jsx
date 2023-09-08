@@ -10,7 +10,6 @@ import StyledNavExpandButton from './components/StyledNavExpandButton'
 
 const SideBar = () => {
   const theme = useTheme()
-  const isMobile = useMediaQuery('(max-width: 750px)')
   const isSidebarOpen = useLayoutStore(state => state.sidebar.isOpen)
 
   const variants = useMemo(

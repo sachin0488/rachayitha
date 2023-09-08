@@ -23,7 +23,7 @@ const Root = styled.div`
   right: 0;
   left: 0;
   z-index: -1;
-  width: 100vw;
+  width: calc(100vw - 50px);
   height: 100vh;
   .root {
     position: relative;

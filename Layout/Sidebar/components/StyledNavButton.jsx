@@ -1,19 +1,22 @@
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import { useLayoutStore } from 'Layout/store'
 
 const StyledNavButton = ({ Icon, label, link, path, onClick }) => {
   const router = useRouter()
+  const sidebarClose = useLayoutStore(state => state.sidebar.close)
 
   return (
     <Root>
       <Line />
       <Main>
         <Link href={link}>
-          <a onClick={onClick}>
-            <StyledButton className={router.pathname === link && 'selected'}>{label}</StyledButton>
+          <a>
+            <StyledButton onClick={sidebarClose} className={router.pathname === link && 'selected'}>
+              {label}
+            </StyledButton>
           </a>
         </Link>
       </Main>

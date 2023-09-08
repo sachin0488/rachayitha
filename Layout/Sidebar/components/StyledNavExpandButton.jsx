@@ -1,41 +1,15 @@
 import styled from '@emotion/styled'
 import { Button, ButtonBase, Typography } from '@mui/material'
+import { useLayoutStore } from 'Layout/store'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback } from 'react'
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
-
-import ClickAwayListener from '@mui/material/ClickAwayListener'
-import Grow from '@mui/material/Grow'
-import Paper from '@mui/material/Paper'
-import Popper from '@mui/material/Popper'
-import MenuItem from '@mui/material/MenuItem'
-import MenuList from '@mui/material/MenuList'
 
 const StyledNavExpandButton = ({ label, menuList }) => {
-  const [open, setOpen] = React.useState(false)
-  const anchorRef = React.useRef(null)
-
+  const sidebarClose = useLayoutStore(state => state.sidebar.close)
   const router = useRouter()
-
-  const IconStyle = {
-    rotate: open ? '90deg' : '0deg',
-    transition: '0.35s ease-in-out',
-  }
-
-  const handleClose = useCallback(event => {
-    setOpen(false)
-  }, [])
 
   return (
     <>
-      {/* <Root
-        ref={anchorRef}
-        // className={router.pathname.includes(path) && 'selected'}
-        endIcon={<KeyboardArrowRightRoundedIcon style={IconStyle} />}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={handleClose}>
-      </Root> */}
       <Root>
         <Line />
         <Main>
@@ -43,7 +17,7 @@ const StyledNavExpandButton = ({ label, menuList }) => {
           {menuList.map((item, index) => (
             <StyledButton
               key={index}
-              onClick={handleClose}
+              onClick={sidebarClose}
               className={router.pathname.includes(item.link) && 'selected'}>
               <Link href={item.link}>
                 <a>{item.label}</a>

@@ -53,8 +53,10 @@ export default function GlobalBackGround() {
 const Root = styled.div`
   position: fixed;
   top: -35%;
-  right: -45%;
+  /* right: -45%; */
+  /* right: 0px; */
   animation: 200ms ease 100ms 1 normal forwards running nextui-k-feVUdh;
   /* max-width: 100%; */
   z-index: -1;
+  display: none;
 `

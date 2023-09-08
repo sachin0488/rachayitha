@@ -26,10 +26,6 @@ export const NabLinkList = [
         link: '/admission/facilities',
       },
       {
-        label: 'Campus Tour',
-        link: '/admission/campus_tour',
-      },
-      {
         label: 'Admission & Transport',
         link: '/admission/admission_and_transport',
       },
