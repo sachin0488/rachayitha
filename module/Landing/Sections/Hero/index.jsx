@@ -11,7 +11,7 @@ const Hero = () => {
     <Root>
       <Main>
         <LeftSection />
-        {isTabletXSM && <RightSection />}
+        <RightSection />
       </Main>
     </Root>
   )
@@ -27,6 +27,11 @@ const Root = styled.div`
   height: 110vh;
   margin-bottom: -10vh;
   min-height: 500px;
+  @media (max-width: 900px) {
+    max-height: fit-content;
+    height: fit-content;
+    /* overflow: auto; */
+  }
 `
 
 const Main = styled.div`
@@ -45,6 +50,10 @@ const Main = styled.div`
   margin-top: 70px;
   height: calc(100vh - 70px);
   max-height: 1090px;
+  @media (max-width: 900px) {
+    height: fit-content;
+    max-height: fit-content;
+  }
 `
 
 export default Hero

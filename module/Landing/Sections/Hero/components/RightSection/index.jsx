@@ -3,9 +3,9 @@ import { ImageRow, StyledImage } from './styles'
 
 const RightSection = () => {
   const RowList = [
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
+    ['/temp/IMG_1.jpg', '/temp/IMG_2.jpg', '/temp/IMG_3.jpg'],
+    ['/temp/IMG_4.jpg', '/temp/IMG_5.jpg', '/temp/IMG_6.jpg'],
+    // ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', ],
   ]
 
   return (
@@ -30,6 +30,7 @@ const Root = styled.div`
     width: 40%;
   }
   margin-right: 15px;
+  margin-left: 15px;
   @media (max-width: 1169px) {
   }
   margin-top: -40px;
@@ -43,22 +44,33 @@ const Root = styled.div`
     margin-top: -300px;
   }
   @media (max-height: 954px) {
-    margin-top: -400px;
+    /* margin-top: -400px; */
   }
-  @media (max-height: 874px) {
-    margin-top: -500px;
+
+  @media (max-width: 900px) {
+    /* margin-top: -160px; */
+    width: 60%;
+    margin-bottom: 200px;
   }
-  @media (max-height: 670px) {
-    margin-top: -600px;
+  @media (max-width: 730px) {
+    /* margin-top: -160px; */
+    margin-top: -300px;
+    width: 80%;
   }
-  @media (max-height: 609px) {
-    margin-top: -650px;
+  @media (max-height: 800px) {
+    margin-top: -250px;
   }
-  @media (max-height: 563px) {
-    margin-top: -700px;
+  @media (max-height: 750px) {
+    margin-top: -150px;
   }
-  @media (max-height: 524px) {
-    margin-top: -750px;
+  @media (max-height: 650px) {
+    margin-top: -50px;
+  }
+  @media (max-height: 650px) {
+    margin-top: 0px;
+  }
+  @media (max-width: 540px) {
+    width: calc(100% - 45px);
   }
 `
 

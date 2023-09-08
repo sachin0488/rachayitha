@@ -1,192 +1,84 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from '@emotion/styled'
-import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material'
-import { NavPageLinks } from '../config.layout'
+import { ButtonBase, useMediaQuery } from '@mui/material'
+import { ButtonType, NabLinkList, NavPageLinks } from '../config.layout'
 
 import LogoBox from './components/LogoBox'
 import StyledNavButton from './components/StyledNavButton'
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import StyledNavExpandButton from './components/StyledNavExpandButton'
+import MenuIcon from './components/MenuIcon'
+import { useLayoutStore } from 'Layout/store'
 
-export const ButtonType = {
-  Normal: 'Normal',
-  Expand: 'Expand',
-}
+const Header = () => {
+  const isTabletXSM = useMediaQuery('(min-width:1160px)')
+  const sidebar = useLayoutStore(state => state.sidebar)
 
-const NabLinkList = [
-  {
-    type: ButtonType.Normal,
-    label: 'Home',
-    path: '/',
-  },
-  {
-    type: ButtonType.Expand,
-    label: 'Admission',
-    menuList: [
-      {
-        label: 'Fee',
-        link: '/admission/fee',
-      },
-      {
-        label: 'Exam Schedule',
-        link: '/admission/exam_schedule',
-      },
-      {
-        label: 'Facilities',
-        link: '/admission/exam_schedule',
-      },
-      {
-        label: 'Campus Tour',
-        link: '/admission/campus_tour',
-      },
-      {
-        label: 'Admission & Transport',
-        link: '/admission/admission_transport',
-      },
-      {
-        label: 'Staff Orientation',
-        link: '/admission/staff_orientation',
-      },
-    ],
-  },
-  {
-    type: ButtonType.Expand,
-    label: 'Academics',
-    menuList: [
-      {
-        label: 'Academic Programme',
-        link: '/academic_programme',
-      },
-      {
-        label: 'Sport & Games',
-        link: '/sport_games',
-      },
-      {
-        label: 'Health Care',
-        link: '/health_care',
-      },
-      {
-        label: 'Target',
-        link: '/target',
-      },
-      {
-        label: 'Facility & Nourishment',
-        link: '/facility_nourishment',
-      },
-      {
-        label: 'Our Efforts',
-        link: '/our_efforts',
-      },
-      {
-        label: 'Rules & Regulations',
-        link: '/rules_regulations',
-      },
-    ],
-  },
-  {
-    type: ButtonType.Normal,
-    label: 'Gallery',
-    path: '/gallery',
-  },
-  {
-    type: ButtonType.Normal,
-    label: 'Contact Us',
-    path: '/contact_us',
-  },
-  {
-    type: ButtonType.Normal,
-    label: 'Contact Us',
-    path: '/contact_us',
-  },
-  {
-    type: ButtonType.Normal,
-    label: 'About Us',
-    path: '/about_us',
-    menuList: [
-      {
-        label: 'Academic Programme',
-        link: '/academic_programme',
-      },
-      {
-        label: 'Sport & Games',
-        link: '/sport_games',
-      },
-      {
-        label: 'Health Care',
-        link: '/health_care',
-      },
-      {
-        label: 'Target',
-        link: '/target',
-      },
-      {
-        label: 'Facility & Nourishment',
-        link: '/facility_nourishment',
-      },
-      {
-        label: 'Our Efforts',
-        link: '/our_efforts',
-      },
-      {
-        label: 'Rules & Regulations',
-        link: '/rules_regulations',
-      },
-    ],
-  },
-]
-const Header = ({ handleSidebarOpen }) => {
-  const isTabletXSM = useMediaQuery('(min-width:900px)')
+  const [disableToggleButton, setDisableToggleButton] = useState(false)
 
+  const handleToggleSidebar = useCallback(() => {
+    sidebar.toggle()
+    setDisableToggleButton(true)
+    setTimeout(() => {
+      setDisableToggleButton(false)
+    }, 500)
+  }, [sidebar])
   return (
     <>
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: ({ palette }) => `4px 4px 17px ${palette.primary.shadowLevel01}`,
-          backdropFilter: 'blur(66px)',
-          borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
-          background: ({ palette }) => palette.background.paper,
-        }}>
-        <Toolbar>
-          <LogoBox />
-          <Toolbar style={{ marginLeft: 'auto', paddingInline: '0px' }}>
-            {isTabletXSM && (
-              <NavButtonWarper>
-                {NavPageLinks.map((Item, index) => (
-                  <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
-                ))}
-              </NavButtonWarper>
+      <Root>
+        <LogoBox />
+
+        {isTabletXSM ? (
+          <Toolbar>
+            {NabLinkList.map((item, index) =>
+              item.type === ButtonType.Expand ? (
+                <StyledNavExpandButton key={index} label={item.label} menuList={item.menuList} />
+              ) : (
+                <StyledNavButton key={index} label={item.label} link={item.link} />
+              ),
             )}
           </Toolbar>
-          <StyledNavExpandButton label="Expand" />
-          {/* <StyledSidebarButton
-            color="primary"
-            onClick={handleSidebarOpen}
-            edge="start"
+        ) : (
+          <ButtonBase
+            aria-label="open drawer"
+            onClick={handleToggleSidebar}
+            TouchRippleProps={{ sx: { color: theme => theme.palette.primary.main } }}
             sx={{
-              transition: '.2s ease-in-out',
-            }}>
-            <MenuOpenIcon style={{ fontSize: 25 }} />
-          </StyledSidebarButton> */}
-        </Toolbar>
-      </AppBar>{' '}
+              borderRadius: '10px',
+              padding: '10px',
+              ml: 'auto',
+              mr: 0,
+              userSelect: 'none',
+            }}
+            disabled={disableToggleButton}
+            disableRipple>
+            <MenuIcon isOpen={sidebar.isOpen} />
+          </ButtonBase>
+        )}
+      </Root>
     </>
   )
 }
-
 const Root = styled.div`
+  height: var(--header-height);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 10px 16px;
+  background-color: ${({ theme }) => theme.palette.background.default};
+  box-shadow: 1px 3px 38px 0px #0f012f16;
 `
 
-const NavButtonWarper = styled.div`
+const Toolbar = styled.div`
   display: flex;
-  gap: 1px;
-  margin-right: 10px;
-  margin-left: 15px;
+  gap: 10px;
+  margin-left: auto;
 `
-
-const StyledSidebarButton = styled(IconButton)``
 
 export default Header

@@ -50,3 +50,6 @@ input {
     background: transparent; /* color of the tracking area */
   }
 }
+#__next {
+  isolation: isolate;
+}

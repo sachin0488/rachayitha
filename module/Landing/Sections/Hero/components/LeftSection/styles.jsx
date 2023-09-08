@@ -14,11 +14,12 @@ export const TextSection = styled.div`
 
 export const Heading = styled(Typography)`
   font-weight: 700;
-  line-height: 1.43;
+  line-height: 1.4;
   color: ${props => props.theme.palette.secondary.main};
   max-width: 540px;
   text-align: start;
   font-size: 50px;
+  letter-spacing: 0.1px;
   @media (max-width: 1310px) {
     font-size: 44px;
   }
@@ -68,6 +69,7 @@ export const ParagraphText = styled(Typography)`
   text-align: start;
   @media (max-width: 900px) {
     text-align: center;
+    margin-inline: 30px;
   }
   @media (max-width: 408px) {
     font-size: 15px;
@@ -87,6 +89,9 @@ export const StyledButton = styled(Button)`
   @media (max-width: 400px) {
     font-size: 13px;
     padding: 5px 30px;
+  }
+  .MuiSvgIcon-root {
+    font-size: 2rem;
   }
 `
 

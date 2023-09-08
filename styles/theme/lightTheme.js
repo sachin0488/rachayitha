@@ -37,7 +37,7 @@ const theme = createTheme({
   mixins: {
     drawer: {
       minWidth: 200,
-      width: 200,
+      width: 280,
     },
     toolbar: {
       minHeight: 72,

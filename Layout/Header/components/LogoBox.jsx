@@ -22,11 +22,25 @@ const Root = styled.div`
   height: 120px;
   background: #ffffff;
   padding: 6px 6px 3px 5px;
-  // create 3d box shadow
   box-shadow: 1px 3px 38px 0px #0f012f16;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  /* box-shadow: ; */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+  @media (max-width: 625px) {
+    height: 100px;
+  }
+  @media (max-width: 445px) {
+    height: 80px;
+  }
+  @media (max-width: 380px) {
+    height: 75px;
+  }
+  @media (max-width: 355px) {
+    height: 70px;
+  }
+  @media (max-width: 330px) {
+    height: 60px;
+  }
 `
 
 // const Text = styled.div`

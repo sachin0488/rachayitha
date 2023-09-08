@@ -8,6 +8,8 @@ import lightTheme from 'styles/theme/lightTheme'
 import 'styles/globals.css'
 
 import Layout from 'Layout'
+import GlobalBackGround from 'Layout/GlobalBackGround'
+import BlobAnimation from 'Layout/BlobAnimation'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -20,6 +22,8 @@ const MyApp = props => {
         <CssBaseline />
         <Layout>
           <Component {...pageProps} />
+          <BlobAnimation />
+          <GlobalBackGround />
         </Layout>
       </MUIThemeProvider>
     </CacheProvider>

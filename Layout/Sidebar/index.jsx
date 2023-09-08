@@ -1,115 +1,54 @@
 import styled from '@emotion/styled'
-import { useRouter } from 'next/router'
-import { NavPageLinks } from 'Layout/config.layout'
-import { IconButton, List, Drawer } from '@mui/material'
-import { Toolbar, useTheme, useMediaQuery } from '@mui/material'
-
 import StyledNavButton from './components/StyledNavButton'
 
-// Icons ---
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded'
-import { useCallback } from 'react'
-import LogoBox from './components/LogoBox'
-import Background from './components/Background'
-// ---
+import { useMemo } from 'react'
+import { motion } from 'framer-motion'
+import { ButtonType, NabLinkList, NavPageLinks } from 'Layout/config.layout'
+import { useLayoutStore } from 'Layout/store'
+import { useMediaQuery, useTheme } from '@mui/material'
+import StyledNavExpandButton from './components/StyledNavExpandButton'
 
-const SideBar = ({ isOpen, setIsOpen }) => {
+const SideBar = () => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery('(max-width: 750px)')
+  const isSidebarOpen = useLayoutStore(state => state.sidebar.isOpen)
 
-  const { pathname } = useRouter()
-
-  const handleSideBarClose = useCallback(() => {
-    setIsOpen(false)
-  }, [setIsOpen])
-
-  const DrawerProps = {
-    onClose: handleSideBarClose,
-    open: isOpen,
-    variant: 'temporary',
-    anchor: 'right',
-    BackdropProps,
-    sx: DrawerSx(isMobile, pathname),
-  }
+  const variants = useMemo(
+    () => ({
+      open: {
+        width: theme.mixins.drawer.width,
+      },
+      closed: {
+        width: theme.mixins.drawer.width,
+      },
+    }),
+    [theme.mixins.drawer.width],
+  )
 
   return (
-    <Drawer {...DrawerProps}>
-      <Background />
-      <HeaderBar {...{ isMobile, handleSideBarClose }} />
-      <Main>
-        <NavButtonWarper>
-          {NavPageLinks.map((Item, index) => (
-            <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
-          ))}
-          <Divider />
-        </NavButtonWarper>
-      </Main>
-    </Drawer>
+    <Main animate={isSidebarOpen ? 'open' : 'closed'} variants={variants}>
+      {NabLinkList.map((item, index) =>
+        item.type === ButtonType.Expand ? (
+          <StyledNavExpandButton key={index} label={item.label} menuList={item.menuList} />
+        ) : (
+          <StyledNavButton key={index} label={item.label} link={item.link} />
+        ),
+      )}
+    </Main>
   )
 }
 
 export default SideBar
 
-const Main = styled(List)`
-  margin-top: 0;
-  padding-top: 5px;
-`
-
-const NavButtonWarper = styled.div`
+const Main = styled(motion.div)`
   display: flex;
+  justify-content: start;
   flex-direction: column;
-  gap: 10px;
-  margin-right: 10px;
-  margin-left: 15px;
-  margin-top: 15px;
-`
-
-const Divider = styled.div`
-  margin-top: 13px;
-  margin-bottom: 13px;
-  height: 2px;
-  background: ${({ theme }) => theme.palette.primary.main}1f;
-`
-const DrawerSx = (isMobile, pathname) => {
-  return {
-    width: theme => theme.mixins.drawer?.width,
-    flexShrink: 0,
-    position: 'relative',
-    [`& .MuiDrawer-paper`]: {
-      width: theme => theme.mixins.drawer?.width,
-      boxSizing: 'border-box',
-      boxShadow: '4px 4px 17px #864dff1f',
-      backdropFilter: 'blur(40px)',
-      background: ({ palette }) => palette.background.paper,
-      borderWidth: '0px',
-      overflow: 'hidden',
-    },
-  }
-}
-
-const BackdropProps = {
-  sx: {
-    background: 'rgba(0,0,0,0.3)',
-    backdropFilter: 'blur(4px)',
-  },
-}
-
-const HeaderBar = ({ isMobile, handleSideBarClose }) => {
-  return (
-    <RootHeaderBar>
-      <LogoBox />
-      <IconButton color="primary" sx={{ marginLeft: 'auto' }} onClick={handleSideBarClose}>
-        <ChevronLeftRoundedIcon style={{ fontSize: 40 }} />
-      </IconButton>
-    </RootHeaderBar>
-  )
-}
-const RootHeaderBar = styled(Toolbar)`
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  && {
-    padding-left: 25px;
-    padding-right: 8px;
-  }
+  gap: 15px;
+  padding: 15px 15px;
+  /* padding-top: 100px; */
+  position: absolute;
+  right: 0;
+  overflow: auto;
+  height: 100vh;
 `
