@@ -163,7 +163,7 @@ const ReadBookPage = () => {
     event => {
       if (!isLoading) {
         const isScrolledToBottom =
-          Math.ceil(event.target?.scrollHeight - event.target?.scrollTop) === event.target?.clientHeight
+          Math.ceil(event.target?.scrollHeight - event.target?.scrollTop) === event.target?.clientHeight + 2
         const isScrolledToTop = event.target?.scrollTop === 0
 
         if (isScrolledToTop) {

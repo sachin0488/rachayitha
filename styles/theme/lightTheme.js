@@ -29,7 +29,8 @@ const theme = createTheme({
     borderRadius: 11,
   },
   typography: {
-    fontFamily: ['Inter', 'sans-serif'].join(','),
+    // fontFamily: ['Inter', 'sans-serif'].join(','),
+    fontFamily: ['Maven Pro', 'sans-serif'].join(','),
     // letterSpacing: '0.015rem',
     color: '#2F2D5C',
   },
