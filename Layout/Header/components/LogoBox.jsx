@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 const LogoBox = () => {
   return (
+<<<<<<< HEAD
     <Root>
       <Link href={'/'}>
         <a>
@@ -42,6 +43,30 @@ const Root = styled.div`
     height: 60px;
   }
 `
+=======
+    <Link href={'/'}>
+      <a>
+        {/* <Root>
+          <AutoStoriesOutlinedIcon
+            style={{
+              fontSize: 29,
+            }}
+          />
+          <Text>E Book</Text>
+        </Root> */}
+        <LogoImage src="/rachayitha_logo_500.svg" />
+      </a>
+    </Link>
+  )
+}
+
+// const Root = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+//   color: ${({ theme }) => theme.palette.secondary.main};
+// `
+>>>>>>> developement
 
 // const Text = styled.div`
 //   color: ${({ theme }) => theme.palette.primary.main};
@@ -53,10 +78,16 @@ const Root = styled.div`
 const LogoImage = styled.img`
   height: 35px;
   height: 31px;
+<<<<<<< HEAD
   height: 100%;
   width: auto;
   user-select: none;
   margin-top: -4px;
+=======
+  width: auto;
+  margin-bottom: -4px;
+  user-select: none;
+>>>>>>> developement
 `
 
 export default LogoBox
