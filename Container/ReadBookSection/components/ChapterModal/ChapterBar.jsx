@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+import { useCallback } from 'react'
 import { ButtonBase, Typography } from '@mui/material'
 
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded'
@@ -8,12 +9,28 @@ import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'
 import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined'
 
-const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked, isAvailableInSubscription }) => {
+const ChapterBar = ({
+  chapterId,
+  chapterSequence,
+  chapterTitle,
+  isPaid,
+  isLocked,
+  isAvailableInSubscription,
+  reload,
+  handleClose,
+}) => {
   const { query } = useRouter()
+
+  const handleClick = useCallback(() => {
+    setTimeout(async () => {
+      await reload({ chapterId })
+      handleClose()
+    }, 100)
+  }, [chapterId, handleClose, reload])
 
   return (
     <Link href={`/book/${query.bookId}/read/${chapterId}#chapter-${chapterId}`}>
-      <StyledA>
+      <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>
             Chapter {chapterSequence}: {chapterTitle}
@@ -56,6 +73,7 @@ const ChapterText = styled(Typography)`
     width: 100%;
   }
 `
+
 const InfoList = styled.div`
   display: flex;
   align-items: center;
@@ -78,4 +96,5 @@ const UnlockChip = styled(LockOpenRoundedIcon)`
 const SubscriptionChip = styled(CardMembershipOutlinedIcon)`
   color: ${({ theme }) => theme.palette.primary.main}d5;
 `
+
 export default ChapterBar

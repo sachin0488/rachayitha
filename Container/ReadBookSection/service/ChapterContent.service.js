@@ -1,13 +1,37 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { BookReadQuery } from '../constants/query.address'
+import { create } from 'zustand'
+
+const useChapterContentCacheStore = create(set => ({
+  chapterContentCache: {},
+  setChapterContentInCacheByChapterId: value => {
+    set(state => ({
+      chapterContentCache: {
+        [value.chapterId]: value.chapterContent,
+        ...state.chapterContentCache,
+      },
+    }))
+  },
+}))
 
 export const useChapterContentService = ({ bookId }) => {
   const queryClient = useQueryClient()
+  const { chapterContentCache, setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
 
   const { mutateAsync, isLoading, isSuccess } = useMutation({
-    mutationFn: ({ chapterId }) => fetchChapterContentAPI({ bookId, chapterId }),
+    mutationFn: ({ chapterId }) => {
+      if (chapterContentCache?.[chapterId]) {
+        return chapterContentCache?.[chapterId]
+      } else {
+        return fetchChapterContentAPI({ bookId, chapterId })
+      }
+    },
     onSuccess: data => {
+      setChapterContentInCacheByChapterId({
+        chapterId: data.chapterId,
+        chapterContent: data,
+      })
       queryClient.setQueryData([BookReadQuery.CHAPTER_LIST, { bookId }], preData => {
         return {
           ChapterList: preData?.ChapterList?.map(chapter => {

@@ -1,19 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { Button, ButtonBase, Typography } from '@mui/material'
-
-import ToggleToLibraryButton from './ToggleToLibraryButton'
+import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import { useUserService } from 'Container/Auth/service/User.service'
+import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
 
-const ContentCard = ({ item }) => {
+const WorkContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
   return (
     <Root>
       <Main>
-        {isLoggedIn ? <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} /> : <></>}
-
+        <Tooltip title="Edit in dashboard">
+          <Link href={isLoggedIn ? `https://rachayitha-dashboard.vercel.app/workspace/novel/${item.bookId}` : `/login`}>
+            <a>
+              <StyledCornerButton variant="contained" sx={{ minWidth: 40, width: 40 }}>
+                <EditNoteRoundedIcon />
+              </StyledCornerButton>
+            </a>
+          </Link>
+        </Tooltip>
         <Image
           alt="Cover Image"
           src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
@@ -44,7 +50,7 @@ const ContentCard = ({ item }) => {
   )
 }
 
-export default ContentCard
+export default WorkContentCard
 
 const Root = styled.div`
   position: relative;
@@ -66,7 +72,25 @@ const Root = styled.div`
     width: 100%;
   }
 `
-
+const StyledCornerButton = styled(Button)`
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  z-index: 10;
+  padding: 0px;
+  min-width: 35px;
+  min-height: 35px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 const StyledButton = styled(ButtonBase)`
   position: absolute;
   top: 0;

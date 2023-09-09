@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { InView } from 'react-intersection-observer'
 import { Skeleton, Typography } from '@mui/material'
 
-import ContentCard from '../components/ContentCard'
+import ContentCard from '../components/LibraryContentCard'
 
 import useLibraryService from 'Container/UserProfile/services/Library.service'
 

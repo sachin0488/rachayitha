@@ -23,7 +23,23 @@ const fetchBookDetail = async bookId => {
 
     category: item?.category,
 
+    chapterList: item?.chapter?.map(chapter => ({
+      bookId: parseInt(chapter?.book_id_id),
+      chapterId: parseInt(chapter?.id),
+      authorNote: chapter?.author_note,
+      chapterTitle: chapter?.chapter_title,
+      chapterSequence: chapter?.chapter_sequence,
+      chapterContent: '',
+      isPublished: chapter?.is_published,
+      publishDate: chapter?.publish_date,
+      userId: chapter?.user_id_id,
+      isLocked: false,
+      isPaid: false,
+      isAvailableInSubscription: false,
+      coinRequired: 0,
+    })),
     chapter: item?.chapter,
+
     chapterCount: item?.chapter_count,
 
     commentCount: item?.comment_count,
@@ -76,6 +92,5 @@ export const useBookDetailsService = ({ bookId }) => {
     queryFn: () => fetchBookDetail(bookId),
     enabled: Boolean(bookId),
   })
-
   return { Data: data, isLoading, isError, error, isFetching }
 }

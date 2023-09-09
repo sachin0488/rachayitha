@@ -1,20 +1,5 @@
 {
     "cSpell.words": [
-        "bookcomment",
-        "bookrate",
-        "bookvote",
-        "Collaction",
-        "commentby",
-        "commentuser",
-        "explorebook",
-        "explorepoem",
-        "persistor",
-        "potentialstartletbook",
-        "Startlet",
-        "tanstack",
-        "topbooklist",
-        "userbooklibrary",
-        "userpoemlibrary",
-        "votetoken"
+        "zustand"
     ]
 }

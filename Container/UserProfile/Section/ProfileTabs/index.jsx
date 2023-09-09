@@ -75,8 +75,9 @@ const StyledTabs = styled(Tabs)`
   overflow: visible;
   display: flex;
   width: fit-content;
-
   & .${tabsClasses.flexContainer} {
+    border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
+    border-radius: 13px;
     display: flex;
     justify-content: space-between;
     width: 100%;

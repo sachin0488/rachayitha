@@ -14,6 +14,7 @@ import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
 import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
+import Link from 'next/link'
 
 const InfoArea = () => {
   const { query } = useRouter()
@@ -40,11 +41,13 @@ const InfoArea = () => {
       <RatingBar avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data?.totalRatingCount} />
 
       <ButtonList>
-        <a href={`/book/${query?.bookId}/read/${Data?.chapter?.[0]?.id}`} target="_blank" rel="noopener noreferrer">
-          <Button variant="contained" endIcon={<ArrowForwardRoundedIcon />}>
-            Read
-          </Button>
-        </a>
+        <Link href={`/book/${query?.bookId}/read/${Data?.chapter?.[0]?.id}`}>
+          <a>
+            <Button variant="contained" endIcon={<ArrowForwardRoundedIcon />}>
+              Read
+            </Button>
+          </a>
+        </Link>
         <ToggleToLibraryButton bookId={query?.bookId} libraryAdded={Data?.libraryAdded} />
         <LikeButton bookId={query?.bookId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
         <MoreOptions />

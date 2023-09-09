@@ -1,13 +1,16 @@
 import styled from '@emotion/styled'
 import { create } from 'zustand'
 import { useRouter } from 'next/router'
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useChapterListService } from '../service/ChapterList.service'
 import { useChapterContentService } from '../service/ChapterContent.service'
 
 import ChapterSection from '../Section/ChapterSection'
 import DetailsSection from '../Section/DetailsSection'
+import ChapterModal from '../components/ChapterModal'
+import { Fab, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
+import FormatListNumberedRoundedIcon from '@mui/icons-material/FormatListNumberedRounded'
 
 const useReadPageMetaStore = create(set => ({
   scrollPositionY: 0,
@@ -35,22 +38,25 @@ const useReadPageMetaStore = create(set => ({
 
 const ReadBookPage = () => {
   const router = useRouter()
-
+  const isMobile = useMediaQuery('(max-width:480px)')
   const bookId = parseInt(router?.query?.bookId)
   const chapterId = parseInt(router?.query?.chapterId)
+  const theme = useTheme()
 
-  const mainRef = useRef() // container with scrollbar
-  const bodyRef = useRef() // child of container which contains all the chapters
+  const mainRef = useRef()
+  const bodyRef = useRef()
 
-  const scrollPositionY = useReadPageMetaStore(state => state.scrollPositionY)
-  const setScrollPositionY = useReadPageMetaStore(state => state.setScrollPositionY)
+  const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
+
+  // const scrollPositionY = useReadPageMetaStore(state => state.scrollPositionY)
+  // const setScrollPositionY = useReadPageMetaStore(state => state.setScrollPositionY)
   const bodyHeight = useReadPageMetaStore(state => state.bodyHeight)
   const setBodyHeight = useReadPageMetaStore(state => state.setBodyHeight)
   const isResetScrollPositionRequired = useReadPageMetaStore(state => state.isResetScrollPositionRequired)
   const setResetScrollPositionRequired = useReadPageMetaStore(state => state.setResetScrollPositionRequired)
 
   const { mutateAsync, isLoading } = useChapterContentService({ bookId: bookId })
-  const { ChapterList, setChapterLoadedById, isSuccess } = useChapterListService({
+  const { ChapterList, setChapterLoadedById, isSuccess, reload } = useChapterListService({
     bookId: bookId,
     chapterId: chapterId,
   })
@@ -68,30 +74,28 @@ const ReadBookPage = () => {
   const handleToScrollToPreviousPosition = useCallback(() => {
     const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
     if (currentChapterIndex === 0) {
-      const firstChild = bodyRef?.current?.firstChild
-      const secondChild = bodyRef?.current?.children[1]
-
-      const totalHeight = firstChild?.offsetHeight + secondChild?.offsetHeight + scrollPositionY
+      const thirdChild = bodyRef?.current?.children[2]
+      const thirdChildTop = thirdChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
 
       mainRef.current?.scrollBy({
-        top: totalHeight,
+        top: thirdChildTop,
         left: 0,
       })
     } else {
-      const firstChild = bodyRef?.current?.firstChild
-      const totalHeight = firstChild?.offsetHeight + scrollPositionY
+      const secondChild = bodyRef?.current?.children[1]
+      const secondChildTop = secondChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
 
       mainRef.current?.scrollBy({
-        top: totalHeight,
+        top: secondChildTop,
         left: 0,
       })
     }
-  }, [ChapterList, scrollPositionY])
+  }, [ChapterList, theme.mixins.toolbar.minHeight])
 
   useEffect(() => {
     if (isSuccess) {
       mainRef.current?.scrollBy({
-        top: 5,
+        top: 0,
         left: 0,
       })
     }
@@ -124,7 +128,6 @@ const ReadBookPage = () => {
       const response = await mutateAsync({ chapterId: previousChapterId })
 
       if (response?.chapterId === previousChapterId) {
-        setScrollPositionY(mainRef.current?.scrollTop)
         setChapterLoadedById(previousChapterId)
         setBodyHeight(bodyRef.current?.offsetHeight)
         setResetScrollPositionRequired(true)
@@ -132,14 +135,7 @@ const ReadBookPage = () => {
     } catch (error) {
       console.log(error)
     }
-  }, [
-    ChapterList,
-    mutateAsync,
-    setScrollPositionY,
-    setChapterLoadedById,
-    setBodyHeight,
-    setResetScrollPositionRequired,
-  ])
+  }, [ChapterList, mutateAsync, setChapterLoadedById, setBodyHeight, setResetScrollPositionRequired])
 
   const handleScrolledBottom = useCallback(async () => {
     try {
@@ -167,29 +163,79 @@ const ReadBookPage = () => {
         const isScrolledToTop = event.target?.scrollTop === 0
 
         if (isScrolledToTop) {
-          handleScrolledTop()
+          if (!isMobile) handleScrolledTop()
         }
 
-        if (isScrolledToBottom) {
+        if (isScrolledToBottom && !isMobile) {
           handleScrolledBottom()
         }
       }
     },
-    [handleScrolledBottom, handleScrolledTop, isLoading],
+    [handleScrolledBottom, handleScrolledTop, isLoading, isMobile],
   )
 
-  return (
-    <Root>
-      <Main ref={mainRef} onScroll={handleOnScroll}>
-        <Body ref={bodyRef}>
-          {isFirstChapterLoaded ? <DetailsSection /> : <></>}
+  const handleOpenChapterModal = useCallback(() => {
+    setIsChapterIndexModalOpen(true)
+  }, [])
 
-          {LoadedChapterList?.map(chapter => (
-            <ChapterSection key={chapter?.chapterId} item={chapter} />
-          ))}
-        </Body>
-      </Main>
-    </Root>
+  return (
+    <>
+      <ChapterModal
+        open={IsChapterIndexModalOpen}
+        setOpen={setIsChapterIndexModalOpen}
+        chapterList={ChapterList}
+        reload={reload}
+      />
+      {isLoading && (
+        <LinearProgress
+          sx={{
+            position: 'fixed',
+            top: theme => theme.mixins.toolbar.minHeight,
+            zIndex: 10000,
+            width: '100%',
+          }}
+        />
+      )}
+      <Fab
+        onClick={handleOpenChapterModal}
+        aria-label="Chapter Index"
+        color="primary"
+        sx={{
+          position: 'fixed',
+          bottom: 20,
+          right: 20,
+        }}>
+        <FormatListNumberedRoundedIcon />
+      </Fab>
+      <Root>
+        <Main
+          ref={mainRef}
+          onScroll={handleOnScroll}
+          style={
+            isMobile
+              ? {
+                  overflowY: isLoading ? 'hidden' : 'scroll',
+                }
+              : {}
+          }>
+          <Body ref={bodyRef}>
+            {isFirstChapterLoaded ? <DetailsSection /> : <></>}
+
+            {LoadedChapterList?.map((chapter, index) => (
+              <ChapterSection
+                key={chapter?.chapterId}
+                item={chapter}
+                isFirstChapter={index === 0 && isMobile}
+                isLastChapter={index === LoadedChapterList.length - 1 && isMobile}
+                onReachedStart={handleScrolledTop}
+                onReachedEnd={handleScrolledBottom}
+                disabledReachEvent={isLoading}
+              />
+            ))}
+          </Body>
+        </Main>
+      </Root>
+    </>
   )
 }
 export default memo(ReadBookPage)
