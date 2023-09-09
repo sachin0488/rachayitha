@@ -1,0 +1,4 @@
+export const PoemReadQuery = {
+  CHAPTER_LIST: 'CHAPTER_LIST',
+  CHAPTER_CONTENT: 'CHAPTER_CONTENT',
+}

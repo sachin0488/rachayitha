@@ -1,56 +1,37 @@
-// import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import styled from '@emotion/styled'
 import React from 'react'
 import Link from 'next/link'
 
 const LogoBox = () => {
   return (
-    <Root>
-      <Link href={'/'}>
-        <a>
-          <LogoImage src="/footer_logo.svg" />
-        </a>
-      </Link>
-    </Root>
+    <Link href={'/'}>
+      <a>
+        <Root>
+          <AutoStoriesOutlinedIcon
+            style={{
+              fontSize: 35,
+            }}
+          />
+          <Text>E Book</Text>
+        </Root>
+      </a>
+    </Link>
   )
 }
 
 const Root = styled.div`
-  width: fit-content;
-  height: 120px;
-  margin-left: auto;
- 
-  @media (max-width: 625px) {
-    height: 100px;
-  }
-  @media (max-width: 445px) {
-    height: 80px;
-  }
-  @media (max-width: 380px) {
-    height: 75px;
-  }
-  @media (max-width: 355px) {
-    height: 70px;
-  }
-  @media (max-width: 330px) {
-    height: 60px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
-// const Text = styled.div`
-//   color: ${({ theme }) => theme.palette.primary.main};
-//   font-weight: 700;
-//   font-size: 1.3rem;
-//   white-space: nowrap;
-// `
-
-const LogoImage = styled.img`
-  height: 35px;
-  height: 31px;
-  height: 100%;
-  width: auto;
-  user-select: none;
-  margin-top: -4px;
+const Text = styled.div`
+  color: ${({ theme }) => theme.palette.primary.main};
+  font-weight: 700;
+  font-size: 1.5rem;
+  white-space: nowrap;
 `
 
 export default LogoBox

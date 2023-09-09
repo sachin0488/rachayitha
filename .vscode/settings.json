@@ -8,7 +8,6 @@
         "commentuser",
         "explorebook",
         "explorepoem",
-        "Foriegn",
         "persistor",
         "potentialstartletbook",
         "Startlet",
@@ -16,7 +15,6 @@
         "topbooklist",
         "userbooklibrary",
         "userpoemlibrary",
-        "votetoken",
-        "xaviers"
+        "votetoken"
     ]
 }

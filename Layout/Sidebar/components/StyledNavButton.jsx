@@ -1,63 +1,44 @@
-import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useLayoutStore } from 'Layout/store'
+import React from 'react'
 
-const StyledNavButton = ({ Icon, label, link, path, onClick }) => {
+const StyledNavButton = ({ Icon, label, link, path }) => {
   const router = useRouter()
-  const sidebarClose = useLayoutStore(state => state.sidebar.close)
 
   return (
-    <Root>
-      <Line />
-      <Main>
-        <Link href={link}>
-          <a>
-            <StyledButton onClick={sidebarClose} className={router.pathname === link && 'selected'}>
-              {label}
-            </StyledButton>
-          </a>
-        </Link>
-      </Main>
-    </Root>
+    <Link href={link}>
+      <a>
+        <Root className={router.pathname.includes(path) && 'selected'} startIcon={<Icon style={IconStyle} />}>
+          {label}
+        </Root>
+      </a>
+    </Link>
   )
 }
 
 const IconStyle = {}
 
-const Root = styled.div`
-  display: flex;
-`
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
-const Line = styled.div`
-  width: 2px;
-  height: 100%;
-  background: ${({ theme }) => theme.palette.secondary.main}41;
-`
-
-const StyledButton = styled(Button)`
+const Root = styled(Button)`
+  width: 100%;
+  justify-content: flex-start;
+  gap: 12px;
   font-weight: 500;
-  font-size: 1rem;
-  padding: 5px 13px;
+  font-size: 1.1rem;
+  padding: 6px 20px;
   /* box-shadow: 3px 3px 10px -0.5px ${({ theme }) => theme.palette.primary.main}30; */
   color: ${({ theme }) => theme.palette.secondary.main};
   border-radius: 8px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
   transition: box-shadow 0.35s ease-in-out;
   text-transform: capitalize;
   letter-spacing: 0.5px;
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}01;
     color: ${({ theme }) => theme.palette.primary.main};
-    border-left: 2px solid ${({ theme }) => theme.palette.primary.main};
+    box-shadow: 4px 2px 12px 0px ${({ theme }) => theme.palette.primary.main}36;
+    /* background: ${({ theme }) => theme.palette.primary.main}1f; */
+    backdrop-filter: blur(5px);
   }
   .MuiButton-startIcon {
     margin-right: 4x;
@@ -67,10 +48,7 @@ const StyledButton = styled(Button)`
     margin-right: -4px;
     margin-left: 4px;
   }
-  border-left: 2px solid transparent;
-  margin-left: -2px;
   &.selected {
-    border-left: 2px solid ${({ theme }) => theme.palette.primary.main};
     color: ${({ theme }) => theme.palette.primary.main};
   }
 `
