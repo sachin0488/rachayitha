@@ -38,7 +38,7 @@ export const mutationCache = new MutationCache({
   onError: async (error, variables, context, mutation) => {
     if (error?.response?.status === 401) {
       try {
-        const res = await silentRenewalAPI({ refresh: getRefresh })
+        const res = await silentRenewalAPI({ refresh: getRefresh() })
 
         if (res.status === 200) {
           handleToken(res)
@@ -61,7 +61,7 @@ export const queryCache = new QueryCache({
   onError: async (error, query) => {
     if (error?.response?.status === 401) {
       try {
-        const res = await silentRenewalAPI({ refresh: getRefresh })
+        const res = await silentRenewalAPI({ refresh: getRefresh() })
 
         if (res.status === 200) {
           handleToken(res)
@@ -84,7 +84,7 @@ APIInstance.interceptors.request.use(
   config => {
     try {
       const isExternal = !!config?.url?.startsWith('http')
-      const accessToken = isBrowser ? getAccess : null
+      const accessToken = isBrowser ? getAccess() : null
 
       if (accessToken && !isExternal) {
         config.headers[AUTHORIZATION] = `Bearer ${accessToken}`

@@ -29,6 +29,7 @@ const createReviewAPI = async ({ bookId, comment, parameter1, parameter2, parame
 
   const [commentResponse, ratingResponse] = await Promise.all([commentAPI, ratingAPI])
 
+  console.log(commentResponse, ratingResponse)
   return { commentResponse, ratingResponse }
 }
 
@@ -52,11 +53,13 @@ export const useCreateReviewService = ({ bookId, sortBy }) => {
       queryClient.invalidateQueries({
         queryKey: [BookDetailsQuery.COMMENT_LIST, { bookId: parseInt(bookId), parentCommentId: null, sortBy }],
       })
-      enqueueSnackbar('Your review has been posted !', {
-        variant: 'success',
-      })
+
+      // enqueueSnackbar(data?.ratingResponse?.info?.visible?.message, {
+      //   variant: 'success',
+      // })
     },
     onError(error) {
+      console.log(error)
       enqueueSnackbar('Unable to post your review !', {
         variant: 'error',
       })

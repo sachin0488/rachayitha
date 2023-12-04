@@ -2,7 +2,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useCallback } from 'react'
 import { BookReadQuery } from '../constants/query.address'
-import { useEffect } from 'react'
 import { useChapterContentService } from './ChapterContent.service'
 
 export const useChapterListService = ({ bookId, chapterId }) => {
@@ -83,7 +82,6 @@ const fetchChapterListAPI = async ({ bookId, chapterId }) => {
       isLocked: false,
       isPaid: false,
       isAvailableInSubscription: false,
-      isAvailableInSubscription: 0,
       coinRequired: 0,
       isLoaded: chapterId === chapter.id,
     })),

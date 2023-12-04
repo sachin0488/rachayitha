@@ -4,11 +4,11 @@ import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { Skeleton, Typography } from '@mui/material'
 
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import WorkContentCard from '../components/WorkContentCard'
 import StyledChip from '../components/StyledChip'
 import useOriginalWorkService from 'Container/UserProfile/services/OriginalWork.service'
 import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded'
+
 const contentTypes = [
   'book',
   'poem',

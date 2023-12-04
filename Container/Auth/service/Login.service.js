@@ -1,15 +1,15 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
-import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
+import { AuthQuery } from '../constants/query.address'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useLoginService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const router = useRouter()
+  const queryClient = useQueryClient()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: loginAPI,
@@ -22,9 +22,7 @@ export const useLoginService = () => {
         setRefresh(data?.user?.tokens?.refresh, 'session')
       }
 
-      router.push('/')
-
-      window && window.location.reload()
+      queryClient.invalidateQueries([AuthQuery.USER_DATA])
     },
     onError: error => {
       enqueueSnackbar(error.response?.data?.user?.error?.[0], {

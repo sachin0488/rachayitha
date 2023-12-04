@@ -5,7 +5,7 @@ import { ExploreQuery } from '../constants/query.address'
 const useExplore = ({ categoryId, contentType, sortBy }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage, status } =
     useInfiniteQuery({
-      queryKey: [ExploreQuery.EXPLORE_LIST, , { categoryId, contentType, sortBy }],
+      queryKey: [ExploreQuery.EXPLORE_LIST, { categoryId, contentType, sortBy }],
       enabled: !!categoryId && !!contentType && !!sortBy,
       queryFn: ({ pageParam = 1 }) => fetchExploreListAPI({ categoryId, contentType, page: pageParam, sortBy }),
       getNextPageParam: (lastPage, pages) => {

@@ -1,14 +1,16 @@
 import { APIInstance, AUTHORIZATION } from 'services/global.service'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import { AuthTokenStore } from 'utility/authTokenStore'
+import { AuthQuery } from '../constants/query.address'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useCreateAccountService = () => {
-  const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
+
+  const queryClient = useQueryClient()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: createAccountAPI,
@@ -16,17 +18,9 @@ export const useCreateAccountService = () => {
       setAccess(data?.user?.tokens?.access)
       setRefresh(data?.user?.tokens?.refresh)
 
-      APIInstance.interceptors.request.use(
-        config => {
-          config.headers[AUTHORIZATION] = data?.user?.tokens?.access
-          return config
-        },
-        error => Promise.reject(error),
-      )
+      queryClient.invalidateQueries([AuthQuery.USER_DATA])
 
-      router.push('/otp')
-
-      enqueueSnackbar(data.message, {
+      enqueueSnackbar("Your Account has been Created Successfully !", {
         variant: 'success',
       })
     },

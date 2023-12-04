@@ -65,8 +65,8 @@ export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) 
         //     : 'Your Poem has been removed from Library!'
 
         const message = data?.info?.visible?.message
-        const status = message?.includes('already in library') ? 'info' : 'success'
-        
+        const status = message?.includes('already') ? 'warn' : 'success'
+
         enqueueSnackbar(data?.info?.visible?.message, {
           variant: status,
         })

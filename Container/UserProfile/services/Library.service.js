@@ -2,9 +2,14 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { UserProfileQuery } from '../constants/query.address'
 
-const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
+const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
   const res = await APIInstance({
-    url: 'userbooklibrary/',
+    url:
+      contentType === 'book'
+        ? '/userbooklibrary/'
+        : contentType === 'poem'
+        ? '/userpoemlibrary/'
+        : '/userstorylibrary/',
     method: 'GET',
     params: {
       page: pageParam,
@@ -37,11 +42,11 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }) => {
   }
 }
 
-const useLibraryService = () => {
+const useLibraryService = ({ contentType }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: [UserProfileQuery.LIBRARY_LIST],
-      queryFn: fetchLibraryListAPI,
+      queryKey: [UserProfileQuery.LIBRARY_LIST, { contentType }],
+      queryFn: params => fetchLibraryListAPI(params, contentType),
       getNextPageParam: (lastPage, pages) => {
         return lastPage.nextCursor
       },

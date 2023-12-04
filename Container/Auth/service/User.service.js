@@ -8,7 +8,7 @@ import { AuthTokenStore } from 'utility/authTokenStore'
 export const useUserService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const { data, isFetching, isSuccess, refetch, isError, error } = useQuery({
+  const { data, isFetching, isSuccess, refetch, isError } = useQuery({
     queryKey: [AuthQuery.USER_DATA],
     queryFn: userAuthAPI,
   })
@@ -49,7 +49,7 @@ export const useUserService = () => {
 const { setAccess, setRefresh, getRefresh, getAccess } = AuthTokenStore()
 
 const userAuthAPI = async () => {
-  if (!getRefresh || !getAccess) return formatUnAuthData()
+  if (!getRefresh() || !getAccess()) return formatUnAuthData()
 
   const [userResponse, userError] = await fetchUserDataAPI()
 
@@ -127,7 +127,7 @@ const formatUserData = res => {
   }
 }
 
-const formatUnAuthData = error => {
+export const formatUnAuthData = error => {
   return {
     status: error?.response?.status || 401,
     isLoggedIn: false,

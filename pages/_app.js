@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnmount: true,
       refetchOnReconnect: false,
-      retry: true,
+      retry: 2,
       staleTime: twentyFourHoursInMs,
     },
   },
@@ -43,10 +43,11 @@ const MyApp = props => {
         <SnackbarProvider Components={snackbarComponents}>
           <QueryClientProvider client={queryClient}>
             <CssBaseline />
-            <Layout>
-              <AuthProvider />
-              <Component {...pageProps} />
-            </Layout>
+            <AuthProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </AuthProvider>
           </QueryClientProvider>
         </SnackbarProvider>
       </MUIThemeProvider>

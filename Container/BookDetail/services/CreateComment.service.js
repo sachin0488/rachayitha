@@ -35,7 +35,7 @@ export const useCreateCommentService = ({ bookId, parentCommentId, sortBy }) => 
         ],
       })
 
-      enqueueSnackbar('Your comment has been added!', {
+      enqueueSnackbar(data.info.visible.message, {
         variant: 'success',
       })
     },

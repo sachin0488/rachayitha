@@ -21,7 +21,7 @@ const fetchCommentListAPI = async ({ pageParam = 1, bookId, parentCommentId, sor
         commentId: item?.id,
         parentCommentId: item?.parent_comment_id,
         userId: item?.user_id,
-        username: item?.comment_by,
+        username: item?.commentby,
         profileImage: item?.commentuser_profile_pic,
         rating: item?.rating,
         isLiked: item?.is_liked,

@@ -1,3 +1,4 @@
 export const AuthQuery = {
-  USER_DATA: 'user-data-query',
+  USER_DATA: 'USER_DATA',
+  AUTH_PROVIDER: 'AUTH_PROVIDER',
 }

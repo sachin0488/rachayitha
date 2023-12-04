@@ -24,12 +24,12 @@ export const useCreateVoteService = ({ bookId }) => {
       queryClient.invalidateQueries({
         queryKey: [BookDetailsQuery.BOOK_VOTE, { bookId: parseInt(bookId) }],
       })
-      enqueueSnackbar('Your Vote has been Added !', {
+      enqueueSnackbar(data.info.visible.message, {
         variant: 'success',
       })
     },
     onError(error) {
-      enqueueSnackbar('Unable to Add your Vote !', {
+      enqueueSnackbar('Unable to request your query!', {
         variant: 'error',
       })
     },

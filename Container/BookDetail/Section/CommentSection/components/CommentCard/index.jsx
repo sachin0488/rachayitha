@@ -21,7 +21,7 @@ const CommentCard = ({ item, sortBy }) => {
 
   const [isReplyOpen, setIsReplyOpen] = useState(false)
   const [commentCount, setCommentCount] = useState(item?.commentCount)
-
+  console.log(item)
   return (
     <Root className={isReplyOpen ? 'replyOpen' : ''}>
       <Header>
