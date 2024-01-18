@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
@@ -9,16 +9,21 @@ import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/compo
 import { useContinueReadingService } from '../services/ContinueReading.service'
 
 import MinimalCard from '../cards/MinimalCard'
+import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 
 const ContinueReadingSliders = () => {
-  const { List, isLoading, isError, queryKey } = useContinueReadingService()
+  const [currentContent, setCurrentContent] = useState(ContentTypes[0])
+
+  const { List, isLoading, isError, queryKey } = useContinueReadingService({ contentType: currentContent })
 
   if (List.length === 0) return null
 
   return (
     <Root>
       <Main>
-        <Heading>Continue Reading</Heading>
+        <HeadingBox>
+          <Heading>Continue Reading</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+        </HeadingBox>
         {isLoading && <LoadingBar />}
         {isError && <ErrorBar />}
         {isLoading ? (
@@ -26,7 +31,7 @@ const ContinueReadingSliders = () => {
         ) : isError ? (
           <ErrorBar />
         ) : (
-          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} />
+          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} contentType={currentContent} />
         )}
       </Main>
     </Root>
@@ -39,6 +44,13 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
+`
+
+const HeadingBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 `
 
 const Main = styled.div`

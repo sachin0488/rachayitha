@@ -87,9 +87,7 @@ const CreateReviewModal = ({ open, setOpen, poemId }) => {
           </StyledButton>
           <StyledButton
             disabled={isLoading || isAllDirty}
-            startIcon={
-              isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-            }
+            startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
             variant="contained"
             type="submit">
             Save

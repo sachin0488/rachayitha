@@ -2,11 +2,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useCallback } from 'react'
 import { PoemReadQuery } from '../constants/query.address'
+import { useChapterContentService } from './ChapterContent.service'
 
 export const useChapterListService = ({ poemId, chapterId }) => {
   const queryClient = useQueryClient()
+  const { mutateAsync } = useChapterContentService({ poemId: poemId })
 
-  const { data, isLoading, isError, isSuccess, isFetching } = useQuery({
+  const { data, isLoading, isError, isSuccess, isFetching, remove, refetch } = useQuery({
     queryKey: [PoemReadQuery.CHAPTER_LIST, { poemId }],
     queryFn: () => fetchChapterListAPI({ poemId, chapterId }),
     enabled: Boolean(poemId && chapterId),
@@ -30,13 +32,36 @@ export const useChapterListService = ({ poemId, chapterId }) => {
     [poemId, queryClient],
   )
 
-  return { ChapterList: data?.ChapterList, setChapterLoadedById, isLoading, isError, isSuccess, isFetching }
+  const reload = useCallback(
+    async ({ chapterId }) => {
+      const response = await mutateAsync({ chapterId })
+      if (response) {
+        queryClient.setQueryData([PoemReadQuery.CHAPTER_LIST, { poemId }], preData => {
+          return {
+            ChapterList: preData?.ChapterList?.map(chapter => {
+              return {
+                ...chapter,
+                isLoaded: chapter.chapterId === chapterId,
+              }
+            }),
+          }
+        })
+      }
+    },
+    [poemId, mutateAsync, queryClient],
+  )
+
+  return { ChapterList: data?.ChapterList, setChapterLoadedById, isLoading, isError, isSuccess, isFetching, reload }
 }
 
 const fetchChapterListAPI = async ({ poemId, chapterId }) => {
   const ChapterListAPI = await APIInstance({
     url: `/poem/${poemId}/chapter`,
     method: 'GET',
+    params: {
+      tab: 'published',
+      limit: 1000,
+    },
   })
 
   const ChapterContentAPI = await APIInstance({
@@ -53,14 +78,15 @@ const fetchChapterListAPI = async ({ poemId, chapterId }) => {
       authorNote: chapter.author_note,
       chapterTitle: chapter.chapter_title,
       chapterSequence: chapter.chapter_sequence,
+      chapterContent: '',
       chapterContent: chapterId === chapter.id ? ChapterContentResponse?.data?.data[0]?.chapter_content : '',
       isPublished: chapter.is_published,
       publishDate: chapter.publish_date,
       userId: chapter.user_id,
-      coinRequired: 0,
-      isLocked: false,
-      isPaid: false,
+      isLocked: chapter.lock_status,
+      isPaid: chapter?.is_lock,
       isAvailableInSubscription: false,
+      coinRequired: chapter?.price || 0,
       isLoaded: chapterId === chapter.id,
     })),
     // .filter(chapter => chapter.isPublished),

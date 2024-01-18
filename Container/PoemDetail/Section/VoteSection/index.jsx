@@ -78,12 +78,7 @@ const VoteSection = () => {
             </Tooltip>
           )}
           <Tooltip title="Vote This poem">
-            <AddVoteButton
-              disabled={isMutating}
-              is_mutating={String(isMutating)}
-              variant="contained"
-              color={'primary'}
-              onClick={mutate}>
+            <AddVoteButton disabled={isMutating} is_mutating={String(isMutating)} variant="contained" color={'primary'} onClick={mutate}>
               {isMutating ? (
                 <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
               ) : (
@@ -136,6 +131,7 @@ const Main = styled.div`
   position: relative;
   padding: 15px;
   box-shadow: 3px 3px 21px 1px rgba(98, 0, 255, 0.1);
+  background-image: ${({ theme }) => theme.palette.background.paperImage};
   border-radius: 18px;
   transition: 0.3s ease-in-out;
   border: 2px solid transparent;

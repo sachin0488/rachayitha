@@ -30,12 +30,12 @@ const ChapterListTab = ({ chapterList }) => {
           </Typography>
           <PaidChip />
         </MeaningChip>
-        <MeaningChip>
+        {/* <MeaningChip>
           <Typography variant="subtitle2" component="div" color="secondary">
             Available in Subscription
           </Typography>
           <SubscriptionChip />
-        </MeaningChip>
+        </MeaningChip> */}
       </MeaningChipList>
       <ChapterList>
         {chapterList?.map(chapter => (

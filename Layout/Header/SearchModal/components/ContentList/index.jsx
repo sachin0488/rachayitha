@@ -1,19 +1,17 @@
 import styled from '@emotion/styled'
 import { useSearchList } from 'api/global.hook'
-import useExplore from 'Container/Explore/services/explore.service'
 import { useRouter } from 'next/router'
 import ContentCard from './components/ContentCard'
 
 const ContentSection = ({ ranking, keyword }) => {
-  const { query } = useRouter()
+
   const { ContentList, isLoading, isError, error } = useSearchList(keyword)
 
   if (isError) {
     return <h1>{error?.message}</h1>
   }
 
-  // const List = [...(data?.data?.resources?.data || [])]
-  console.log(ContentList)
+
   return (
     <Root>
       {ContentList?.map((item, index) => (

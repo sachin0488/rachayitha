@@ -9,6 +9,7 @@ export default function StyledRadioGroup({ name, children, ...props }) {
   const { field } = useController({
     name,
     control,
+    defaultValue: '',
   })
 
   const errorMessage = errors?.[name]?.message
@@ -19,7 +20,7 @@ export default function StyledRadioGroup({ name, children, ...props }) {
     error: isError ? isError : undefined,
     name: name,
     onBlur: field.onBlur,
-    defaultValue: field.value,
+    defaultValue: field.value || '',
     value: field.value,
     ref: field.ref,
     onChange: field.onChange,

@@ -58,6 +58,10 @@ const fetchChapterListAPI = async ({ bookId, chapterId }) => {
   const ChapterListAPI = await APIInstance({
     url: `/book/${bookId}/chapter`,
     method: 'GET',
+    params: {
+      tab: 'published',
+      limit: 1000,
+    },
   })
 
   const ChapterContentAPI = await APIInstance({
@@ -79,10 +83,10 @@ const fetchChapterListAPI = async ({ bookId, chapterId }) => {
       isPublished: chapter.is_published,
       publishDate: chapter.publish_date,
       userId: chapter.user_id,
-      isLocked: false,
-      isPaid: false,
+      isLocked: chapter.lock_status,
+      isPaid: chapter?.is_lock,
       isAvailableInSubscription: false,
-      coinRequired: 0,
+      coinRequired: chapter?.price || 0,
       isLoaded: chapterId === chapter.id,
     })),
     // .filter(chapter => chapter.isPublished),

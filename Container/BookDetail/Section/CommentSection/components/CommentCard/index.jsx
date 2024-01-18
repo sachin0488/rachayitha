@@ -21,7 +21,7 @@ const CommentCard = ({ item, sortBy }) => {
 
   const [isReplyOpen, setIsReplyOpen] = useState(false)
   const [commentCount, setCommentCount] = useState(item?.commentCount)
-  console.log(item)
+
   return (
     <Root className={isReplyOpen ? 'replyOpen' : ''}>
       <Header>
@@ -57,11 +57,7 @@ const CommentCard = ({ item, sortBy }) => {
         <StyledButton
           onClick={() => setIsReplyOpen(!isReplyOpen)}
           startIcon={<CommentBankRoundedIcon />}
-          endIcon={
-            <KeyboardArrowUpRoundedIcon
-              sx={{ transition: '.25s ease-in-out', rotate: isReplyOpen ? '180deg' : '90deg' }}
-            />
-          }>
+          endIcon={<KeyboardArrowUpRoundedIcon sx={{ transition: '.25s ease-in-out', rotate: isReplyOpen ? '180deg' : '90deg' }} />}>
           {commentCount}
         </StyledButton>
         <CommentedOn variant="subtitle2">{item?.createdAt}</CommentedOn>

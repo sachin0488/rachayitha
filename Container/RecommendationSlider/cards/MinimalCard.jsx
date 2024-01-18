@@ -6,22 +6,19 @@ import { Button, ButtonBase, Typography } from '@mui/material'
 import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 import { useUserService } from 'Container/Auth/service/User.service'
 
-const MinimalCard = ({ item, queryKey }) => {
+const MinimalCard = ({ item, queryKey, contentType }) => {
   const { isLoggedIn } = useUserService()
 
   return (
     <Root>
       <Main>
         {isLoggedIn ? (
-          <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} queryKey={queryKey} />
+          <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} queryKey={queryKey} contentType={contentType} />
         ) : (
           <></>
         )}
 
-        <Image
-          alt="Cover Image"
-          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
-        />
+        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
 
         <InfoSection>
           <InfoLeft>
@@ -29,15 +26,11 @@ const MinimalCard = ({ item, queryKey }) => {
               {item?.bookName}
             </TitleName>
 
-            <CategoryName variant="subtitle2">
-              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
-            </CategoryName>
+            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
           </InfoLeft>
 
           <InfoRight>
-            <Rating variant="subtitle2">
-              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
-            </Rating>
+            <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
           </InfoRight>
         </InfoSection>
       </Main>

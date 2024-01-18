@@ -1,6 +1,7 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
+import { useRouter } from 'next/router'
 
 export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id, razorpay_signature }) => {
   const form = new FormData()
@@ -9,26 +10,24 @@ export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id,
   form.append('razorpay_order_id', razorpay_order_id)
   form.append('razorpay_signature', razorpay_signature)
 
-  const res = APIInstance({
+  const res = await APIInstance({
     url: '/callback/',
     method: 'POST',
     data: form,
   })
-
-  console.log('====================================')
-  console.log(res.data)
-  console.log('====================================')
-
   return {
     data: {
       ...res.data,
-      isVerified: res.data?.data?.is_verified,
+      isVerified: res.data?.data?.is_payment_verified,
     },
   }
 }
 
 export const useVerifyPaymentAPI = () => {
   const { enqueueSnackbar } = useSnackbar()
+  const { push } = useRouter()
+
+  const queryClient = useQueryClient()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn({ razorpay_payment_id, razorpay_order_id, razorpay_signature }) {
@@ -39,10 +38,12 @@ export const useVerifyPaymentAPI = () => {
       })
     },
     onSuccess({ data }) {
-      if (data.isVerified) {
+      if (data?.isVerified) {
+        push('/payment-success')
         enqueueSnackbar('Payment verified successfully !', {
           variant: 'success',
         })
+        queryClient.invalidateQueries([AuthQuery.USER_DATA])
       } else
         enqueueSnackbar('Unable to verify your payment !', {
           variant: 'error',

@@ -33,10 +33,10 @@ const fetchBookDetail = async bookId => {
       isPublished: chapter?.is_published,
       publishDate: chapter?.publish_date,
       userId: chapter?.user_id_id,
-      isLocked: false,
-      isPaid: false,
+      isLocked: chapter.lock_status,
+      isPaid: chapter?.price === 0 ? false : true,
       isAvailableInSubscription: false,
-      coinRequired: 0,
+      coinRequired: chapter?.price || 0,
     })),
     chapter: item?.chapter,
 
@@ -78,6 +78,8 @@ const fetchBookDetail = async bookId => {
     tags: item?.tags,
     synopsis: item?.synopsis,
     bookRatingByUser: item?.user_book_rate,
+    price: item?.price,
+    isPurchased: item?.ispurchased,
 
     coverImage: item?.cover_img,
     coverImage2: item?.cover_img2,

@@ -1,4 +1,4 @@
 export const LandingQuery = {
-  TOP_COLLACTION: 'TOP_COLLACTION',
+  TOP_COLLECTION: 'TOP_COLLECTION',
   COMMENT_LIST: 'comment-list',
 }

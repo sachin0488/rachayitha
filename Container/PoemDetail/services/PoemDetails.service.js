@@ -23,7 +23,23 @@ const fetchPoemDetail = async poemId => {
 
     category: item?.category,
 
+    chapterList: item?.chapter?.map(chapter => ({
+      poemId: parseInt(chapter?.poem_id_id),
+      chapterId: parseInt(chapter?.id),
+      authorNote: chapter?.author_note,
+      chapterTitle: chapter?.chapter_title,
+      chapterSequence: chapter?.chapter_sequence,
+      chapterContent: '',
+      isPublished: chapter?.is_published,
+      publishDate: chapter?.publish_date,
+      userId: chapter?.user_id_id,
+      isLocked: chapter.lock_status,
+      isPaid: chapter?.price === 0 ? false : true,
+      isAvailableInSubscription: false,
+      coinRequired: chapter?.price || 0,
+    })),
     chapter: item?.chapter,
+
     chapterCount: item?.chapter_count,
 
     commentCount: item?.comment_count,
@@ -62,6 +78,8 @@ const fetchPoemDetail = async poemId => {
     tags: item?.tags,
     synopsis: item?.synopsis,
     poemRatingByUser: item?.user_poem_rate,
+    price: item?.price,
+    isPurchased: item?.ispurchased,
 
     coverImage: item?.cover_img,
     coverImage2: item?.cover_img2,
@@ -76,6 +94,5 @@ export const usePoemDetailsService = ({ poemId }) => {
     queryFn: () => fetchPoemDetail(poemId),
     enabled: Boolean(poemId),
   })
-
   return { Data: data, isLoading, isError, error, isFetching }
 }

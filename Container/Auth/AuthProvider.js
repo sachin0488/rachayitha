@@ -8,22 +8,14 @@ import { LinearProgress } from '@mui/material'
 import { set } from 'react-hook-form'
 import { useDebounce } from '@uidotdev/usehooks'
 
-const blockList = [
-  '/payment-plan',
-  '/payment-success',
-  '/subscription-plan',
-  '/coin-plan',
-  '/payment-plan',
-  '/profile',
-  '/book',
-]
+const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/coin-plan', '/payment-plan', '/profile', '/book']
 
 const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 
 const AuthProvider = ({ children }) => {
   const { push, pathname, isReady } = useRouter()
 
-  const { isLoading, isLoggedIn } = useUserService()
+  const { isLoading, isLoggedIn, isSuccess } = useUserService()
 
   const { isFetching } = useQuery({
     queryKey: [AuthQuery.AUTH_PROVIDER, { pathname, isLoggedIn }],
@@ -46,7 +38,7 @@ const AuthProvider = ({ children }) => {
       return null
     },
     staleTime: 0,
-    enabled: !isLoading,
+    enabled: isSuccess,
   })
 
   return (

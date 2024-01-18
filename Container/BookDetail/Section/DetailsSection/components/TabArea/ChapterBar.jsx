@@ -19,7 +19,7 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
             Chapter {chapterSequence}: {chapterTitle}
           </ChapterText>
           <InfoList>
-            {isAvailableInSubscription && <SubscriptionChip />}
+            {/* {isAvailableInSubscription && <SubscriptionChip />} */}
             {isPaid && <PaidChip />}
             {isLocked ? <LockChip /> : <UnlockChip />}
           </InfoList>

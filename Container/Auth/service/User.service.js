@@ -36,6 +36,10 @@ export const useUserService = () => {
       email: data?.user?.email || '',
       birthDate: data?.user?.birthDate || '',
       bio: data?.user?.bio || '',
+      coins: {
+        coin: data?.user?.coins?.coin || 0,
+        voteToken: data?.user?.coins?.voteToken || 0,
+      },
     },
     status: data?.status || null,
     tokens: {
@@ -111,6 +115,10 @@ const formatUserData = res => {
     email: res?.data?.user?.email || '',
     birthDate: res?.data?.user?.birth_date || '',
     bio: res?.data?.user?.bio || '',
+    coins: {
+      coin: res?.data?.user?.coins?.coin || 0,
+      voteToken: res?.data?.user?.coins?.votetoken || 0,
+    },
   }
   const tokens = {
     access: res?.data?.user?.tokens?.access || '',

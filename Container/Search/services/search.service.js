@@ -1,11 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { SearchQuery } from '../constants/query.address'
-//  APIInstance({
-//     url: '/book/',
-//     method: 'GET',
-//     params: { book_name: keyword },
-//   })
+
 const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
   const res = await APIInstance({
     url: '/book/',

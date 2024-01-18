@@ -9,10 +9,10 @@ const CoinPlanPage = () => {
     <Root>
       <Main>
         <TextSection>
-          <Heading variant="h3" component="div" color="primary">
+          <Typography variant="h2" component="div" color="primary" fontWeight={600}>
             Chose Your Plan
-          </Heading>
-          <Description variant="subtitle2" color="secondary">
+          </Typography>
+          <Description variant="subtitle1" color="secondary">
             Chose your plane from available options Global warming, zombies, nuclear war, all at once. Just one tipping
             point and the world itself would crumble.
           </Description>
@@ -39,15 +39,11 @@ const TextSection = styled.div`
   padding: 20px;
 `
 
-const Heading = styled(Typography)`
-  font-weight: 600;
-  color: ${({ theme }) => theme.palette.primary.main};
-`
-
 const Description = styled(Typography)`
   color: ${({ theme }) => theme.palette.secondary.main}d9;
   font-size: 1rem;
   line-height: 1.7;
+  font-weight: 500;
 `
 
 export default CoinPlanPage

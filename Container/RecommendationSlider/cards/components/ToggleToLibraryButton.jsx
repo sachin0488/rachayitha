@@ -6,10 +6,11 @@ import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 
 import { useToggleToLibraryService } from 'Container/RecommendationSlider/services/ToggleToLibrary.service'
 
-const ToggleToLibraryButton = ({ bookId, libraryAdded, queryKey }) => {
+const ToggleToLibraryButton = ({ bookId, libraryAdded, queryKey, contentType }) => {
   const { mutate, isLoading } = useToggleToLibraryService({
     bookId,
     queryKey,
+    contentType,
   })
 
   return (

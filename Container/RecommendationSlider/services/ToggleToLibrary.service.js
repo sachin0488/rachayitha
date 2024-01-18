@@ -1,23 +1,24 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
+import { ContentType } from '../constants/common.constants'
 
-export const toggleToLibraryAPI = ({ bookId, addToLibrary }) => {
+export const toggleToLibraryAPI = ({ bookId, addToLibrary, contentType }) => {
   if (addToLibrary)
     return APIInstance({
-      url: '/userbooklibrary/',
+      url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
       method: 'POST',
       data: { book_id: bookId },
     })
   else
     return APIInstance({
-      url: '/userbooklibrary/',
+      url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
       method: 'DELETE',
       data: { book_id: bookId },
     })
 }
 
-export const useToggleToLibraryService = ({ bookId, queryKey }) => {
+export const useToggleToLibraryService = ({ bookId, queryKey, contentType }) => {
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
 
@@ -26,6 +27,7 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
       return toggleToLibraryAPI({
         bookId,
         addToLibrary,
+        contentType,
       })
     },
     onSuccess({ data }) {
@@ -34,9 +36,7 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
           return oldData?.map(item => {
             if (bookId !== item?.bookId) return item
 
-            const message = item?.libraryAdded
-              ? 'Your Book has been added to Library!'
-              : 'Your Book has been removed from Library!'
+            const message = item?.libraryAdded ? 'Your Book has been added to Library!' : 'Your Book has been removed from Library!'
 
             enqueueSnackbar(message, {
               variant: 'success',

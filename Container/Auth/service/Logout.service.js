@@ -24,11 +24,17 @@ export const useLogoutService = () => {
 
         queryCache.clear()
 
-        queryClient.setQueryData([AuthQuery.USER_DATA], () => {
-          return formatUnAuthData()
-        })
+        queryClient.invalidateQueries([AuthQuery.USER_DATA])
+
+        // queryClient.setQueryData([AuthQuery.USER_DATA], () => {
+        //   return formatUnAuthData()
+        // })
       } catch (e) {
         console.log(e)
+      } finally {
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
       }
     },
     onError: error => {
@@ -38,16 +44,18 @@ export const useLogoutService = () => {
 
         queryCache.clear()
 
-        queryClient.setQueryData([AuthQuery.USER_DATA], () => {
-          return formatUnAuthData()
+        queryClient.invalidateQueries([AuthQuery.USER_DATA])
+
+        enqueueSnackbar('Unable to Logout', {
+          variant: 'error',
         })
       } catch (e) {
         console.log(e)
+      } finally {
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
       }
-
-      enqueueSnackbar('Unable to Logout', {
-        variant: 'error',
-      })
     },
   })
 

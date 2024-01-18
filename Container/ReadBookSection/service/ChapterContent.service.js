@@ -48,6 +48,39 @@ export const useChapterContentService = ({ bookId }) => {
   return { isLoading, isSuccess, mutateAsync }
 }
 
+export const useBookChapterContentFCService = () => {
+  const queryClient = useQueryClient()
+  const { chapterContentCache, setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
+
+  const { mutate, isLoading, isSuccess } = useMutation({
+    mutationFn: ({ chapterId, bookId }) => {
+      if (chapterContentCache?.[chapterId]) {
+        return chapterContentCache?.[chapterId]
+      } else {
+        return fetchChapterContentAPI({ bookId, chapterId })
+      }
+    },
+    onSuccess: data => {
+      setChapterContentInCacheByChapterId({
+        chapterId: data.chapterId,
+        chapterContent: data,
+      })
+      queryClient.setQueryData([BookReadQuery.CHAPTER_LIST, { bookId: data?.bookId }], preData => {
+        return {
+          ChapterList: preData?.ChapterList?.map(chapter => {
+            if (chapter.chapterId !== data.chapterId) return chapter
+            return {
+              ...data,
+            }
+          }),
+        }
+      })
+    },
+  })
+
+  return { isLoading, isSuccess, mutate }
+}
+
 const fetchChapterContentAPI = async ({ bookId, chapterId }) => {
   const res = await APIInstance({
     url: `/book/${bookId}/chapter/${chapterId}`,
@@ -66,10 +99,10 @@ const fetchChapterContentAPI = async ({ bookId, chapterId }) => {
     isPublished: chapter.is_published,
     publishDate: chapter.publish_date,
     userId: chapter.user_id,
-    coinRequired: 0,
-    isLocked: false,
-    isPaid: false,
+    isLocked: chapter.lock_status,
+    isPaid: chapter?.is_lock,
     isAvailableInSubscription: false,
-    isLoaded: false,
+    coinRequired: chapter?.price || 0,
+    isLoaded: chapterId === chapter.id,
   }
 }

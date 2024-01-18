@@ -1,7 +1,7 @@
 import React from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
 import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
+import { Tooltip, Typography } from '@mui/material'
 import { blue, green, grey, red } from '@mui/material/colors'
 
 const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
@@ -11,18 +11,22 @@ const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
         {/* <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: red[500] }} /> {redStone}
         </Field> */}
-        <Field variant="subtitle2">
-          <TollOutlinedIcon sx={{ color: blue[500] }} /> {blueStone}
-        </Field>
+        <Tooltip title="Vote Coins">
+          <Field variant="subtitle2">
+            <TollOutlinedIcon sx={{ color: blue[500] }} /> {blueStone}
+          </Field>
+        </Tooltip>
         {/* <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: green[500] }} /> {greenStone}
         </Field> */}
       </Top>
 
       <Bottom>
-        <Field variant="subtitle2">
-          <TollOutlinedIcon sx={{ color: grey[500] }} /> {greyStone}
-        </Field>
+        <Tooltip title="Coins">
+          <Field variant="subtitle2">
+            <TollOutlinedIcon sx={{ color: grey[500] }} /> {greyStone}
+          </Field>
+        </Tooltip>
       </Bottom>
     </Root>
   )

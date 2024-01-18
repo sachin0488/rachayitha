@@ -14,28 +14,21 @@ const LibraryContentCard = ({ item }) => {
       <Main>
         {isLoggedIn ? <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} /> : <></>}
 
-        <Image
-          alt="Cover Image"
-          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
-        />
+        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.bookName}
+            {item?.bookName ? item?.bookName : item?.poemName}
             </TitleName>
-            <CategoryName variant="subtitle2">
-              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
-            </CategoryName>
+            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
           </InfoLeft>
           <InfoRight>
-            <Rating variant="subtitle2">
-              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
-            </Rating>
+            <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
           </InfoRight>
         </InfoSection>
       </Main>
 
-      <Link href={isLoggedIn ? `/book/${item.bookId}` : `/login`}>
+      <Link href={isLoggedIn ? (item?.bookId ? `/book/${item.bookId}` : `/poem/${item.poemId}`) : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>

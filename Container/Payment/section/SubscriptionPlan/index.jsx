@@ -1,24 +1,65 @@
-import React from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PlanCard from './components/PlanCard'
 import CardMembershipRoundedIcon from '@mui/icons-material/CardMembershipRounded'
-import TollRoundedIcon from '@mui/icons-material/TollRounded'
 import styled from '@emotion/styled'
+import useSubscriptionListService from 'Container/Payment/services/SubscriptionList.service'
+import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
+import InfoModal from 'Components/StyledModal/InfoModal'
 
 const SubscriptionPlan = () => {
+  const { data, isLoading: isFetching } = useSubscriptionListService()
+  const { mutate, isLoading, isError, isSuccess } = useInternalPurchaseService()
+  const [currentState, setCurrentState] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handlePayClick = useCallback(
+    ({ amount, id }) =>
+      () => {
+        mutate({
+          amount: amount,
+          subscriptionId: id,
+          orderType: InternalPurchaseOrderType.SUBSCRIPTION,
+        })
+      },
+    [mutate],
+  )
+
+  useEffect(() => {
+    if (isSuccess || isError) {
+      setCurrentState('')
+      setIsOpen(false)
+    }
+  }, [isSuccess, isError])
+
+  const selected = useMemo(() => data?.find(item => `${item?.id}` === currentState), [data, currentState])
+
   return (
     <Root>
-      <PlanCard
-        Icon={CardMembershipRoundedIcon}
-        name="Monthly Plan"
-        description="Did you receive an email or text (SMS) requesting your Netflix account email, phone number, password, or Subscription method? If so, it probably did not come from us. Here are some tips to identify and handle a suspicious email or text and keep your account safe."
-        heightLight={'₹999'}
+      <InfoModal
+        messageNotice={`Do you want to Purchase this plan ${selected?.amount}?`}
+        open={isOpen}
+        setOpen={setIsOpen}
+        isLoading={isLoading}
+        buttonText={'Purchase'}
+        onClickOk={handlePayClick({ amount: selected?.amount, id: selected?.id })}
       />
-      <PlanCard
-        Icon={CardMembershipRoundedIcon}
-        name="Yearly Plan"
-        description="Email or text (SMS) requesting your Netflix account email, phone number, password, or Subscription method? If so, it probably did not come from us. Here are some tips to identify and handle a suspicious email or text and keep your account safe."
-        heightLight={'₹5000'}
-      />
+      {data?.map(plan => (
+        <PlanCard
+          key={plan?.id}
+          Icon={CardMembershipRoundedIcon}
+          name={plan?.name}
+          shortDescription={plan?.shortDetails}
+          description={plan?.details}
+          amount={plan?.amount}
+          validity={plan?.validity}
+          isLoading={isLoading}
+          isSelected={currentState === `${plan?.id}`}
+          onPayClick={() => {
+            setIsOpen(true)
+            setCurrentState(`${plan?.id}`)
+          }}
+        />
+      ))}
     </Root>
   )
 }

@@ -27,10 +27,7 @@ const DetailsSection = () => {
   return (
     <Root>
       <ImageContainer>
-        <StyledImage
-          alt="Cover Image"
-          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
-        />
+        <StyledImage alt="Cover Image" src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'} />
         <StyledImage
           className="blur"
           alt="Cover Image"

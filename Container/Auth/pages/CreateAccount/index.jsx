@@ -17,7 +17,7 @@ import useFormError from 'hooks/useFormError'
 import { useCreateAccountService } from 'Container/Auth/service/CreateUser.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import StyledDateSelector from 'Components/form-components/StyledDateSelector'
+import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
 
 const CreateAccountPage = () => {
   const { handleCreateAccount, isLoading } = useCreateAccountService()
@@ -40,13 +40,12 @@ const CreateAccountPage = () => {
       <DeignsIcon />
 
       <Main>
-        <Body>
+        <Body onSubmit={methods.handleSubmit(handleCreateAccount, handleFormError)}>
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h4">Welcome</TitleText>
               <DescriptionText variant="subtitle2">
-                Join us today and start enjoying all the benefits of being a member. Please fill out the form below to
-                create your account.
+                Join us today and start enjoying all the benefits of being a member. Please fill out the form below to create your account.
               </DescriptionText>
             </TextSection>
             <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
@@ -55,20 +54,16 @@ const CreateAccountPage = () => {
             <StyledDateSelector name="birthDate" label="Birth Date" />
 
             <StyledTextField name="bio" label="Bio" placeholder="Enter your bio ..." multiline />
-            <StyledFieldGroup>
+            <StyledFieldGroup as="div" >
               <StyledFormLabel>Select Gender</StyledFormLabel>
-              <StyledRadioGroup name="gender" row>
+              <StyledRadioGroup name="gender" row >
                 {GenderList.map(({ label, value }) => (
-                  <StyledRadioBox key={value} label={label} value={value} />
+                  <StyledRadioBox key={value} label={label} value={value}  />
                 ))}
               </StyledRadioGroup>
             </StyledFieldGroup>
             <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
-            <StyledPasswordField
-              name="confirmPassword"
-              label="Confirm Password"
-              placeholder="Enter your confirm password ..."
-            />
+            <StyledPasswordField name="confirmPassword" label="Confirm Password" placeholder="Enter your confirm password ..." />
             <BottomSection>
               <TermsAndPrivacyPolicyCheckbox name="agree" />
             </BottomSection>
@@ -78,16 +73,11 @@ const CreateAccountPage = () => {
                   <StyledButton disabled={isLoading}>Login</StyledButton>
                 </a>
               </Link>
-
               <StyledButton
+                type="submit"
                 disabled={!methods.watch('agree') || isLoading}
-                startIcon={
-                  isLoading && (
-                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-                  )
-                }
-                variant="contained"
-                onClick={methods.handleSubmit(handleCreateAccount, handleFormError)}>
+                startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+                variant="contained">
                 Create Account
               </StyledButton>
             </Nav>
@@ -160,7 +150,7 @@ const Main = styled.div`
   }
 `
 
-const Body = styled.div`
+const Body = styled.form`
   background: rgb(255, 255, 255);
   padding: 30px 25px;
   border-radius: 18px;

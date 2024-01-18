@@ -31,7 +31,7 @@ export const useCreateCommentService = ({ bookId, parentCommentId, sortBy }) => 
       queryClient.invalidateQueries({
         queryKey: [
           BookDetailsQuery.COMMENT_LIST,
-          { bookId: parseInt(bookId), parentCommentId: parseInt(parentCommentId), sortBy },
+          { bookId: parseInt(bookId), parentCommentId: parentCommentId ? parseInt(parentCommentId) : undefined, sortBy },
         ],
       })
 

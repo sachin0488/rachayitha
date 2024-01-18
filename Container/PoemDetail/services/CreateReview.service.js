@@ -52,9 +52,10 @@ export const useCreateReviewService = ({ poemId, sortBy }) => {
       queryClient.invalidateQueries({
         queryKey: [PoemDetailsQuery.COMMENT_LIST, { poemId: parseInt(poemId), parentCommentId: null, sortBy }],
       })
-      enqueueSnackbar('Your review has been posted !', {
-        variant: 'success',
-      })
+
+      // enqueueSnackbar(data?.ratingResponse?.info?.visible?.message, {
+      //   variant: 'success',
+      // })
     },
     onError(error) {
       enqueueSnackbar('Unable to post your review !', {

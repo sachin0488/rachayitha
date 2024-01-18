@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
@@ -9,16 +9,21 @@ import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/compo
 import { usePotentialStarletService } from '../services/PotentialStarlet.service'
 
 import GridStyledCard from '../cards/GridStyledCard'
+import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 
 const PotentialStarletSliders = () => {
-  const { List, isLoading, isError, queryKey } = usePotentialStarletService()
+  const [currentContent, setCurrentContent] = useState(ContentTypes[0])
+
+  const { List, isLoading, isError, queryKey } = usePotentialStarletService({ contentType: currentContent })
 
   if (List.length === 0) return null
 
   return (
     <Root>
       <Main>
-        <Heading>Potential Starlet</Heading>
+        <HeadingBox>
+          <Heading>Potential Starlet</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+        </HeadingBox>
         {isLoading && <LoadingBar />}
         {isError && <ErrorBar />}
         {isLoading ? (
@@ -26,7 +31,7 @@ const PotentialStarletSliders = () => {
         ) : isError ? (
           <ErrorBar />
         ) : (
-          <StyledSlider CardComponent={GridStyledCard} List={List} queryKey={queryKey} />
+          <StyledSlider CardComponent={GridStyledCard} List={List} queryKey={queryKey} contentType={currentContent} />
         )}
       </Main>
     </Root>
@@ -39,6 +44,13 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
+`
+
+const HeadingBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 `
 
 const Main = styled.div`

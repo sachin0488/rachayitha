@@ -21,10 +21,11 @@ const ContentListSection = ({ contentName, contentList, isLoading }) => {
   return (
     <Root>
       <ContentName>{contentName}</ContentName>
-      {contentList?.length === 0 && <NotAvailableBar Icon={ClearAllRoundedIcon} text="Collections not available" />}
-      {contentList?.map(item => (
-        <ContentCard key={item.id} item={item} />
-      ))}
+      {contentList?.length === 0 || contentList === null ? (
+        <NotAvailableBar Icon={ClearAllRoundedIcon} text="Collections not available" />
+      ) : (
+        contentList?.map(item => <ContentCard key={item.id} item={item} />)
+      )}
     </Root>
   )
 }

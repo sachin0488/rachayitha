@@ -1,8 +1,8 @@
 export const RecommendationSliderQuery = {
-  WEEKLY_BOOKS: 'weekly-books',
-  NEW_ARRIVAL_BOOKS: 'new-arrival-books',
-  POTENTIAL_STARLET_BOOKS: 'potential-starlet-books',
-  CONTINUE_READING_BOOKS: 'continue-reading-books',
-  TOP_COLLECTION_BOOKS: 'top-collection-books',
-  RECOMMENDATION_BOOKS: 'recommendation-books',
+  WEEKLY_CONTENTS: 'weekly-contents',
+  NEW_ARRIVAL_CONTENTS: 'new-arrival-contents',
+  POTENTIAL_STARLET_CONTENTS: 'potential-starlet-contents',
+  CONTINUE_READING_CONTENTS: 'continue-reading-contents',
+  TOP_COLLECTION_CONTENTS: 'top-collection-contents',
+  RECOMMENDATION_CONTENTS: 'recommendation-contents',
 }

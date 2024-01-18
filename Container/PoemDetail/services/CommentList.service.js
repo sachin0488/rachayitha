@@ -21,7 +21,7 @@ const fetchCommentListAPI = async ({ pageParam = 1, poemId, parentCommentId, sor
         commentId: item?.id,
         parentCommentId: item?.parent_comment_id,
         userId: item?.user_id,
-        username: item?.comment_by,
+        username: item?.commentby,
         profileImage: item?.commentuser_profile_pic,
         rating: item?.rating,
         isLiked: item?.is_liked,
@@ -37,18 +37,18 @@ const fetchCommentListAPI = async ({ pageParam = 1, poemId, parentCommentId, sor
 }
 
 const useCommentListService = ({ poemId, parentCommentId, sortBy }) => {
-  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [
-        PoemDetailsQuery.COMMENT_LIST,
-        { poemId: parseInt(poemId), parentCommentId: parseInt(parentCommentId), sortBy },
-      ],
-      queryFn: ({ pageParam }) => fetchCommentListAPI({ pageParam, poemId, parentCommentId, sortBy }),
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.nextCursor
-      },
-      staleTime: 1000,
-    })
+  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: [
+      PoemDetailsQuery.COMMENT_LIST,
+      { poemId: parseInt(poemId), parentCommentId: parentCommentId ? parseInt(parentCommentId) : undefined, sortBy },
+    ],
+    queryFn: ({ pageParam }) => fetchCommentListAPI({ pageParam, poemId, parentCommentId, sortBy }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextCursor
+    },
+    enabled: Boolean(poemId),
+    staleTime: 1000,
+  })
 
   return {
     ContentList: data?.pages?.map(group => group?.data)?.flat() || [],

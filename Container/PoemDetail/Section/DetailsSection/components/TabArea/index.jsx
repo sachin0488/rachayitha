@@ -29,7 +29,7 @@ const TabArea = () => {
         <AboutTab tags={Data?.tags} synopsis={Data?.synopsis} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ChapterListTab chapter={Data?.chapter} />
+        <ChapterListTab chapterList={Data?.chapterList} />
       </TabPanel>
     </Root>
   )

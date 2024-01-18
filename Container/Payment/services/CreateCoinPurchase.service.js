@@ -38,9 +38,6 @@ export const useCreateCoinPurchaseService = () => {
 
   const handlePaymentError = useCallback(
     response => {
-      console.log('====================================')
-      console.log(response)
-      console.log('====================================')
       enqueueSnackbar(response?.error?.description, {
         variant: 'error',
       })
@@ -73,7 +70,6 @@ export const useCreateCoinPurchaseService = () => {
         handler: handleVerifyPayment,
       }
 
-      console.log(options)
 
       const paymentInstance = new Razorpay(options)
 
@@ -81,7 +77,7 @@ export const useCreateCoinPurchaseService = () => {
 
       paymentInstance.open()
     },
-    [Razorpay, handlePaymentError, handleVerifyPayment],
+    [Razorpay, handlePaymentError, handleVerifyPayment, theme.palette.primary.main],
   )
 
   const { mutate, isLoading, isSuccess, isError } = useMutation({
@@ -92,18 +88,11 @@ export const useCreateCoinPurchaseService = () => {
       })
     },
     onSuccess({ data }) {
-      //   queryClient.invalidateQueries({
-      //     queryKey: [
-      //       BookDetailsQuery.COMMENT_LIST,
-      //       { bookId: parseInt(bookId), parentCommentId: parseInt(parentCommentId), sortBy },
-      //     ],
-      //   })
-      if (isLoaded)
-        handlePayments({
-          razorpay_key: data?.data?.razorpay_key,
-          callback_url: data?.data?.callback_url,
-          ...data?.data?.order?.[0],
-        })
+      handlePayments({
+        razorpay_key: data?.data?.razorpay_key,
+        callback_url: data?.data?.callback_url,
+        ...data?.data?.order?.[0],
+      })
 
       enqueueSnackbar('Please follow next stop to complete your purchase !', {
         variant: 'success',

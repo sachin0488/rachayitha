@@ -15,11 +15,12 @@ import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
 import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
 import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
 import { useUserService } from 'Container/Auth/service/User.service'
+import useCurrentSubscriptionService from 'Container/Payment/services/CurrentSubscription.service'
 
 const InfoSection = () => {
   const { user } = useUserService()
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
-
+  const { validityTill, isSubscribed } = useCurrentSubscriptionService()
   const genderIcon = gender => {
     return gender === 'male' ? MaleOutlinedIcon : gender === 'female' ? FemaleOutlinedIcon : TransgenderOutlinedIcon
   }
@@ -40,7 +41,10 @@ const InfoSection = () => {
           {user?.fullName?.slice(0, 1)}
         </StyledProfileImage>
       </ImageWarper>
-      <Main>
+      <Main
+        style={{
+          paddingBottom: isSubscribed ? '10px' : '20px',
+        }}>
         <NameSection>
           <NameText variant="h5" component="div">
             {user?.fullName}
@@ -49,7 +53,7 @@ const InfoSection = () => {
           <BioText variant="subtitle2">{user?.bio}</BioText>
         </NameSection>
 
-        <StoneSection redStone={0} blueStone={user?.coins?.votetoken} greenStone={0} greyStone={user?.coins?.coin} />
+        <StoneSection redStone={0} blueStone={user?.coins?.voteToken} greenStone={0} greyStone={user?.coins?.coin} />
 
         <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={user?.gender || 'N/A'} />
         <InfoField
@@ -58,21 +62,37 @@ const InfoSection = () => {
         />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
         <NavList>
-          <Link href="/coin-plan">
-            <a>
-              <StyledAddCoinButton color="primary" variant="contained">
-                Buy coin
-              </StyledAddCoinButton>
-            </a>
-          </Link>
-          <Link href="/subscription-plan">
-            <a>
-              <StyledSubscribeButton color="secondary" variant="contained">
-                Subscribe
-              </StyledSubscribeButton>
-            </a>
-          </Link>
+          <Row>
+            <Link href="/coin-plan">
+              <a>
+                <StyledAddCoinButton disableElevation color="primary" variant="contained">
+                  Buy Coins
+                </StyledAddCoinButton>
+              </a>
+            </Link>
+          </Row>
+          <Row>
+            <Link href="/subscription-plan">
+              <a>
+                <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                  Subscribe
+                </StyledSubscribeButton>
+              </a>
+            </Link>
+            <Link href="/vote-coin-plan">
+              <a>
+                <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                  Buy Vote Coins
+                </StyledSubscribeButton>
+              </a>
+            </Link>
+          </Row>
         </NavList>
+        {isSubscribed && (
+          <SubscribedFlag variant="subtitle2" component="div" color="secondary">
+            Your Subscription is valid till {moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}
+          </SubscribedFlag>
+        )}
       </Main>
     </Root>
   )
@@ -91,6 +111,32 @@ const Root = styled.div`
     width: 100%;
   }
 `
+const Row = styled.div`
+  display: flex;
+  gap: 10px;
+  a {
+    flex: 1;
+    display: flex;
+  }
+`
+const SubscribedFlag = styled(Typography)`
+  position: relative;
+  top: 10px;
+  left: -20px;
+  right: 0px;
+  width: calc(100% + 40px);
+  padding: 7px 12px;
+  background: ${({ theme }) => theme.palette.primary.main}1a;
+  font-size: 0.75rem;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  @media (max-width: 730px) {
+    left: 0px;
+    width: 100%;
+    border-radius: 8px;
+  }
+`
+
 const StyledEditButton = styled(Button)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: absolute;
@@ -110,6 +156,7 @@ const StyledEditButton = styled(Button)`
 `
 const NavList = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: 10px;
 `
@@ -148,15 +195,15 @@ const Main = styled.div`
   padding-top: 85px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-radius: 15px;
   border: 2px solid ${({ theme }) => theme.palette.primary.main}1a;
   @media (max-width: 730px) {
     border: none;
     background: transparent;
     width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
     padding-bottom: 20px;
   }
 `

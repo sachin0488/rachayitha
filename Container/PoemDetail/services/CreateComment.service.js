@@ -31,11 +31,11 @@ export const useCreateCommentService = ({ poemId, parentCommentId, sortBy }) => 
       queryClient.invalidateQueries({
         queryKey: [
           PoemDetailsQuery.COMMENT_LIST,
-          { poemId: parseInt(poemId), parentCommentId: parseInt(parentCommentId), sortBy },
+          { poemId: parseInt(poemId), parentCommentId: parentCommentId ? parseInt(parentCommentId) : undefined, sortBy },
         ],
       })
 
-      enqueueSnackbar('Your comment has been added!', {
+      enqueueSnackbar(data.info.visible.message, {
         variant: 'success',
       })
     },

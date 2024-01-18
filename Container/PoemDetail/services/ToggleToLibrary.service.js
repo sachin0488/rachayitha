@@ -31,9 +31,7 @@ export const useToggleToLibraryService = ({ poemId, queryKey }) => {
     },
     onSuccess({ data }) {
       queryClient.setQueryData(queryKey, oldData => {
-        const message = oldData?.libraryAdded
-          ? 'Your Poem has been added to Library!'
-          : 'Your Poem has been removed from Library!'
+        const message = oldData?.libraryAdded ? 'Your Poem has been added to Library!' : 'Your Poem has been removed from Library!'
 
         enqueueSnackbar(message, {
           variant: 'success',
@@ -48,8 +46,6 @@ export const useToggleToLibraryService = ({ poemId, queryKey }) => {
                 }
               : item
           })
-
-        console.log('oldData', oldData)
 
         return oldData
           ? {

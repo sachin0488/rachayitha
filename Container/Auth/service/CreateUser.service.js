@@ -4,6 +4,8 @@ import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
+import moment from 'moment'
+import { getFormErrorMessage } from 'hooks/useFormError'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
@@ -14,20 +16,21 @@ export const useCreateAccountService = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: createAccountAPI,
-    onSuccess({ data }) {
-      setAccess(data?.user?.tokens?.access)
-      setRefresh(data?.user?.tokens?.refresh)
+    onSuccess({ tokens }) {
+      setAccess(tokens?.access)
+      setRefresh(tokens?.refresh)
 
       queryClient.invalidateQueries([AuthQuery.USER_DATA])
 
-      enqueueSnackbar("Your Account has been Created Successfully !", {
+      enqueueSnackbar('Your Account has been Created Successfully !', {
         variant: 'success',
       })
     },
     onError: error => {
-      enqueueSnackbar(getFormErrorMessage(error.response?.data?.errors), {
-        variant: 'error',
-      })
+      if (error.response?.data?.errors)
+        enqueueSnackbar(getFormErrorMessage(error.response?.data?.errors), {
+          variant: 'error',
+        })
 
       if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
@@ -41,8 +44,8 @@ export const useCreateAccountService = () => {
   return { handleCreateAccount, isLoading, isSuccess }
 }
 
-const createAccountAPI = ({ username, email, password, bio, fullName, birthDate, gender }) => {
-  return APIInstance({
+const createAccountAPI = async ({ username, email, password, bio, fullName, birthDate, gender }) => {
+  const response = await APIInstance({
     url: '/register/',
     method: 'POST',
     data: {
@@ -52,7 +55,7 @@ const createAccountAPI = ({ username, email, password, bio, fullName, birthDate,
         password,
         bio,
         full_name: fullName,
-        birth_date: birthDate,
+        birth_date: moment(birthDate).format('YYYY-MM-DD'),
         gender,
       },
     },
@@ -61,4 +64,12 @@ const createAccountAPI = ({ username, email, password, bio, fullName, birthDate,
       Authorization: undefined,
     },
   })
+
+  return {
+    // message: ,
+    tokens: {
+      access: response?.data?.user?.tokens?.access,
+      refresh: response?.data?.user?.tokens?.refresh,
+    },
+  }
 }

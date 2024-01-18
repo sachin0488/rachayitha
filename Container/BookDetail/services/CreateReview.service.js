@@ -29,7 +29,6 @@ const createReviewAPI = async ({ bookId, comment, parameter1, parameter2, parame
 
   const [commentResponse, ratingResponse] = await Promise.all([commentAPI, ratingAPI])
 
-  console.log(commentResponse, ratingResponse)
   return { commentResponse, ratingResponse }
 }
 
@@ -59,7 +58,6 @@ export const useCreateReviewService = ({ bookId, sortBy }) => {
       // })
     },
     onError(error) {
-      console.log(error)
       enqueueSnackbar('Unable to post your review !', {
         variant: 'error',
       })

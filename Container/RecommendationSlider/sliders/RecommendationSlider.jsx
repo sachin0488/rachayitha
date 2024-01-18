@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
@@ -8,14 +8,20 @@ import { mainMaxWidth } from 'Container/BookDetail/common/styles'
 import { useRecommendationService } from '../services/Recommendation.service'
 
 import MinimalCard from '../cards/MinimalCard'
+import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 
 const RecommendationSection = () => {
-  const { List, isLoading, isError, queryKey } = useRecommendationService()
+  const [currentContent, setCurrentContent] = useState(ContentTypes[0])
+
+  const { List, isLoading, isError, queryKey } = useRecommendationService({ contentType: currentContent })
 
   return (
     <Root>
       <Main>
-        <Heading>You may also Like</Heading>
+        <HeadingBox>
+          <Heading>You may also Like</Heading>
+          <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+        </HeadingBox>
         {isLoading ? (
           <LoadingBar />
         ) : isError ? (
@@ -23,7 +29,7 @@ const RecommendationSection = () => {
         ) : List.length === 0 ? (
           <NotAvailableBar />
         ) : (
-          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} />
+          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} contentType={currentContent} />
         )}
       </Main>
     </Root>
@@ -36,6 +42,13 @@ const Root = styled.div`
   position: relative;
   margin-top: 0px;
   width: 100%;
+`
+
+const HeadingBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 `
 
 const Main = styled.div`

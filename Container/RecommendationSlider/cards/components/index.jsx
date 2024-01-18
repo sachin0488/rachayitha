@@ -7,7 +7,7 @@ import { mainMaxWidth } from 'Container/Landing/common/styles'
 export const NotAvailableBar = ({ Icon, text }) => {
   return (
     <Root>
-      {!Icon ? (
+      {Icon ? (
         <Icon sx={{ fontSize: 90 }} color="primary" />
       ) : (
         <IconCr variant="h2" fontSize={60} component="div" color="primary">

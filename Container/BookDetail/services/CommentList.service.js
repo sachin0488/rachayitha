@@ -37,18 +37,18 @@ const fetchCommentListAPI = async ({ pageParam = 1, bookId, parentCommentId, sor
 }
 
 const useCommentListService = ({ bookId, parentCommentId, sortBy }) => {
-  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [
-        BookDetailsQuery.COMMENT_LIST,
-        { bookId: parseInt(bookId), parentCommentId: parseInt(parentCommentId), sortBy },
-      ],
-      queryFn: ({ pageParam }) => fetchCommentListAPI({ pageParam, bookId, parentCommentId, sortBy }),
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.nextCursor
-      },
-      staleTime: 1000,
-    })
+  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: [
+      BookDetailsQuery.COMMENT_LIST,
+      { bookId: parseInt(bookId), parentCommentId: parentCommentId ? parseInt(parentCommentId) : undefined, sortBy },
+    ],
+    queryFn: ({ pageParam }) => fetchCommentListAPI({ pageParam, bookId, parentCommentId, sortBy }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextCursor
+    },
+    enabled: Boolean(bookId),
+    staleTime: 1000,
+  })
 
   return {
     ContentList: data?.pages?.map(group => group?.data)?.flat() || [],

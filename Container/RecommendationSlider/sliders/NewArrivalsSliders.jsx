@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
@@ -8,16 +8,21 @@ import { mainMaxWidth } from 'Container/Landing/common/styles'
 import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/components'
 import MinimalCard from '../cards/MinimalCard'
 import { useNewArrivalsService } from '../services/NewArrivals.service'
+import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 
 const NewArrivalsSliders = () => {
-  const { List, isLoading, isError, queryKey } = useNewArrivalsService()
+  const [currentContent, setCurrentContent] = useState(ContentTypes[0])
+
+  const { List, isLoading, isError, queryKey } = useNewArrivalsService({ contentType: currentContent })
 
   if (List.length === 0) return null
 
   return (
     <Root>
       <Main>
-        <Heading>New Arrivals</Heading>
+        <HeadingBox>
+          <Heading>New Arrivals</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+        </HeadingBox>
         {isLoading && <LoadingBar />}
         {isError && <ErrorBar />}
         {isLoading ? (
@@ -25,7 +30,7 @@ const NewArrivalsSliders = () => {
         ) : isError ? (
           <ErrorBar />
         ) : (
-          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} />
+          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} contentType={currentContent} />
         )}
       </Main>
     </Root>
@@ -38,6 +43,13 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
+`
+
+const HeadingBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 `
 
 const Main = styled.div`

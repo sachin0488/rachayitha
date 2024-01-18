@@ -2,10 +2,11 @@ import { APIInstance } from 'services/global.service'
 import { RecommendationSliderQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 import generateAPIRowMapper from '../utility/generateAPIRowMapper'
+import { ContentType } from '../constants/common.constants'
 
-const fetchNewArrivals = async () => {
+const fetchNewArrivals = async ({ contentType }) => {
   const res = await APIInstance({
-    url: `/newarrivalbook`,
+    url: contentType === ContentType.BOOK ? `/newarrivalbook` : `/newarrivalpoem`,
     method: 'GET',
   })
 
@@ -14,12 +15,12 @@ const fetchNewArrivals = async () => {
   return await item.map(generateAPIRowMapper)
 }
 
-export const useNewArrivalsService = () => {
-  const queryKey = [RecommendationSliderQuery.NEW_ARRIVAL_BOOKS]
+export const useNewArrivalsService = ({ contentType }) => {
+  const queryKey = [RecommendationSliderQuery.NEW_ARRIVAL_CONTENTS, { contentType }]
 
   const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey,
-    queryFn: fetchNewArrivals,
+    queryFn: () => fetchNewArrivals({ contentType }),
   })
 
   return { List: data || [], isLoading, isError, error, isFetching, queryKey }
