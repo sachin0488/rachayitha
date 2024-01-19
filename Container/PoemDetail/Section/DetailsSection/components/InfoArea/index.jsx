@@ -11,7 +11,7 @@ import LikeButton from './LikeButton'
 
 import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
 
-import CollectionsPoemmarkRoundedIcon from '@mui/icons-material/CollectionsPoemmarkRounded'
+import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
 import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import Link from 'next/link'
@@ -62,7 +62,7 @@ const InfoArea = () => {
         {Data?.category?.map(({ name, id }) => (
           <StyledChip label={name} key={id} />
         ))}
-        <StyledChip label={`${Data?.chapterCount} Chapters`} Icon={CollectionsPoemmarkRoundedIcon} />
+        <StyledChip label={`${Data?.chapterCount} Chapters`} Icon={CollectionsBookmarkRoundedIcon} />
         <StyledChip label={`${Data?.viewCount} Views`} Icon={RemoveRedEyeRoundedIcon} />
       </InfoChipList>
 
