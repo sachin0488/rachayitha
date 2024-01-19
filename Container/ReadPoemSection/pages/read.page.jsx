@@ -48,13 +48,6 @@ const ReadPoemPage = () => {
 
   const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
 
-  // const scrollPositionY = useReadPageMetaStore(state => state.scrollPositionY)
-  // const setScrollPositionY = useReadPageMetaStore(state => state.setScrollPositionY)
-  const bodyHeight = useReadPageMetaStore(state => state.bodyHeight)
-  const setBodyHeight = useReadPageMetaStore(state => state.setBodyHeight)
-  const isResetScrollPositionRequired = useReadPageMetaStore(state => state.isResetScrollPositionRequired)
-  const setResetScrollPositionRequired = useReadPageMetaStore(state => state.setResetScrollPositionRequired)
-
   const { mutateAsync, isLoading } = useChapterContentService({ poemId: poemId })
   const { ChapterList, setChapterLoadedById, isSuccess, reload } = useChapterListService({
     poemId: poemId,
@@ -73,7 +66,7 @@ const ReadPoemPage = () => {
 
   const handleToScrollToPreviousPosition = useCallback(() => {
     const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
-    if (currentChapterIndex === 0) {
+    if (currentChapterIndex === 1) {
       const thirdChild = bodyRef?.current?.children[2]
       const thirdChildTop = thirdChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
 
@@ -101,23 +94,6 @@ const ReadPoemPage = () => {
     }
   }, [isSuccess])
 
-  useEffect(() => {
-    if (bodyHeight !== bodyRef?.current?.offsetHeight) {
-      if (isResetScrollPositionRequired) {
-        handleToScrollToPreviousPosition()
-        setResetScrollPositionRequired(false)
-      }
-      setBodyHeight(bodyRef?.current?.offsetHeight)
-    }
-  }, [
-    bodyHeight,
-    handleToScrollToPreviousPosition,
-    bodyRef?.current?.offsetHeight,
-    setBodyHeight,
-    isResetScrollPositionRequired,
-    setResetScrollPositionRequired,
-  ])
-
   const handleScrolledTop = useCallback(async () => {
     try {
       const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
@@ -129,13 +105,12 @@ const ReadPoemPage = () => {
 
       if (response?.chapterId === previousChapterId) {
         setChapterLoadedById(previousChapterId)
-        setBodyHeight(bodyRef.current?.offsetHeight)
-        setResetScrollPositionRequired(true)
+        handleToScrollToPreviousPosition()
       }
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, mutateAsync, setChapterLoadedById, setBodyHeight, setResetScrollPositionRequired])
+  }, [ChapterList, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
 
   const handleScrolledBottom = useCallback(async () => {
     try {
@@ -208,7 +183,7 @@ const ReadPoemPage = () => {
           style={
             isMobile
               ? {
-                  overflowY: isLoading ? 'hidden' : 'scroll',
+                  overflowY: isLoading ? 'clip' : 'scroll',
                 }
               : {}
           }>

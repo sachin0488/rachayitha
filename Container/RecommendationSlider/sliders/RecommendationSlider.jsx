@@ -9,6 +9,7 @@ import { useRecommendationService } from '../services/Recommendation.service'
 
 import MinimalCard from '../cards/MinimalCard'
 import ContentTabs, { ContentTypes } from '../components/ContentTabs'
+import DataSection from '../components/DataSection'
 
 const RecommendationSection = () => {
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
@@ -22,15 +23,15 @@ const RecommendationSection = () => {
           <Heading>You may also Like</Heading>
           <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
-        {isLoading ? (
-          <LoadingBar />
-        ) : isError ? (
-          <ErrorBar />
-        ) : List.length === 0 ? (
-          <NotAvailableBar />
-        ) : (
-          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} contentType={currentContent} />
-        )}
+
+        <DataSection
+          List={List}
+          contentType={currentContent}
+          isError={isError}
+          isLoading={isLoading}
+          queryKey={queryKey}
+          CardComponent={MinimalCard}
+        />
       </Main>
     </Root>
   )

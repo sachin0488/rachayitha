@@ -48,13 +48,6 @@ const ReadBookPage = () => {
 
   const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
 
-  // const scrollPositionY = useReadPageMetaStore(state => state.scrollPositionY)
-  // const setScrollPositionY = useReadPageMetaStore(state => state.setScrollPositionY)
-  const bodyHeight = useReadPageMetaStore(state => state.bodyHeight)
-  const setBodyHeight = useReadPageMetaStore(state => state.setBodyHeight)
-  const isResetScrollPositionRequired = useReadPageMetaStore(state => state.isResetScrollPositionRequired)
-  const setResetScrollPositionRequired = useReadPageMetaStore(state => state.setResetScrollPositionRequired)
-
   const { mutateAsync, isLoading } = useChapterContentService({ bookId: bookId })
   const { ChapterList, setChapterLoadedById, isSuccess, reload } = useChapterListService({
     bookId: bookId,
@@ -73,7 +66,7 @@ const ReadBookPage = () => {
 
   const handleToScrollToPreviousPosition = useCallback(() => {
     const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
-    if (currentChapterIndex === 0) {
+    if (currentChapterIndex === 1) {
       const thirdChild = bodyRef?.current?.children[2]
       const thirdChildTop = thirdChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
 
@@ -101,23 +94,6 @@ const ReadBookPage = () => {
     }
   }, [isSuccess])
 
-  useEffect(() => {
-    if (bodyHeight !== bodyRef?.current?.offsetHeight) {
-      if (isResetScrollPositionRequired) {
-        handleToScrollToPreviousPosition()
-        setResetScrollPositionRequired(false)
-      }
-      setBodyHeight(bodyRef?.current?.offsetHeight)
-    }
-  }, [
-    bodyHeight,
-    handleToScrollToPreviousPosition,
-    bodyRef?.current?.offsetHeight,
-    setBodyHeight,
-    isResetScrollPositionRequired,
-    setResetScrollPositionRequired,
-  ])
-
   const handleScrolledTop = useCallback(async () => {
     try {
       const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
@@ -129,13 +105,12 @@ const ReadBookPage = () => {
 
       if (response?.chapterId === previousChapterId) {
         setChapterLoadedById(previousChapterId)
-        setBodyHeight(bodyRef.current?.offsetHeight)
-        setResetScrollPositionRequired(true)
+        handleToScrollToPreviousPosition()
       }
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, mutateAsync, setChapterLoadedById, setBodyHeight, setResetScrollPositionRequired])
+  }, [ChapterList, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
 
   const handleScrolledBottom = useCallback(async () => {
     try {
@@ -158,8 +133,7 @@ const ReadBookPage = () => {
   const handleOnScroll = useCallback(
     event => {
       if (!isLoading) {
-        const isScrolledToBottom =
-          Math.ceil(event.target?.scrollHeight - event.target?.scrollTop) === event.target?.clientHeight + 2
+        const isScrolledToBottom = Math.ceil(event.target?.scrollHeight - event.target?.scrollTop) === event.target?.clientHeight + 2
         const isScrolledToTop = event.target?.scrollTop === 0
 
         if (isScrolledToTop) {
@@ -180,12 +154,7 @@ const ReadBookPage = () => {
 
   return (
     <>
-      <ChapterModal
-        open={IsChapterIndexModalOpen}
-        setOpen={setIsChapterIndexModalOpen}
-        chapterList={ChapterList}
-        reload={reload}
-      />
+      <ChapterModal open={IsChapterIndexModalOpen} setOpen={setIsChapterIndexModalOpen} chapterList={ChapterList} reload={reload} />
       {isLoading && (
         <LinearProgress
           sx={{
@@ -214,7 +183,7 @@ const ReadBookPage = () => {
           style={
             isMobile
               ? {
-                  overflowY: isLoading ? 'hidden' : 'scroll',
+                  overflowY: isLoading ? 'clip' : 'scroll',
                 }
               : {}
           }>

@@ -10,13 +10,12 @@ import { usePotentialStarletService } from '../services/PotentialStarlet.service
 
 import GridStyledCard from '../cards/GridStyledCard'
 import ContentTabs, { ContentTypes } from '../components/ContentTabs'
+import DataSection from '../components/DataSection'
 
 const PotentialStarletSliders = () => {
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = usePotentialStarletService({ contentType: currentContent })
-
-  if (List.length === 0) return null
 
   return (
     <Root>
@@ -24,15 +23,15 @@ const PotentialStarletSliders = () => {
         <HeadingBox>
           <Heading>Potential Starlet</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
-        {isLoading && <LoadingBar />}
-        {isError && <ErrorBar />}
-        {isLoading ? (
-          <LoadingBar />
-        ) : isError ? (
-          <ErrorBar />
-        ) : (
-          <StyledSlider CardComponent={GridStyledCard} List={List} queryKey={queryKey} contentType={currentContent} />
-        )}
+
+        <DataSection
+          List={List}
+          contentType={currentContent}
+          isError={isError}
+          isLoading={isLoading}
+          queryKey={queryKey}
+          CardComponent={GridStyledCard}
+        />
       </Main>
     </Root>
   )

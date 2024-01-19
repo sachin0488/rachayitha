@@ -12,15 +12,15 @@ import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlin
 const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked, isAvailableInSubscription, reload, handleClose }) => {
   const { query } = useRouter()
 
-  const handleClick = useCallback(() => {
-    setTimeout(async () => {
-      await reload({ chapterId })
+  const handleClick = useCallback(async () => {
+    setTimeout(() => {
       handleClose()
-    }, 100)
+    }, 500)
+    await reload({ chapterId })
   }, [chapterId, handleClose, reload])
 
   return (
-    <Link href={`/poem/${query.poemId}/read/${chapterId}#chapter-${chapterId}`}>
+    <Link href={`/poem/${query.poemId}/read/${chapterId}`}>
       <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>

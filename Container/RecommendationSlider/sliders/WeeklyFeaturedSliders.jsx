@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import StyledSlider from 'Components/StyledSlider'
 import { Typography } from '@mui/material'
 
 import { mainMaxWidth } from 'Container/Landing/common/styles'
 
-import { ErrorBar, LoadingBar } from 'Container/RecommendationSlider/cards/components'
 import { useWeeklyBookService } from '../services/WeeklyFeatured.service'
 
 import MinimalCard from '../cards/MinimalCard'
 import ContentTabs, { ContentTypes } from '../components/ContentTabs'
+import DataSection from '../components/DataSection'
 
 const WeeklyFeaturedSliders = () => {
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = useWeeklyBookService({ contentType: currentContent })
-
-  if (List.length === 0) return null
 
   return (
     <Root>
@@ -24,15 +21,14 @@ const WeeklyFeaturedSliders = () => {
         <HeadingBox>
           <Heading>Weekly Featured</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
-        {isLoading && <LoadingBar />}
-        {isError && <ErrorBar />}
-        {isLoading ? (
-          <LoadingBar />
-        ) : isError ? (
-          <ErrorBar />
-        ) : (
-          <StyledSlider CardComponent={MinimalCard} List={List} queryKey={queryKey} contentType={currentContent} />
-        )}
+        <DataSection
+          List={List}
+          contentType={currentContent}
+          isError={isError}
+          isLoading={isLoading}
+          queryKey={queryKey}
+          CardComponent={MinimalCard}
+        />
       </Main>
     </Root>
   )

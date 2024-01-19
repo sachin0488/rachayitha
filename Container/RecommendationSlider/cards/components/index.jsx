@@ -8,13 +8,13 @@ export const NotAvailableBar = ({ Icon, text }) => {
   return (
     <Root>
       {Icon ? (
-        <Icon sx={{ fontSize: 90 }} color="primary" />
+        <Icon sx={{ fontSize: 90, color: theme => theme.palette.primary.main + '37' }} />
       ) : (
         <IconCr variant="h2" fontSize={60} component="div" color="primary">
           N/A
         </IconCr>
       )}
-      <Text variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary">
+      <Text variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary.light">
         {text ? text : 'Content Not Available'}
       </Text>
     </Root>
@@ -72,8 +72,10 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0px;
+  gap: 10px;
   height: 350px;
+  max-width: 250px;
+  margin: 0 auto;
 `
 
 const IconCr = styled(Typography)`

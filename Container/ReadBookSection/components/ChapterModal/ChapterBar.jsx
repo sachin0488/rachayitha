@@ -9,27 +9,18 @@ import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'
 import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined'
 
-const ChapterBar = ({
-  chapterId,
-  chapterSequence,
-  chapterTitle,
-  isPaid,
-  isLocked,
-  isAvailableInSubscription,
-  reload,
-  handleClose,
-}) => {
+const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked, isAvailableInSubscription, reload, handleClose }) => {
   const { query } = useRouter()
 
-  const handleClick = useCallback(() => {
-    setTimeout(async () => {
-      await reload({ chapterId })
+  const handleClick = useCallback(async () => {
+    setTimeout(() => {
       handleClose()
-    }, 100)
+    }, 500)
+    await reload({ chapterId })
   }, [chapterId, handleClose, reload])
 
   return (
-    <Link href={`/book/${query.bookId}/read/${chapterId}#chapter-${chapterId}`}>
+    <Link href={`/book/${query.bookId}/read/${chapterId}`}>
       <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>
