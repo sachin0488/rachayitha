@@ -9,7 +9,7 @@ const LeftSection = () => {
       <TextSection>
         <SubHeading>Online Book Reading Platform</SubHeading>
         <Heading>Expand your Vision of Knowledge Here</Heading>
-        <ParagraphText>India’s Largest online Reading Platform</ParagraphText>
+        <ParagraphText>India’s own online Reading Platform</ParagraphText>
       </TextSection>
       <ButtonContainer>
         <Link href={`/explore?content_type=book&category=1&sort_by=Hot`}>

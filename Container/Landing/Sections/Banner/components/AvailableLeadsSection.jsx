@@ -27,13 +27,13 @@ const AvailableLeadsSection = () => {
         />
         <ShowSection>
           <LeadCard style={{ color: '#8049FF' }}>
-            <StyledImage src="/MaleLead.png" alt="MaleLead" />
+            <StyledImage src="/male_lead.jpeg" alt="MaleLead" />
 
             <LeadCardText>Male Lead</LeadCardText>
           </LeadCard>
 
           <LeadCard style={{ color: '#F450AE' }}>
-            <StyledImage src="/FemaleLead.svg" alt="FemaleLead" />
+            <StyledImage src="/female_lead.jpeg" alt="FemaleLead" />
 
             <LeadCardText>Female Lead</LeadCardText>
           </LeadCard>
@@ -79,6 +79,9 @@ const StyledImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 355/476;
+  max-width: 250px;
 `
 
 const LeadCard = styled.div`

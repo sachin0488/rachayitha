@@ -47,11 +47,11 @@ const Footer = () => {
               <LinkButton>Poem</LinkButton>
             </a>
           </Link>
-          <Link href="/ranking?content_type=book&category=1">
+          {/* <Link href="/ranking?content_type=book&category=1">
             <a>
               <LinkButton>Stories</LinkButton>
             </a>
-          </Link>
+          </Link> */}
         </Section>
         <Divider />
         <Section>
@@ -82,9 +82,7 @@ const Footer = () => {
             <AiFillTwitterCircle size={37} color="#673CCB" />
           </SocialLinks>
           <LogoBox />
-          <Description variant="subtitle2">
-            E-book is the world’s leading community for creatives to share, grow, and get hired.
-          </Description>
+          <Description variant="subtitle2">rachayitha is the world’s leading community for creatives to share, and grow.</Description>
         </Section>
       </Main>
     </Root>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
 import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
@@ -13,17 +13,24 @@ import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
+import InfoModal from 'Components/StyledModal/InfoModal'
 
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
   const { query } = useRouter()
   const { Data, isLoading } = useBookDetailsService({ bookId: query?.bookId })
-
+  const [isVoteModalOpen, setVoteModalOpen] = useState(false)
   const { isFetching, Data: VoteData } = useFetchVoteService({ bookId: query?.bookId })
-  const { isLoading: isMutating, mutate } = useCreateVoteService({ bookId: query?.bookId })
+  const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ bookId: query?.bookId })
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
+
+  useEffect(() => {
+    if (isSuccess) {
+      setVoteModalOpen(false)
+    }
+  }, [isSuccess])
 
   if (isLoading || isFetching)
     return (
@@ -41,6 +48,14 @@ const VoteSection = () => {
           <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
           <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Novel</Text>
         </Field>
+        <InfoModal
+          messageNotice={`Are you sure you want to vote this book named ${Data?.bookName}?`}
+          open={isVoteModalOpen}
+          setOpen={setVoteModalOpen}
+          isLoading={isMutating}
+          buttonText={`Yes, let's Vote`}
+          onClickOk={mutate}
+        />
         <Bottom>
           <InfoSection>
             <Tooltip title="Ranking">
@@ -64,6 +79,8 @@ const VoteSection = () => {
           {isAlreadyVoted && (
             <Tooltip title="Your vote for this Novel">
               <VoteButton
+                disableElevation
+                disableRipple
                 is_voted={String(isAlreadyVoted)}
                 is_mutating={String(isFetching)}
                 variant="contained"
@@ -83,7 +100,7 @@ const VoteSection = () => {
               is_mutating={String(isMutating)}
               variant="contained"
               color={'primary'}
-              onClick={mutate}>
+              onClick={() => setVoteModalOpen(true)}>
               {isMutating ? (
                 <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
               ) : (

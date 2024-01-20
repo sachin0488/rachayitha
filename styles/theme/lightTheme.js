@@ -67,6 +67,7 @@ const theme = createTheme({
           color: '#2F2D5C',
           borderRadius: 5,
           paddingBottom: 3,
+          fontSize: 13,
           // boxShadow:
           //   "3px 3px 1.25rem 3px rgb(100 241 255 / 3%), 8px 8px 3rem 10px rgb(13 38 40 / 31%)",
           boxShadow: `0 6.2px 10px rgba(0, 0, 0, 0.07),

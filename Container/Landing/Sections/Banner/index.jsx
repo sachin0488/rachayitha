@@ -6,7 +6,7 @@ import MobileVersionSection from './components/MobileVersionSection'
 const Banner = () => {
   return (
     <>
-      <DownloadBookSection />
+      {/* <DownloadBookSection /> */}
       <MobileVersionSection />
       <AvailableLeadsSection />
     </>

@@ -9,6 +9,8 @@ import { useUserService } from 'Container/Auth/service/User.service'
 const GridStyledCard = ({ item, queryKey, contentType }) => {
   const { isLoggedIn } = useUserService()
 
+  const coverImage = item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'
+
   return (
     <Root>
       <Main>
@@ -24,20 +26,11 @@ const GridStyledCard = ({ item, queryKey, contentType }) => {
         )}
 
         <ImageSection>
-          <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
+          <Image alt="Cover Image" src={coverImage} />
           <SmallImageList>
-            <SmallImage
-              alt="Cover Image"
-              src={item?.coverImage2 && item?.coverImage2.includes('http') ? item?.coverImage2 : '/alt-img.svg'}
-            />
-            <SmallImage
-              alt="Cover Image"
-              src={item?.coverImage3 && item?.coverImage3.includes('http') ? item?.coverImage3 : '/alt-img.svg'}
-            />
-            <SmallImage
-              alt="Cover Image"
-              src={item?.coverImage4 && item?.coverImage4.includes('http') ? item?.coverImage4 : '/alt-img.svg'}
-            />
+            <SmallImage alt="Cover Image" src={item?.coverImage2 && item?.coverImage2.includes('http') ? item?.coverImage2 : coverImage} />
+            <SmallImage alt="Cover Image" src={item?.coverImage3 && item?.coverImage3.includes('http') ? item?.coverImage3 : coverImage} />
+            <SmallImage alt="Cover Image" src={item?.coverImage4 && item?.coverImage4.includes('http') ? item?.coverImage4 : coverImage} />
           </SmallImageList>
         </ImageSection>
 

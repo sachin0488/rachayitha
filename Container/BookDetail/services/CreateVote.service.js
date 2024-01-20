@@ -24,12 +24,15 @@ export const useCreateVoteService = ({ bookId }) => {
       queryClient.invalidateQueries({
         queryKey: [BookDetailsQuery.BOOK_VOTE, { bookId: parseInt(bookId) }],
       })
+      queryClient.invalidateQueries({
+        queryKey: [BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }],
+      })
       enqueueSnackbar(data.info.visible.message, {
         variant: 'success',
       })
     },
     onError(error) {
-      enqueueSnackbar('Unable to request your query!', {
+      enqueueSnackbar(error?.response?.data?.error?.visible?.message, {
         variant: 'error',
       })
     },
