@@ -25,7 +25,7 @@ export const ErrorBar = () => {
   return (
     <Root>
       <ErrorOutlineRoundedIcon style={{ fontSize: 70 }} />
-      <Text variant="h5" component="div">
+      <Text variant="h5" component="div" textAlign="center">
         Something went wrong
       </Text>
     </Root>

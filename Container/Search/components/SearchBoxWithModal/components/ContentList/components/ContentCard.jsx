@@ -1,31 +1,26 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { Button, ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
+import { ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
 
 import StarIcon from '@mui/icons-material/Star'
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
 import Link from 'next/link'
-import ToggleToLibraryButton from './ToggleToLibraryButton'
 
-const ContentCard = ({ item, SearchKeyword }) => {
+const ContentCard = ({ item, contentType }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
 
   return (
     <Root>
       <DeignsIcon />
       <Main>
-        <Image
-          alt="Cover Image"
-          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
-        />
+        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
           <TitleName variant="subtitle2">
-            {item?.bookName} <Status variant="caption">{item?.status}</Status>
+            {item?.contentName} <Status variant="caption">{item?.status}</Status>
           </TitleName>
 
           <HashtagList>
@@ -49,21 +44,17 @@ const ContentCard = ({ item, SearchKeyword }) => {
               </RatingRoot>
               <VoteCount variant="subtitle2">
                 {item?.viewCount}
-                <ArrowDropUpRoundedIcon
-                  sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
-                />
+                <ArrowDropUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }} />
               </VoteCount>
               <CommentCount variant="subtitle2">
                 {item?.commentCount}
-                <ModeCommentRoundedIcon
-                  sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
-                />
+                <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
               </CommentCount>
             </InfoNav>
           )}
         </InfoSection>
 
-        {/* <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} SearchKeyword={SearchKeyword} /> */}
+        {/* <ToggleToLibraryButton contentId={item?.contentId} libraryAdded={item?.libraryAdded} SearchKeyword={SearchKeyword} /> */}
       </Main>
       {isMobile && (
         <InfoNav>
@@ -79,19 +70,15 @@ const ContentCard = ({ item, SearchKeyword }) => {
           </RatingRoot>
           <VoteCount variant="subtitle2">
             {item?.viewCount}
-            <ArrowDropUpRoundedIcon
-              sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }}
-            />
+            <ArrowDropUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }} />
           </VoteCount>
           <CommentCount variant="subtitle2">
             {item?.commentCount}
-            <ModeCommentRoundedIcon
-              sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
-            />
+            <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
           </CommentCount>
         </InfoNav>
       )}
-      <Link href={`/book/${item?.bookId}`}>
+      <Link href={`/${contentType}/${item?.contentId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

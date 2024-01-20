@@ -1,5 +1,6 @@
 export const BookDetailsQuery = {
-  BOOK_DETAILS: 'book-details',
-  COMMENT_LIST: 'comment-list',
-  BOOK_VOTE: 'book-vote',
+  BOOK_DETAILS: 'BOOK_DETAILS',
+  COMMENT_LIST: 'COMMENT_LIST',
+  BOOK_VOTE: 'BOOK_VOTE',
+  BOOK_REPORT_CATEGORY: 'BOOK_REPORT_CATEGORY',
 }

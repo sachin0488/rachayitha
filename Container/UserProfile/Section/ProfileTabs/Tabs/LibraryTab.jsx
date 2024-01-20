@@ -9,15 +9,16 @@ import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import LibraryContentCard from '../components/LibraryContentCard'
 import StyledChip from '../components/StyledChip'
 import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded'
+import { ContentType } from 'Container/UserProfile/constants/common.constants'
 
 const contentTypes = [
-  'book',
-  'poem',
+  ContentType.BOOK,
+  ContentType.POEM,
   //'story',
 ]
 
 const LibraryTab = () => {
-  const [selectedContentType, setSelectedContentType] = useState('book')
+  const [selectedContentType, setSelectedContentType] = useState(ContentType.BOOK)
 
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isError, isFetchingNextPage } = useLibraryService({
     contentType: selectedContentType,
@@ -27,12 +28,7 @@ const LibraryTab = () => {
     <Root>
       <ContentListBox>
         {contentTypes.map((item, index) => (
-          <StyledChip
-            key={item}
-            active={selectedContentType === item}
-            label={item}
-            onClick={() => setSelectedContentType(item)}
-          />
+          <StyledChip key={item} active={selectedContentType === item} label={item} onClick={() => setSelectedContentType(item)} />
         ))}
       </ContentListBox>
       <Main>
@@ -45,26 +41,14 @@ const LibraryTab = () => {
         ) : isError ? (
           <NotAvailableBar>
             <ReportGmailerrorredRoundedIcon sx={{ fontSize: 55 }} color="primary" />
-            <Typography
-              variant="h6"
-              component="div"
-              textAlign="center"
-              fontSize={14}
-              fontWeight={500}
-              color="secondary">
+            <Typography variant="h6" component="div" textAlign="center" fontSize={14} fontWeight={500} color="secondary">
               Something went wrong
             </Typography>
           </NotAvailableBar>
         ) : ContentList?.length === 0 ? (
           <NotAvailableBar>
             <LibraryAddCheckIcon sx={{ fontSize: 55 }} color="primary" />
-            <Typography
-              variant="h6"
-              component="div"
-              textAlign="center"
-              fontSize={17}
-              fontWeight={500}
-              color="secondary">
+            <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
               Add Your First {selectedContentType.toUpperCase()[0]}
               {selectedContentType.slice(1, 4)} to Library
             </Typography>
@@ -72,7 +56,7 @@ const LibraryTab = () => {
         ) : (
           <>
             {ContentList?.map(item => (
-              <LibraryContentCard key={item.bookId} item={item} />
+              <LibraryContentCard key={item.bookId} item={item} contentType={selectedContentType} />
             ))}
 
             {ContentList?.length !== 0 && isFetchingNextPage && (

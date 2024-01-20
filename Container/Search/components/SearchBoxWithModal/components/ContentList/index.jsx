@@ -3,21 +3,26 @@ import ContentCard from './components/ContentCard'
 import useSearchService from 'Container/Search/services/search.service'
 
 import { InView } from 'react-intersection-observer'
-import { Skeleton } from '@mui/material'
+import { Skeleton, Typography } from '@mui/material'
 
-const ContentSection = ({ ranking, SearchKeyword }) => {
+const ContentSection = ({ ranking, SearchKeyword, contentType }) => {
   const { ContentList, isFetching, isFetchingNextPage, isError, error, fetchNextPage, hasNextPage } = useSearchService({
     SearchKeyword,
+    contentType,
   })
 
   if (isError) {
-    return <h1>{error?.message}</h1>
+    return (
+      <Typography variant="h6" textAlign="center" marginTop={2}>
+        {error?.message}
+      </Typography>
+    )
   }
 
   return (
     <Root>
       {ContentList?.map((item, index) => (
-        <ContentCard key={index} item={item} index={index} ranking={ranking} SearchKeyword={SearchKeyword} />
+        <ContentCard key={index} item={item} index={index} ranking={ranking} SearchKeyword={SearchKeyword} contentType={contentType} />
       ))}
 
       {(isFetching || isFetchingNextPage) && (

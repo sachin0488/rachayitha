@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Button, Menu, MenuItem } from '@mui/material'
 
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded'
 import Grid4x4RoundedIcon from '@mui/icons-material/Grid4x4Rounded'
+import ReportModal from './ReportModal'
 
-const MoreOptions = () => {
+const MoreOptions = ({ poemId }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false)
   const open = Boolean(anchorEl)
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
@@ -27,6 +29,7 @@ const MoreOptions = () => {
         <Grid4x4RoundedIcon fontSize="small" />
       </Button>
 
+      <ReportModal poemId={poemId} open={isReportModalOpen} setOpen={setIsReportModalOpen} />
       <StyledMenu
         anchorEl={anchorEl}
         open={open}
@@ -34,7 +37,13 @@ const MoreOptions = () => {
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}>
-        <StyledButton color="secondary" startIcon={<FlagRoundedIcon />}>
+        <StyledButton
+          color="secondary"
+          startIcon={<FlagRoundedIcon />}
+          onClick={() => {
+            handleClose()
+            setIsReportModalOpen(true)
+          }}>
           Report
         </StyledButton>
       </StyledMenu>

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { create } from 'zustand'
 import { useRouter } from 'next/router'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
@@ -11,30 +10,6 @@ import DetailsSection from '../Section/DetailsSection'
 import ChapterModal from '../components/ChapterModal'
 import { Fab, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
 import FormatListNumberedRoundedIcon from '@mui/icons-material/FormatListNumberedRounded'
-
-const useReadPageMetaStore = create(set => ({
-  scrollPositionY: 0,
-  bodyHeight: 0,
-  isResetScrollPositionRequired: false,
-  setResetScrollPositionRequired: value => {
-    set(state => ({
-      ...state,
-      isResetScrollPositionRequired: value,
-    }))
-  },
-  setScrollPositionY: value => {
-    set(state => ({
-      ...state,
-      scrollPositionY: value,
-    }))
-  },
-  setBodyHeight: value => {
-    set(state => ({
-      ...state,
-      bodyHeight: value,
-    }))
-  },
-}))
 
 const ReadBookPage = () => {
   const router = useRouter()
@@ -133,7 +108,10 @@ const ReadBookPage = () => {
   const handleOnScroll = useCallback(
     event => {
       if (!isLoading) {
-        const isScrolledToBottom = Math.ceil(event.target?.scrollHeight - event.target?.scrollTop) === event.target?.clientHeight + 2
+        const isScrolledToBottom = matchNumbers(
+          Math.ceil(event.target?.clientHeight),
+          Math.ceil(event.target?.scrollHeight - event.target?.scrollTop),
+        )
         const isScrolledToTop = event.target?.scrollTop === 0
 
         if (isScrolledToTop) {
@@ -145,6 +123,7 @@ const ReadBookPage = () => {
         }
       }
     },
+
     [handleScrolledBottom, handleScrolledTop, isLoading, isMobile],
   )
 
@@ -243,3 +222,7 @@ const Body = styled.div`
   padding-top: 0px;
   background-color: ${({ theme }) => theme.palette.background.paper};
 `
+
+const matchNumbers = (a, b) => {
+  return b >= a - 10 && b <= a + 10
+}

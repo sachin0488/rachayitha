@@ -1,5 +1,6 @@
 export const PoemDetailsQuery = {
-  POEM_DETAILS: 'poem-details',
-  COMMENT_LIST: 'comment-list',
-  POEM_VOTE: 'poem-vote',
+  POEM_DETAILS: 'POEM_DETAILS',
+  COMMENT_LIST: 'COMMENT_LIST',
+  POEM_VOTE: 'POEM_VOTE',
+  POEM_REPORT_CATEGORY: 'POEM_REPORT_CATEGORY',
 }

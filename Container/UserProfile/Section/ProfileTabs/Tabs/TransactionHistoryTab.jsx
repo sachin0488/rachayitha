@@ -1,22 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { InView } from 'react-intersection-observer'
 import { Skeleton, Typography } from '@mui/material'
 
-import useLibraryService from 'Container/UserProfile/services/Library.service'
-
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
-import LibraryContentCard from '../components/LibraryContentCard'
-import StyledChip from '../components/StyledChip'
 import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded'
 import useTransactionHistoryListService from 'Container/UserProfile/services/TransactionHistory.service'
 import TransactionCard from '../components/TransactionCard'
-
-const contentTypes = [
-  'book',
-  'poem',
-  //'story',
-]
 
 const TransactionHistoryTab = () => {
   const { transactionList, fetchNextPage, hasNextPage, isFetching, isError, isFetchingNextPage } = useTransactionHistoryListService()

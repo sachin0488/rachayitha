@@ -10,9 +10,9 @@ const fetchNewArrivals = async ({ contentType }) => {
     method: 'GET',
   })
 
-  const item = await res?.data?.data
+  const item = res?.data?.data
 
-  return await item.map(generateAPIRowMapper)
+  return item.map(generateAPIRowMapper(contentType))
 }
 
 export const useNewArrivalsService = ({ contentType }) => {

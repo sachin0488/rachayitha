@@ -98,7 +98,7 @@ const InfoArea = () => {
         ) : null}
         <ToggleToLibraryButton poemId={query?.poemId} libraryAdded={Data?.libraryAdded} />
         <LikeButton poemId={query?.poemId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
-        <MoreOptions />
+        <MoreOptions poemId={query?.poemId} />
       </ButtonList>
     </Root>
   )

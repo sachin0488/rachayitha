@@ -2,17 +2,19 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 
-const ActivityTab = () => {
+const AchievementTab = () => {
   return (
     <Root>
       <Typography
-        variant="h4"
+        variant="h6"
         component="div"
         sx={{
           color: theme => theme.palette.primary.main + 70,
-          fontWeight: 700,
+          fontWeight: 600,
+          maxWidth: 500,
+          textAlign: 'center',
         }}>
-        Coming Soon
+        Unlock exciting rewards as you conquer your reading goals!
       </Typography>
     </Root>
   )
@@ -39,4 +41,4 @@ const Root = styled.div`
   } */
 `
 
-export default ActivityTab
+export default AchievementTab

@@ -12,7 +12,7 @@ const fetchPotentialStarlet = async ({ contentType }) => {
 
   const item = await res?.data?.data
 
-  return await item.map(generateAPIRowMapper)
+  return await item.map(generateAPIRowMapper(contentType))
 }
 
 export const usePotentialStarletService = ({ contentType }) => {

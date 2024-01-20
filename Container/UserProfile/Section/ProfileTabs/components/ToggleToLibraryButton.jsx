@@ -5,9 +5,10 @@ import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import { useToggleToLibraryService } from 'Container/UserProfile/services/ToggleToLibrary.service'
 
-const ToggleToLibraryButton = ({ bookId, libraryAdded }) => {
+const ToggleToLibraryButton = ({ contentId, libraryAdded, contentType }) => {
   const { mutate, isLoading } = useToggleToLibraryService({
-    bookId,
+    contentId,
+    contentType,
   })
 
   return (

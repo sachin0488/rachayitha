@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Tab, tabClasses, Tabs, tabsClasses, useMediaQuery, useTheme } from '@mui/material'
 
 import WorkTab from './Tabs/WorkTab'
-import ActivityTab from './Tabs/ActivityTab'
+import AchievementTab from './Tabs/AchievementTab'
 import LibraryTab from './Tabs/LibraryTab'
 import BoughtTab from './Tabs/BoughtTab'
 import TransactionHistoryTab from './Tabs/TransactionHistoryTab'
@@ -50,11 +50,11 @@ const ProfileTabs = ({ item }) => {
           <TransactionHistoryTab item={item} />
         </TabPanel>
         <StyledTabs value={secondValue} onChange={handleSecondChange} aria-label="Comment List">
-          <StyledTab label="Activity" {...a11yProps(0)} />
+          <StyledTab label="Achievement" {...a11yProps(0)} />
           <StyledTab label="Original Work" {...a11yProps(1)} />
         </StyledTabs>
         <TabPanel value={secondValue} index={0}>
-          <ActivityTab item={item} />
+          <AchievementTab item={item} />
         </TabPanel>
 
         <TabPanel value={secondValue} index={1}>
@@ -70,7 +70,7 @@ const ProfileTabs = ({ item }) => {
         <StyledTab label="Library" {...a11yProps(0)} />
         <StyledTab label="Bought Product" {...a11yProps(0)} />
         <StyledTab label="Transaction History" {...a11yProps(0)} />
-        <StyledTab label="Activity" {...a11yProps(1)} />
+        <StyledTab label="Achievement" {...a11yProps(1)} />
         <StyledTab label="Original Work" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={value} index={0}>
@@ -86,7 +86,7 @@ const ProfileTabs = ({ item }) => {
       </TabPanel>
 
       <TabPanel value={value} index={3}>
-        <ActivityTab item={item} />
+        <AchievementTab item={item} />
       </TabPanel>
 
       <TabPanel value={value} index={4}>

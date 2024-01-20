@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
@@ -7,9 +8,22 @@ import { StyledModal } from 'Components/StyledModal'
 
 import ContentSection from './components/ContentList'
 import StyledSearchBox from './components/StyledSearchBox'
+import TabSection from './components/TabSection'
+import { ContentType } from 'Container/RecommendationSlider/constants/common.constants'
+
+const tabs = [
+  { id: 1, label: 'Book', value: ContentType.BOOK },
+  { id: 2, label: 'Poem', value: ContentType.POEM },
+]
 
 const SearchModal = ({ open, setOpen }) => {
   const [SearchKeyword, setSearchKeyword] = useState('')
+  const [contentTypeId, setContentTypeId] = useState(tabs?.[0]?.id)
+
+  const contentType = useMemo(() => {
+    return tabs.find(item => item.id === contentTypeId)?.value
+  }, [contentTypeId])
+
   const SearchKeywordDebounced = useDebounce(SearchKeyword, 800)
   const handleClose = useCallback(() => {
     setOpen(false)
@@ -21,8 +35,9 @@ const SearchModal = ({ open, setOpen }) => {
         <Title variant="h4" component="div" color="secondary">
           Search Your interest...
         </Title>
+        <TabSection currentTabId={contentTypeId} tabs={tabs} onTabChange={setContentTypeId} />
         <StyledSearchBox SearchText={SearchKeyword} setSearchText={setSearchKeyword} />
-        <ContentSection SearchKeyword={SearchKeywordDebounced} />
+        <ContentSection SearchKeyword={SearchKeywordDebounced} contentType={contentType} />
       </Main>
     </Root>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { ErrorBar, LoadingBar, NotAvailableBar } from '../cards/components'
 import StyledSlider from 'Components/StyledSlider'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
+
 const DataSection = ({ isLoading, isError, List, queryKey, contentType, CardComponent }) => {
   if (isLoading) return <LoadingBar />
 

@@ -1,37 +1,62 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { Button, ButtonBase, Typography } from '@mui/material'
+import { ButtonBase, Typography, CircularProgress, Box } from '@mui/material'
 
-import ToggleToLibraryButton from './ToggleToLibraryButton'
-
+import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 import { useUserService } from 'Container/Auth/service/User.service'
 
-const LibraryContentCard = ({ item, contentType }) => {
+const ContinueReadingCard = ({ item, queryKey, contentType }) => {
   const { isLoggedIn } = useUserService()
+
   return (
     <Root>
       <Main>
         {isLoggedIn ? (
-          <ToggleToLibraryButton contentId={item?.contentId} libraryAdded={item?.libraryAdded} contentType={contentType} />
+          <ToggleToLibraryButton
+            contentId={item?.contentId}
+            libraryAdded={item?.libraryAdded}
+            queryKey={queryKey}
+            contentType={contentType}
+          />
         ) : (
           <></>
         )}
 
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
+
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.contentName ? item?.contentName : item?.poemName}
+              {item?.contentName}
             </TitleName>
+
             <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
           </InfoLeft>
+
           <InfoRight>
-            <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
+            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+              <CircularProgress variant="determinate" value={item?.chapterReadPercentage} size={40} thickness={4} color="primary" />
+
+              <Box
+                sx={{
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Typography variant="caption" component="div" color="text.secondary">{`${Math.round(
+                  item.chapterReadPercentage,
+                )}%`}</Typography>
+              </Box>
+            </Box>
           </InfoRight>
         </InfoSection>
       </Main>
-
       <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
         <a>
           <StyledButton color="primary" />
@@ -41,27 +66,23 @@ const LibraryContentCard = ({ item, contentType }) => {
   )
 }
 
-export default LibraryContentCard
+export default ContinueReadingCard
 
 const Root = styled.div`
   position: relative;
-  padding: 8px;
-  box-shadow: none;
-  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 5px 6px 35px 0px ${({ theme }) => theme.palette.primary.shadowLevel01};
+  border-radius: 18px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
+  border: 2px solid transparent;
+  background-image: ${({ theme }) => theme.palette.background.paperImage};
   :hover {
-    border: 1px solid ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
+    border: 2px solid ${({ theme }) => theme.palette.primary.main};
+    box-shadow: 5px 4px 25px 0px ${({ theme }) => theme.palette.primary.shadowLevel02};
     transform: scale(1.02);
   }
-  max-width: 195px;
-
-  @media (max-width: 730px) {
-    max-width: auto;
-    width: 100%;
-  }
+  min-width: 260px;
 `
 
 const StyledButton = styled(ButtonBase)`
@@ -71,19 +92,19 @@ const StyledButton = styled(ButtonBase)`
   left: 0;
   bottom: 0;
   z-index: 1;
-  border-radius: 13px;
+  border-radius: 16px;
   background-color: transparent;
 `
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
 `
 
 const Image = styled.img`
   width: 100%;
-  height: 190px;
+  height: 285px;
   object-fit: cover;
   border-radius: 10px;
 `
@@ -92,7 +113,6 @@ const InfoSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 4px;
 `
 
 const InfoLeft = styled.div`
@@ -107,7 +127,7 @@ const InfoRight = styled.div`
 
 const TitleName = styled(Typography)`
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.palette.secondary.main};
 `
 
@@ -120,23 +140,5 @@ const CategoryName = styled(Typography)`
 const Rating = styled(Typography)`
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: 600;
-  font-size: 0.9rem;
-`
-
-const RemoveIcon = styled(Button)`
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-top-right-radius: 13px;
-  border-bottom-left-radius: 13px;
-  border-top-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  z-index: 10;
-  padding: 0px;
-  min-width: 35px;
-  min-height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 1.2rem;
 `

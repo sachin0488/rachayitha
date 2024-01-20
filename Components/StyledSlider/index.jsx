@@ -25,7 +25,7 @@ const StyledSlider = ({ List, CardComponent, ...props }) => {
         setScrollLeft(ref.current?.scrollLeft)
       }}>
       {List?.map(item => (
-        <CardComponent key={item?.bookId || item?.id} item={item} {...props} />
+        <CardComponent key={item?.bookId || item?.id || item?.contentId} item={item} {...props} />
       ))}
 
       <StyledIconButton

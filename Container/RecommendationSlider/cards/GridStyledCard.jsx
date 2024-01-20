@@ -13,7 +13,12 @@ const GridStyledCard = ({ item, queryKey, contentType }) => {
     <Root>
       <Main>
         {isLoggedIn ? (
-          <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} queryKey={queryKey} contentType={contentType} />
+          <ToggleToLibraryButton
+            contentId={item?.contentId}
+            libraryAdded={item?.libraryAdded}
+            queryKey={queryKey}
+            contentType={contentType}
+          />
         ) : (
           <></>
         )}
@@ -39,7 +44,7 @@ const GridStyledCard = ({ item, queryKey, contentType }) => {
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.bookName}
+              {item?.contentName}
             </TitleName>
 
             <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
@@ -50,7 +55,7 @@ const GridStyledCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/book/${item.bookId}` : `/login`}>
+      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>

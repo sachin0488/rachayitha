@@ -2,9 +2,9 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { SearchQuery } from '../constants/query.address'
 
-const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
+const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword, contentType }) => {
   const res = await APIInstance({
-    url: '/book/',
+    url: `/${contentType}/`,
     method: 'GET',
     params: {
       page: pageParam,
@@ -15,14 +15,14 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
   return await {
     data: res?.data?.data?.map(item => {
       return {
-        bookId: item?.id,
-        bookName: item?.book_name,
+        contentId: item?.id,
+        contentName: item?.[`${contentType}_name`],
         authorName: item?.author_name,
 
-        bookRank: item?.book_rank,
+        contentRank: item?.[`${contentType}_rank`],
         totalVote: item?.total_vote,
 
-        TotalBookVotes: item?.total_vote,
+        TotalContentVotes: item?.total_vote,
         viewCount: item?.view_count,
 
         category: item?.category,
@@ -65,7 +65,7 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
         status: item?.status,
         tags: item?.tags?.tags?.map(name => name) || [],
         synopsis: item?.synopsis,
-        bookRatingByUser: item?.user_book_rate,
+        contentRatingByUser: item?.[`user_${contentType}_rate`],
 
         coverImage: item?.cover_img,
         coverImage2: item?.cover_img2,
@@ -78,15 +78,14 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword }) => {
   }
 }
 
-const useSearchService = ({ SearchKeyword }) => {
-  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [SearchQuery.SEARCH_LIST, SearchKeyword],
-      queryFn: ({ pageParam }) => fetchSearchListAPI({ pageParam, SearchKeyword }),
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.nextCursor
-      },
-    })
+const useSearchService = ({ SearchKeyword, contentType }) => {
+  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: [SearchQuery.SEARCH_LIST, { SearchKeyword, contentType }],
+    queryFn: ({ pageParam }) => fetchSearchListAPI({ pageParam, SearchKeyword, contentType }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextCursor
+    },
+  })
 
   return {
     ContentList: data?.pages?.map(group => group?.data)?.flat() || [],

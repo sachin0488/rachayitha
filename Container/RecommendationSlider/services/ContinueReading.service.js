@@ -1,7 +1,6 @@
 import { APIInstance } from 'services/global.service'
 import { RecommendationSliderQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
-import generateAPIRowMapper from '../utility/generateAPIRowMapper'
 import { ContentType } from '../constants/common.constants'
 
 const fetchContinueReading = async ({ contentType }) => {
@@ -10,9 +9,46 @@ const fetchContinueReading = async ({ contentType }) => {
     method: 'GET',
   })
 
-  const item = await res?.data?.data
+  const list = res?.data?.data
 
-  return await item.map(generateAPIRowMapper)
+  return list.map(item => {
+    return {
+      contentId: item?.[`${contentType}_id`],
+      contentName: item?.[`${contentType}_name`],
+      authorName: item?.author_name,
+
+      // contentRank: item?.[`${contentType}_rank`],
+      // totalVote: item?.total_vote,
+
+      // TotalContentVotes: item?.total_vote,
+      // viewCount: item?.view_count,
+
+      category: item?.category,
+      // chapter: item?.chapter,
+      chapterCount: item?.chapter_count,
+      chapterReadPercentage: item?.chapter_read_percent,
+
+      commentCount: item?.comment_count,
+
+      avgRatingValue: item?.rating?.rate__avg,
+      totalRatingCount: item?.rating?.rate__count,
+
+      likeCount: item?.like_count,
+      // isLiked: item?.is_liked,
+
+      libraryAdded: item?.library_added,
+
+      status: item?.status,
+      tags: item?.tags,
+      synopsis: item?.synopsis,
+      // contentRatingByUser: item?.[`user_${contentType}_rate`],
+
+      coverImage: item?.cover_img,
+      coverImage2: item?.cover_img2,
+      coverImage3: item?.cover_img3,
+      coverImage4: item?.cover_img4,
+    }
+  })
 }
 
 export const useContinueReadingService = ({ contentType }) => {
@@ -21,6 +57,7 @@ export const useContinueReadingService = ({ contentType }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey,
     queryFn: () => fetchContinueReading({ contentType }),
+    staleTime: 5000,
   })
 
   return { List: data || [], isLoading, isError, error, isFetching, queryKey }

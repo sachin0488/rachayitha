@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
-import { NotAvailableBar } from 'Container/Landing/components/CardComponents'
+// import { NotAvailableBar } from 'Container/Landing/components/CardComponents'
 import React from 'react'
 import ContentCard from './ContentCard'
 import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 import { Skeleton } from '@mui/material'
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
+import { NotAvailableBar } from 'Container/RecommendationSlider/cards/components'
 
 const ContentListSection = ({ contentName, contentList, isLoading }) => {
   if (isLoading)
@@ -22,7 +24,7 @@ const ContentListSection = ({ contentName, contentList, isLoading }) => {
     <Root>
       <ContentName>{contentName}</ContentName>
       {contentList?.length === 0 || contentList === null ? (
-        <NotAvailableBar Icon={ClearAllRoundedIcon} text="Collections not available" />
+        <NotAvailableBar Icon={MenuBookRoundedIcon} text="Currently we don't have this!" />
       ) : (
         contentList?.map(item => <ContentCard key={item.id} item={item} />)
       )}

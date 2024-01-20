@@ -10,6 +10,7 @@ import { useContinueReadingService } from '../services/ContinueReading.service'
 import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 import DataSection from '../components/DataSection'
 import MinimalCard from '../cards/MinimalCard'
+import ContinueReadingCard from '../cards/ContinueReadingCard'
 
 const ContinueReadingSliders = () => {
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
@@ -28,7 +29,7 @@ const ContinueReadingSliders = () => {
           isError={isError}
           isLoading={isLoading}
           queryKey={queryKey}
-          CardComponent={MinimalCard}
+          CardComponent={ContinueReadingCard}
         />
       </Main>
     </Root>

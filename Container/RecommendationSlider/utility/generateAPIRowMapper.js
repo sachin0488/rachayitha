@@ -1,18 +1,19 @@
-const generateAPIRowMapper = item => {
+const generateAPIRowMapper = contentType => item => {
   return {
-    bookId: item?.id,
-    bookName: item?.book_name,
+    contentId: item?.id,
+    contentName: item?.[`${contentType}_name`],
     authorName: item?.author_name,
 
-    // bookRank: item?.book_rank,
+    // contentRank: item?.[`${contentType}_rank`],
     // totalVote: item?.total_vote,
 
-    // TotalBookVotes: item?.total_vote,
+    // TotalContentVotes: item?.total_vote,
     // viewCount: item?.view_count,
 
     category: item?.category?.category,
     // chapter: item?.chapter,
-    // chapterCount: item?.chapter_count,
+    chapterCount: item?.chapter_count,
+    chapterReadPercentage: item?.chapter_read_percent,
 
     commentCount: item?.comment_count,
 
@@ -27,7 +28,7 @@ const generateAPIRowMapper = item => {
     status: item?.status,
     tags: item?.tags,
     synopsis: item?.synopsis,
-    // bookRatingByUser: item?.user_book_rate,
+    // contentRatingByUser: item?.[`user_${contentType}_rate`],
 
     coverImage: item?.cover_img,
     coverImage2: item?.cover_img2,

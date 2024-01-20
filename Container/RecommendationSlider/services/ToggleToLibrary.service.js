@@ -3,29 +3,29 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { ContentType } from '../constants/common.constants'
 
-export const toggleToLibraryAPI = ({ bookId, addToLibrary, contentType }) => {
+export const toggleToLibraryAPI = ({ contentId, addToLibrary, contentType }) => {
   if (addToLibrary)
     return APIInstance({
       url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
       method: 'POST',
-      data: { book_id: bookId },
+      data: contentType === ContentType.BOOK ? { book_id: contentId } : { poem_id: contentId },
     })
   else
     return APIInstance({
       url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
       method: 'DELETE',
-      data: { book_id: bookId },
+      data: contentType === ContentType.BOOK ? { book_id: contentId } : { poem_id: contentId },
     })
 }
 
-export const useToggleToLibraryService = ({ bookId, queryKey, contentType }) => {
+export const useToggleToLibraryService = ({ contentId, queryKey, contentType }) => {
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
 
   const { mutate, isLoading, isSuccess, isError } = useMutation({
     mutationFn({ addToLibrary }) {
       return toggleToLibraryAPI({
-        bookId,
+        contentId,
         addToLibrary,
         contentType,
       })
@@ -34,9 +34,9 @@ export const useToggleToLibraryService = ({ bookId, queryKey, contentType }) => 
       try {
         queryClient.setQueryData(queryKey, oldData => {
           return oldData?.map(item => {
-            if (bookId !== item?.bookId) return item
+            if (contentId !== item?.contentId) return item
 
-            const message = item?.libraryAdded ? 'Your Book has been added to Library!' : 'Your Book has been removed from Library!'
+            const message = item?.libraryAdded ? 'Added to Library!' : 'Removed from Library!'
 
             enqueueSnackbar(message, {
               variant: 'success',
@@ -61,29 +61,3 @@ export const useToggleToLibraryService = ({ bookId, queryKey, contentType }) => 
 
   return { mutate, isLoading, isSuccess, isError }
 }
-/**
- *  const message = oldData?.libraryAdded
-          ? 'Your Book has been added to Library!'
-          : 'Your Book has been removed from Library!'
-
-        enqueueSnackbar(message, {
-          variant: 'success',
-        })
-
-        if (Array.isArray(oldData))
-          return oldData.map(item => {
-            return bookId === item?.bookId
-              ? {
-                  ...item,
-                  libraryAdded: !oldData?.libraryAdded,
-                }
-              : item
-          })
-
-        return oldData
-          ? {
-              ...oldData,
-              libraryAdded: !oldData?.libraryAdded,
-            }
-          : oldData
- */

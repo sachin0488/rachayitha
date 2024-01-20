@@ -12,11 +12,11 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
   })
 
   if (contentType === 'poem')
-    return await {
+    return {
       data: res?.data?.data?.map(item => {
         return {
-          poemId: item?.id,
-          poemName: item?.poem_name,
+          contentId: item?.poem_id_id,
+          contentName: item?.poem_name,
           authorName: item?.author_name,
           category: item?.category?.category,
           commentCount: item?.comment_count,
@@ -37,11 +37,11 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
       previousCursor: res?.data?.previous_page || undefined,
     }
 
-  return await {
+  return {
     data: res?.data?.data?.map(item => {
       return {
-        bookId: item?.book_id_id,
-        bookName: item?.book_name,
+        contentId: item?.book_id_id,
+        contentName: item?.book_name,
         authorName: item?.author_name,
         category: item?.category,
         commentCount: item?.comment_count,
