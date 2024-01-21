@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 
 import { useController, useFormContext } from 'react-hook-form'
-import { TextField } from '@mui/material'
+import { TextField, Tooltip } from '@mui/material'
 
-const StyledTextField = ({ name, label, rules, required, Icon, ...props }) => {
+const StyledTextField = ({ name, label, rules, required, Icon, disabled, ...props }) => {
   const formContext = useFormContext()
   const { control, errors } = formContext
 
@@ -29,6 +29,13 @@ const StyledTextField = ({ name, label, rules, required, Icon, ...props }) => {
     value: formContext.watch(name),
     ...props,
   }
+  if (disabled)
+    return (
+      <Tooltip title={`Your cannot change ${label}`}>
+        <StyledTextFieldRoot {...rootProps} disabled={disabled} />
+      </Tooltip>
+    )
+
   return <StyledTextFieldRoot {...rootProps} />
 }
 
@@ -79,6 +86,19 @@ export const StyledTextFieldRoot = styled(TextField)`
   .MuiFilledInput-underline::after {
     border-bottom: 3px solid ${({ theme }) => theme.palette.primary.main};
   }
-`
 
+  /* Existing styles */
+
+  /* .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline {
+    border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+   
+  }
+
+  .MuiInputLabel-root.Mui-disabled {
+    color: ${({ theme }) => theme.palette?.secondary?.main}d1;
+ 
+  } */
+
+  /* Existing styles */
+`
 export default StyledTextField

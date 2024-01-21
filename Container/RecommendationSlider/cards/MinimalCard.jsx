@@ -39,7 +39,7 @@ const MinimalCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
+      <Link href={`/${contentType}/${item.contentId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

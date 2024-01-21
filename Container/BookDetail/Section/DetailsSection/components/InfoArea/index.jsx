@@ -17,14 +17,18 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import Link from 'next/link'
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
-import InfoModal from 'Components/StyledModal/InfoModal'
+import InfoModal, { InfoModalType } from 'Components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
 
 const InfoArea = () => {
   const { query } = useRouter()
   const { Data } = useBookDetailsService({ bookId: query?.bookId })
-  const { mutate, isLoading, isError, isSuccess } = useInternalPurchaseService()
+  const { mutate, isLoading, isError, isSuccess, message } = useInternalPurchaseService({
+    disableSnackbar: true,
+  })
   const [isPurchaseModalOpen, setPurchaseModalOpen] = useState(false)
+  const [purchaseFeedbackModalType, setPurchaseFeedbackModalType] = useState(InfoModalType.Default)
+  const [isPurchaseFeedbackModalOpen, setPurchaseFeedbackModalOpen] = useState(false)
 
   const handlePayClick = useCallback(
     ({ amount, id }) =>
@@ -42,6 +46,16 @@ const InfoArea = () => {
     if (isSuccess || isError) {
       setPurchaseModalOpen(false)
     }
+
+    if (isSuccess) {
+      setPurchaseFeedbackModalType(InfoModalType.SUCCESS)
+      setPurchaseFeedbackModalOpen(true)
+    }
+
+    if (isError) {
+      setPurchaseFeedbackModalType(InfoModalType.ERROR)
+      setPurchaseFeedbackModalOpen(true)
+    }
   }, [isSuccess, isError])
 
   return (
@@ -54,6 +68,16 @@ const InfoArea = () => {
         buttonText={'Purchase'}
         onClickOk={handlePayClick({ amount: Data?.price, id: Data?.bookId })}
       />
+      <InfoModal
+        type={purchaseFeedbackModalType}
+        messageNotice={message || ''}
+        open={isPurchaseFeedbackModalOpen}
+        setOpen={setPurchaseFeedbackModalOpen}
+        isLoading={isLoading}
+        cancelButtonText={'Close'}
+        disableOkButton
+      />
+
       <BookName variant="h3" component="div">
         {Data?.bookName}
       </BookName>
@@ -132,7 +156,7 @@ const StyledButton = styled(Button)`
   span.price {
     margin-left: 5px;
     background: #ffffff30;
-    line-height: 1;
+    line-height: 1.2;
     padding: 4px 5px;
     border-radius: 5px;
     display: flex;

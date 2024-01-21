@@ -8,7 +8,7 @@ import { LinearProgress } from '@mui/material'
 import { set } from 'react-hook-form'
 import { useDebounce } from '@uidotdev/usehooks'
 
-const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/coin-plan', '/payment-plan', '/profile', '/book']
+const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/coin-plan', '/payment-plan', '/profile']
 
 const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 

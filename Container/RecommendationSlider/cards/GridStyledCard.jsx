@@ -8,7 +8,6 @@ import { useUserService } from 'Container/Auth/service/User.service'
 
 const GridStyledCard = ({ item, queryKey, contentType }) => {
   const { isLoggedIn } = useUserService()
-
   const coverImage = item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'
 
   return (
@@ -48,7 +47,7 @@ const GridStyledCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
+      <Link href={`/${contentType}/${item.contentId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

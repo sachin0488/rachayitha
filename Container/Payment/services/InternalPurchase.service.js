@@ -54,14 +54,14 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
   }
 }
 
-export const useInternalPurchaseService = () => {
+export const useInternalPurchaseService = props => {
   const { enqueueSnackbar } = useSnackbar()
 
   const queryClient = useQueryClient()
   const { mutate: fetchBookChapterContent } = useBookChapterContentFCService()
   const { mutate: fetchPoemChapterContent } = usePoemChapterContentFCService()
 
-  const { mutate, isLoading, isSuccess, isError } = useMutation({
+  const { mutate, isLoading, isSuccess, isError, data, error } = useMutation({
     mutationFn({ orderType, amount, subscriptionId, votePlanId, bookId, chapterId, poemId }) {
       return createInternalPurchaseAPI({
         orderType,
@@ -87,17 +87,20 @@ export const useInternalPurchaseService = () => {
       } else if (orderType === InternalPurchaseOrderType.POEM) {
         queryClient.invalidateQueries([PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }])
       }
-
-      enqueueSnackbar(message ? message : 'Product Purchased Successfully!', {
-        variant: 'success',
-      })
+      if (props?.disableSnackbar !== true) {
+        enqueueSnackbar(message ? message : 'Product Purchased Successfully!', {
+          variant: 'success',
+        })
+      }
     },
     onError(error) {
-      enqueueSnackbar(error ? error?.response?.data?.error?.visible?.message : 'Unable to make payment request at this moment !', {
-        variant: 'error',
-      })
+      if (props?.disableSnackbar !== true) {
+        enqueueSnackbar(error ? error?.response?.data?.error?.visible?.message : 'Unable to make payment request at this moment !', {
+          variant: 'error',
+        })
+      }
     },
   })
 
-  return { mutate, isLoading, isSuccess, isError }
+  return { mutate, isLoading, isSuccess, isError, message: error ? error?.response?.data?.error?.visible?.message : data?.message }
 }

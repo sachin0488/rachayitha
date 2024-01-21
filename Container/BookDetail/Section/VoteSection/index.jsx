@@ -14,6 +14,8 @@ import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
 import InfoModal from 'Components/StyledModal/InfoModal'
+import { useUserService } from 'Container/Auth/service/User.service'
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
@@ -22,6 +24,7 @@ const VoteSection = () => {
   const [isVoteModalOpen, setVoteModalOpen] = useState(false)
   const { isFetching, Data: VoteData } = useFetchVoteService({ bookId: query?.bookId })
   const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ bookId: query?.bookId })
+  const { isLoggedIn } = useUserService()
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
@@ -76,7 +79,7 @@ const VoteSection = () => {
             </Tooltip>
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
-          {isAlreadyVoted && (
+          {isLoggedIn && isAlreadyVoted && (
             <Tooltip title="Your vote for this Novel">
               <VoteButton
                 disableElevation
@@ -94,20 +97,36 @@ const VoteSection = () => {
               </VoteButton>
             </Tooltip>
           )}
-          <Tooltip title="Vote This book">
-            <AddVoteButton
-              disabled={isMutating}
-              is_mutating={String(isMutating)}
+          {isLoggedIn ? (
+            <Tooltip title="Vote This book">
+              <AddVoteButton
+                disabled={isMutating}
+                is_mutating={String(isMutating)}
+                variant="contained"
+                color="primary"
+                onClick={() => setVoteModalOpen(true)}>
+                <div>
+                  {isMutating ? (
+                    <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
+                  ) : (
+                    <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
+                  )}
+                </div>
+                <Typography variant="subtitle2">Vote</Typography>
+              </AddVoteButton>
+            </Tooltip>
+          ) : (
+            <Button
               variant="contained"
-              color={'primary'}
-              onClick={() => setVoteModalOpen(true)}>
-              {isMutating ? (
-                <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
-              ) : (
-                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
-              )}
-            </AddVoteButton>
-          </Tooltip>
+              sx={{
+                gap: '5px',
+                padding: '10px 18px',
+                boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
+              }}>
+              <Typography variant="subtitle2">Sign in</Typography>
+              <LoginRoundedIcon />
+            </Button>
+          )}
         </Bottom>
       </Main>
     </Root>
@@ -198,7 +217,6 @@ const Bottom = styled.div`
     justify-content: space-between;
   }
   @media (max-width: 375px) {
-    /* flex-wrap: wrap; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -255,7 +273,7 @@ const VoteButton = styled(Button)`
   border-radius: 15px;
   box-shadow: none;
   min-width: 75px;
-  /* width: 75px; */
+
   && {
     color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
     background: ${({ theme, is_voted, is_mutating }) =>
@@ -284,8 +302,24 @@ const AddVoteButton = styled(Button)`
       is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
   }
 
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -6px;
+    margin-top: -2px;
+  }
+
   @media (max-width: 375px) {
     width: 100%;
+    flex-direction: row;
+    & > div {
+      margin-bottom: 6px;
+      margin-top: 2px;
+    }
   }
 `
 

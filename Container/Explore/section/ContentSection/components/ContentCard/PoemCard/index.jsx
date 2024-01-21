@@ -25,10 +25,7 @@ const BookCard = ({ item, index, ranking }) => {
             </RankingNumber>
           </RankingRoot>
         )}
-        <Image
-          alt="Cover Image"
-          src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
-        />
+        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
           <HashtagList>
             {item?.tags?.map(name => {
@@ -61,14 +58,12 @@ const BookCard = ({ item, index, ranking }) => {
 
               <CommentCount variant="subtitle2">
                 {item?.commentCount}
-                <ModeCommentRoundedIcon
-                  sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
-                />
+                <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
               </CommentCount>
             </InfoNav>
           )}
         </InfoSection>
-        <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} ranking={ranking} />
+        {isLoggedIn && <ToggleToLibraryButton bookId={item?.bookId} libraryAdded={item?.libraryAdded} ranking={ranking} />}
       </Main>
       {isMobile && (
         <InfoNav>
@@ -89,9 +84,7 @@ const BookCard = ({ item, index, ranking }) => {
 
           <CommentCount variant="subtitle2">
             {item?.commentCount}
-            <ModeCommentRoundedIcon
-              sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }}
-            />
+            <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
           </CommentCount>
         </InfoNav>
       )}

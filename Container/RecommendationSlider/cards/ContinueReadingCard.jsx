@@ -7,8 +7,8 @@ import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 import { useUserService } from 'Container/Auth/service/User.service'
 
 const ContinueReadingCard = ({ item, queryKey, contentType }) => {
-  const { isLoggedIn } = useUserService()
-
+  // const { isLoggedIn } = useUserService()
+  const isLoggedIn = true
   return (
     <Root>
       <Main>
@@ -57,7 +57,7 @@ const ContinueReadingCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
+      <Link href={`/${contentType}/${item.contentId}`}>
         <a>
           <StyledButton color="primary" />
         </a>

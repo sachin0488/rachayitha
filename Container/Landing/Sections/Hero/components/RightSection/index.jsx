@@ -1,19 +1,25 @@
 import styled from '@emotion/styled'
 import { ImageRow, StyledImage } from './styles'
+import { useHeroListService } from 'Container/Landing/services/HeroList.service'
+import Link from 'next/link'
+import { Tooltip } from '@mui/material'
 
 const RightSection = () => {
-  const RowList = [
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
-    ['/temp/IMG_1.png', '/temp/IMG_2.jpeg', '/temp/IMG_3.jpg', '/temp/IMG_1.png'],
-  ]
+  const { data } = useHeroListService()
+  const RowList = [data?.first, data?.second, data?.third]
 
   return (
     <Root>
       {RowList?.map((ImageList, index) => (
         <ImageRow key={index} sx={{ margin: '0px 0px -131px 0px' }}>
-          {ImageList?.map((imgSrc, index) => (
-            <StyledImage key={index} src={imgSrc} width="218px" height="253px" />
+          {ImageList?.map(({ name, id, coverImage, contentType }, index) => (
+            <Link href={`/${contentType}/${id}`} key={index}>
+              <a>
+                <Tooltip title={name} placement="top">
+                  <StyledImage src={coverImage} width="218px" height="253px" />
+                </Tooltip>
+              </a>
+            </Link>
           ))}
         </ImageRow>
       ))}

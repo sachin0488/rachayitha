@@ -74,9 +74,9 @@ const EditProfileModal = ({ open, setOpen }) => {
         </Title>
         <FormProvider {...methods}>
           <PhotoUploader name="profilePic" />
+          <StyledTextField name="username" label="Username" placeholder="Username here..." disabled />
+          <StyledTextField name="email" type="email" label="Email" placeholder="Email here..." disabled />
           <StyledTextField name="fullName" label="Full Name" placeholder="Full here..." />
-          <StyledTextField name="username" label="Username" placeholder="Username here..." />
-          <StyledTextField name="email" type="email" label="Email" placeholder="Email here..." />
           <StyledDateSelector name="birthDate" label="Birth Date" placeholder="Chapter name here..." />
           <StyledTextField name="bio" label="Bio" placeholder="Bio here..." multiline />
           <FieldGroup>
@@ -95,9 +95,7 @@ const EditProfileModal = ({ open, setOpen }) => {
           </StyledButton>
           <StyledButton
             disabled={isLoading}
-            startIcon={
-              isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-            }
+            startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
             variant="contained"
             onClick={methods.handleSubmit(mutate)}>
             Save

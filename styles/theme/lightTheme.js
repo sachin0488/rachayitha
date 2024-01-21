@@ -1,3 +1,4 @@
+import { blueGrey, grey } from '@mui/material/colors'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -17,12 +18,20 @@ const theme = createTheme({
       // tertiary: '#45525f',
       // icon: '#bdc2c6',
       // divider: '#304352',
+      disabled: blueGrey[600],
+      // disabled: grey[600],
     },
     background: {
       dark: '#f5f5f5',
       accent: '#ffffff',
       default: '#ffffff',
       paper: '#ffffff',
+    },
+    action: {
+      disabled: blueGrey[100],
+      disabledBackground: blueGrey[100],
+
+      disabledOpacity: 0.26,
     },
   },
   shape: {
@@ -63,7 +72,7 @@ const theme = createTheme({
           // backgroundImage:
           //   "linear-gradient(rgb(34 84 82 / 12%), rgb(26 38 46 / 18%))",
           backdropFilter: 'blur(5px)',
-          backgroundColor: '#ffffff55',
+          backgroundColor: '#ffffffb5',
           color: '#2F2D5C',
           borderRadius: 5,
           paddingBottom: 3,

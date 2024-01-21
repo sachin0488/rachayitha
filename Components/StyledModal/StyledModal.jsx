@@ -8,7 +8,7 @@ const Transition = forwardRef(function Transition({ isBreakPointCrossed, ...prop
   return <Slide direction={isBreakPointCrossed ? 'left' : 'down'} ref={ref} {...props} />
 })
 
-const StyledModal = ({ children, open, handleClose, ...props }) => {
+const StyledModal = ({ children, open, handleClose, bodyBarColor, ...props }) => {
   const { title, breakPoint, maxWidth, maxHeight, ...bodyProps } = props
   const isBreakPointCrossed = useMediaQuery(`(max-width: ${breakPoint}px)`)
   return (
@@ -22,7 +22,11 @@ const StyledModal = ({ children, open, handleClose, ...props }) => {
       max_width={maxWidth}
       max_height={maxHeight}
       custom_barack_point={breakPoint}>
-      <Body {...bodyProps}>
+      <Body
+        {...bodyProps}
+        style={{
+          borderColor: bodyBarColor,
+        }}>
         <StyledIconButton color="primary" onClick={handleClose}>
           <CloseRoundedIcon />
         </StyledIconButton>
