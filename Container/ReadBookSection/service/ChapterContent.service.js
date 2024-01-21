@@ -76,18 +76,28 @@ export const useBookChapterContentFCService = () => {
         }
       })
     },
+    onError: error => {
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
+          variant: 'error',
+        })
+    },
   })
 
   return { isLoading, isSuccess, mutate }
 }
 
 const fetchChapterContentAPI = async ({ bookId, chapterId }) => {
-  const res = await APIInstance({
+  const response = await APIInstance({
     url: `/book/${bookId}/chapter/${chapterId}`,
     method: 'GET',
   })
 
-  const chapter = res.data?.data?.[0]
+  const chapter = response.data?.data?.[0]
 
   return {
     bookId: parseInt(chapter.book_id_id),
@@ -104,5 +114,7 @@ const fetchChapterContentAPI = async ({ bookId, chapterId }) => {
     isAvailableInSubscription: false,
     coinRequired: chapter?.price || 0,
     isLoaded: chapterId === chapter.id,
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
   }
 }

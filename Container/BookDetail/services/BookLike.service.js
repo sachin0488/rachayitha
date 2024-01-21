@@ -3,8 +3,8 @@ import { BookDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 
-const likeBookAPI = ({ bookId }) => {
-  return APIInstance({
+const likeBookAPI = async ({ bookId }) => {
+  const response = await APIInstance({
     url: '/booklike/',
     method: 'POST',
     data: {
@@ -12,6 +12,11 @@ const likeBookAPI = ({ bookId }) => {
       book_comment_id: '',
     },
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useBookLikeService = ({ bookId }) => {
@@ -24,10 +29,11 @@ export const useBookLikeService = ({ bookId }) => {
         bookId,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ message, isMessageVisible }) {
       queryClient.setQueryData([BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }], oldData => {
-        const message = oldData?.isLiked ? 'Your like has been removed !' : 'Your like has been added !'
-        enqueueSnackbar(message, {
+        const messageAlternative = oldData?.isLiked ? 'Your like has been removed !' : 'Your like has been added !'
+
+        enqueueSnackbar(message || messageAlternative, {
           variant: 'success',
         })
 
@@ -41,9 +47,14 @@ export const useBookLikeService = ({ bookId }) => {
       })
     },
     onError(error) {
-      enqueueSnackbar('Unable to like book !', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

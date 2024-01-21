@@ -4,12 +4,17 @@ import { useSnackbar } from 'notistack'
 import { UserProfileQuery } from '../constants/query.address'
 import { ContentType } from '../constants/common.constants'
 
-export const toggleToLibraryAPI = ({ contentId, addToLibrary, contentType }) => {
-  return APIInstance({
-    url: contentType === ContentType.BOOK ? '/userbooklibrary/' : '/userpoemlibrary/',
+export const toggleToLibraryAPI = async ({ contentId, addToLibrary, contentType }) => {
+  const response = await APIInstance({
+    url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
     method: addToLibrary ? 'POST' : 'DELETE',
-    data: { book_id: contentId },
+    data: contentType === ContentType.BOOK ? { book_id: contentId } : { poem_id: contentId },
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useToggleToLibraryService = ({ contentId, contentType }) => {
@@ -35,9 +40,9 @@ export const useToggleToLibraryService = ({ contentId, contentType }) => {
                 data: group?.data?.map(item => {
                   if (item?.contentId !== contentId) return item
 
-                  const message = item?.libraryAdded ? 'Removed from Library!' : 'Added to Library!'
+                  const messageAlternative = item?.libraryAdded ? 'Added to Library!' : 'Removed from Library!'
 
-                  enqueueSnackbar(message, {
+                  enqueueSnackbar(message || messageAlternative, {
                     variant: 'success',
                   })
 
@@ -55,9 +60,14 @@ export const useToggleToLibraryService = ({ contentId, contentType }) => {
       }
     },
     onError(error) {
-      enqueueSnackbar('Unable to perform requested action!', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

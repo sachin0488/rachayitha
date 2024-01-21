@@ -13,24 +13,32 @@ export const useLoginService = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: loginAPI,
-    onSuccess({ data }, variables) {
+    onSuccess({ tokens, isMessageVisible, message }, variables) {
       if (variables?.remember_me) {
-        setAccess(data?.user?.tokens?.access)
-        setRefresh(data?.user?.tokens?.refresh)
+        setAccess(tokens?.access)
+        setRefresh(tokens?.refresh)
       } else {
-        setAccess(data?.user?.tokens?.access, 'session')
-        setRefresh(data?.user?.tokens?.refresh, 'session')
+        setAccess(tokens?.access, 'session')
+        setRefresh(tokens?.refresh, 'session')
       }
+
+      enqueueSnackbar(message || 'Logged in successfully !', {
+        variant: 'success',
+      })
 
       queryClient.invalidateQueries([AuthQuery.USER_DATA])
     },
     onError: error => {
-      enqueueSnackbar(error.response?.data?.user?.error?.[0], {
-        variant: 'error',
-      })
-
-      if (error.response?.data?.message)
+      if (error.response?.data?.user?.error?.length > 0)
+        enqueueSnackbar(error.response?.data?.user?.error?.[0], {
+          variant: 'error',
+        })
+      else if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
     },
@@ -41,8 +49,8 @@ export const useLoginService = () => {
   return { handleLogin, isLoading, isSuccess }
 }
 
-const loginAPI = ({ email, password, otp }) => {
-  return APIInstance({
+const loginAPI = async ({ email, password, otp }) => {
+  const response = await APIInstance({
     url: '/login/',
     method: 'POST',
     data: {
@@ -57,4 +65,15 @@ const loginAPI = ({ email, password, otp }) => {
       Authorization: undefined,
     },
   })
+
+  const user = response?.data?.user
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+    tokens: {
+      access: user?.tokens?.access,
+      refresh: user?.tokens?.refresh,
+    },
+  }
 }

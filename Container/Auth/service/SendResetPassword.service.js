@@ -9,20 +9,22 @@ export const useSendResetPasswordLinkService = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: sendResetPasswordLinkByEmailAPI,
-    onSuccess({ data }) {
+    onSuccess({ isMessageVisible, message }) {
       push('/forgot-password?status=success')
 
-      enqueueSnackbar('Reset Password Link Sent successfully !', {
-        variant: 'success',
-      })
+      if (isMessageVisible) {
+        enqueueSnackbar(message || 'Reset Password Link Sent successfully !', {
+          variant: 'success',
+        })
+      }
     },
     onError: error => {
-      enqueueSnackbar(error.response?.data?.user?.error[0], {
-        variant: 'error',
-      })
-
-      if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
     },
@@ -33,12 +35,17 @@ export const useSendResetPasswordLinkService = () => {
   return { handleSendLinkByEmail, isLoading, isSuccess }
 }
 
-const sendResetPasswordLinkByEmailAPI = ({ email }) => {
-  return APIInstance({
+const sendResetPasswordLinkByEmailAPI = async ({ email }) => {
+  const response = await APIInstance({
     url: '/password_reset/',
     method: 'POST',
     data: {
       email: email,
     },
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }

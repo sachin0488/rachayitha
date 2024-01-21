@@ -38,7 +38,7 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     form.append('poem_id', poemId)
   }
 
-  const res = await APIInstance({
+  const response = await APIInstance({
     url: '/internalpurchase/',
     method: 'POST',
     data: form,
@@ -50,7 +50,8 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     votePlanId,
     bookId,
     chapterId,
-    message: res?.data?.info?.visible?.message,
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
   }
 }
 
@@ -73,7 +74,7 @@ export const useInternalPurchaseService = props => {
         poemId,
       })
     },
-    onSuccess({ message, orderType, bookId, poemId, chapterId }) {
+    onSuccess({ message, isMessageVisible, orderType, bookId, poemId, chapterId }) {
       if (orderType === InternalPurchaseOrderType.SUBSCRIPTION) {
         queryClient.invalidateQueries([PaymentQuery.CURRENT_SUBSCRIPTION])
       } else if (orderType === InternalPurchaseOrderType.VOTETOKEN) {
@@ -87,17 +88,22 @@ export const useInternalPurchaseService = props => {
       } else if (orderType === InternalPurchaseOrderType.POEM) {
         queryClient.invalidateQueries([PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }])
       }
-      if (props?.disableSnackbar !== true) {
-        enqueueSnackbar(message ? message : 'Product Purchased Successfully!', {
+      if (props?.disableSnackbar !== true && isMessageVisible) {
+        enqueueSnackbar(message || 'Product Purchased Successfully!', {
           variant: 'success',
         })
       }
     },
     onError(error) {
       if (props?.disableSnackbar !== true) {
-        enqueueSnackbar(error ? error?.response?.data?.error?.visible?.message : 'Unable to make payment request at this moment !', {
-          variant: 'error',
-        })
+        if (error.response?.data?.error?.visible?.message)
+          enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+            variant: 'error',
+          })
+        else
+          enqueueSnackbar('Something went wrong', {
+            variant: 'error',
+          })
       }
     },
   })

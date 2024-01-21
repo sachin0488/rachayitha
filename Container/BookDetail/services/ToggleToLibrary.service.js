@@ -1,21 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
-import { BookDetailsQuery } from '../constants/query.address'
 
-export const toggleToLibraryAPI = ({ bookId, addToLibrary }) => {
-  if (addToLibrary)
-    return APIInstance({
-      url: '/userbooklibrary/',
-      method: 'POST',
-      data: { book_id: bookId },
-    })
-  else
-    return APIInstance({
-      url: '/userbooklibrary/',
-      method: 'DELETE',
-      data: { book_id: bookId },
-    })
+export const toggleToLibraryAPI = async ({ bookId, addToLibrary }) => {
+  const response = await APIInstance({
+    url: '/userbooklibrary/',
+    method: addToLibrary ? 'POST' : 'DELETE',
+    data: { book_id: bookId },
+  })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useToggleToLibraryService = ({ bookId, queryKey }) => {
@@ -29,13 +26,11 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
         addToLibrary,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ message }) {
       queryClient.setQueryData(queryKey, oldData => {
-        const message = oldData?.libraryAdded
-          ? 'Your Book has been added to Library!'
-          : 'Your Book has been removed from Library!'
+        const messageAlternative = item?.libraryAdded ? 'Added to Library!' : 'Removed from Library!'
 
-        enqueueSnackbar(message, {
+        enqueueSnackbar(message || messageAlternative, {
           variant: 'success',
         })
 
@@ -49,7 +44,6 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
               : item
           })
 
-
         return oldData
           ? {
               ...oldData,
@@ -59,9 +53,14 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
       })
     },
     onError(error) {
-      enqueueSnackbar('Unable to perform requested action!', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

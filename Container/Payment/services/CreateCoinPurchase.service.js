@@ -1,6 +1,5 @@
 import { APIInstance } from 'services/global.service'
-// import { BookDetailsQuery } from '../constants/query.address'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import useRazorpay from 'react-razorpay'
 import { useVerifyPaymentAPI } from './VerifyPayment.service'
@@ -69,7 +68,6 @@ export const useCreateCoinPurchaseService = () => {
         },
         handler: handleVerifyPayment,
       }
-
 
       const paymentInstance = new Razorpay(options)
 

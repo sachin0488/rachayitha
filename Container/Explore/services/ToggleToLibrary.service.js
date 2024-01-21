@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 
-export const toggleToLibraryAPI = ({ contentId, contentType, addToLibrary }) => {
+export const toggleToLibraryAPI = async ({ contentId, contentType, addToLibrary }) => {
   const URL =
     contentType?.toLowerCase() === 'book'
       ? '/userbooklibrary/'
@@ -22,20 +22,16 @@ export const toggleToLibraryAPI = ({ contentId, contentType, addToLibrary }) => 
           book_id: contentId,
         }
 
-  if (addToLibrary)
-    return APIInstance({
-      url: URL,
-      method: 'POST',
-      data: {
-        book_id: contentId,
-      },
-    })
-  else
-    return APIInstance({
-      url: URL,
-      method: 'DELETE',
-      data: { book_id: contentId },
-    })
+  const response = await APIInstance({
+    url: URL,
+    method: addToLibrary ? 'POST' : 'DELETE',
+    data: data,
+  })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) => {
@@ -50,24 +46,11 @@ export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) 
         addToLibrary,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ message }) {
       queryClient.setQueryData(queryKey, oldData => {
-        // let message
-
-        // if (contentType?.toLocaleLowerCase() === 'book')
-        //   message = oldData?.libraryAdded
-        //     ? 'Your Book has been added to Library!'
-        //     : 'Your Book has been removed from Library!'
-
-        // if (contentType?.toLocaleLowerCase() === 'poem')
-        //   message = oldData?.libraryAdded
-        //     ? 'Your Poem has been added to Library!'
-        //     : 'Your Poem has been removed from Library!'
-
-        const message = data?.info?.visible?.message
         const status = message?.includes('already') ? 'warn' : 'success'
 
-        enqueueSnackbar(data?.info?.visible?.message, {
+        enqueueSnackbar(message, {
           variant: status,
         })
 
@@ -98,9 +81,14 @@ export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) 
       })
     },
     onError() {
-      enqueueSnackbar('Unable to perform requested action!', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
+          variant: 'error',
+        })
     },
   })
 

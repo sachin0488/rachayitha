@@ -2,7 +2,7 @@ import moment from 'moment'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
-import { AuthQuery } from 'Container/Auth/constants/query.address'
+import { AuthQuery } from 'modules/Auth/constants/query.address'
 
 export const useUpdateProfileService = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -11,18 +11,23 @@ export const useUpdateProfileService = () => {
   const isUserFetching = queryClient.isFetching
 
   const { mutate, isLoading, isSuccess } = useMutation({
-    mutationFn: UpdateUserProfileAPI,
-    onSuccess({ data }) {
+    mutationFn: updateUserProfileAPI,
+    onSuccess({ message, isMessageVisible }) {
       queryClient.invalidateQueries([AuthQuery.USER_DATA])
 
-      enqueueSnackbar('Profile Updated Successfully!', {
-        variant: 'success',
-      })
+      if (isMessageVisible) {
+        enqueueSnackbar(message || 'Profile Updated Successfully!', {
+          variant: 'success',
+        })
+      }
     },
     onError: error => {
-      console.log(error)
-      if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
     },
@@ -31,7 +36,7 @@ export const useUpdateProfileService = () => {
   return { mutate, isLoading, isSuccess, isUserFetching }
 }
 
-const UpdateUserProfileAPI = async data => {
+const updateUserProfileAPI = async data => {
   const form = new FormData()
 
   if (
@@ -57,13 +62,14 @@ const UpdateUserProfileAPI = async data => {
   if (data?.bio) form.append('bio', data?.bio)
   if (data?.gender) form.append('gender', data?.gender)
 
-  const res = await APIInstance({
+  const response = await APIInstance({
     url: '/user/',
     method: 'PUT',
     data: form,
   })
 
   return {
-    ...res?.data?.data,
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
   }
 }

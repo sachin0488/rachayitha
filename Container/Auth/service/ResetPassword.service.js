@@ -9,21 +9,26 @@ export const useResetPasswordService = () => {
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: resetPasswordByTokenAPI,
-    onSuccess({ data }) {
+    onSuccess({ isMessageVisible, message }) {
       push('/new-password?status=success')
 
-      enqueueSnackbar('Reset Password Link Sent successfully !', {
-        variant: 'success',
-      })
+      if (isMessageVisible) {
+        enqueueSnackbar(message || 'Reset Password Link Sent successfully !', {
+          variant: 'success',
+        })
+      }
     },
     onError: error => {
       if (error.response?.data?.errors?.password?.length > 0)
         enqueueSnackbar(error.response?.data?.errors?.password?.[0], {
           variant: 'error',
         })
-
-      if (error.response?.data?.message)
+      else if (error.response?.data?.message)
         enqueueSnackbar(error.response?.data?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
     },
@@ -35,9 +40,14 @@ export const useResetPasswordService = () => {
 }
 
 export const resetPasswordByTokenAPI = data => {
-  return APIInstance({
+  const response = APIInstance({
     url: '/password_reset/confirm/',
     method: 'POST',
     data,
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }

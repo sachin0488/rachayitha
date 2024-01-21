@@ -1,11 +1,7 @@
-// import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-// import { APIInstance, queryCache } from 'services/global.service'
-// import { useCallback } from 'react'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
-import { formatUnAuthData } from './User.service'
 import { APIInstance, queryCache } from 'services/global.service'
 
 const { setAccess, setRefresh, getAccess, getRefresh } = AuthTokenStore()
@@ -25,10 +21,6 @@ export const useLogoutService = () => {
         queryCache.clear()
 
         queryClient.invalidateQueries([AuthQuery.USER_DATA])
-
-        // queryClient.setQueryData([AuthQuery.USER_DATA], () => {
-        //   return formatUnAuthData()
-        // })
       } catch (e) {
         console.log(e)
       } finally {
