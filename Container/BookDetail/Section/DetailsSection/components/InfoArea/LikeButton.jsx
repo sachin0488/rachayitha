@@ -4,13 +4,15 @@ import ThumbDownOffAltRoundedIcon from '@mui/icons-material/ThumbDownOffAltRound
 import { Button } from '@mui/material'
 import { useBookLikeService } from 'Container/BookDetail/services/BookLike.service'
 
-const LikeButton = ({ bookId, isLiked, likeCount }) => {
+const LikeButton = ({ bookId, isLiked, likeCount, disabled }) => {
   const { mutate } = useBookLikeService({ bookId })
 
   return (
     <Button
       variant="contained"
-      onClick={mutate}
+      disableRipple={disabled}
+      disableElevation={disabled}
+      onClick={() => (disabled ? null : mutate())}
       startIcon={Boolean(isLiked) ? <ThumbUpRoundedIcon /> : <ThumbDownOffAltRoundedIcon sx={{ rotate: '180deg' }} />}>
       {likeCount}
     </Button>

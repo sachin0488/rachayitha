@@ -19,6 +19,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
 import InfoModal, { InfoModalType } from 'Components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const InfoArea = () => {
   const { query } = useRouter()
@@ -26,6 +27,7 @@ const InfoArea = () => {
   const { mutate, isLoading, isError, isSuccess, message } = useInternalPurchaseService({
     disableSnackbar: true,
   })
+  const { isLoggedIn } = useUserService()
   const [isPurchaseModalOpen, setPurchaseModalOpen] = useState(false)
   const [purchaseFeedbackModalType, setPurchaseFeedbackModalType] = useState(InfoModalType.Default)
   const [isPurchaseFeedbackModalOpen, setPurchaseFeedbackModalOpen] = useState(false)
@@ -120,8 +122,8 @@ const InfoArea = () => {
             )}
           </>
         ) : null}
-        <ToggleToLibraryButton bookId={query?.bookId} libraryAdded={Data?.libraryAdded} />
-        <LikeButton bookId={query?.bookId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
+        {isLoggedIn && <ToggleToLibraryButton bookId={query?.bookId} libraryAdded={Data?.libraryAdded} />}
+        <LikeButton disabled={!isLoggedIn} bookId={query?.bookId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
         <MoreOptions bookId={query?.bookId} />
       </ButtonList>
     </Root>

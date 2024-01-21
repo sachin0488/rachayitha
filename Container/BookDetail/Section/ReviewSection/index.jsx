@@ -1,15 +1,19 @@
 import styled from '@emotion/styled'
-import { Skeleton, useMediaQuery } from '@mui/material'
+import { Button, Skeleton, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 import CreateReviewSection from './components/CreateReviewSection'
 import Heading from './components/Heading'
 import RatingSection from './components/RatingSection'
 import { useRouter } from 'next/router'
 import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails.service'
+import { useUserService } from 'Container/Auth/service/User.service'
+import Link from 'next/link'
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 
 const ReviewSection = () => {
   const { query } = useRouter()
   const { Data, isLoading } = useBookDetailsService({ bookId: query?.bookId })
+  const { isLoggedIn } = useUserService()
 
   const isTablet = useMediaQuery('(max-width: 735px)')
 
@@ -36,7 +40,32 @@ const ReviewSection = () => {
           <RatingSection ratingParams={Data?.ratingParams} />
         </Main>
         {isTablet && <StyledDivider />}
-        <CreateReviewSection bookId={query?.bookId} />
+        {isLoggedIn ? (
+          <CreateReviewSection bookId={query?.bookId} />
+        ) : (
+          <LoginPlaceholder>
+            <Typography variant="h6" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
+              You can post your own review of this book by signing !
+            </Typography>
+            <Typography variant="subtitle2" fontWeight={500} component="div" color="secondary.light" textAlign="center">
+              {`Need an account? `}
+              <Link href="/create-account">
+                <a>
+                  <Typography as="span" variant="subtitle2" fontWeight={500} component="div" color="primary" textAlign="center">
+                    Create one!
+                  </Typography>
+                </a>
+              </Link>
+            </Typography>
+            <Link href="/login">
+              <a>
+                <Button disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
+                  Sign In
+                </Button>
+              </a>
+            </Link>
+          </LoginPlaceholder>
+        )}
       </Body>
       <StyledDivider />
     </Root>
@@ -61,6 +90,25 @@ const StyledSkeletonCr = styled(Skeleton)`
     width: 100%;
     max-width: 100%;
   }
+`
+
+const LoginPlaceholder = styled.div`
+  padding: 25px 15px;
+  border-radius: 16px;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 650px;
+
+  @media (max-width: 400px) {
+    padding: 25px 15px;
+  }
+
+  /* box-shadow: 10px 10px 10px ${({ theme }) => theme.palette.primary.main}0c; */
+
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const Root = styled.div`

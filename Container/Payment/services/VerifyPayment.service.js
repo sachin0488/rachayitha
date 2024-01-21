@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
+import { AuthQuery } from 'Container/Auth/constants/query.address'
 
 export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id, razorpay_signature }) => {
   const form = new FormData()
@@ -50,8 +51,12 @@ export const useVerifyPaymentAPI = () => {
         })
     },
     onError(error) {
-      if (error?.response?.data?.message)
-        enqueueSnackbar('Something went wrong !', {
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
     },
