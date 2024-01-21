@@ -10,6 +10,7 @@ import DetailsSection from '../Section/DetailsSection'
 import ChapterModal from '../components/ChapterModal'
 import { Fab, LinearProgress, useMediaQuery, useTheme } from '@mui/material'
 import FormatListNumberedRoundedIcon from '@mui/icons-material/FormatListNumberedRounded'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const ReadBookPage = () => {
   const router = useRouter()
@@ -17,12 +18,11 @@ const ReadBookPage = () => {
   const bookId = parseInt(router?.query?.bookId)
   const chapterId = parseInt(router?.query?.chapterId)
   const theme = useTheme()
-
   const mainRef = useRef()
   const bodyRef = useRef()
 
   const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
-
+  const { isLoggedIn } = useUserService()
   const { mutateAsync, isLoading } = useChapterContentService({ bookId: bookId })
   const { ChapterList, setChapterLoadedById, isSuccess, reload } = useChapterListService({
     bookId: bookId,
@@ -76,16 +76,18 @@ const ReadBookPage = () => {
 
       const previousChapterIndex = currentChapterIndex - 1
       const previousChapterId = ChapterList?.[previousChapterIndex]?.chapterId
-      const response = await mutateAsync({ chapterId: previousChapterId })
+      if (isLoggedIn) {
+        const response = await mutateAsync({ chapterId: previousChapterId })
 
-      if (response?.chapterId === previousChapterId) {
-        setChapterLoadedById(previousChapterId)
-        handleToScrollToPreviousPosition()
+        if (response?.chapterId === previousChapterId) {
+          setChapterLoadedById(previousChapterId)
+          handleToScrollToPreviousPosition()
+        }
       }
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
+  }, [ChapterList, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition, isLoggedIn])
 
   const handleScrolledBottom = useCallback(async () => {
     try {
@@ -95,15 +97,16 @@ const ReadBookPage = () => {
 
       const nextChapterIndex = currentChapterIndex + 1
       const nextChapterId = ChapterList?.[nextChapterIndex]?.chapterId
-
-      const response = await mutateAsync({ chapterId: nextChapterId })
-      if (response?.chapterId === nextChapterId) {
-        setChapterLoadedById(nextChapterId)
+      if (isLoggedIn) {
+        const response = await mutateAsync({ chapterId: nextChapterId })
+        if (response?.chapterId === nextChapterId) {
+          setChapterLoadedById(nextChapterId)
+        }
       }
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, chapterId, mutateAsync, setChapterLoadedById])
+  }, [ChapterList, chapterId, mutateAsync, setChapterLoadedById, isLoggedIn])
 
   const handleOnScroll = useCallback(
     event => {

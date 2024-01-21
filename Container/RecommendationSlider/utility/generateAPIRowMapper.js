@@ -1,9 +1,11 @@
+import slugUtility from 'utility/slug.utility'
+
 const generateAPIRowMapper = contentType => item => {
   return {
     contentId: item?.id,
     contentName: item?.[`${contentType}_name`],
     authorName: item?.author_name,
-
+    slug: slugUtility.create(item?.[`${contentType}_name`]),
     // contentRank: item?.[`${contentType}_rank`],
     // totalVote: item?.total_vote,
 

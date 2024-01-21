@@ -10,7 +10,7 @@ const GetStartedSection = () => {
         Expand your Vision of
         <span>Knowledge Here</span>
       </Heading>
-      <SubHeading>India’s Largest online Reading Platform</SubHeading>
+      <SubHeading>India’s own online Reading Platform</SubHeading>
       <GetStartedInputField />
     </Root>
   )

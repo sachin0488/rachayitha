@@ -13,7 +13,7 @@ import RecommendationSection from 'Container/RecommendationSlider/sliders/Recomm
 
 const BookDetail = () => {
   const { query } = useRouter()
-  const { error } = useBookDetailsService({ bookId: query?.bookId })
+  const { error } = useBookDetailsService({ bookId: query?.bookId, slug: query?.slug })
 
   if (error) return <div>Something went wrong!</div>
 

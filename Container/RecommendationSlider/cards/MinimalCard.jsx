@@ -31,7 +31,9 @@ const MinimalCard = ({ item, queryKey, contentType }) => {
               {item?.contentName}
             </TitleName>
 
-            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
+            <CategoryName variant="subtitle2" noWrap>
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
 
           <InfoRight>
@@ -39,7 +41,7 @@ const MinimalCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={`/${contentType}/${item.contentId}`}>
+      <Link href={`/${contentType}/${item.contentId}/${item?.slug}`}>
         <a>
           <StyledButton color="primary" />
         </a>
@@ -65,6 +67,7 @@ const Root = styled.div`
     transform: scale(1.02);
   }
   min-width: 260px;
+  max-width: 312.75px;
 `
 
 const StyledButton = styled(ButtonBase)`
@@ -100,6 +103,7 @@ const InfoSection = styled.div`
 const InfoLeft = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: calc(100% - 45.5px);
 `
 
 const InfoRight = styled.div`

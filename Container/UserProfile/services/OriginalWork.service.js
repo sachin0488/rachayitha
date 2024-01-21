@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { UserProfileQuery } from '../constants/query.address'
+import slugUtility from 'utility/slug.utility'
 
 const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, contentType) => {
   const res = await APIInstance({
@@ -16,7 +17,8 @@ const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, contentType) => {
     data: res?.data?.data?.map(item => {
       return {
         bookId: item?.id,
-        bookName: item?.book_name,
+        bookName: item?.[`${contentType}_name`],
+        slug: slugUtility.create(item?.[`${contentType}_name`]),
         authorName: item?.author_name,
         category: item?.category?.category,
         commentCount: item?.comment_count,
@@ -39,15 +41,14 @@ const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, contentType) => {
 }
 
 const useOriginalWorkService = ({ contentType }) => {
-  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [UserProfileQuery.LIBRARY_LIST, { contentType }],
-      queryFn: params => fetchOriginalWorkListAPI(params, contentType),
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.nextCursor
-      },
-      staleTime: 1000,
-    })
+  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: [UserProfileQuery.LIBRARY_LIST, { contentType }],
+    queryFn: params => fetchOriginalWorkListAPI(params, contentType),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextCursor
+    },
+    staleTime: 1000,
+  })
 
   return {
     ContentList: data?.pages?.map(group => group?.data)?.flat() || [],

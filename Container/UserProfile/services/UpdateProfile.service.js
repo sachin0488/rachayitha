@@ -2,7 +2,7 @@ import moment from 'moment'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
-import { AuthQuery } from 'modules/Auth/constants/query.address'
+import { AuthQuery } from 'Container/Auth/constants/query.address'
 
 export const useUpdateProfileService = () => {
   const { enqueueSnackbar } = useSnackbar()

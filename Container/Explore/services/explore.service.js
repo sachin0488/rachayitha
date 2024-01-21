@@ -1,17 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { ExploreQuery } from '../constants/query.address'
+import slugUtility from 'utility/slug.utility'
 
 const useExplore = ({ categoryId, contentType, sortBy }) => {
-  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage, status } =
-    useInfiniteQuery({
-      queryKey: [ExploreQuery.EXPLORE_LIST, { categoryId, contentType, sortBy }],
-      enabled: !!categoryId && !!contentType && !!sortBy,
-      queryFn: ({ pageParam = 1 }) => fetchExploreListAPI({ categoryId, contentType, page: pageParam, sortBy }),
-      getNextPageParam: (lastPage, pages) => {
-        return lastPage.nextCursor
-      },
-    })
+  const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
+    queryKey: [ExploreQuery.EXPLORE_LIST, { categoryId, contentType, sortBy }],
+    enabled: !!categoryId && !!contentType && !!sortBy,
+    queryFn: ({ pageParam = 1 }) => fetchExploreListAPI({ categoryId, contentType, page: pageParam, sortBy }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.nextCursor
+    },
+  })
 
   return {
     ContentList: data?.pages?.map(group => group?.data)?.flat() || [],
@@ -42,6 +42,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
           poemId: item?.id,
           poemName: item?.poem_name,
           authorName: item?.author_name,
+          slug: slugUtility.create(item?.poem_name),
 
           poemRank: item?.poem_rank,
           totalVote: item?.total_vote,
@@ -108,6 +109,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
           bookId: item?.id,
           bookName: item?.book_name,
           authorName: item?.author_name,
+          slug: slugUtility.create(item?.book_name),
 
           bookRank: item?.book_rank,
           totalVote: item?.total_vote,

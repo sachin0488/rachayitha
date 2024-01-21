@@ -2,6 +2,7 @@ import { APIInstance } from 'services/global.service'
 import { RecommendationSliderQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 import { ContentType } from '../constants/common.constants'
+import slugUtility from 'utility/slug.utility'
 
 const fetchContinueReading = async ({ contentType }) => {
   const res = await APIInstance({
@@ -16,7 +17,7 @@ const fetchContinueReading = async ({ contentType }) => {
       contentId: item?.[`${contentType}_id`],
       contentName: item?.[`${contentType}_name`],
       authorName: item?.author_name,
-
+      slug: slugUtility.create(item?.[`${contentType}_name`]),
       // contentRank: item?.[`${contentType}_rank`],
       // totalVote: item?.total_vote,
 

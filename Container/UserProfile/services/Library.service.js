@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { UserProfileQuery } from '../constants/query.address'
+import slugUtility from 'utility/slug.utility'
 
 const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
   const res = await APIInstance({
@@ -17,6 +18,7 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
         return {
           contentId: item?.poem_id_id,
           contentName: item?.poem_name,
+          slug: slugUtility.create(item?.poem_name),
           authorName: item?.author_name,
           category: item?.category?.category,
           commentCount: item?.comment_count,
@@ -42,6 +44,7 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
       return {
         contentId: item?.book_id_id,
         contentName: item?.book_name,
+        slug: slugUtility.create(item?.book_name),
         authorName: item?.author_name,
         category: item?.category,
         commentCount: item?.comment_count,

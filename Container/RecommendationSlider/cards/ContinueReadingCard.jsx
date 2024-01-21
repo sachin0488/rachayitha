@@ -31,12 +31,14 @@ const ContinueReadingCard = ({ item, queryKey, contentType }) => {
               {item?.contentName}
             </TitleName>
 
-            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
+            <CategoryName variant="subtitle2" noWrap>
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
 
           <InfoRight>
-            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-              <CircularProgress variant="determinate" value={item?.chapterReadPercentage} size={40} thickness={4} color="primary" />
+            <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <CircularProgress variant="determinate" value={item?.chapterReadPercentage} size={45.5} thickness={5} color="primary" />
 
               <Box
                 sx={{
@@ -57,7 +59,7 @@ const ContinueReadingCard = ({ item, queryKey, contentType }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={`/${contentType}/${item.contentId}`}>
+      <Link href={`/${contentType}/${item.contentId}/${item?.slug}`}>
         <a>
           <StyledButton color="primary" />
         </a>
@@ -83,6 +85,7 @@ const Root = styled.div`
     transform: scale(1.02);
   }
   min-width: 260px;
+  max-width: 312.75px;
 `
 
 const StyledButton = styled(ButtonBase)`
@@ -118,11 +121,15 @@ const InfoSection = styled.div`
 const InfoLeft = styled.div`
   display: flex;
   flex-direction: column;
+  width: calc(100% - 45.5px);
+  flex: 1;
 `
 
 const InfoRight = styled.div`
   display: flex;
   flex-direction: column;
+  width: 45.5px;
+  margin-left: auto;
 `
 
 const TitleName = styled(Typography)`

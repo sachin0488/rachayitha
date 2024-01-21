@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { NovelQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import slugUtility from 'utility/slug.utility'
 
 const useNovelListService = ({ filter }) => {
   const { data, isError, fetchNextPage, refetch, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
@@ -40,6 +41,7 @@ const fetchNovelListAPI = async ({ page, filter }) => {
       return {
         bookId: item?.id,
         bookName: item?.book_name,
+        slug: slugUtility.create(item?.book_name),
         authorName: item?.author_name,
 
         bookRank: item?.book_rank,

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { LandingQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import slugUtility from 'utility/slug.utility'
 
 export const useHeroListService = () => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -23,32 +24,44 @@ export const useHeroListService = () => {
 }
 
 const fetchHeroListAPI = async () => {
-  //   const res = await APIInstance({
-  //     url: '/topbooklist/',
-  //     method: 'GET',
-  //   })
+  const response = await APIInstance({
+    url: '/homepagebanner/',
+    method: 'GET',
+  })
 
+  console.log('response', response)
+
+  const data = response?.data?.data || {}
   return {
-    first: [
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_2.jpeg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_3.jpg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-    ],
-    second: [
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_2.jpeg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_3.jpg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-    ],
-    third: [
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_2.jpeg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_3.jpg' },
-      { id: 1, name: 'Book 1', contentType: 'book', coverImage: '/temp/IMG_1.png' },
-    ],
-    // first: res?.data?.data?.first || [],
-    // second: res?.data?.data?.second || [],
-    // third: res?.data?.data?.third || [],
+    first: data?.first_row?.map(item => {
+      const name = item?.content_type?.toLowerCase() === 'book' ? item?.book_name : item?.poem_name
+      return {
+        id: item?.id,
+        name: name,
+        contentType: item?.content_type,
+        coverImage: item?.cover_img,
+        slug: slugUtility.create(name),
+      }
+    }),
+    second: data?.second_row?.map(item => {
+      const name = item?.content_type?.toLowerCase() === 'book' ? item?.book_name : item?.poem_name
+      return {
+        id: item?.id,
+        name: name,
+        contentType: item?.content_type,
+        coverImage: item?.cover_img,
+        slug: slugUtility.create(name),
+      }
+    }),
+    third: data?.third_row?.map(item => {
+      const name = item?.content_type?.toLowerCase() === 'book' ? item?.book_name : item?.poem_name
+      return {
+        id: item?.id,
+        name: name,
+        contentType: item?.content_type,
+        coverImage: item?.cover_img,
+        slug: slugUtility.create(name),
+      }
+    }),
   }
 }

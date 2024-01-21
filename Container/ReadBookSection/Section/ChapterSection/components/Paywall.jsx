@@ -58,6 +58,7 @@ const Paywall = ({ coinRequired, chapterId, bookId, isAvailableInSubscription, i
         )}
         {isPaid && (
           <StyledButton
+            disableElevation
             variant="contained"
             endIcon={<ShoppingCartCheckoutRoundedIcon />}
             onClick={() => setPurchaseModalOpen(true)}
@@ -81,6 +82,8 @@ const Root = styled.div`
   padding: 20px 10px;
   margin-top: auto;
   margin-bottom: auto;
+  width: 70%;
+  align-self: center;
 `
 
 const PaymentButtons = styled.div`

@@ -12,8 +12,8 @@ const RightSection = () => {
     <Root>
       {RowList?.map((ImageList, index) => (
         <ImageRow key={index} sx={{ margin: '0px 0px -131px 0px' }}>
-          {ImageList?.map(({ name, id, coverImage, contentType }, index) => (
-            <Link href={`/${contentType}/${id}`} key={index}>
+          {ImageList?.map(({ name, id, coverImage, contentType, slug }, index) => (
+            <Link href={`/${contentType}/${id}/${slug}`} key={index}>
               <a>
                 <Tooltip title={name} placement="top">
                   <StyledImage src={coverImage} width="218px" height="253px" />

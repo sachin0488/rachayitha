@@ -8,15 +8,12 @@ import { useBookDetailsService } from 'Container/BookDetail/services/BookDetails
 
 const DetailsSection = () => {
   const { query } = useRouter()
-  const { Data, isLoading, isError, error } = useBookDetailsService({ bookId: query?.bookId })
+  const { Data, isLoading, isError, error } = useBookDetailsService({ bookId: query?.bookId, slug: query?.slug })
 
   return (
     <Root>
       <ImageContainer>
-        <StyledImage
-          alt="Cover Image"
-          src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
-        />
+        <StyledImage alt="Cover Image" src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'} />
         <StyledImage
           className="blur"
           alt="Cover Image"

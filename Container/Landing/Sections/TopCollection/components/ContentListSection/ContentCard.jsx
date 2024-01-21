@@ -8,26 +8,26 @@ import { useUserService } from 'Container/Auth/service/User.service'
 
 const ContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
-  
+
   return (
-    <Link href={isLoggedIn ? `/book/${item?.id}` : `/login`}>
+    <Link href={isLoggedIn ? `/${item?.contentType}/${item?.id}/${item?.slug}` : `/login`}>
       <Root>
         <ImageSection>
           <StyledImage
             alt="Cover Image"
-            src={item?.cover_img && item?.cover_img.includes('http') ? item?.cover_img : '/alt-img.svg'}
+            src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
             width="90px"
             height="115px"
           />
         </ImageSection>
         <InfoSection>
-          <Title>{item?.book_name}</Title>
+          <Title>{item?.name}</Title>
 
-          {item?.category?.map((cat, idx) => (
-            <Fantasy key={idx}>{cat?.name}</Fantasy>
+          {item?.category?.map(({ name, id }) => (
+            <Fantasy key={id}>{name}</Fantasy>
           ))}
 
-          <Rating>{Number(item?.rating?.rate__avg).toFixed(1)}</Rating>
+          <Rating>{Number(item?.avgRatingValue).toFixed(1)}</Rating>
         </InfoSection>
       </Root>
     </Link>

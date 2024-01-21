@@ -88,7 +88,7 @@ const BookCard = ({ item, index, ranking }) => {
           </CommentCount>
         </InfoNav>
       )}
-      <Link href={`/book/${item?.bookId}`}>
+      <Link href={`/book/${item?.bookId}/${item?.slug}`}>
         <a>
           <StyledButton color="primary" />
         </a>

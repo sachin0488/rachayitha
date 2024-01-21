@@ -24,7 +24,9 @@ const LibraryContentCard = ({ item, contentType }) => {
             <TitleName variant="h6" component="div">
               {item?.contentName ? item?.contentName : item?.poemName}
             </TitleName>
-            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
+            <CategoryName variant="subtitle2" noWrap width={'calc(100% - 5px)'}>
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
           <InfoRight>
             <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
@@ -32,7 +34,7 @@ const LibraryContentCard = ({ item, contentType }) => {
         </InfoSection>
       </Main>
 
-      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}` : `/login`}>
+      <Link href={isLoggedIn ? `/${contentType}/${item.contentId}/${item?.slug}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>

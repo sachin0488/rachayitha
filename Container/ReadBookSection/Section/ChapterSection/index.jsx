@@ -8,10 +8,12 @@ import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartChe
 import InfoModal from 'Components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
 import Paywall from './components/Paywall'
+import { useUserService } from 'Container/Auth/service/User.service'
+import SigninWall from './components/SigninWall'
 
 const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEvent, onReachedStart, onReachedEnd }) => {
   const { query, replace } = useRouter()
-
+  const { isLoggedIn } = useUserService()
   return (
     <Root
       id={`chapter-${item?.chapterId}`}
@@ -22,7 +24,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
         if (inView) {
           replace(
             {
-              pathname: `/book/${query.bookId}/read/${item?.chapterId}`,
+              pathname: `/book/${query.bookId}/${query.slug}/read/${item?.chapterId}`,
             },
             null,
             { shallow: true },
@@ -46,18 +48,24 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           Chapter: {item?.chapterSequence} {item?.chapterTitle}
         </ChapterName>
       </TopReachedView>
-      {item.isLocked ? (
-        <Paywall
-          coinRequired={item?.coinRequired}
-          bookId={item?.bookId}
-          chapterId={item?.chapterId}
-          chapterSequence={item?.chapterSequence}
-          chapterTitle={item?.chapterTitle}
-          isPaid={item?.isPaid}
-          isAvailableInSubscription={item?.isAvailableInSubscription}
-        />
+      {isLoggedIn ? (
+        <>
+          {item.isLocked ? (
+            <Paywall
+              coinRequired={item?.coinRequired}
+              bookId={item?.bookId}
+              chapterId={item?.chapterId}
+              chapterSequence={item?.chapterSequence}
+              chapterTitle={item?.chapterTitle}
+              isPaid={!item?.isPaid}
+              isAvailableInSubscription={item?.isAvailableInSubscription}
+            />
+          ) : (
+            <ChapterContentText dangerouslySetInnerHTML={{ __html: item?.chapterContent }} />
+          )}
+        </>
       ) : (
-        <ChapterContentText dangerouslySetInnerHTML={{ __html: item?.chapterContent }} />
+        <SigninWall />
       )}
 
       <BottomReachedView

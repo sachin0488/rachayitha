@@ -18,7 +18,9 @@ const BoughtContentCard = ({ item }) => {
             <TitleName variant="h6" component="div">
               {item?.bookName ? item?.bookName : item?.poemName}
             </TitleName>
-            <CategoryName variant="subtitle2">{item?.category?.map(({ name }) => name).join(', ') || 'N/A'}</CategoryName>
+            <CategoryName variant="subtitle2" noWrap width={'calc(100% - 5px)'}>
+              {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            </CategoryName>
           </InfoLeft>
           <InfoRight>
             <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
@@ -26,7 +28,7 @@ const BoughtContentCard = ({ item }) => {
         </InfoSection>
       </Main>
 
-      <Link href={isLoggedIn ? (item?.bookId ? `/book/${item.bookId}` : `/poem/${item.poemId}`) : `/login`}>
+      <Link href={isLoggedIn ? (item?.bookId ? `/book/${item.bookId}/${item?.slug}` : `/poem/${item.poemId}/${item?.slug}`) : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>

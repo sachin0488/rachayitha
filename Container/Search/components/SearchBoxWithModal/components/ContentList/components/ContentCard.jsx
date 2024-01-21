@@ -78,7 +78,7 @@ const ContentCard = ({ item, contentType }) => {
           </CommentCount>
         </InfoNav>
       )}
-      <Link href={`/${contentType}/${item?.contentId}`}>
+      <Link href={`/${contentType}/${item?.contentId}/${item?.slug}`}>
         <a>
           <StyledButton color="primary" />
         </a>
