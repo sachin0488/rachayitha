@@ -20,7 +20,7 @@ const RecommendationSection = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading>You may also Like</Heading>
+          <Heading variant="h5">You may also Like</Heading>
           <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
 
@@ -74,8 +74,8 @@ const Main = styled.div`
 
 export const Heading = styled(Typography)`
   font-weight: 600;
-  font-size: 25px;
-  line-height: 29px;
+  /* font-size: 25px; */
+  /* line-height: 29px; */
   color: ${props => props.theme.palette.secondary.main};
   padding-left: var(--element-left-spacing);
 `

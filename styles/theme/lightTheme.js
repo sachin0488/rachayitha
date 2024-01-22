@@ -18,7 +18,7 @@ const theme = createTheme({
       // tertiary: '#45525f',
       // icon: '#bdc2c6',
       // divider: '#304352',
-      disabled: blueGrey[600],
+      // disabled: blueGrey[600],
       // disabled: grey[600],
     },
     background: {
@@ -28,10 +28,9 @@ const theme = createTheme({
       paper: '#ffffff',
     },
     action: {
-      disabled: blueGrey[100],
-      disabledBackground: blueGrey[100],
-
-      disabledOpacity: 0.26,
+      // disabled: blueGrey[100],
+      // disabledBackground: blueGrey[100],
+      // disabledOpacity: 0.26,
     },
   },
   shape: {

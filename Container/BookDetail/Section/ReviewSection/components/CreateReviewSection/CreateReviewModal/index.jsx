@@ -67,11 +67,13 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
           Share your experience
         </Title>
         <FormProvider {...methods}>
-          <StyledRatingField label="Writing Quality" name="parameter1" required />
-          <StyledRatingField label="Stability of Updates" name="parameter2" required />
-          <StyledRatingField label="Story Development" name="parameter3" required />
-          <StyledRatingField label="Character Design" name="parameter4" required />
-          <StyledRatingField label="World Background" name="parameter5" required />
+          <Body>
+            <StyledRatingField label="Writing Quality" name="parameter1" required />
+            <StyledRatingField label="Stability of Updates" name="parameter2" required />
+            <StyledRatingField label="Story Development" name="parameter3" required />
+            <StyledRatingField label="Character Design" name="parameter4" required />
+            <StyledRatingField label="World Background" name="parameter5" required />
+          </Body>
           <StyledTextField
             name="comment"
             label="Your thoughts here..."
@@ -87,9 +89,7 @@ const CreateReviewModal = ({ open, setOpen, bookId }) => {
           </StyledButton>
           <StyledButton
             disabled={isLoading || isAllDirty}
-            startIcon={
-              isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-            }
+            startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
             variant="contained"
             type="submit">
             Save
@@ -111,6 +111,14 @@ const Main = styled.form`
   display: flex;
   flex-direction: column;
   gap: 25px;
+`
+
+const Body = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-right: auto;
 `
 
 const Title = styled(Typography)`

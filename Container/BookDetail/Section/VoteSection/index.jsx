@@ -217,9 +217,10 @@ const Bottom = styled.div`
     justify-content: space-between;
   }
   @media (max-width: 375px) {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    flex-direction: column;
+    /* display: grid; */
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr; */
   }
 `
 
@@ -266,6 +267,7 @@ const InfoSection = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    height: 51px;
   }
 `
 

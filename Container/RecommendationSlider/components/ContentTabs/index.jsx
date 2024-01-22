@@ -26,6 +26,7 @@ const ContentListBox = styled.div`
   @media (max-width: 415px) {
     justify-content: flex-end;
     margin-left: auto;
+    margin-right: 12px;
   }
 `
 export default ContentTabs

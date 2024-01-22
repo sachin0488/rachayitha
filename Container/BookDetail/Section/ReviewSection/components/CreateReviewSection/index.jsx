@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CreateReviewModal from './CreateReviewModal'
+import StyledRatingField from './CreateReviewModal/components/StyledRatingField'
 
 const CreateReviewSection = ({ bookId }) => {
   const [open, setOpen] = useState(false)
