@@ -16,6 +16,7 @@ import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDouble
 import InfoModal from 'Components/StyledModal/InfoModal'
 import { useUserService } from 'Container/Auth/service/User.service'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
+import Link from 'next/link'
 
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
@@ -116,16 +117,20 @@ const VoteSection = () => {
               </AddVoteButton>
             </Tooltip>
           ) : (
-            <Button
-              variant="contained"
-              sx={{
-                gap: '5px',
-                padding: '10px 18px',
-                boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
-              }}>
-              <Typography variant="subtitle2">Sign in</Typography>
-              <LoginRoundedIcon />
-            </Button>
+            <Link href="/login">
+              <a>
+                <Button
+                  variant="contained"
+                  sx={{
+                    gap: '5px',
+                    padding: '10px 18px',
+                    boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
+                  }}>
+                  <Typography variant="subtitle2">Sign in</Typography>
+                  <LoginRoundedIcon />
+                </Button>
+              </a>
+            </Link>
           )}
         </Bottom>
       </Main>
