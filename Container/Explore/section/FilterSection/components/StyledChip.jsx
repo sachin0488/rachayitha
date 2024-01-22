@@ -9,12 +9,9 @@ const StyledChip = ({ item }) => {
   const { query, pathname } = useRouter()
 
   return (
-    <Link href={`${pathname}?content_type=${query.content_type}&category=${query.category}&sort_by=${item.label}`}>
+    <Link href={`${pathname}?content_type=${query.content_type}&category=${query.category}&sort_by=${item.label.toLowerCase()}`}>
       <a>
-        <Root
-          className={query?.sort_by?.toLowerCase() === item.label.toLowerCase() ? 'active' : ''}
-          label={item.label}
-        />
+        <Root className={query?.sort_by?.toLowerCase() === item.label.toLowerCase() ? 'active' : ''} label={item.label} />
       </a>
     </Link>
   )

@@ -3,25 +3,73 @@ import { Button } from '@mui/material'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useMemo } from 'react'
+
+const getArrayFromURIString = uriString => {
+  if (uriString) {
+    return uriString.split(',')
+  }
+  return []
+}
+
+const getURIStringFromArray = array => {
+  if (array) {
+    return array.join(',')
+  }
+  return ''
+}
 
 const StyledButton = ({ contentType, category }) => {
   const router = useRouter()
 
+  const categoryIds = useMemo(() => {
+    let queryParameters = new URLSearchParams({
+      category: router.query.category,
+    })
+    return getArrayFromURIString(queryParameters.get('category'))
+  }, [router.query.category])
+
+  const newCategoryIds = useMemo(() => {
+    let newCategoryIds = [...categoryIds]
+
+    if (categoryIds.includes(String(category.categoryId))) {
+      newCategoryIds = newCategoryIds.filter(id => id !== String(category.categoryId))
+    } else {
+      newCategoryIds.push(String(category.categoryId))
+    }
+    return getURIStringFromArray(newCategoryIds)
+  }, [categoryIds, category.categoryId])
+
+  const isSelected = useMemo(() => {
+    return router.query.content_type === contentType && categoryIds.includes(String(category.categoryId))
+  }, [router.query.content_type, contentType, categoryIds, category.categoryId])
+
+  const href = useMemo(() => {
+    let queryParameters
+
+    if (router.query.content_type === contentType) {
+      queryParameters = new URLSearchParams({
+        category: newCategoryIds,
+        content_type: contentType,
+      })
+    } else {
+      queryParameters = new URLSearchParams({
+        category: [category.categoryId],
+        content_type: contentType,
+      })
+    }
+
+    if (router.query.sort_by) {
+      queryParameters.append('sort_by', router.query.sort_by)
+    }
+
+    return `${router.pathname}?${queryParameters.toString()}`
+  }, [category.categoryId, contentType, newCategoryIds, router.pathname, router.query.content_type, router.query.sort_by])
+
   return (
-    <Link
-      href={`${router.pathname}?content_type=${contentType}&category=${category.categoryId}${
-        router.query.sort_by ? `&sort_by=${router.query.sort_by}` : ''
-      }`}>
+    <Link href={href}>
       <a>
-        <Root
-          className={
-            router.query.category === String(category.categoryId) && router.query.content_type === contentType
-              ? 'selected'
-              : ''
-          }>
-          {category.categoryName}{' '}
-        </Root>
+        <Root className={isSelected ? 'selected' : ''}>{category.categoryName}</Root>
       </a>
     </Link>
   )

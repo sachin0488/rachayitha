@@ -10,7 +10,7 @@ import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
 import Link from 'next/link'
 
-const ContentCard = ({ item, contentType }) => {
+const ContentCard = ({ item, contentType, onClick }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
 
   return (
@@ -80,7 +80,7 @@ const ContentCard = ({ item, contentType }) => {
       )}
       <Link href={`/${contentType}/${item?.contentId}/${item?.slug}`}>
         <a>
-          <StyledButton color="primary" />
+          <StyledButton color="primary" onClick={onClick} />
         </a>
       </Link>
     </Root>

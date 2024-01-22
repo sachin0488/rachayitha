@@ -50,7 +50,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
           TotalPoemVotes: item?.total_vote,
           viewCount: item?.view_count,
 
-          category: item?.category,
+          category: item?.category?.category?.map(({ id, name }) => ({ id, name })) || [],
 
           chapter: item?.chapter,
           chapterCount: item?.chapter_count,
@@ -111,13 +111,13 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
           authorName: item?.author_name,
           slug: slugUtility.create(item?.book_name),
 
+          category: item?.category?.category?.map(({ id, name }) => ({ id, name })) || [],
+
           bookRank: item?.book_rank,
           totalVote: item?.total_vote,
 
           TotalBookVotes: item?.total_vote,
           viewCount: item?.view_count,
-
-          category: item?.category,
 
           chapter: item?.chapter,
           chapterCount: item?.chapter_count,

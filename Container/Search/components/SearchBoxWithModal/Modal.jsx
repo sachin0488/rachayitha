@@ -37,7 +37,7 @@ const SearchModal = ({ open, setOpen }) => {
         </Title>
         <TabSection currentTabId={contentTypeId} tabs={tabs} onTabChange={setContentTypeId} />
         <StyledSearchBox SearchText={SearchKeyword} setSearchText={setSearchKeyword} />
-        <ContentSection SearchKeyword={SearchKeywordDebounced} contentType={contentType} />
+        <ContentSection SearchKeyword={SearchKeywordDebounced} contentType={contentType} handleClose={handleClose} />
       </Main>
     </Root>
   )

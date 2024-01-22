@@ -5,7 +5,7 @@ import useSearchService from 'Container/Search/services/search.service'
 import { InView } from 'react-intersection-observer'
 import { Skeleton, Typography } from '@mui/material'
 
-const ContentSection = ({ ranking, SearchKeyword, contentType }) => {
+const ContentSection = ({ ranking, SearchKeyword, contentType, handleClose }) => {
   const { ContentList, isFetching, isFetchingNextPage, isError, error, fetchNextPage, hasNextPage } = useSearchService({
     SearchKeyword,
     contentType,
@@ -22,7 +22,12 @@ const ContentSection = ({ ranking, SearchKeyword, contentType }) => {
   return (
     <Root>
       {ContentList?.map((item, index) => (
-        <ContentCard key={index} item={item} index={index} ranking={ranking} SearchKeyword={SearchKeyword} contentType={contentType} />
+        <ContentCard
+          key={index}
+          item={item}
+          contentType={contentType}
+          onClick={handleClose}
+        />
       ))}
 
       {(isFetching || isFetchingNextPage) && (

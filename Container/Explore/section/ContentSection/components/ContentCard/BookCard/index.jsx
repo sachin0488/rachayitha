@@ -14,7 +14,7 @@ import { useUserService } from 'Container/Auth/service/User.service'
 const BookCard = ({ item, index, ranking }) => {
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width: 465px)')
-
+  console.log('item?.category', item?.category)
   return (
     <Root>
       <DeignsIcon />
@@ -29,15 +29,19 @@ const BookCard = ({ item, index, ranking }) => {
         )}
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
-          <HashtagList>
+          {/* <HashtagList>
             {item?.tags?.map(name => {
               return <Hashtag key={name}>#{name}</Hashtag>
             })}
-          </HashtagList>
+          </HashtagList> */}
 
           <TitleName variant="subtitle2">
             {item?.bookName} <Status variant="caption">{item?.status}</Status>
           </TitleName>
+
+          <CategoryName variant="subtitle2" noWrap lineHeight={1} margin={0}>
+            {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+          </CategoryName>
           {/* <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText> */}
           <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
 
@@ -107,11 +111,6 @@ const Root = styled.div`
   cursor: pointer;
   border: 1px solid transparent;
   border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
-  /* :hover {Explore
-    border: 1px solid ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
-    transform: scale(1.02);
-  } */
   background-image: ${({ theme }) => theme.palette.background.paperImage};
 
   max-width: 550px;
@@ -123,7 +122,11 @@ const Root = styled.div`
     padding: 10px;
   }
 `
-
+const CategoryName = styled(Typography)`
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.palette.secondary.main}aa;
+`
 const StyledButton = styled(ButtonBase)`
   position: absolute;
   top: 0;
@@ -188,6 +191,7 @@ const TitleName = styled(Typography)`
 
 const Synopsis = styled(Typography)`
   color: ${({ theme }) => theme.palette.secondary.main};
+  margin-top: -12px;
   && {
     overflow: hidden;
     text-overflow: ellipsis;

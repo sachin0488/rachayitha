@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { SearchQuery } from '../constants/query.address'
+import slugUtility from 'utility/slug.utility'
 
 const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword, contentType }) => {
   const res = await APIInstance({
@@ -17,6 +18,7 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword, contentType })
       return {
         contentId: item?.id,
         contentName: item?.[`${contentType}_name`],
+        slug: slugUtility.create(item?.[`${contentType}_name`]),
         authorName: item?.author_name,
 
         contentRank: item?.[`${contentType}_rank`],

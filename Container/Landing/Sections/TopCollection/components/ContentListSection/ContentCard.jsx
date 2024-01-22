@@ -23,9 +23,9 @@ const ContentCard = ({ item }) => {
         <InfoSection>
           <Title>{item?.name}</Title>
 
-          {item?.category?.map(({ name, id }) => (
-            <Fantasy key={id}>{name}</Fantasy>
-          ))}
+          <Category variant="subtitle2" noWrap>
+            {item?.category?.map(({ name }) => name).join(', ')}
+          </Category>
 
           <Rating>{Number(item?.avgRatingValue).toFixed(1)}</Rating>
         </InfoSection>
@@ -83,10 +83,11 @@ const Title = styled(Typography)`
   color: ${({ theme }) => theme.palette.secondary.main};
 `
 
-const Fantasy = styled(Typography)`
+const Category = styled(Typography)`
   font-weight: 500;
-  font-size: 13px;
+  /* font-size: 13px; */
   color: ${({ theme }) => theme.palette.secondary.main}78;
+  width: 100%;
 `
 
 const Rating = styled(Typography)`

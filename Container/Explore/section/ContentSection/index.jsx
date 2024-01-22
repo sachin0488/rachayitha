@@ -6,6 +6,7 @@ import ContentCard from './components/ContentCard'
 import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 import { InView } from 'react-intersection-observer'
 import { useMemo, useRef } from 'react'
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
@@ -20,13 +21,7 @@ const ContentSection = ({ ranking }) => {
   const renderContentList = useMemo(
     () =>
       ContentList?.map((item, index) => (
-        <ContentCard
-          key={index}
-          item={item}
-          index={index}
-          ranking={ranking}
-          contentType={query?.content_type?.toLocaleLowerCase()}
-        />
+        <ContentCard key={index} item={item} index={index} ranking={ranking} contentType={query?.content_type?.toLocaleLowerCase()} />
       )),
     [ContentList, query?.content_type, ranking],
   )
@@ -49,9 +44,9 @@ const ContentSection = ({ ranking }) => {
   if (ContentList?.length === 0)
     return (
       <NotAvailableBar>
-        <ClearAllRoundedIcon sx={{ fontSize: 90 }} color="primary" />
-        <Typography variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary">
-          Content Not Available
+        <MenuBookRoundedIcon sx={{ fontSize: 90, color: theme => theme.palette.primary.main + '37' }} />
+        <Typography variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary.light">
+          {`Currently we don't have this!`}
         </Typography>
       </NotAvailableBar>
     )
@@ -88,9 +83,12 @@ const ContentSection = ({ ranking }) => {
 const NotAvailableBar = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 400px;
+  align-items: center;
+  gap: 10px;
+  height: 350px;
+  max-width: 250px;
+  margin: 0 auto;
 `
 
 const StyledSkeleton = styled(Skeleton)`

@@ -8,7 +8,7 @@ export const NavPageLinks = [
     Icon: AutoStoriesOutlinedIcon,
     label: 'Explore',
     path: '/explore',
-    link: '/explore?content_type=book&category=1&sort_by=Hot',
+    link: '/explore?content_type=book&category=1&sort_by=hot',
     forLoggedInOnly: false,
   },
   {
@@ -22,7 +22,7 @@ export const NavPageLinks = [
     Icon: BorderColorOutlinedIcon,
     label: 'Create',
     path: '/create',
-    link: '/create/dashboard/stories',
+    link: 'https://rachayitha-dashboard.vercel.app/',
     forLoggedInOnly: true,
   },
   {
