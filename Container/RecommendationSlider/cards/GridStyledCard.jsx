@@ -117,10 +117,9 @@ const SmallImageList = styled.div`
 `
 
 const SmallImage = styled.img`
-  height: 100%;
   object-fit: cover;
   border-radius: 6px;
-  aspect-ratio: 355/476;
+  aspect-ratio: 355/466;
   border: 0px;
 `
 
