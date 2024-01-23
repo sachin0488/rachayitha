@@ -35,7 +35,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           })
         }
       }}>
-      <TopReachedView
+      {/* <TopReachedView
         as="div"
         threshold={0}
         delay={200}
@@ -43,11 +43,12 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           if (!disabledReachEvent && inView && isFirstChapter) {
             onReachedStart()
           }
-        }}>
-        <ChapterName variant="h5" component="div" color="secondary">
-          Chapter: {item?.chapterSequence} {item?.chapterTitle}
-        </ChapterName>
-      </TopReachedView>
+        }}
+        > */}
+      <ChapterName variant="h5" component="div" color="secondary">
+        Chapter: {item?.chapterSequence} {item?.chapterTitle}
+      </ChapterName>
+      {/* </TopReachedView> */}
       {isLoggedIn ? (
         <>
           {item.isLocked ? (
@@ -68,7 +69,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
         <SigninWall />
       )}
 
-      <BottomReachedView
+      {/* <BottomReachedView
         as="div"
         threshold={0}
         delay={200}
@@ -76,7 +77,8 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           if (!disabledReachEvent && inView && isLastChapter) {
             onReachedEnd()
           }
-        }}>
+        }}> */}
+      <BottomReachedView>
         <DividerBar />
       </BottomReachedView>
     </Root>
@@ -93,11 +95,14 @@ const Root = styled(InView)`
   padding-bottom: 10px;
 `
 
-const TopReachedView = styled(InView)``
+// const TopReachedView = styled(InView)``
 
-const BottomReachedView = styled(InView)`
+const BottomReachedView = styled.div`
   margin-top: auto;
 `
+// const BottomReachedView = styled(InView)`
+//   margin-top: auto;
+// `
 
 const ChapterName = styled(Typography)`
   font-weight: 600;

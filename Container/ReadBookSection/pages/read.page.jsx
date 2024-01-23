@@ -118,16 +118,18 @@ const ReadBookPage = () => {
         const isScrolledToTop = event.target?.scrollTop === 0
 
         if (isScrolledToTop) {
-          if (!isMobile) handleScrolledTop()
+          // if (!isMobile)
+          handleScrolledTop()
         }
 
-        if (isScrolledToBottom && !isMobile) {
+        if (isScrolledToBottom) {
+          //&& !isMobile
           handleScrolledBottom()
         }
       }
     },
 
-    [handleScrolledBottom, handleScrolledTop, isLoading, isMobile],
+    [handleScrolledBottom, handleScrolledTop, isLoading],
   )
 
   const handleOpenChapterModal = useCallback(() => {
