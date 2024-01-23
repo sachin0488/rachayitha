@@ -7,7 +7,7 @@ import { Toolbar, useTheme, useMediaQuery } from '@mui/material'
 import StyledNavButton from './components/StyledNavButton'
 
 // Icons ---
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded'
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import { useCallback } from 'react'
 import ProfileButton from './components/ProfileButton'
 import LogoBox from './components/LogoBox'
@@ -101,19 +101,20 @@ const BackdropProps = {
 const HeaderBar = ({ isMobile, handleSideBarClose }) => {
   return (
     <RootHeaderBar>
-      <LogoBox />
-      <IconButton color="primary" sx={{ marginLeft: 'auto' }} onClick={handleSideBarClose}>
-        <ChevronLeftRoundedIcon style={{ fontSize: 40 }} />
+      {/* <LogoBox /> */}
+      <IconButton color="secondary" onClick={handleSideBarClose}>
+        <ChevronRightRoundedIcon style={{ fontSize: 40 }} />
       </IconButton>
     </RootHeaderBar>
   )
 }
 const RootHeaderBar = styled(Toolbar)`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
   && {
-    padding-left: 25px;
+    /* padding-left: 25px; */
     padding-right: 8px;
   }
 `

@@ -57,7 +57,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
               chapterId={item?.chapterId}
               chapterSequence={item?.chapterSequence}
               chapterTitle={item?.chapterTitle}
-              isPaid={!item?.isPaid}
+              isPaid={item?.isPaid}
               isAvailableInSubscription={item?.isAvailableInSubscription}
             />
           ) : (

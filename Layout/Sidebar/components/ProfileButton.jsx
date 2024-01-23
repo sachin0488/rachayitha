@@ -26,8 +26,8 @@ const Root = styled(Button)`
   width: calc(100% - 25px);
   justify-content: flex-start;
   border-radius: 13px;
-  background: ${({ theme }) => theme.palette.primary.main}1f;
-  backdrop-filter: blur(40px);
+  background: ${({ theme }) => theme.palette.primary.main}10;
+  backdrop-filter: blur(4px);
 `
 
 const Username = styled(Typography)`

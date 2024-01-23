@@ -84,6 +84,7 @@ const Root = styled.div`
   margin-bottom: auto;
   width: 70%;
   align-self: center;
+  box-shadow: 0px 0px 50px 10px ${({ theme }) => theme.palette.primary.main}17;
 `
 
 const PaymentButtons = styled.div`

@@ -102,7 +102,7 @@ const ImageSection = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 285px;
+  height: 281.25px;
   object-fit: cover;
   border-radius: 10px;
   aspect-ratio: 355/466;

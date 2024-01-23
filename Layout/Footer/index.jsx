@@ -110,21 +110,22 @@ const Main = styled.div`
     grid-template-columns: 80px 80px 160px 1fr 360px;
   }
 
-  @media (max-width: 860px) {
-    display: flex;
-    flex-direction: column;
-  }
   max-width: 1620px;
   width: 100%;
   margin-inline: 50px;
   @media (max-width: 1000px) {
     margin-inline: 30px;
   }
-  @media (max-width: 435px) {
+  @media (max-width: 860px) {
+    display: flex;
+    flex-direction: column;
     margin-inline: 15px;
   }
+  @media (max-width: 435px) {
+    margin-inline: 2px;
+  }
   @media (max-width: 405px) {
-    margin-inline: 15px;
+    margin-inline: 0px;
   }
 `
 
@@ -170,8 +171,8 @@ const SocialLinks = styled.div`
 
 const Divider = styled.div`
   width: 100%;
-  height: 2px;
-  background: ${({ theme }) => theme.palette.secondary.main}a0;
+  height: 1.5px;
+  background: ${({ theme }) => theme.palette.secondary.main}17;
   margin-block: 10px;
 
   @media (min-width: 860px) {

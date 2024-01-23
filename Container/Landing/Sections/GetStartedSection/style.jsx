@@ -18,4 +18,8 @@ export const SubHeading = styled(Typography)`
   font-size: 1.75em;
   text-align: center;
   color: ${props => props.theme.palette.secondary.main};
+
+  @media (max-width: 450px) {
+    font-size: 2em;
+  }
 `

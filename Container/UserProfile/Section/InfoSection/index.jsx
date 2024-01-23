@@ -18,7 +18,7 @@ import { useUserService } from 'Container/Auth/service/User.service'
 import useCurrentSubscriptionService from 'Container/Payment/services/CurrentSubscription.service'
 
 const InfoSection = () => {
-  const { user } = useUserService()
+  const { user, isEmailVerified } = useUserService()
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
   const { validityTill, isSubscribed } = useCurrentSubscriptionService()
   const genderIcon = gender => {
@@ -61,33 +61,35 @@ const InfoSection = () => {
           text={`birthday - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
         />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
-        <NavList>
-          <Row>
-            <Link href="/coin-plan">
-              <a>
-                <StyledAddCoinButton disableElevation color="primary" variant="contained">
-                  Buy Coins
-                </StyledAddCoinButton>
-              </a>
-            </Link>
-          </Row>
-          <Row>
-            <Link href="/subscription-plan">
-              <a>
-                <StyledSubscribeButton disableElevation color="secondary" variant="contained">
-                  Subscribe
-                </StyledSubscribeButton>
-              </a>
-            </Link>
-            <Link href="/vote-coin-plan">
-              <a>
-                <StyledSubscribeButton disableElevation color="secondary" variant="contained">
-                  Buy Vote Coins
-                </StyledSubscribeButton>
-              </a>
-            </Link>
-          </Row>
-        </NavList>
+        {isEmailVerified && (
+          <NavList>
+            <Row>
+              <Link href="/coin-plan">
+                <a>
+                  <StyledAddCoinButton disableElevation color="primary" variant="contained">
+                    Buy Coins
+                  </StyledAddCoinButton>
+                </a>
+              </Link>
+            </Row>
+            <Row>
+              <Link href="/subscription-plan">
+                <a>
+                  <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                    Subscribe
+                  </StyledSubscribeButton>
+                </a>
+              </Link>
+              <Link href="/vote-coin-plan">
+                <a>
+                  <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                    Buy Vote Coins
+                  </StyledSubscribeButton>
+                </a>
+              </Link>
+            </Row>
+          </NavList>
+        )}
         {isSubscribed && (
           <SubscribedFlag variant="subtitle2" component="div" color="secondary">
             Your Subscription is valid till {moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}

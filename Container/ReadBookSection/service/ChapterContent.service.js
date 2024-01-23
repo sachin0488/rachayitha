@@ -64,17 +64,13 @@ export const useChapterContentService = ({ bookId }) => {
 
 export const useBookChapterContentFCService = () => {
   const queryClient = useQueryClient()
-  const { chapterContentCache, setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
+  const { setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async ({ chapterId, bookId }) => {
-      if (chapterContentCache?.[chapterId]) {
-        return chapterContentCache?.[chapterId]
-      } else {
-        const response = await fetchChapterContentAPI({ bookId, chapterId })
+      const response = await fetchChapterContentAPI({ bookId, chapterId })
 
-        return response
-      }
+      return response
     },
     onSuccess: data => {
       setChapterContentInCacheByChapterId({

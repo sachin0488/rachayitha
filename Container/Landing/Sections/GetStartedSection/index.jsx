@@ -44,6 +44,7 @@ const Root = styled.div`
   }
   @media (max-width: 460px) {
     font-size: 8px;
+    /* align-items: flex-start; */
   }
   @media (max-width: 410px) {
     font-size: 7.5px;

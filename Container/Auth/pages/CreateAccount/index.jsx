@@ -43,7 +43,7 @@ const CreateAccountPage = () => {
         <Body onSubmit={methods.handleSubmit(handleCreateAccount, handleFormError)}>
           <FormProvider {...methods}>
             <TextSection>
-              <TitleText variant="h4">Welcome</TitleText>
+              <TitleText variant="h3">Welcome</TitleText>
               <DescriptionText variant="subtitle2">
                 Join us today and start enjoying all the benefits of being a member. Please fill out the form below to create your account.
               </DescriptionText>
@@ -54,11 +54,11 @@ const CreateAccountPage = () => {
             <StyledDateSelector name="birthDate" label="Birth Date" />
 
             <StyledTextField name="bio" label="Bio" placeholder="Enter your bio ..." multiline />
-            <StyledFieldGroup as="div" >
+            <StyledFieldGroup as="div">
               <StyledFormLabel>Select Gender</StyledFormLabel>
-              <StyledRadioGroup name="gender" row >
+              <StyledRadioGroup name="gender" row>
                 {GenderList.map(({ label, value }) => (
-                  <StyledRadioBox key={value} label={label} value={value}  />
+                  <StyledRadioBox key={value} label={label} value={value} />
                 ))}
               </StyledRadioGroup>
             </StyledFieldGroup>
@@ -124,6 +124,7 @@ const Root = styled.div`
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   @media (min-width: 480px) {
@@ -131,37 +132,43 @@ const Root = styled.div`
     background: linear-gradient(141deg, rgba(81, 34, 192, 1) 0%, #966afc 100%);
   }
   @media (max-width: 480px) {
-    min-height: 980px;
-    overflow: hidden;
+    height: fit-content;
     width: 100%;
   }
 `
 
 const Main = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   max-width: 400px;
   @media (min-width: 480px) {
     box-shadow: 10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}20,
       10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}10;
-    border-radius: 10px;
+    border-radius: 18px;
   }
   @media (min-width: 480px) {
     overflow: hidden;
   }
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
 `
 
 const Body = styled.form`
-  background: rgb(255, 255, 255);
   padding: 30px 25px;
-  border-radius: 18px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 17px;
 
   @media (min-width: 480px) {
-    max-height: calc(100vh - 20px);
+    border-radius: 18px;
+    background: rgb(255, 255, 255);
     overflow-y: auto;
+    max-height: calc(100vh - 20px);
   }
+  backdrop-filter: blur(10px);
 `
 
 const DeignsIcon = styled(MenuBookOutlinedIcon)`
@@ -173,25 +180,8 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
   transform: rotate(-45deg);
   @media (max-width: 480px) {
     font-size: 280px;
-    color: ${({ theme }) => theme.palette.primary.main}1f;
+    color: ${({ theme }) => theme.palette.primary.main}37;
   }
-`
-
-const BackgroundIcon = styled.img`
-  position: absolute;
-  width: 300px;
-  bottom: 0px;
-  right: 25px;
-  rotate: -25deg;
-
-  @media (max-width: 480px) {
-    width: 250px;
-    bottom: 0px;
-    right: 15px;
-    rotate: -25deg;
-  }
-
-  /* width: 300px; */
 `
 
 const TextSection = styled.div`
@@ -211,7 +201,6 @@ const TitleText = styled(Typography)`
 
 const DescriptionText = styled(Typography)`
   font-weight: 500;
-  /* margin-left: 4px; */
   color: ${({ theme }) => theme.palette.secondary.main}a2;
 `
 

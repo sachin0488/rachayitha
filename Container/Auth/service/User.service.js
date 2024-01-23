@@ -23,6 +23,7 @@ export const useUserService = () => {
 
   return {
     isLoading: isFetching,
+    isEmailVerified: data?.user?.isEmailVerified || false,
     isSuccess,
     isError,
     refetch,
@@ -36,6 +37,7 @@ export const useUserService = () => {
       email: data?.user?.email || '',
       birthDate: data?.user?.birthDate || '',
       bio: data?.user?.bio || '',
+      isMonetizationEnabled: data?.user?.isMonetizationEnabled || false,
       coins: {
         coin: data?.user?.coins?.coin || 0,
         voteToken: data?.user?.coins?.voteToken || 0,
@@ -115,6 +117,8 @@ const formatUserData = res => {
     email: res?.data?.user?.email || '',
     birthDate: res?.data?.user?.birth_date || '',
     bio: res?.data?.user?.bio || '',
+    isMonetizationEnabled: res?.data?.user?.is_monetization_enabled || false,
+    isEmailVerified: res?.data?.user?.is_email_verified || false,
     coins: {
       coin: res?.data?.user?.coins?.coin || 0,
       voteToken: res?.data?.user?.coins?.votetoken || 0,

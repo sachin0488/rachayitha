@@ -34,7 +34,7 @@ export const Root = styled.div`
 
   height: 56px;
   border-radius: 10px;
-  border: 1px solid #5624c1;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
   padding-left: 5px;
 
   gap: 0px;
@@ -50,8 +50,10 @@ export const Root = styled.div`
   }
 
   @media (max-width: 580px) {
-    width: 80vw;
+    /* width: 80vw; */
     padding-left: 0px;
+  }
+  @media (max-width: 460px) {
   }
 
   @media (max-width: 380px) {
@@ -73,7 +75,7 @@ export const InputField = styled.input`
   border: 0px;
   background-color: transparent;
   font-size: 1.3em;
-  color: gray;
+  color: ${({ theme }) => theme.palette.secondary.main};
   outline: 0;
   width: fit-content;
   @media (max-width: 510px) {
@@ -87,6 +89,10 @@ export const InputField = styled.input`
   @media (max-width: 350px) {
     font-size: 0.87rem;
   }
+  ::placeholder {
+    color: ${({ theme }) => theme.palette.secondary.light};
+    opacity: 0.8;
+  }
 `
 
 export const GetStartedButton = styled(Button)`
@@ -98,12 +104,12 @@ export const GetStartedButton = styled(Button)`
   font-weight: 500;
   width: fit-content;
   padding-inline: 20px;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 9.8px 9.8px 0px;
   @media (max-width: 510px) {
     font-size: 1.6em;
   }
   @media (max-width: 390px) {
-    padding: 5px 10px 3px;
+    /* padding: 5px 10px 3px; */
     font-size: 0.82rem;
   }
   @media (max-width: 350px) {

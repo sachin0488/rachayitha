@@ -6,19 +6,28 @@ import SearchModal from './Modal'
 const SearchBoxWithModal = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const isTabletSM = useMediaQuery('(min-width:1070px)')
+  const isMobileXS = useMediaQuery('(max-width:590px)')
 
   return (
     <>
       <SearchModal open={isModalOpen} setOpen={setModalOpen} />
-      <Search onClick={() => setModalOpen(true)}>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder={isTabletSM ? 'Search Novels, poems and many more…' : 'Search here...'}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </Search>
+      {isMobileXS ? (
+        <Search onClick={() => setModalOpen(true)}>
+          <SearchIconWrapperForMobile>
+            <SearchIcon />
+          </SearchIconWrapperForMobile>
+        </Search>
+      ) : (
+        <Search onClick={() => setModalOpen(true)}>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder={isTabletSM ? 'Search Novels, poems and many more…' : 'Search here...'}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </Search>
+      )}
     </>
   )
 }
@@ -46,6 +55,16 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   height: '100%',
   position: 'absolute',
   pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: theme.palette.primary.main,
+}))
+
+const SearchIconWrapperForMobile = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0.8, 1.3, 0.8, 1.3),
+  height: '100%',
+  pointerEvents: 'visible',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
