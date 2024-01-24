@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
     router.pathname === '/otp' ||
     router.pathname === '/forgot-password' ||
     router.pathname === '/new-password' ||
-    router.pathname.includes('/read')
+    router.pathname.includes('/read/')
   )
 
   const handleSidebarOpen = useCallback(() => {
