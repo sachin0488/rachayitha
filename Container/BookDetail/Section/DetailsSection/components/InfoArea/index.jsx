@@ -99,7 +99,7 @@ const InfoArea = () => {
       <RatingBar avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data?.totalRatingCount} />
 
       <ButtonList>
-        <Link href={`/book/${query?.bookId}/read/${Data?.chapter?.[0]?.id}`}>
+        <Link href={`/book/${query?.bookId}/${query?.slug}/read/${Data?.chapter?.[0]?.id}`}>
           <a>
             <Button variant="contained" endIcon={<ArrowForwardRoundedIcon />}>
               Read

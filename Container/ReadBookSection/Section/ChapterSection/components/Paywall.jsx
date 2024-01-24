@@ -77,13 +77,13 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   /* height: 100%; */
-  border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
   border-radius: 13px;
   padding: 20px 10px;
   margin-top: auto;
   margin-bottom: auto;
   width: 70%;
   align-self: center;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
   box-shadow: 0px 0px 50px 10px ${({ theme }) => theme.palette.primary.main}17;
 `
 

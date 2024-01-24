@@ -30,7 +30,7 @@ const DetailsSection = () => {
         </AuthorName>
       </InfoSection>
       <Copyright>
-        <span className="symbol">©</span> E Book
+        <span className="symbol">©</span> rachayitha
       </Copyright>
       <DividerBar />
     </Root>

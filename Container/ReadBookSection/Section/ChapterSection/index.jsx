@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { Button, Typography } from '@mui/material'
+import { Typography, useMediaQuery } from '@mui/material'
 import { InView } from 'react-intersection-observer'
 
 import DividerBar from 'Container/ReadBookSection/components/DividerBar'
-import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
-import InfoModal from 'Components/StyledModal/InfoModal'
-import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
+// import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
+// import InfoModal from 'Components/StyledModal/InfoModal'
+// import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
 import Paywall from './components/Paywall'
 import { useUserService } from 'Container/Auth/service/User.service'
 import SigninWall from './components/SigninWall'
@@ -14,6 +14,7 @@ import SigninWall from './components/SigninWall'
 const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEvent, onReachedStart, onReachedEnd }) => {
   const { query, replace } = useRouter()
   const { isLoggedIn } = useUserService()
+  const isMobile = useMediaQuery('(max-width:630px)')
   return (
     <Root
       id={`chapter-${item?.chapterId}`}
@@ -21,7 +22,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
       threshold={0}
       delay={200}
       onChange={(inView, entry) => {
-        if (inView) {
+        if (inView && isMobile === false) {
           replace(
             {
               pathname: `/book/${query.bookId}/${query.slug}/read/${item?.chapterId}`,
@@ -51,7 +52,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
       {/* </TopReachedView> */}
       {isLoggedIn ? (
         <>
-          {item.isLocked ? (
+          {item?.isLocked ? (
             <Paywall
               coinRequired={item?.coinRequired}
               bookId={item?.bookId}
