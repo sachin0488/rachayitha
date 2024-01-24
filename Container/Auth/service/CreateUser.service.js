@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { getFormErrorMessage } from 'hooks/useFormError'
+import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
@@ -12,18 +13,33 @@ export const useCreateAccountService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
   const queryClient = useQueryClient()
+  const { isSessionActive, isEmailVerified, user, mutate: checkVerificationStatus, setAuthAdopter } = useEmailVerificationStatusService()
 
-  const { mutate, isLoading, isSuccess } = useMutation({
+  const { mutate, isLoading, isSuccess, data } = useMutation({
     mutationFn: createAccountAPI,
-    onSuccess({ tokens, message, isMessageVisible }) {
-      setAccess(tokens?.access)
-      setRefresh(tokens?.refresh)
+    onSuccess({ tokens, message, isEmailVerified, isMessageVisible }) {
+      if (isEmailVerified) {
+        setAccess(tokens?.access)
+        setRefresh(tokens?.refresh)
 
-      queryClient.invalidateQueries([AuthQuery.USER_DATA])
+        queryClient.invalidateQueries([AuthQuery.USER_DATA])
 
-      enqueueSnackbar(message || 'Your Account has been Created Successfully !', {
-        variant: 'success',
-      })
+        enqueueSnackbar(message || 'Your Account has been Created Successfully !', {
+          variant: 'success',
+        })
+      } else {
+        setAuthAdopter({
+          accessToken: tokens?.access,
+          refreshToken: tokens?.refresh,
+          rememberMe: true,
+        })
+        setTimeout(() => {
+          checkVerificationStatus()
+        }, 50)
+        enqueueSnackbar(message || 'Please verify your email to login', {
+          variant: 'error',
+        })
+      }
     },
     onError: error => {
       if (error.response?.data?.errors)
@@ -43,7 +59,15 @@ export const useCreateAccountService = () => {
 
   const handleCreateAccount = mutate
 
-  return { handleCreateAccount, isLoading, isSuccess }
+  return {
+    handleCreateAccount,
+    isLoading,
+    isSuccess,
+    isEmailVerified: isEmailVerified,
+    user: user || data?.user,
+    isSessionActive,
+    checkVerificationStatus,
+  }
 }
 
 const createAccountAPI = async ({ username, email, password, bio, fullName, birthDate, gender }) => {

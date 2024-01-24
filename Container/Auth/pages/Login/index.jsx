@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { Button, CircularProgress, Typography } from '@mui/material'
@@ -11,9 +11,11 @@ import useFormError from 'hooks/useFormError'
 import { useLoginService } from 'Container/Auth/service/Login.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import VerifyEmailModal from '../VerifyEmailModal'
 
 const LoginPage = () => {
-  const { handleLogin, isLoading } = useLoginService()
+  const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
+  const { handleLogin, isLoading, user, isEmailVerified, isSessionActive, checkVerificationStatus, isSuccess } = useLoginService()
   const { handleFormError } = useFormError()
 
   const methods = useForm({
@@ -24,18 +26,28 @@ const LoginPage = () => {
     },
   })
 
+  useEffect(() => {
+    if (isSuccess && isEmailVerified === false) {
+      setIsVerifyModalOpen(true)
+    }
+  }, [isSuccess, isEmailVerified])
+
+  useEffect(() => {
+    if (isSuccess && isSessionActive === false) {
+      setIsVerifyModalOpen(false)
+    }
+  }, [isSuccess, isEmailVerified, isSessionActive])
+
   return (
     <Root>
       <DeignsIcon />
-
+      <VerifyEmailModal open={isVerifyModalOpen} checkVerificationStatus={checkVerificationStatus} user={user} />
       <Main>
         <Body>
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h4">Welcome Back</TitleText>
-              <DescriptionText variant="subtitle2">
-                Please enter your credentials below to log in and access your account.
-              </DescriptionText>
+              <DescriptionText variant="subtitle2">Please enter your credentials below to log in and access your account.</DescriptionText>
             </TextSection>
             <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
             <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
@@ -57,11 +69,7 @@ const LoginPage = () => {
               </Link>
               <StyledButton
                 disabled={isLoading}
-                startIcon={
-                  isLoading && (
-                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
-                  )
-                }
+                startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
                 variant="contained"
                 onClick={methods.handleSubmit(handleLogin, handleFormError)}>
                 Login

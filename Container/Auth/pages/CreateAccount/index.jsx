@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import * as yup from 'yup'
@@ -18,9 +18,12 @@ import { useCreateAccountService } from 'Container/Auth/service/CreateUser.servi
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import StyledDateSelector from 'Container/Auth/components/FormComponents/StyledDateSelector'
+import VerifyEmailModal from '../VerifyEmailModal'
 
 const CreateAccountPage = () => {
-  const { handleCreateAccount, isLoading } = useCreateAccountService()
+  const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
+  const { handleCreateAccount, isLoading, user, isEmailVerified, isSessionActive, checkVerificationStatus, isSuccess } =
+    useCreateAccountService()
   const { handleFormError } = useFormError()
 
   const methods = useForm({
@@ -35,10 +38,22 @@ const CreateAccountPage = () => {
     },
   })
 
+  useEffect(() => {
+    if (isSuccess && isEmailVerified === false) {
+      setIsVerifyModalOpen(true)
+    }
+  }, [isSuccess, isEmailVerified])
+
+  useEffect(() => {
+    if (isSuccess && isSessionActive === false) {
+      setIsVerifyModalOpen(false)
+    }
+  }, [isSuccess, isEmailVerified, isSessionActive])
+
   return (
     <Root>
       <DeignsIcon />
-
+      <VerifyEmailModal open={isVerifyModalOpen} checkVerificationStatus={checkVerificationStatus} user={user} />
       <Main>
         <Body onSubmit={methods.handleSubmit(handleCreateAccount, handleFormError)}>
           <FormProvider {...methods}>
