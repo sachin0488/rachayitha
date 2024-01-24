@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 
-const DividerBar = (props) => {
+const DividerBar = props => {
   return (
     <Root {...props}>
       <Bar />

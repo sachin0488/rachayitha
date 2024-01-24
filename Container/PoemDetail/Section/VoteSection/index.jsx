@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
 import { Button, CircularProgress, Skeleton, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { blue } from '@mui/material/colors'
@@ -13,17 +13,28 @@ import AddTaskRoundedIcon from '@mui/icons-material/AddTaskRounded'
 import HowToVoteRoundedIcon from '@mui/icons-material/HowToVoteRounded'
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded'
 import KeyboardDoubleArrowUpRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowUpRounded'
+import InfoModal from 'Components/StyledModal/InfoModal'
+import { useUserService } from 'Container/Auth/service/User.service'
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
+import Link from 'next/link'
 
 const VoteSection = () => {
   const isMobile = useMediaQuery('(max-width: 500px)')
   const { query } = useRouter()
   const { Data, isLoading } = usePoemDetailsService({ poemId: query?.poemId })
-
+  const [isVoteModalOpen, setVoteModalOpen] = useState(false)
   const { isFetching, Data: VoteData } = useFetchVoteService({ poemId: query?.poemId })
-  const { isLoading: isMutating, mutate } = useCreateVoteService({ poemId: query?.poemId })
+  const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ poemId: query?.poemId })
+  const { isLoggedIn } = useUserService()
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
+
+  useEffect(() => {
+    if (isSuccess) {
+      setVoteModalOpen(false)
+    }
+  }, [isSuccess])
 
   if (isLoading || isFetching)
     return (
@@ -39,8 +50,16 @@ const VoteSection = () => {
       <Main>
         <Field>
           <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
-          <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Poem</Text>
+          <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Novel</Text>
         </Field>
+        <InfoModal
+          messageNotice={`Are you sure you want to vote this poem named ${Data?.poemName}?`}
+          open={isVoteModalOpen}
+          setOpen={setVoteModalOpen}
+          isLoading={isMutating}
+          buttonText={`Yes, let's Vote`}
+          onClickOk={mutate}
+        />
         <Bottom>
           <InfoSection>
             <Tooltip title="Ranking">
@@ -61,9 +80,11 @@ const VoteSection = () => {
             </Tooltip>
           </InfoSection>
           {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
-          {isAlreadyVoted && (
-            <Tooltip title="Your vote for this Poem">
+          {isLoggedIn && isAlreadyVoted && (
+            <Tooltip title="Your vote for this Novel">
               <VoteButton
+                disableElevation
+                disableRipple
                 is_voted={String(isAlreadyVoted)}
                 is_mutating={String(isFetching)}
                 variant="contained"
@@ -77,15 +98,40 @@ const VoteSection = () => {
               </VoteButton>
             </Tooltip>
           )}
-          <Tooltip title="Vote This poem">
-            <AddVoteButton disabled={isMutating} is_mutating={String(isMutating)} variant="contained" color={'primary'} onClick={mutate}>
-              {isMutating ? (
-                <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
-              ) : (
-                <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
-              )}
-            </AddVoteButton>
-          </Tooltip>
+          {isLoggedIn ? (
+            <Tooltip title="Vote This poem">
+              <AddVoteButton
+                disabled={isMutating}
+                is_mutating={String(isMutating)}
+                variant="contained"
+                color="primary"
+                onClick={() => setVoteModalOpen(true)}>
+                <div>
+                  {isMutating ? (
+                    <CircularProgress size={35} thickness={7} sx={{ color: theme => theme.palette.primary.main }} />
+                  ) : (
+                    <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
+                  )}
+                </div>
+                <Typography variant="subtitle2">Vote</Typography>
+              </AddVoteButton>
+            </Tooltip>
+          ) : (
+            <Link href="/login">
+              <a>
+                <Button
+                  variant="contained"
+                  sx={{
+                    gap: '5px',
+                    padding: '10px 18px',
+                    boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
+                  }}>
+                  <Typography variant="subtitle2">Sign in</Typography>
+                  <LoginRoundedIcon />
+                </Button>
+              </a>
+            </Link>
+          )}
         </Bottom>
       </Main>
     </Root>
@@ -176,10 +222,10 @@ const Bottom = styled.div`
     justify-content: space-between;
   }
   @media (max-width: 375px) {
-    /* flex-wrap: wrap; */
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    flex-direction: column;
+    /* display: grid; */
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr; */
   }
 `
 
@@ -226,6 +272,7 @@ const InfoSection = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    height: 51px;
   }
 `
 
@@ -233,7 +280,7 @@ const VoteButton = styled(Button)`
   border-radius: 15px;
   box-shadow: none;
   min-width: 75px;
-  /* width: 75px; */
+
   && {
     color: ${({ is_voted }) => is_voted === 'true' && '#fff'};
     background: ${({ theme, is_voted, is_mutating }) =>
@@ -262,8 +309,24 @@ const AddVoteButton = styled(Button)`
       is_mutating === 'true' ? theme.palette.primary.main + '18' : is_voted === 'true' && theme.palette.secondary.main};
   }
 
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -6px;
+    margin-top: -2px;
+  }
+
   @media (max-width: 375px) {
     width: 100%;
+    flex-direction: row;
+    & > div {
+      margin-bottom: 6px;
+      margin-top: 2px;
+    }
   }
 `
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import {  Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useCallback } from 'react'
 import ChapterBar from './ChapterBar'
 import { StyledModal } from 'Components/StyledModal'

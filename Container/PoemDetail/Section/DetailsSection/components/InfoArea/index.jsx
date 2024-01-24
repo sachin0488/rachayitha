@@ -17,14 +17,20 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import Link from 'next/link'
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded'
 import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
-import InfoModal from 'Components/StyledModal/InfoModal'
+import InfoModal, { InfoModalType } from 'Components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
+import { useUserService } from 'Container/Auth/service/User.service'
 
 const InfoArea = () => {
   const { query } = useRouter()
   const { Data } = usePoemDetailsService({ poemId: query?.poemId })
-  const { mutate, isLoading, isError, isSuccess } = useInternalPurchaseService()
+  const { mutate, isLoading, isError, isSuccess, message } = useInternalPurchaseService({
+    disableSnackbar: true,
+  })
+  const { isLoggedIn } = useUserService()
   const [isPurchaseModalOpen, setPurchaseModalOpen] = useState(false)
+  const [purchaseFeedbackModalType, setPurchaseFeedbackModalType] = useState(InfoModalType.Default)
+  const [isPurchaseFeedbackModalOpen, setPurchaseFeedbackModalOpen] = useState(false)
 
   const handlePayClick = useCallback(
     ({ amount, id }) =>
@@ -42,6 +48,16 @@ const InfoArea = () => {
     if (isSuccess || isError) {
       setPurchaseModalOpen(false)
     }
+
+    if (isSuccess) {
+      setPurchaseFeedbackModalType(InfoModalType.SUCCESS)
+      setPurchaseFeedbackModalOpen(true)
+    }
+
+    if (isError) {
+      setPurchaseFeedbackModalType(InfoModalType.ERROR)
+      setPurchaseFeedbackModalOpen(true)
+    }
   }, [isSuccess, isError])
 
   return (
@@ -54,6 +70,16 @@ const InfoArea = () => {
         buttonText={'Purchase'}
         onClickOk={handlePayClick({ amount: Data?.price, id: Data?.poemId })}
       />
+      <InfoModal
+        type={purchaseFeedbackModalType}
+        messageNotice={message || ''}
+        open={isPurchaseFeedbackModalOpen}
+        setOpen={setPurchaseFeedbackModalOpen}
+        isLoading={isLoading}
+        cancelButtonText={'Close'}
+        disableOkButton
+      />
+
       <PoemName variant="h3" component="div">
         {Data?.poemName}
       </PoemName>
@@ -73,7 +99,7 @@ const InfoArea = () => {
       <RatingBar avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data?.totalRatingCount} />
 
       <ButtonList>
-        <Link href={`/poem/${query?.poemId}/read/${Data?.chapter?.[0]?.id}`}>
+        <Link href={`/poem/${query?.poemId}/${query?.slug}/read/${Data?.chapter?.[0]?.id}`}>
           <a>
             <Button variant="contained" endIcon={<ArrowForwardRoundedIcon />}>
               Read
@@ -96,8 +122,8 @@ const InfoArea = () => {
             )}
           </>
         ) : null}
-        <ToggleToLibraryButton poemId={query?.poemId} libraryAdded={Data?.libraryAdded} />
-        <LikeButton poemId={query?.poemId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
+        {isLoggedIn && <ToggleToLibraryButton poemId={query?.poemId} libraryAdded={Data?.libraryAdded} />}
+        <LikeButton disabled={!isLoggedIn} poemId={query?.poemId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
         <MoreOptions poemId={query?.poemId} />
       </ButtonList>
     </Root>
@@ -132,7 +158,7 @@ const StyledButton = styled(Button)`
   span.price {
     margin-left: 5px;
     background: #ffffff30;
-    line-height: 1;
+    line-height: 1.2;
     padding: 4px 5px;
     border-radius: 5px;
     display: flex;
@@ -149,6 +175,7 @@ const StyledPurchasedButton = styled(Button)`
 
 const ButtonList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 5px;
 `

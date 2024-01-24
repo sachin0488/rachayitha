@@ -20,7 +20,7 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
   }, [chapterId, handleClose, reload])
 
   return (
-    <Link href={`/poem/${query.poemId}/read/${chapterId}`}>
+    <Link href={`/poem/${query.poemId}/${query.slug}/read/${chapterId}`}>
       <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>

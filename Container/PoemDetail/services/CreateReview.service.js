@@ -29,7 +29,16 @@ const createReviewAPI = async ({ poemId, comment, parameter1, parameter2, parame
 
   const [commentResponse, ratingResponse] = await Promise.all([commentAPI, ratingAPI])
 
-  return { commentResponse, ratingResponse }
+  return {
+    comment: {
+      message: commentResponse?.data?.info?.visible?.message || '',
+      isMessageVisible: !!commentResponse?.data?.info?.visible?.message,
+    },
+    rating: {
+      message: ratingResponse?.data?.info?.visible?.message || '',
+      isMessageVisible: !!ratingResponse?.data?.info?.visible?.message,
+    },
+  }
 }
 
 export const useCreateReviewService = ({ poemId, sortBy }) => {
@@ -48,19 +57,30 @@ export const useCreateReviewService = ({ poemId, sortBy }) => {
         parameter5,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ comment, rating }) {
       queryClient.invalidateQueries({
         queryKey: [PoemDetailsQuery.COMMENT_LIST, { poemId: parseInt(poemId), parentCommentId: null, sortBy }],
       })
 
-      // enqueueSnackbar(data?.ratingResponse?.info?.visible?.message, {
-      //   variant: 'success',
-      // })
+      if (comment?.isMessageVisible)
+        enqueueSnackbar(comment?.message, {
+          variant: 'success',
+        })
+
+      if (rating?.isMessageVisible)
+        enqueueSnackbar(rating?.message, {
+          variant: 'success',
+        })
     },
     onError(error) {
-      enqueueSnackbar('Unable to post your review !', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

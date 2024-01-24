@@ -8,7 +8,7 @@ import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails
 
 const DetailsSection = () => {
   const { query } = useRouter()
-  const { Data, isLoading, isError, error } = usePoemDetailsService({ poemId: query?.poemId })
+  const { Data, isLoading, isError, error } = usePoemDetailsService({ poemId: query?.poemId, slug: query?.slug })
 
   return (
     <Root>
@@ -30,7 +30,7 @@ const DetailsSection = () => {
         </AuthorName>
       </InfoSection>
       <Copyright>
-        <span className="symbol">©</span> E Poem
+        <span className="symbol">©</span> rachayitha
       </Copyright>
       <DividerBar />
     </Root>

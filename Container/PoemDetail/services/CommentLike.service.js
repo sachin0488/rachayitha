@@ -3,8 +3,8 @@ import { PoemDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 
-const likeCommentAPI = ({ poemId, commentId }) => {
-  return APIInstance({
+const likeCommentAPI = async ({ poemId, commentId }) => {
+  const response = await APIInstance({
     url: '/poemlike/',
     method: 'POST',
     data: {
@@ -12,6 +12,11 @@ const likeCommentAPI = ({ poemId, commentId }) => {
       poem_comment_id: commentId || '',
     },
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useCommentLikeService = ({ poemId, commentId, parentCommentId, sortBy }) => {
@@ -29,7 +34,9 @@ export const useCommentLikeService = ({ poemId, commentId, parentCommentId, sort
         commentId,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ message }) {
+      let messageAlternative
+
       queryClient.setQueryData(
         [PoemDetailsQuery.COMMENT_LIST, { poemId, parentCommentId, sortBy }],
 
@@ -43,6 +50,8 @@ export const useCommentLikeService = ({ poemId, commentId, parentCommentId, sort
                     data: group?.data?.map(item => {
                       if (item?.commentId !== commentId) return item
 
+                      messageAlternative = item?.isLiked ? 'Your like has been removed !' : 'Your like has been added !'
+
                       return {
                         ...item,
                         likeCount: item?.likeCount + (item?.isLiked ? -1 : 1),
@@ -55,11 +64,20 @@ export const useCommentLikeService = ({ poemId, commentId, parentCommentId, sort
             : oldData
         },
       )
+
+      enqueueSnackbar(message || messageAlternative, {
+        variant: 'success',
+      })
     },
     onError(error) {
-      enqueueSnackbar('Unable to like poem !', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

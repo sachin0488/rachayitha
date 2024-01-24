@@ -67,11 +67,13 @@ const CreateReviewModal = ({ open, setOpen, poemId }) => {
           Share your experience
         </Title>
         <FormProvider {...methods}>
-          <StyledRatingField label="Writing Quality" name="parameter1" required />
-          <StyledRatingField label="Stability of Updates" name="parameter2" required />
-          <StyledRatingField label="Story Development" name="parameter3" required />
-          <StyledRatingField label="Character Design" name="parameter4" required />
-          <StyledRatingField label="World Background" name="parameter5" required />
+          <Body>
+            <StyledRatingField label="Writing Quality" name="parameter1" required />
+            <StyledRatingField label="Stability of Updates" name="parameter2" required />
+            <StyledRatingField label="Story Development" name="parameter3" required />
+            <StyledRatingField label="Character Design" name="parameter4" required />
+            <StyledRatingField label="World Background" name="parameter5" required />
+          </Body>
           <StyledTextField
             name="comment"
             label="Your thoughts here..."
@@ -109,6 +111,14 @@ const Main = styled.form`
   display: flex;
   flex-direction: column;
   gap: 25px;
+`
+
+const Body = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-right: auto;
 `
 
 const Title = styled(Typography)`

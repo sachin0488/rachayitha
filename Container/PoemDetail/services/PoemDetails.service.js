@@ -2,10 +2,13 @@ import { APIInstance } from 'services/global.service'
 import { PoemDetailsQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 
-const fetchPoemDetail = async poemId => {
+const fetchPoemDetail = async ({ poemId, slug }) => {
   const res = await APIInstance({
     url: `poem/${poemId}`,
     method: 'GET',
+    params: {
+      slug,
+    },
   })
 
   const item = await res?.data?.data?.[0]
@@ -88,11 +91,11 @@ const fetchPoemDetail = async poemId => {
   }
 }
 
-export const usePoemDetailsService = ({ poemId }) => {
+export const usePoemDetailsService = ({ poemId, slug }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey: [PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }],
-    queryFn: () => fetchPoemDetail(poemId),
-    enabled: Boolean(poemId),
+    queryFn: () => fetchPoemDetail({ poemId, slug }),
+    enabled: Boolean(poemId && slug),
   })
   return { Data: data, isLoading, isError, error, isFetching }
 }

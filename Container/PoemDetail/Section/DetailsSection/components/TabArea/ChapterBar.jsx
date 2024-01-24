@@ -12,7 +12,7 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
   const { query } = useRouter()
 
   return (
-    <Link href={`/poem/${query.poemId}/read/${chapterId}#chapter-${chapterId}`}>
+    <Link href={`/poem/${query.poemId}/${query.slug}/read/${chapterId}#chapter-${chapterId}`}>
       <StyledA>
         <Root>
           <ChapterText variant="subtitle1" noWrap>

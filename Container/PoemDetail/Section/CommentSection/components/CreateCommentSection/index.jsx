@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 
-import { Avatar, Button, CircularProgress, Rating, Typography } from '@mui/material'
+import { Avatar, Box, Button, CircularProgress, Rating, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import StyledTextField from 'Components/form-components/StyledTextField'
 import { useCreateCommentService } from 'Container/PoemDetail/services/CreateComment.service'
 import { usePoemDetailsService } from 'Container/PoemDetail/services/PoemDetails.service'
 import { useUserService } from 'Container/Auth/service/User.service'
+import Link from 'next/link'
 
 const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const { query } = useRouter()
-  const { user } = useUserService()
+  const { user, isLoggedIn } = useUserService()
   const { Data } = usePoemDetailsService({ poemId: query?.poemId })
-
   const { mutate, isLoading, isSuccess } = useCreateCommentService({
     poemId: query?.poemId,
     parentCommentId: parentCommentId || null,
@@ -38,6 +39,33 @@ const CreateCommentSection = ({ parentCommentId, sortBy }) => {
   const comment = methods.watch('comment')
 
   const { handleSubmit } = methods
+
+  if (!isLoggedIn) {
+    return (
+      <LoginPlaceholder>
+        <Typography variant="h6" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
+          You can comment on this poem by signing !
+        </Typography>
+        <Typography variant="subtitle2" fontWeight={500} component="div" color="secondary.light" textAlign="center">
+          {`Need an account? `}
+          <Link href="/create-account">
+            <a>
+              <Typography as="span" variant="subtitle2" fontWeight={500} component="div" color="primary" textAlign="center">
+                Create one!
+              </Typography>
+            </a>
+          </Link>
+        </Typography>
+        <Link href="/login">
+          <a>
+            <Button disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
+              Sign In
+            </Button>
+          </a>
+        </Link>
+      </LoginPlaceholder>
+    )
+  }
 
   return (
     <Root>
@@ -105,6 +133,22 @@ const Root = styled.div`
   @media (max-width: 400px) {
     padding: 5px;
   }
+`
+
+const LoginPlaceholder = styled.div`
+  padding: 25px 15px;
+  border-radius: 16px;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 650px;
+
+  @media (max-width: 400px) {
+    padding: 25px 15px;
+  }
+
+  /* box-shadow: 10px 10px 10px ${({ theme }) => theme.palette.primary.main}0c; */
 `
 
 const CommentField = styled(StyledTextField)`

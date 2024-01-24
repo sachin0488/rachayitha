@@ -1,17 +1,20 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { Button, Typography } from '@mui/material'
+import { Typography, useMediaQuery } from '@mui/material'
 import { InView } from 'react-intersection-observer'
 
 import DividerBar from 'Container/ReadPoemSection/components/DividerBar'
-import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
-import InfoModal from 'Components/StyledModal/InfoModal'
-import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
+// import ShoppingCartCheckoutRoundedIcon from '@mui/icons-material/ShoppingCartCheckoutRounded'
+// import InfoModal from 'Components/StyledModal/InfoModal'
+// import { InternalPurchaseOrderType, useInternalPurchaseService } from 'Container/Payment/services/InternalPurchase.service'
 import Paywall from './components/Paywall'
+import { useUserService } from 'Container/Auth/service/User.service'
+import SigninWall from './components/SigninWall'
 
 const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEvent, onReachedStart, onReachedEnd }) => {
   const { query, replace } = useRouter()
-
+  const { isLoggedIn } = useUserService()
+  const isMobile = useMediaQuery('(max-width:630px)')
   return (
     <Root
       id={`chapter-${item?.chapterId}`}
@@ -19,10 +22,10 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
       threshold={0}
       delay={200}
       onChange={(inView, entry) => {
-        if (inView) {
+        if (inView && isMobile === false) {
           replace(
             {
-              pathname: `/poem/${query.poemId}/read/${item?.chapterId}`,
+              pathname: `/poem/${query.poemId}/${query.slug}/read/${item?.chapterId}`,
             },
             null,
             { shallow: true },
@@ -33,7 +36,7 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           })
         }
       }}>
-      <TopReachedView
+      {/* <TopReachedView
         as="div"
         threshold={0}
         delay={200}
@@ -41,26 +44,33 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           if (!disabledReachEvent && inView && isFirstChapter) {
             onReachedStart()
           }
-        }}>
-        <ChapterName variant="h5" component="div" color="secondary">
-          Chapter: {item?.chapterSequence} {item?.chapterTitle}
-        </ChapterName>
-      </TopReachedView>
-      {item.isLocked ? (
-        <Paywall
-          coinRequired={item?.coinRequired}
-          poemId={item?.poemId}
-          chapterId={item?.chapterId}
-          chapterSequence={item?.chapterSequence}
-          chapterTitle={item?.chapterTitle}
-          isPaid={item?.isPaid}
-          isAvailableInSubscription={item?.isAvailableInSubscription}
-        />
+        }}
+        > */}
+      <ChapterName variant="h5" component="div" color="secondary">
+        Chapter: {item?.chapterSequence} {item?.chapterTitle}
+      </ChapterName>
+      {/* </TopReachedView> */}
+      {isLoggedIn ? (
+        <>
+          {item?.isLocked ? (
+            <Paywall
+              coinRequired={item?.coinRequired}
+              poemId={item?.poemId}
+              chapterId={item?.chapterId}
+              chapterSequence={item?.chapterSequence}
+              chapterTitle={item?.chapterTitle}
+              isPaid={item?.isPaid}
+              isAvailableInSubscription={item?.isAvailableInSubscription}
+            />
+          ) : (
+            <ChapterContentText dangerouslySetInnerHTML={{ __html: item?.chapterContent }} />
+          )}
+        </>
       ) : (
-        <ChapterContentText dangerouslySetInnerHTML={{ __html: item?.chapterContent }} />
+        <SigninWall />
       )}
 
-      <BottomReachedView
+      {/* <BottomReachedView
         as="div"
         threshold={0}
         delay={200}
@@ -68,7 +78,8 @@ const ChapterSection = ({ item, isFirstChapter, isLastChapter, disabledReachEven
           if (!disabledReachEvent && inView && isLastChapter) {
             onReachedEnd()
           }
-        }}>
+        }}> */}
+      <BottomReachedView>
         <DividerBar />
       </BottomReachedView>
     </Root>
@@ -85,11 +96,14 @@ const Root = styled(InView)`
   padding-bottom: 10px;
 `
 
-const TopReachedView = styled(InView)``
+// const TopReachedView = styled(InView)``
 
-const BottomReachedView = styled(InView)`
+const BottomReachedView = styled.div`
   margin-top: auto;
 `
+// const BottomReachedView = styled(InView)`
+//   margin-top: auto;
+// `
 
 const ChapterName = styled(Typography)`
   font-weight: 600;

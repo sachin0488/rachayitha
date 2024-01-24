@@ -15,25 +15,32 @@ export const useReportPoemService = ({ poemId }) => {
       if (categoryId) form.append('poemreportcategory_id', categoryId)
       else throw new Error('Category id is required!')
 
-      return await APIInstance({
+      const response = await APIInstance({
         url: `/poemreport`,
         method: 'POST',
-        // data: {
-        //   poem_id: parseInt(poemId),
-        //   poemreportcategory_id: parseInt(categoryId),
-        // },
         data: form,
       })
+
+      return {
+        message: response?.data?.info?.visible?.message || '',
+        isMessageVisible: !!response?.data?.info?.visible?.message,
+      }
     },
-    onSuccess({ data }) {
-      enqueueSnackbar(data.info.visible.message, {
-        variant: 'success',
-      })
+    onSuccess({ isMessageVisible, message }) {
+      if (isMessageVisible)
+        enqueueSnackbar(message, {
+          variant: 'success',
+        })
     },
     onError(error) {
-      enqueueSnackbar('Unable to request your query!', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 

@@ -4,10 +4,15 @@ import { useSnackbar } from 'notistack'
 import { PoemDetailsQuery } from '../constants/query.address'
 
 const createVoteAPI = async ({ poemId }) => {
-  return APIInstance({
+  const response = await APIInstance({
     url: `/poemvote/${poemId}`,
     method: 'POST',
   })
+
+  return {
+    message: response?.data?.info?.visible?.message || '',
+    isMessageVisible: !!response?.data?.info?.visible?.message,
+  }
 }
 
 export const useCreateVoteService = ({ poemId }) => {
@@ -20,18 +25,28 @@ export const useCreateVoteService = ({ poemId }) => {
         poemId,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ isMessageVisible, message }) {
       queryClient.invalidateQueries({
         queryKey: [PoemDetailsQuery.POEM_VOTE, { poemId: parseInt(poemId) }],
       })
-      enqueueSnackbar(data.info.visible.message, {
-        variant: 'success',
+      queryClient.invalidateQueries({
+        queryKey: [PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }],
       })
+
+      if (isMessageVisible)
+        enqueueSnackbar(message, {
+          variant: 'success',
+        })
     },
     onError(error) {
-      enqueueSnackbar('Unable to request your query!', {
-        variant: 'error',
-      })
+      if (error.response?.data?.error?.visible?.message)
+        enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+          variant: 'error',
+        })
+      else
+        enqueueSnackbar('Unable to perform requested action!', {
+          variant: 'error',
+        })
     },
   })
 
