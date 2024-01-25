@@ -96,9 +96,14 @@ const createAccountAPI = async ({ username, email, password, bio, fullName, birt
   return {
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
+    isEmailVerified: !!!user?.is_email_verified,
     tokens: {
       access: user?.tokens?.access,
       refresh: user?.tokens?.refresh,
+    },
+    user: {
+      fullName: user?.full_name || '',
+      email: user?.email || '',
     },
   }
 }

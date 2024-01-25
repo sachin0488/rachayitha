@@ -118,7 +118,7 @@ const formatUserData = res => {
     birthDate: res?.data?.user?.birth_date || '',
     bio: res?.data?.user?.bio || '',
     isMonetizationEnabled: res?.data?.user?.is_monetization_enabled || false,
-    isEmailVerified: res?.data?.user?.is_email_verified || false,
+    isEmailVerified: !!!res?.data?.user?.is_email_verified || false,
     coins: {
       coin: res?.data?.user?.coins?.coin || 0,
       voteToken: res?.data?.user?.coins?.votetoken || 0,

@@ -95,7 +95,7 @@ const loginAPI = async ({ email, password, otp }) => {
   return {
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
-    isEmailVerified: !!user?.is_email_verified, // TODO: add one more ! to make the logic correct
+    isEmailVerified: !!!user?.is_email_verified, // TODO: add one more ! to make the logic correct
     tokens: {
       access: user?.tokens?.access,
       refresh: user?.tokens?.refresh,
