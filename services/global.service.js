@@ -4,7 +4,7 @@ import { MutationCache, QueryCache } from '@tanstack/react-query'
 import { isBrowser } from 'utility/ssr.utility'
 import { AuthTokenStore } from 'utility/authTokenStore'
 
-const API_URL = 'https://rachayitha.com/api/v1/'
+const API_URL = 'https://api.rachayitha.com/api/v1/'
 
 export const AUTHORIZATION = 'Authorization'
 

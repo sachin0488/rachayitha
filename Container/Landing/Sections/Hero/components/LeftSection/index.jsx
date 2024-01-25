@@ -15,7 +15,7 @@ const LeftSection = () => {
         <Link href={`/explore?content_type=book&category=1&sort_by=Hot`}>
           <StyledButton variant="contained">Explore</StyledButton>
         </Link>
-        <a href={`https://rachayitha-dashboard.vercel.app/`} target="_blank" rel="noreferrer">
+        <a href={`https://editor.rachayitha.com/`} target="_blank" rel="noreferrer">
           <StyledButton variant="outlined">Create</StyledButton>
         </a>
       </ButtonContainer>

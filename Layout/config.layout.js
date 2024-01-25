@@ -22,7 +22,7 @@ export const NavPageLinks = [
     Icon: BorderColorOutlinedIcon,
     label: 'Create',
     path: '/create',
-    link: 'https://rachayitha-dashboard.vercel.app/',
+    link: 'https://editor.rachayitha.com/',
     forLoggedInOnly: true,
   },
   {

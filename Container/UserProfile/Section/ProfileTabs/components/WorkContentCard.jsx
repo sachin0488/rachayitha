@@ -16,8 +16,8 @@ const WorkContentCard = ({ item }) => {
             href={
               isLoggedIn
                 ? item?.bookId
-                  ? `https://rachayitha-dashboard.vercel.app/workspace/novel/${item.bookId}/${item?.slug}`
-                  : `https://rachayitha-dashboard.vercel.app/workspace/poem/${item.poemId}/${item?.slug}`
+                  ? `https://editor.rachayitha.com/workspace/novel/${item.bookId}/${item?.slug}`
+                  : `https://editor.rachayitha.com/workspace/poem/${item.poemId}/${item?.slug}`
                 : `/login`
             }>
             <a>
