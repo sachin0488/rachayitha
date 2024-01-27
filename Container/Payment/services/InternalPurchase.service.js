@@ -9,7 +9,8 @@ import { PoemDetailsQuery } from 'Container/PoemDetail/constants/query.address'
 import { usePoemChapterContentFCService } from 'Container/ReadPoemSection/service/ChapterContent.service'
 
 export const InternalPurchaseOrderType = {
-  CHAPTER: 'chapter',
+  BOOK_CHAPTER: 'bookchapter',
+  POEM_CHAPTER: 'poemchapter',
   BOOK: 'book',
   POEM: 'poem',
   SUBSCRIPTION: 'subscription',
@@ -26,10 +27,10 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     form.append('subscription_id', subscriptionId)
   } else if (orderType === InternalPurchaseOrderType.VOTETOKEN) {
     form.append('vote_plan_id', votePlanId)
-  } else if (orderType === InternalPurchaseOrderType.CHAPTER && bookId) {
+  } else if (orderType === InternalPurchaseOrderType.BOOK_CHAPTER) {
     form.append('book_id', bookId)
     form.append('chapter_id', chapterId)
-  } else if (orderType === InternalPurchaseOrderType.CHAPTER && poemId) {
+  } else if (orderType === InternalPurchaseOrderType.POEM_CHAPTER) {
     form.append('poem_id', poemId)
     form.append('chapter_id', chapterId)
   } else if (orderType === InternalPurchaseOrderType.BOOK) {
@@ -79,9 +80,9 @@ export const useInternalPurchaseService = props => {
         queryClient.invalidateQueries([PaymentQuery.CURRENT_SUBSCRIPTION])
       } else if (orderType === InternalPurchaseOrderType.VOTETOKEN) {
         queryClient.invalidateQueries([AuthQuery.USER_DATA])
-      } else if (orderType === InternalPurchaseOrderType.CHAPTER && bookId) {
+      } else if (orderType === InternalPurchaseOrderType.BOOK_CHAPTER) {
         fetchBookChapterContent({ bookId, chapterId })
-      } else if (orderType === InternalPurchaseOrderType.CHAPTER && poemId) {
+      } else if (orderType === InternalPurchaseOrderType.POEM_CHAPTER) {
         fetchPoemChapterContent({ poemId, chapterId })
       } else if (orderType === InternalPurchaseOrderType.BOOK) {
         queryClient.invalidateQueries([BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }])

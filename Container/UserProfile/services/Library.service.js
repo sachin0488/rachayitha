@@ -20,7 +20,7 @@ const fetchLibraryListAPI = async ({ pageParam = 1 }, contentType) => {
           contentName: item?.poem_name,
           slug: slugUtility.create(item?.poem_name),
           authorName: item?.author_name,
-          category: item?.category?.category,
+          category: item?.category,
           commentCount: item?.comment_count,
           avgRatingValue: item?.rating?.rate__avg,
           totalRatingCount: item?.rating?.rate__count,

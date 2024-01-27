@@ -38,7 +38,7 @@ export const useCommentLikeService = ({ poemId, commentId, parentCommentId, sort
       let messageAlternative
 
       queryClient.setQueryData(
-        [PoemDetailsQuery.COMMENT_LIST, { poemId, parentCommentId, sortBy }],
+        [PoemDetailsQuery.COMMENT_LIST, { poemId, parentCommentId: parentCommentId ? parseInt(parentCommentId) : undefined, sortBy }],
 
         oldData => {
           return oldData

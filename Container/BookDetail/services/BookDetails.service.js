@@ -37,7 +37,7 @@ const fetchBookDetail = async ({ bookId, slug }) => {
       publishDate: chapter?.publish_date,
       userId: chapter?.user_id_id,
       isLocked: chapter.lock_status,
-      isPaid: chapter?.price === 0 ? false : true,
+      isPaid: !!chapter?.is_lock,
       isAvailableInSubscription: false,
       coinRequired: chapter?.price || 0,
     })),

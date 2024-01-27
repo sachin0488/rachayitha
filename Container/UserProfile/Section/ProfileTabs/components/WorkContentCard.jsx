@@ -5,6 +5,7 @@ import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import { useUserService } from 'Container/Auth/service/User.service'
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
+import { ContentType } from 'Container/UserProfile/constants/common.constants'
 
 const WorkContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
@@ -15,9 +16,9 @@ const WorkContentCard = ({ item }) => {
           <Link
             href={
               isLoggedIn
-                ? item?.bookId
-                  ? `https://editor.rachayitha.com/workspace/novel/${item.bookId}/${item?.slug}`
-                  : `https://editor.rachayitha.com/workspace/poem/${item.poemId}/${item?.slug}`
+                ? item?.contentType === ContentType.BOOK
+                  ? `https://editor.rachayitha.com/workspace/novel/${item.contentId}?slug=${item?.slug}`
+                  : `https://editor.rachayitha.com/workspace/poem/${item.contentId}?slug=${item?.slug}`
                 : `/login`
             }>
             <a>
@@ -31,7 +32,7 @@ const WorkContentCard = ({ item }) => {
         <InfoSection>
           <InfoLeft>
             <TitleName variant="h6" component="div">
-              {item?.bookName ? item?.bookName : item?.poemName}
+              {item?.contentName}
             </TitleName>
             <CategoryName variant="subtitle2" noWrap width={'calc(100% - 5px)'}>
               {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}

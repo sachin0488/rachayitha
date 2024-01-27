@@ -16,8 +16,9 @@ const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, contentType) => {
   return await {
     data: res?.data?.data?.map(item => {
       return {
-        bookId: item?.id,
-        bookName: item?.[`${contentType}_name`],
+        contentType,
+        contentId: item?.id,
+        contentName: item?.[`${contentType}_name`],
         slug: slugUtility.create(item?.[`${contentType}_name`]),
         authorName: item?.author_name,
         category: item?.category?.category,

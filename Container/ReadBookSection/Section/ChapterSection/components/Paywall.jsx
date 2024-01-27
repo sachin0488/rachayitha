@@ -14,7 +14,7 @@ const Paywall = ({ coinRequired, chapterId, bookId, isAvailableInSubscription, i
       amount: coinRequired,
       bookId: bookId,
       chapterId: chapterId,
-      orderType: InternalPurchaseOrderType.CHAPTER,
+      orderType: InternalPurchaseOrderType.BOOK_CHAPTER,
     })
   }, [mutate, bookId, chapterId, coinRequired])
 

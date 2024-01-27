@@ -14,7 +14,6 @@ import { useUserService } from 'Container/Auth/service/User.service'
 const BookCard = ({ item, index, ranking }) => {
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width: 465px)')
-  console.log('item?.category', item?.category)
   return (
     <Root>
       <DeignsIcon />
