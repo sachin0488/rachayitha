@@ -127,6 +127,7 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
   @media (max-width: 480px) {
     font-size: 280px;
     color: ${({ theme }) => theme.palette.primary.main}1f;
+    filter: blur(11px);
   }
 `
 
