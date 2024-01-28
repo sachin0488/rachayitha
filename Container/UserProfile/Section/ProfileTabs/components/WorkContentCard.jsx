@@ -17,8 +17,8 @@ const WorkContentCard = ({ item }) => {
             href={
               isLoggedIn
                 ? item?.contentType === ContentType.BOOK
-                  ? `https://editor.rachayitha.com/workspace/novel/${item.contentId}?slug=${item?.slug}`
-                  : `https://editor.rachayitha.com/workspace/poem/${item.contentId}?slug=${item?.slug}`
+                  ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
+                  : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`
                 : `/login`
             }>
             <a>

@@ -77,10 +77,17 @@ const Footer = () => {
           </Heading>
 
           <SocialLinks>
-            <BsFacebook size={35} color="#673CCB" />
-            <FaInstagramSquare size={35} color="#673CCB" />
-            <AiFillTwitterCircle size={37} color="#673CCB" />
+            <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank" rel="noreferrer">
+              <BsFacebook size={35} color="#673CCB" />
+            </a>
+            <a href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK} target="_blank" rel="noreferrer">
+              <FaInstagramSquare size={35} color="#673CCB" />
+            </a>
+            <a href={process.env.NEXT_PUBLIC_TWITTER_LINK} target="_blank" rel="noreferrer">
+              <AiFillTwitterCircle size={37} color="#673CCB" />
+            </a>
           </SocialLinks>
+          
           <LogoBox />
           <Description variant="subtitle2">rachayitha is the world’s leading community for creatives to share, and grow.</Description>
         </Section>

@@ -109,98 +109,99 @@ const emailVerificationAPI = async data => {
     }
   }
 }
-const userAuthAPI = async ({ accessToken, refreshToken, rememberMe }) => {
-  if (!accessToken || !refreshToken) throw new Error('No token found')
 
-  const [userResponse, userError] = await fetchUserDataAPI({ accessToken })
+// const userAuthAPI = async ({ accessToken, refreshToken, rememberMe }) => {
+//   if (!accessToken || !refreshToken) throw new Error('No token found')
 
-  if (userResponse?.status === 200) return formatUserData(userResponse)
+//   const [userResponse, userError] = await fetchUserDataAPI({ accessToken })
 
-  if (userError?.response?.status === 401) {
-    const [renewalResponse, renewalError] = await silentRenewalAPI({ refresh: refreshToken })
+//   if (userResponse?.status === 200) return formatUserData(userResponse)
 
-    if (renewalResponse?.status === 200) {
-      setRefresh(renewalResponse?.data?.refresh)
-      setAccess(renewalResponse?.data?.access)
+//   if (userError?.response?.status === 401) {
+//     const [renewalResponse, renewalError] = await silentRenewalAPI({ refresh: refreshToken })
 
-      const [userResponse, userError] = await fetchUserDataAPI({ accessToken })
+//     if (renewalResponse?.status === 200) {
+//       setRefresh(renewalResponse?.data?.refresh)
+//       setAccess(renewalResponse?.data?.access)
 
-      if (userResponse?.status === 200) return formatUserData(userResponse, rememberMe)
+//       const [userResponse, userError] = await fetchUserDataAPI({ accessToken })
 
-      if (userError?.response?.status === 401) return formatUnAuthData(userError)
-    }
+//       if (userResponse?.status === 200) return formatUserData(userResponse, rememberMe)
 
-    if (renewalError?.response?.status === 401) return formatUnAuthData(userError)
-  }
-}
+//       if (userError?.response?.status === 401) return formatUnAuthData(userError)
+//     }
 
-const fetchUserDataAPI = ({ accessToken }) => {
-  return APIInstance({
-    url: '/user/',
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-    .then(res => {
-      return [res, null]
-    })
-    .catch(error => {
-      return [null, error]
-    })
-}
+//     if (renewalError?.response?.status === 401) return formatUnAuthData(userError)
+//   }
+// }
 
-const silentRenewalAPI = data => {
-  return APIInstance({
-    url: '/token/refresh/',
-    method: 'POST',
-    data,
-  })
-    .then(res => {
-      return [res, null]
-    })
-    .catch(error => {
-      return [null, error]
-    })
-}
+// const fetchUserDataAPI = ({ accessToken }) => {
+//   return APIInstance({
+//     url: '/user/',
+//     method: 'GET',
+//     headers: {
+//       Authorization: `Bearer ${accessToken}`,
+//     },
+//   })
+//     .then(res => {
+//       return [res, null]
+//     })
+//     .catch(error => {
+//       return [null, error]
+//     })
+// }
 
-const formatUserData = (res, rememberMe) => {
-  const user = {
-    username: res?.data?.user?.username || '',
-    profilePic: res?.data?.user?.profile_pic || '',
-    profileBanner: res?.data?.user?.profile_banner || '',
-    isStaff: res?.data?.user?.is_staff || 0,
-    gender: res?.data?.user?.gender || '',
-    fullName: res?.data?.user?.full_name || '',
-    email: res?.data?.user?.email || '',
-    birthDate: res?.data?.user?.birth_date || '',
-    bio: res?.data?.user?.bio || '',
-    isMonetizationEnabled: res?.data?.user?.is_monetization_enabled || false,
-    isEmailVerified: !!!res?.data?.user?.is_email_verified || false,
-    coins: {
-      coin: res?.data?.user?.coins?.coin || 0,
-      voteToken: res?.data?.user?.coins?.votetoken || 0,
-    },
-  }
-  const tokens = {
-    access: res?.data?.user?.tokens?.access || '',
-    refresh: res?.data?.user?.tokens?.refresh || '',
-  }
-  const status = res.status
+// const silentRenewalAPI = data => {
+//   return APIInstance({
+//     url: '/token/refresh/',
+//     method: 'POST',
+//     data,
+//   })
+//     .then(res => {
+//       return [res, null]
+//     })
+//     .catch(error => {
+//       return [null, error]
+//     })
+// }
 
-  return {
-    status,
-    user,
-    tokens,
-    isLoggedIn: true,
-    rememberMe: rememberMe,
-    message: `Welcome back ${res?.data?.user?.username} !`,
-  }
-}
+// const formatUserData = (res, rememberMe) => {
+//   const user = {
+//     username: res?.data?.user?.username || '',
+//     profilePic: res?.data?.user?.profile_pic || '',
+//     profileBanner: res?.data?.user?.profile_banner || '',
+//     isStaff: res?.data?.user?.is_staff || 0,
+//     gender: res?.data?.user?.gender || '',
+//     fullName: res?.data?.user?.full_name || '',
+//     email: res?.data?.user?.email || '',
+//     birthDate: res?.data?.user?.birth_date || '',
+//     bio: res?.data?.user?.bio || '',
+//     isMonetizationEnabled: res?.data?.user?.is_monetization_enabled || false,
+//     isEmailVerified: !!!res?.data?.user?.is_email_verified || false,
+//     coins: {
+//       coin: res?.data?.user?.coins?.coin || 0,
+//       voteToken: res?.data?.user?.coins?.votetoken || 0,
+//     },
+//   }
+//   const tokens = {
+//     access: res?.data?.user?.tokens?.access || '',
+//     refresh: res?.data?.user?.tokens?.refresh || '',
+//   }
+//   const status = res.status
 
-export const formatUnAuthData = error => {
-  return {
-    status: error?.response?.status || 401,
-    isLoggedIn: false,
-  }
-}
+//   return {
+//     status,
+//     user,
+//     tokens,
+//     isLoggedIn: true,
+//     rememberMe: rememberMe,
+//     message: `Welcome back ${res?.data?.user?.username} !`,
+//   }
+// }
+
+// export const formatUnAuthData = error => {
+//   return {
+//     status: error?.response?.status || 401,
+//     isLoggedIn: false,
+//   }
+// }

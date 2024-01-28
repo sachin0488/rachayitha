@@ -19,6 +19,7 @@ const Layout = ({ children }) => {
     router.pathname === '/otp' ||
     router.pathname === '/forgot-password' ||
     router.pathname === '/new-password' ||
+    router.pathname === '/verify-email' ||
     router.pathname.includes('/create')
   )
 
@@ -28,6 +29,7 @@ const Layout = ({ children }) => {
     router.pathname === '/otp' ||
     router.pathname === '/forgot-password' ||
     router.pathname === '/new-password' ||
+    router.pathname === '/verify-email' ||
     router.pathname.includes('/read/')
   )
 

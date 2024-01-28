@@ -22,7 +22,7 @@ export const NavPageLinks = [
     Icon: BorderColorOutlinedIcon,
     label: 'Create',
     path: '/create',
-    link: 'https://editor.rachayitha.com/',
+    link: process.env.NEXT_PUBLIC_DASHBOARD_URL,
     forLoggedInOnly: true,
   },
   {
