@@ -43,9 +43,6 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
             </Typography>
           )}
           <Bottom>
-            <Button disabled={isCheckStatusButtonDisabled} variant="outlined" color="secondary" disableElevation onClick={() => {}}>
-              Resend verification email
-            </Button>
             <Button
               disabled={isCheckStatusButtonDisabled}
               variant="contained"

@@ -9,16 +9,16 @@ const { setAccess, setRefresh } = AuthTokenStore()
 
 const useEmailVerificationStatusStore = create(set => ({
   authAdopter: {
-    accessToken: '',
-    refreshToken: '',
+    email: '',
+    password: '',
     rememberMe: false,
   },
   setAuthAdopter: value =>
     set(state => ({
       ...state,
       authAdopter: {
-        accessToken: value.accessToken,
-        refreshToken: value.refreshToken,
+        email: value.email,
+        password: value.password,
         rememberMe: value.rememberMe,
       },
     })),
@@ -33,7 +33,7 @@ export const useEmailVerificationStatusService = () => {
   const setAuthAdopter = useEmailVerificationStatusStore(state => state.setAuthAdopter)
 
   const { mutate, isLoading, isSuccess, data } = useMutation({
-    mutationFn: () => userAuthAPI(authAdopter),
+    mutationFn: () => emailVerificationAPI(authAdopter),
     onSuccess({ tokens, isEmailVerified, message, rememberMe }) {
       if (isEmailVerified) {
         if (rememberMe) {
@@ -50,7 +50,7 @@ export const useEmailVerificationStatusService = () => {
 
         queryClient.invalidateQueries([AuthQuery.USER_DATA])
       } else {
-        enqueueSnackbar("Please try to resend if you don't received the email!", {
+        enqueueSnackbar(message || "Please try to resend if you don't received the email!", {
           variant: 'error',
         })
       }
@@ -67,12 +67,48 @@ export const useEmailVerificationStatusService = () => {
     setAuthAdopter,
     isLoading,
     isSuccess,
-    isEmailVerified: data?.user?.isEmailVerified,
-    user: data?.user,
-    isSessionActive: data?.isLoggedIn,
+    isEmailVerified: data?.isEmailVerified,
   }
 }
 
+const emailVerificationAPI = async data => {
+  try {
+    const response = await APIInstance({
+      url: '/token/refresh/',
+      method: 'POST',
+      data: {
+        user: {
+          email: data?.email,
+          password: data?.password,
+        },
+      },
+    })
+
+    return {
+      status: response?.status,
+      user: {
+        email: response?.data?.user?.email,
+      },
+      tokens: {
+        access: response?.data?.user?.tokens?.access,
+        refresh: response?.data?.user?.tokens?.refresh,
+      },
+      message: response?.data?.message,
+      isLoggedIn: true,
+      isEmailVerified: true,
+    }
+  } catch (error) {
+    return {
+      status: error?.response?.status,
+      user: {
+        email: data?.email,
+      },
+      message: "Still your email is not verified. Please try to resend if you don't received the email!",
+      isLoggedIn: false,
+      isEmailVerified: false,
+    }
+  }
+}
 const userAuthAPI = async ({ accessToken, refreshToken, rememberMe }) => {
   if (!accessToken || !refreshToken) throw new Error('No token found')
 

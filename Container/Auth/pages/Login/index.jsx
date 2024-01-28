@@ -11,11 +11,9 @@ import useFormError from 'hooks/useFormError'
 import { useLoginService } from 'Container/Auth/service/Login.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
-import VerifyEmailModal from '../VerifyEmailModal'
 
 const LoginPage = () => {
-  const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
-  const { handleLogin, isLoading, user, isEmailVerified, isSessionActive, checkVerificationStatus, isSuccess } = useLoginService()
+  const { handleLogin, isLoading } = useLoginService()
   const { handleFormError } = useFormError()
 
   const methods = useForm({
@@ -26,22 +24,9 @@ const LoginPage = () => {
     },
   })
 
-  useEffect(() => {
-    if (isSuccess && isEmailVerified === false) {
-      setIsVerifyModalOpen(true)
-    }
-  }, [isSuccess, isEmailVerified])
-
-  useEffect(() => {
-    if (isSuccess && isSessionActive === false) {
-      setIsVerifyModalOpen(false)
-    }
-  }, [isSuccess, isEmailVerified, isSessionActive])
-
   return (
     <Root>
       <DeignsIcon />
-      <VerifyEmailModal open={isVerifyModalOpen} checkVerificationStatus={checkVerificationStatus} user={user} />
       <Main>
         <Body>
           <FormProvider {...methods}>

@@ -13,11 +13,11 @@ export const useCreateAccountService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
   const queryClient = useQueryClient()
-  const { isSessionActive, isEmailVerified, user, mutate: checkVerificationStatus, setAuthAdopter } = useEmailVerificationStatusService()
+  const { isEmailVerified, mutate: checkVerificationStatus, setAuthAdopter } = useEmailVerificationStatusService()
 
   const { mutate, isLoading, isSuccess, data } = useMutation({
     mutationFn: createAccountAPI,
-    onSuccess({ tokens, message, isEmailVerified, isMessageVisible }) {
+    onSuccess({ tokens, user, message, isEmailVerified }) {
       if (isEmailVerified) {
         setAccess(tokens?.access)
         setRefresh(tokens?.refresh)
@@ -29,8 +29,8 @@ export const useCreateAccountService = () => {
         })
       } else {
         setAuthAdopter({
-          accessToken: tokens?.access,
-          refreshToken: tokens?.refresh,
+          email: user?.email,
+          password: user?.password,
           rememberMe: true,
         })
         setTimeout(() => {
@@ -42,18 +42,19 @@ export const useCreateAccountService = () => {
       }
     },
     onError: error => {
-      if (error.response?.data?.errors)
-        enqueueSnackbar(getFormErrorMessage(error.response?.data?.errors), {
+      if (error?.response?.data?.errors)
+        enqueueSnackbar(getFormErrorMessage(error?.response?.data?.errors), {
           variant: 'error',
         })
-      else if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
+      else if (error?.response?.data?.message)
+        enqueueSnackbar(error?.response?.data?.message, {
           variant: 'error',
         })
-      else
+      else {
         enqueueSnackbar('Something went wrong', {
           variant: 'error',
         })
+      }
     },
   })
 
@@ -64,25 +65,24 @@ export const useCreateAccountService = () => {
     isLoading,
     isSuccess,
     isEmailVerified: isEmailVerified,
-    user: user || data?.user,
-    isSessionActive,
+    user: data?.user,
     checkVerificationStatus,
   }
 }
 
-const createAccountAPI = async ({ username, email, password, bio, fullName, birthDate, gender }) => {
+const createAccountAPI = async data => {
   const response = await APIInstance({
     url: '/register/',
     method: 'POST',
     data: {
       user: {
-        username,
-        email,
-        password,
-        bio,
-        full_name: fullName,
-        birth_date: moment(birthDate).format('YYYY-MM-DD'),
-        gender,
+        username: data?.username,
+        email: data?.email,
+        password: data?.password,
+        bio: data?.bio,
+        full_name: data?.fullName,
+        birth_date: moment(data?.birthDate).format('YYYY-MM-DD'),
+        gender: data?.gender,
       },
     },
     headers: {
@@ -96,14 +96,15 @@ const createAccountAPI = async ({ username, email, password, bio, fullName, birt
   return {
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
-    isEmailVerified: !!!user?.is_email_verified,
+    isEmailVerified: !!user?.is_active,
     tokens: {
       access: user?.tokens?.access,
       refresh: user?.tokens?.refresh,
     },
     user: {
       fullName: user?.full_name || '',
-      email: user?.email || '',
+      email: data?.email,
+      password: data?.password,
     },
   }
 }

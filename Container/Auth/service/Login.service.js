@@ -3,7 +3,6 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
-import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
@@ -11,38 +10,23 @@ export const useLoginService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
   const queryClient = useQueryClient()
-  const { isSessionActive, isEmailVerified, user, mutate: checkVerificationStatus, setAuthAdopter } = useEmailVerificationStatusService()
 
   const { mutate, isLoading, isSuccess, data } = useMutation({
     mutationFn: loginAPI,
-    onSuccess({ tokens, isMessageVisible, isEmailVerified, message }, variables) {
-      if (isEmailVerified) {
-        if (variables?.remember_me) {
-          setAccess(tokens?.access)
-          setRefresh(tokens?.refresh)
-        } else {
-          setAccess(tokens?.access, 'session')
-          setRefresh(tokens?.refresh, 'session')
-        }
-
-        enqueueSnackbar(message || 'Logged in successfully !', {
-          variant: 'success',
-        })
-
-        queryClient.invalidateQueries([AuthQuery.USER_DATA])
+    onSuccess({ tokens, message }, variables) {
+      if (variables?.remember_me) {
+        setAccess(tokens?.access)
+        setRefresh(tokens?.refresh)
       } else {
-        setAuthAdopter({
-          accessToken: tokens?.access,
-          refreshToken: tokens?.refresh,
-          rememberMe: variables?.remember_me,
-        })
-        setTimeout(() => {
-          checkVerificationStatus()
-        }, 50)
-        enqueueSnackbar(message || 'Please verify your email to login', {
-          variant: 'error',
-        })
+        setAccess(tokens?.access, 'session')
+        setRefresh(tokens?.refresh, 'session')
       }
+
+      enqueueSnackbar(message || 'Logged in successfully !', {
+        variant: 'success',
+      })
+
+      queryClient.invalidateQueries([AuthQuery.USER_DATA])
     },
     onError: error => {
       if (error.response?.data?.user?.error?.length > 0)
@@ -66,14 +50,10 @@ export const useLoginService = () => {
     handleLogin,
     isLoading,
     isSuccess,
-    isEmailVerified: isEmailVerified,
-    user: user || data?.user,
-    isSessionActive,
-    checkVerificationStatus,
   }
 }
 
-const loginAPI = async ({ email, password, otp }) => {
+const loginAPI = async ({ email, password }) => {
   const response = await APIInstance({
     url: '/login/',
     method: 'POST',
@@ -81,7 +61,6 @@ const loginAPI = async ({ email, password, otp }) => {
       user: {
         email,
         password,
-        otp,
       },
     },
     headers: {
@@ -95,7 +74,6 @@ const loginAPI = async ({ email, password, otp }) => {
   return {
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
-    isEmailVerified: !!!user?.is_email_verified, // TODO: add one more ! to make the logic correct
     tokens: {
       access: user?.tokens?.access,
       refresh: user?.tokens?.refresh,

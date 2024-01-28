@@ -22,8 +22,7 @@ import VerifyEmailModal from '../VerifyEmailModal'
 
 const CreateAccountPage = () => {
   const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
-  const { handleCreateAccount, isLoading, user, isEmailVerified, isSessionActive, checkVerificationStatus, isSuccess } =
-    useCreateAccountService()
+  const { handleCreateAccount, isLoading, user, isEmailVerified, checkVerificationStatus, isSuccess } = useCreateAccountService()
   const { handleFormError } = useFormError()
 
   const methods = useForm({
@@ -43,12 +42,6 @@ const CreateAccountPage = () => {
       setIsVerifyModalOpen(true)
     }
   }, [isSuccess, isEmailVerified])
-
-  useEffect(() => {
-    if (isSuccess && isSessionActive === false) {
-      setIsVerifyModalOpen(false)
-    }
-  }, [isSuccess, isEmailVerified, isSessionActive])
 
   return (
     <Root>
