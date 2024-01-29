@@ -84,10 +84,7 @@ const ImageContainer = styled.div`
   display: flex;
   height: 100%;
   position: relative;
-  align-self: center;
-  @media (max-width: 400px) {
-    /* margin-top: 15px; */
-  }
+  margin-top: 20px;
 `
 
 const StyledImage = styled.img`
