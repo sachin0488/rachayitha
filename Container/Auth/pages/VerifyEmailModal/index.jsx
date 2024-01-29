@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
 import { Box, Button, Typography } from '@mui/material'
-import { useCallback, useEffect } from 'react'
 
 import { StyledModal } from 'Components/StyledModal'
+import { useResendVerificationService } from 'Container/Auth/service/ResendVerification.service'
 
 const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
   const [isCheckStatusButtonDisabled, setIsCheckStatusButtonDisabled] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(0)
+  const { mutate: resendEmail, isLoading: isEmailResending } = useResendVerificationService()
 
   return (
     <Root maxWidth="39rem" maxHeight="fit-content" open={open} breakPoint={400}>
@@ -21,6 +22,9 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
             alignItems: 'flex-start',
             gap: '16px',
             maxWidth: 600,
+            '@media (max-width: 400px)': {
+              margin: 'auto 10px',
+            },
           }}>
           <LogoImage src="/rachayitha_logo_500.svg" />
           <Box
@@ -43,6 +47,24 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
             </Typography>
           )}
           <Bottom>
+            <Button
+              disabled={isCheckStatusButtonDisabled}
+              variant="contained"
+              disableElevation
+              onClick={() => {
+                setIsCheckStatusButtonDisabled(true)
+                setSecondsLeft(10)
+                const intr = setInterval(() => {
+                  setSecondsLeft(pre => pre - 1)
+                }, 1000)
+                setTimeout(() => {
+                  setIsCheckStatusButtonDisabled(false)
+                  clearInterval(intr)
+                }, 10000)
+                resendEmail({ email: user?.email })
+              }}>
+              Resend email
+            </Button>
             <Button
               disabled={isCheckStatusButtonDisabled}
               variant="contained"
@@ -88,6 +110,12 @@ const Root = styled(StyledModal)`
   display: flex;
   flex-direction: column;
   gap: 25px;
+  @media (max-width: 400px) {
+    padding: 20px 6px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 `
 
 const Main = styled.div`
@@ -105,6 +133,11 @@ const Main = styled.div`
   &.email-verification {
     opacity: 1;
     display: flex;
+  }
+  @media (max-width: 400px) {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
   }
 `
 

@@ -29,8 +29,6 @@ const fetchHeroListAPI = async () => {
     method: 'GET',
   })
 
-  console.log('response', response)
-
   const data = response?.data?.data || {}
   return {
     first: data?.first_row?.map(item => {

@@ -37,21 +37,16 @@ const Footer = () => {
           <Heading variant="h5" component="div">
             Create
           </Heading>
-          <Link href="/">
+          <Link href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel`}>
             <a>
               <LinkButton>Book</LinkButton>
             </a>
           </Link>
-          <Link href="/explore?content_type=book&category=1&sort_by=Hot">
+          <Link href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem`}>
             <a>
               <LinkButton>Poem</LinkButton>
             </a>
           </Link>
-          {/* <Link href="/ranking?content_type=book&category=1">
-            <a>
-              <LinkButton>Stories</LinkButton>
-            </a>
-          </Link> */}
         </Section>
         <Divider />
         <Section>
@@ -87,7 +82,7 @@ const Footer = () => {
               <AiFillTwitterCircle size={37} color="#673CCB" />
             </a>
           </SocialLinks>
-          
+
           <LogoBox />
           <Description variant="subtitle2">rachayitha is the world’s leading community for creatives to share, and grow.</Description>
         </Section>

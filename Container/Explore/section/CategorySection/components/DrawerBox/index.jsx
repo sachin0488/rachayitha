@@ -19,12 +19,11 @@ const DrawerBox = ({ List }) => {
       </StyledButton>
 
       <StyledDrawer anchor="bottom" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Content p={2} width="100%" height="500px">
-          <Heading>{SelectedList?.contentType}</Heading>
-          {SelectedList?.categoryList?.map((category, idx) => (
+        <Content>
+          <Heading variant="h4">{SelectedList?.contentType === 'book' ? 'Novel' : SelectedList?.contentType}</Heading>
+          {SelectedList?.CategoryList?.map((category, idx) => (
             <StyledCheckButton key={idx} category={category} contentType={SelectedList?.contentType?.toLowerCase()} />
           ))}
-          <StyledButton />
         </Content>
       </StyledDrawer>
     </>
@@ -35,23 +34,33 @@ export default DrawerBox
 
 const Heading = styled(Typography)`
   font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 0.1px;
+  text-transform: capitalize;
+  padding: 0px 14px;
 `
 
 const StyledDrawer = styled(Drawer)`
   .MuiDrawer-paper {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     overflow: hidden;
+    padding: 0px;
+  }
+  padding: 0px;
+  .MuiBackdrop-root {
+    background: ${({ theme }) => theme.palette.background.paper}00;
+    backdrop-filter: blur(8px);
   }
 `
 
-const Content = styled(Box)`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   gap: 12px;
+
+  padding: 16px 9px 62px;
+  padding-right: 0px;
+  width: 100%;
   @media (min-width: 430px) {
     &::-webkit-scrollbar {
       width: 7px;
@@ -82,7 +91,7 @@ const StyledButton = styled(Button)`
   border-radius: 11px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;
-  letter-spacing: 0.5px;
+  /* letter-spacing: 0.5px; */
   float: right;
   align-self: flex-end;
   @media (min-width: 500px) {

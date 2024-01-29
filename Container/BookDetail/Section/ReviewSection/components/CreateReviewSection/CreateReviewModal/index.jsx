@@ -113,7 +113,7 @@ const Main = styled.form`
   gap: 25px;
 `
 
-const Body = styled.form`
+const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

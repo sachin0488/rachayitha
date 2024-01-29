@@ -15,6 +15,7 @@ import { queryCache, mutationCache } from 'services/global.service'
 import Layout from 'Layout'
 import AuthProvider from 'Container/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
+import Head from 'next/head'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -45,6 +46,11 @@ const MyApp = props => {
             <CssBaseline />
             <AuthProvider>
               <Layout>
+                <Head>
+                  <title>Rachayitha | {`India's own online book store`}</title>
+                  <meta name="description" content="Expand your Vision of Literature and Poem Here" />
+                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                </Head>
                 <Component {...pageProps} />
               </Layout>
             </AuthProvider>

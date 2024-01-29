@@ -1,23 +1,82 @@
 import styled from '@emotion/styled'
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
+
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useMemo } from 'react'
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded'
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded'
 
+const getArrayFromURIString = uriString => {
+  if (uriString) {
+    return uriString.split(',')
+  }
+  return []
+}
+
+const getURIStringFromArray = array => {
+  if (array) {
+    return array.join(',')
+  }
+  return ''
+}
+
 const StyledCheckButton = ({ contentType, category }) => {
-  const { pathname, query } = useRouter()
+  const router = useRouter()
+
+  const categoryIds = useMemo(() => {
+    let queryParameters = new URLSearchParams({
+      category: router.query.category,
+    })
+    return getArrayFromURIString(queryParameters.get('category'))
+  }, [router.query.category])
+
+  const newCategoryIds = useMemo(() => {
+    let newCategoryIds = [...categoryIds]
+
+    if (categoryIds.includes(String(category.categoryId))) {
+      newCategoryIds = newCategoryIds.filter(id => id !== String(category.categoryId))
+    } else {
+      newCategoryIds.push(String(category.categoryId))
+    }
+    return getURIStringFromArray(newCategoryIds)
+  }, [categoryIds, category.categoryId])
+
+  const isSelected = useMemo(() => {
+    return router.query.content_type === contentType && categoryIds.includes(String(category.categoryId))
+  }, [router.query.content_type, contentType, categoryIds, category.categoryId])
+
+  const href = useMemo(() => {
+    let queryParameters
+
+    if (router.query.content_type === contentType) {
+      queryParameters = new URLSearchParams({
+        category: newCategoryIds,
+        content_type: contentType,
+      })
+    } else {
+      queryParameters = new URLSearchParams({
+        category: [category.categoryId],
+        content_type: contentType,
+      })
+    }
+
+    if (router.query.sort_by) {
+      queryParameters.append('sort_by', router.query.sort_by)
+    }
+
+    return `${router.pathname}?${queryParameters.toString()}`
+  }, [category.categoryId, contentType, newCategoryIds, router.pathname, router.query.content_type, router.query.sort_by])
+
   return (
-    <Link
-      href={`/${pathname}?content_type=${contentType}&category=${category.id}${
-        query.sort_by ? `&sort_by=${query.sort_by}` : ''
-      }`}>
+    <Link href={href}>
       <a>
         <Root
-          startIcon={query.category == category?.id ? <CheckBoxRoundedIcon /> : <CheckBoxOutlineBlankRoundedIcon />}
-          className={query.category === String(category.id) && query.content_type === contentType ? 'selected' : ''}>
-          {category.category_name}
+          startIcon={isSelected ? <CheckBoxRoundedIcon color="primary" /> : <CheckBoxOutlineBlankRoundedIcon />}
+          className={isSelected ? 'selected' : ''}>
+          <Typography variant="subtitle2" fontWeight={600}>
+            {category.categoryName}
+          </Typography>
         </Root>
       </a>
     </Link>
@@ -26,25 +85,26 @@ const StyledCheckButton = ({ contentType, category }) => {
 
 const Root = styled(Button)`
   font-weight: 500;
-  font-size: 1rem;
-  padding: 5px 13px;
-  color: ${({ theme }) => theme.palette.primary.main};
-  border-radius: 8px;
+  padding: 10px 15px;
+  color: ${({ theme }) => theme.palette.secondary.main};
+  border-radius: 10px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;
-  letter-spacing: 0.5px;
-  width: 120px;
   justify-content: start;
   width: 100%;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 1px;
 
   &.selected {
-    background: ${({ theme }) => theme.palette.primary.main}1a;
-    color: ${({ theme }) => theme.palette.primary.main};
+    background: ${({ theme }) => theme.palette.primary.main}10;
+    color: ${({ theme }) => theme.palette.secondary.main};
   }
 
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}1a;
-    color: ${({ theme }) => theme.palette.primary.main};
+    /* color: ${({ theme }) => theme.palette.primary.main}; */
   }
 
   .MuiButton-startIcon {
@@ -54,9 +114,6 @@ const Root = styled(Button)`
   .MuiButton-endIcon {
     margin-right: -4px;
     margin-left: 7px;
-  }
-  &.selected {
-    color: ${({ theme }) => theme.palette.primary.main};
   }
 `
 

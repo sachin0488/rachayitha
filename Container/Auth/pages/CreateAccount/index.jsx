@@ -47,6 +47,7 @@ const CreateAccountPage = () => {
     <Root>
       <DeignsIcon />
       <VerifyEmailModal open={isVerifyModalOpen} checkVerificationStatus={checkVerificationStatus} user={user} />
+
       <Main>
         <Body onSubmit={methods.handleSubmit(handleCreateAccount, handleFormError)}>
           <FormProvider {...methods}>
@@ -70,8 +71,13 @@ const CreateAccountPage = () => {
                 ))}
               </StyledRadioGroup>
             </StyledFieldGroup>
-            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
-            <StyledPasswordField name="confirmPassword" label="Confirm Password" placeholder="Enter your confirm password ..." />
+            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="new-password" />
+            <StyledPasswordField
+              name="confirmPassword"
+              label="Confirm Password"
+              placeholder="Enter your confirm password ..."
+              autoComplete="new-password"
+            />
             <BottomSection>
               <TermsAndPrivacyPolicyCheckbox name="agree" />
             </BottomSection>

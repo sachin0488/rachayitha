@@ -34,8 +34,8 @@ const LoginPage = () => {
               <TitleText variant="h4">Welcome Back</TitleText>
               <DescriptionText variant="subtitle2">Please enter your credentials below to log in and access your account.</DescriptionText>
             </TextSection>
-            <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
-            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
+            <StyledTextField name="email" label="Email" placeholder="Enter your email ..." autoComplete="username email" />
+            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="current-password" />
 
             <BottomSection>
               {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}

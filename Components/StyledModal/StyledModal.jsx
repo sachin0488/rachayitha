@@ -27,7 +27,7 @@ const StyledModal = ({ children, open, handleClose, bodyBarColor, ...props }) =>
         style={{
           borderColor: bodyBarColor,
         }}>
-        <StyledIconButton color="primary" onClick={handleClose}>
+        <StyledIconButton color="primary" onClick={handleClose} custom_barack_point={breakPoint}>
           <CloseRoundedIcon />
         </StyledIconButton>
         {children}
@@ -72,14 +72,18 @@ const Body = styled.div`
   overflow-y: auto;
   padding-top: 0px;
   border-top: 8px solid ${props => props.theme.palette.primary.main};
+
+  @media (max-width: 400px) {
+    padding: 27px 15px 15px;
+  }
 `
 
 const StyledIconButton = styled(IconButton)`
   position: absolute;
-  right: 5px;
-  top: 10px;
+  right: 8px;
+  top: 32px;
   display: none;
-  @media (max-width: 400px) {
+  @media (max-width: ${({ custom_barack_point }) => custom_barack_point}px) {
     display: flex;
   }
 `
