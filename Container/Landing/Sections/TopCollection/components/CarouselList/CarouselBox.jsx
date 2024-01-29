@@ -89,7 +89,7 @@ const CarouselBox = ({ messages, isError, pageState, msgIndex }) => {
       </AnimatePresence>
       <ShowBarContainer
         style={{
-          'grid-template-columns': `repeat(${messages.length},auto)`,
+          gridTemplateColumns: `repeat(${messages.length},auto)`,
         }}>
         {messages.map((_, index) => (
           <ShowBar
