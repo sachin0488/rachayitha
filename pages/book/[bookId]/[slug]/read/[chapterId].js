@@ -1,4 +1,4 @@
-import ReadBookPage from 'Container/ReadBookSection/pages/read.page'
+import ReadBookPage from 'modules/ReadBookSection/pages/read.page'
 import React from 'react'
 
 const Chapter = () => {

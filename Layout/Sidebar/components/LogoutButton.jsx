@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
 
-import { useLogoutService } from 'Container/Auth/service/Logout.service'
+import { useLogoutService } from 'modules/Auth/service/Logout.service'
 
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { useCallback } from 'react'

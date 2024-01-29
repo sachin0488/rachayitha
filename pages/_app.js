@@ -13,7 +13,7 @@ import 'styles/globals.css'
 import { queryCache, mutationCache } from 'services/global.service'
 
 import Layout from 'Layout'
-import AuthProvider from 'Container/Auth/AuthProvider'
+import AuthProvider from 'modules/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
 

@@ -1,4 +1,4 @@
-import PaymentPlanPage from 'Container/Payment/pages/payment-plan.page'
+import PaymentPlanPage from 'modules/Payment/pages/payment-plan.page'
 import React from 'react'
 
 const PaymentPlan = () => {

@@ -1,4 +1,4 @@
-import CreateAccountPage from 'Container/Auth/pages/CreateAccount'
+import CreateAccountPage from 'modules/Auth/pages/CreateAccount'
 import React from 'react'
 
 const createAccount = () => {

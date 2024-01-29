@@ -1,7 +1,7 @@
-import LandingPageAfterLogin from 'Container/Landing/pages/LandingAfterLogin.page'
-import LandingPageWithoutLogin from 'Container/Landing/pages/LandingWithoutLogin.page'
+import LandingPageAfterLogin from 'modules/Landing/pages/LandingAfterLogin.page'
+import LandingPageWithoutLogin from 'modules/Landing/pages/LandingWithoutLogin.page'
 
-import { useUserService } from 'Container/Auth/service/User.service'
+import { useUserService } from 'modules/Auth/service/User.service'
 
 export default function Home() {
   const { isLoggedIn } = useUserService()

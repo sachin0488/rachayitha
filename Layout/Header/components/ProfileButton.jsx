@@ -9,8 +9,8 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 
-import { useUserService } from 'Container/Auth/service/User.service'
-import { useLogoutService } from 'Container/Auth/service/Logout.service'
+import { useUserService } from 'modules/Auth/service/User.service'
+import { useLogoutService } from 'modules/Auth/service/Logout.service'
 import { useCallback } from 'react'
 
 const ProfileButton = () => {

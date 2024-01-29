@@ -1,4 +1,4 @@
-import ForgotPasswordPage from 'Container/Auth/pages/ForgotPassword'
+import ForgotPasswordPage from 'modules/Auth/pages/ForgotPassword'
 import React from 'react'
 
 const ForgotPassword = () => {

@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import Avatar from '@mui/material/Avatar'
 import { Button, Typography } from '@mui/material'
 
-import { useUserService } from 'Container/Auth/service/User.service'
+import { useUserService } from 'modules/Auth/service/User.service'
 
 const ProfileButton = () => {
   const { user } = useUserService()

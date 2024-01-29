@@ -1,5 +1,5 @@
 import React from 'react'
-import PoemDetail from 'Container/PoemDetail/pages/poemDetail.page'
+import PoemDetail from 'modules/PoemDetail/pages/poemDetail.page'
 
 const poem = () => {
   return (

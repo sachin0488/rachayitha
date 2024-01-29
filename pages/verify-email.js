@@ -1,4 +1,4 @@
-import VerifyEmailForwardPage from 'Container/Auth/pages/VerifyEmailForward'
+import VerifyEmailForwardPage from 'modules/Auth/pages/VerifyEmailForward'
 import React from 'react'
 
 const VerifyEmail = () => {

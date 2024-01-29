@@ -1,4 +1,4 @@
-import PaymentSuccessPage from 'Container/Payment/pages/payment-success.page'
+import PaymentSuccessPage from 'modules/Payment/pages/payment-success.page'
 import React from 'react'
 
 const PaymentSuccess = () => {

@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import styled from '@emotion/styled'
-import RefetchButton from 'Components/StyledButton/RefetchButton'
+import RefetchButton from 'components/StyledButton/RefetchButton'
 
 const ModalHeader = ({ onClose, refetch, refetchLoading }) => {
   return (

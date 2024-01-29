@@ -1,4 +1,4 @@
-import NewPasswordPage from 'Container/Auth/pages/NewPassword'
+import NewPasswordPage from 'modules/Auth/pages/NewPassword'
 import React from 'react'
 
 const NewPassword = () => {

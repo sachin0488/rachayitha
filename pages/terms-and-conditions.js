@@ -1,4 +1,4 @@
-import TermsAndConditionsPage from 'Container/documents/pages/terms-and-conditions'
+import TermsAndConditionsPage from 'modules/documents/pages/terms-and-conditions'
 import React from 'react'
 
 const TermsAndConditions = () => {

@@ -5,7 +5,7 @@ import Footer from './Footer'
 import SideBar from './Sidebar'
 import { useRouter } from 'next/router'
 
-import { useUserService } from 'Container/Auth/service/User.service'
+import { useUserService } from 'modules/Auth/service/User.service'
 
 const Layout = ({ children }) => {
   const router = useRouter()

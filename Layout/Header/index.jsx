@@ -8,8 +8,8 @@ import ProfileButton from './components/ProfileButton'
 import StyledNavButton from './components/StyledNavButton'
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
-import SearchBoxWithModal from 'Container/Search/components/SearchBoxWithModal'
-import { useUserService } from 'Container/Auth/service/User.service'
+import SearchBoxWithModal from 'modules/Search/components/SearchBoxWithModal'
+import { useUserService } from 'modules/Auth/service/User.service'
 import Link from 'next/link'
 
 const Header = ({ handleSidebarOpen }) => {
