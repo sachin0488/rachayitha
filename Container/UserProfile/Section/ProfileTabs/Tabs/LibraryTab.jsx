@@ -56,7 +56,7 @@ const LibraryTab = () => {
         ) : (
           <>
             {ContentList?.map(item => (
-              <LibraryContentCard key={item.bookId} item={item} contentType={selectedContentType} />
+              <LibraryContentCard key={item.contentId} item={item} contentType={selectedContentType} />
             ))}
 
             {ContentList?.length !== 0 && isFetchingNextPage && (

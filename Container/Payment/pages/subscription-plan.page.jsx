@@ -21,9 +21,11 @@ const SubscriptionPlanPage = () => {
             itself would crumble.
           </Description>
         </TextSection>
-        <SubscribedFlag variant="subtitle2" component="div" color="secondary">
-          Your Subscription is valid till <span>{moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}</span>
-        </SubscribedFlag>
+        {validityTill && (
+          <SubscribedFlag variant="subtitle2" component="div" color="secondary">
+            Your Subscription is valid till <span>{moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}</span>
+          </SubscribedFlag>
+        )}
         <SubscriptionPlan />
       </Main>
     </Root>

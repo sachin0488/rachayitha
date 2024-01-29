@@ -56,7 +56,7 @@ const OriginalWorkTab = () => {
         ) : (
           <>
             {ContentList?.map(item => (
-              <WorkContentCard key={item.bookId} item={item} />
+              <WorkContentCard key={item.contentId} item={item} />
             ))}
 
             {ContentList?.length !== 0 && isFetchingNextPage && (

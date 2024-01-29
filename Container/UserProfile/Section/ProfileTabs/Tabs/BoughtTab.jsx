@@ -25,7 +25,6 @@ const BoughtTab = () => {
     contentType: selectedContentType,
   })
 
-
   return (
     <Root>
       <ContentListBox>
@@ -58,7 +57,7 @@ const BoughtTab = () => {
         ) : (
           <>
             {ContentList?.map(item => (
-              <BoughtContentCard key={item.bookId} item={item} />
+              <BoughtContentCard key={item?.bookId || item?.poemId} item={item} />
             ))}
 
             {ContentList?.length !== 0 && isFetchingNextPage && (
