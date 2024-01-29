@@ -29,7 +29,7 @@ export const useToggleToLibraryService = ({ contentId, contentType }) => {
         contentType,
       })
     },
-    onSuccess({ data }) {
+    onSuccess({ message, data }) {
       try {
         queryClient.setQueryData([UserProfileQuery.LIBRARY_LIST, { contentType }], oldData => {
           return {

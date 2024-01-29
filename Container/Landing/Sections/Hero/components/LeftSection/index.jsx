@@ -13,7 +13,9 @@ const LeftSection = () => {
       </TextSection>
       <ButtonContainer>
         <Link href={`/explore?content_type=book&category=1&sort_by=Hot`}>
-          <StyledButton variant="contained">Explore</StyledButton>
+          <StyledButton disableElevation variant="contained">
+            Explore
+          </StyledButton>
         </Link>
         <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noreferrer">
           <StyledButton variant="outlined">Create</StyledButton>

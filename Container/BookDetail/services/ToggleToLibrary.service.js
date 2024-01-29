@@ -12,6 +12,7 @@ export const toggleToLibraryAPI = async ({ bookId, addToLibrary }) => {
   return {
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
+    addToLibrary,
   }
 }
 
@@ -26,9 +27,9 @@ export const useToggleToLibraryService = ({ bookId, queryKey }) => {
         addToLibrary,
       })
     },
-    onSuccess({ message }) {
+    onSuccess({ message, addToLibrary }) {
       queryClient.setQueryData(queryKey, oldData => {
-        const messageAlternative = item?.libraryAdded ? 'Added to Library!' : 'Removed from Library!'
+        const messageAlternative = addToLibrary ? 'Added to Library!' : 'Removed from Library!'
 
         enqueueSnackbar(message || messageAlternative, {
           variant: 'success',

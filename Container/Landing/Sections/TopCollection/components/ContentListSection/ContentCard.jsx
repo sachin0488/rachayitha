@@ -65,6 +65,7 @@ const ImageSection = styled.div`
 
 const StyledImage = styled.img`
   border-radius: 8px;
+  object-fit: cover;
 `
 
 const InfoSection = styled.div`

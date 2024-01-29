@@ -50,6 +50,7 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     subscriptionId,
     votePlanId,
     bookId,
+    poemId,
     chapterId,
     message: response?.data?.info?.visible?.message || '',
     isMessageVisible: !!response?.data?.info?.visible?.message,
@@ -78,17 +79,28 @@ export const useInternalPurchaseService = props => {
     onSuccess({ message, isMessageVisible, orderType, bookId, poemId, chapterId }) {
       if (orderType === InternalPurchaseOrderType.SUBSCRIPTION) {
         queryClient.invalidateQueries([PaymentQuery.CURRENT_SUBSCRIPTION])
-      } else if (orderType === InternalPurchaseOrderType.VOTETOKEN) {
+      }
+
+      if (orderType === InternalPurchaseOrderType.VOTETOKEN) {
         queryClient.invalidateQueries([AuthQuery.USER_DATA])
-      } else if (orderType === InternalPurchaseOrderType.BOOK_CHAPTER) {
+      }
+
+      if (orderType === InternalPurchaseOrderType.BOOK_CHAPTER) {
         fetchBookChapterContent({ bookId, chapterId })
-      } else if (orderType === InternalPurchaseOrderType.POEM_CHAPTER) {
+      }
+
+      if (orderType === InternalPurchaseOrderType.POEM_CHAPTER) {
         fetchPoemChapterContent({ poemId, chapterId })
-      } else if (orderType === InternalPurchaseOrderType.BOOK) {
+      }
+
+      if (orderType === InternalPurchaseOrderType.BOOK) {
         queryClient.invalidateQueries([BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }])
-      } else if (orderType === InternalPurchaseOrderType.POEM) {
+      }
+
+      if (orderType === InternalPurchaseOrderType.POEM) {
         queryClient.invalidateQueries([PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }])
       }
+
       if (props?.disableSnackbar !== true && isMessageVisible) {
         enqueueSnackbar(message || 'Product Purchased Successfully!', {
           variant: 'success',
