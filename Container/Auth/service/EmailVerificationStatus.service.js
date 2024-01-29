@@ -74,13 +74,17 @@ export const useEmailVerificationStatusService = () => {
 const emailVerificationAPI = async data => {
   try {
     const response = await APIInstance({
-      url: '/token/refresh/',
+      url: '/login/',
       method: 'POST',
       data: {
         user: {
           email: data?.email,
           password: data?.password,
         },
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: undefined,
       },
     })
 
