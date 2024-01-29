@@ -95,6 +95,10 @@ const Main = styled.div`
 const HeadingBox = styled.div`
   display: flex;
   gap: 8px;
+  @media (max-width: 491px) {
+    gap: 0px;
+    flex-direction: column;
+  }
 `
 
 const Heading = styled(Typography)`

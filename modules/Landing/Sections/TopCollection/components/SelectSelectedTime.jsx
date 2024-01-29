@@ -44,13 +44,7 @@ const SelectSelectedTime = ({ name, label, menuList, disabled, ...props }) => {
   )
 
   return (
-    <Root
-      variant="standard"
-      size="small"
-      error={isError ? isError : undefined}
-      sx={sx}
-      defaultValue=""
-      disabled={disabled}>
+    <Root variant="standard" size="small" error={isError ? isError : undefined} sx={sx} defaultValue="" disabled={disabled}>
       <StyledSelectPaper {...selectProps}>{menuList.map(_menuItemsMapping)}</StyledSelectPaper>
 
       <FormHelperText>{helperText}</FormHelperText>
@@ -74,7 +68,21 @@ const Root = styled(FormControl)`
     color: ${({ theme }) => theme.palette.primary.main};
     font-size: 35px;
     margin-right: -15px;
+    @media (max-width: 390px) {
+      font-size: 20px;
+    }
   }
+
+  @media (max-width: 390px) {
+    margin-right: auto;
+    .MuiOutlinedInput-root {
+      font-size: 20px;
+    }
+    .MuiSvgIcon-root {
+      font-size: 28px;
+    }
+  }
+
   .MuiFormHelperText-root {
     display: none;
   }
@@ -94,22 +102,35 @@ const Root = styled(FormControl)`
 const StyledSelectPaper = styled(Select)`
   font-weight: 600;
   font-size: 28px;
+
   line-height: 1.4;
   color: ${props => props.theme.palette.primary.main};
   background-color: transparent;
   @media (max-width: 350px) {
     font-size: 25px;
   }
+  @media (max-width: 390px) {
+    font-size: 20px;
+  }
 `
 
 const StyledMenuItems = styled(MenuItem)`
   font-weight: 600;
   font-size: 23px;
-  color: ${props => props.theme.palette.primary.main}aa;
+  color: ${props => props.theme.palette.secondary.main}aa;
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 14px;
   padding-right: 14px;
+  @media (max-width: 390px) {
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0px 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    max-height: 36px;
+    min-height: 36px;
+  }
 `
 
 export default SelectSelectedTime
