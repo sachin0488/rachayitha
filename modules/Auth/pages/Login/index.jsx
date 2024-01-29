@@ -28,7 +28,7 @@ const LoginPage = () => {
     <Root>
       <DeignsIcon />
       <Main>
-        <Body>
+        <Body onSubmit={methods.handleSubmit(handleLogin, handleFormError)}>
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h4">Welcome Back</TitleText>
@@ -55,8 +55,9 @@ const LoginPage = () => {
               <StyledButton
                 disabled={isLoading}
                 startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
-                variant="contained"
-                onClick={methods.handleSubmit(handleLogin, handleFormError)}>
+                type="submit"
+                onSubmit={methods.handleSubmit(handleLogin, handleFormError)}
+                variant="contained">
                 Login
               </StyledButton>
             </Nav>
@@ -93,7 +94,7 @@ const Main = styled.div`
   }
 `
 
-const Body = styled.div`
+const Body = styled.form`
   background: rgb(255, 255, 255);
   padding: 30px 25px;
   border-radius: 18px;
