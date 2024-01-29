@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorPageComp from '../Container/404Page/404Page'
+import ErrorPageComp from 'modules/404Page/404Page'
 
 const ErrorPage = () => {
   return (
