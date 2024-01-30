@@ -72,11 +72,12 @@ const CreateCommentSection = ({ parentCommentId, sortBy }) => {
       <FormProvider {...methods}>
         <Header>
           <StyledAvatar
-            sx={{ bgcolor: theme => theme.palette.primary.main }}
+            sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main }}
             variant="rounded"
-            alt={user?.username}
-            src={user?.profilePic}
-          />
+            alt={user?.profilePic ? user?.username : undefined}
+            src={user?.profilePic || undefined}>
+            {user?.username?.[0] || null}
+          </StyledAvatar>
           <Username variant="h6" component="div" color="secondary">
             {user?.username}
           </Username>

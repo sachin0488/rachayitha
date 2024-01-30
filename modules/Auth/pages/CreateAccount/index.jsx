@@ -118,8 +118,8 @@ const GenderList = [
 ]
 
 const schema = yup.object().shape({
-  fullName: yup.string().required('Name is required'),
-  username: yup.string().required('Username is required'),
+  fullName: yup.string().min(3).required('Name is required'),
+  username: yup.string().min(3).required('Username is required'),
   birthDate: yup.string().required('birthday is required'),
   bio: yup.string().required('Bio is required'),
   email: yup.string().email().required('Email is required'),

@@ -112,8 +112,8 @@ export const useInternalPurchaseService = props => {
     },
     onError(error) {
       if (props?.disableSnackbar !== true) {
-        if (error.response?.data?.error?.visible?.message)
-          enqueueSnackbar(error.response?.data?.error?.visible?.message, {
+        if (error?.response?.data?.error?.visible?.message)
+          enqueueSnackbar(error?.response?.data?.error?.visible?.message, {
             variant: 'error',
           })
         else
@@ -124,5 +124,11 @@ export const useInternalPurchaseService = props => {
     },
   })
 
-  return { mutate, isLoading, isSuccess, isError, message: error ? error?.response?.data?.error?.visible?.message : data?.message }
+  return {
+    mutate,
+    isLoading,
+    isSuccess,
+    isError,
+    message: error ? error?.response?.data?.error?.visible?.message || 'Something went wrong' : data?.message,
+  }
 }

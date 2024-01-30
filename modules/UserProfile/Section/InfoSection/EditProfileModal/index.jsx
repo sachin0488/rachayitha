@@ -17,11 +17,11 @@ import { useUpdateProfileService } from 'modules/UserProfile/services/UpdateProf
 import { useUserService } from 'modules/Auth/service/User.service'
 
 const schema = yup.object().shape({
-  fullName: yup.string().required('Name is required'),
-  username: yup.string().required('Username is required'),
+  fullName: yup.string().min(3).required('Name is required'),
+  username: yup.string().min(3).required('Username is required'),
   email: yup.string().email().required('Email is required'),
   birthDate: yup.string().required('birthday is required'),
-  bio: yup.string().required('Bio is required'),
+  bio: yup.string(),
   gender: yup.string().required('Gender is required'),
 })
 

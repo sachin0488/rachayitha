@@ -24,7 +24,7 @@ const LibraryContentCard = ({ item, contentType }) => {
             <TitleName variant="h6" component="div">
               {item?.contentName ? item?.contentName : item?.poemName}
             </TitleName>
-            <CategoryName variant="subtitle2" noWrap width={'calc(100% - 5px)'}>
+            <CategoryName variant="subtitle2" noWrap width={'100%'}>
               {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
           </InfoLeft>
@@ -100,6 +100,7 @@ const InfoSection = styled.div`
 const InfoLeft = styled.div`
   display: flex;
   flex-direction: column;
+  width: calc(100% - 22px);
 `
 
 const InfoRight = styled.div`

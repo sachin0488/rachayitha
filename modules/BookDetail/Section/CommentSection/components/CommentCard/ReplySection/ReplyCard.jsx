@@ -27,11 +27,12 @@ const ReplyCard = ({ item, parentCommentId, sortBy }) => {
     <Root className={isReplyOpen ? 'replyOpen' : ''}>
       <Header>
         <StyledAvatar
-          sx={{ bgcolor: theme => theme.palette.primary.main }}
+          sx={{ bgcolor: item?.profilePic ? '#fff' : theme => theme.palette.primary.main }}
           variant="rounded"
-          alt="Profile Image"
-          src={item?.profileImage || '..'}
-        />
+          alt={item?.profilePic ? item?.username : undefined}
+          src={item?.profilePic || undefined}>
+          {item?.username?.[0] || null}
+        </StyledAvatar>
         <Username variant="h6" component="div" color="secondary">
           {item?.username}
         </Username>

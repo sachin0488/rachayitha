@@ -9,7 +9,7 @@ export const useResendVerificationService = () => {
     mutationFn: resendVerificationEmailAPI,
     onSuccess({ message }) {
       enqueueSnackbar(message || 'Email Resent Successfully!', {
-        variant: 'error',
+        variant: 'success',
       })
     },
     onError: () => {

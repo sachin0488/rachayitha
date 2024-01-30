@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
@@ -6,27 +6,27 @@ import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 import { useUserService } from 'modules/Auth/service/User.service'
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
 import { ContentType } from 'modules/UserProfile/constants/common.constants'
+import { Browser } from '@capacitor/browser'
 
 const WorkContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
+
+  const openCapacitorSite = useCallback(async () => {
+    await Browser.open({
+      url:
+        item?.contentType === ContentType.BOOK
+          ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
+          : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`,
+    })
+  }, [item.contentId, item?.contentType, item?.slug])
+
   return (
     <Root>
       <Main>
         <Tooltip title="Edit in dashboard">
-          <Link
-            href={
-              isLoggedIn
-                ? item?.contentType === ContentType.BOOK
-                  ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
-                  : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`
-                : `/login`
-            }>
-            <a>
-              <StyledCornerButton variant="contained" sx={{ minWidth: 40, width: 40 }}>
-                <EditNoteRoundedIcon />
-              </StyledCornerButton>
-            </a>
-          </Link>
+          <StyledCornerButton onClick={openCapacitorSite} variant="contained" sx={{ minWidth: 40, width: 40 }}>
+            <EditNoteRoundedIcon />
+          </StyledCornerButton>
         </Tooltip>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
@@ -34,7 +34,7 @@ const WorkContentCard = ({ item }) => {
             <TitleName variant="h6" component="div">
               {item?.contentName}
             </TitleName>
-            <CategoryName variant="subtitle2" noWrap width={'calc(100% - 5px)'}>
+            <CategoryName variant="subtitle2" noWrap width={'100%'}>
               {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
           </InfoLeft>
@@ -128,6 +128,7 @@ const InfoSection = styled.div`
 const InfoLeft = styled.div`
   display: flex;
   flex-direction: column;
+  width: calc(100% - 22px);
 `
 
 const InfoRight = styled.div`

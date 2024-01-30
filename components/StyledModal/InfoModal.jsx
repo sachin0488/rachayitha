@@ -109,6 +109,9 @@ export default InfoModal
 
 const Root = styled(StyledModal)`
   padding: 0px;
+  @media (max-width: 450px) {
+    padding-top: 15px;
+  }
 `
 
 const Main = styled(Box)`
@@ -126,6 +129,12 @@ const Notice = styled(Typography)`
   line-height: 1.45;
   text-align: center;
   font-weight: 600;
+
+  @media (max-width: 450px) {
+    padding: 0.1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+  }
 `
 
 const Nav = styled.div`
@@ -133,6 +142,11 @@ const Nav = styled.div`
   gap: 0.7em;
 
   padding: 1em;
+
+  @media (max-width: 450px) {
+    padding: 0.1em;
+    padding-top: 1.1em;
+  }
 `
 
 const StyledButton = styled(Button)`
