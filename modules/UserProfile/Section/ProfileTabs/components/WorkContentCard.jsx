@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
@@ -6,27 +6,28 @@ import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 import { useUserService } from 'modules/Auth/service/User.service'
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
 import { ContentType } from 'modules/UserProfile/constants/common.constants'
-import { Browser } from '@capacitor/browser'
 
 const WorkContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
-
-  const openCapacitorSite = useCallback(async () => {
-    await Browser.open({
-      url:
-        item?.contentType === ContentType.BOOK
-          ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
-          : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`,
-    })
-  }, [item.contentId, item?.contentType, item?.slug])
 
   return (
     <Root>
       <Main>
         <Tooltip title="Edit in dashboard">
-          <StyledCornerButton onClick={openCapacitorSite} variant="contained" sx={{ minWidth: 40, width: 40 }}>
-            <EditNoteRoundedIcon />
-          </StyledCornerButton>
+          <Link
+            href={
+              isLoggedIn
+                ? item?.contentType === ContentType.BOOK
+                  ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
+                  : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`
+                : `/login`
+            }>
+            <a>
+              <StyledCornerButton onClick={openCapacitorSite} variant="contained" sx={{ minWidth: 40, width: 40 }}>
+                <EditNoteRoundedIcon />
+              </StyledCornerButton>
+            </a>
+          </Link>
         </Tooltip>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
