@@ -12,6 +12,9 @@ export const createCommentAPI = async ({ poemId, parentCommentId, comment }) => 
       parent_comment_id: parentCommentId,
       comments: comment,
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

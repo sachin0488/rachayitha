@@ -11,6 +11,9 @@ const likeBookAPI = async ({ bookId }) => {
       book_id: bookId,
       book_comment_id: '',
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

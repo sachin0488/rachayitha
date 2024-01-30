@@ -42,6 +42,9 @@ const sendResetPasswordLinkByEmailAPI = async ({ email }) => {
     data: {
       email: email,
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

@@ -44,6 +44,9 @@ export const resetPasswordByTokenAPI = data => {
     url: '/password_reset/confirm/',
     method: 'POST',
     data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

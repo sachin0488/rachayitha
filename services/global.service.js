@@ -14,13 +14,14 @@ export const APIInstance = axios.create({
   baseURL: `${API_URL}`,
 })
 
-APIInstance.defaults.headers.common['Content-Type'] = 'application/json'
-
 export const silentRenewalAPI = data => {
   return APIInstance({
     url: '/token/refresh/',
     method: 'POST',
     data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 }
 

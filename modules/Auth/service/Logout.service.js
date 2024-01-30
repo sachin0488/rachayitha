@@ -63,5 +63,8 @@ const logoutAPI = () => {
     data: {
       refresh: getRefresh(),
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 }

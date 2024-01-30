@@ -11,6 +11,9 @@ const likePoemAPI = async ({ poemId }) => {
       poem_id: poemId,
       poem_comment_id: '',
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

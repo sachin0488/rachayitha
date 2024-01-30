@@ -97,6 +97,9 @@ const silentRenewalAPI = data => {
     url: '/token/refresh/',
     method: 'POST',
     data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then(res => {
       return [res, null]

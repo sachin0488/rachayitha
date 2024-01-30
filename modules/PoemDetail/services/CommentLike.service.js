@@ -11,6 +11,9 @@ const likeCommentAPI = async ({ poemId, commentId }) => {
       poem_id: poemId,
       poem_comment_id: commentId || '',
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   return {

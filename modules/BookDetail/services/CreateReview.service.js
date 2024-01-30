@@ -12,6 +12,9 @@ const createReviewAPI = async ({ bookId, comment, parameter1, parameter2, parame
       parent_comment_id: null,
       comments: comment,
     },
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 
   const ratingAPI = APIInstance({
@@ -24,6 +27,9 @@ const createReviewAPI = async ({ bookId, comment, parameter1, parameter2, parame
       parameter3: parseInt(parameter3),
       parameter4: parseInt(parameter4),
       parameter5: parseInt(parameter5),
+    },
+    headers: {
+      'Content-Type': 'application/json',
     },
   })
 
