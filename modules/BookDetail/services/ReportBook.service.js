@@ -19,6 +19,9 @@ export const useReportBookService = ({ bookId }) => {
         url: `/bookreport`,
         method: 'POST',
         data: form,
+        header: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
 
       return {

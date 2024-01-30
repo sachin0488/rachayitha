@@ -43,6 +43,9 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     url: '/internalpurchase/',
     method: 'POST',
     data: form,
+    header: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
 
   return {

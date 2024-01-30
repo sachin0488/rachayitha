@@ -15,6 +15,9 @@ export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id,
     url: '/callback/',
     method: 'POST',
     data: form,
+    header: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
   return {
     data: {

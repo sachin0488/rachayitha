@@ -17,6 +17,9 @@ export const createCoinPurchaseAPI = async ({ amount, qty }) => {
     url: '/payment/',
     method: 'POST',
     data: form,
+    header: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
 
   return {

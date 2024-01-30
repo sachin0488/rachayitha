@@ -19,6 +19,9 @@ export const useReportPoemService = ({ poemId }) => {
         url: `/poemreport`,
         method: 'POST',
         data: form,
+        header: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
 
       return {

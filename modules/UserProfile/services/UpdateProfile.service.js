@@ -66,6 +66,9 @@ const updateUserProfileAPI = async data => {
     url: '/user/',
     method: 'PUT',
     data: form,
+    header: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
 
   return {
