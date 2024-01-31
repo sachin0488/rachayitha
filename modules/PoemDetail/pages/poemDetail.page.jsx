@@ -10,6 +10,7 @@ import CommentSection from '../Section/CommentSection'
 import VoteSection from '../Section/VoteSection'
 import { usePoemDetailsService } from '../services/PoemDetails.service'
 import RecommendationSection from 'modules/RecommendationSlider/sliders/RecommendationSlider'
+import Head from 'next/head'
 
 const PoemDetail = () => {
   const { query } = useRouter()
@@ -20,6 +21,14 @@ const PoemDetail = () => {
   return (
     <RootContainer>
       <MainContainer>
+        <Head>
+          <title>Rachayitha | {Data?.poemName}</title>
+          <meta
+            name="keywords"
+            content={['Rachayitha', 'rachayitha', ...(Data?.tags || []), ...(Data?.category?.map(item => item?.name) || [])].join()}
+          />
+          <meta name="author" content={Data?.authorName} />
+        </Head>
         <DetailsSection />
         <RecommendationSection />
         <VoteSection />

@@ -107,7 +107,7 @@ const Root = styled.div`
   align-items: center;
 
   margin-top: 20px;
-  min-width: 252px;
+  min-width: 280px;
   @media (max-width: 730px) {
     min-width: unset;
     width: 100%;
@@ -120,6 +120,7 @@ const Row = styled.div`
     flex: 1;
     display: flex;
   }
+  width: 100%;
 `
 const SubscribedFlag = styled(Typography)`
   position: relative;
@@ -161,6 +162,7 @@ const NavList = styled.div`
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
+  width: 100%;
 `
 const StyledAddCoinButton = styled(Button)`
   white-space: nowrap;

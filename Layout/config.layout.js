@@ -24,6 +24,7 @@ export const NavPageLinks = [
     path: '/create',
     link: process.env.NEXT_PUBLIC_DASHBOARD_URL,
     forLoggedInOnly: true,
+    openInNewTab: true,
   },
   {
     Icon: BookOutlinedIcon,

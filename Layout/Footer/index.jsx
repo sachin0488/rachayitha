@@ -37,16 +37,12 @@ const Footer = () => {
           <Heading variant="h5" component="div">
             Create
           </Heading>
-          <Link href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel`}>
-            <a>
-              <LinkButton>Book</LinkButton>
-            </a>
-          </Link>
-          <Link href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem`}>
-            <a>
-              <LinkButton>Poem</LinkButton>
-            </a>
-          </Link>
+          <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel`} target="_blank" rel="noreferrer">
+            <LinkButton>Book</LinkButton>
+          </a>
+          <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem`} target="_blank" rel="noreferrer">
+            <LinkButton>Poem</LinkButton>
+          </a>
         </Section>
         <Divider />
         <Section>

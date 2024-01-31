@@ -23,7 +23,7 @@ const WorkContentCard = ({ item }) => {
                 : `/login`
             }>
             <a>
-              <StyledCornerButton onClick={openCapacitorSite} variant="contained" sx={{ minWidth: 40, width: 40 }}>
+              <StyledCornerButton variant="contained" sx={{ minWidth: 40, width: 40 }}>
                 <EditNoteRoundedIcon />
               </StyledCornerButton>
             </a>

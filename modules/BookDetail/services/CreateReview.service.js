@@ -67,6 +67,9 @@ export const useCreateReviewService = ({ bookId, sortBy }) => {
       queryClient.invalidateQueries({
         queryKey: [BookDetailsQuery.COMMENT_LIST, { bookId: parseInt(bookId), parentCommentId: null, sortBy }],
       })
+      queryClient.invalidateQueries({
+        queryKey: [BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }],
+      })
 
       if (comment?.isMessageVisible)
         enqueueSnackbar(comment?.message, {

@@ -16,6 +16,9 @@ import Layout from 'Layout'
 import AuthProvider from 'modules/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
+import Script from 'next/script'
+import CookiesAlert from 'components/CookiesAlert'
+import { isBrowser } from 'utility/ssr.utility'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -51,6 +54,7 @@ const MyApp = props => {
                   <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 </Head>
+                <CookiesAlert />
                 <Component {...pageProps} />
               </Layout>
             </AuthProvider>
