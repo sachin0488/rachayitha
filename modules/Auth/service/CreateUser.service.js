@@ -79,7 +79,7 @@ const createAccountAPI = async data => {
         username: data?.username,
         email: data?.email,
         password: data?.password,
-        bio: data?.bio,
+        bio: data?.bio || undefined,
         full_name: data?.fullName,
         birth_date: moment(data?.birthDate).format('YYYY-MM-DD'),
         gender: data?.gender,

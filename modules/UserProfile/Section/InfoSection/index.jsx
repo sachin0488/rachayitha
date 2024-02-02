@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Tooltip, Typography } from '@mui/material'
+import { Avatar, Button, Divider, Tooltip, Typography } from '@mui/material'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import moment from 'moment'
@@ -46,10 +46,10 @@ const InfoSection = () => {
           paddingBottom: isSubscribed ? '10px' : '20px',
         }}>
         <NameSection>
+          <UsernameText variant="body2">@{user?.username}</UsernameText>
           <NameText variant="h5" component="div">
             {user?.fullName}
           </NameText>
-          <UsernameText variant="body2">@{user?.username}</UsernameText>
           <BioText variant="subtitle2">{user?.bio}</BioText>
         </NameSection>
 
@@ -201,7 +201,7 @@ const Main = styled.div`
   padding-right: 20px;
   padding-bottom: 10px;
   border-radius: 15px;
-  border: 2px solid ${({ theme }) => theme.palette.primary.main}1a;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
   @media (max-width: 730px) {
     border: none;
     background: transparent;

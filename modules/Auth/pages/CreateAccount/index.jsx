@@ -4,7 +4,7 @@ import Link from 'next/link'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button, CircularProgress, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography, useMediaQuery } from '@mui/material'
 
 import StyledTextField from 'modules/Auth/components/FormComponents/StyledTextField'
 import StyledPasswordField from 'modules/Auth/components/FormComponents/StyledPasswordField'
@@ -24,6 +24,8 @@ const CreateAccountPage = () => {
   const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
   const { handleCreateAccount, isLoading, user, isEmailVerified, checkVerificationStatus, isSuccess } = useCreateAccountService()
   const { handleFormError } = useFormError()
+
+  const isMobile = useMediaQuery('(max-width: 621px)')
 
   const methods = useForm({
     resolver: yupResolver(schema),
@@ -57,27 +59,61 @@ const CreateAccountPage = () => {
                 Join us today and start enjoying all the benefits of being a member. Please fill out the form below to create your account.
               </DescriptionText>
             </TextSection>
-            <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
-            <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
-            <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
-            <StyledDateSelector name="birthDate" label="Birth Date" />
-
-            <StyledTextField name="bio" label="Bio" placeholder="Enter your bio ..." multiline />
-            <StyledFieldGroup as="div">
-              <StyledFormLabel>Select Gender</StyledFormLabel>
-              <StyledRadioGroup name="gender" row>
-                {GenderList.map(({ label, value }) => (
-                  <StyledRadioBox key={value} label={label} value={value} />
-                ))}
-              </StyledRadioGroup>
-            </StyledFieldGroup>
-            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="new-password" />
-            <StyledPasswordField
-              name="confirmPassword"
-              label="Confirm Password"
-              placeholder="Enter your confirm password ..."
-              autoComplete="new-password"
-            />
+            {isMobile ? (
+              <>
+                <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
+                <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
+                <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
+                <StyledDateSelector name="birthDate" label="Birth Date" />
+                <StyledTextField name="bio" label="Bio (Optional)" placeholder="Enter your bio ..." multiline />
+                <StyledFieldGroup as="div">
+                  <StyledFormLabel>Select Gender</StyledFormLabel>
+                  <StyledRadioGroup name="gender" row>
+                    {GenderList.map(({ label, value }) => (
+                      <StyledRadioBox key={value} label={label} value={value} />
+                    ))}
+                  </StyledRadioGroup>
+                </StyledFieldGroup>
+                <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="new-password" />
+                <StyledPasswordField
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  placeholder="Enter your confirm password ..."
+                  autoComplete="new-password"
+                />
+              </>
+            ) : (
+              <div className="main-form">
+                <div className="left">
+                  <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
+                  <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
+                  <div className="hight-box">
+                    <StyledTextField name="bio" label="Bio (Optional)" placeholder="Enter your bio ..." multiline rows={2} />
+                  </div>
+                  <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="new-password" />
+                </div>
+                <div className="right">
+                  <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
+                  <StyledDateSelector name="birthDate" label="Birth Date" />
+                  <div className="hight-box">
+                    <StyledFieldGroup as="div">
+                      <StyledFormLabel>Select Gender</StyledFormLabel>
+                      <StyledRadioGroup name="gender" row>
+                        {GenderList.map(({ label, value }) => (
+                          <StyledRadioBox key={value} label={label} value={value} />
+                        ))}
+                      </StyledRadioGroup>
+                    </StyledFieldGroup>
+                  </div>
+                  <StyledPasswordField
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    placeholder="Enter your confirm password ..."
+                    autoComplete="new-password"
+                  />
+                </div>
+              </div>
+            )}
             <BottomSection>
               <TermsAndPrivacyPolicyCheckbox name="agree" />
             </BottomSection>
@@ -118,10 +154,10 @@ const GenderList = [
 ]
 
 const schema = yup.object().shape({
-  fullName: yup.string().min(3).required('Name is required'),
-  username: yup.string().min(3).required('Username is required'),
+  fullName: yup.string().min(3, 'Name must be 3 charters long').required('Name is required'),
+  username: yup.string().min(3, 'Username must be 3 charters long').required('Username is required'),
   birthDate: yup.string().required('birthday is required'),
-  bio: yup.string().required('Bio is required'),
+  bio: yup.string(),
   email: yup.string().email().required('Email is required'),
   gender: yup.string().required('Gender is required'),
   password: yup.string().required('Password is required'),
@@ -155,7 +191,11 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 400px;
+
+  max-width: 600px;
+  @media (max-width: 621px) {
+    max-width: 400px;
+  }
   @media (min-width: 480px) {
     box-shadow: 10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}20,
       10px 10px 20px 1px ${({ theme }) => theme.palette.primary.main}10;
@@ -175,7 +215,26 @@ const Body = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   gap: 17px;
-
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  }
+  .main-form {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+  }
+  .hight-box {
+    height: 103px;
+    display: flex;
+    flex-direction: column;
+  }
   @media (min-width: 480px) {
     border-radius: 18px;
     background: rgb(255, 255, 255);
@@ -236,6 +295,9 @@ const StyledButton = styled(Button)`
   box-shadow: none;
   font-size: 0.95rem;
   font-weight: 600;
+  &.MuiButton-text {
+    background: ${({ theme }) => theme.palette.primary.main}09;
+  }
 `
 
 const StyledForgotPassword = styled(Button)`

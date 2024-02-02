@@ -17,7 +17,7 @@ export const toggleToLibraryAPI = async ({ contentId, addToLibrary, contentType 
   }
 }
 
-export const useToggleToLibraryService = ({ contentId, contentType }) => {
+export const useToggleToLibraryService = ({ contentId, contentType, ...props }) => {
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
 
@@ -29,9 +29,9 @@ export const useToggleToLibraryService = ({ contentId, contentType }) => {
         contentType,
       })
     },
-    onSuccess({ message, data }) {
+    onSuccess({ message }) {
       try {
-        queryClient.setQueryData([UserProfileQuery.LIBRARY_LIST, { contentType }], oldData => {
+        queryClient.setQueryData(props?.queryKey ? props?.queryKey : [UserProfileQuery.LIBRARY_LIST, { contentType }], oldData => {
           return {
             ...oldData,
             pages: oldData?.pages?.map(group => {

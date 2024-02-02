@@ -3,10 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { PaymentQuery } from '../constants/query.address'
 import { AuthQuery } from 'modules/Auth/constants/query.address'
-import { useBookChapterContentFCService } from 'modules/ReadBookSection/service/ChapterContent.service'
-import { BookDetailsQuery } from 'modules/BookDetail/constants/query.address'
-import { PoemDetailsQuery } from 'modules/PoemDetail/constants/query.address'
-import { usePoemChapterContentFCService } from 'modules/ReadPoemSection/service/ChapterContent.service'
+import { useChapterContentFCService } from 'modules/ReaderSection/service/ChapterContent.service'
+import { ContentDetailsQuery } from 'modules/ContentDetail/constants/query.address'
 
 export const InternalPurchaseOrderType = {
   BOOK_CHAPTER: 'bookchapter',
@@ -64,8 +62,7 @@ export const useInternalPurchaseService = props => {
   const { enqueueSnackbar } = useSnackbar()
 
   const queryClient = useQueryClient()
-  const { mutate: fetchBookChapterContent } = useBookChapterContentFCService()
-  const { mutate: fetchPoemChapterContent } = usePoemChapterContentFCService()
+  const { mutate: fetchChapterContent } = useChapterContentFCService()
 
   const { mutate, isLoading, isSuccess, isError, data, error } = useMutation({
     mutationFn({ orderType, amount, subscriptionId, votePlanId, bookId, chapterId, poemId }) {
@@ -89,19 +86,19 @@ export const useInternalPurchaseService = props => {
       }
 
       if (orderType === InternalPurchaseOrderType.BOOK_CHAPTER) {
-        fetchBookChapterContent({ bookId, chapterId })
+        fetchChapterContent({ contentId: bookId, chapterId, contentType: 'book' })
       }
 
       if (orderType === InternalPurchaseOrderType.POEM_CHAPTER) {
-        fetchPoemChapterContent({ poemId, chapterId })
+        fetchChapterContent({ contentId: poemId, chapterId, contentType: 'poem' })
       }
 
       if (orderType === InternalPurchaseOrderType.BOOK) {
-        queryClient.invalidateQueries([BookDetailsQuery.BOOK_DETAILS, { bookId: parseInt(bookId) }])
+        queryClient.invalidateQueries([ContentDetailsQuery.CONTENT_DETAILS, { contentId: parseInt(bookId), contentType: 'book' }])
       }
 
       if (orderType === InternalPurchaseOrderType.POEM) {
-        queryClient.invalidateQueries([PoemDetailsQuery.POEM_DETAILS, { poemId: parseInt(poemId) }])
+        queryClient.invalidateQueries([ContentDetailsQuery.CONTENT_DETAILS, { contentId: parseInt(poemId), contentType: 'poem' }])
       }
 
       if (props?.disableSnackbar !== true && isMessageVisible) {

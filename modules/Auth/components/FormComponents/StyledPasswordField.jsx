@@ -104,7 +104,7 @@ const StyledPasswordFieldRoot = styled(OutlinedInput)`
 
   .MuiOutlinedInput-input {
     padding-inline: 14px;
-    padding-block: 12px;
+    padding-block: 10px 10px;
 
     -webkit-autofill {
       box-shadow: none;
@@ -113,7 +113,11 @@ const StyledPasswordFieldRoot = styled(OutlinedInput)`
     }
   }
   input::placeholder {
+    color: ${({ theme }) => theme.palette.secondary.main}91;
+    font-weight: 600;
+    opacity: 0.7;
     font-size: 0.85rem;
+    line-height: 1.3;
   }
 `
 

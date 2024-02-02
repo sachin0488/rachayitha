@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 
 import { useUserService } from 'modules/Auth/service/User.service'
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
 
 const ContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
@@ -26,8 +27,10 @@ const ContentCard = ({ item }) => {
           <Category variant="subtitle2" noWrap>
             {item?.category?.map(({ name }) => name).join(', ')}
           </Category>
-
-          <Rating>{Number(item?.avgRatingValue).toFixed(1)}</Rating>
+          <Rating variant="subtitle2" color="secondary">
+            {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
+            <StarRateRoundedIcon sx={{ fontSize: 21, mt: -0.02, color: theme => theme.palette.primary.light }} />
+          </Rating>
         </InfoSection>
       </Root>
     </Link>
@@ -93,8 +96,11 @@ const Category = styled(Typography)`
 
 const Rating = styled(Typography)`
   font-weight: 600;
-  font-size: 21px;
-  color: #148544;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  gap: 2px;
 `
 
 export default ContentCard

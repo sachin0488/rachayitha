@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   const { isLoading, isLoggedIn, isSuccess } = useUserService()
 
-  const { isFetching } = useQuery({
+  const { isLoading: isFetching } = useQuery({
     queryKey: [AuthQuery.AUTH_PROVIDER, { pathname, isLoggedIn }],
     queryFn: () => {
       if (isLoggedIn) {

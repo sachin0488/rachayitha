@@ -1,20 +1,22 @@
-'use client'
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
-import React, { useEffect, useState } from 'react'
 import CookieRoundedIcon from '@mui/icons-material/CookieRounded'
 import clsx from 'clsx'
+import { useQuery } from '@tanstack/react-query'
 
 const CookiesAlert = () => {
-  const [isCookiesAlertHidden, setCookiesAlertHidden] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('isCookiesAlertHidden') !== 'true' ? false : true
-    }
-    return false
+  const { data: isCookiesAccepted, refetch } = useQuery({
+    queryKey: ['cookiesAlert'],
+    queryFn: () => {
+      if (typeof window !== 'undefined') {
+        return localStorage.getItem('isCookiesAccepted') !== 'yes' ? false : true
+      }
+      return false
+    },
   })
 
   return (
-    <Root className={clsx({ show: !isCookiesAlertHidden })}>
+    <Root className={clsx({ show: !isCookiesAccepted })}>
       <div className={'cookiesAlert'}>
         <div className="cookiesAlert__content">
           <div className="cookiesAlert__contentTop">
@@ -30,8 +32,10 @@ const CookiesAlert = () => {
               variant="contained"
               disableElevation
               onClick={() => {
-                setCookiesAlertHidden(true)
-                localStorage.setItem('isCookiesAlertHidden', 'true')
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem('isCookiesAccepted', 'yes')
+                }
+                refetch()
               }}>
               Accept Cookies
             </Button>

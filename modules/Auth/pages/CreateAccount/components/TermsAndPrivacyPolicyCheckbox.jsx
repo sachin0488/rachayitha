@@ -48,10 +48,17 @@ export default TermsAndPrivacyPolicyCheckbox
 
 const Root = styled.div`
   display: flex;
+  align-items: center;
+  @media (min-width: 621px) {
+    background: ${({ theme }) => theme.palette.primary.main}09;
+    border-radius: 8px;
+    padding-right: 13px;
+  }
 `
 const StyledText = styled(Typography)`
   font-weight: 600;
   letter-spacing: 0.25px;
+  line-height: 1.7;
   a {
     color: ${({ theme }) => theme.palette.primary.main};
   }
@@ -63,5 +70,9 @@ const StyledFormControlLabel = styled(FormControlLabel)`
     line-height: 1.7;
     font-weight: 500;
     color: ${({ theme }) => theme.palette.secondary.main};
+  }
+  &.MuiFormControlLabel-root {
+    margin-right: 5px;
+    margin-left: 0px;
   }
 `

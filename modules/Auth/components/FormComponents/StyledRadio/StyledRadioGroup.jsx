@@ -30,4 +30,11 @@ export default function StyledRadioGroup({ name, children, ...props }) {
   return <Root {...radioGroupProps}>{children}</Root>
 }
 
-const Root = styled(RadioGroup)``
+const Root = styled(RadioGroup)`
+  @media (min-width: 621px) {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+  }
+`

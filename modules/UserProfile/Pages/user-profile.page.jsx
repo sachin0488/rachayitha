@@ -6,17 +6,16 @@ import BannerSection from '../Section/BannerSection'
 import InfoSection from '../Section/InfoSection'
 import ProfileTabs from '../Section/ProfileTabs'
 import { useUserService } from 'modules/Auth/service/User.service'
-import EmailVerification from '../Section/EmailVerification'
 
 const UserProfilePage = () => {
-  const { isEmailVerified } = useUserService()
+  const { user, isLoading: isBannerLoading } = useUserService()
   return (
     <RootContainer>
       <MainContainer>
-        <BannerSection />
+        <BannerSection user={user} isBannerLoading={isBannerLoading} />
         <BodyContainer>
           <InfoSection />
-          {isEmailVerified ? <ProfileTabs /> : <EmailVerification />}
+          <ProfileTabs />
         </BodyContainer>
       </MainContainer>
     </RootContainer>

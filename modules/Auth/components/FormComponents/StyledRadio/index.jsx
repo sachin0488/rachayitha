@@ -7,6 +7,9 @@ export const StyledFieldGroup = styled.form`
   gap: 0.2em;
   display: flex;
   flex-direction: column;
+  @media (min-width: 621px) {
+    height: 100%;
+  }
 `
 
 export const StyledFormLabel = styled(FormLabel)`

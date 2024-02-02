@@ -78,13 +78,33 @@ const StyledTextFieldRoot = styled(TextField)`
 
   .MuiOutlinedInput-input {
     padding-inline: 14px;
-    padding-block: 12px;
+    padding-block: 10px 10px;
 
     -webkit-autofill {
       box-shadow: none;
       -webkit-box-shadow: none;
       -webkit-text-fill-color: none;
     }
+  }
+  textarea.MuiOutlinedInput-input {
+    padding-inline: 5px;
+    padding-block: 0px;
+  }
+  textarea {
+    font-size: 0.89rem;
+    line-height: 1.66;
+  }
+  input::placeholder {
+    color: ${({ theme }) => theme.palette.secondary.main}91;
+    font-weight: 600;
+    opacity: 0.7;
+    font-size: 0.85rem;
+  }
+  textarea::placeholder {
+    color: ${({ theme }) => theme.palette.secondary.main}91;
+    font-weight: 600;
+    opacity: 0.7;
+    font-size: 0.85rem;
   }
 `
 

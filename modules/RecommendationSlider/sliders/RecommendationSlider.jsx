@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import StyledSlider from 'components/StyledSlider'
 import { Typography } from '@mui/material'
-import { ErrorBar, LoadingBar, NotAvailableBar } from 'modules/RecommendationSlider/cards/components'
 
-import { mainMaxWidth } from 'modules/BookDetail/common/styles'
 import { useRecommendationService } from '../services/Recommendation.service'
 
 import MinimalCard from '../cards/MinimalCard'
 import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 import DataSection from '../components/DataSection'
+import { mainMaxWidth } from 'modules/ContentDetail/common/styles'
 
 const RecommendationSection = () => {
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])

@@ -10,13 +10,14 @@ import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import ToggleToLibraryButton from './ToggleToLibraryButton'
 import { useUserService } from 'modules/Auth/service/User.service'
+import Synopsis from 'modules/ContentDetail/components/Synopsis'
 
 const PoemCard = ({ item, index, ranking }) => {
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width: 465px)')
   return (
     <Root>
-      <DeignsIcon />
+      {/* <DeignsIcon /> */}
       <Main>
         {ranking && (
           <RankingRoot>
@@ -42,8 +43,15 @@ const PoemCard = ({ item, index, ranking }) => {
             {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
           </CategoryName>
           {/* <ParagraphText variant="subtitle2">{item?.synopsis}</ParagraphText> */}
-          <Synopsis dangerouslySetInnerHTML={{ __html: item?.synopsis }} />
-
+          <Synopsis
+            variant="subtitle2"
+            maxLine={3}
+            fontSize={14}
+            style={{
+              lineHeight: '1.55',
+            }}>
+            {item?.synopsis}
+          </Synopsis>
           {!isMobile && (
             <InfoNav>
               <RatingRoot>
@@ -185,32 +193,6 @@ const TitleName = styled(Typography)`
   gap: 7px;
   @media (max-width: 400px) {
     font-size: 1.1rem;
-  }
-`
-
-const Synopsis = styled(Typography)`
-  color: ${({ theme }) => theme.palette.secondary.main};
-  margin-top: -12px;
-  && {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-  @media (max-width: 400px) {
-    letter-spacing: 0.15px;
-    font-size: 0.69rem;
-    line-height: 1.37;
-    && {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 4; /* number of lines to show */
-      line-clamp: 4;
-      -webkit-box-orient: vertical;
-    }
   }
 `
 

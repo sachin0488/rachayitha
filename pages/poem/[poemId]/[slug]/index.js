@@ -1,12 +1,19 @@
 import React from 'react'
-import PoemDetail from 'modules/PoemDetail/pages/poemDetail.page'
+import ContentDetail from 'modules/ContentDetail/pages/contentDetail.page'
+import { useRouter } from 'next/router'
 
-const poem = () => {
+const Poem = () => {
+  const { query } = useRouter()
+
+  const contentType = 'poem'
+  const contentId = query?.poemId
+  const slug = query?.slug
+
   return (
     <>
-      <PoemDetail />
+      <ContentDetail contentId={contentId} contentType={contentType} slug={slug} />
     </>
   )
 }
 
-export default poem
+export default Poem

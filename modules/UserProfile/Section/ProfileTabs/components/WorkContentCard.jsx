@@ -14,20 +14,18 @@ const WorkContentCard = ({ item }) => {
     <Root>
       <Main>
         <Tooltip title="Edit in dashboard">
-          <Link
+          <a
             href={
-              isLoggedIn
-                ? item?.contentType === ContentType.BOOK
-                  ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
-                  : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`
-                : `/login`
-            }>
-            <a>
-              <StyledCornerButton variant="contained" sx={{ minWidth: 40, width: 40 }}>
-                <EditNoteRoundedIcon />
-              </StyledCornerButton>
-            </a>
-          </Link>
+              item?.contentType === ContentType.BOOK
+                ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel/${item.contentId}?slug=${item?.slug}`
+                : `${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem/${item.contentId}?slug=${item?.slug}`
+            }
+            target="_blank"
+            rel="noreferrer">
+            <StyledCornerButton variant="contained" sx={{ minWidth: 40, width: 40 }}>
+              <EditNoteRoundedIcon />
+            </StyledCornerButton>
+          </a>
         </Tooltip>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
@@ -44,7 +42,7 @@ const WorkContentCard = ({ item }) => {
           </InfoRight>
         </InfoSection>
       </Main>
-      <Link href={isLoggedIn ? (item?.bookId ? `/book/${item.bookId}/${item?.slug}` : `/poem/${item.poemId}/${item?.slug}`) : `/login`}>
+      <Link href={isLoggedIn ? `/${item?.contentType.toLowerCase()}/${item.contentId}/${item?.slug}` : `/login`}>
         <a>
           <StyledButton color="primary" />
         </a>

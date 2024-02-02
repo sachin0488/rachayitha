@@ -5,6 +5,7 @@ import { Button, ButtonBase, Typography } from '@mui/material'
 
 import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 import { useUserService } from 'modules/Auth/service/User.service'
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
 
 const MinimalCard = ({ item, queryKey, contentType }) => {
   const { isLoggedIn } = useUserService()
@@ -37,7 +38,10 @@ const MinimalCard = ({ item, queryKey, contentType }) => {
           </InfoLeft>
 
           <InfoRight>
-            <Rating variant="subtitle2">{item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}</Rating>
+            <Rating variant="subtitle2" color="secondary">
+              {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
+              <StarRateRoundedIcon sx={{ fontSize: 21, color: theme => theme.palette.primary.light }} />
+            </Rating>
           </InfoRight>
         </InfoSection>
       </Main>
@@ -109,6 +113,9 @@ const InfoLeft = styled.div`
 const InfoRight = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
 `
 
 const TitleName = styled(Typography)`
@@ -124,9 +131,12 @@ const CategoryName = styled(Typography)`
 `
 
 const Rating = styled(Typography)`
-  color: ${({ theme }) => theme.palette.primary.main};
   font-weight: 600;
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+  gap: 2px;
 `
 
 const AddIcon = styled(Button)`

@@ -8,7 +8,7 @@ import { AuthTokenStore } from 'utility/authTokenStore'
 export const useUserService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
-  const { data, isFetching, isSuccess, refetch, isError } = useQuery({
+  const { data, isLoading, isSuccess, refetch, isError } = useQuery({
     queryKey: [AuthQuery.USER_DATA],
     queryFn: userAuthAPI,
   })
@@ -22,7 +22,7 @@ export const useUserService = () => {
   }, [isError, enqueueSnackbar])
 
   return {
-    isLoading: isFetching,
+    isLoading: isLoading,
     isEmailVerified: data?.user?.isEmailVerified || false,
     isSuccess,
     isError,

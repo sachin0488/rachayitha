@@ -156,6 +156,9 @@ const StyledButton = styled(Button)`
   box-shadow: none;
   font-size: 0.95rem;
   font-weight: 600;
+  &.MuiButton-text {
+    background: ${({ theme }) => theme.palette.primary.main}09;
+  }
 `
 
 const StyledForgotPassword = styled(Button)`

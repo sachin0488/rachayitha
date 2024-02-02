@@ -79,7 +79,7 @@ const StyledDatePicker = styled(DatePicker)`
 
   .MuiOutlinedInput-input {
     padding-inline: 14px;
-    padding-block: 12px;
+    padding-block: 10px 10px;
     -webkit-autofill {
       box-shadow: none;
       -webkit-text-fill-color: none;
@@ -93,6 +93,12 @@ const StyledDatePicker = styled(DatePicker)`
 
   .MuiSvgIcon-root {
     color: ${({ theme }) => theme.palette.text.icon};
+  }
+  input::placeholder {
+    color: ${({ theme }) => theme.palette.secondary.main}91;
+    font-weight: 600;
+    opacity: 0.7;
+    font-size: 0.85rem;
   }
 `
 

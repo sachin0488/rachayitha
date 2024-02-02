@@ -7,12 +7,10 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import LandscapeRoundedIcon from '@mui/icons-material/LandscapeRounded'
 
 import { useUpdateProfileService } from 'modules/UserProfile/services/UpdateProfile.service'
-import { useUserService } from 'modules/Auth/service/User.service'
 
-const BannerSection = () => {
+const BannerSection = ({ user, isBannerLoading, readOnly }) => {
   const name = 'profileBanner'
 
-  const { user, isLoading: isBannerLoading } = useUserService()
   const { mutate, isLoading } = useUpdateProfileService()
 
   const { reset, control, handleSubmit } = useForm({
@@ -97,16 +95,20 @@ const BannerSection = () => {
 
   return (
     <Root>
-      {isPreviewAvailable && typeof value?.[0] !== 'string' && (
-        <StyledSaveButton disabled={isLoading} onClick={handleSubmit(mutate)} color="secondary" variant="contained">
-          {isLoading ? <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} /> : 'Save'}
-        </StyledSaveButton>
-      )}
-      <Tooltip title="Updated Banner Image!">
-        <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained" disabled={isLoading}>
-          <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
-        </StyledEditButton>
-      </Tooltip>
+      {readOnly !== true ? (
+        <>
+          {isPreviewAvailable && typeof value?.[0] !== 'string' && (
+            <StyledSaveButton disabled={isLoading} onClick={handleSubmit(mutate)} color="secondary" variant="contained">
+              {isLoading ? <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} /> : 'Save'}
+            </StyledSaveButton>
+          )}
+          <Tooltip title="Updated Banner Image!">
+            <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained" disabled={isLoading}>
+              <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
+            </StyledEditButton>
+          </Tooltip>
+        </>
+      ) : null}
 
       {isPreviewAvailable && <StyledImage src={previewImage} alt="Profile Art" />}
       {!isPreviewAvailable && (
