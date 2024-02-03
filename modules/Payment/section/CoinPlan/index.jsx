@@ -3,6 +3,7 @@ import PlanCard from './components/PlanCard'
 import TollRoundedIcon from '@mui/icons-material/TollRounded'
 import { useCallback, useEffect, useState } from 'react'
 import { useCreateCoinPurchaseService } from 'modules/Payment/services/CreateCoinPurchase.service'
+import useCoinPlanListService from 'modules/Payment/services/CoinPlanList.service'
 
 const plans = [
   {
@@ -23,10 +24,12 @@ const plans = [
   },
 ]
 
+// isLoading, isError,
+
 const CoinPlan = () => {
   const { isLoading, mutate, isSuccess, isError } = useCreateCoinPurchaseService()
   const [currentState, setCurrentState] = useState('')
-
+  const { data } = useCoinPlanListService()
   const handlePayClick = useCallback(
     ({ amount, qty }) =>
       () => {
@@ -47,15 +50,18 @@ const CoinPlan = () => {
 
   return (
     <Root>
-      {plans.map(plan => (
+      {data.map(plan => (
         <PlanCard
-          key={plan.coins}
+          key={plan.coinQuantity}
           Icon={TollRoundedIcon}
-          name={`${plan.coins} Coins`}
-          highLight={`₹ ${plan.price}`}
-          isSelected={currentState === `${plan.coins}`}
+          name={`${plan.name}`}
+          shortDescription={`${plan.shortDetails}`}
+          description={`${plan.details}`}
+          amount={`₹ ${plan.amount}`}
+          coinQuantity={plan.coinQuantity}
+          isSelected={currentState === `${plan.coinQuantity}`}
           isLoading={isLoading}
-          onPayClick={handlePayClick({ amount: plan.price, qty: plan.coins })}
+          onPayClick={handlePayClick({ amount: plan.amount, qty: plan.coinQuantity })}
         />
       ))}
     </Root>

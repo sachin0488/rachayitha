@@ -77,6 +77,10 @@ const Root = styled.div`
   max-width: 180px;
   min-width: 220px;
   overflow: clip;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 `
 const Validity = styled.div`
   background-color: ${({ theme }) => theme.palette.primary.main};

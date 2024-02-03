@@ -1,25 +1,44 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { Button, CircularProgress, Typography } from '@mui/material'
+import { Button, CircularProgress, Tooltip, Typography } from '@mui/material'
 
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 
-const PlanCard = ({ Icon, name, description, highLight, onPayClick, isLoading, isSelected }) => {
+const PlanCard = ({ Icon, name, shortDescription, description, amount, coinQuantity, onPayClick, isLoading, isSelected }) => {
   return (
     <Root>
+      <Validity>
+        <Typography
+          variant="subtitle2"
+          color="white"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            lineHeight: '1.2',
+          }}>
+          <Icon color="white" sx={{ fontSize: 18 }} /> {coinQuantity}
+        </Typography>
+      </Validity>
       <Main>
         <InfoSection>
           <Icon color="primary" sx={{ fontSize: 120 }} />
           <InfoBottom>
-            <TitleName variant="h6" component="div">
-              {name}
-            </TitleName>
-            <Description variant="subtitle1" fontWeight={500}>
+            <Tooltip title={name}>
+              <TitleName variant="h6" component="div" noWrap>
+                {name}
+              </TitleName>
+            </Tooltip>
+            {/* <Description variant="subtitle1" fontWeight={500}>
               Get at just {highLight}
+            </Description> */}
+            <Description variant="subtitle1" fontWeight={500}>
+              {shortDescription}
             </Description>
-
-            {/* <Description variant="subtitle2">{description}</Description> */}
+            <Description variant="subtitle2" fontWeight={400} fontSize={13}>
+              {description}
+            </Description>
             {/* <Highlight variant="h6" component="div">
               {highLight}
             </Highlight> */}
@@ -47,7 +66,7 @@ const PlanCard = ({ Icon, name, description, highLight, onPayClick, isLoading, i
           fontSize={13.2}
           fontWeight={500}
           marginLeft={1}>
-          {highLight}
+          {amount}
         </Typography>
       </ContinueButton>
     </Root>
@@ -74,6 +93,10 @@ const Root = styled.div`
   max-width: 180px;
   min-width: 170px;
   overflow: clip;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 `
 const Design = styled.div`
   width: 150px;
@@ -160,4 +183,12 @@ const ContinueButton = styled(Button)`
   span {
     margin-left: 10px;
   }
+`
+const Validity = styled.div`
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  padding: 5px 10px;
+  border-radius: 18px;
+  position: absolute;
+  top: 2.5px;
+  right: 2.5px;
 `
