@@ -43,7 +43,10 @@ export const useVerifyPaymentAPI = () => {
     },
     onSuccess({ data }) {
       if (data?.isVerified) {
-        push('/payment-success')
+        window.location.href = '/payment-success'
+
+        // push('/payment-success')
+        // history.pushState(null, null,'/payment-success')
         enqueueSnackbar('Payment verified successfully !', {
           variant: 'success',
         })
