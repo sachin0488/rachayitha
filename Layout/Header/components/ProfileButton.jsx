@@ -32,6 +32,7 @@ const ProfileButton = () => {
       <Tooltip title="Your Profile">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar
+            variant="rounded"
             alt={user?.fullName}
             src={user?.profilePic}
             sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main, fontSize: 21, fontWeight: 500 }}>

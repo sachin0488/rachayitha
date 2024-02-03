@@ -31,12 +31,13 @@ const CoinPlan = () => {
   const [currentState, setCurrentState] = useState('')
   const { data } = useCoinPlanListService()
   const handlePayClick = useCallback(
-    ({ amount, qty }) =>
+    ({ amount, qty, id }) =>
       () => {
         setCurrentState(`${qty}`)
         mutate({
           amount: amount,
           qty: qty,
+          coinPlanId: id,
         })
       },
     [mutate],
@@ -52,7 +53,7 @@ const CoinPlan = () => {
     <Root>
       {data.map(plan => (
         <PlanCard
-          key={plan.coinQuantity}
+          key={plan.id}
           Icon={TollRoundedIcon}
           name={`${plan.name}`}
           shortDescription={`${plan.shortDetails}`}
@@ -61,7 +62,7 @@ const CoinPlan = () => {
           coinQuantity={plan.coinQuantity}
           isSelected={currentState === `${plan.coinQuantity}`}
           isLoading={isLoading}
-          onPayClick={handlePayClick({ amount: plan.amount, qty: plan.coinQuantity })}
+          onPayClick={handlePayClick({ amount: plan.amount, qty: plan.coinQuantity, id: plan.id })}
         />
       ))}
     </Root>

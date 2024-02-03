@@ -6,12 +6,13 @@ import { useVerifyPaymentAPI } from './VerifyPayment.service'
 import { useCallback } from 'react'
 import { useTheme } from '@mui/material'
 
-export const createCoinPurchaseAPI = async ({ amount, qty }) => {
+export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
   const form = new FormData()
 
   form.append('name', 'coin')
   form.append('amount', amount)
   form.append('qty', qty)
+  form.append('coin_plan_id', coinPlanId)
 
   const res = await APIInstance({
     url: '/payment/',
@@ -82,10 +83,11 @@ export const useCreateCoinPurchaseService = () => {
   )
 
   const { mutate, isLoading, isSuccess, isError } = useMutation({
-    mutationFn({ amount, qty }) {
+    mutationFn({ amount, qty, coinPlanId }) {
       return createCoinPurchaseAPI({
         amount,
         qty,
+        coinPlanId,
       })
     },
     onSuccess({ data }) {

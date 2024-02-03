@@ -11,7 +11,13 @@ const ProfileButton = () => {
   return (
     <Link href={`/profile`}>
       <Root sx={{ flexGrow: 0 }}>
-        <Avatar variant="rounded" alt={user?.username} src={user?.profilePic} />
+        <Avatar
+          variant="rounded"
+          alt={user?.fullName}
+          src={user?.profilePic}
+          sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main, fontSize: 21, fontWeight: 500 }}>
+          {user?.fullName?.slice(0, 1)}
+        </Avatar>
         <Username>{user?.username}</Username>
       </Root>
     </Link>
