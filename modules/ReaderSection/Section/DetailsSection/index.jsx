@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { useRouter } from 'next/router'
 
 import { Typography } from '@mui/material'
 import DividerBar from 'modules/ReaderSection/components/DividerBar'
@@ -50,6 +49,7 @@ const Root = styled.div`
     padding-top: 20px;
   }
   padding-bottom: 20px;
+  overflow: hidden;
 `
 const Main = styled.div`
   position: relative;
