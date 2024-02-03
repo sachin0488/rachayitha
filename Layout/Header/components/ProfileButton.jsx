@@ -34,12 +34,9 @@ const ProfileButton = () => {
           <Avatar
             alt={user?.fullName}
             src={user?.profilePic}
-            sx={{
-              bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main,
-              fontWeight: 600,
-              fontSize: 70,
-            }}
-          />
+            sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main, fontSize: 21, fontWeight: 500 }}>
+            {user?.fullName?.slice(0, 1)}
+          </Avatar>
         </IconButton>
       </Tooltip>
       <Menu

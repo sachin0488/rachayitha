@@ -37,7 +37,12 @@ const InfoSection = () => {
         <StyledProfileImage
           alt={user?.fullName}
           src={user?.profilePic}
-          sx={{ bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main, fontSize: 70 }}>
+          sx={{
+            bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main,
+            fontSize: 74,
+            fontSize: 84,
+            fontWeight: 500,
+          }}>
           {user?.fullName?.slice(0, 1)}
         </StyledProfileImage>
       </ImageWarper>
