@@ -5,50 +5,27 @@ import { create } from 'zustand'
 import { useSnackbar } from 'notistack'
 import slugUtility from 'utility/slug.utility'
 
-const useChapterContentCacheStore = create(set => ({
-  chapterContentCache: {},
-  setChapterContentInCacheByChapterId: value => {
-    set(state => ({
-      chapterContentCache: {
-        ...state.chapterContentCache,
-        [value.contentType]: {
-          ...state.chapterContentCache?.[value.contentType],
-          [value.contentId]: {
-            ...state.chapterContentCache?.[value.contentType]?.[value.contentId],
-            [value.chapterId]: value.chapterContent,
-          },
-        },
-      },
-    }))
-  },
-  clearChapterContentCache: () => {
-    set({ chapterContentCache: {} })
+const useRerender = create(set => ({
+  rerender() {
+    set(state => ({ ...state }))
   },
 }))
 
 export const useChapterContentService = ({ contentId, contentType }) => {
   const queryClient = useQueryClient()
-  const { chapterContentCache, setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
+  const { rerender } = useRerender()
   const { enqueueSnackbar } = useSnackbar()
 
   const { mutateAsync, isLoading, isSuccess } = useMutation({
     mutationFn: async ({ chapterId }) => {
-      if (chapterContentCache?.[contentType]?.[contentId]?.[chapterId]) {
-        return chapterContentCache?.[contentType]?.[contentId]?.[chapterId]
-      } else {
-        const response = await fetchChapterContentAPI({ contentId, chapterId, contentType })
+      const response = await fetchChapterContentAPI({ contentId, chapterId, contentType })
 
-        return response
-      }
+      return response
     },
 
     onSuccess: data => {
-      setChapterContentInCacheByChapterId({
-        contentType,
-        contentId,
-        chapterId: data.chapterId,
-        chapterContent: data,
-      })
+      rerender({})
+
       queryClient.setQueryData([ContentReadQuery.CHAPTER_LIST, { contentId, contentType }], preData => {
         return {
           ChapterList: preData?.ChapterList?.map(chapter => {
@@ -77,19 +54,12 @@ export const useChapterContentService = ({ contentId, contentType }) => {
 
 export const useChapterContentFCService = () => {
   const queryClient = useQueryClient()
-  const { setChapterContentInCacheByChapterId } = useChapterContentCacheStore()
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async ({ chapterId, contentId, contentType }) => {
       return await fetchChapterContentAPI({ contentId, chapterId, contentType })
     },
     onSuccess: (data, variables) => {
-      setChapterContentInCacheByChapterId({
-        contentType: variables.contentType,
-        contentId: variables.contentId,
-        chapterId: data.chapterId,
-        chapterContent: data,
-      })
       queryClient.setQueryData(
         [ContentReadQuery.CHAPTER_LIST, { contentId: variables?.contentId, contentType: variables.contentType }],
         preData => {
@@ -129,7 +99,7 @@ const fetchChapterContentAPI = async ({ contentId, chapterId, contentType }) => 
 
   if (chapter)
     return {
-      contentId: parseInt(chapter?.[`${contentType}_id_id`]),
+      contentId: parseInt(chapter?.book_id),
       chapterId: parseInt(chapter.id),
       authorNote: chapter.author_note,
       chapterTitle: chapter.chapter_title,

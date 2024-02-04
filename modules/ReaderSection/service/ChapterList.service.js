@@ -46,7 +46,7 @@ export const useChapterListService = ({ contentId, chapterId, contentType }) => 
             ChapterList: preData?.ChapterList?.map(chapter => {
               return {
                 ...chapter,
-                chapterContent: chapterId === chapter.chapterId ? response?.chapterContent : chapter.chapterContent,
+                chapterContent: chapterId === chapter.chapterId ? response?.chapterContent : '',
                 isLoaded: chapter.chapterId === chapterId,
               }
             }),
@@ -68,7 +68,41 @@ export const useChapterListService = ({ contentId, chapterId, contentType }) => 
     [isLoggedIn, mutateAsync, queryClient, contentId, contentType],
   )
 
-  return { ChapterList: data?.ChapterList, setChapterLoadedById, isLoading, isError, isSuccess, isFetching, reload }
+  // This function will clear the cache of the chapter content except the latest , current and next chapter
+  const clearCacheExceptLCN = useCallback(
+    async ({ chapterId }) => {
+      const currentChapterIndex = data?.ChapterList?.findIndex(chapter => chapter.chapterId === chapterId)
+
+      const LCNChapterIndexList = [currentChapterIndex - 1, currentChapterIndex, currentChapterIndex + 1].filter(index => index >= 0)
+
+      queryClient.setQueryData([ContentReadQuery.CHAPTER_LIST, { contentId, contentType }], preData => {
+        return {
+          ChapterList: preData?.ChapterList?.map((chapter, idx) => {
+            if (LCNChapterIndexList.includes(idx)) {
+              return chapter
+            }
+            return {
+              ...chapter,
+              chapterContent: '',
+              isLoaded: false,
+            }
+          }),
+        }
+      })
+    },
+    [data?.ChapterList, queryClient, contentId, contentType],
+  )
+
+  return {
+    ChapterList: data?.ChapterList,
+    setChapterLoadedById,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetching,
+    reload,
+    clearCacheExceptLCN,
+  }
 }
 
 const fetchChapterListAPI = async ({ contentId, chapterId, contentType }) => {

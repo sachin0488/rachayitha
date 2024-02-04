@@ -29,7 +29,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
   const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
   const { isLoggedIn } = useUserService()
   const { mutateAsync, isLoading } = useChapterContentService({ contentId: contentId, contentType })
-  const { ChapterList, setChapterLoadedById, isSuccess, reload } = useChapterListService({
+  const { ChapterList, clearCacheExceptLCN, setChapterLoadedById, isSuccess, reload } = useChapterListService({
     contentId: contentId,
     chapterId: chapterId,
     contentType,
@@ -52,31 +52,41 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
     return false
   }, [ChapterList, LoadedChapterList, chapterId, isMobile])
 
-  const handleToScrollToPreviousPosition = useCallback(() => {
-    const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
-    if (currentChapterIndex === 1) {
-      const thirdChild = bodyRef?.current?.children[2]
-      const thirdChildTop = thirdChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
+  const handleToScrollToPreviousPosition = useCallback(
+    props => {
+      const currentChapterIndex = ChapterList?.findIndex(chapter => chapter?.isLoaded)
 
-      mainRef.current?.scrollBy({
-        top: thirdChildTop,
-        left: 0,
-      })
-    } else {
-      const secondChild = bodyRef?.current?.children[1]
-      const secondChildTop = secondChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
+      let ViewPortHeight = 0
 
-      mainRef.current?.scrollBy({
-        top: secondChildTop,
-        left: 0,
-      })
-    }
-  }, [ChapterList, theme.mixins.toolbar.minHeight])
+      if (props?.addViewPortHeight && window?.innerHeight) {
+        ViewPortHeight = window.innerHeight
+      }
+
+      if (currentChapterIndex === 1) {
+        const thirdChild = bodyRef?.current?.children[2]
+        const thirdChildTop = thirdChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
+
+        mainRef.current?.scrollBy({
+          top: thirdChildTop - ViewPortHeight,
+          left: 0,
+        })
+      } else {
+        const secondChild = bodyRef?.current?.children[1]
+        const secondChildTop = secondChild?.getBoundingClientRect().top - theme.mixins.toolbar.minHeight
+
+        mainRef.current?.scrollBy({
+          top: secondChildTop - ViewPortHeight,
+          left: 0,
+        })
+      }
+    },
+    [ChapterList, theme.mixins.toolbar.minHeight],
+  )
 
   useEffect(() => {
     if (isSuccess) {
       mainRef.current?.scrollBy({
-        top: 0,
+        top: 80,
         left: 0,
       })
       setIsInitialLoading(false)
@@ -90,6 +100,10 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
 
       const previousChapterIndex = currentChapterIndex - 1
       const previousChapterId = ChapterList?.[previousChapterIndex]?.chapterId
+
+      clearCacheExceptLCN({
+        chapterId: previousChapterId,
+      })
       if (isLoggedIn) {
         const response = await mutateAsync({ chapterId: previousChapterId })
 
@@ -101,7 +115,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition, isLoggedIn])
+  }, [ChapterList, clearCacheExceptLCN, isLoggedIn, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
 
   const handleScrolledBottom = useCallback(async () => {
     try {
@@ -111,16 +125,23 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
 
       const nextChapterIndex = currentChapterIndex + 1
       const nextChapterId = ChapterList?.[nextChapterIndex]?.chapterId
+
+      clearCacheExceptLCN({
+        chapterId: nextChapterId,
+      })
       if (isLoggedIn) {
         const response = await mutateAsync({ chapterId: nextChapterId })
         if (response?.chapterId === nextChapterId) {
           setChapterLoadedById(nextChapterId)
+          handleToScrollToPreviousPosition({ addViewPortHeight: true })
         }
       }
     } catch (error) {
       console.log(error)
     }
-  }, [ChapterList, chapterId, mutateAsync, setChapterLoadedById, isLoggedIn])
+  }, [ChapterList, clearCacheExceptLCN, isLoggedIn, chapterId, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
+
+  console.log(ChapterList)
 
   const handleOnScroll = useCallback(
     event => {
@@ -175,6 +196,10 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
 
     reload({ chapterId: nextChapterId })
 
+    clearCacheExceptLCN({
+      chapterId: nextChapterId,
+    })
+
     router
       .replace(
         {
@@ -188,7 +213,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
           console.error(e)
         }
       })
-  }, [ChapterList, LoadedChapterList, chapterId, contentId, contentType, reload, router, slug])
+  }, [ChapterList, LoadedChapterList, chapterId, clearCacheExceptLCN, contentId, contentType, reload, router, slug])
 
   const handleNavigateToPreviousChapter = useCallback(() => {
     const currentChapter = LoadedChapterList?.find(chapter => chapter.chapterId === chapterId)
@@ -201,6 +226,10 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
     const previousChapterSlug = ChapterList?.[previousChapterIndex]?.chapterSlug
 
     reload({ chapterId: previousChapterId })
+
+    clearCacheExceptLCN({
+      chapterId: previousChapterId,
+    })
 
     router
       .replace(
@@ -215,7 +244,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
           console.error(e)
         }
       })
-  }, [ChapterList, LoadedChapterList, chapterId, contentId, contentType, reload, router, slug])
+  }, [ChapterList, LoadedChapterList, chapterId, clearCacheExceptLCN, contentId, contentType, reload, router, slug])
 
   const [isFirstChapter, isLastChapter] = useMemo(() => {
     const currentChapter = LoadedChapterList?.find(chapter => chapter.chapterId === chapterId)
@@ -249,7 +278,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
         chapterList={ChapterList}
         reload={(...props) => {
           mainRef?.current?.scrollTo({
-            top: 0,
+            top: 80,
             left: 0,
           })
           reload(...props)
