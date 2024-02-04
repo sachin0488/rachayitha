@@ -141,8 +141,6 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
     }
   }, [ChapterList, clearCacheExceptLCN, isLoggedIn, chapterId, mutateAsync, setChapterLoadedById, handleToScrollToPreviousPosition])
 
-  console.log(ChapterList)
-
   const handleOnScroll = useCallback(
     event => {
       if (isMobile) return
