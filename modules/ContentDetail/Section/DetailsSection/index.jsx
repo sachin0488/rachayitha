@@ -111,6 +111,7 @@ const InfoSection = styled.div`
   flex-direction: column;
   gap: 10px;
   flex: 1;
+  max-width: calc(100% - 380px);
 `
 
 export default DetailsSection

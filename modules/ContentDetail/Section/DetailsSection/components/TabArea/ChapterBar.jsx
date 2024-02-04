@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { ButtonBase, Typography } from '@mui/material'
+import { ButtonBase, Tooltip, Typography } from '@mui/material'
 
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded'
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
@@ -15,11 +15,13 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
     <Link href={`/${contentType}/${contentId}/${slug}/read/${chapterId}/${chapterSlug}#chapter-${chapterId}`}>
       <StyledA>
         <Root>
-          <ChapterText variant="subtitle1" noWrap>
-            <strong>Chapter {chapterSequence}:</strong>
-            <span> </span>
-            {chapterTitle}
-          </ChapterText>
+          <Tooltip disableInteractive title={chapterTitle}>
+            <ChapterText variant="subtitle1" noWrap>
+              <strong>Chapter {chapterSequence}:</strong>
+              <span> </span>
+              {chapterTitle}
+            </ChapterText>
+          </Tooltip>
           <InfoList>
             {/* {isAvailableInSubscription && <SubscriptionChip />} */}
             {isPaid && <PaidChip />}
@@ -33,9 +35,15 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
 
 const StyledA = styled.a`
   cursor: pointer;
+  strong {
+    color: ${({ theme }) => theme.palette.secondary.dark};
+  }
   :nth-of-type(odd) > * {
     color: ${({ theme }) => theme.palette.primary.main};
     background: ${({ theme }) => theme.palette.primary.main}10;
+    strong {
+      color: ${({ theme }) => theme.palette.primary.dark};
+    }
   }
 `
 
@@ -66,6 +74,10 @@ const ChapterText = styled(Typography)`
   }
   span {
     letter-spacing: 5px;
+  }
+  max-width: 95%;
+  @media (max-width: 800px) {
+    max-width: initial;
   }
 `
 

@@ -93,6 +93,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
       </ContentName>
 
       <InfoChipList>
+        <StyledChip label={Data?.status} contained />
         {Data?.category?.map(({ name, id }) => (
           <StyledChip label={name} key={id} />
         ))}
