@@ -35,7 +35,7 @@ export const BodyContainer = styled.div`
   width: calc(100% - var(--main-side-spacing) * 2);
   align-self: center;
   gap: 20px;
-  @media (max-width: 730px) {
+  @media (max-width: 770px) {
     gap: 0px;
     flex-direction: column;
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
+import { ButtonBase, Rating, Tooltip, Typography, useMediaQuery } from '@mui/material'
 
 import StarIcon from '@mui/icons-material/Star'
 import ArrowDropUpRoundedIcon from '@mui/icons-material/ArrowDropUpRounded'
@@ -19,10 +19,10 @@ const ContentCard = ({ item, contentType, onClick }) => {
       <Main>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
-          <TitleName variant="subtitle2">
-            {item?.contentName} <Status variant="caption">{item?.status}</Status>
-          </TitleName>
-
+          <TopBar>
+            <TitleName variant="subtitle2">{item?.contentName}</TitleName>
+            <Status variant="caption">{item?.status}</Status>
+          </TopBar>
           <HashtagList>
             {item?.tags?.map(name => {
               return <Hashtag key={name}>#{name}</Hashtag>
@@ -80,7 +80,9 @@ const ContentCard = ({ item, contentType, onClick }) => {
       )}
       <Link href={`/${contentType}/${item?.contentId}/${item?.slug}`}>
         <a>
-          <StyledButton color="primary" onClick={onClick} />
+          <Tooltip title={item?.contentName} placement="top">
+            <StyledButton color="primary" onClick={onClick} />
+          </Tooltip>
         </a>
       </Link>
     </Root>
@@ -146,6 +148,12 @@ const InfoSection = styled.div`
     gap: 2px;
   }
 `
+const TopBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+`
 
 const HashtagList = styled.div`
   display: flex;
@@ -162,12 +170,15 @@ const TitleName = styled(Typography)`
   font-weight: 600;
   color: ${({ theme }) => theme.palette.secondary.main};
   font-size: 1.15rem;
-  display: flex;
-  align-items: center;
-  gap: 7px;
   @media (max-width: 400px) {
     font-size: 1.1rem;
   }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
 `
 
 const ParagraphText = styled(Typography)`

@@ -11,7 +11,7 @@ import TransactionHistoryTab from './Tabs/TransactionHistoryTab'
 
 const ProfileTabs = ({ item }) => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery('(max-width: 1030px)')
   const [value, setValue] = useState(0)
   const [secondValue, setSecondValue] = useState(0)
 

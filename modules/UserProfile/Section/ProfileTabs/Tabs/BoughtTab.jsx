@@ -123,12 +123,12 @@ const Main = styled.div`
 
   @media (max-width: 730px) {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: min-content min-content min-content;
     grid-gap: 13px;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 600px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: min-content min-content;
     grid-gap: 13px;
   }
 

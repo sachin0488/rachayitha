@@ -12,39 +12,12 @@ const fetchBoughtProductListAPI = async ({ pageParam = 1 }, contentType) => {
     },
   })
 
-  if (contentType === 'poem')
-    return await {
-      data: res?.data?.data?.map(item => {
-        return {
-          poemId: item?.id,
-          poemName: item?.poem_name,
-          slug: slugUtility.create(item?.poem_name),
-          authorName: item?.author_name,
-          category: item?.category?.category,
-          commentCount: item?.comment_count,
-          avgRatingValue: item?.rating?.rate__avg,
-          totalRatingCount: item?.rating?.rate__count,
-          likeCount: item?.like_count,
-          libraryAdded: true,
-          status: item?.status,
-          tags: item?.tags,
-          synopsis: item?.synopsis,
-          coverImage: item?.cover_img,
-          coverImage2: item?.cover_img2,
-          coverImage3: item?.cover_img3,
-          coverImage4: item?.cover_img4,
-        }
-      }),
-      nextCursor: res?.data?.next_page || undefined,
-      previousCursor: res?.data?.previous_page || undefined,
-    }
-
   return await {
     data: res?.data?.data?.map(item => {
       return {
-        bookId: item?.id,
-        bookName: item?.book_name,
-        slug: slugUtility.create(item?.book_name),
+        contentId: item?.id,
+        contentName: item?.[`${contentType}_name`],
+        slug: slugUtility.create(item?.[`${contentType}_name`]),
         authorName: item?.author_name,
         category: item?.category?.category,
         commentCount: item?.comment_count,

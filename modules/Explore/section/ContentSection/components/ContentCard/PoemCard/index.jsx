@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 
-import { Button, ButtonBase, Rating, Typography, useMediaQuery } from '@mui/material'
+import { Button, ButtonBase, Rating, Tooltip, Typography, useMediaQuery } from '@mui/material'
 
 import StarIcon from '@mui/icons-material/Star'
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
@@ -34,11 +34,10 @@ const PoemCard = ({ item, index, ranking }) => {
               return <Hashtag key={name}>#{name}</Hashtag>
             })}
           </HashtagList> */}
-
-          <TitleName variant="subtitle2">
-            {item?.poemName} <Status variant="caption">{item?.status}</Status>
-          </TitleName>
-
+          <TopBar>
+            <TitleName variant="subtitle2">{item?.poemName}</TitleName>
+            <Status variant="caption">{item?.status}</Status>
+          </TopBar>
           <CategoryName variant="subtitle2" noWrap lineHeight={1} margin={0}>
             {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
           </CategoryName>
@@ -103,7 +102,9 @@ const PoemCard = ({ item, index, ranking }) => {
       )}
       <Link href={`/poem/${item?.poemId}/${item?.slug}`}>
         <a>
-          <StyledButton color="primary" />
+          <Tooltip title={item?.poemName} placement="top">
+            <StyledButton color="primary" />
+          </Tooltip>
         </a>
       </Link>
     </Root>
@@ -170,8 +171,16 @@ const InfoSection = styled.div`
   @media (max-width: 400px) {
     gap: 2px;
   }
+  flex: 1;
+  width: auto;
 `
-
+const TopBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3px;
+  margin-right: 33px;
+`
 const HashtagList = styled.div`
   display: flex;
   gap: 8px;
@@ -194,6 +203,12 @@ const TitleName = styled(Typography)`
   @media (max-width: 400px) {
     font-size: 1.1rem;
   }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
 `
 
 const InfoNav = styled.div`
