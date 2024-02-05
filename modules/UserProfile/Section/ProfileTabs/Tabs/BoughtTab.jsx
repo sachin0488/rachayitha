@@ -116,6 +116,7 @@ const Root = styled.div`
   flex-direction: column;
   gap: 20px;
 `
+
 const Main = styled.div`
   display: flex;
   flex-wrap: wrap;

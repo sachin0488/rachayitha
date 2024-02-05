@@ -13,7 +13,7 @@ const LibraryContentCard = ({ item, contentType }) => {
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
           <InfoLeft>
-            <TitleName variant="h6" component="div" noWrap>
+            <TitleName component="h6" noWrap>
               {item?.contentName}
             </TitleName>
             <CategoryName variant="subtitle2" noWrap width={'100%'}>

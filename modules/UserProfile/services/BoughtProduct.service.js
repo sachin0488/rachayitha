@@ -12,7 +12,7 @@ const fetchBoughtProductListAPI = async ({ pageParam = 1 }, contentType) => {
     },
   })
 
-  return await {
+  return {
     data: res?.data?.data?.map(item => {
       return {
         contentId: item?.id,
