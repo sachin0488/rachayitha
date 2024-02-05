@@ -1,13 +1,12 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { LinearProgress, Typography, useMediaQuery } from '@mui/material'
+import { Typography, useMediaQuery } from '@mui/material'
 import { InView } from 'react-intersection-observer'
 
 import DividerBar from 'modules/ReaderSection/components/DividerBar'
 import Paywall from './components/Paywall'
 import { useUserService } from 'modules/Auth/service/User.service'
 import SigninWall from './components/SigninWall'
-import clsx from 'clsx'
 
 const ChapterSection = ({ item, slug, contentId, contentType }) => {
   const { replace } = useRouter()
@@ -16,6 +15,7 @@ const ChapterSection = ({ item, slug, contentId, contentType }) => {
 
   return (
     <Root
+      className="quill"
       id={`chapter-${item?.chapterId}`}
       as="div"
       threshold={0}
@@ -35,7 +35,7 @@ const ChapterSection = ({ item, slug, contentId, contentType }) => {
           })
         }
       }}>
-      <Main>
+      <Main className="ql-container ql-snow">
         <Typography textAlign="center" variant="h3" component="h3" color="secondary" marginTop={2}>
           Chapter: {item?.chapterSequence}
         </Typography>
@@ -56,7 +56,12 @@ const ChapterSection = ({ item, slug, contentId, contentType }) => {
                 isAvailableInSubscription={item?.isAvailableInSubscription}
               />
             ) : (
-              <ChapterContentText variant="body1" marginTop={2} dangerouslySetInnerHTML={{ __html: item?.chapterContent }} />
+              <ChapterContentText
+                className="ql-editor"
+                variant="body1"
+                marginTop={2}
+                dangerouslySetInnerHTML={{ __html: item?.chapterContent }}
+              />
             )}
           </>
         ) : (
@@ -102,13 +107,12 @@ const BottomReachedView = styled.div`
 `
 
 const ChapterContentText = styled(Typography)`
-  font-family: 'Noto Sans', sans-serif !important;
+  font-family: 'Noto Sans', sans-serif;
   color: ${({ theme }) => theme.palette.secondary.main};
-  background: transparent;
-  & * {
-    font-family: 'Noto Sans', sans-serif !important;
+
+  * {
+    font-family: 'Noto Sans', sans-serif;
     color: ${({ theme }) => theme.palette.secondary.main};
-    background: transparent;
     line-height: 1.7;
   }
   & p,
@@ -116,18 +120,20 @@ const ChapterContentText = styled(Typography)`
   b,
   em,
   ins,
+  u,
   del,
-  span {
-    font-family: 'Noto Sans', sans-serif !important;
+  s,
+  span,
+  ol,
+  li {
+    font-family: 'Noto Sans', sans-serif;
     color: ${({ theme }) => theme.palette.secondary.main};
-    background: transparent;
     line-height: 1.8;
     font-size: 1.08rem;
   }
 
   & p {
     font-weight: 435;
-    text-align: justify;
     letter-spacing: 0.01px;
   }
   & strong {
@@ -142,10 +148,12 @@ const ChapterContentText = styled(Typography)`
     font-style: italic;
     letter-spacing: 0.0005rem;
   }
-  & ins {
+  & ins,
+  u {
     letter-spacing: 0.01px;
   }
-  & del {
+  & del,
+  s {
     font-weight: 435;
     letter-spacing: 0.01px;
   }
@@ -155,6 +163,8 @@ const ChapterContentText = styled(Typography)`
     b,
     em,
     ins,
+    u,
+    s,
     del,
     span {
       font-size: 1rem;

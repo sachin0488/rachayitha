@@ -15,6 +15,7 @@ import MobileChapterNavigation from '../Section/MobileChapterNavigation'
 import clsx from 'clsx'
 import { useDebounce } from '@uidotdev/usehooks'
 import LoadingBox from '../Section/ChapterSection/components/LoadingBox'
+import 'styles/quill.snow.css'
 
 const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlug }) => {
   const theme = useTheme()
