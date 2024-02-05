@@ -23,7 +23,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.1.2",
     "clsx": "^2.1.0",
-    "draftjs-to-html": "^0.9.1",
     "framer-motion": "^7.6.19",
     "moment": "^2.29.4",
     "next": "12.3.1",

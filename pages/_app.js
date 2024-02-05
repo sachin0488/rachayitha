@@ -9,6 +9,7 @@ import snackbarComponents from 'utility/snackbar.components'
 import createEmotionCache from 'utility/createEmotionCache'
 import lightTheme from 'styles/theme/lightTheme'
 import 'styles/globals.css'
+import 'styles/quill.snow.css'
 
 import { queryCache, mutationCache } from 'services/global.service'
 
