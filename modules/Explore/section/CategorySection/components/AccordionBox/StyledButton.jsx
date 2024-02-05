@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -69,7 +69,9 @@ const StyledButton = ({ contentType, category }) => {
   return (
     <Link href={href}>
       <a>
-        <Root className={isSelected ? 'selected' : ''}>{category.categoryName}</Root>
+        <Root className={isSelected ? 'selected' : ''}>
+          <Typography variant="inherit">{category.categoryName}</Typography>
+        </Root>
       </a>
     </Link>
   )
@@ -77,19 +79,24 @@ const StyledButton = ({ contentType, category }) => {
 
 const Root = styled(Button)`
   font-weight: 500;
-  font-size: 15px;
-  padding: 5px 17px;
+  padding: 5px 15px;
   border-radius: 11px;
   border: none;
   text-align: left;
   display: flex;
-  min-width: fit-content;
+  width: fit-content;
+  max-width: 145px;
+  height: 54px;
   width: 100%;
+  line-height: 1.29;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   color: ${({ theme }) => theme.palette.secondary.main};
-  background: ${({ theme }) => theme.palette.primary.main}11;
-
+  background: ${({ theme }) => theme.palette.primary.main}10;
   &.selected {
     background-color: ${({ theme }) => theme.palette.primary.main};
+    background: linear-gradient(122deg, rgb(54 8 163) 0%, rgb(148 106 245) 100%);
     color: white;
   }
 
