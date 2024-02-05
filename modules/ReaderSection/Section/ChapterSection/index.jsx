@@ -1,17 +1,19 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { Typography, useMediaQuery } from '@mui/material'
+import { LinearProgress, Typography, useMediaQuery } from '@mui/material'
 import { InView } from 'react-intersection-observer'
 
 import DividerBar from 'modules/ReaderSection/components/DividerBar'
 import Paywall from './components/Paywall'
 import { useUserService } from 'modules/Auth/service/User.service'
 import SigninWall from './components/SigninWall'
+import clsx from 'clsx'
 
 const ChapterSection = ({ item, slug, contentId, contentType }) => {
   const { replace } = useRouter()
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width:630px)')
+
   return (
     <Root
       id={`chapter-${item?.chapterId}`}

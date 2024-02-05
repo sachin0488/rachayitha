@@ -90,7 +90,7 @@ const StyledImage = styled.img`
   &.blur {
     z-index: 1;
     position: absolute;
-    /* filter: drop-shadow(8px 15px 20px ${({ theme }) => theme.palette.primary.main}44)  */
+    /* filter: drop-shadow(8px 15px 20px ${({ theme }) => theme.palette.primary.main}44) */
     filter: blur(20px) opacity(0.5);
     top: -5px;
     left: 0px;
@@ -112,6 +112,9 @@ const InfoSection = styled.div`
   gap: 10px;
   flex: 1;
   max-width: calc(100% - 380px);
+  @media (max-width: 800px) {
+    max-width: 100%;
+  }
 `
 
 export default DetailsSection

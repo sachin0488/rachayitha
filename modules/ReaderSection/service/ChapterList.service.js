@@ -8,7 +8,7 @@ import slugUtility from 'utility/slug.utility'
 
 export const useChapterListService = ({ contentId, chapterId, contentType }) => {
   const queryClient = useQueryClient()
-  const { mutateAsync } = useChapterContentService({ contentId: contentId, contentType })
+  const { mutateAsync, isLoading: isReloading } = useChapterContentService({ contentId: contentId, contentType })
   const { isLoggedIn } = useUserService()
 
   const { data, isLoading, isError, isSuccess, isFetching, remove, refetch } = useQuery({
@@ -100,6 +100,7 @@ export const useChapterListService = ({ contentId, chapterId, contentType }) => 
     isError,
     isSuccess,
     isFetching,
+    isReloading,
     reload,
     clearCacheExceptLCN,
   }

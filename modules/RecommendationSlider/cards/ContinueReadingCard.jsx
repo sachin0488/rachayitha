@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { ButtonBase, Typography, CircularProgress, Box } from '@mui/material'
+import { ButtonBase, Typography, CircularProgress, Box, Tooltip } from '@mui/material'
 
 import ToggleToLibraryButton from './components/ToggleToLibraryButton'
 import { useUserService } from 'modules/Auth/service/User.service'
@@ -27,7 +27,7 @@ const ContinueReadingCard = ({ item, queryKey, contentType }) => {
 
         <InfoSection>
           <InfoLeft>
-            <TitleName variant="h6" component="div">
+            <TitleName variant="h6" component="div" noWrap>
               {item?.contentName}
             </TitleName>
 
@@ -61,7 +61,9 @@ const ContinueReadingCard = ({ item, queryKey, contentType }) => {
       </Main>
       <Link href={`/${contentType}/${item.contentId}/${item?.slug}`}>
         <a>
-          <StyledButton color="primary" />
+          <Tooltip title={item?.contentName} placement="bottom-end">
+            <StyledButton color="primary" />
+          </Tooltip>
         </a>
       </Link>
     </Root>

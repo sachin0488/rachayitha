@@ -14,6 +14,7 @@ import { useUserService } from 'modules/Auth/service/User.service'
 import MobileChapterNavigation from '../Section/MobileChapterNavigation'
 import clsx from 'clsx'
 import { useDebounce } from '@uidotdev/usehooks'
+import LoadingBox from '../Section/ChapterSection/components/LoadingBox'
 
 const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlug }) => {
   const theme = useTheme()
@@ -29,7 +30,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
   const [IsChapterIndexModalOpen, setIsChapterIndexModalOpen] = useState(false)
   const { isLoggedIn } = useUserService()
   const { mutateAsync, isLoading } = useChapterContentService({ contentId: contentId, contentType })
-  const { ChapterList, clearCacheExceptLCN, setChapterLoadedById, isSuccess, reload } = useChapterListService({
+  const { ChapterList, clearCacheExceptLCN, setChapterLoadedById, isSuccess, isReloading, reload } = useChapterListService({
     contentId: contentId,
     chapterId: chapterId,
     contentType,
@@ -211,6 +212,10 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
           console.error(e)
         }
       })
+    mainRef.current?.scrollTo({
+      top: 0,
+      left: 0,
+    })
   }, [ChapterList, LoadedChapterList, chapterId, clearCacheExceptLCN, contentId, contentType, reload, router, slug])
 
   const handleNavigateToPreviousChapter = useCallback(() => {
@@ -242,6 +247,10 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
           console.error(e)
         }
       })
+    mainRef.current?.scrollTo({
+      top: 0,
+      left: 0,
+    })
   }, [ChapterList, LoadedChapterList, chapterId, clearCacheExceptLCN, contentId, contentType, reload, router, slug])
 
   const [isFirstChapter, isLastChapter] = useMemo(() => {
@@ -283,15 +292,21 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
         }}
         slug={slug}
       />
-      {isLoading && (
-        <LinearProgress
-          sx={{
-            position: 'fixed',
-            top: theme => theme.mixins.toolbar.minHeight,
-            zIndex: 10000,
-            width: '100%',
-          }}
-        />
+      {isMobile ? (
+        <>{isReloading && <LoadingBox />}</>
+      ) : (
+        <>
+          {isLoading && (
+            <LinearProgress
+              sx={{
+                position: 'fixed',
+                top: theme => theme.mixins.toolbar.minHeight,
+                zIndex: 10000,
+                width: '100%',
+              }}
+            />
+          )}
+        </>
       )}
       {!isMobile && (
         <Fab
@@ -349,6 +364,7 @@ const StyledLinearProgress = styled(LinearProgress)`
 const Root = styled.div`
   width: 100%;
   height: 100vh;
+
   margin-top: auto;
   overflow: hidden;
 `
@@ -388,7 +404,8 @@ const Loader = styled.div`
 
 const Main = styled.div`
   width: 100%;
-  height: calc(100vh - ${({ theme }) => theme.mixins.toolbar.minHeight}px);
+  /* height: calc(100vh - ${({ theme }) => theme.mixins.toolbar.minHeight}px); */
+  height: 100%;
   margin-top: ${({ theme }) => theme.mixins.toolbar.minHeight}px;
   /* background-color: ${({ theme }) => theme.palette.primary.main}22; */
   background-color: #ede9f5;

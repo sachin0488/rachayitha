@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import FormatListNumberedRoundedIcon from '@mui/icons-material/FormatListNumberedRounded'
 import { Button } from '@mui/material'
+import { useState } from 'react'
 
 const MobileChapterNavigation = ({
   handleOpenChapterModal,
@@ -11,6 +12,7 @@ const MobileChapterNavigation = ({
   isLastChapter,
   isVisible,
 }) => {
+  const [isDisabled, setIsDisabled] = useState(false)
   return (
     <Root
       style={{
@@ -20,8 +22,8 @@ const MobileChapterNavigation = ({
       }}>
       <Main>
         <Button
-          disabled={isFirstChapter}
-          onClick={handleNavigateToPreviousChapter}
+          disabled={isFirstChapter || isDisabled}
+          // onClick={handleNavigateToPreviousChapter}
           variant="outlined"
           sx={{
             flex: 1,
@@ -31,12 +33,19 @@ const MobileChapterNavigation = ({
               borderColor: '#ffffff1a',
               color: '#ffffff57',
             },
+          }}
+          onClick={() => {
+            setIsDisabled(true)
+            handleNavigateToPreviousChapter()
+            setTimeout(() => {
+              setIsDisabled(false)
+            }, 500)
           }}>
           {isFirstChapter ? 'The First' : 'Previous'}
         </Button>
         <Button
-          disabled={isLastChapter}
-          onClick={handleNavigateToNextChapter}
+          disabled={isLastChapter || isDisabled}
+          // onClick={handleNavigateToNextChapter}
           variant="outlined"
           sx={{
             flex: 1,
@@ -46,6 +55,13 @@ const MobileChapterNavigation = ({
               borderColor: '#ffffff1a',
               color: '#ffffff57',
             },
+          }}
+          onClick={() => {
+            setIsDisabled(true)
+            handleNavigateToNextChapter()
+            setTimeout(() => {
+              setIsDisabled(false)
+            }, 500)
           }}>
           {isLastChapter ? 'The End' : 'Next'}
         </Button>

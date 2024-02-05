@@ -85,6 +85,13 @@ const Title = styled(Typography)`
   font-weight: 600;
   font-size: 20px;
   color: ${({ theme }) => theme.palette.secondary.main};
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 `
 
 const Category = styled(Typography)`
