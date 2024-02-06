@@ -83,6 +83,14 @@ const Footer = () => {
           <Description variant="subtitle2">rachayitha is the world’s leading community for creatives to share, and grow.</Description>
         </Section>
       </Main>
+      <ContactUsSection>
+        <Heading variant="h6" component="div">
+          Contact us
+        </Heading>
+        <Description variant="subtitle1">
+          <a href="mailto:support@rachayitha.com">support@rachayitha.com</a>
+        </Description>
+      </ContactUsSection>
     </Root>
   )
 }
@@ -90,8 +98,10 @@ const Footer = () => {
 const Root = styled.div`
   background: ${({ theme }) => theme.palette.primary.main}18;
   display: flex;
+  flex-direction: column;
   padding: 30px 20px;
-  justify-content: center;
+  padding: 30px 0px 0px;
+  align-content: center;
   margin-top: auto;
 `
 
@@ -110,20 +120,20 @@ const Main = styled.div`
 
   max-width: 1620px;
   width: 100%;
-  margin-inline: 50px;
+  padding-inline: 50px;
   @media (max-width: 1000px) {
-    margin-inline: 30px;
+    padding-inline: 30px;
   }
   @media (max-width: 860px) {
     display: flex;
     flex-direction: column;
-    margin-inline: 15px;
+    padding-inline: 15px;
   }
   @media (max-width: 435px) {
-    margin-inline: 2px;
+    padding-inline: 2px;
   }
   @media (max-width: 405px) {
-    margin-inline: 0px;
+    padding-inline: 0px;
   }
 `
 
@@ -176,6 +186,27 @@ const Divider = styled.div`
   @media (min-width: 860px) {
     display: none;
   }
+`
+
+const ContactUsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding-block: 20px;
+  padding-inline: 50px;
+  @media (max-width: 1000px) {
+    padding-inline: 30px;
+  }
+  @media (max-width: 860px) {
+    padding-inline: 15px;
+  }
+  @media (max-width: 435px) {
+    padding-inline: 2px;
+  }
+  @media (max-width: 405px) {
+    padding-inline: 0px;
+  }
+  background: ${({ theme }) => theme.palette.primary.main}18;
 `
 
 export default Footer
