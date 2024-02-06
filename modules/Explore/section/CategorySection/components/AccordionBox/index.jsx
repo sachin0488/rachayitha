@@ -24,6 +24,13 @@ const AccordionBox = ({ isOpened, setOpenedIdx, item, idx, isLoading }) => {
         <Heading>{item.name}</Heading>
       </Summary>
       <Details>
+        <StyledButton
+          category={{
+            categoryId: 0,
+            categoryName: 'All Categories',
+          }}
+          contentType={item.contentType?.toLowerCase()}
+        />
         {isLoading ? (
           <>
             <Skeleton variant="rounded" width={91} height={36.25} />

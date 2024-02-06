@@ -30,7 +30,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
     url: contentType?.toLocaleLowerCase() === 'poem' ? `/explorepoem/` : `/explorebook/`,
     method: 'GET',
     params: {
-      category_id: categoryId,
+      category_id: parseInt(categoryId) === 0 ? undefined : categoryId,
       sort_by: sortBy,
       page,
     },

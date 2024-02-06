@@ -12,7 +12,7 @@ const LeftSection = () => {
         <ParagraphText>India’s own online Reading Platform</ParagraphText>
       </TextSection>
       <ButtonContainer>
-        <Link href={`/explore?content_type=book&category=1&sort_by=Hot`}>
+        <Link href={`/explore?content_type=book&category=0&sort_by=Hot`}>
           <StyledButton disableElevation variant="contained">
             Explore
           </StyledButton>

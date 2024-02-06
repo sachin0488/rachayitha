@@ -10,7 +10,7 @@ const TabList = [
     id: 0,
     name: 'Novel',
     contentType: 'book',
-    category: 1,
+    category: 0,
     icon: <MenuBookRoundedIcon color="white" />,
   },
   // {
@@ -24,7 +24,7 @@ const TabList = [
     id: 1,
     name: 'Poem',
     contentType: 'poem',
-    category: 1,
+    category: 0,
     icon: <DriveFileRenameOutlineOutlinedIcon color="white" />,
   },
 ]

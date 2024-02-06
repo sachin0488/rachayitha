@@ -8,14 +8,14 @@ export const NavPageLinks = [
     Icon: AutoStoriesOutlinedIcon,
     label: 'Explore',
     path: '/explore',
-    link: '/explore?content_type=book&category=1&sort_by=hot',
+    link: '/explore?content_type=book&category=0&sort_by=hot',
     forLoggedInOnly: false,
   },
   {
     Icon: StarHalfOutlinedIcon,
     label: 'Ranking',
     path: '/ranking',
-    link: '/ranking?content_type=book&category=1',
+    link: '/ranking?content_type=book&category=0',
     forLoggedInOnly: false,
   },
   {

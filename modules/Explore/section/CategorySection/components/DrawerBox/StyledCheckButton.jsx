@@ -3,9 +3,7 @@ import { Button, Typography } from '@mui/material'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useMemo } from 'react'
-import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded'
-import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded'
+import { useMemo } from 'react'
 
 const getArrayFromURIString = uriString => {
   if (uriString) {
@@ -39,6 +37,10 @@ const StyledCheckButton = ({ contentType, category }) => {
     } else {
       newCategoryIds.push(String(category.categoryId))
     }
+
+    if (newCategoryIds.includes('0')) {
+      newCategoryIds = newCategoryIds.filter(id => id !== '0')
+    }
     return getURIStringFromArray(newCategoryIds)
   }, [categoryIds, category.categoryId])
 
@@ -49,7 +51,12 @@ const StyledCheckButton = ({ contentType, category }) => {
   const href = useMemo(() => {
     let queryParameters
 
-    if (router.query.content_type === contentType) {
+    if (category.categoryId === 0) {
+      queryParameters = new URLSearchParams({
+        content_type: contentType,
+        category: [0],
+      })
+    } else if (router.query.content_type === contentType) {
       queryParameters = new URLSearchParams({
         category: newCategoryIds,
         content_type: contentType,
@@ -71,12 +78,8 @@ const StyledCheckButton = ({ contentType, category }) => {
   return (
     <Link href={href}>
       <a>
-        <Root
-          startIcon={isSelected ? <CheckBoxRoundedIcon color="primary" /> : <CheckBoxOutlineBlankRoundedIcon />}
-          className={isSelected ? 'selected' : ''}>
-          <Typography variant="subtitle2" fontWeight={600}>
-            {category.categoryName}
-          </Typography>
+        <Root className={isSelected ? 'selected' : ''}>
+          <Typography variant="inherit">{category.categoryName}</Typography>
         </Root>
       </a>
     </Link>
@@ -85,36 +88,66 @@ const StyledCheckButton = ({ contentType, category }) => {
 
 const Root = styled(Button)`
   font-weight: 500;
-  padding: 10px 15px;
-  color: ${({ theme }) => theme.palette.secondary.main};
+  padding: 10px 18px;
   border-radius: 10px;
-  transition: 0.35s ease-in-out;
-  text-transform: capitalize;
-  justify-content: start;
+  border: none;
+  text-align: left;
+  display: flex;
+  width: fit-content;
   width: 100%;
-  line-height: 1;
+  line-height: 1.29;
   display: flex;
   align-items: center;
-  gap: 1px;
-
+  justify-content: flex-start;
+  color: ${({ theme }) => theme.palette.secondary.main};
+  background: ${({ theme }) => theme.palette.primary.main}10;
   &.selected {
-    background: ${({ theme }) => theme.palette.primary.main}10;
-    color: ${({ theme }) => theme.palette.secondary.main};
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    background: linear-gradient(122deg, rgb(54 8 163) 0%, rgb(148 106 245) 100%);
+    color: white;
   }
 
   &:hover {
-    background: ${({ theme }) => theme.palette.primary.main}1a;
-    /* color: ${({ theme }) => theme.palette.primary.main}; */
+    background-color: ${({ theme }) => theme.palette.primary.main}29;
   }
 
-  .MuiButton-startIcon {
-    margin-right: 4x;
-    margin-left: -4px;
-  }
-  .MuiButton-endIcon {
-    margin-right: -4px;
-    margin-left: 7px;
+  &.selected:hover {
+    background-color: ${({ theme }) => theme.palette.primary.main};
   }
 `
+
+// const Root = styled(Button)`
+//   font-weight: 500;
+//   padding: 10px 15px;
+//   color: ${({ theme }) => theme.palette.secondary.main};
+//   border-radius: 10px;
+//   transition: 0.35s ease-in-out;
+//   text-transform: capitalize;
+//   justify-content: start;
+//   width: 100%;
+//   line-height: 1;
+//   display: flex;
+//   align-items: center;
+//   gap: 1px;
+
+//   &.selected {
+//     background: ${({ theme }) => theme.palette.primary.main}10;
+//     color: ${({ theme }) => theme.palette.secondary.main};
+//   }
+
+//   &:hover {
+//     background: ${({ theme }) => theme.palette.primary.main}1a;
+//     /* color: ${({ theme }) => theme.palette.primary.main}; */
+//   }
+
+//   .MuiButton-startIcon {
+//     margin-right: 4x;
+//     margin-left: -4px;
+//   }
+//   .MuiButton-endIcon {
+//     margin-right: -4px;
+//     margin-left: 7px;
+//   }
+// `
 
 export default StyledCheckButton

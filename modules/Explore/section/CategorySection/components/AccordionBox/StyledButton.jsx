@@ -37,6 +37,10 @@ const StyledButton = ({ contentType, category }) => {
     } else {
       newCategoryIds.push(String(category.categoryId))
     }
+
+    if (newCategoryIds.includes('0')) {
+      newCategoryIds = newCategoryIds.filter(id => id !== '0')
+    }
     return getURIStringFromArray(newCategoryIds)
   }, [categoryIds, category.categoryId])
 
@@ -47,7 +51,12 @@ const StyledButton = ({ contentType, category }) => {
   const href = useMemo(() => {
     let queryParameters
 
-    if (router.query.content_type === contentType) {
+    if (category.categoryId === 0) {
+      queryParameters = new URLSearchParams({
+        content_type: contentType,
+        category: [0],
+      })
+    } else if (router.query.content_type === contentType) {
       queryParameters = new URLSearchParams({
         category: newCategoryIds,
         content_type: contentType,

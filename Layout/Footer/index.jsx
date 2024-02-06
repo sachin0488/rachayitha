@@ -21,12 +21,12 @@ const Footer = () => {
               <LinkButton>Home</LinkButton>
             </a>
           </Link>
-          <Link href="/explore?content_type=book&category=1&sort_by=Hot">
+          <Link href="/explore?content_type=book&category=0&sort_by=Hot">
             <a>
               <LinkButton>Explore</LinkButton>
             </a>
           </Link>
-          <Link href="/ranking?content_type=book&category=1">
+          <Link href="/ranking?content_type=book&category=0">
             <a>
               <LinkButton>Ranking</LinkButton>
             </a>

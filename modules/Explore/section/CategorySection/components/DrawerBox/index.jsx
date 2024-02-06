@@ -1,4 +1,4 @@
-import { Box, Button, Drawer, IconButton, Typography } from '@mui/material'
+import { Button, Drawer, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import SortRoundedIcon from '@mui/icons-material/SortRounded'
 import styled from '@emotion/styled'
@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import StyledCheckButton from './StyledCheckButton'
 
 const DrawerBox = ({ List }) => {
-  const { query, pathname } = useRouter()
+  const { query } = useRouter()
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -21,6 +21,13 @@ const DrawerBox = ({ List }) => {
       <StyledDrawer anchor="bottom" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <Content>
           <Heading variant="h4">{SelectedList?.contentType === 'book' ? 'Novel' : SelectedList?.contentType}</Heading>
+          <StyledCheckButton
+            category={{
+              categoryId: 0,
+              categoryName: 'All Categories',
+            }}
+            contentType={SelectedList?.contentType?.toLowerCase()}
+          />
           {SelectedList?.CategoryList?.map((category, idx) => (
             <StyledCheckButton key={idx} category={category} contentType={SelectedList?.contentType?.toLowerCase()} />
           ))}
@@ -35,7 +42,8 @@ export default DrawerBox
 const Heading = styled(Typography)`
   font-weight: 700;
   text-transform: capitalize;
-  padding: 0px 14px;
+  /* padding: 0px 14px; */
+  margin-bottom: 7px;
 `
 
 const StyledDrawer = styled(Drawer)`
@@ -45,7 +53,7 @@ const StyledDrawer = styled(Drawer)`
     overflow: hidden;
     padding: 0px;
   }
-  padding: 0px;
+  padding-top: 10px;
   .MuiBackdrop-root {
     background: ${({ theme }) => theme.palette.background.paper}00;
     backdrop-filter: blur(8px);
@@ -56,10 +64,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  gap: 12px;
+  gap: 13px;
 
-  padding: 16px 9px 62px;
-  padding-right: 0px;
+  padding: 16px 20px 62px;
+  padding-right: 10px;
   width: 100%;
   @media (min-width: 430px) {
     &::-webkit-scrollbar {
