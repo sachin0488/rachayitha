@@ -3,7 +3,6 @@ import { Typography } from '@mui/material'
 import clsx from 'clsx'
 
 const SynopsisRoot = styled(Typography)`
-  margin-top: 5px;
   color: ${({ theme }) => theme.palette.secondary.main}ee;
   font-family: 'Noto Sans', sans-serif;
   line-height: 1.62;

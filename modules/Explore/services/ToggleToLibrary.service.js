@@ -3,24 +3,21 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 
 export const toggleToLibraryAPI = async ({ contentId, contentType, addToLibrary }) => {
-  const URL =
-    contentType?.toLowerCase() === 'book'
-      ? '/userbooklibrary/'
-      : contentType?.toLowerCase() === 'poem'
-      ? '/userpoemlibrary/'
-      : '/userbooklibrary/'
-  const data =
-    contentType?.toLowerCase() === 'book'
-      ? {
-          book_id: contentId,
-        }
-      : contentType?.toLowerCase() === 'poem'
-      ? {
-          poem_id: contentId,
-        }
-      : {
-          book_id: contentId,
-        }
+  let URL, data
+
+  if (contentType?.toLowerCase() === 'book') {
+    URL = '/userbooklibrary/'
+    data = {
+      book_id: contentId,
+    }
+  }
+
+  if (contentType?.toLowerCase() === 'poem') {
+    URL = '/userpoemlibrary/'
+    data = {
+      poem_id: contentId,
+    }
+  }
 
   const response = await APIInstance({
     url: URL,
@@ -60,20 +57,12 @@ export const useToggleToLibraryService = ({ contentId, contentType, queryKey }) 
             return {
               ...group,
               data: group?.data?.map(item => {
-                if (contentType?.toLocaleLowerCase() === 'book')
-                  return contentId === item?.bookId
-                    ? {
-                        ...item,
-                        libraryAdded: item?.libraryAdded === 0 ? 1 : 0,
-                      }
-                    : item
-                if (contentType?.toLocaleLowerCase() === 'poem')
-                  return contentId === item?.poemId
-                    ? {
-                        ...item,
-                        libraryAdded: item?.libraryAdded === 0 ? 1 : 0,
-                      }
-                    : item
+                return contentId === item?.contentId
+                  ? {
+                      ...item,
+                      libraryAdded: item?.libraryAdded === 0 ? 1 : 0,
+                    }
+                  : item
               }),
             }
           }),

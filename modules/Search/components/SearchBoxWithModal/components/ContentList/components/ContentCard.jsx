@@ -9,73 +9,85 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import ModeCommentRoundedIcon from '@mui/icons-material/ModeCommentRounded'
 
 import Link from 'next/link'
+import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded'
+import Synopsis from 'modules/ContentDetail/components/Synopsis'
 
 const ContentCard = ({ item, contentType, onClick }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
 
   return (
     <Root>
-      {/* <DeignsIcon /> */}
       <Main>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
-          <TopBar>
-            <TitleName variant="subtitle2">{item?.contentName}</TitleName>
-            <Status variant="caption">{item?.status}</Status>
-          </TopBar>
-          <HashtagList>
-            {item?.tags?.map(name => {
-              return <Hashtag key={name}>#{name}</Hashtag>
-            })}
-          </HashtagList>
-          {/* <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText> */}
+          <TitleName variant="subtitle2">{item?.contentName}</TitleName>
 
+          {/* <ParagraphText variant="subtitle2" dangerouslySetInnerHTML={{ __html: item?.synopsis }}></ParagraphText> */}
+          <Synopsis
+            variant="subtitle2"
+            maxLine={2}
+            fontSize={12.5}
+            style={{
+              lineHeight: '1.35',
+            }}>
+            {item?.synopsis}
+          </Synopsis>
+          {/* <HashtagList>
+            {item?.tags?.map(name => {
+              return <Hashtag key={name} variant='caption'>#{name}</Hashtag>
+            })}
+          </HashtagList> */}
           {!isMobile && (
             <InfoNav>
               <RatingRoot>
                 <Rating
                   color="primary"
+                  size="small"
                   sx={{ color: theme => theme.palette.primary.main }}
                   value={Number(Number(item?.avgRatingValue).toFixed(1)) || 0}
                   readOnly
                   precision={0.5}
-                  emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+                  emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
                 />
               </RatingRoot>
-              <VoteCount variant="subtitle2">
-                {item?.viewCount}
-                <ArrowDropUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }} />
-              </VoteCount>
-              <CommentCount variant="subtitle2">
+              <Status variant="caption">{item?.status}</Status>
+              <InfoCount variant="subtitle2">
+                {item?.likeCount}
+                <ThumbUpRoundedIcon fontSize="small" color="primary" sx={{ fontSize: 15, ml: 1, mr: 1 }} />
+              </InfoCount>
+
+              <InfoCount variant="subtitle2">
                 {item?.commentCount}
-                <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
-              </CommentCount>
+                <ForumRoundedIcon fontSize="small" color="primary" sx={{ fontSize: 15, ml: 0.7, mb: -0.15 }} />
+              </InfoCount>
             </InfoNav>
           )}
         </InfoSection>
-
-        {/* <ToggleToLibraryButton contentId={item?.contentId} libraryAdded={item?.libraryAdded} SearchKeyword={SearchKeyword} /> */}
       </Main>
       {isMobile && (
         <InfoNav>
           <RatingRoot>
             <Rating
+              size="small"
               color="primary"
               sx={{ color: theme => theme.palette.primary.main }}
               value={Number(Number(item?.avgRatingValue).toFixed(1)) || 0}
               readOnly
               precision={0.5}
-              emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
-            />
+              emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+            />{' '}
           </RatingRoot>
-          <VoteCount variant="subtitle2">
-            {item?.viewCount}
-            <ArrowDropUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 42, mt: -1, mb: -1, ml: -1, mr: -1 }} />
-          </VoteCount>
-          <CommentCount variant="subtitle2">
+          <Status variant="caption">{item?.status}</Status>
+          <InfoCount variant="subtitle2">
+            {item?.likeCount}
+            <ThumbUpRoundedIcon fontSize="small" color="primary" sx={{ fontSize: 15, ml: 1, mr: 1 }} />
+          </InfoCount>
+
+          <InfoCount variant="subtitle2">
             {item?.commentCount}
-            <ModeCommentRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 0.7, mb: -0.15 }} />
-          </CommentCount>
+            <ForumRoundedIcon fontSize="small" color="primary" sx={{ fontSize: 15, ml: 0.7, mb: -0.15 }} />
+          </InfoCount>
         </InfoNav>
       )}
       <Link href={`/${contentType}/${item?.contentId}/${item?.slug}`}>
@@ -91,7 +103,8 @@ const ContentCard = ({ item, contentType, onClick }) => {
 
 const Root = styled.div`
   position: relative;
-  padding: 9px;
+  padding: 6px;
+  padding-right: 10px;
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
@@ -122,6 +135,7 @@ const StyledButton = styled(ButtonBase)`
   border-radius: 16px;
   background-color: transparent;
 `
+
 const Main = styled.div`
   display: flex;
   gap: 12px;
@@ -132,6 +146,15 @@ const Main = styled.div`
   @media (max-width: 400px) {
     height: 90px;
   }
+`
+const InfoCount = styled(Typography)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 6px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.palette.secondary.main};
 `
 
 const Image = styled.img`
@@ -147,6 +170,8 @@ const InfoSection = styled.div`
   @media (max-width: 400px) {
     gap: 2px;
   }
+
+  flex: 1;
 `
 const TopBar = styled.div`
   display: flex;
@@ -162,14 +187,16 @@ const HashtagList = styled.div`
 `
 
 const Hashtag = styled(Typography)`
-  font-weight: 400;
-  font-size: 0.8rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.palette.primary.main};
 `
 const TitleName = styled(Typography)`
   font-weight: 600;
   color: ${({ theme }) => theme.palette.secondary.main};
   font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
   @media (max-width: 400px) {
     font-size: 1.1rem;
   }
@@ -210,6 +237,7 @@ const InfoNav = styled.div`
   margin-top: auto;
   margin-bottom: 2px;
   display: flex;
+  width: 100%;
   gap: 14px;
   @media (max-width: 465px) {
     margin-top: 9px;
@@ -219,6 +247,7 @@ const InfoNav = styled.div`
   @media (max-width: 400px) {
     margin-bottom: -1px;
   }
+  align-items: center;
 `
 
 const RatingRoot = styled.div`
@@ -232,26 +261,6 @@ const RatingRoot = styled.div`
   }
 `
 
-const VoteCount = styled(Typography)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 2px 2px 8px;
-  border-radius: 6px;
-  color: ${({ theme }) => theme.palette.primary.main};
-  background: ${({ theme }) => theme.palette.primary.main}11;
-`
-
-const CommentCount = styled(Typography)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3px 8px 3px 8px;
-  border-radius: 6px;
-  color: ${({ theme }) => theme.palette.primary.main};
-  background: ${({ theme }) => theme.palette.primary.main}11;
-`
-
 const Status = styled(Typography)`
   display: flex;
   align-items: center;
@@ -259,24 +268,18 @@ const Status = styled(Typography)`
   text-align: center;
   padding: 0px 7px;
   border-radius: 13px;
+  border-radius: 6px;
   text-transform: capitalize;
   color: ${({ theme }) => theme.palette.primary.main};
   color: ${({ theme }) => theme.palette.background.paper};
   background: ${({ theme }) => theme.palette.primary.main};
   font-weight: 400;
-`
-
-const DeignsIcon = styled(MenuBookOutlinedIcon)`
-  color: ${({ theme }) => theme.palette.primary.main}11;
-  font-size: 200px;
-  position: absolute;
-  top: -50px;
-  right: -20px;
-  transform: rotate(-45deg);
-  @media (max-width: 465px) {
-    font-size: 150px;
-    color: ${({ theme }) => theme.palette.primary.main}09;
-  }
+  letter-spacing: 0.5px;
+  font-size: 0.65rem;
+  /* margin-left: auto; */
+  margin-right: auto;
+  position: relative;
+  /* top: -6px; */
 `
 
 const RankingRoot = styled.div`

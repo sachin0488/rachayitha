@@ -8,11 +8,11 @@ import { useRouter } from 'next/router'
 import { useToggleToLibraryService } from 'modules/Explore/services/ToggleToLibrary.service'
 import { ExploreQuery } from 'modules/Explore/constants/query.address'
 
-const ToggleToLibraryButton = ({ bookId, libraryAdded, ranking }) => {
+const ToggleToLibraryButton = ({ contentId, libraryAdded, ranking }) => {
   const { query } = useRouter()
 
   const { mutate, isLoading } = useToggleToLibraryService({
-    contentId: bookId,
+    contentId: contentId,
     contentType: query?.content_type,
     queryKey: [
       ExploreQuery.EXPLORE_LIST,
