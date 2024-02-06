@@ -17,9 +17,7 @@ import Layout from 'Layout'
 import AuthProvider from 'modules/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
-import Script from 'next/script'
 import CookiesAlert from 'components/CookiesAlert'
-import { isBrowser } from 'utility/ssr.utility'
 
 const clientSideEmotionCache = createEmotionCache()
 
