@@ -4,11 +4,14 @@ import SortRoundedIcon from '@mui/icons-material/SortRounded'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import StyledCheckButton from './StyledCheckButton'
+import { useDebounce } from '@uidotdev/usehooks'
+import clsx from 'clsx'
 
 const DrawerBox = ({ List }) => {
   const { query } = useRouter()
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const isDrawerOpenDebounced = useDebounce(isDrawerOpen, 300)
 
   const SelectedList = List.find(item => item.contentType.toLowerCase() === query?.content_type?.toLowerCase())
 
@@ -33,7 +36,14 @@ const DrawerBox = ({ List }) => {
         Genres
       </StyledButton>
 
-      <StyledDrawer anchor="bottom" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+      <StyledDrawer
+        className={clsx({
+          'drawer-open': isDrawerOpenDebounced,
+          'drawer-closed': !isDrawerOpenDebounced,
+        })}
+        anchor="bottom"
+        open={isDrawerOpen && isDrawerOpenDebounced}
+        onClose={() => setIsDrawerOpen(false)}>
         <Content>
           <Heading variant="h4">{SelectedList?.contentType === 'book' ? 'Novel' : SelectedList?.contentType}</Heading>
           <StyledCheckButton
@@ -72,6 +82,12 @@ const StyledDrawer = styled(Drawer)`
   .MuiBackdrop-root {
     background: ${({ theme }) => theme.palette.background.paper}00;
     backdrop-filter: blur(8px);
+  }
+  &.drawer-closed {
+    display: none;
+    .MuiBackdrop-root {
+      display: none;
+    }
   }
 `
 
