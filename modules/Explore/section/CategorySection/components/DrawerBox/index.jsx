@@ -14,8 +14,8 @@ const DrawerBox = ({ List }) => {
 
   return (
     <>
-      <StyledButton color="primary" endIcon={<SortRoundedIcon />} onClick={() => setIsDrawerOpen(true)}>
-        Select Genre
+      <StyledButton variant="text" color="primary" endIcon={<SortRoundedIcon />} onClick={() => setIsDrawerOpen(true)}>
+        Genres
       </StyledButton>
 
       <StyledDrawer anchor="bottom" open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
@@ -65,9 +65,10 @@ const Content = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   gap: 13px;
+  max-height: calc(100vh - 100px);
 
-  padding: 16px 20px 62px;
-  padding-right: 10px;
+  padding: 23px 20px 62px;
+  /* padding-right: 20px; */
   width: 100%;
   @media (min-width: 430px) {
     &::-webkit-scrollbar {
@@ -93,22 +94,28 @@ const Content = styled.div`
 const StyledButton = styled(Button)`
   font-weight: 600;
   font-size: 0.87rem;
-  padding: 5px 13px 4px;
+  padding: 10px 13px 10px;
   color: ${({ theme }) => theme.palette.secondary.main};
-  background: ${({ theme }) => theme.palette.primary.main}11;
-  border-radius: 11px;
+  /* border: 1px solid ${({ theme }) => theme.palette.primary.main}29; */
+  background: ${({ theme }) => theme.palette.primary.main}0f;
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+  /* background: ${({ theme }) => theme.palette.primary.main}11; */
+  border-radius: 9px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;
   /* letter-spacing: 0.5px; */
   float: right;
   align-self: flex-end;
   @media (min-width: 500px) {
-    padding: 5px 13px 3px;
+    padding: 7px 13px 7px;
     font-size: 0.95rem;
   }
+  border-radius: 12px;
 
   &:hover {
-    background: ${({ theme }) => theme.palette.primary.main}1f;
+    background: ${({ theme }) => theme.palette.primary.main}19;
   }
 
   .MuiButton-label {
@@ -117,11 +124,13 @@ const StyledButton = styled(Button)`
   }
 
   .MuiButton-startIcon {
-    margin-right: 4x;
+    margin-right: 4px;
     margin-left: -4px;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
   .MuiButton-endIcon {
     margin-right: -4px;
     margin-left: 12px;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `
