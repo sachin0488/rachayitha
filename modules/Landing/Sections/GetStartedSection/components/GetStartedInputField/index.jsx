@@ -19,7 +19,7 @@ const GetStartedInputField = () => {
 
   return (
     <Root>
-      <InputField placeholder="Write your email here..." {...register('email')} />
+      <InputField type="email" placeholder="Write your email here..." {...register('email')} />
       <GetStartedButton color="primary" variant="contained" onClick={handleSubmit(handleRedirectToLoginPage)}>
         GET STARTED
       </GetStartedButton>

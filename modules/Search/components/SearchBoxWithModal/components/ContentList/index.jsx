@@ -54,7 +54,7 @@ const ContentSection = ({ ranking, SearchKeyword, contentType, handleClose }) =>
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
   padding-bottom: 15px;
   @media (max-width: 800px) {

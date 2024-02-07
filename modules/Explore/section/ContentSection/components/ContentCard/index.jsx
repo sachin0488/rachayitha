@@ -53,12 +53,14 @@ const ContentCard = ({ item, index, ranking }) => {
             <InfoNav>
               <RatingRoot>
                 <Rating
+                  size="small"
                   color="primary"
                   sx={{ color: theme => theme.palette.primary.main }}
                   value={parseFloat(parseFloat(item?.avgRatingValue).toFixed(1) || 0)}
                   readOnly
                   precision={0.5}
-                  emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+                  emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+                  icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
                 />
               </RatingRoot>
               <Status variant="caption">{item?.status}</Status>
@@ -85,7 +87,8 @@ const ContentCard = ({ item, index, ranking }) => {
               value={parseFloat(parseFloat(item?.avgRatingValue).toFixed(1) || 0)}
               readOnly
               precision={0.5}
-              emptyIcon={<StarIcon sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+              emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+              icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
             />
           </RatingRoot>
           <Status variant="caption">{item?.status}</Status>
@@ -147,7 +150,7 @@ const StyledButton = styled(ButtonBase)`
 
 const Main = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 12px;
   height: 160px;
   @media (max-width: 465px) {
     height: 120px;
@@ -223,25 +226,27 @@ const InfoNav = styled.div`
   @media (max-width: 400px) {
     margin-bottom: -1px;
   }
-  align-items: center;
+  align-items: flex-end;
+
+  /* padding-right: 5px; */
 `
 
 const RatingRoot = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border-radius: 6px;
   @media (max-width: 465px) {
     flex: 1;
     justify-content: flex-start;
   }
-  /* margin-right: auto; */
 `
 
 const InfoCount = styled(Typography)`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-end;
   line-height: 1;
   border-radius: 6px;
   font-weight: 600;

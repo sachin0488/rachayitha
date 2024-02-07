@@ -7,22 +7,48 @@ import { mobileM, tablet } from 'styles/mediaQuery/breakPoints'
 
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
+import useResizeObserver from '@react-hook/resize-observer'
 
 const StyledSlider = ({ List, CardComponent, ...props }) => {
   const ref = useRef()
   const [ScrollLeft, setScrollLeft] = useState(ref.current?.scrollLeft)
+  const [isContentEndReached, setIsContentEndReached] = useState(false)
 
   useEffect(() => {
     if (ref.current) {
       setScrollLeft(ref.current?.scrollLeft)
+
+      if (Math.ceil(ref.current?.scrollLeft + ref.current?.offsetWidth) >= Math.round(ref.current?.scrollWidth)) {
+        setIsContentEndReached(true)
+      } else {
+        setIsContentEndReached(false)
+      }
     }
   }, [])
+
+  useResizeObserver(ref, () => {
+    if (ref.current) {
+      setScrollLeft(ref.current?.scrollLeft)
+
+      if (Math.ceil(ref.current?.scrollLeft + ref.current?.offsetWidth) >= Math.round(ref.current?.scrollWidth)) {
+        setIsContentEndReached(true)
+      } else {
+        setIsContentEndReached(false)
+      }
+    }
+  })
 
   return (
     <Root
       ref={ref}
-      onScroll={() => {
+      onScroll={event => {
         setScrollLeft(ref.current?.scrollLeft)
+
+        if (Math.ceil(ref.current?.scrollLeft + ref.current?.offsetWidth) >= Math.round(ref.current?.scrollWidth)) {
+          setIsContentEndReached(true)
+        } else {
+          setIsContentEndReached(false)
+        }
       }}>
       {List?.map(item => (
         <CardComponent key={item?.bookId || item?.id || item?.contentId} item={item} {...props} />
@@ -30,10 +56,11 @@ const StyledSlider = ({ List, CardComponent, ...props }) => {
 
       <StyledIconButton
         className="next"
+        style={{ transform: isContentEndReached ? 'scale(0)' : 'scale(1)' }}
         onClick={() => {
-          ref.current.scrollBy({
+          ref.current?.scrollBy({
             top: 0,
-            left: ref.current.firstChild.offsetWidth * 1.5,
+            left: ref.current?.firstChild.offsetWidth * 1.5,
             behavior: 'smooth',
           })
         }}>
@@ -44,9 +71,9 @@ const StyledSlider = ({ List, CardComponent, ...props }) => {
         className="prev"
         style={{ transform: ScrollLeft <= ref.current?.firstChild?.offsetWidth * 1 ? 'scale(0)' : 'scale(1)' }}
         onClick={() => {
-          ref.current.scrollBy({
+          ref.current?.scrollBy({
             top: 0,
-            left: ref.current.firstChild.offsetWidth * -1.5,
+            left: ref.current?.firstChild.offsetWidth * -1.5,
             behavior: 'smooth',
           })
         }}>
@@ -64,7 +91,7 @@ const Root = styled.div`
   width: 100%;
   min-height: 232px;
   padding-left: var(--element-left-spacing);
-
+  padding-right: 30px;
   @media ${mobileM} {
     height: 100%;
     min-height: 335px;

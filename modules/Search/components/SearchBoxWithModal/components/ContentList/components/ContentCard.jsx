@@ -27,9 +27,10 @@ const ContentCard = ({ item, contentType, onClick }) => {
           <Synopsis
             variant="subtitle2"
             maxLine={2}
-            fontSize={12.5}
+            fontSize={12.7}
             style={{
-              lineHeight: '1.35',
+              lineHeight: '1.66',
+              marginTop: '-2.2px',
             }}>
             {item?.synopsis}
           </Synopsis>
@@ -49,6 +50,7 @@ const ContentCard = ({ item, contentType, onClick }) => {
                   readOnly
                   precision={0.5}
                   emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
+                  icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
                 />
               </RatingRoot>
               <Status variant="caption">{item?.status}</Status>
@@ -76,7 +78,8 @@ const ContentCard = ({ item, contentType, onClick }) => {
               readOnly
               precision={0.5}
               emptyIcon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main + '39' }} />}
-            />{' '}
+              icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
+            />
           </RatingRoot>
           <Status variant="caption">{item?.status}</Status>
           <InfoCount variant="subtitle2">
@@ -138,7 +141,7 @@ const StyledButton = styled(ButtonBase)`
 
 const Main = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 8px;
   height: 100px;
   @media (max-width: 465px) {
     height: 90px;
