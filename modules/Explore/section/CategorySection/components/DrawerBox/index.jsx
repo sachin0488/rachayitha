@@ -1,5 +1,5 @@
 import { Button, Drawer, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SortRoundedIcon from '@mui/icons-material/SortRounded'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
@@ -11,6 +11,21 @@ const DrawerBox = ({ List }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const SelectedList = List.find(item => item.contentType.toLowerCase() === query?.content_type?.toLowerCase())
+
+  useEffect(() => {
+    const handlePopstate = event => {
+      if (isDrawerOpen) {
+        history.go(1)
+        setIsDrawerOpen(false)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopstate)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopstate)
+    }
+  }, [isDrawerOpen, query.content_type])
 
   return (
     <>
@@ -65,7 +80,7 @@ const Content = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   gap: 13px;
-  max-height: calc(100vh - 100px);
+  max-height: 70vh;
 
   padding: 23px 20px 62px;
   /* padding-right: 20px; */
