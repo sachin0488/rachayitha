@@ -39,6 +39,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
   return {
     data: res?.data?.data?.map(item => {
       return {
+        contentType,
         contentId: item?.id,
         contentName: item?.[`${contentType}_name`],
         authorName: item?.author_name,

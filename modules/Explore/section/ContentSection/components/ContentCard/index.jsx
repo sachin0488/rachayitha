@@ -99,7 +99,7 @@ const ContentCard = ({ item, index, ranking }) => {
           </InfoCount>
         </InfoNav>
       )}
-      <Link href={`/content/${item?.contentId}/${item?.slug}`}>
+      <Link href={`/${item?.contentType}/${item?.contentId}/${item?.slug}`}>
         <a>
           <Tooltip title={item?.contentName} placement="top">
             <StyledButton color="primary" />
