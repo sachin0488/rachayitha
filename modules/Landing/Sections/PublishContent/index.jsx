@@ -14,11 +14,13 @@ const PublishContent = () => {
           <Typography lineHeight={1.8} variant={isMobileSx ? 'body1' : 'h6'} fontWeight={500} color="secondary">
             Publish your content on the platform and reach millions of readers.
           </Typography>
-          <StyledButton endIcon={<DrawRoundedIcon fontSize="inherit" />} size="large" disableElevation variant="contained">
-            <Typography lineHeight={1.8} variant={isMobileSx ? 'body2' : 'h6'} fontWeight={500}>
-              Start Creating
-            </Typography>
-          </StyledButton>
+          <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+            <StyledButton endIcon={<DrawRoundedIcon fontSize="inherit" />} size="large" disableElevation variant="contained">
+              <Typography lineHeight={1.8} variant={isMobileSx ? 'body2' : 'h6'} fontWeight={500}>
+                Start Creating
+              </Typography>
+            </StyledButton>
+          </a>
         </div>
         <div className="right">
           <StyledImage src="/creator_ill.svg" alt="Publish Content" />
