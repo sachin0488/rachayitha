@@ -5,12 +5,14 @@ import GetStartedSection from '../Sections/GetStartedSection'
 import WeeklyFeaturedSliders from 'modules/RecommendationSlider/sliders/WeeklyFeaturedSliders'
 import PotentialStarletSliders from 'modules/RecommendationSlider/sliders/PotentialStarletSliders'
 import NewArrivalsSliders from 'modules/RecommendationSlider/sliders/NewArrivalsSliders'
+import PublishContent from '../Sections/PublishContent'
 
 const LandingPageWithoutLogin = () => {
   return (
     <RootContainer>
       <Header />
       <GetStartedSection />
+      <PublishContent />
       <Banner />
       <WeeklyFeaturedSliders />
       <PotentialStarletSliders />

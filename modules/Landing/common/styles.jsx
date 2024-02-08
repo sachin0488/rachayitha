@@ -24,4 +24,6 @@ export const RootContainer = styled.div`
   @media (max-width: 405px) {
     --main-side-spacing: 15px;
   }
+  isolation: isolate;
+  overflow: clip;
 `

@@ -10,6 +10,10 @@ export const Heading = styled(Typography)`
   line-height: 1.35;
   span {
     display: block;
+    background: linear-gradient(50deg, rgb(37 0 124) 0%, rgb(162 122 255) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `
 
