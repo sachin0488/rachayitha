@@ -62,8 +62,8 @@ const Main = styled.div`
   box-shadow: 15px 16px 45px 5px ${({ theme }) => theme.palette.primary.main}33;
 
   @media (max-width: 660px) {
-    box-shadow: 15px 16px 45px 5px ${({ theme }) => theme.palette.primary.main}73,
-      -15px -16px 45px 5px ${({ theme }) => theme.palette.primary.main}73;
+    box-shadow: 15px 16px 45px 5px ${({ theme }) => theme.palette.primary.main}13,
+      -15px -16px 45px 5px ${({ theme }) => theme.palette.primary.main}13;
   }
 
   border-radius: 20px;
