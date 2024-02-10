@@ -39,7 +39,7 @@ const Root = styled.div`
   /* max-height: calc(100vh - 400px); */
   font-size: 16px;
   padding-top: 100px;
-  @media (max-height: 800px) {
+  @media (max-height: 900px) {
     padding-top: 10px;
     gap: 10px;
   }
@@ -98,7 +98,7 @@ const RootBanner = styled.div`
     align-items: center;
     justify-content: center;
   }
-  @media (max-height: 800px) {
+  @media (max-height: 900px) {
     top: 0%;
     .content {
       top: 15%;

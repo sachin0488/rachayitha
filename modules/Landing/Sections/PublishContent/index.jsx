@@ -4,7 +4,7 @@ import React from 'react'
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
 
 const PublishContent = () => {
-  const isMobileSxH = useMediaQuery('(max-height:800px)')
+  const isMobileSxH = useMediaQuery('(max-height:900px)')
   const isTabletSx = useMediaQuery('(min-width:600px)')
   const isMobileSx = useMediaQuery('(max-width:360px)')
   return (
@@ -16,15 +16,15 @@ const PublishContent = () => {
             fontWeight={600}
             color="primary"
             sx={{
-              fontSize: isMobileSxH && isTabletSx  ? '2.3rem' : undefined,
+              fontSize: isMobileSxH && isTabletSx ? '2.3rem' : undefined,
             }}>
             Publish Your Novels And Poem
           </Typography>
           <Typography
             lineHeight={1.8}
-            variant={isMobileSxH && isTabletSx  ? 'body1' : isMobileSx ? 'body1' : 'h6'}
+            variant={isMobileSxH && isTabletSx ? 'body1' : isMobileSx ? 'body1' : 'h6'}
             sx={{
-              fontSize: isMobileSxH && isTabletSx  ? '1rem' : undefined,
+              fontSize: isMobileSxH && isTabletSx ? '1rem' : undefined,
             }}
             fontWeight={500}
             color="secondary">
@@ -174,7 +174,7 @@ const StyledImage = styled.img`
   /* max-height: unset; */
   max-height: 250px;
 
-  @media (max-height: 800px) {
+  @media (max-height: 900px) {
     max-height: 180px;
   }
   @media (max-width: 900px) {

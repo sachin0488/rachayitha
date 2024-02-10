@@ -15,7 +15,7 @@ export const Heading = styled(Typography)`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  @media (max-height: 800px) {
+  @media (max-height: 900px) {
     font-size: 3.2em;
   }
   @media (max-width: 800px) {
@@ -33,7 +33,7 @@ export const SubHeading = styled(Typography)`
     font-size: 2.3em;
   }
 
-  @media (max-height: 800px) {
+  @media (max-height: 900px) {
     font-size: 1.5em;
   }
 `
