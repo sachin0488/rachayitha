@@ -31,7 +31,6 @@ const Root = styled.div`
   justify-content: center;
   justify-content: flex-start;
   gap: 30px;
-  padding-top: 100px;
   padding-bottom: 160px;
   /* background: red; */
   width: 100%;
@@ -39,6 +38,11 @@ const Root = styled.div`
   /* min-height: calc(100vh - 400px); */
   /* max-height: calc(100vh - 400px); */
   font-size: 16px;
+  padding-top: 100px;
+  @media (max-height: 800px) {
+    padding-top: 10px;
+    gap: 10px;
+  }
   @media (max-width: 900px) {
     font-size: 14px;
   }
@@ -85,7 +89,7 @@ const RootBanner = styled.div`
   position: relative;
   .content {
     position: absolute;
-    top: 40%;
+    /* top: 40%; */
     left: 0;
     right: 0;
     bottom: 0;
@@ -93,6 +97,12 @@ const RootBanner = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @media (max-height: 800px) {
+    top: 0%;
+    .content {
+      top: -15%;
+    }
   }
 `
 

@@ -4,15 +4,29 @@ import React from 'react'
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
 
 const PublishContent = () => {
+  const isMobileSxH = useMediaQuery('(max-height:800px)')
   const isMobileSx = useMediaQuery('(max-width:360px)')
   return (
     <Root>
       <Main>
         <div className="left">
-          <Typography variant={isMobileSx ? 'h4' : 'h3'} fontWeight={600} color="primary">
+          <Typography
+            variant={isMobileSxH ? 'body1' : isMobileSx ? 'h4' : 'h3'}
+            fontWeight={600}
+            color="primary"
+            sx={{
+              fontSize: isMobileSxH ? '2.3rem' : undefined,
+            }}>
             Publish Your Novels And Poem
           </Typography>
-          <Typography lineHeight={1.8} variant={isMobileSx ? 'body1' : 'h6'} fontWeight={500} color="secondary">
+          <Typography
+            lineHeight={1.8}
+            variant={isMobileSxH ? 'body1' : isMobileSx ? 'body1' : 'h6'}
+            sx={{
+              fontSize: isMobileSxH ? '1rem' : undefined,
+            }}
+            fontWeight={500}
+            color="secondary">
             Publish your content on the platform and reach millions of readers.
           </Typography>
           <a className="StyledButtonA" href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
@@ -61,6 +75,7 @@ const Main = styled.div`
   @media (max-width: 900px) {
     flex-direction: column;
   }
+
   padding: 20px 30px;
 
   box-shadow: 15px 16px 45px 5px ${({ theme }) => theme.palette.primary.main}33;
@@ -157,6 +172,10 @@ const StyledImage = styled.img`
   /* max-height: 250px; */
   /* max-height: unset; */
   max-height: 250px;
+
+  @media (max-height: 800px) {
+    max-height: 180px;
+  }
   @media (max-width: 900px) {
     /* max-height: unset; */
     width: 100%;

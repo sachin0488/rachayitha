@@ -45,6 +45,12 @@ const Root = styled.div`
   /* width: 100%; */
   /* margin-top: -40px; */
   z-index: -1;
+
+
+  /* position: absolute; */
+
+  /* top: 40%; */
+
   /*
   @media (max-height: 1200px) {
     margin-top: -100px;
