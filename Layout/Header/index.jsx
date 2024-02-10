@@ -21,10 +21,14 @@ const Header = ({ handleSidebarOpen }) => {
       <AppBar
         position="fixed"
         sx={{
-          boxShadow: ({ palette }) => `4px 4px 17px ${palette.primary.shadowLevel01}`,
-          backdropFilter: 'blur(66px)',
-          borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
-          background: ({ palette }) => palette.background.paper,
+          // boxShadow: ({ palette }) => `4px 4px 17px ${palette.primary.shadowLevel01}`,
+          // backdropFilter: 'blur(66px)',
+          // borderBottom: theme => '0px solid' + theme.palette.primary.main + '23',
+          // background: ({ palette }) => palette.background.paper,
+          boxShadow: 'none',
+          backdropFilter: 'blur(18px)',
+          borderBottom: theme => '1px solid' + theme.palette.primary.main + '50',
+          background: ({ palette }) => palette.background.paper + 'e9',
         }}>
         <Toolbar>
           <LogoBox />

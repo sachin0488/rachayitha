@@ -11,7 +11,8 @@ const Hero = () => {
     <Root>
       <Main>
         <LeftSection />
-        {isTabletXSM && <RightSection />}
+        {/* {isTabletXSM && <RightSection />} */}
+        <RightSection />
       </Main>
     </Root>
   )
@@ -23,10 +24,16 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   height: 110vh;
   margin-bottom: -10vh;
   min-height: 500px;
+  @media (max-width: 900px) {
+    height: fit-content;
+    margin-bottom: 60px;
+    margin-bottom: 200px;
+    /* overflow: ; */
+  }
 `
 
 const Main = styled.div`
@@ -37,14 +44,16 @@ const Main = styled.div`
   @media (max-width: 1310px) {
     max-width: 100%;
   }
-  @media (max-width: 900px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   margin-top: 70px;
   height: calc(100vh - 70px);
   max-height: 1090px;
+  @media (max-width: 900px) {
+    /* flex-direction: column-reverse; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+  }
 `
 
 export default Hero

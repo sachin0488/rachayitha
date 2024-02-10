@@ -31,10 +31,9 @@ const Root = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  justify-content: center;
   width: 50%;
-  @media (max-width: 1310px) {
-    width: 40%;
-  }
+
   margin-right: 15px;
   @media (max-width: 1169px) {
   }
@@ -65,6 +64,29 @@ const Root = styled.div`
   }
   @media (max-height: 524px) {
     margin-top: -750px;
+  }
+
+  @media (max-width: 1310px) {
+    width: 40%;
+  }
+  @media (max-width: 900px) {
+    width: 120%;
+    width: 50%;
+    z-index: -1;
+    margin-top: -100px;
+    margin-right: 0px;
+  }
+  @media (max-width: 800px) {
+    width: 60%;
+  }
+  @media (max-width: 640px) {
+    width: 70%;
+  }
+  @media (max-width: 570px) {
+    width: 80%;
+  }
+  @media (max-width: 491px) {
+    width: 110%;
   }
 `
 

@@ -9,8 +9,8 @@ const DetailsSection = ({ contentType, contentId, slug }) => {
   const { Data, isLoading, isError, error } = useContentDetailsService({ contentType, contentId, slug })
 
   return (
-    <Root>
-      <Main>
+    <Root className="quill">
+      <Main className="ql-container ql-snow">
         <ImageContainer>
           <StyledImage alt="Cover Image" src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'} />
           <StyledImage
@@ -45,11 +45,7 @@ const Root = styled.div`
   align-items: center;
   width: 100%;
   gap: 20px;
-  @media (min-width: 670px) {
-    padding-top: 20px;
-  }
   padding-bottom: 20px;
-  overflow: hidden;
 `
 const Main = styled.div`
   position: relative;
@@ -61,13 +57,14 @@ const Main = styled.div`
   border-radius: 12px;
   border-radius: 12px;
   @media (max-width: 670px) {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    /* border-top-left-radius: 0px;
+    border-top-right-radius: 0px; */
     padding: 38px 15px;
   }
   @media (max-width: 480px) {
-    padding: 38px 12px;
+    padding: 12px 12px 38px;
   }
+
   width: 100%;
   background-color: ${({ theme }) => theme.palette.background.paper};
 `
@@ -92,6 +89,9 @@ const StyledImage = styled.img`
     top: -5px;
     left: 0px;
     scale: 1.15;
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
   max-width: 350px;
   width: 100%;
@@ -106,6 +106,7 @@ const StyledImage = styled.img`
 
 const InfoSection = styled.div`
   margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,12 +134,12 @@ const AuthorName = styled(Typography)`
 
 const Copyright = styled(Typography)`
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   right: 10px;
   text-align: center;
   font-weight: 600;
   color: ${({ theme }) => theme.palette.secondary.main}61;
-  font-size: 16px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   gap: 5px;

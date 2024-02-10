@@ -9,7 +9,7 @@ export const ImageRow = styled.div`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    /* display: none; */
   }
   @media (max-height: 874px) {
     width: 195px;

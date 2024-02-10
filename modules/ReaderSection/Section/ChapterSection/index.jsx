@@ -39,7 +39,7 @@ const ChapterSection = ({ item, slug, contentId, contentType }) => {
         <Typography textAlign="center" variant="h3" component="h3" color="secondary" marginTop={2}>
           Chapter: {item?.chapterSequence}
         </Typography>
-        <Typography textAlign="center" variant="h4" component="h2" color="secondary" fontWeight={600} marginTop={1.1}>
+        <Typography paddingInline="10px" textAlign="center" variant="h4" component="h2" color="secondary" fontWeight={600} marginTop={1.1}>
           {item?.chapterTitle}
         </Typography>
         {isLoggedIn ? (
@@ -96,6 +96,9 @@ const Main = styled.div`
   }
   @media (max-width: 480px) {
     padding: 10px 12px;
+  }
+  @media (max-width: 380px) {
+    padding: 10px 5px;
   }
   width: 100%;
   background-color: ${({ theme }) => theme.palette.background.paper};

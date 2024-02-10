@@ -414,6 +414,12 @@ const Main = styled.div`
   align-items: center;
   overflow-y: scroll;
   overscroll-behavior: contain;
+  padding-top: 20px;
+  padding-inline: 15px;
+  @media (max-width: 380px) {
+    padding-inline: 10px;
+    padding-top: 10px;
+  }
 `
 
 const Body = styled.div`
@@ -425,7 +431,7 @@ const Body = styled.div`
   justify-content: flex-start;
   align-items: stretch;
 
-  padding-top: 0px;
+  /* padding-top: 0px; */
   @media (max-width: 630px) {
     padding-bottom: 76px;
   }
