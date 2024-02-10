@@ -101,7 +101,7 @@ const RootBanner = styled.div`
   @media (max-height: 800px) {
     top: 0%;
     .content {
-      top: -15%;
+      top: 15%;
     }
   }
 `

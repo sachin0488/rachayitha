@@ -6,7 +6,7 @@ import { Tooltip } from '@mui/material'
 import { useMemo } from 'react'
 
 const reduceArrayToThree = array => {
-  return array.slice(0, 3)
+  return array.slice(0, 2)
 }
 
 const BookBanners = () => {
