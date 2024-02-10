@@ -73,7 +73,7 @@ const Root = styled.div`
     width: 120%;
     width: 50%;
     z-index: -1;
-    margin-top: -100px;
+    margin-top: -50px;
     margin-right: 0px;
   }
   @media (max-width: 800px) {
