@@ -5,25 +5,26 @@ import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
 
 const PublishContent = () => {
   const isMobileSxH = useMediaQuery('(max-height:800px)')
+  const isTabletSx = useMediaQuery('(min-width:600px)')
   const isMobileSx = useMediaQuery('(max-width:360px)')
   return (
     <Root>
       <Main>
         <div className="left">
           <Typography
-            variant={isMobileSxH ? 'body1' : isMobileSx ? 'h4' : 'h3'}
+            variant={isMobileSxH && isTabletSx ? 'body1' : isMobileSx ? 'h4' : 'h3'}
             fontWeight={600}
             color="primary"
             sx={{
-              fontSize: isMobileSxH ? '2.3rem' : undefined,
+              fontSize: isMobileSxH && isTabletSx  ? '2.3rem' : undefined,
             }}>
             Publish Your Novels And Poem
           </Typography>
           <Typography
             lineHeight={1.8}
-            variant={isMobileSxH ? 'body1' : isMobileSx ? 'body1' : 'h6'}
+            variant={isMobileSxH && isTabletSx  ? 'body1' : isMobileSx ? 'body1' : 'h6'}
             sx={{
-              fontSize: isMobileSxH ? '1rem' : undefined,
+              fontSize: isMobileSxH && isTabletSx  ? '1rem' : undefined,
             }}
             fontWeight={500}
             color="secondary">

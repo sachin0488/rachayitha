@@ -104,6 +104,12 @@ const RootBanner = styled.div`
       top: 15%;
     }
   }
+  @media (max-width: 900px) {
+    top: 0%;
+    .content {
+      top: 50%;
+    }
+  }
 `
 
 export default GetStartedSection
