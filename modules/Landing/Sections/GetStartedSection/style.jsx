@@ -23,7 +23,7 @@ export const SubHeading = styled(Typography)`
   text-align: center;
   color: ${props => props.theme.palette.secondary.main};
 
-  @media (max-width: 450px) {
-    font-size: 2em;
+  @media (max-width: 500px) {
+    font-size: 2.3em;
   }
 `

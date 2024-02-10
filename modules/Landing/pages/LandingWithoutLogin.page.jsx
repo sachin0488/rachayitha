@@ -12,7 +12,6 @@ const LandingPageWithoutLogin = () => {
     <RootContainer>
       <Header />
       <GetStartedSection />
-      <PublishContent />
       <Banner />
       <WeeklyFeaturedSliders />
       <PotentialStarletSliders />

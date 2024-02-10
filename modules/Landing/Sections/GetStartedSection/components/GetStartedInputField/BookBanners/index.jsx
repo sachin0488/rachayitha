@@ -3,10 +3,19 @@ import { ImageRow, StyledImage } from './styles'
 import { useHeroListService } from 'modules/Landing/services/HeroList.service'
 import Link from 'next/link'
 import { Tooltip } from '@mui/material'
+import { useMemo } from 'react'
+
+const reduceArrayToThree = array => {
+  return array.slice(0, 3)
+}
 
 const BookBanners = () => {
   const { data } = useHeroListService()
-  const RowList = [data?.first, data?.second, data?.third]
+
+  const RowList = useMemo(
+    () => [data?.first, data?.second, data?.third].map(item => reduceArrayToThree(item || [])),
+    [data?.first, data?.second, data?.third],
+  )
 
   return (
     <Root>
@@ -35,7 +44,7 @@ const Root = styled.div`
   margin-top: 30px;
   /* width: 100%; */
   /* margin-top: -40px; */
-z-index: -1;
+  z-index: -1;
   /*
   @media (max-height: 1200px) {
     margin-top: -100px;

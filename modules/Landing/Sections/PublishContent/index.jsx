@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { Button, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
+
 const PublishContent = () => {
   const isMobileSx = useMediaQuery('(max-width:360px)')
   return (
@@ -14,7 +15,7 @@ const PublishContent = () => {
           <Typography lineHeight={1.8} variant={isMobileSx ? 'body1' : 'h6'} fontWeight={500} color="secondary">
             Publish your content on the platform and reach millions of readers.
           </Typography>
-          <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+          <a className="StyledButtonA" href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
             <StyledButton endIcon={<DrawRoundedIcon fontSize="inherit" />} size="large" disableElevation variant="contained">
               <Typography lineHeight={1.8} variant={isMobileSx ? 'body2' : 'h6'} fontWeight={500}>
                 Start Creating
@@ -52,6 +53,7 @@ const Main = styled.div`
   max-width: var(--main-max-width);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: fit-content;
   @media (max-width: 1310px) {
     max-width: 100%;
@@ -78,7 +80,12 @@ const Main = styled.div`
     align-items: flex-start;
 
     height: 100%;
+    /* height: max-content; */
     padding: 20px 10px;
+    .StyledButtonA {
+      margin-top: auto;
+      margin-top: 20px;
+    }
   }
   .right {
     flex: 1;
@@ -137,7 +144,7 @@ const StyledButton = styled(Button)`
   /* font-size: 1.5rem; */
   border-radius: 16px;
   line-height: 1.7;
-  margin-top: 20px;
+
   &:hover {
     background: linear-gradient(10deg, rgb(54 8 163) 0%, rgb(148 106 245) 100%);
   }
@@ -148,14 +155,15 @@ const StyledButton = styled(Button)`
 
 const StyledImage = styled.img`
   /* max-height: 250px; */
+  /* max-height: unset; */
+  max-height: 250px;
+  @media (max-width: 900px) {
+    /* max-height: unset; */
+    width: 100%;
+  }
   @media (max-width: 1274px) {
     width: 100%;
-    /* max-height: 250px; */
     height: 100%;
-  }
-  @media (max-width: 900px) {
-    max-height: unset;
-    width: 100%;
   }
   filter: drop-shadow(2px 4px 20px rgba(171, 141, 241, 0.368));
 `

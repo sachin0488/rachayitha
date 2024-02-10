@@ -3,6 +3,7 @@ import React from 'react'
 import GetStartedInputField from './components/GetStartedInputField'
 import { Heading, SubHeading } from './style'
 import BookBanners from './components/GetStartedInputField/BookBanners'
+import PublishContent from '../PublishContent'
 
 const GetStartedSection = () => {
   return (
@@ -12,8 +13,13 @@ const GetStartedSection = () => {
         <span>Literature Here</span>
       </Heading>
       <SubHeading>India’s own online Reading Platform</SubHeading>
-      <GetStartedInputField />
-      <BookBanners />
+      {/* <GetStartedInputField /> */}
+      <RootBanner>
+        <div className="content">
+          <PublishContent />
+        </div>
+        <BookBanners />
+      </RootBanner>
     </Root>
   )
 }
@@ -27,9 +33,11 @@ const Root = styled.div`
   gap: 30px;
   padding-top: 100px;
   padding-bottom: 160px;
-  min-height: calc(100vh - 60px);
-  min-height: calc(100vh - 400px);
-  max-height: calc(100vh - 400px);
+  /* background: red; */
+  width: 100%;
+  /* min-height: calc(100vh - 60px); */
+  /* min-height: calc(100vh - 400px); */
+  /* max-height: calc(100vh - 400px); */
   font-size: 16px;
   @media (max-width: 900px) {
     font-size: 14px;
@@ -66,6 +74,25 @@ const Root = styled.div`
   }
   @media (max-width: 321px) {
     font-size: 6px;
+  }
+`
+
+const RootBanner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  .content {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
