@@ -18,7 +18,7 @@ const Root = styled(Button)`
   @media (min-width: 650px) {
     font-size: 1rem;
   }
-  box-shadow: none;
+  box-shadow: 5px 5px 40px 5px ${({ theme }) => theme.palette.primary.main};
 `
 
 export default SignInButton

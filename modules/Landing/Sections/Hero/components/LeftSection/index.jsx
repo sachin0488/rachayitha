@@ -52,7 +52,7 @@ const Root = styled.div`
     align-items: center;
     padding: 20px 35px 35px;
     margin-inline: 10px;
-    background: #fff;
+    /* background: #fff; */
     border-radius: 17px;
     position: absolute;
   }
@@ -86,7 +86,7 @@ const BackBlob = styled.img`
   /* object-fit: cover; */
   display: block;
   @media (max-width: 900px) {
-    display: none;
+    /* display: none; */
   }
   @media (max-width: 500px) {
     display: block;

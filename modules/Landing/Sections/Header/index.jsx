@@ -29,6 +29,7 @@ const Root = styled.div`
   width: 100%;
   gap: 10px;
   padding-block: 35px;
+  z-index: 100;
   padding-inline: var(--main-side-spacing);
   width: 100%;
   max-width: var(--main-max-width);

@@ -6,12 +6,14 @@ import WeeklyFeaturedSliders from 'modules/RecommendationSlider/sliders/WeeklyFe
 import PotentialStarletSliders from 'modules/RecommendationSlider/sliders/PotentialStarletSliders'
 import NewArrivalsSliders from 'modules/RecommendationSlider/sliders/NewArrivalsSliders'
 import PublishContent from '../Sections/PublishContent'
+import Hero from '../Sections/Hero'
 
 const LandingPageWithoutLogin = () => {
   return (
     <RootContainer>
       <Header />
-      <GetStartedSection />
+      <Hero />
+      {/* <GetStartedSection /> */}
       <Banner />
       <WeeklyFeaturedSliders />
       <PotentialStarletSliders />

@@ -43,6 +43,7 @@ const Root = styled.div`
   padding-block: 50px;
   background: ${({ theme }) => theme.palette.primary.main};
   overflow: hidden;
+  z-index: 100;
 `
 
 const Main = styled.div`

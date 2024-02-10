@@ -12,7 +12,7 @@ export const TextSection = styled.div`
   }
   position: relative;
   isolation: isolate;
-  @media (max-width: 500px) {
+  @media (max-width: 900px) {
     ::before {
       position: absolute;
       z-index: -1;
@@ -23,18 +23,6 @@ export const TextSection = styled.div`
       border-radius: 17px;
       width: 110%;
       height: 160%;
-    }
-    ::after {
-      /* content: '';
-      position: absolute;
-      z-index: -1;
-      top: -15px;
-      clip-path: path(
-        'M120.6 -97.6C168.6 -72.6 228.3 -36.3 244.6 16.3C260.8 68.8 233.7 137.7 185.7 183.3C137.7 229 68.8 251.5 15.4 236.1C-37.9 220.6 -75.9 167.2 -125.9 121.6C-175.9 75.9 -237.9 37.9 -239.1 -1.2C-240.3 -40.3 -180.6 -80.6 -130.6 -105.6C-80.6 -130.6 -40.3 -140.3 -2 -138.3C36.3 -136.3 72.6 -122.6 120.6 -97.6'
-      );
-      backdrop-filter: blur(10px);
-      width: 90%;
-      height: 120%; */
     }
   }
 `
