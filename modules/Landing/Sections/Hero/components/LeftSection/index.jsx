@@ -57,6 +57,7 @@ const Root = styled.div`
     position: absolute;
   }
   @media (max-width: 500px) {
+    margin-top: 30%;
     background: transparent;
   }
   @media (max-width: 522px) {
