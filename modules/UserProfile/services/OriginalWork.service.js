@@ -43,7 +43,7 @@ const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, contentType) => {
 
 const useOriginalWorkService = ({ contentType }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: [UserProfileQuery.LIBRARY_LIST, { contentType }],
+    queryKey: [UserProfileQuery.ORIGINAL_WORK_LIST, { contentType }],
     queryFn: params => fetchOriginalWorkListAPI(params, contentType),
     getNextPageParam: (lastPage, pages) => {
       return lastPage.nextCursor

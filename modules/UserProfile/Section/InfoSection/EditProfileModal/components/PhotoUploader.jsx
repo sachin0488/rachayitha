@@ -26,7 +26,9 @@ const PhotoUploader = ({ name }) => {
     return ''
   }, [value])
 
-  const isPreviewAvailable = Boolean(value.length)
+  const isPreviewAvailable = useMemo(() => {
+    return value.length > 0 && typeof value?.[0] === 'string' && value?.[0] === ''
+  }, [value])
 
   const handleBrowseButton = useCallback(() => {
     fileInput.current?.click()
@@ -51,8 +53,8 @@ const PhotoUploader = ({ name }) => {
 
   return (
     <Root onClick={handleBrowseButton}>
-      {isPreviewAvailable && <ImagePreview src={previewImage} alt="" />}
-      {!isPreviewAvailable && <PhotoCameraIcon color="secondary" />}
+      {!isPreviewAvailable && <ImagePreview src={previewImage} alt="" />}
+      {isPreviewAvailable && <PhotoCameraIcon color="secondary" />}
       <input
         name={name}
         type="file"

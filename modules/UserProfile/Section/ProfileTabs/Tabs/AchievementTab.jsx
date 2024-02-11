@@ -27,18 +27,6 @@ const Root = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   height: 200px;
-
-  /* @media (max-width: 730px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 13px;
-  }
-
-  @media (max-width: 400px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 13px;
-  } */
 `
 
 export default AchievementTab

@@ -1,12 +1,9 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useUserService } from './service/User.service'
 import { useQuery } from '@tanstack/react-query'
 import { AuthQuery } from './constants/query.address'
 import styled from '@emotion/styled'
 import { LinearProgress } from '@mui/material'
-import { set } from 'react-hook-form'
-import { useDebounce } from '@uidotdev/usehooks'
 
 const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/coin-plan', '/payment-plan', '/profile']
 

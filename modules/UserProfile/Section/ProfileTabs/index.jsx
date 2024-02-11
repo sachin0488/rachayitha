@@ -68,10 +68,10 @@ const ProfileTabs = ({ item }) => {
     <Root>
       <StyledTabs variant="standard" value={value} onChange={handleChange} aria-label="Comment List">
         <StyledTab label="Library" {...a11yProps(0)} />
-        <StyledTab label="Bought Product" {...a11yProps(0)} />
-        <StyledTab label="Transaction History" {...a11yProps(0)} />
-        <StyledTab label="Achievement" {...a11yProps(1)} />
-        <StyledTab label="Original Work" {...a11yProps(2)} />
+        <StyledTab label="Bought Product" {...a11yProps(1)} />
+        <StyledTab label="Transaction History" {...a11yProps(2)} />
+        <StyledTab label="Achievement" {...a11yProps(3)} />
+        <StyledTab label="Original Work" {...a11yProps(4)} />
       </StyledTabs>
       <TabPanel value={value} index={0}>
         <LibraryTab item={item} />
