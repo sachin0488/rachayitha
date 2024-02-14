@@ -10,8 +10,7 @@ import BoughtTab from './Tabs/BoughtTab'
 import TransactionHistoryTab from './Tabs/TransactionHistoryTab'
 
 const ProfileTabs = ({ item }) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery('(max-width: 1030px)')
+  const isMobile = useMediaQuery('(max-width: 1035px)')
   const [value, setValue] = useState(0)
   const [secondValue, setSecondValue] = useState(0)
 
@@ -33,10 +32,10 @@ const ProfileTabs = ({ item }) => {
   if (isMobile) {
     return (
       <Root>
-        <StyledTabs variant="standard" value={value} onChange={handleChange} aria-label="Comment List">
+        <StyledTabs variant="scrollable" value={value} onChange={handleChange} aria-label="Comment List">
           <StyledTab label="Library" {...a11yProps(0)} />
           <StyledTab label="Bought Product" {...a11yProps(1)} />
-          <StyledTab label="Transaction History" {...a11yProps(2)} />
+          <StyledTab label="Transactions" {...a11yProps(2)} />
         </StyledTabs>
         <TabPanel value={value} index={0}>
           <LibraryTab item={item} />
@@ -69,7 +68,7 @@ const ProfileTabs = ({ item }) => {
       <StyledTabs variant="standard" value={value} onChange={handleChange} aria-label="Comment List">
         <StyledTab label="Library" {...a11yProps(0)} />
         <StyledTab label="Bought Product" {...a11yProps(1)} />
-        <StyledTab label="Transaction History" {...a11yProps(2)} />
+        <StyledTab label="Transactions" {...a11yProps(2)} />
         <StyledTab label="Achievement" {...a11yProps(3)} />
         <StyledTab label="Original Work" {...a11yProps(4)} />
       </StyledTabs>
@@ -120,8 +119,8 @@ const StyledTab = styled(Tab)`
     white-space: nowrap;
     font-weight: 600;
     border-radius: 12px;
-    min-height: 40px;
-    padding: 0px 10px;
+    min-height: 30px;
+    max-height: 30px;
   }
 
   &.${tabClasses.selected} {
@@ -136,8 +135,14 @@ const StyledTabs = styled(Tabs)`
   overflow: visible;
   display: flex;
   width: fit-content;
+  border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
+  padding-bottom: 0px;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 13px;
   & .${tabsClasses.flexContainer} {
-    border: 1px solid ${({ theme }) => theme.palette.primary.main}1a;
+    padding-left: 4px;
+    padding-right: 4px;
     border-radius: 13px;
     display: flex;
     justify-content: space-between;
@@ -155,7 +160,6 @@ const StyledTabs = styled(Tabs)`
   }
 
   & .${tabsClasses.scroller} {
-    overflow: visible;
     height: 40px;
   }
 

@@ -1,13 +1,14 @@
-import React from 'react'
-import styled from '@emotion/styled'
 import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
-import { Skeleton, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 
 import WorkContentCard from '../components/WorkContentCard'
 import StyledChip from '../components/StyledChip'
-import useOriginalWorkService from 'modules/UserProfile/services/OriginalWork.service'
 import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded'
+import clsx from 'clsx'
+import { ContentContainer, ContentListBox, NotAvailableBar, StyledSkeleton, TabsRoot } from '../components/TabsCommonStyles'
+
+import useOriginalWorkService from 'modules/UserProfile/services/OriginalWork.service'
 
 const contentTypes = [
   'book',
@@ -22,13 +23,16 @@ const OriginalWorkTab = () => {
   })
 
   return (
-    <Root>
+    <TabsRoot>
       <ContentListBox>
         {contentTypes.map((item, index) => (
           <StyledChip key={item} active={selectedContentType === item} label={item} onClick={() => setSelectedContentType(item)} />
         ))}
       </ContentListBox>
-      <Main>
+      <ContentContainer
+        className={clsx({
+          'disabled-list': ContentList?.length === 0 && !isFetching && !isFetchingNextPage,
+        })}>
         {isFetching ? (
           <>
             <StyledSkeleton variant="rounded" />
@@ -71,69 +75,9 @@ const OriginalWorkTab = () => {
             )}
           </>
         )}
-      </Main>
-    </Root>
+      </ContentContainer>
+    </TabsRoot>
   )
 }
-
-const StyledSkeleton = styled(Skeleton)`
-  height: 238px;
-  max-width: 158px;
-  width: 158px;
-
-  @media (max-width: 730px) {
-    width: 100%;
-    max-width: 100%;
-    height: 238px;
-  }
-`
-
-const NotAvailableBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 300px;
-  max-width: 240px;
-  align-self: center;
-`
-
-const Root = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`
-const Main = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-
-  @media (max-width: 730px) {
-    display: grid;
-    grid-template-columns: min-content min-content min-content;
-    grid-gap: 13px;
-  }
-  @media (max-width: 600px) {
-    display: grid;
-    grid-template-columns: min-content min-content;
-    grid-gap: 13px;
-  }
-
-  @media (max-width: 400px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 13px;
-  }
-`
-const ContentListBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  @media (max-width: 415px) {
-    justify-content: flex-end;
-    margin-left: auto;
-  }
-`
 
 export default OriginalWorkTab

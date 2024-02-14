@@ -3,21 +3,23 @@ import { Button, ButtonBase, Typography } from '@mui/material'
 
 export const Root = styled.div`
   position: relative;
-  padding: 8px;
-  box-shadow: none;
-  border-radius: 16px;
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
-  :hover {
-    border: 1px solid ${({ theme }) => theme.palette.primary.main};
-    box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
-    transform: scale(1.02);
+  @media (min-width: 365px) {
+    padding: 8px;
+    box-shadow: none;
+    border-radius: 16px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border: 1px solid ${({ theme }) => theme.palette.primary.main}18;
+    :hover {
+      border: 1px solid ${({ theme }) => theme.palette.primary.main};
+      box-shadow: 0px 7px 10px 1px rgba(0, 0, 0, 0.05);
+      transform: scale(1.02);
+    }
+    max-width: 175px;
   }
-  max-width: 175px;
 
-  @media (max-width: 730px) {
-    width: 100%;
+  @media (max-width: 400px) {
+    max-width: initial;
   }
 `
 
@@ -30,12 +32,16 @@ export const StyledButton = styled(ButtonBase)`
   z-index: 1;
   border-radius: 13px;
   background-color: transparent;
+  @media (max-width: 365px) {
+    border-radius: 11px;
+  }
 `
 
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+  width: 100%;
 `
 
 export const Image = styled.img`
@@ -44,9 +50,6 @@ export const Image = styled.img`
   object-fit: cover;
   border-radius: 10px;
   aspect-ratio: 12/16;
-  @media (max-width: 395px) {
-    height: 190px;
-  }
 `
 
 export const InfoSection = styled.div`
@@ -103,4 +106,8 @@ export const StyledCornerButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 365px) {
+    border-top-right-radius: 11px;
+    border-bottom-left-radius: 11px;
+  }
 `
