@@ -112,6 +112,7 @@ const BottomReachedView = styled.div`
 const ChapterContentText = styled(Typography)`
   font-family: 'Noto Sans', sans-serif;
   color: ${({ theme }) => theme.palette.secondary.main};
+  font-style: normal;
 
   * {
     font-family: 'Noto Sans', sans-serif;
@@ -159,6 +160,17 @@ const ChapterContentText = styled(Typography)`
   s {
     font-weight: 435;
     letter-spacing: 0.01px;
+  }
+
+  & pre.ql-syntax {
+    background-color: ${({ theme }) => theme.palette.background.paper} !important;
+    color: ${({ theme }) => theme.palette.secondary.main} !important;
+    padding: 0px 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-style: normal !important;
+    font-weight: 435 !important;
+    letter-spacing: 0.01px !important;
   }
   @media (max-width: 670px) {
     & p,
