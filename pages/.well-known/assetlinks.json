@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rachayitha.app",
+      "sha256_cert_fingerprints": ["30:ED:51:CF:53:C2:65:1A:66:85:C7:C1:8F:E0:62:6A:C4:FE:5E:B9:7B:A6:E0:B8:38:BC:7A:3C:A3:01:77:D4"]
+    }
+  }
+]
