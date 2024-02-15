@@ -28,7 +28,13 @@ const SigninWall = ({ contentType }) => {
             </a>
           </Link>
         </Typography>
-        <Link href="/login">
+        <Link
+          href={{
+            pathname: '/login',
+            query: {
+              from: encodeURIComponent(window.location.pathname),
+            },
+          }}>
           <a>
             <StyledButton disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
               Sign In

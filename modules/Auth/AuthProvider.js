@@ -10,7 +10,7 @@ const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/
 const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 
 const AuthProvider = ({ children }) => {
-  const { push, pathname, isReady } = useRouter()
+  const { push, pathname, isReady, query } = useRouter()
 
   const { isLoading, isLoggedIn, isSuccess } = useUserService()
 
@@ -20,7 +20,11 @@ const AuthProvider = ({ children }) => {
       if (isLoggedIn) {
         for (const path of blockListForLoggedIn) {
           if (pathname.includes(path)) {
-            push('/')
+            if (query?.from) {
+              push(decodeURIComponent(query.from))
+            } else {
+              push('/')
+            }
             break
           }
         }

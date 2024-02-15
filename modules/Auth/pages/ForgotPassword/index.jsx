@@ -49,7 +49,7 @@ const ForgotPasswordPage = () => {
 
               <DescriptionText variant="subtitle2">We will send a email to change your password.</DescriptionText>
               <Nav>
-                <Link href="/login">
+                <Link href={{ pathname: '/login', query }}>
                   <a>
                     <StyledButton>Login</StyledButton>
                   </a>

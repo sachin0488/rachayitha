@@ -19,8 +19,10 @@ import { useCreateAccountService } from 'modules/Auth/service/CreateUser.service
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import StyledDateSelector from 'modules/Auth/components/FormComponents/StyledDateSelector'
 import VerifyEmailModal from '../VerifyEmailModal'
+import { useRouter } from 'next/router'
 
 const CreateAccountPage = () => {
+  const { query } = useRouter()
   const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
   const { handleCreateAccount, isLoading, user, isEmailVerified, checkVerificationStatus, isSuccess } = useCreateAccountService()
   const { handleFormError } = useFormError()
@@ -118,7 +120,7 @@ const CreateAccountPage = () => {
               <TermsAndPrivacyPolicyCheckbox name="agree" />
             </BottomSection>
             <Nav>
-              <Link href="/login">
+              <Link href={{ pathname: '/login', query }}>
                 <a>
                   <StyledButton disabled={isLoading}>Login</StyledButton>
                 </a>

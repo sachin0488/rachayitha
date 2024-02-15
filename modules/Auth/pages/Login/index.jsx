@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { Button, CircularProgress, Typography } from '@mui/material'
@@ -11,11 +10,13 @@ import useFormError from 'hooks/useFormError'
 import { useLoginService } from 'modules/Auth/service/Login.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import { useRouter } from 'next/router'
 
 const LoginPage = () => {
   const { handleLogin, isLoading } = useLoginService()
   const { handleFormError } = useFormError()
-
+  const { query } = useRouter()
+  
   const methods = useForm({
     defaultValues: {
       email: '',
@@ -39,7 +40,7 @@ const LoginPage = () => {
 
             <BottomSection>
               {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}
-              <Link href="/forgot-password">
+              <Link href={{ pathname: '/forgot-password', query }}>
                 <a>
                   <StyledForgotPassword>Forgot Password !</StyledForgotPassword>
                 </a>
@@ -47,7 +48,7 @@ const LoginPage = () => {
             </BottomSection>
 
             <Nav>
-              <Link href="/create-account">
+              <Link href={{ pathname: '/create-account', query }}>
                 <a>
                   <StyledButton>Create Account</StyledButton>
                 </a>

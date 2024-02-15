@@ -26,6 +26,8 @@ export const useLoginService = () => {
         variant: 'success',
       })
 
+      
+
       queryClient.invalidateQueries([AuthQuery.USER_DATA])
     },
     onError: error => {
