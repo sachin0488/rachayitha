@@ -3,21 +3,13 @@ import { Typography } from '@mui/material'
 
 const ParagraphRoot = styled(Typography)`
   letter-spacing: 0.3px;
-
-  @media (max-width: 480px) {
-    font-size: 1.1rem;
-  }
-  @media (max-width: 381px) {
-    font-size: 1.1rem;
-  }
-  @media (max-width: 358px) {
-    font-size: 1rem;
-  }
+  line-height: 1.55;
+  padding-top: 15px;
 `
 
 const Paragraph = ({ children, ...props }) => {
   return (
-    <ParagraphRoot variant="subtitle1" {...props}>
+    <ParagraphRoot variant="body1" {...props}>
       {children}
     </ParagraphRoot>
   )

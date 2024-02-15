@@ -39,5 +39,8 @@ export const Main = styled.div`
     padding-top: 20px;
     padding-inline: 25px;
   }
+  table {
+    margin-top: 50px;
+  }
 `
 export default Root
