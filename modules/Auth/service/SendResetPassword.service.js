@@ -23,6 +23,10 @@ export const useSendResetPasswordLinkService = () => {
         enqueueSnackbar(error.response?.data?.error?.visible?.message, {
           variant: 'error',
         })
+      else if (error.response?.data?.errors?.email?.[0])
+        enqueueSnackbar(error.response?.data?.errors?.email?.[0], {
+          variant: 'error',
+        })
       else
         enqueueSnackbar('Something went wrong', {
           variant: 'error',

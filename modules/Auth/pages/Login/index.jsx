@@ -11,12 +11,15 @@ import { useLoginService } from 'modules/Auth/service/Login.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import { useRouter } from 'next/router'
+import VerifyEmailModal from '../VerifyEmailModal'
+import { useEffect, useState } from 'react'
 
 const LoginPage = () => {
-  const { handleLogin, isLoading } = useLoginService()
-  const { handleFormError } = useFormError()
   const { query } = useRouter()
-  
+  const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
+  const { handleLogin, isLoading, user, isEmailVerified, checkVerificationStatus, isError } = useLoginService()
+  const { handleFormError } = useFormError()
+
   const methods = useForm({
     defaultValues: {
       email: '',
@@ -25,9 +28,16 @@ const LoginPage = () => {
     },
   })
 
+  useEffect(() => {
+    if (isError && isEmailVerified === false) {
+      setIsVerifyModalOpen(true)
+    }
+  }, [isError, isEmailVerified])
+
   return (
     <Root>
       <DeignsIcon />
+      <VerifyEmailModal open={isVerifyModalOpen} checkVerificationStatus={checkVerificationStatus} user={user} />
       <Main>
         <Body onSubmit={methods.handleSubmit(handleLogin, handleFormError)}>
           <FormProvider {...methods}>

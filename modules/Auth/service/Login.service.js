@@ -3,6 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
+import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 
 const { setAccess, setRefresh } = AuthTokenStore()
 
@@ -11,7 +12,9 @@ export const useLoginService = () => {
 
   const queryClient = useQueryClient()
 
-  const { mutate, isLoading, isSuccess, data } = useMutation({
+  const { isEmailVerified, mutate: checkVerificationStatus, setAuthAdopter } = useEmailVerificationStatusService()
+
+  const { mutate, variables, isLoading, isSuccess, data, error, isError } = useMutation({
     mutationFn: loginAPI,
     onSuccess({ tokens, message }, variables) {
       if (variables?.remember_me) {
@@ -26,23 +29,36 @@ export const useLoginService = () => {
         variant: 'success',
       })
 
-      
-
       queryClient.invalidateQueries([AuthQuery.USER_DATA])
     },
-    onError: error => {
-      if (error.response?.data?.user?.error?.length > 0)
-        enqueueSnackbar(error.response?.data?.user?.error?.[0], {
+    onError: (error, variables) => {
+      console.log('error', error.response?.data)
+      if (error.response?.data?.user?.is_active?.[0] === 'False') {
+        enqueueSnackbar('Your account is not verified. Please verify your email to login', {
           variant: 'error',
         })
-      else if (error.response?.data?.message)
-        enqueueSnackbar(error.response?.data?.message, {
-          variant: 'error',
+        setTimeout(() => {
+          checkVerificationStatus()
+        }, 50)
+        setAuthAdopter({
+          email: variables?.email,
+          password: variables?.password,
+          rememberMe: true,
         })
-      else
-        enqueueSnackbar('Something went wrong', {
-          variant: 'error',
-        })
+      } else {
+        if (error.response?.data?.user?.error?.length > 0)
+          enqueueSnackbar(error.response?.data?.user?.error?.[0], {
+            variant: 'error',
+          })
+        else if (error.response?.data?.message)
+          enqueueSnackbar(error.response?.data?.message, {
+            variant: 'error',
+          })
+        else
+          enqueueSnackbar('Something went wrong', {
+            variant: 'error',
+          })
+      }
     },
   })
 
@@ -51,7 +67,13 @@ export const useLoginService = () => {
   return {
     handleLogin,
     isLoading,
-    isSuccess,
+    isError,
+    isEmailVerified: isEmailVerified,
+    user: {
+      fullName: error?.response?.data?.user?.full_name?.[0],
+      email: variables?.email,
+    },
+    checkVerificationStatus,
   }
 }
 
