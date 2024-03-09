@@ -39,8 +39,8 @@ export const useResetPasswordService = () => {
   return { handleResetPasswordByToken, isLoading, isSuccess }
 }
 
-export const resetPasswordByTokenAPI = data => {
-  const response = APIInstance({
+export const resetPasswordByTokenAPI = async data => {
+  const response = await APIInstance({
     url: '/password_reset/confirm/',
     method: 'POST',
     data,

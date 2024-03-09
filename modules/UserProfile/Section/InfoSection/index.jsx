@@ -71,25 +71,25 @@ const InfoSection = () => {
             <Row>
               <Link href="/coin-plan">
                 <a>
-                  <StyledAddCoinButton disableElevation color="primary" variant="contained">
+                  <StyledButton disableElevation color="primary" variant="contained">
                     Buy Coins
-                  </StyledAddCoinButton>
+                  </StyledButton>
                 </a>
               </Link>
             </Row>
             <Row>
               <Link href="/subscription-plan">
                 <a>
-                  <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                  <StyledButton disableElevation color="secondary" variant="contained">
                     Subscribe
-                  </StyledSubscribeButton>
+                  </StyledButton>
                 </a>
               </Link>
               <Link href="/vote-coin-plan">
                 <a>
-                  <StyledSubscribeButton disableElevation color="secondary" variant="contained">
+                  <StyledButton disableElevation color="secondary" variant="contained">
                     Buy Vote Coins
-                  </StyledSubscribeButton>
+                  </StyledButton>
                 </a>
               </Link>
             </Row>
@@ -169,12 +169,8 @@ const NavList = styled.div`
   margin-top: 10px;
   width: 100%;
 `
-const StyledAddCoinButton = styled(Button)`
-  white-space: nowrap;
-  flex: 1;
-`
 
-const StyledSubscribeButton = styled(Button)`
+const StyledButton = styled(Button)`
   white-space: nowrap;
   flex: 1;
 `
