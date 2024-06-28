@@ -117,7 +117,10 @@ const PrivacyPolicyPage = () => {
             <tr>
               <td>Analytics Services</td>
               <td>Google Analytics (Location USA)</td>
-              <td>
+              <td
+                style={{
+                  wordBreak: 'break-word',
+                }}>
                 https://www.google.com/policies/privacy/partners/
                 <br />
                 <br />

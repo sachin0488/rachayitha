@@ -50,7 +50,7 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   @media (min-width: 621px) {
-    background: ${({ theme }) => theme.palette.primary.main}09;
+    /* background: ${({ theme }) => theme.palette.primary.main}09; */
     border-radius: 8px;
     padding-right: 13px;
   }

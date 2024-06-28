@@ -6,6 +6,8 @@ import ContentCard from './components/ContentCard'
 import { InView } from 'react-intersection-observer'
 import { useMemo, useRef } from 'react'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
+// import AdsComponent from 'components/AdsComponent'
+import AdSense from 'react-adsense'
 
 const ContentSection = ({ ranking }) => {
   const { query } = useRouter()
@@ -52,6 +54,13 @@ const ContentSection = ({ ranking }) => {
 
   return (
     <Root ref={mainRef}>
+      <AdSense.Google
+        client="ca-pub-7292810486004926"
+        slot="7806394673"
+        style={{ width: '100%', maxWidth: '550px', height: 100 }}
+        format=""
+      />
+
       {renderContentList}
 
       {ContentList?.length !== 0 && (

@@ -74,6 +74,7 @@ const StyledDatePicker = styled(DatePicker)`
   }
 
   .MuiOutlinedInput-root {
+    background: #f2f2f2;
     font-size: 0.81rem;
   }
 
@@ -88,6 +89,7 @@ const StyledDatePicker = styled(DatePicker)`
 
   .MuiOutlinedInput-notchedOutline {
     border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+    border-color: #f2f2f2;
     border-width: 2px;
   }
 

@@ -46,7 +46,7 @@ const Label = styled(Typography)`
   font-weight: 600;
 `
 
-const StyledTextFieldRoot = styled(TextField)`
+export const StyledTextFieldRoot = styled(TextField)`
   .MuiInputBase-input {
     box-shadow: black !important;
     -webkit-box-shadow: black !important;
@@ -59,10 +59,12 @@ const StyledTextFieldRoot = styled(TextField)`
 
   .MuiOutlinedInput-root {
     font-size: 0.9rem;
+    background: #f2f2f2;
   }
 
   .MuiOutlinedInput-notchedOutline {
     border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+    border-color: #f2f2f2;
     border-width: 2px;
   }
 

@@ -7,6 +7,7 @@ import { useState } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { StyledTextFieldRoot } from './StyledTextField'
 
 const StyledPasswordField = ({ name, label, rules, required, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -85,10 +86,19 @@ const StyledPasswordFieldRoot = styled(OutlinedInput)`
 
   .MuiOutlinedInput-root {
     font-size: 0.9rem;
+    background: #f2f2f2;
   }
+  background: #f2f2f2;
 
   .MuiOutlinedInput-notchedOutline {
     border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+    border-color: #f2f2f2;
+    border-width: 2px;
+  }
+
+  .MuiOutlinedInput-root:hover > .MuiOutlinedInput-notchedOutline {
+    border-color: ${({ theme }) => theme.palette?.secondary?.main}35;
+    border-color: #f2f2f2;
     border-width: 2px;
   }
 

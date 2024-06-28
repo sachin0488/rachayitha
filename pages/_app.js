@@ -18,6 +18,7 @@ import AuthProvider from 'modules/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
 import CookiesAlert from 'components/CookiesAlert'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -41,26 +42,28 @@ const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
   return (
-    <CacheProvider value={emotionCache}>
-      <MUIThemeProvider theme={lightTheme}>
-        <SnackbarProvider Components={snackbarComponents}>
-          <QueryClientProvider client={queryClient}>
-            <CssBaseline />
-            <AuthProvider>
-              <Layout>
-                <Head>
-                  <title>Rachayitha | {`India's own online book store`}</title>
-                  <meta name="description" content="Expand your Vision of Literature and Poem Here" />
-                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                </Head>
-                <CookiesAlert />
-                <Component {...pageProps} />
-              </Layout>
-            </AuthProvider>
-          </QueryClientProvider>
-        </SnackbarProvider>
-      </MUIThemeProvider>
-    </CacheProvider>
+    <GoogleOAuthProvider clientId="13783589174-81cucueivlm245ag49pq5v3c4f3jqscd.apps.googleusercontent.com">
+      <CacheProvider value={emotionCache}>
+        <MUIThemeProvider theme={lightTheme}>
+          <SnackbarProvider Components={snackbarComponents}>
+            <QueryClientProvider client={queryClient}>
+              <CssBaseline />
+              <AuthProvider>
+                <Layout>
+                  <Head>
+                    <title>Rachayitha | {`India's own online book store`}</title>
+                    <meta name="description" content="Expand your Vision of Literature and Poem Here" />
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                  </Head>
+                  <CookiesAlert />
+                  <Component {...pageProps} />
+                </Layout>
+              </AuthProvider>
+            </QueryClientProvider>
+          </SnackbarProvider>
+        </MUIThemeProvider>
+      </CacheProvider>
+    </GoogleOAuthProvider>
   )
 }
 

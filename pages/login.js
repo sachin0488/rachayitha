@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import LoginPage from 'modules/Auth/pages/Login'
 import React from 'react'
 

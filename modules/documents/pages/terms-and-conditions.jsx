@@ -230,9 +230,7 @@ const TermsAndConditionsPage = () => {
         <Paragraph>
           c. In addition, an Eligible Author’s ongoing Published Works (that exceed the minimum number of chapters as shall be determined by
           the Company) shall become eligible to be part of Subscription based Monetization Plans upon opting-in to the same and agree to
-          have their eligible Published Work to be made available on the Premium Section. The terms and conditions applicable to this
-          arrangement shall be found at https://english.pratilipi.com/help/sections/87253251-subscriptions and/or as maybe communicated by
-          the Company
+          have their eligible Published Work to be made available on the Premium Section.
         </Paragraph>
         <Paragraph>
           d. An Eligible Author shall be entitled to 36% of total amounts received from the Users under any Monetization Plan in the form of
@@ -280,7 +278,7 @@ const TermsAndConditionsPage = () => {
         </Paragraph>
         <Paragraph>
           7. Refund: If Company discontinues the option of using My Coins on the Application at any time for any reason, the purchased My
-          Coins may be refunded at Company’s discretion, subject to deduction of Google Payment service fees and/or other applicable
+          Coins may be refunded at Company’s discretion within a period of 7 to 14 days, subject to deduction of Google Payment service fees and/or other applicable
           deductions under any applicable laws.
         </Paragraph>
         <Paragraph>
