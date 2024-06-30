@@ -28,6 +28,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
+import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
 
 const CreateAccountPage = () => {
   const steps = [
@@ -98,6 +99,8 @@ const CreateAccountPage = () => {
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = steps.length
 
+  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService()
+
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
   }
@@ -105,11 +108,6 @@ const CreateAccountPage = () => {
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1)
   }
-
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse),
-    onError: error => console.error(error),
-  })
 
   const methods = useForm({
     resolver: yupResolver(schema),
@@ -245,8 +243,12 @@ const CreateAccountPage = () => {
                   </StyledBackButton>
                 )}
                 <StyledButton
-                  disabled={isLoading}
-                  startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+                  disabled={isLoading || isGoogleLoading}
+                  startIcon={
+                    (isLoading || isGoogleLoading) && (
+                      <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                    )
+                  }
                   // type="submit"
                   type="button"
                   onClick={activeStep === steps.length - 1 ? methods.handleSubmit(handleCreateAccount, handleFormError) : handleNext}
@@ -255,15 +257,19 @@ const CreateAccountPage = () => {
                 </StyledButton>
               </NavButtonContainer>
               <hr />
-              {/* <LoginWithGoogleButton
-                disabled={isLoading}
+              <LoginWithGoogleButton
+                disabled={isLoading || isGoogleLoading}
                 startIcon={<GoogleIcon />}
-                endIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+                endIcon={
+                  (isLoading || isGoogleLoading) && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
                 type="button"
                 onClick={loginWithGoogle}
                 variant="contained">
                 Sign up with Google
-              </LoginWithGoogleButton> */}
+              </LoginWithGoogleButton>
             </Nav>
 
             <Typography

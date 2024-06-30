@@ -42,7 +42,7 @@ const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
   return (
-    <GoogleOAuthProvider clientId="13783589174-81cucueivlm245ag49pq5v3c4f3jqscd.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
       <CacheProvider value={emotionCache}>
         <MUIThemeProvider theme={lightTheme}>
           <SnackbarProvider Components={snackbarComponents}>

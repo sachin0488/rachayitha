@@ -15,6 +15,7 @@ import VerifyEmailModal from '../VerifyEmailModal'
 import { useEffect, useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleIcon from 'components/icons/google_icons'
+import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
 
 /**
  * Client Secret
@@ -41,10 +42,7 @@ const LoginPage = () => {
   const { handleLogin, isLoading, user, isEmailVerified, checkVerificationStatus, isError } = useLoginService()
   const { handleFormError } = useFormError()
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse),
-    onError: error => console.error(error),
-  })
+  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService()
 
   const methods = useForm({
     defaultValues: {
@@ -89,23 +87,31 @@ const LoginPage = () => {
 
             <Nav>
               <StyledButton
-                disabled={isLoading}
-                startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+                disabled={isLoading || isGoogleLoading}
+                startIcon={
+                  (isLoading || isGoogleLoading) && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
                 type="submit"
                 onSubmit={methods.handleSubmit(handleLogin, handleFormError)}
                 variant="contained">
                 Sign in
               </StyledButton>
               <hr />
-              {/* <LoginWithGoogleButton
-                disabled={isLoading}
+              <LoginWithGoogleButton
+                disabled={isLoading || isGoogleLoading}
                 startIcon={<GoogleIcon />}
-                endIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+                endIcon={
+                  (isLoading || isGoogleLoading) && (
+                    <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />
+                  )
+                }
                 type="button"
                 onClick={loginWithGoogle}
                 variant="contained">
                 Sign in with Google
-              </LoginWithGoogleButton> */}
+              </LoginWithGoogleButton>
             </Nav>
 
             <Typography

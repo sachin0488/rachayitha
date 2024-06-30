@@ -8,6 +8,7 @@ const nextConfig = {
     NEXT_PUBLIC_TWITTER_LINK: 'https://twitter.com/',
     NEXT_PUBLIC_FACEBOOK_LINK: 'https://facebook.com/',
     NEXT_PUBLIC_INSTAGRAM_LINK: 'https://instagram.com/',
+    GOOGLE_CLIENT_ID: '520490534029-t5tqkocrf5qq1fk2m5m6rf7lvj5dsvcg.apps.googleusercontent.com',
   },
 }
 
