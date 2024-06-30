@@ -55,7 +55,7 @@ const ContentSection = ({ ranking }) => {
   return (
     <Root ref={mainRef}>
       <AdSense.Google
-        client="ca-pub-7292810486004926"
+        client="ca-pub-4036020514230622"
         slot="7806394673"
         style={{ width: '100%', maxWidth: '550px', height: 100 }}
         format=""

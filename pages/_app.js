@@ -54,6 +54,10 @@ const MyApp = props => {
                     <title>Rachayitha | {`India's own online book store`}</title>
                     <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <script
+                      async
+                      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
+                      crossorigin="anonymous"></script>
                   </Head>
                   <CookiesAlert />
                   <Component {...pageProps} />
