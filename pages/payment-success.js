@@ -1,8 +1,8 @@
-import PaymentSuccessPage from 'modules/Payment/pages/payment-success.page'
+import PaymentStatusPage from 'modules/Payment/pages/payment-status.page'
 import React from 'react'
 
-const PaymentSuccess = () => {
-  return <PaymentSuccessPage />
+const PaymentStatus = () => {
+  return <PaymentStatusPage />
 }
 
-export default PaymentSuccess
+export default PaymentStatus

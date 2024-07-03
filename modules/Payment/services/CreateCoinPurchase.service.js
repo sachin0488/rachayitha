@@ -1,10 +1,6 @@
 import { APIInstance } from 'services/global.service'
 import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-import useRazorpay from 'react-razorpay'
-import { useVerifyPaymentAPI } from './VerifyPayment.service'
-import { useCallback } from 'react'
-import { useTheme } from '@mui/material'
 
 export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
   const form = new FormData()
@@ -14,8 +10,8 @@ export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
   form.append('qty', qty)
   form.append('coin_plan_id', coinPlanId)
 
-  const res = await APIInstance({
-    url: '/payment/',
+  const response = await APIInstance({
+    url: '/paymentphonepe/',
     method: 'POST',
     data: form,
     header: {
@@ -23,64 +19,17 @@ export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
     },
   })
 
+  if (response?.data?.data?.data?.merchantTransactionId) {
+    localStorage.setItem('phonePeMerchantTransactionId', response.data.data.data.merchantTransactionId)
+  }
+
   return {
-    data: {
-      ...res.data,
-    },
+    payUrl: response?.data?.data?.data?.instrumentResponse?.redirectInfo?.url,
   }
 }
 
 export const useCreateCoinPurchaseService = () => {
   const { enqueueSnackbar } = useSnackbar()
-  const theme = useTheme()
-
-  const [Razorpay, isLoaded] = useRazorpay()
-  //   const queryClient = useQueryClient()
-
-  const { mutate: handleVerifyPayment, isSuccess: isPaymentSuccess, isVerifying } = useVerifyPaymentAPI()
-
-  const handlePaymentError = useCallback(
-    response => {
-      enqueueSnackbar(response?.error?.description, {
-        variant: 'error',
-      })
-    },
-    [enqueueSnackbar],
-  )
-
-  const handlePayments = useCallback(
-    async paymentOptions => {
-      const options = {
-        key: paymentOptions?.razorpay_key,
-        amount: paymentOptions?.amount,
-        name: paymentOptions?.name,
-        description: 'Test Transaction',
-        image: '',
-        order_id: paymentOptions?.provider_order_id,
-        callback_url: paymentOptions?.callback_url,
-        // redirect: true,
-        // prefill: {
-        //   name: 'Piyush Garg',
-        //   email: 'youremail@example.com',
-        //   contact: '9999999999',
-        // },
-        notes: {
-          address: 'Razorpay Corporate Office',
-        },
-        theme: {
-          color: theme.palette.primary.main,
-        },
-        handler: handleVerifyPayment,
-      }
-
-      const paymentInstance = new Razorpay(options)
-
-      paymentInstance.on('payment.failed', handlePaymentError)
-
-      paymentInstance.open()
-    },
-    [Razorpay, handlePaymentError, handleVerifyPayment, theme.palette.primary.main],
-  )
 
   const { mutate, isLoading, isSuccess, isError } = useMutation({
     mutationFn({ amount, qty, coinPlanId }) {
@@ -90,18 +39,15 @@ export const useCreateCoinPurchaseService = () => {
         coinPlanId,
       })
     },
-    onSuccess({ data }) {
-      handlePayments({
-        razorpay_key: data?.data?.razorpay_key,
-        callback_url: data?.data?.callback_url,
-        ...data?.data?.order?.[0],
-      })
+    onSuccess({ payUrl }) {
+      window.location.href = payUrl
 
       enqueueSnackbar('Please follow next stop to complete your purchase !', {
         variant: 'success',
       })
     },
     onError(error) {
+      console.log(error)
       enqueueSnackbar('Unable to make payment request at this moment !', {
         variant: 'error',
       })

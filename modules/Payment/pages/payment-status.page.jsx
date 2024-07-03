@@ -1,21 +1,44 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { Button, Typography } from '@mui/material'
+import { Button, CircularProgress, Typography } from '@mui/material'
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded'
 import { Root } from '../common/styles'
+import { usePaymentStatusService } from '../services/PaymentStatus.service'
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 
-const PaymentSuccessPage = () => {
+const PaymentStatusPage = () => {
+  const { isLoading, isPaymentSuccess } = usePaymentStatusService()
+
+  if (isLoading) {
+    return (
+      <Root>
+        <Main>
+          <CircularProgress color="primary" thickness={5} size={49} />
+          <Heading variant="h6" component="div" marginTop={2}>
+            Please wait, Loading...
+          </Heading>
+        </Main>
+      </Root>
+    )
+  }
+
   return (
     <Root>
       <Main>
-        <DoneAllRoundedIcon color="primary" sx={{ fontSize: 150 }} />
+        {isPaymentSuccess ? (
+          <DoneAllRoundedIcon color="primary" sx={{ fontSize: 150 }} />
+        ) : (
+          <CancelRoundedIcon color="error" sx={{ fontSize: 150 }} />
+        )}
         <Heading variant="h5" component="div">
-          Payment Success
+          Payment {isPaymentSuccess ? 'Successful' : 'Failed'}
         </Heading>
-        <ParagraphText
-          variant="h6"
-          component="div">{`Now you can checkout paid chapters of your favorite books 👍 !`}</ParagraphText>
+        <ParagraphText variant="h6" component="div">
+          {isPaymentSuccess
+            ? `Now you can checkout paid chapters of your favorite books 👍 !`
+            : `We were unable to verify your payment 😓!`}
+        </ParagraphText>
 
         <Link href={`/`}>
           <ReturnHomeButton variant="outlined">Back to home</ReturnHomeButton>
@@ -69,4 +92,4 @@ const Heading = styled(Typography)`
   text-align: center;
 `
 
-export default PaymentSuccessPage
+export default PaymentStatusPage
