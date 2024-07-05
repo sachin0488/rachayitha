@@ -21,6 +21,7 @@ import InfoModal, { InfoModalType } from 'components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'modules/Payment/services/InternalPurchase.service'
 import { useUserService } from 'modules/Auth/service/User.service'
 import { ContentType } from 'modules/ReaderSection/constants/common.constants'
+import ShareButton from './ShareButton'
 
 const InfoArea = ({ contentType, contentId, slug }) => {
   const { Data } = useContentDetailsService({ contentId: contentId, contentType })
@@ -145,6 +146,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         ) : null}
         {isLoggedIn && <ToggleToLibraryButton contentType={contentType} contentId={contentId} libraryAdded={Data?.libraryAdded} />}
         <LikeButton contentType={contentType} contentId={contentId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
+        <ShareButton />
         <MoreOptions contentType={contentType} contentId={contentId} />
       </ButtonList>
     </Root>
