@@ -58,6 +58,15 @@ const MyApp = props => {
                       async
                       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
                       crossorigin="anonymous"></script>
+
+                    <script async src="https://www.googletagmanager.com/gtag/js?id=G-97EPHN49EQ"></script>
+                    <script>
+                      {`window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+
+                      gtag('config', 'G-97EPHN49EQ');`}
+                    </script>
                   </Head>
                   <CookiesAlert />
                   <Component {...pageProps} />
