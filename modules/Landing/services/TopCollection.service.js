@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { LandingQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
+import encodeImgURI from 'utility/encodeImgURI'
 
 export const useTopCollectionService = ({ startDate, endDate }) => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -48,10 +49,10 @@ const fetchTopCollectionAPI = async ({ startDate, endDate }) => {
 
         status: item?.status,
 
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
-        coverImage2: 'https://' + encodeURIComponent(item?.cover_img2.replace('https://', '')),
-        coverImage3: 'https://' + encodeURIComponent(item?.cover_img3.replace('https://', '')),
-        coverImage4: 'https://' + encodeURIComponent(item?.cover_img4.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
+        coverImage2: encodeImgURI(item?.cover_img2),
+        coverImage3: encodeImgURI(item?.cover_img3),
+        coverImage4: encodeImgURI(item?.cover_img4),
       })) || [],
     poems:
       res?.data?.data?.poems?.map(item => ({
@@ -67,10 +68,10 @@ const fetchTopCollectionAPI = async ({ startDate, endDate }) => {
 
         status: item?.status,
 
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
-        coverImage2: 'https://' + encodeURIComponent(item?.cover_img2.replace('https://', '')),
-        coverImage3: 'https://' + encodeURIComponent(item?.cover_img3.replace('https://', '')),
-        coverImage4: 'https://' + encodeURIComponent(item?.cover_img4.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
+        coverImage2: encodeImgURI(item?.cover_img2),
+        coverImage3: encodeImgURI(item?.cover_img3),
+        coverImage4: encodeImgURI(item?.cover_img4),
       })) || [],
     // shorts: res?.data?.data?.shorts || [],
   }

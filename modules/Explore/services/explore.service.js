@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { ExploreQuery } from '../constants/query.address'
 import slugUtility from 'utility/slug.utility'
+import encodeImgURI from 'utility/encodeImgURI'
 
 const useExplore = ({ categoryId, contentType, sortBy }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
@@ -93,10 +94,10 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
         synopsis: item?.synopsis,
         contentRatingByUser: item?.[`user_${contentType}_rate`],
 
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
-        coverImage2: 'https://' + encodeURIComponent(item?.cover_img2.replace('https://', '')),
-        coverImage3: 'https://' + encodeURIComponent(item?.cover_img3.replace('https://', '')),
-        coverImage4: 'https://' + encodeURIComponent(item?.cover_img4.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
+        coverImage2: encodeImgURI(item?.cover_img2),
+        coverImage3: encodeImgURI(item?.cover_img3),
+        coverImage4: encodeImgURI(item?.cover_img4),
       }
     }),
     nextCursor: res?.data?.next_page || undefined,

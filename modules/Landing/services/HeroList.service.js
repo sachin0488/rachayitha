@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { LandingQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
+import encodeImgURI from 'utility/encodeImgURI'
 
 export const useHeroListService = () => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -37,7 +38,7 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
         slug: slugUtility.create(name),
       }
     }),
@@ -47,7 +48,7 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
         slug: slugUtility.create(name),
       }
     }),
@@ -57,8 +58,8 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
-    
+        coverImage: encodeImgURI(item?.cover_img),
+
         slug: slugUtility.create(name),
       }
     }),

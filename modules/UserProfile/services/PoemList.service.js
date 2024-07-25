@@ -3,6 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { PoemQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
+import encodeImgURI from 'utility/encodeImgURI'
 
 const usePoemListService = ({ filter }) => {
   const { data, isError, fetchNextPage, refetch, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
@@ -92,10 +93,10 @@ const fetchPoemListAPI = async ({ page, filter }) => {
         synopsis: item?.synopsis,
         poemRatingByUser: item?.user_poem_rate,
 
-        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
-        coverImage2: 'https://' + encodeURIComponent(item?.cover_img2.replace('https://', '')),
-        coverImage3: 'https://' + encodeURIComponent(item?.cover_img3.replace('https://', '')),
-        coverImage4: 'https://' + encodeURIComponent(item?.cover_img4.replace('https://', '')),
+        coverImage: encodeImgURI(item?.cover_img),
+        coverImage2: encodeImgURI(item?.cover_img2),
+        coverImage3: encodeImgURI(item?.cover_img3),
+        coverImage4: encodeImgURI(item?.cover_img4),
 
         isPublished: item?.is_published,
         ChapterCount: item?.chapter_count || 0,
