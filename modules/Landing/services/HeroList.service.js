@@ -37,7 +37,7 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: encodeURIComponent(item?.cover_img),
+        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
         slug: slugUtility.create(name),
       }
     }),
@@ -47,7 +47,7 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: encodeURIComponent(item?.cover_img),
+        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
         slug: slugUtility.create(name),
       }
     }),
@@ -57,7 +57,8 @@ const fetchHeroListAPI = async () => {
         id: item?.id,
         name: name,
         contentType: item?.content_type,
-        coverImage: encodeURIComponent(item?.cover_img),
+        coverImage: 'https://' + encodeURIComponent(item?.cover_img.replace('https://', '')),
+    
         slug: slugUtility.create(name),
       }
     }),
