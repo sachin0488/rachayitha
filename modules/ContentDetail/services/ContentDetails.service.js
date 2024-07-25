@@ -87,10 +87,10 @@ const fetchContentDetail = async ({ contentType, contentId, slug }) => {
     price: item?.price,
     isPurchased: item?.ispurchased,
 
-    coverImage: item?.cover_img,
-    coverImage2: item?.cover_img2,
-    coverImage3: item?.cover_img3,
-    coverImage4: item?.cover_img4,
+    coverImage: encodeURIComponent(item?.cover_img),
+    coverImage2: encodeURIComponent(item?.cover_img2),
+    coverImage3: encodeURIComponent(item?.cover_img3),
+    coverImage4: encodeURIComponent(item?.cover_img4),
   }
 }
 

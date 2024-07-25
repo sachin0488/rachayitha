@@ -32,10 +32,10 @@ const generateAPIRowMapper = contentType => item => {
     synopsis: item?.synopsis,
     // contentRatingByUser: item?.[`user_${contentType}_rate`],
 
-    coverImage: item?.cover_img,
-    coverImage2: item?.cover_img2,
-    coverImage3: item?.cover_img3,
-    coverImage4: item?.cover_img4,
+    coverImage: encodeURIComponent(item?.cover_img),
+    coverImage2: encodeURIComponent(item?.cover_img2),
+    coverImage3: encodeURIComponent(item?.cover_img3),
+    coverImage4: encodeURIComponent(item?.cover_img4),
   }
 }
 
