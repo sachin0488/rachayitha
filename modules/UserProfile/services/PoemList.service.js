@@ -92,10 +92,10 @@ const fetchPoemListAPI = async ({ page, filter }) => {
         synopsis: item?.synopsis,
         poemRatingByUser: item?.user_poem_rate,
 
-        coverImage: item?.cover_img,
-        coverImage2: item?.cover_img2,
-        coverImage3: item?.cover_img3,
-        coverImage4: item?.cover_img4,
+        coverImage: encodeURIComponent(item?.cover_img),
+        coverImage2: encodeURIComponent(item?.cover_img2),
+        coverImage3: encodeURIComponent(item?.cover_img3),
+        coverImage4: encodeURIComponent(item?.cover_img4),
 
         isPublished: item?.is_published,
         ChapterCount: item?.chapter_count || 0,
