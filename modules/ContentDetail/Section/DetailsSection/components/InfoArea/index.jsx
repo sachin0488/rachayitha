@@ -146,7 +146,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         ) : null}
         {isLoggedIn && <ToggleToLibraryButton contentType={contentType} contentId={contentId} libraryAdded={Data?.libraryAdded} />}
         <LikeButton contentType={contentType} contentId={contentId} likeCount={Data?.likeCount} isLiked={Data?.isLiked} />
-        <ShareButton />
+        <ShareButton coverImage={Data.coverImage} />
         <MoreOptions contentType={contentType} contentId={contentId} />
       </ButtonList>
     </Root>
