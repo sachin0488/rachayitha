@@ -9,19 +9,19 @@ const ShareButton = ({ coverImage }) => {
     try {
       let invitationLink = `${window.location.origin}${asPath}`
 
-      const response = await fetch({
-        method: 'GET',
-        url: coverImage,
-      })
+      // const response = await fetch({
+      //   method: 'GET',
+      //   url: coverImage,
+      // })
 
-      const blob = await response.blob()
-      const file = new File([blob], 'image.jpg', { type: 'image/jpeg' })
+      // const blob = await response.blob()
+      // const file = new File([blob], 'image.jpg', { type: 'image/jpeg' })
 
       navigator.share({
         title: document.title,
         text: 'Check out this amazing content!',
         url: invitationLink,
-        files: [file],
+        // files: [file],
       })
     } catch (error) {
       console.error('Error sharing:', error)

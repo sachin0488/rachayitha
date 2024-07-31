@@ -27,6 +27,20 @@ const ContentDetail = ({ contentType, contentId, slug }) => {
             content={['Rachayitha', 'rachayitha', ...(Data?.tags || []), ...(Data?.category?.map(item => item?.name) || [])].join()}
           />
           <meta name="author" content={Data?.authorName} />
+          <meta name="title" content={Data?.contentName} />
+          <meta name="description" content={Data?.synopsis} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.rachayitha.com/" />
+          <meta property="og:title" content={Data?.contentName} />
+          <meta property="og:description" content={Data?.synopsis} />
+          <meta property="og:image" content={Data.coverImage} />
+
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content="https://www.rachayitha.com/" />
+          <meta property="twitter:title" content={Data?.contentName} />
+          <meta property="twitter:description" content={Data?.synopsis} />
+          <meta property="twitter:image" content={Data.coverImage} />
         </Head>
         <DetailsSection contentType={contentType} contentId={contentId} slug={slug} />
         <RecommendationSection contentType={contentType} />
