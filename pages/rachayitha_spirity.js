@@ -1,5 +1,5 @@
-import IconSets from &apos;modules/Spirity/components/IconSets&apos;
-import React from &apos;react&apos;
+import IconSets from 'modules/Spirity/components/IconSets'
+import React from 'react'
 
 // <html className="no-js"><head>
 // <meta charset="utf-8">
@@ -36,7 +36,7 @@ const Spirity = () => {
 
               <img
                 className="w100p dn db-m mt24 mb24"
-                style={{ filter: "hue-rotate(281deg)" }}
+                style={{ filter: 'hue-rotate(281deg)' }}
                 src="/rachayitha_spirity/8cf898c-cfe8-46ad-880e-14f174f8aa38.png"
               />
               <div className="border-bottom-primary-reverse mb20 dn-m"></div>
@@ -47,7 +47,7 @@ const Spirity = () => {
               <div className="header-icons">
                 <div className="df mb16 aic">
                   <div className="header-icon-img mr8">
-                    <img style={{ filter: "hue-rotate(281deg)" }} src="/rachayitha_spirity/1677564804_362584.png" width="36" height="36" />
+                    <img style={{ filter: 'hue-rotate(281deg)' }} src="/rachayitha_spirity/1677564804_362584.png" width="36" height="36" />
                   </div>
                   <div>
                     <strong className="db ff_ubuntu fs24 fs-m-16 lh1d5">Newbie Prize</strong>
@@ -56,7 +56,7 @@ const Spirity = () => {
                 </div>
                 <div className="df mb40 aic">
                   <div className="header-icon-img mr8">
-                    <img style={{ filter: "hue-rotate(281deg)" }} src="/rachayitha_spirity/1677564806_948592.png" width="36" height="36" />
+                    <img style={{ filter: 'hue-rotate(281deg)' }} src="/rachayitha_spirity/1677564806_948592.png" width="36" height="36" />
                   </div>
                   <div>
                     <strong className="db ff_ubuntu fs24 fs-m-16 lh1d5">1M USD</strong>
@@ -249,7 +249,7 @@ const Spirity = () => {
               <div className="theme-scroll">
                 <div className="theme-scroll-wrapper dg gtc-s-1 gtc2 gap36 gap-m-16 ml64 mr64  ml-m-16 mr-m-16">
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/system.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/system.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">System</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">
@@ -268,8 +268,8 @@ const Spirity = () => {
                         this task and you will be rewarded to upgrade to become stronger! ! The following data are your speed, strength,
                         intelligence, charm, status, hp, mp... you have some points that can be distributed, what choice will you make? !
                         Whether it&apos;s the end of the world, traveling through another world, or being reborn, you need a powerful enough
-                        support to overcome difficulties, change the life, and &apos;system&apos; is your best choice!!! "Ding！Binding the XXX system
-                        to the host!"
+                        support to overcome difficulties, change the life, and &apos;system&apos; is your best choice!!! &apos;&apos;Ding！Binding the
+                        XXX system to the host!&apos;&apos;
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Ideas</h3>
@@ -291,7 +291,7 @@ const Spirity = () => {
                         uncovered the secrets behind the system and changed his life.
                       </p>
                       <p className="fs16 lh1d5 mb24 wspw">
-                        <strong>3. </strong>The MC with poor grades suddenly received a "top student genius system". Whether is it music,
+                        <strong>3. </strong>The MC with poor grades suddenly received a &apos;&apos;top student genius system&apos;&apos;. Whether is it music,
                         cooking, marksmanship, sports, or even racing, financial expert, military elite… as long as he want, he can learn
                         through the system and become the most outstanding! And so, step by step, he climbed towards the pinnacle.
                       </p>
@@ -300,7 +300,7 @@ const Spirity = () => {
                       <div className="dg gtc3 gap24 gap-m-16">
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/scholar&apos;s-advanced-technological-system_12583970906002305"
+                          href="https://www.webnovel.com/book/scholar's-advanced-technological-system_12583970906002305"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/12583970906002305/150/150.jpg" />
@@ -366,7 +366,8 @@ const Spirity = () => {
                         <strong>3. </strong>You woke up in an unfamiliar world, equipped with a Villain system that will end your life if
                         you didn&apos;t accomplish the mission within the required time given. You cursed the gods as you close the system
                         interface, but the more you looked around... Your new life is enveloped by riches and surrounded by beautiful women
-                        who lowered their heads waiting to serve you. You thought to yourself, meh this life ain&apos;t that bad after all...
+                        who lowered their heads waiting to serve you. You thought to yourself, meh this life ain&apos;t that bad after
+                        all...
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Examples</h3>
@@ -402,7 +403,7 @@ const Spirity = () => {
                     </div>
                   </div>
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/slice_of_life.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/slice_of_life.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Slice of Life</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">
@@ -421,9 +422,9 @@ const Spirity = () => {
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Ideas</h3>
                       <p className="fs16 lh1d5 mb24 wspw">
-                        <strong>1. </strong>You woke up one day and and found a 3 year-old girl waiting at your doorstep, saying she&apos;s your
-                        daughter, with a DNA certificate as proof. Bewildered and at a loss of what to do, you can only start to learn of
-                        how to take care of a child while trying to search for her mother.
+                        <strong>1. </strong>You woke up one day and and found a 3 year-old girl waiting at your doorstep, saying she&apos;s
+                        your daughter, with a DNA certificate as proof. Bewildered and at a loss of what to do, you can only start to learn
+                        of how to take care of a child while trying to search for her mother.
                       </p>
                       <p className="fs16 lh1d5 mb24 wspw">
                         <strong>2. </strong>A new vrmmorpg has entered the market, and your gang of friends and you have decided to switch
@@ -451,7 +452,7 @@ const Spirity = () => {
                           </div>
                           <h4 className="fs16 fs-m-14 lh1d5 fw400">Back For My Daughter</h4>
                         </div>
-                        <div className="book-link" href="https://www.webnovel.com/book/the-king&apos;s-avatar_7176992105000305" target="_blank">
+                        <div className="book-link" href="https://www.webnovel.com/book/the-king's-avatar_7176992105000305" target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/7176992105000305/150/150.jpg" />
                           </div>
@@ -470,7 +471,7 @@ const Spirity = () => {
                     </div>
                   </div>
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/new_tropes.png)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/new_tropes.png)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Fantasy&amp;Adventure: New Tropes</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">#showbiz #nonhuman #scifi #Myth #Legends #Eastern Fantasy #Western Fantasy</p>
@@ -519,11 +520,11 @@ const Spirity = () => {
                         revolutionary machine suit for the military, only to face rejection due to the risk it possessed and the danger of
                         having such an enormous power held by a small group of people. The government, deeming the research too dangerous,
                         seized it forcibly, leading to a tragic mistake resulting in the scientist&apos;s untimely demise. Witnessing this
-                        harrowing scene, the scientist&apos;s son, fueled by a burning desire for justice, vowed to avenge his father&apos;s wrongful
-                        death. Over the course of a decade, he unearthed his father&apos;s secret notes, unveiling a trove of hidden knowledge
-                        that allowed him to enhance and upgrade the once-rejected machine suit. Harnessing this advanced technology, he
-                        engineered an army of formidable robots, poised to challenge the oppressive government and reclaim justice for his
-                        father&apos;s legacy.
+                        harrowing scene, the scientist&apos;s son, fueled by a burning desire for justice, vowed to avenge his father&apos;s
+                        wrongful death. Over the course of a decade, he unearthed his father&apos;s secret notes, unveiling a trove of
+                        hidden knowledge that allowed him to enhance and upgrade the once-rejected machine suit. Harnessing this advanced
+                        technology, he engineered an army of formidable robots, poised to challenge the oppressive government and reclaim
+                        justice for his father&apos;s legacy.
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Examples</h3>
@@ -563,7 +564,7 @@ const Spirity = () => {
                         </div>
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/humanity&apos;s-greatest-mecha-warrior-system_23118185006257505"
+                          href="https://www.webnovel.com/book/humanity's-greatest-mecha-warrior-system_23118185006257505"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/23118185006257505/150/150.jpg" />
@@ -608,7 +609,7 @@ const Spirity = () => {
               <div className="theme-scroll">
                 <div className="theme-scroll-wrapper dg gtc-s-1 gtc2 gap36 gap-m-16 ml64 mr64  ml-m-16 mr-m-16">
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/ceo.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/ceo.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Billionaire/CEO</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">#ceo #bigshot #loveaftermarriage #pregnancy #sweetlove</p>
@@ -619,7 +620,8 @@ const Spirity = () => {
                       <p className="fs16 lh1d5 mb24 wspw">
                         Rich, powerful and handsome men have the world at their fingertips. They can be aloof, arrogant, ruthless and
                         downright cruel. But when they fall in love and are conquered by their one true love, can they still keep their cold
-                        haughty attitudes? Let your FL conquer these modern day conquerors and show them she&apos;s not to be messed with!&apos;&apos;
+                        haughty attitudes? Let your FL conquer these modern day conquerors and show them she&apos;s not to be messed
+                        with!&apos;&apos;
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Examples</h3>
@@ -635,7 +637,7 @@ const Spirity = () => {
                         </div>
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/ons-pregnant-with-ceo&apos;s-baby_22123968405360705"
+                          href="https://www.webnovel.com/book/ons-pregnant-with-ceo's-baby_22123968405360705"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/22123968405360705/150/150.jpg" />
@@ -655,7 +657,7 @@ const Spirity = () => {
                     </div>
                   </div>
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/werewolf.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/werewolf.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Werewolf</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">#alpha #fatedlove/truelove #enemiestolovers #mates</p>
@@ -674,7 +676,7 @@ const Spirity = () => {
                       <div className="dg gtc3 gap24 gap-m-16">
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/the-alpha-claiming-his-enemy&apos;s-daughter_25392203506078605"
+                          href="https://www.webnovel.com/book/the-alpha-claiming-his-enemy's-daughter_25392203506078605"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/25392203506078605/150/150.jpg" />
@@ -700,7 +702,7 @@ const Spirity = () => {
                     </div>
                   </div>
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/fantasy_romance.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/fantasy_romance.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Fantasy Romance</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">#vampire #beast #demon #transmigration #system</p>
@@ -718,7 +720,7 @@ const Spirity = () => {
                       <div className="dg gtc3 gap24 gap-m-16">
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/married-to-the-devil&apos;s-son_14205835806705305"
+                          href="https://www.webnovel.com/book/married-to-the-devil's-son_14205835806705305"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/14205835806705305/150/150.jpg" />
@@ -727,7 +729,7 @@ const Spirity = () => {
                         </div>
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/the-masked-vampire-king&apos;s-accidental-bride_26357929606101205"
+                          href="https://www.webnovel.com/book/the-masked-vampire-king's-accidental-bride_26357929606101205"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/26357929606101205/150/150.jpg" />
@@ -747,7 +749,7 @@ const Spirity = () => {
                     </div>
                   </div>
                   <div className="theme-pic df jcfe fdc pr dialog-review">
-                    <div style={{ backgroundImage: "url(/rachayitha_spirity/royal.jpeg)" }} className="theme-bkg"></div>
+                    <div style={{ backgroundImage: 'url(/rachayitha_spirity/royal.jpeg)' }} className="theme-bkg"></div>
                     <div className="pr z1">
                       <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Royal</h3>
                       <p className="fs16 fs-m-14 lh1d5 fw400">#royalfamily #arrangedmarriage #forbiddenlove #princess</p>
@@ -756,10 +758,10 @@ const Spirity = () => {
                       <h3 className="mb4 ttc fs24 lh1d3 fw700">Royal</h3>
                       <p className="fs16 lh1d5 mb24">#royalfamily #arrangedmarriage #forbiddenlove #princess</p>
                       <p className="fs16 lh1d5 mb24 wspw">
-                        The life of royalty isn&apos;t a bed of roses - it&apos;s too easy to be embroiled in steamy forbidden romances, court drama,
-                        royal power struggles and political schemes as your character tries to reach their happily ever after. Be it dashing
-                        dukes, blushing maidens or plotting concubines, no one can escape the power of a royal&apos;s love. It&apos;s time to sweep
-                        your readers off their feet with a passionate royal romance!&apos;&apos;
+                        The life of royalty isn&apos;t a bed of roses - it&apos;s too easy to be embroiled in steamy forbidden romances,
+                        court drama, royal power struggles and political schemes as your character tries to reach their happily ever after.
+                        Be it dashing dukes, blushing maidens or plotting concubines, no one can escape the power of a royal&apos;s love.
+                        It&apos;s time to sweep your readers off their feet with a passionate royal romance!&apos;&apos;
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Examples</h3>
@@ -775,7 +777,7 @@ const Spirity = () => {
                         </div>
                         <div
                           className="book-link"
-                          href="https://www.webnovel.com/book/the-duke&apos;s-masked-wife_23745360306013705"
+                          href="https://www.webnovel.com/book/the-duke's-masked-wife_23745360306013705"
                           target="_blank">
                           <div className="bookCover mb16 mb-m-8">
                             <img src="https://img.webnovel.com/bookcover/23745360306013705/150/150.jpg" />
@@ -997,8 +999,8 @@ const Spirity = () => {
                             <li className="df">
                               <ol className="ol-level-one">
                                 <li>
-                                  An expert judging panel is formed, consisting of representatives from WebNovel&apos;s editorial, operations,
-                                  marketing, and business departments.
+                                  An expert judging panel is formed, consisting of representatives from WebNovel&apos;s editorial,
+                                  operations, marketing, and business departments.
                                 </li>
                                 <li>
                                   Based on the finalist evaluation and public voting results, the expert judging panel carefully reads and
