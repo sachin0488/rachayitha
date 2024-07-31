@@ -10,6 +10,8 @@ import createEmotionCache from 'utility/createEmotionCache'
 import lightTheme from 'styles/theme/lightTheme'
 import 'styles/globals.css'
 import 'styles/quill.snow.css'
+import 'styles/atomic-c0af5538.css'
+import 'styles/style-ef7d062e.css'
 
 import { queryCache, mutationCache } from 'services/global.service'
 

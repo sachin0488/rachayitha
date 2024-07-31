@@ -10,6 +10,7 @@ export async function getServerSideProps({ req, res, query, params }) {
 
   return { props: { serverData: serverData } }
 }
+
 const Poem = ({ serverData }) => {
   const { query } = useRouter()
 
