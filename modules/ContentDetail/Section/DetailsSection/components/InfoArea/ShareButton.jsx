@@ -30,14 +30,7 @@ const ShareButton = ({ coverImage }) => {
 
   return (
     <>
-      <Button
-        variant="text"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-        sx={{ minWidth: 36, width: 36 }}
-        disableElevation>
+      <Button variant="text" onClick={handleClick} sx={{ minWidth: 36, width: 36 }} disableElevation>
         <ShareRoundedIcon />
       </Button>
     </>

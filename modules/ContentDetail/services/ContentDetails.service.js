@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
 
-const fetchContentDetail = async ({ contentType, contentId, slug }) => {
+export const fetchContentDetail = async ({ contentType, contentId, slug }) => {
   const res = await APIInstance({
     url: `${contentType}/${contentId}`,
     method: 'GET',
@@ -39,7 +39,7 @@ const fetchContentDetail = async ({ contentType, contentId, slug }) => {
       chapterContent: '',
       isPublished: chapter?.is_published,
       publishDate: chapter?.publish_date,
-      userId: chapter?.user_id_id,
+      userId: chapter?.user_id,
       isLocked: chapter.lock_status,
       isPaid: !!chapter?.is_lock,
       isAvailableInSubscription: false,
@@ -95,11 +95,12 @@ const fetchContentDetail = async ({ contentType, contentId, slug }) => {
   }
 }
 
-export const useContentDetailsService = ({ contentId, slug, contentType }) => {
+export const useContentDetailsService = ({ contentId, slug, contentType, serverData }) => {
   const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey: [ContentDetailsQuery.CONTENT_DETAILS, { contentId: parseInt(contentId), contentType }],
     queryFn: () => fetchContentDetail({ contentId, slug, contentType }),
     enabled: Boolean(contentId && slug && contentType),
+    initialData: serverData,
   })
   return { Data: data, isLoading, isError, error, isFetching }
 }

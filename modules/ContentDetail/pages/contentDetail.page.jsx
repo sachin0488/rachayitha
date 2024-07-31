@@ -12,8 +12,8 @@ import { useContentDetailsService } from '../services/ContentDetails.service'
 import RecommendationSection from 'modules/RecommendationSlider/sliders/RecommendationSlider'
 import Head from 'next/head'
 
-const ContentDetail = ({ contentType, contentId, slug }) => {
-  const { error, Data } = useContentDetailsService({ contentId: contentId, slug: slug, contentType })
+const ContentDetail = ({ contentType, contentId, slug, serverData }) => {
+  const { error, Data } = useContentDetailsService({ contentId: contentId, slug: slug, contentType, serverData })
 
   if (error) return <div>Something went wrong!</div>
 
@@ -37,7 +37,7 @@ const ContentDetail = ({ contentType, contentId, slug }) => {
           <meta property="og:image" content={Data?.coverImage} />
 
           <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://www.rachayitha.com/" />
+          <meta property="twitter:url" content={`https://www.rachayitha.com/${contentType}/${contentId}/${slug}`} />
           <meta property="twitter:title" content={Data?.contentName} />
           <meta property="twitter:description" content={Data?.synopsis} />
           <meta property="twitter:image" content={Data?.coverImage} />
