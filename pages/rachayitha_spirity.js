@@ -1,25 +1,6 @@
 import IconSets from 'modules/Spirity/components/IconSets'
 import React from 'react'
 
-// <html className="no-js"><head>
-// <meta charset="utf-8">
-// <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-// <meta name="viewport" content="width=device-width, initial-scale=1.0">
-// <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABBCAMAAAC5KTl3AAAARVBMVEUAAAAIGDQKFjIKFjMJFzMJFzMIFzAQEDAIFDQGFTMKFjMKFzMKFzIKFjMJFzIIGDIKGDQKFjMKFjIJFzMKFzQKFjIKFzMGMwjBAAAAFnRSTlMAQICfv98gEEAw75DPoHBggFDvsM/P/9kvswAAARxJREFUWMPt1NuSgyAMgOEAkgie98D7P+paTQyjW2kvO8N3Y9X6CwMtVFVVVR+PsCW4F9pVAHwcSM4Y2T6tvEO40aSVA/s4GPD72W6MSXR0eopeKdiU6fkRuWVLBQmoBhT6FKlYwHQyamFYT22xMCT27XYdMI5joaBDQMhpvCkUFl0GyxZZf75h7gs2XfT60k3zdsHDBo8ZLm8V9J3eQMdJuisEK+KxKLxNGiC+ZrXg3c/2FheloLwUJt5MycgII0lBaXp0TMbgSVbSA3HWPimgrllm1s00wiRfvRZ0EuN/aznI6HVFrwUvm3C+/jbbY55GttWl8DUTiMmf/x/kQsRsEMHkAuRw+t2qHW9gMgIB+ROUUAgIVVVV1Yf7A26VNe2pnAwtAAAAAElFTkSuQmCC">
-// <title>WSA Writing Contest in 2024 | Win Cash Prize</title>
-// <meta name="description" content="WebNovel Spirity Awards ( WSA 2024 ) - WebNovel writing competition in 2024 will holding from April to October in 2024. Join WSA 2024, write your own fiction novel, win up to $10,000 prize and TV adaptation opportunity.">
-// <meta name="keywords" content="writing contest, WSA 2024, writing competitions, fiction contest, webnovel spirity awards, webnovel">
-
-// <link rel="dns-prefetch" href="//fonts.googleapis.com">
-// <link rel="stylesheet" id="reset-css" href="data:text/css;base64,CmJvZHksIGgxLCBoMiwgaDMsIGg0LCBwLCBwcmV7CiAgICBtYXJnaW46IDBweDsKICB9CiAgYm9keXsKICAgIGNvbG9yOiByZ2JhKDEwLCAyMywgNTEsIDEpOwogIH0KICBidXR0b257CiAgICBtYXJnaW46IDA7CiAgICBwYWRkaW5nOiAwOwogICAgYm9yZGVyOiBub25lIDA7CiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94OwogICAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7CiAgICAtd2Via2l0LWFwcGVhcmFuY2U6IG5vbmU7CiAgICBib3JkZXItcmFkaXVzOiAwOwogICAgZm9udDogaW5oZXJpdDsKICB9CiAgc3ZnewogICAgZmlsbDogY3VycmVudENvbG9yOwogIH0KICBhewogIAogIH0=" type="text/css" media="all">
-// <link rel="stylesheet" id="atomic-css-css" href="../../assets/atomic-c0af5538.css" type="text/css" media="all">
-// <link rel="stylesheet" id="wsa-font-roboto-css" href="https://fonts.googleapis.com/css?family=Roboto%3A300%2C400&amp;ver=1.0" type="text/css" media="all">
-// <link rel="stylesheet" id="wsa-font-ubuntu-css" href="https://fonts.googleapis.com/css2?family=Ubuntu%3Awght%40300%3B400%3B700&amp;display=swap%22&amp;ver=1.0" type="text/css" media="all">
-// <link rel="stylesheet" id="wsa-font-gochi-hand-css" href="https://fonts.googleapis.com/css2?family=Gochi+Hand&amp;display=swap&amp;ver=1.0" type="text/css" media="all">
-// <link rel="stylesheet" id="wsa-css" href="../../assets/style-ef7d062e.css" type="text/css" media="all">
-
-// </head>
-
 const Spirity = () => {
   return (
     <>
@@ -268,8 +249,8 @@ const Spirity = () => {
                         this task and you will be rewarded to upgrade to become stronger! ! The following data are your speed, strength,
                         intelligence, charm, status, hp, mp... you have some points that can be distributed, what choice will you make? !
                         Whether it&apos;s the end of the world, traveling through another world, or being reborn, you need a powerful enough
-                        support to overcome difficulties, change the life, and &apos;system&apos; is your best choice!!! &apos;&apos;Ding！Binding the
-                        XXX system to the host!&apos;&apos;
+                        support to overcome difficulties, change the life, and &apos;system&apos; is your best choice!!!
+                        &apos;&apos;Ding！Binding the XXX system to the host!&apos;&apos;
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Ideas</h3>
@@ -291,9 +272,10 @@ const Spirity = () => {
                         uncovered the secrets behind the system and changed his life.
                       </p>
                       <p className="fs16 lh1d5 mb24 wspw">
-                        <strong>3. </strong>The MC with poor grades suddenly received a &apos;&apos;top student genius system&apos;&apos;. Whether is it music,
-                        cooking, marksmanship, sports, or even racing, financial expert, military elite… as long as he want, he can learn
-                        through the system and become the most outstanding! And so, step by step, he climbed towards the pinnacle.
+                        <strong>3. </strong>The MC with poor grades suddenly received a &apos;&apos;top student genius system&apos;&apos;.
+                        Whether is it music, cooking, marksmanship, sports, or even racing, financial expert, military elite… as long as he
+                        want, he can learn through the system and become the most outstanding! And so, step by step, he climbed towards the
+                        pinnacle.
                       </p>
                       <div className="border-top-primary mb24"></div>
                       <h3 className="fs24 fw700 lh1d3 mb24">Examples</h3>
