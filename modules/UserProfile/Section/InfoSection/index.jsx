@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Divider, Tooltip, Typography } from '@mui/material'
+import {
+  Avatar,
+  Button,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Tooltip,
+} from '@mui/material'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import moment from 'moment'
+import CloseIcon from '@mui/icons-material/Close'
 
 import InfoField from './components/InfoField'
 import StoneSection from './components/StoneSection'
@@ -21,14 +31,38 @@ const InfoSection = () => {
   const { user, isEmailVerified } = useUserService()
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
   const { validityTill, isSubscribed } = useCurrentSubscriptionService()
+
+  const [isFollowerPopupOpen, setFollowerPopupOpen] = useState(false)
+  const [isFollowingPopupOpen, setFollowingPopupOpen] = useState(false)
+
+  const followers = [
+    { name: 'Alice Smith', phone: '123-456-7890', followed: true },
+    { name: 'Bob Johnson', phone: '987-654-3210', followed: false },
+    { name: 'Charlie Brown', phone: '555-555-5555', followed: true },
+    { name: 'David Wilson', phone: '444-444-4444', followed: false },
+    { name: 'Eva Green', phone: '333-333-3333', followed: true },
+  ]
+
+  const following = [
+    { name: 'Frank Miller', phone: '222-222-2222', followed: true },
+    { name: 'Grace Lee', phone: '111-111-1111', followed: true },
+    { name: 'Hannah White', phone: '666-666-6666', followed: true },
+    { name: 'Ivy Young', phone: '777-777-7777', followed: true },
+    { name: 'Jack Black', phone: '888-888-8888', followed: true },
+  ]
+
   const genderIcon = gender => {
     return gender === 'male' ? MaleOutlinedIcon : gender === 'female' ? FemaleOutlinedIcon : TransgenderOutlinedIcon
+  }
+
+  const formatCount = count => {
+    return count > 999 ? (count / 1000).toFixed(1) + 'K' : count
   }
 
   return (
     <Root>
       <EditProfileModal open={isEditProfileModalOpen} setOpen={setIsEditProfileModalOpen} />
-      <Tooltip title="Updated Your Profile!">
+      <Tooltip title="Edit Your Profile">
         <StyledEditButton color="primary" variant="contained" onClick={() => setIsEditProfileModalOpen(true)}>
           <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
         </StyledEditButton>
@@ -39,17 +73,13 @@ const InfoSection = () => {
           src={user?.profilePic}
           sx={{
             bgcolor: user?.profilePic ? '#fff' : theme => theme.palette.primary.main,
-            fontSize: 74,
             fontSize: 84,
             fontWeight: 500,
           }}>
           {user?.fullName?.slice(0, 1)}
         </StyledProfileImage>
       </ImageWarper>
-      <Main
-        style={{
-          paddingBottom: isSubscribed ? '10px' : '20px',
-        }}>
+      <Main style={{ paddingBottom: isSubscribed ? '10px' : '20px' }}>
         <NameSection>
           <UsernameText variant="body2">@{user?.username}</UsernameText>
           <NameText variant="h5" component="div">
@@ -66,6 +96,22 @@ const InfoSection = () => {
           text={`birthday - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
         />
         <InfoField Icon={LocationOnOutlinedIcon} text="India" />
+        <ButtonRow sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowerPopupOpen(true)}>
+    <Value>{formatCount(user?.followers || 1200)}</Value>
+    <Label>Followers</Label>
+  </Button>
+  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowingPopupOpen(true)}>
+    <Value>{formatCount(user?.following || 800)}</Value>
+    <Label>Following</Label>
+  </Button>
+  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Value>{formatCount(user?.createdBooks || 15)}</Value>
+    <Label>Created Books</Label>
+  </Button>
+</ButtonRow>
+
+
         {isEmailVerified && (
           <NavList>
             <Row>
@@ -101,6 +147,71 @@ const InfoSection = () => {
           </SubscribedFlag>
         )}
       </Main>
+
+      {/* Follower Popup */}
+      <Dialog open={isFollowerPopupOpen} onClose={() => setFollowerPopupOpen(false)} sx={{ maxWidth: '100%' }}>
+        <DialogTitle>
+          <Button variant='contained' sx={{ marginRight: 'auto' }}
+            onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>Followers</Button>
+          <Button variant='text' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(true); }}>Following</Button>
+          <IconButton
+            aria-label="close"
+            onClick={() => setFollowerPopupOpen(false)}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+            }}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {followers.map((follower, index) => (
+            <FollowerRow key={index}>
+              <Avatar sx={{ width: '3rem', height: '3rem', marginRight: '0.3rem' }} src={follower.profilePic} />
+              <div>
+                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{follower.name}</Typography>
+                <Typography variant="body2" sx={{ color: 'dimgray' }}>{follower.phone}</Typography>
+              </div>
+              <FollowButton variant={follower.followed ? 'outlined' : 'contained'} sx={{ marginLeft: '4rem', height: '1.7rem' }}>
+                {follower.followed ? 'Following' : 'Follow Back'}
+              </FollowButton>
+            </FollowerRow>
+          ))}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isFollowingPopupOpen} onClose={() => setFollowingPopupOpen(false)} sx={{ maxWidth: '100%' }}>
+        <DialogTitle>
+          <Button variant='text' onClick={() => { setFollowerPopupOpen(true); setFollowingPopupOpen(false); }}>Followers</Button>
+          <Button variant='contained' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>Following</Button>
+          <IconButton
+            aria-label="close"
+            onClick={() => setFollowingPopupOpen(false)}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 7,
+              color: (theme) => theme.palette.grey[500],
+              height: '1.5rem',
+              width: '1.5rem',
+            }}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {following.map((person, index) => (
+            <FollowerRow key={index}>
+              <Avatar sx={{ width: '3rem', height: '3rem', marginRight: '0.3rem' }} src={person.profilePic} />
+              <div>
+                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{person.name}</Typography>
+                <Typography variant="body2" sx={{ color: 'dimgray' }}>{person.phone}</Typography>
+              </div>
+              <FollowButton variant="outlined" sx={{ marginLeft: '3rem', height: '1.7rem' }}>Following</FollowButton>
+            </FollowerRow>
+          ))}
+        </DialogContent>
+      </Dialog>
     </Root>
   )
 }
@@ -110,7 +221,6 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-top: 20px;
   min-width: 280px;
   @media (max-width: 730px) {
@@ -118,6 +228,7 @@ const Root = styled.div`
     width: 100%;
   }
 `
+
 const Row = styled.div`
   display: flex;
   gap: 10px;
@@ -127,6 +238,7 @@ const Row = styled.div`
   }
   width: 100%;
 `
+
 const SubscribedFlag = styled(Typography)`
   position: relative;
   top: 10px;
@@ -162,6 +274,7 @@ const StyledEditButton = styled(Button)`
   justify-content: center;
   align-items: center;
 `
+
 const NavList = styled.div`
   display: flex;
   flex-direction: column;
@@ -233,6 +346,44 @@ const BioText = styled(Typography)`
   font-weight: 500;
   color: ${({ theme }) => theme.palette.secondary.main}f1;
   margin-top: 5px;
+`
+
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  width: 100%;
+  gap: 8px;
+`
+
+// const Button = styled.div`
+//   background: #f0f0f0;
+//   border: 1px solid #ddd;
+//   padding: 8px 16px;
+//   cursor: pointer;
+//   text-align: center;
+// `
+
+const Value = styled.span`
+  font-size: 24px; /* Adjust size as needed */
+  font-weight: bold;
+`
+
+const Label = styled.span`
+  font-size: 16px; /* Adjust size as needed */
+`
+
+const FollowerRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 2px solid ${({ theme }) => theme.palette.primary.main}1a;
+`
+
+const FollowButton = styled(Button)`
+  text-transform: none;
 `
 
 export default InfoSection

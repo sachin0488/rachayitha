@@ -89,8 +89,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         disableOkButton
       />
 
-      <ContentName variant="h3" component="div">
-        {Data?.contentName}
+      <ContentName variant="h3" component="div">{Data?.contentName}
       </ContentName>
 
       <InfoChipList>
