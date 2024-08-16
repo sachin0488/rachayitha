@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { Button, CircularProgress, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useTranslation } from 'next-i18next'
 
 import StyledPasswordField from 'modules/Auth/components/FormComponents/StyledPasswordField'
 import StyledTextField from 'modules/Auth/components/FormComponents/StyledTextField'
@@ -16,6 +17,7 @@ import { useEffect, useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleIcon from 'components/icons/google_icons'
 import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
 
 /**
  * Client Secret
@@ -35,6 +37,7 @@ import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.servic
 // }
 
 const LoginPage = () => {
+  const { t } = useTranslation("common");
   const { query } = useRouter()
   const theme = useTheme()
   const isTablet = useMediaQuery('(min-width: 700px)')
@@ -69,18 +72,23 @@ const LoginPage = () => {
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h3" textAlign="center">
-                Sign In
+                {t('Login.index.signIn')}
                 <hr />
               </TitleText>
             </TextSection>
-            <StyledTextField name="email" label="Email" placeholder="Enter your email ..." autoComplete="username email" />
-            <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="current-password" />
+            <StyledTextField name="email" label={t('email')} placeholder={t('enterYourEmail')} autoComplete="username email" />
+            <StyledPasswordField
+              name="password"
+              label={t('password')}
+              placeholder={t('enterYourPassword')}
+              autoComplete="current-password"
+            />
 
             <BottomSection>
               {/* <StyledCheckbox name="remember_me" label="Remember me" /> */}
               <Link href={{ pathname: '/forgot-password', query }}>
                 <a>
-                  <StyledForgotPassword>Forgot Password !</StyledForgotPassword>
+                  <StyledForgotPassword>{t('Login.index.forgotPassword')}</StyledForgotPassword>
                 </a>
               </Link>
             </BottomSection>
@@ -96,7 +104,7 @@ const LoginPage = () => {
                 type="submit"
                 onSubmit={methods.handleSubmit(handleLogin, handleFormError)}
                 variant="contained">
-                Sign in
+                {t('Login.index.signIn')}
               </StyledButton>
               <hr />
               <LoginWithGoogleButton
@@ -110,25 +118,29 @@ const LoginPage = () => {
                 type="button"
                 onClick={loginWithGoogle}
                 variant="contained">
-                Sign in with Google
+                {t('Login.index.signInWithGoogle')}
               </LoginWithGoogleButton>
             </Nav>
 
-            <Typography
-              sx={{
-                background: '#ffffff91',
-                alignSelf: 'center',
-                padding: '2px 10px',
-                borderRadius: '6px',
-              }}
-              textAlign="center"
-              fontWeight={500}>
-              {`Don't have an account? `}
+            <SignupLanguageContainer>
+              <Typography
+                sx={{
+                  background: '#ffffff91',
+                  alignSelf: 'center',
+                  padding: '2px 10px',
+                  borderRadius: '6px',
+                }}
+                textAlign="center"
+                fontWeight={500}>
+                {t(`Login.index.dontHaveAccount`)}
 
-              <Link href={{ pathname: '/create-account', query }}>
-                <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>Sign up</a>
-              </Link>
-            </Typography>
+                <Link href={{ pathname: '/create-account', query }}>
+                  <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>{t('signUp')}</a>
+                </Link>
+              </Typography>
+              {/* Use the SelectLanguageContainer component */}
+              <SelectLanguageContainer />
+            </SignupLanguageContainer>
           </FormProvider>
         </Body>
       </Main>
@@ -329,6 +341,17 @@ const LoginWithGoogleButton = styled(Button)`
 const StyledForgotPassword = styled(Button)`
   padding: 2px 7px 2px;
   border-radius: 4px;
+`
+
+const SignupLanguageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 700px) {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
 `
 
 export default LoginPage

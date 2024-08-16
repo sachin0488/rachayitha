@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { PaymentQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import i18n from 'i18next'
 
 const useCurrentSubscriptionService = () => {
   const { data, isError, refetch, isLoading } = useQuery({
@@ -24,6 +25,7 @@ const fetchSubscriptionListAPI = async () => {
   const res = await APIInstance({
     url: '/usersubscription/',
     method: 'GET',
+    params: { lang: i18n.language },
   })
 
   const subscriptionList = res?.data?.data?.map(item => ({

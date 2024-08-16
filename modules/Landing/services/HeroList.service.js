@@ -3,6 +3,7 @@ import { LandingQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'i18next'
 
 export const useHeroListService = () => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -28,6 +29,9 @@ const fetchHeroListAPI = async () => {
   const response = await APIInstance({
     url: '/homepagebanner/',
     method: 'GET',
+    params:{
+      lang:i18n.language
+    }
   })
 
   const data = response?.data?.data || {}

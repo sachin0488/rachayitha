@@ -5,8 +5,10 @@ import InfoModal from 'components/StyledModal/InfoModal'
 import { InternalPurchaseOrderType, useInternalPurchaseService } from 'modules/Payment/services/InternalPurchase.service'
 import styled from '@emotion/styled'
 import { ContentType } from '../../../constants/common.constants'
+import { useTranslation } from 'react-i18next'
 
 const Paywall = ({ coinRequired, chapterId, contentId, contentType, isAvailableInSubscription, isPaid, chapterTitle, chapterSequence }) => {
+  const { t } = useTranslation();
   const [isPurchaseModalOpen, setPurchaseModalOpen] = useState(false)
   const { mutate, isLoading, isError, isSuccess } = useInternalPurchaseService()
 
@@ -46,25 +48,25 @@ const Paywall = ({ coinRequired, chapterId, contentId, contentType, isAvailableI
         onClickOk={handlePayClick}
       />
       <Typography variant="h5" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
-        This chapter is locked
+        {t('thisChapterIsLocked')}
       </Typography>
       {isAvailableInSubscription && isPaid ? (
         <Typography variant="subtitle2" component="div" color="secondary" textAlign="center" marginTop={-0.2} marginBottom={0.8}>
-          You can unlock this chapter by purchasing our subscription or you can buy this chapter individually in {coinRequired} coins
+          {t('youCanUnlockThisChapterByPurchasingOurSubscriptionOrYouCanBuyThisChapterIndividuallyIn')} {coinRequired} {t('coins')}
         </Typography>
       ) : isAvailableInSubscription ? (
         <Typography variant="subtitle2" component="div" color="secondary" textAlign="center" marginTop={-0.2} marginBottom={0.8}>
-          You can unlock this chapter by purchasing our subscription.
+          {t('youCanUnlockThisChapterByPurchasingOurSubscription')}
         </Typography>
       ) : (
         <Typography variant="subtitle2" component="div" color="secondary" textAlign="center" marginTop={-0.2} marginBottom={0.8}>
-          You can unlock this chapter by purchasing it individually in {coinRequired} coins
+          {t('youCanBuyThisChapterIndividuallyIn')} {coinRequired} {t('coins')}
         </Typography>
       )}
       <PaymentButtons>
         {isAvailableInSubscription && (
           <Button variant="contained" disableElevation color="primary" sx={{ marginTop: 2 }}>
-            Subscribe
+            {t('subscribe')}
           </Button>
         )}
         {isPaid && (
@@ -74,7 +76,7 @@ const Paywall = ({ coinRequired, chapterId, contentId, contentType, isAvailableI
             endIcon={<ShoppingCartCheckoutRoundedIcon />}
             onClick={() => setPurchaseModalOpen(true)}
             sx={{ marginTop: 2 }}>
-            Purchase individually <span className="price">for {coinRequired} Coins</span>
+            {t('purchaseIndividually')} <span className="price">{t('for')} {coinRequired} {t('coins')}</span>
           </StyledButton>
         )}
       </PaymentButtons>

@@ -2,6 +2,7 @@ import * as yup from 'yup'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { Box, Button, CircularProgress, Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import { useVerifyEmailTokenService } from 'modules/Auth/service/VerifyEmailToken.service'
 
@@ -10,7 +11,10 @@ import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 import Link from 'next/link'
 
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer' // Import the component
+
 const VerifyEmailForwardPage = () => {
+  const { t } = useTranslation("common");
   const { query } = useRouter()
 
   const { isLoading, isError, isTokenVerified, user } = useVerifyEmailTokenService({ token: query?.token })
@@ -21,7 +25,7 @@ const VerifyEmailForwardPage = () => {
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
           <CircularProgress size={60} thickness={5} />
           <Typography variant="body1" fontWeight={500} color="secondary">
-            Loading
+            {t('verifyEmailForward.index.loading')}
           </Typography>
         </Box>
       </Root>
@@ -36,10 +40,10 @@ const VerifyEmailForwardPage = () => {
             <WarningRoundedIcon sx={{ fontSize: 72 }} color="error" />
           </IconWarper>
           <Typography marginLeft={1} variant="h5" color="secondary" fontWeight={600}>
-            Service Down for Maintenance.
+           {t('verifyEmailForward.index.serviceDownForMaintenance')}
           </Typography>
           <Description marginLeft={1} variant="body2" marginTop={1} color="secondary">
-            Please Try again letter! If you are still facing the issue, please contact us at{' '}
+            {t('verifyEmailForward.index.contactSupport')}{' '}
             <span>{process.env.NEXT_PUBLIC_SUPPORT_EMAIL}</span>
           </Description>
         </Main>
@@ -55,18 +59,15 @@ const VerifyEmailForwardPage = () => {
             <DoneOutlineRoundedIcon sx={{ fontSize: 72 }} color="primary" />
           </IconWarper>
           <Typography marginLeft={1} variant="h5" color="secondary" fontWeight={600}>
-            Your email has been verified successfully.
+            {t('verifyEmailForward.index.emailVerifiedSuccessfully')}
           </Typography>
           <Description marginLeft={1} variant="body2" marginTop={1} color="secondary">
-            Welcome aboard, <span>{user?.fullName}</span>! Your rachayitha journey starts with verifying your email. Just click the link in
-            the email we sent to <span>{user?.email}</span> and {`you'll`} be all set! Thanks for joining us!
+            {t('verifyEmailForward.index.welcomeAboard')}, <span>{user?.fullName}</span>! {t('verifyEmailForward.index.message1')} <span>{user?.email}</span> {t('verifyEmailForward.index.message2')}
           </Description>
           <Link href="/login">
-            <a>
-              <Button variant="contained" color="primary" sx={{ mt: 2 }} disableElevation>
-                Go to Login Page
-              </Button>
-            </a>
+            <Button variant="contained" color="primary" sx={{ mt: 2 }} disableElevation>
+              {t('verifyEmailForward.index.goToLogin')}
+            </Button>
           </Link>
         </Main>
       </Root>
@@ -80,18 +81,16 @@ const VerifyEmailForwardPage = () => {
           <WarningRoundedIcon sx={{ fontSize: 72 }} color="error" />
         </IconWarper>
         <Typography marginLeft={1} variant="h5" color="secondary" fontWeight={600}>
-          Unable to verify your email.
+          {t('verifyEmailForward.index.emailNotVerified')}
         </Typography>
         <Description marginLeft={1} variant="body2" marginTop={1} color="secondary">
-          Please Try to verify your email again by creating new account! If you are still facing the issue, please contact us at{' '}
+          {t('verifyEmailForward.index.message3')}{' '}
           <span>{process.env.NEXT_PUBLIC_SUPPORT_EMAIL}</span>
         </Description>
         <Link href="/create-account">
-          <a>
-            <Button variant="contained" color="primary" sx={{ mt: 2 }} disableElevation>
-              Go to Create Account Page
-            </Button>
-          </a>
+          <Button variant="contained" color="primary" sx={{ mt: 2 }} disableElevation>
+            {t('verifyEmailForward.index.goToCreateAccountPage')}
+          </Button>
         </Link>
       </Main>
     </Root>

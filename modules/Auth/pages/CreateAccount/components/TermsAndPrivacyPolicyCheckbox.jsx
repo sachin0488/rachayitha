@@ -2,8 +2,10 @@ import styled from '@emotion/styled'
 import { FormControlLabel, Checkbox, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useController, useFormContext } from 'react-hook-form'
+import { useTranslation } from 'next-i18next'
 
 const TermsAndPrivacyPolicyCheckbox = ({ name, label, ...props }) => {
+  const { t } = useTranslation("common")
   const formContext = useFormContext()
   const { control, errors } = formContext
 
@@ -30,15 +32,14 @@ const TermsAndPrivacyPolicyCheckbox = ({ name, label, ...props }) => {
     <Root>
       <StyledFormControlLabel control={<Checkbox {...checkboxProps} />} />
       <StyledText variant="subtitle2" color="secondary">
-        I agree to the{' '}
+        {t('agree_to')}{' '}
         <Link href="/terms-and-conditions">
-          <a>Terms of Service</a>
+          <a>{t('terms_of_service')}</a>
         </Link>{' '}
-        and{' '}
+        {t('and')}{' '}
         <Link href="/privacy-policy">
-          <a>Privacy Policy</a>
-        </Link>{' '}
-        !
+          <a>{t('privacy_policy')}</a>
+        </Link>
       </StyledText>
     </Root>
   )
@@ -50,7 +51,6 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   @media (min-width: 621px) {
-    /* background: ${({ theme }) => theme.palette.primary.main}09; */
     border-radius: 8px;
     padding-right: 13px;
   }

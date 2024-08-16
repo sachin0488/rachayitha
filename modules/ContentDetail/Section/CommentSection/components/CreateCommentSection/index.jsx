@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
-
 import { Avatar, Box, Button, CircularProgress, Rating, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
-
 import StarIcon from '@mui/icons-material/Star'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
@@ -13,8 +11,10 @@ import { useCreateCommentService } from 'modules/ContentDetail/services/CreateCo
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
 import { useUserService } from 'modules/Auth/service/User.service'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next';
 
 const CreateCommentSection = ({ parentCommentId, sortBy, contentType, contentId }) => {
+  const { t } = useTranslation();
   const { user, isLoggedIn } = useUserService()
   const { Data } = useContentDetailsService({ contentId, contentType })
   const { mutate, isLoading, isSuccess } = useCreateCommentService({
@@ -44,14 +44,14 @@ const CreateCommentSection = ({ parentCommentId, sortBy, contentType, contentId 
     return (
       <LoginPlaceholder>
         <Typography variant="h6" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
-          You can comment here after signing !
+          {t('loginToComment')}
         </Typography>
         <Typography variant="subtitle2" fontWeight={500} component="div" color="secondary.light" textAlign="center">
-          {`Need an account? `}
+          {`${t('needAnAccount')} `}
           <Link href="/create-account">
             <a>
               <Typography as="span" variant="subtitle2" fontWeight={500} component="div" color="primary" textAlign="center">
-                Create one!
+                {t('createOne')}
               </Typography>
             </a>
           </Link>
@@ -59,7 +59,7 @@ const CreateCommentSection = ({ parentCommentId, sortBy, contentType, contentId 
         <Link href="/login">
           <a>
             <Button disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
-              Sign In
+              {t('signIn')}
             </Button>
           </a>
         </Link>
@@ -92,11 +92,11 @@ const CreateCommentSection = ({ parentCommentId, sortBy, contentType, contentId 
           />
         </Header>
 
-        <CommentField placeholder="Add Comment here ..." variant="filled" name="comment" multiline />
+        <CommentField placeholder={t('addComment')} variant="filled" name="comment" multiline />
 
         <ActionList>
           <StyledButton disabled={isLoading} onClick={() => methods.reset({ comment: '' })}>
-            Cancel
+            {t('cancel')}
           </StyledButton>
           <StyledButton
             disabled={isLoading || !comment}
@@ -113,7 +113,7 @@ const CreateCommentSection = ({ parentCommentId, sortBy, contentType, contentId 
               )
             }
             onClick={handleSubmit(mutate)}>
-            Comment
+            {t('comment')}
           </StyledButton>
         </ActionList>
       </FormProvider>

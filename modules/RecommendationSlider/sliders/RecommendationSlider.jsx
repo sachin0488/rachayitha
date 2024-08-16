@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+
 
 import { useRecommendationService } from '../services/Recommendation.service'
 
@@ -10,6 +12,7 @@ import DataSection from '../components/DataSection'
 import { mainMaxWidth } from 'modules/ContentDetail/common/styles'
 
 const RecommendationSection = () => {
+  const { t } = useTranslation();
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = useRecommendationService({ contentType: currentContent })
@@ -18,7 +21,7 @@ const RecommendationSection = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading variant="h5">You may also Like</Heading>
+          <Heading variant="h5">{t('youMayAlsoLike')}</Heading>
           <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
 

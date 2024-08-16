@@ -3,14 +3,11 @@ import styled from '@emotion/styled'
 import StyledChip from './StyledChip'
 import { Button, ButtonBase, Tooltip, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-
 import ToggleToLibraryButton from './ToggleToLibraryButton'
 import MoreOptions from './MoreOptions'
 import RatingBar from './RatingBar'
 import LikeButton from './LikeButton'
-
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
-
 import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookmarkRounded'
 import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
@@ -22,8 +19,10 @@ import { InternalPurchaseOrderType, useInternalPurchaseService } from 'modules/P
 import { useUserService } from 'modules/Auth/service/User.service'
 import { ContentType } from 'modules/ReaderSection/constants/common.constants'
 import ShareButton from './ShareButton'
+import { useTranslation } from 'react-i18next'
 
 const InfoArea = ({ contentType, contentId, slug }) => {
+  const { t } = useTranslation()
   const { Data } = useContentDetailsService({ contentId: contentId, contentType })
   const { mutate, isLoading, isError, isSuccess, message } = useInternalPurchaseService({
     disableSnackbar: true,
@@ -72,11 +71,11 @@ const InfoArea = ({ contentType, contentId, slug }) => {
   return (
     <Root>
       <InfoModal
-        messageNotice={`Exciting choice! Just to confirm, purchasing ${Data?.contentName} will deduct ${Data?.price} Coins from your account!`}
+        messageNotice={t('purchase_confirmation', { contentName: Data?.contentName, price: Data?.price })}
         open={isPurchaseModalOpen}
         setOpen={setPurchaseModalOpen}
         isLoading={isLoading}
-        buttonText={'Purchase'}
+        buttonText={t('purchase')}
         onClickOk={handlePayClick({ amount: Data?.price, id: Data?.contentId })}
       />
       <InfoModal
@@ -85,28 +84,27 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         open={isPurchaseFeedbackModalOpen}
         setOpen={setPurchaseFeedbackModalOpen}
         isLoading={isLoading}
-        cancelButtonText={'Close'}
+        cancelButtonText={t('close')}
         disableOkButton
       />
 
-      <ContentName variant="h3" component="div">{Data?.contentName}
-      </ContentName>
+      <ContentName variant="h3" component="div">{Data?.contentName}</ContentName>
 
       <InfoChipList>
         <StyledChip label={Data?.status} contained />
         {Data?.category?.map(({ name, id }) => (
           <StyledChip label={name} key={id} />
         ))}
-        <StyledChip label={`${Data?.chapterCount} Chapters`} Icon={CollectionsBookmarkRoundedIcon} />
-        <StyledChip label={`${Data?.viewCount} Views`} Icon={RemoveRedEyeRoundedIcon} />
+        <StyledChip label={`${Data?.chapterCount} ${t('chapters')}`} Icon={CollectionsBookmarkRoundedIcon} />
+        <StyledChip label={`${Data?.viewCount} ${t('views')}`} Icon={RemoveRedEyeRoundedIcon} />
       </InfoChipList>
 
-      <Tooltip title="Open Author Profile">
+      <Tooltip title={t('author_profile')}>
         <Link href={`/author/${Data?.authorId}`}>
           <a>
             <ButtonBase sx={{ width: 'fit-content', borderRadius: '6px', padding: '0px 5px ' }}>
               <Author color="secondary">
-                Author: <b>{Data?.authorName}</b>
+                {t('author')}: <b>{Data?.authorName}</b>
               </Author>
             </ButtonBase>
           </a>
@@ -119,7 +117,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         <Link href={`/${contentType}/${contentId}/${slug}/read/${Data?.chapter?.[0]?.id}/${Data?.chapter?.[0]?.slug}`}>
           <a>
             <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />}>
-              Read
+              {t('read')}
             </Button>
           </a>
         </Link>
@@ -127,9 +125,9 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         {Data?.price ? (
           <>
             {Data?.isPurchased ? (
-              <Tooltip title="You have purchased this content">
+              <Tooltip title={t('you_have_purchased')}>
                 <StyledPurchasedButton disableRipple variant="text" endIcon={<CheckRoundedIcon />} color="success">
-                  Purchased
+                  {t('purchased')}
                 </StyledPurchasedButton>
               </Tooltip>
             ) : (
@@ -138,7 +136,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
                 variant="contained"
                 endIcon={<ShoppingCartCheckoutRoundedIcon />}
                 onClick={() => setPurchaseModalOpen(true)}>
-                Purchase <span className="price">for {Data?.price} Coins</span>
+                {t('purchase_for', { price: Data?.price })}
               </StyledButton>
             )}
           </>

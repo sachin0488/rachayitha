@@ -5,7 +5,7 @@ import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 import { useGoogleLogin } from '@react-oauth/google'
-
+import i18n from 'i18next';
 const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useGoogleSignInService = () => {
@@ -90,6 +90,9 @@ const loginAPI = async ({ access_token }) => {
     method: 'POST',
     data: {
       access_token: access_token,
+    },
+    params: {
+      lang: i18n.language,
     },
     headers: {
       'Content-Type': 'application/json',

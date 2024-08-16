@@ -1,20 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-
 import { Button, CircularProgress, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
-
+import { useTranslation } from 'next-i18next'
 import StyledTextField from './components/StyledTextField'
 import StyledCheckbox from './components/StyledCheckbox'
-
 import useFormError from 'hooks/useFormError'
-
 import { useLoginService } from 'modules/Auth/service/Login.service'
-
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer' // Import the component
 
 const OTPPage = () => {
+  const { t } = useTranslation("common");
   const methods = useForm()
   const { handleLogin, isLoading } = useLoginService()
   const { handleFormError } = useFormError()
@@ -28,9 +26,9 @@ const OTPPage = () => {
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h4" component="div">
-                Welcome
+                {t('OTP.index.welcome')}
               </TitleText>
-              <DescriptionText variant="subtitle2">Welcome back ! Please Enter Your details</DescriptionText>
+              <DescriptionText variant="subtitle2">{t('OTP.index.welcomeBackPleaseEnterYOurDetails')}</DescriptionText>
             </TextSection>
 
             <StyledTextField name="otp" label="OTP" placeholder="Enter your otp ..." />
@@ -38,17 +36,13 @@ const OTPPage = () => {
             <BottomSection>
               <StyledCheckbox name="remember_me" label="Remember me" />
               <Link href="/forgot-password">
-                <a>
-                  <StyledForgotPassword>Forgot Password !</StyledForgotPassword>
-                </a>
+                <StyledForgotPassword>{t('OTP.index.forgotPassword')}!</StyledForgotPassword>
               </Link>
             </BottomSection>
 
             <Nav>
               <Link href="/create-account">
-                <a>
-                  <StyledButton>Back</StyledButton>
-                </a>
+                <StyledButton>{t('OTP.index.back')}</StyledButton>
               </Link>
 
               <StyledButton
@@ -57,11 +51,12 @@ const OTPPage = () => {
                 startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
                 variant="contained"
                 onClick={methods.handleSubmit(handleLogin, handleFormError)}>
-                Verify
+                {t('OTP.index.verify')}
               </StyledButton>
             </Nav>
           </FormProvider>
         </Body>
+        <SelectLanguageContainer /> {/* Add the component here */}
       </Main>
     </Root>
   )
@@ -113,23 +108,6 @@ const DeignsIcon = styled(MenuBookOutlinedIcon)`
     font-size: 280px;
     color: ${({ theme }) => theme.palette.primary.main}1f;
   }
-`
-
-const BackgroundIcon = styled.img`
-  position: absolute;
-  width: 300px;
-  bottom: 0px;
-  right: 25px;
-  rotate: -25deg;
-
-  @media (max-width: 480px) {
-    width: 250px;
-    bottom: 0px;
-    right: 15px;
-    rotate: -25deg;
-  }
-
-  /* width: 300px; */
 `
 
 const TextSection = styled.div`

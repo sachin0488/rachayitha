@@ -1,14 +1,15 @@
 import styled from '@emotion/styled'
 import { Button, Skeleton, Typography, CircularProgress } from '@mui/material'
 import { useCallback, useEffect } from 'react'
-
 import { StyledModal } from 'components/StyledModal'
 import { FormProvider, useForm } from 'react-hook-form'
 import { StyledFieldGroup, StyledFormLabel, StyledRadioBox, StyledRadioGroup } from './StyledRadio'
 import useFormError from 'hooks/useFormError'
 import { useReportContentService, useReportCategoryService } from 'modules/ContentDetail/services/ReportContent.service'
+import { useTranslation } from 'react-i18next'
 
 const ReportModal = ({ open, setOpen, contentId, contentType }) => {
+  const { t } = useTranslation()
   const { Data, isLoading } = useReportCategoryService({ enabled: open, contentType })
   const { mutate, isLoading: isMutating, isSuccess } = useReportContentService({ contentId: contentId, contentType })
 
@@ -32,7 +33,7 @@ const ReportModal = ({ open, setOpen, contentId, contentType }) => {
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={550}>
       <Main onSubmit={methods.handleSubmit(mutate, handleFormError)}>
         <Title variant="h4" component="div" color="secondary">
-          Help us improve our service
+          {t('report_modal_title')}
         </Title>
         <FormProvider {...methods}>
           {isLoading ? (
@@ -44,7 +45,7 @@ const ReportModal = ({ open, setOpen, contentId, contentType }) => {
             </LoadingRoot>
           ) : (
             <StyledFieldGroup as="div">
-              <StyledFormLabel>Select the Category which is violated by this author</StyledFormLabel>
+              <StyledFormLabel>{t('report_modal_select_category')}</StyledFormLabel>
               <StyledRadioGroup name="categoryId" row>
                 {Data?.map(({ name, shortDetails, id }) => (
                   <StyledRadioBox key={id} label={`${name}`} value={id} />
@@ -59,13 +60,14 @@ const ReportModal = ({ open, setOpen, contentId, contentType }) => {
             disableElevation
             sx={{ mt: -2 }}
             endIcon={isMutating ? <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} /> : null}>
-            Submit
+            {t('submit')}
           </Button>
         </FormProvider>
       </Main>
     </Root>
   )
 }
+
 const LoadingRoot = styled.div`
   display: flex;
   gap: 5px;

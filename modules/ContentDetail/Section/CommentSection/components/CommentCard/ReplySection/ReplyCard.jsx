@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-
 import { Avatar, Button, Rating, Typography } from '@mui/material'
-
 import StarIcon from '@mui/icons-material/Star'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import CommentBankRoundedIcon from '@mui/icons-material/CommentBankRounded'
 import ReplySection from '.'
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded'
 import { useCommentLikeService } from 'modules/ContentDetail/services/CommentLike.service'
+import { useTranslation } from 'react-i18next'
 
 const ReplyCard = ({ item, parentCommentId, sortBy, contentType, contentId }) => {
+  const { t } = useTranslation()
   const [likes, setLikes] = useState(item?.like_count)
-
   const { mutate, isLoading } = useCommentLikeService({
     contentId: contentId,
     commentId: item?.commentId,
@@ -53,13 +52,13 @@ const ReplyCard = ({ item, parentCommentId, sortBy, contentType, contentId }) =>
 
       <ActionList>
         <StyledButton startIcon={<ThumbUpRoundedIcon />} onClick={mutate}>
-          {item?.likeCount}
+          {t('like')} {item?.likeCount}
         </StyledButton>
         <StyledButton
           onClick={() => setIsReplyOpen(!isReplyOpen)}
           startIcon={<CommentBankRoundedIcon />}
           endIcon={<KeyboardArrowUpRoundedIcon sx={{ transition: '.25s ease-in-out', rotate: isReplyOpen ? '180deg' : '90deg' }} />}>
-          {commentCount}
+          {t('comment')} {commentCount}
         </StyledButton>
         <CommentedOn variant="subtitle2">{item?.createdAt}</CommentedOn>
       </ActionList>

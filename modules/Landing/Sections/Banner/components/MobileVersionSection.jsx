@@ -2,11 +2,14 @@ import React from 'react'
 import TextSection from './TextSection'
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 const MobileVersionSection = () => {
+  const { t } = useTranslation('common')
   const is600x = useMediaQuery('(min-width: 600px)')
 
   const banner1 = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1668677838/Banner2_bymfre.svg'
+  
   return (
     <Root>
       <Main>
@@ -14,16 +17,22 @@ const MobileVersionSection = () => {
           color="white"
           heading={
             <>
-              Mobile Version is{" "}
-              {is600x && <br />}
-              also available in playstore.
+              {t('heading').split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             </>
           }
           subHeading={
             <>
-              Read unlimited stories, poems & shayeris{" "}
-              {is600x && <br />}
-              in your phone, tablet, laptop, and TV.
+              {t('subHeading').split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  {is600x && <br />}
+                </React.Fragment>
+              ))}
             </>
           }
         />
@@ -62,8 +71,6 @@ const Main = styled.div`
 
 const ShowSection = styled.div`
   position: relative;
-  @media (max-width: 1210px) {
-  }
   max-width: 40%;
   @media (max-width: 900px) {
     max-width: 70%;
@@ -76,8 +83,6 @@ const ShowSection = styled.div`
 const Image = styled.img`
   width: 130%;
   height: auto;
-  @media (max-width: 1210px) {
-  }
   margin-top: -25%;
   margin-left: -20%;
   @media (max-width: 610px) {

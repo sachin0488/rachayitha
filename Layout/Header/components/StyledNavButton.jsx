@@ -3,10 +3,10 @@ import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-
+import { useTranslation } from 'react-i18next';
 const StyledNavButton = ({ Icon, label, link, path, openInNewTab, onClick }) => {
   const router = useRouter()
-
+ const {t} = useTranslation();
   const props = {
     target: openInNewTab ? '_blank' : undefined,
     rel: openInNewTab ? 'noreferrer' : undefined,
@@ -16,7 +16,7 @@ const StyledNavButton = ({ Icon, label, link, path, openInNewTab, onClick }) => 
     <Link href={link}>
       <a onClick={onClick} {...props}>
         <Root className={router.pathname.includes(path) && 'selected'} startIcon={<Icon style={IconStyle} />}>
-          {label}
+          {t(`navPageLinks.${label}`)}
         </Root>
       </a>
     </Link>

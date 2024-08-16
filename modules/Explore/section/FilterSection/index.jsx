@@ -2,27 +2,31 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import React from 'react'
 import StyledChip from './components/StyledChip'
+import { useTranslation } from 'react-i18next'
 
-const List = [
-  {
-    label: 'Hot',
-  },
-  {
-    label: 'Trending',
-  },
-  {
-    label: 'Newest',
-  },
-  {
-    label: 'Oldest',
-  },
-]
+
 
 const FilterSection = () => {
+  const { t } = useTranslation()
+
+  const List = [
+    {
+      label: t('filterSection.hot'),
+    },
+    {
+      label: t('filterSection.trending'),
+    },
+    {
+      label: t('filterSection.newest'),
+    },
+    {
+      label: t('filterSection.oldest'),
+    },
+  ]
   return (
     <Root>
       <Heading variant="h6" component="div">
-        Sort By
+        {t('filterSection.sortBy')}
       </Heading>
       <Main>
         {List.map((item, index) => (

@@ -1,26 +1,28 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React from 'react'
-import { ButtonContainer, Heading, ParagraphText, StyledButton, SubHeading, TextSection } from './styles'
+import { ButtonContainer, Heading, ParagraphText, StyledButton, TextSection } from './styles'
+import { useTranslation } from 'next-i18next'
 
 const LeftSection = () => {
+  const { t } = useTranslation("common")
+
   return (
     <Root>
       <TextSection>
-        {/* <SubHeading>Online Book Reading Platform</SubHeading> */}
         <Heading>
-          Expand your Vision of <span>Literature Here</span>
+          {t('expandYourVision')} <span>{t('literatureHere')}</span>
         </Heading>
-        <ParagraphText>India’s own online Reading Platform</ParagraphText>
+        <ParagraphText>{t('indiasOwnPlatform')}</ParagraphText>
       </TextSection>
       <ButtonContainer>
         <Link href={`/explore?content_type=book&category=0&sort_by=Hot`}>
           <StyledButton disableElevation variant="contained">
-            Explore
+            {t('explore')}
           </StyledButton>
         </Link>
         <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noreferrer">
-          <StyledButton variant="outlined">Create</StyledButton>
+          <StyledButton variant="outlined">{t('create')}</StyledButton>
         </a>
       </ButtonContainer>
       <BackBlob src="/hero_m_bc.svg" alt="" />
@@ -93,7 +95,6 @@ const BackBlob = styled.img`
   }
   display: block;
   filter: drop-shadow(0px 0px 8px #ffffff);
-  /* background: transparent; */
 `
 
 export default LeftSection

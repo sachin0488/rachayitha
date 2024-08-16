@@ -1,0 +1,504 @@
+{
+  "navPageLinks": {
+    "Explore": "Explore",
+    "Ranking": "Ranking",
+    "Create": "Create",
+    "Library": "Library"
+  },
+  "searchBox": {
+    "placeholder": {
+      "desktop": "Search Novels, poems and many more…",
+      "mobile": "Search here..."
+    }
+  },
+  "searchModel": {
+    "title": "Search Your interest..."
+  },
+
+  "deleteAccount": {
+    "followingAreTheThingsThatWillHappen": "Following are the things that will happen",
+    "point1": "All your data will be deleted from our servers. This includes your profile, posts, comments, and any other data you have provided us.",
+    "point2": "You will be logged out from all your devices.",
+    "point3": "You will not be able to recover your account.",
+    "point4": "You will not be able to access your subscription.",
+    "point5": "You will not be able to access your coins. ",
+    "point6": "Your Published Poems and Novels or any other content will be deleted.",
+
+    "confirmAccountDelete": "Confirm Account Delete !",
+
+    "index": {
+      "deleteYourAccount": "Delete Your Account",
+      "areYouSureYouWantToDelete": "Are you sure you want to delete your account?",
+      "onceYouDeleteYourAccountThereIsNoGoingBack": "Once you delete your account, there is no going back.",
+      "ifYouAreSurePleaseClickTheButtonBelow": "If you are sure, please click the button below."
+    }
+  },
+
+  "forgotPassword": {
+    "index": {
+      "Lost Your": "Lost Your Password ?",
+      "emailToResetPassword": "Please enter the email associated with your account to reset your password.",
+      "willSendEmailToChangePaassword": "Will send an email to change your password.",
+      "login": "Login",
+      "send": "Send"
+    },
+
+    "SuccessCard": {
+      "passwordReset": "Password Reset",
+      "linkSent": "Link Sent",
+      "successfulReset": "Great news! We have sent a password reset link to the email address associated with your account. Please follow the instructions in the email to reset your password.",
+      "goToLogin": "Go Back and Login",
+      "changeEmail": "Change Email"
+    }
+  },
+
+  "Login": {
+    "index": {
+      "signIn": "Sign In",
+      "forgotPassword": "Forgot Password !",
+      "signInWithGoogle": "Sign In with Google",
+      "dontHaveAccount": "Don't have an account?"
+    }
+  },
+
+  "NewPassword": {
+    "index": {
+      "chooseANewPassword": "Choose a New Password",
+      "enterPassword": "Please enter your new password below to update your password and get access to your account.",
+      "save": "Save"
+    },
+
+    "SuccessCard": {
+      "passwordUpdated": "Password Updated",
+      "sucessfully": "Successfully",
+      "successMessage": "Your password has been successfully updated. You can now login with your new password.",
+      "goToLogin": "Go Back and Login"
+    }
+  },
+
+  "OTP": {
+    "index": {
+      "welcome": "Welcome",
+      "welcomeBackPleaseEnterYourDetails": "Welcome back, please enter your details",
+      "forgotPassword": "Forgot Password !",
+      "verify": "Verify",
+      "back": "Back"
+    }
+  },
+
+  "verifyEmailForward": {
+    "index": {
+      "loading": "Loading...",
+      "serviceDownForMaintainance": "Service is down for maintainance, please try again later.",
+      "contactSupport": "Please contact support if you have any questions, or you can email us at:",
+      "emailVerifiedSuccessfully": "Email verified successfully",
+      "goToLogin": "Go Back and Login",
+      "welcomeAboard": "Welcome Aboard",
+      "message1": "Your email verification link has been sent to your email. Please click on the link to verify your email.",
+      "message2": "And {`you are all set`}! Thank you for being with us!",
+      "emailNotVerified": "Your email is not verified, please try again later.",
+      "message3": "Please click on the link below to verify your email: ",
+      "goToCreateAccountPage": "Go Back and Create Account"
+    }
+  },
+
+  "verifyEmailModal": {
+    "index": {
+      "verifyEmail": "Verify your email to unlock the full experience.",
+      "welcomeAboard": "Welcome Aboard",
+      "message1": "Your email verification link has been sent to your email. Please click on the link to verify your email.",
+      "message2": "And {`you are all set`}! Thank you for being with us!",
+      "message3": "Please click on the link below to verify your email: ",
+      "second": "Second",
+      "resendEmail": "Resend Email",
+      "checkVerificationStatus": "Check Verification Status"
+    }
+  },
+  "modal": {
+    "title": "Share your experience",
+    "labels": {
+      "parameter1": "Writing Quality",
+      "parameter2": "Stability of Updates",
+      "parameter3": "Story Development",
+      "parameter4": "Character Design",
+      "parameter5": "World Background",
+      "comment": "Your thoughts here..."
+    },
+    "placeholders": {
+      "comment": "Tell us what you think about this content..."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "reviewSection": {
+    "infoText": "Share your thoughts with others",
+    "button": "Write a review",
+    "signInPrompt": "You can post your own review here after signing in!",
+    "needAccount": "Need an account?",
+    "createAccount": "Create one!",
+    "signIn": "Sign In",
+    "reviews": "Reviews"
+  },
+  "voteInfo": "Votes are held every day to rank your favorite Novel",
+  "voteConfirmation": "Are you sure you want to vote this {{contentType}} named {{contentName}}?",
+  "voteButtonText": "Yes, let's Vote",
+  "rankingTooltip": "Ranking",
+  "totalVotesTooltip": "Total Votes",
+  "yourVoteTooltip": "Your vote for this Novel",
+  "voteTooltip": "Vote This content",
+  "voteButton": "Vote",
+  "signIn": "Sign in",
+
+  "privacyPolicy": {
+    "privacy_policy": "Privacy Policy",
+    "privacyPolicyIntro": "This Privacy Policy documents the use, collection and storage of information pertaining to the use of Rachayitha website...",
+    "privacyPolicyContent": "Company facilitates a User to read, listen and/or upload literary works...",
+    "privacyPolicyAgreement": "This Privacy Policy is a part of and is to be read with the ‘Terms of Use’...",
+    "informationCollection": "What information does Company collect?",
+    "informationCollectionIntro": "For Company to offer its Services to Users and to continuously improve...",
+    "typeOfInformation": "Type of Information",
+    "includes": "Includes",
+    "registrationData": "Registration/Log in Data",
+    "registrationDataDetails": "Name, Email Address along with profile details...",
+    "usageData": "Usage Data",
+    "usageDataDetails": "Inputs by Users on the Website/Application...",
+    "paymentData": "Payment Data",
+    "paymentDataDetails": "Billing information, credit card details...",
+    "customerSupport": "Customer support",
+    "customerSupportDetails": "Information provided during request for User support...",
+    "useOfInformation": "What does the Company use the collected User Information for?",
+    "useOfInformationItem1": "Enable and facilitate usage of the Website/Application...",
+    "useOfInformationItem2": "To send mandatory and opted notifications to Users...",
+    "useOfInformationItem3": "To communicate with the User...",
+    "useOfInformationItem4": "For payment and billing when a user purchases virtual currency...",
+    "useOfInformationItem5": "Improve the functioning of the Website/Application...",
+    "useOfInformationItem6": "Improve the User experience by customisation...",
+    "useOfInformationItem7": "Managing the Website/Application...",
+    "thirdPartyAccess": "Can any third party access the User Information?",
+    "thirdPartyAccessIntro": "Company will never sell or rent any User Information...",
+    "businessPartners": "Business Partners",
+    "businessPartnersDescription": "Authorised third party business partners...",
+    "businessPartnersDetails": "i. Analysing the User Information, for improving the Website/Application...",
+    "specialCircumstances": "Special Circumstances: Company will disclose personally identifiable information...",
+    "corporateRestructuring": "Corporate Restructuring: Company reserves the right to transfer User Information...",
+    "userPublishedMaterial": "User Published Material: Company enables Users to interact with each other...",
+    "informationStorage": "How long does Company store the User Information?",
+    "informationStorageDetails": "User Information will be retained only as long as necessary for the purposes...",
+    "securityMeasures": "What security measures are taken to ensure User Information?",
+    "securityAcknowledgement": "Company has implemented reasonable security measures...",
+    "informationCollectionMethods": "Information Collection Methods",
+    "informationCollectionIntro": "Company uses various methods to collect User Information...",
+    "cookiesCollection": "Cookies Collection",
+    "cookieType": "Cookie Type",
+    "placedBy": "Placed By",
+    "natureOfTracking": "Nature of Tracking",
+    "mandatoryCookies": "Mandatory Cookies",
+    "company": "Company",
+    "mandatoryCookiesDetails": "Essential for the functioning of the Website/Application...",
+    "analyticalCookies": "Analytical Cookies",
+    "thirdParty": "Third Party",
+    "analyticalCookiesDetails": "Used for tracking and analysing the usage...",
+    "cookiesOptOut": "Users can opt out of cookies through their browser settings...",
+    "apiCalls": "API Calls",
+    "userRights": "What are the User Rights with respect to their Information?",
+    "registrationRights": "Registration Rights: Users have the right to access their registration data...",
+    "modificationDeletionRights": "Modification and Deletion Rights...",
+    "deletionRights": "Deletion Rights...",
+    "notificationsRights": "Notifications Rights...",
+    "optOutRights": "Opt-Out Rights...",
+    "policyChanges": "Changes to the Privacy Policy",
+    "policyChangesNotification": "Company reserves the right to amend the Privacy Policy...",
+    "policyChangesAdvice": "Users are advised to review the Privacy Policy periodically...",
+    "disagreement": "If User disagrees with the changes, they should stop using the Services...",
+    "grievanceRedressal": "Grievance Redressal",
+    "grievanceRedressalContact": "For any grievances regarding the Privacy Policy...",
+    "conflictResolution": "Conflict Resolution",
+    "conflictResolutionDescription": "In case of disputes, the User agrees to submit to the jurisdiction..."
+  },
+  "drawerBox": {
+    "genres": "Genres",
+    "novel": "Novel",
+    "allCategories": "All Categories"
+  },
+  "categorySection": {
+    "novel": "Novel",
+    "poem": "Poem",
+    "short": "Short",
+    "all": "All",
+    "eastern": "Eastern",
+    "fantasy": "Fantasy",
+    "horror": "Horror",
+    "action": "Action",
+    "agc": "AGC",
+    "urban": "Urban",
+    "games": "Games",
+    "sciFi": "Sci-fi",
+    "sports": "Sports",
+    "realistic": "Realistic",
+    "war": "War",
+    "history": "History"
+  },
+  "contentCard": {
+    "rankingPlaceholder": "0",
+    "defaultCategory": "N/A",
+    "status": "Status",
+    "likeCount": "Likes",
+    "commentCount": "Comments"
+  },
+
+  "toggleToLibraryButton": {
+    "addToLibrary": "Add to Library",
+    "removeFromLibrary": "Remove from Library"
+  },
+
+  "contentSection": {
+    "noContentMessage": "Currently we don't have this!"
+  },
+
+  "error": "Something went wrong!",
+
+  "chipLabels": {
+    "sortByLabel": "Sort by"
+  },
+
+  "filterSection": {
+    "sortBy": "Sort By",
+    "hot": "Hot",
+    "trending": "Trending",
+    "newest": "Newest",
+    "oldest": "Oldest"
+  },
+
+  "noContentMessage": "Currently we don't have this!",
+
+  "availableLeadsSection": {
+    "heading": "Available for both Male & Female Leads",
+    "subHeading": "Save your favorites easily and always have something to read.",
+    "maleLead": "Male Lead",
+    "femaleLead": "Female Lead"
+  },
+
+  "downloadBookSection": {
+    "heading": "Download Books to read Offline.",
+    "subHeading": "Save your favorites easily and always have something to read.",
+    "downloading": "Downloading...",
+    "bookTitle": "I Was Skeleton..."
+  },
+
+  "mobileVersionSection": {
+    "heading": "Mobile Version is also available in the playstore.",
+    "subHeading": "Read unlimited stories, poems & shayeris in your phone, tablet, laptop, and TV."
+  },
+
+  "getStartedInputField": {
+    "placeholder": "Write your email here...",
+    "buttonLabel": "GET STARTED"
+  },
+
+  "publishContentSection": {
+    "publishHeader": "Publish Your Novels And Poem",
+    "publishDescription": "Publish your content on the platform and reach millions of readers.",
+    "startCreating": "Start Creating"
+  },
+
+  "topCollectionSection": {
+    "topCollectionHeader": "Top collection over",
+    "lastWeek": "Last week",
+    "lastMonth": "Last month",
+    "lastYear": "Last year"
+  },
+
+  "userProfilePage": {
+    "deleteAccountMessage": "If you want to delete your account, please click the button below.",
+    "deleteAccountButton": "I want to Delete my Account"
+  },
+
+  "anotherUserProfileTabs": {
+    "originalWorks": "Original Works",
+    "book": "Book",
+    "poem": "Poem",
+    "story": "Story",
+    "noContentMessage": "You have not created any {{contentType}} yet"
+  },
+
+  "profileTabs": {
+    "library": "Library",
+    "boughtProduct": "Bought Product",
+    "transactions": "Transactions",
+    "achievement": "Achievement",
+    "originalWork": "Original Work"
+  },
+
+  "emailVerification": {
+    "verifyMessage": "Verify your email to unlock the full experience.",
+    "welcomeMessage": "Welcome aboard, {{userName}}! Your rachayitha journey starts with verifying your email. Just click the link in the email we sent to {{userEmail}} and you'll be all set! Thanks for joining us!",
+    "checkStatusButton": "Check verification status",
+    "statusMessage": "You can recheck the verification status within {{secondsLeft}} second."
+  },
+  "achievementTab": {
+    "unlockRewardsMessage": "Unlock exciting rewards as you conquer your reading goals!"
+  },
+  "boughtTab": {
+    "noContentMessage": "You have not bought any {{contentType}} yet",
+    "errorMessage": "Something went wrong"
+  },
+  "libraryTab": {
+    "noContentMessage": "Add Your First {{contentType}} to Library",
+    "errorMessage": "Something went wrong"
+  },
+  "transactionHistoryTab": {
+    "noTransactionsMessage": "You have no transaction history",
+    "errorMessage": "Something went wrong"
+  },
+  "originalWorkTab": {
+    "noContentMessage": "You have not created any {{contentType}} yet"
+  },
+
+  "editYourProfile": "Edit Your Profile",
+  "followers": "Followers",
+  "following": "Following",
+  "createdBooks": "Created Books",
+  "buyCoins": "Buy Coins",
+  "subscribe": "Subscribe",
+  "buyVoteCoins": "Buy Vote Coins",
+  "subscriptionValidTill": "Your Subscription is valid till",
+  "gender": "Gender",
+  "birthday": "birthday",
+  "location": "India",
+  "expandYourVision": "Expand your Vision of",
+  "literatureHere": "Literature Here",
+  "indiasOwnPlatform": "India’s own online Reading Platform",
+  "explore": "Explore",
+  "create": "Create",
+  "discover": "Discover",
+  "home": "Home",
+  "ranking": "Ranking",
+  "book": "Book",
+  "poem": "Poem",
+  "about_us": "About us",
+  "privacy_policy": "Privacy Policy",
+  "terms_and_conditions": "Terms and Conditions",
+  "follow_us": "Follow us",
+  "contact_us": "Contact us",
+  "description": "rachayitha is the world’s leading community for creatives to share, and grow.",
+  "email": "support@rachayitha.com",
+  "profile": "Profile",
+  "logout": "Logout",
+  "your_profile": "Your Profile",
+  "e_book": "E Book",
+  "return_home": "Back to Home",
+  "agree_to": "I agree to the",
+  "terms_of_service": "Terms of Service",
+  "and": "and",
+  "privacy_policy": "Privacy Policy",
+  "signUp": "Sign Up",
+  "alreadyHaveAccount": "Already have an account?",
+  "signIn": "Sign in",
+  "personalInformation": "Personal Information",
+  "accountInformation": "Account Information",
+  "bioInformation": "Bio Information",
+  "accountSecurity": "Account Security",
+  "fullName": "Name",
+  "enterYourName": "Enter your name...",
+  "username": "Username",
+  "enterYourUsername": "Enter your username...",
+  "email": "Email",
+  "enterYourEmail": "Enter your email ...",
+  "birthDate": "Birth Date",
+  "bioOptional": "Bio (Optional)",
+  "enterYourBio": "Enter your bio ...",
+  "selectGender": "Select Gender",
+  "male": "Male",
+  "female": "Female",
+  "others": "Others",
+  "password": "Password",
+  "enterYourPassword": "Enter your password ...",
+  "confirmPassword": "Confirm Password",
+  "enterYourConfirmPassword": "Enter your confirm password ...",
+  "signUpWithGoogle": "Sign up with Google",
+  "next": "Next",
+  "back": "Back",
+  "somethingWrong": "Something went wrong!",
+  "Rachayitha": "Rachayitha",
+  "commenthere": "You can comment here after signing !",
+  "loginToComment": "Login to add a comment",
+  "needAnAccount": "Need an account?",
+  "createOne": "Create one!",
+  "addComment": "Add Comment here ...",
+  "cancel": "Cancel",
+  "comment": "Comment",
+  "liked": "Liked",
+  "newest": "Newest",
+  "comments": "Comments",
+  "like": "Like",
+  "purchase_confirmation": "Exciting choice! Just to confirm, purchasing {{contentName}} will deduct {{price}} Coins from your account!",
+  "purchase": "Purchase",
+  "close": "Close",
+  "author": "Author",
+  "chapters": "Chapters",
+  "views": "Views",
+  "read": "Read",
+  "purchased": "Purchased",
+  "purchase_for": "Purchase for {{price}} Coins",
+  "report": "Report",
+  "report_modal_title": "Help us improve our service",
+  "report_modal_select_category": "Select the Category which is violated by this author",
+  "submit": "Submit",
+  "about_tab_synopsis": "Synopsis",
+  "chapter_bar_chapter": "Chapter",
+  "chapter_bar_paid": "Paid",
+  "chapter_bar_locked": "Locked",
+  "chapter_bar_unlocked": "Unlocked",
+  "chapter_bar_subscription": "Subscription",
+  "chapter_list_tab_locked": "Locked Chapter",
+  "chapter_list_tab_unlocked": "Unlocked Chapter",
+  "chapter_list_tab_paid": "Paid",
+  "chapter_list_tab_subscription": "Available in Subscription",
+  "tab_area_about": "About",
+  "tab_area_table_of_contents": "Table of Contents",
+  "details_section_cover_image_alt": "Cover Image",
+  "details_section_info_loading": "Loading information...",
+
+  "serchInterest": "Search Your interest...",
+  "something_went_wrong": "Something went wrong",
+  "notavailable": "N/A",
+  "continueReading": "Continue Reading",
+  "newArrivals": "New Arrival",
+  "potentialStarlet": "Potential Starlet",
+  "youMayAlsoLike": "You may also Like",
+  "weeklyFeatured": "Weekly Featured",
+  "heading": "Chapter",
+  "chapterIndex": "Chapter Index",
+  "lockedChapter": "Locked Chapter",
+  "unlockedChapter": "Unlocked Chapter",
+  "paid": "Paid",
+  "loading": "Loading",
+  "thisChapterIsLocked": "This chapter is locked",
+  "youCanUnlockThisChapterByPurchasingOurSubscriptionOrYouCanBuyThisChapterIndividuallyIn": "You can unlock this chapter by purchasing our subscription or you can buy this chapter individually in",
+  "coins": "Coins",
+  "youCanUnlockThisChapterByPurchasingOurSubscription": "You can unlock this chapter by purchasing our subscription.",
+  "youCanUnlockThisChapterByPurchasingItIndividuallyIn": "You can unlock this chapter by purchasing it individually in",
+  "purchaseIndividually": "Purchase Individually",
+  "for": "for",
+  "youCanReadThis": "You can read this",
+  "bySigning": "by signing !",
+  "createOne": "Create One!",
+
+  "chapter:": "Chapter:",
+  "by": "By",
+  "rachayithaPvt.Ltd.": "rachayitha Pvt. Ltd.",
+  "chooseYourPlan": "Choose Your Plan",
+  "chooseYourPlanDescription": "Choose your plane from available options Global warming, zombies, nuclear war, all at once. Just one tipping point and the world itself would crumble.",
+  "pleaseWaitLoading": "Please wait, Loading...",
+  "payment": "Payment",
+  "successful": "Successful",
+  "failed": "Failed",
+  "backToHome": "Back to Home",
+  "nowYouCanCheckoutPaidChapters": "Now you can checkout paid chapters of your favorite books 👍 !",
+  "unableToVerify": "We were unable to verify your payment 😓!",
+  "yourSubscriptionIsValidTill": "Your subscription is valid till",
+  "continue": "Continue",
+  "Pay": "Pay {' '}"
+}

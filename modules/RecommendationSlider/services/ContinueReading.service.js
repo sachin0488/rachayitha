@@ -4,11 +4,15 @@ import { useQuery } from '@tanstack/react-query'
 import { ContentType } from '../constants/common.constants'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'i18next'
 
 const fetchContinueReading = async ({ contentType }) => {
   const res = await APIInstance({
     url: contentType === ContentType.BOOK ? `/incompletebookwatch/` : `/incompletepoemwatch/`,
     method: 'GET',
+    params:{
+      lang:i18n.language
+    }
   })
 
   const list = res?.data?.data

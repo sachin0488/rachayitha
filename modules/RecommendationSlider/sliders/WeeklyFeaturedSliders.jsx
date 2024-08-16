@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 
 import { mainMaxWidth } from 'modules/Landing/common/styles'
+import { useTranslation } from 'next-i18next'
 
 import { useWeeklyBookService } from '../services/WeeklyFeatured.service'
 
@@ -11,6 +12,7 @@ import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 import DataSection from '../components/DataSection'
 
 const WeeklyFeaturedSliders = () => {
+  const { t } = useTranslation("common");
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = useWeeklyBookService({ contentType: currentContent })
@@ -19,7 +21,7 @@ const WeeklyFeaturedSliders = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading>Weekly Featured</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+          <Heading>{t('weeklyFeatured')}</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
         <DataSection
           List={List}

@@ -1,15 +1,20 @@
 import styled from '@emotion/styled'
 import { Button, IconButton, Paper, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded'
 import ConfirmationModal from './ConfirmationModal'
 import { useRouter } from 'next/router'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
+
 export const mainMaxWidth = 1720
 
 const DeleteAccountPage = () => {
+  const { t } = useTranslation("common");
   const { back } = useRouter()
   const [open, setOpen] = useState(false)
+
   return (
     <Root>
       <ConfirmationModal open={open} setOpen={setOpen} />
@@ -23,47 +28,47 @@ const DeleteAccountPage = () => {
             />
           </IconButton>
           <Typography variant="h5" color="secondary" fontWeight={500} marginLeft={2}>
-            Delete Your Account
+            {t('deleteAccount.index.deleteYourAccount')}
           </Typography>
+          <SelectLanguageContainer />
         </Header>
         <StyledPaper>
           <Typography variant="h6" color="secondary" fontWeight={500} padding={2}>
-            Are you sure you want to delete your account?
+            {t('deleteAccount.index.areYouSureYouWantToDelete')}
           </Typography>
           <Typography variant="body2" color="secondary" paddingInline={2}>
-            Once you delete your account, there is no going back. Please be certain.
+            {t('deleteAccount.index.onceYouDeleteYourAccountThereIsNoGoingBack')}
           </Typography>
 
           <Typography variant="subtitle1" fontWeight={500} color="secondary" paddingInline={2} paddingTop={2} paddingBottom={1}>
-            Following are the things that will happen:
+            {t('deleteAccount.followingAreTheThingsThatWillHappen')}
           </Typography>
 
           <ul>
             <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              All your data will be deleted from our servers. This includes your profile, posts, comments, and any other data you have
-              provided us.
+              {t('deleteAccount.point1')}
             </Typography>
             <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              You will be logged out from all your devices.
+              {t('deleteAccount.point2')}
             </Typography>
             <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              You will not be able to recover your account.
-            </Typography>
-
-            <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              You will not be able to access your subscription.
+              {t('deleteAccount.point3')}
             </Typography>
 
             <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              You will not be able to access your coins.
+              {t('deleteAccount.point4')}
             </Typography>
 
             <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-              Your Published Poems and Novels or any other content will be deleted.
+              {t('deleteAccount.point5')}
+            </Typography>
+
+            <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
+              {t('deleteAccount.point6')}
             </Typography>
           </ul>
           <Typography variant="body1" color="secondary" padding={2}>
-            If you are sure, please click the button below.
+            {t('deleteAccount.index.ifYouAreSurePleaseClickTheButtonBelow')}
           </Typography>
 
           <Button
@@ -79,7 +84,7 @@ const DeleteAccountPage = () => {
             onClick={() => {
               setOpen(true)
             }}>
-            Delete Account
+            {t('deleteAccount.index.deleteAccount')}
           </Button>
         </StyledPaper>
       </Main>

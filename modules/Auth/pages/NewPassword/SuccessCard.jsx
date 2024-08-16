@@ -1,37 +1,36 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React from 'react'
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import { useTranslation } from 'next-i18next'
 import { Button, Typography } from '@mui/material'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer' 
 
 const SuccessCard = () => {
+  const { t } = useTranslation("common");
   return (
     <Main>
       <Body>
         <TitleText variant="h4" component="div" noWrap>
-          Password Updated
+          {t('NewPassword.SuccessCard.passwordUpdated')}
           <TitleText variant="h5" component="div">
-            Successfully!
+            {t('NewPassword.SuccessCard.sucessfully')}
           </TitleText>
         </TitleText>
 
         <DescriptionText variant="body1" component="div" color="secondary">
-          Congratulations! Your password has been successfully updated. You can now log in with your new password.
+          {t('NewPassword.SuccessCard.successMessage')}
         </DescriptionText>
 
         <Nav>
+        <SelectLanguageContainer />
           <Link href="/login">
-            <a>
-              <StyledButton>Go back and login</StyledButton>
-            </a>
+            <StyledButton>{t('NewPassword.SuccessCard.goToLogin')}</StyledButton>
           </Link>
         </Nav>
       </Body>
     </Main>
   )
 }
-
-
 
 const Main = styled.div`
   display: grid;
@@ -53,7 +52,6 @@ const Body = styled.div`
   gap: 20px;
 `
 
-
 const TitleText = styled(Typography)`
   font-weight: 600;
   color: ${({ theme }) => theme.palette.secondary.main};
@@ -70,7 +68,6 @@ const DescriptionText = styled(Typography)`
 const Nav = styled.div`
   margin-top: 0px;
   display: flex;
-  justify-content: space-between;
   justify-content: center;
 `
 
@@ -83,6 +80,5 @@ const StyledButton = styled(Button)`
     text-transform: unset;
   }
 `
-
 
 export default SuccessCard

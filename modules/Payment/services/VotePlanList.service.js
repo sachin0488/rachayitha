@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { PaymentQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import i18n from 'i18next'
 
 const useVotePlanListService = () => {
   const { data, isError, refetch, isLoading } = useQuery({
@@ -21,6 +22,9 @@ const fetchVotePlanListAPI = async () => {
   const res = await APIInstance({
     url: '/votetokenplan/',
     method: 'GET',
+    paraams:{
+      lang:i18n.language
+    },
   })
 
   return {

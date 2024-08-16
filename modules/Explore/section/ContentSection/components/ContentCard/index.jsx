@@ -1,23 +1,23 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-
 import { ButtonBase, Rating, Tooltip, Typography, useMediaQuery } from '@mui/material'
-
 import StarIcon from '@mui/icons-material/Star'
 import ToggleToLibraryButton from './ToggleToLibraryButton'
 import { useUserService } from 'modules/Auth/service/User.service'
 import Synopsis from 'modules/ContentDetail/components/Synopsis'
 import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded'
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded'
+import { useTranslation } from 'react-i18next'
 
 const ContentCard = ({ item, index, ranking }) => {
+  const { t } = useTranslation()
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width: 465px)')
   return (
     <Root>
       <Main>
-        {ranking && (
+      {ranking && (
           <RankingRoot>
             <RankingNumber variant="subtitle2">
               <RankingPlaceholder>{index + 1 <= 9 ? '0' : index + 1 <= 99 ? '' : ''}</RankingPlaceholder>
@@ -25,18 +25,11 @@ const ContentCard = ({ item, index, ranking }) => {
             </RankingNumber>
           </RankingRoot>
         )}
-        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
+        <Image alt={t('coverImage')} src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
-          {/* <HashtagList>
-            {item?.tags?.map(name => {
-              return <Hashtag key={name}>#{name}</Hashtag>
-            })}
-          </HashtagList> */}
-
           <TitleName variant="subtitle2">{item?.contentName}</TitleName>
-
           <CategoryName variant="subtitle2" noWrap lineHeight={1.15} margin={0}>
-            {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
+            {item?.category?.map(({ name }) => name).join(', ') || t('contentCard.defaultCategory')}
           </CategoryName>
           <Synopsis
             variant="subtitle2"
@@ -63,12 +56,11 @@ const ContentCard = ({ item, index, ranking }) => {
                   icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
                 />
               </RatingRoot>
-              <Status variant="caption">{item?.status}</Status>
+              <Status variant="caption">{t('contentCard.status')}</Status>
               <InfoCount variant="subtitle2">
                 {item?.likeCount}
                 <ThumbUpRoundedIcon color="primary" sx={{ fontSize: 17, ml: 1, mr: 1 }} />
               </InfoCount>
-
               <InfoCount variant="subtitle2">
                 {item?.commentCount}
                 <ForumRoundedIcon color="primary" sx={{ fontSize: 17, ml: 0.7, mb: -0.15 }} />
@@ -91,7 +83,7 @@ const ContentCard = ({ item, index, ranking }) => {
               icon={<StarIcon fontSize="small" sx={{ color: theme => theme.palette.primary.main }} />}
             />
           </RatingRoot>
-          <Status variant="caption">{item?.status}</Status>
+          <Status variant="caption">{t('contentCard.status')}</Status>
           <InfoCount variant="subtitle2">
             {item?.likeCount}
             <ThumbUpRoundedIcon sx={{ color: theme => theme.palette.primary.main, fontSize: 17, ml: 1, mr: 1 }} />
@@ -227,8 +219,6 @@ const InfoNav = styled.div`
     margin-bottom: -1px;
   }
   align-items: flex-end;
-
-  /* padding-right: 5px; */
 `
 
 const RatingRoot = styled.div`
@@ -268,10 +258,8 @@ const Status = styled(Typography)`
   font-weight: 400;
   letter-spacing: 0.5px;
   font-size: 0.7rem;
-  /* margin-left: auto; */
   margin-right: auto;
   position: relative;
-  /* top: -6px; */
 `
 
 const RankingRoot = styled.div`
@@ -292,7 +280,6 @@ const RankingRoot = styled.div`
   @media (max-width: 465px) {
     bottom: 40px;
     border-radius: 9px;
-
     padding: 5px 6px;
   }
 `

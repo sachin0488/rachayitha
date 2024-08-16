@@ -5,6 +5,7 @@ import { PaymentQuery } from '../constants/query.address'
 import { AuthQuery } from 'modules/Auth/constants/query.address'
 import { useChapterContentFCService } from 'modules/ReaderSection/service/ChapterContent.service'
 import { ContentDetailsQuery } from 'modules/ContentDetail/constants/query.address'
+import i18n from 'i18n'
 
 export const InternalPurchaseOrderType = {
   BOOK_CHAPTER: 'bookchapter',
@@ -41,6 +42,9 @@ const createInternalPurchaseAPI = async ({ orderType, amount, subscriptionId, vo
     url: '/internalpurchase/',
     method: 'POST',
     data: form,
+    params:{
+      lang:i18n.language
+    },
     header: {
       'Content-Type': 'multipart/form-data',
     },

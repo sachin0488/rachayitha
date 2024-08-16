@@ -8,8 +8,10 @@ import { useMemo, useRef } from 'react'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 // import AdsComponent from 'components/AdsComponent'
 import AdSense from 'react-adsense'
+import { useTranslation } from 'react-i18next'
 
 const ContentSection = ({ ranking }) => {
+  const { t } = useTranslation('contentSection')
   const { query } = useRouter()
   const mainRef = useRef(null)
 
@@ -28,7 +30,7 @@ const ContentSection = ({ ranking }) => {
   )
 
   if (isError) {
-    return <h1>Something went wrong!</h1>
+    return <h1>{t('error')}</h1>
   }
 
   if (ContentList?.length === 0 && isFetching)
@@ -47,7 +49,7 @@ const ContentSection = ({ ranking }) => {
       <NotAvailableBar>
         <MenuBookRoundedIcon sx={{ fontSize: 90, color: theme => theme.palette.primary.main + '37' }} />
         <Typography variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary.light">
-          {`Currently we don't have this!`}
+          {t('noContentMessage')}
         </Typography>
       </NotAvailableBar>
     )

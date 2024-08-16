@@ -2,61 +2,63 @@ import React from 'react'
 import { BsFacebook } from 'react-icons/bs'
 import { FaInstagramSquare } from 'react-icons/fa'
 import { AiFillTwitterCircle } from 'react-icons/ai'
-
 import LogoBox from './components/LogoBox'
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 const Footer = () => {
+  const { t } = useTranslation("common")
+
   return (
     <Root>
       <Main>
         <Section>
           <Heading variant="h5" component="div">
-            Discover
+            {t('discover')}
           </Heading>
           <Link href="/">
             <a>
-              <LinkButton>Home</LinkButton>
+              <LinkButton>{t('home')}</LinkButton>
             </a>
           </Link>
           <Link href="/explore?content_type=book&category=0&sort_by=Hot">
             <a>
-              <LinkButton>Explore</LinkButton>
+              <LinkButton>{t('explore')}</LinkButton>
             </a>
           </Link>
           <Link href="/ranking?content_type=book&category=0">
             <a>
-              <LinkButton>Ranking</LinkButton>
+              <LinkButton>{t('ranking')}</LinkButton>
             </a>
           </Link>
         </Section>
         <Divider />
         <Section>
           <Heading variant="h5" component="div">
-            Create
+            {t('create')}
           </Heading>
           <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel`} target="_blank" rel="noreferrer">
-            <LinkButton>Book</LinkButton>
+            <LinkButton>{t('book')}</LinkButton>
           </a>
           <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem`} target="_blank" rel="noreferrer">
-            <LinkButton>Poem</LinkButton>
+            <LinkButton>{t('poem')}</LinkButton>
           </a>
         </Section>
         <Divider />
         <Section>
           <Heading variant="h5" component="div">
-            About us
+            {t('about_us')}
           </Heading>
           <Link href="/privacy-policy">
             <a>
-              <LinkButton>Privacy Policy</LinkButton>
+              <LinkButton>{t('privacy_policy')}</LinkButton>
             </a>
           </Link>
           <Link href="/terms-and-conditions">
             <a>
-              <LinkButton>Terms and Conditions</LinkButton>
+              <LinkButton>{t('terms_and_conditions')}</LinkButton>
             </a>
           </Link>
         </Section>
@@ -64,7 +66,7 @@ const Footer = () => {
         <Divider />
         <Section>
           <Heading variant="h5" component="div">
-            Follow us
+            {t('follow_us')}
           </Heading>
           <SocialLinks>
             <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank" rel="noreferrer">
@@ -80,15 +82,15 @@ const Footer = () => {
 
           <ColumnSection>
             <Heading variant="h6" component="div">
-              Contact us
+              {t('contact_us')}
             </Heading>
             <Description variant="subtitle1">
-              <a href="mailto:support@rachayitha.com">support@rachayitha.com</a>
+              <a href="mailto:support@rachayitha.com">{t('email')}</a>
             </Description>
           </ColumnSection>
           <ColumnSection>
             <LogoBox />
-            <Description variant="subtitle2">rachayitha is the world’s leading community for creatives to share, and grow.</Description>
+            <Description variant="subtitle2">{t('description')}</Description>
           </ColumnSection>
         </Section>
       </Main>
@@ -99,10 +101,7 @@ const Footer = () => {
 const Root = styled.div`
   background: ${({ theme }) => theme.palette.primary.main}18;
   display: flex;
-  /* flex-direction: column;       */
   padding: 30px 20px;
-  /* padding: 30px 0px 0px; */
-  /* align-content: center; */
   justify-content: center;
   margin-top: auto;
 `
@@ -111,7 +110,6 @@ const Main = styled.div`
   gap: 10px;
   display: grid;
   grid-template-columns: 80px 80px 160px 260px;
-
   justify-content: space-between;
 
   @media (min-width: 1080px) {
@@ -193,22 +191,6 @@ const Divider = styled.div`
 const ColumnSection = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-top: 20px; */
-  /* padding-block: 5px;
-  padding-inline: 10px;
-  @media (max-width: 1000px) {
-    padding-inline: 30px;
-  }
-  @media (max-width: 860px) {
-    padding-inline: 15px;
-  }
-  @media (max-width: 435px) {
-    padding-inline: 2px;
-  }
-  @media (max-width: 405px) {
-    padding-inline: 0px;
-  } */
-  /* background: ${({ theme }) => theme.palette.primary.main}18; */
 `
 
 export default Footer

@@ -1,17 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { BodyContainer, MainContainer, RootContainer } from '../common/styles';
+import BannerSection from '../Section/BannerSection';
+import InfoSection from '../Section/InfoSection';
+import ProfileTabs from '../Section/ProfileTabs';
+import { useUserService } from 'modules/Auth/service/User.service';
+import styled from '@emotion/styled';
+import { Button, Typography } from '@mui/material';
+import Link from 'next/link';
+import nextI18NextConfig from "../../../next-i18next.config"
+import { appWithTranslation } from 'next-i18next';
 
-import { BodyContainer, MainContainer, RootContainer } from '../common/styles'
-
-import BannerSection from '../Section/BannerSection'
-import InfoSection from '../Section/InfoSection'
-import ProfileTabs from '../Section/ProfileTabs'
-import { useUserService } from 'modules/Auth/service/User.service'
-import styled from '@emotion/styled'
-import { Button, Typography } from '@mui/material'
-import Link from 'next/link'
+const emptyInitialI18NextConfig = {
+  i18n: {
+    defaultLocale: nextI18NextConfig.i18n.defaultLocale,
+    locales: nextI18NextConfig.i18n.locales,
+  },
+}
 
 const UserProfilePage = () => {
-  const { user, isLoading: isBannerLoading } = useUserService()
+  const { t } = useTranslation();
+  const { user, isLoading: isBannerLoading } = useUserService();
+
+  
+
   return (
     <RootContainer>
       <MainContainer>
@@ -22,10 +34,9 @@ const UserProfilePage = () => {
         </BodyContainer>
         <DeleteAccountSection>
           <Typography textAlign="center" variant="subtitle1" color="secondary">
-            If you want to delete your account, please click the button below.
+            {t('userProfilePage.deleteAccountMessage')}
           </Typography>
-
-          <Link href="/delete-account">
+          <Link href="/delete-account" passHref>
             <Button
               sx={{
                 opacity: 0.5,
@@ -33,14 +44,16 @@ const UserProfilePage = () => {
               variant="outlined"
               color="inherit"
               disableElevation>
-              I want to Delete my Account
+              {t('userProfilePage.deleteAccountButton')}
             </Button>
           </Link>
         </DeleteAccountSection>
       </MainContainer>
     </RootContainer>
-  )
-}
+  );
+};
+
+
 
 const DeleteAccountSection = styled.div`
   display: flex;
@@ -55,6 +68,6 @@ const DeleteAccountSection = styled.div`
   margin-inline: 1rem;
   max-width: 1240px;
   align-self: center;
-`
+`;
 
-export default UserProfilePage
+export default appWithTranslation(UserProfilePage, emptyInitialI18NextConfig);

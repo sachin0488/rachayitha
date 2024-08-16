@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { ButtonBase, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded'
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
@@ -23,6 +24,7 @@ const ChapterBar = ({
   reload,
   handleClose,
 }) => {
+  const {t} = useTranslation();
   const { query } = useRouter()
 
   const handleClick = useCallback(async () => {
@@ -37,7 +39,7 @@ const ChapterBar = ({
       <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>
-            <strong>Chapter {chapterSequence}:</strong>
+            <strong>{t(heading)} {chapterSequence}:</strong>
             <span> </span>
             {chapterTitle}
           </ChapterText>

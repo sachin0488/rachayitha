@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'components/StyledSlider'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import { mainMaxWidth } from 'modules/Landing/common/styles'
 
@@ -13,6 +14,7 @@ import ContentTabs, { ContentTypes } from '../components/ContentTabs'
 import DataSection from '../components/DataSection'
 
 const PotentialStarletSliders = () => {
+  const { t } = useTranslation("common");
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = usePotentialStarletService({ contentType: currentContent })
@@ -21,7 +23,7 @@ const PotentialStarletSliders = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading>Potential Starlet</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+          <Heading>{t('potentialStarlet')}</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
 
         <DataSection

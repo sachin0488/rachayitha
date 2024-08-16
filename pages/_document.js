@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from '../utility/createEmotionCache'
 import Script from 'next/script'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default class MyDocument extends Document {
   render() {
@@ -102,4 +103,12 @@ MyDocument.getInitialProps = async ctx => {
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
   }
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 }

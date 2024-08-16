@@ -1,5 +1,6 @@
 import React from 'react'
 import ErrorPageComp from 'modules/404Page/404Page'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const ErrorPage = () => {
   return (
@@ -10,6 +11,14 @@ const ErrorPage = () => {
 }
 
 export default ErrorPage
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 // @charset "UTF-8";
 

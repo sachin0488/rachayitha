@@ -1,6 +1,7 @@
 import { APIInstance } from 'services/global.service'
 import { useMutation } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
+import i18n from 'i18next'
 
 export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
   const form = new FormData()
@@ -14,6 +15,9 @@ export const createCoinPurchaseAPI = async ({ amount, qty, coinPlanId }) => {
     url: '/paymentphonepe/',
     method: 'POST',
     data: form,
+    params:{
+      lang:i18n.language
+    },
     header: {
       'Content-Type': 'multipart/form-data',
     },

@@ -3,11 +3,14 @@ import TextSection from './TextSection'
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded'
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const DownloadBookSection = () => {
+  const { t } = useTranslation('downloadBookSection')
   const is600x = useMediaQuery('(min-width: 600px)')
 
   const banner1 = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1668677637/Banner1_wcazjy.svg'
+
   return (
     <Root>
       <Main>
@@ -15,27 +18,29 @@ const DownloadBookSection = () => {
           color="secondary"
           heading={
             <>
-              Download Books
-              <br />
-              to read Offline.
+              {t('heading').split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             </>
           }
           subHeading={
             <>
-              Save your favorites easily and always have
+              {t('subHeading')}
               {is600x && <br />}
-              something to read.
             </>
           }
         />
         <ShowSection>
-          <Image alt="I Was Skeleton" src={banner1} />
+          <Image alt="Download Banner" src={banner1} />
 
           <DownloadBar>
-            <DownloadImage src={banner1} alt="I Was Skeleton" />
+            <DownloadImage src={banner1} alt="Download Banner" />
             <DownloadText>
-              <strong>I Was Skeleton...</strong>
-              <small>Downloading...</small>
+              <strong>{t('bookTitle')}</strong>
+              <small>{t('downloading')}</small>
             </DownloadText>
             <DownloadRoundedIcon color="primary" fontSize="large" />
           </DownloadBar>
@@ -75,7 +80,6 @@ const ShowSection = styled.div`
 `
 const Image = styled.img`
   width: 100%;
-  /* height: 100%; */
 `
 
 const DownloadBar = styled.div`

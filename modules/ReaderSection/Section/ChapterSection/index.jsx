@@ -2,13 +2,16 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { Typography, useMediaQuery } from '@mui/material'
 import { InView } from 'react-intersection-observer'
+import { useTranslation } from 'react-i18next'
 
 import DividerBar from 'modules/ReaderSection/components/DividerBar'
 import Paywall from './components/Paywall'
 import { useUserService } from 'modules/Auth/service/User.service'
 import SigninWall from './components/SigninWall'
+import { t } from 'i18next'
 
 const ChapterSection = ({ item, slug, contentId, contentType }) => {
+  const { t } = useTranslation();
   const { replace } = useRouter()
   const { isLoggedIn } = useUserService()
   const isMobile = useMediaQuery('(max-width:630px)')
@@ -37,7 +40,7 @@ const ChapterSection = ({ item, slug, contentId, contentType }) => {
       }}>
       <Main className="ql-container ql-snow">
         <Typography textAlign="center" variant="h3" component="h3" color="secondary" marginTop={2}>
-          Chapter: {item?.chapterSequence}
+          {t('chapter:')} {item?.chapterSequence}
         </Typography>
         <Typography paddingInline="10px" textAlign="center" variant="h4" component="h2" color="secondary" fontWeight={600} marginTop={1.1}>
           {item?.chapterTitle}

@@ -1,61 +1,63 @@
-import styled from '@emotion/styled'
-import moment from 'moment/moment'
-import { useEffect } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { Typography, useMediaQuery } from '@mui/material'
+import styled from '@emotion/styled';
+import moment from 'moment/moment';
+import { useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Typography, useMediaQuery } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-import CarouselList from './components/CarouselList'
-import ContentListSection from './components/ContentListSection'
-import SelectSelectedTime from './components/SelectSelectedTime'
+import CarouselList from './components/CarouselList';
+import ContentListSection from './components/ContentListSection';
+import SelectSelectedTime from './components/SelectSelectedTime';
 
-import { useTopCollectionService } from 'modules/Landing/services/TopCollection.service'
-
-const collectionTimeList = [
-  {
-    label: 'Last week',
-    value: moment().subtract(7, 'days').format('YYYY-MM-DD'),
-  },
-  {
-    label: 'Last month',
-    value: moment().subtract(30, 'days').format('YYYY-MM-DD'),
-  },
-  {
-    label: 'Last year',
-    value: moment().subtract(365, 'days').format('YYYY-MM-DD'),
-  },
-]
+import { useTopCollectionService } from 'modules/Landing/services/TopCollection.service';
 
 const TopCollection = () => {
-  const isTabletXSM = useMediaQuery('(min-width:900px)')
+  const { t } = useTranslation();
+  const isTabletXSM = useMediaQuery('(min-width:900px)');
   const methods = useForm({
     defaultValues: {
-      selectedTime: collectionTimeList[0].value,
+      selectedTime: moment().subtract(7, 'days').format('YYYY-MM-DD'),
     },
-  })
+  });
 
-  const selectedTime = methods.watch('selectedTime')
+  const selectedTime = methods.watch('selectedTime');
 
   const { data, isLoading, refetch } = useTopCollectionService({
     startDate: selectedTime,
     endDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
-  })
+  });
+
+  const collectionTimeList = [
+    {
+      label: t('topCollectionSection.lastWeek'),
+      value: moment().subtract(7, 'days').format('YYYY-MM-DD'),
+    },
+    {
+      label: t('topCollectionSection.lastMonth'),
+      value: moment().subtract(30, 'days').format('YYYY-MM-DD'),
+    },
+    {
+      label: t('topCollectionSection.lastYear'),
+      value: moment().subtract(365, 'days').format('YYYY-MM-DD'),
+    },
+  ];
 
   const List = [
     <ContentListSection key={1} contentName="Book" contentList={data?.books} isLoading={isLoading} />,
     <ContentListSection key={2} contentName="Poems" contentList={data?.poems} isLoading={isLoading} />,
     // <ContentListSection key={3} contentName="Shorts" contentList={data?.shorts} />,
-  ]
+  ];
 
   useEffect(() => {
-    refetch()
-  }, [selectedTime, refetch])
+    refetch();
+  }, [selectedTime, refetch]);
 
   return (
     <Root>
       <FormProvider {...methods}>
         <Main>
           <HeadingBox>
-            <Heading>Top collection over</Heading>
+            <Heading>{t('topCollectionSection.topCollectionHeader')}</Heading>
             <SelectSelectedTime name="selectedTime" menuList={collectionTimeList} />
           </HeadingBox>
           {isTabletXSM ? (
@@ -70,8 +72,8 @@ const TopCollection = () => {
         </Main>
       </FormProvider>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: flex;
@@ -79,7 +81,7 @@ const Root = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
-`
+`;
 
 const Main = styled.div`
   width: 100%;
@@ -90,7 +92,7 @@ const Main = styled.div`
   padding-block: 40px;
   gap: 10px;
   overflow: hidden;
-`
+`;
 
 const HeadingBox = styled.div`
   display: flex;
@@ -99,7 +101,7 @@ const HeadingBox = styled.div`
     gap: 0px;
     flex-direction: column;
   }
-`
+`;
 
 const Heading = styled(Typography)`
   font-weight: 600;
@@ -109,7 +111,7 @@ const Heading = styled(Typography)`
     font-size: 25px;
   }
   color: ${({ theme }) => theme.palette.secondary.main};
-`
+`;
 
 const CollectionList = styled.div`
   width: 100%;
@@ -118,6 +120,6 @@ const CollectionList = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-`
+`;
 
-export default TopCollection
+export default TopCollection;

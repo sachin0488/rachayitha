@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
-
+import i18n from 'i18next';
 export const toggleToLibraryAPI = async ({ contentId, contentType, addToLibrary }) => {
   let URL, data
 
@@ -18,11 +18,14 @@ export const toggleToLibraryAPI = async ({ contentId, contentType, addToLibrary 
       poem_id: contentId,
     }
   }
+  
+  const lang=i18n.language;
 
   const response = await APIInstance({
     url: URL,
     method: addToLibrary ? 'POST' : 'DELETE',
     data: data,
+    params: { lang },
   })
 
   return {

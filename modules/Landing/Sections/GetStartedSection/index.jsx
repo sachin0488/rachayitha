@@ -1,18 +1,21 @@
-import styled from '@emotion/styled'
-import React from 'react'
-import GetStartedInputField from './components/GetStartedInputField'
-import { Heading, SubHeading } from './style'
-import BookBanners from './components/GetStartedInputField/BookBanners'
-import PublishContent from '../PublishContent'
+import styled from '@emotion/styled';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import GetStartedInputField from './components/GetStartedInputField';
+import { Heading, SubHeading } from './style';
+import BookBanners from './components/GetStartedInputField/BookBanners';
+import PublishContent from '../PublishContent';
 
 const GetStartedSection = () => {
+  const { t } = useTranslation();
+
   return (
     <Root>
       <Heading>
-        Expand your Vision of
-        <span>Literature Here</span>
+        {t('expandYourVision')}
+        <span>{t('literatureHere')}</span>
       </Heading>
-      <SubHeading>India’s own online Reading Platform</SubHeading>
+      <SubHeading>{t('indiasOwnPlatform')}</SubHeading>
       {/* <GetStartedInputField /> */}
       <RootBanner>
         <div className="content">
@@ -21,8 +24,8 @@ const GetStartedSection = () => {
         <BookBanners />
       </RootBanner>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: flex;
@@ -32,11 +35,7 @@ const Root = styled.div`
   justify-content: flex-start;
   gap: 30px;
   padding-bottom: 160px;
-  /* background: red; */
   width: 100%;
-  /* min-height: calc(100vh - 60px); */
-  /* min-height: calc(100vh - 400px); */
-  /* max-height: calc(100vh - 400px); */
   font-size: 16px;
   padding-top: 100px;
   @media (max-height: 900px) {
@@ -62,10 +61,6 @@ const Root = styled.div`
   }
   @media (max-width: 460px) {
     font-size: 8px;
-    /* align-items: flex-start; */
-  }
-  @media (max-width: 410px) {
-    font-size: 7.5px;
   }
   @media (max-width: 410px) {
     font-size: 7.5px;
@@ -79,7 +74,7 @@ const Root = styled.div`
   @media (max-width: 321px) {
     font-size: 6px;
   }
-`
+`;
 
 const RootBanner = styled.div`
   display: flex;
@@ -89,7 +84,6 @@ const RootBanner = styled.div`
   position: relative;
   .content {
     position: absolute;
-    /* top: 40%; */
     left: 0;
     right: 0;
     bottom: 0;
@@ -110,6 +104,6 @@ const RootBanner = styled.div`
       top: 50%;
     }
   }
-`
+`;
 
-export default GetStartedSection
+export default GetStartedSection;

@@ -2,6 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { UserProfileQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import i18n from 'next-i18next'
 
 const useTransactionHistoryListService = () => {
   const { data, isError, fetchNextPage, refetch, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
@@ -40,6 +41,7 @@ const fetchTransactionHistoryListAPI = async ({ page }) => {
     method: 'GET',
     params: {
       page,
+      lang: i18n.language,
     },
   })
 

@@ -11,17 +11,19 @@ import VoteSection from '../Section/VoteSection'
 import { useContentDetailsService } from '../services/ContentDetails.service'
 import RecommendationSection from 'modules/RecommendationSlider/sliders/RecommendationSlider'
 import Head from 'next/head'
+import { useTranslation } from 'react-i18next';
 
 const ContentDetail = ({ contentType, contentId, slug }) => {
+  const {t}=useTranslation();
   const { error, Data } = useContentDetailsService({ contentId: contentId, slug: slug, contentType })
 
-  if (error) return <div>Something went wrong!</div>
+  if (error) return <div>{t('somethingWrong')}</div>
 
   return (
     <RootContainer>
       <MainContainer>
         <Head>
-          <title>Rachayitha | {Data?.contentName}</title>
+          <title>{t('Rachayitha')} | {Data?.contentName}</title>
           <meta
             name="keywords"
             content={['Rachayitha', 'rachayitha', ...(Data?.tags || []), ...(Data?.category?.map(item => item?.name) || [])].join()}

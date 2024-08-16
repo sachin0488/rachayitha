@@ -1,34 +1,33 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from '@emotion/styled'
-
 import { Skeleton, Tab, tabClasses, Tabs, tabsClasses, Typography } from '@mui/material'
-
-import { useRouter } from 'next/router'
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
 import useCommentListService from 'modules/ContentDetail/services/CommentList.service'
 import CreateCommentSection from './components/CreateCommentSection'
 import CommentCard from './components/CommentCard'
 import { InView } from 'react-intersection-observer'
+import { useTranslation } from 'react-i18next'
 
 const TabList = [
   {
     id: 1,
-    label: 'Liked',
+    label: 'liked',
     sort: 'like',
   },
   {
     id: 2,
-    label: 'Newest',
+    label: 'newest',
     sort: '-date',
   },
 ]
 
 const CommentSection = ({ contentType, contentId }) => {
+  const { t } = useTranslation()
   const [value, setValue] = useState(0)
 
   const { Data } = useContentDetailsService({ contentId, contentType })
 
-  const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError } = useCommentListService({
+  const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useCommentListService({
     parentCommentId: null,
     contentId,
     contentType,
@@ -45,12 +44,12 @@ const CommentSection = ({ contentType, contentId }) => {
         <Nav>
           <StyledTabs value={value} onChange={handleChange} aria-label="Comment List">
             {TabList.map((item, index) => (
-              <StyledTab key={item.id} label={item.label} {...a11yProps(index)} />
+              <StyledTab key={item.id} label={t(item.label)} {...a11yProps(index)} />
             ))}
           </StyledTabs>
 
           <CommentCountText variant="h6" component="div" color="secondary">
-            ({Data?.commentCount} Comments)
+            ({Data?.commentCount} {t('comments')})
           </CommentCountText>
         </Nav>
         <CreateCommentSection sortBy={TabList[value].sort} contentType={contentType} contentId={contentId} />
@@ -73,7 +72,7 @@ const CommentSection = ({ contentType, contentId }) => {
             threshold={1}
             delay={500}
             disabled={isFetching || isFetchingNextPage || !hasNextPage}
-            onChange={(inView, entry) => {
+            onChange={(inView) => {
               if (inView && hasNextPage) {
                 fetchNextPage()
               }

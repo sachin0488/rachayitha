@@ -3,11 +3,15 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { UserProfileQuery } from '../constants/query.address'
 import { ContentType } from '../constants/common.constants'
+import i18n from 'next-i18next'
 
 export const toggleToLibraryAPI = async ({ contentId, addToLibrary, contentType }) => {
   const response = await APIInstance({
     url: contentType === ContentType.BOOK ? `/userbooklibrary/` : `/userpoemlibrary/`,
     method: addToLibrary ? 'POST' : 'DELETE',
+    params:{
+      lang: i18n.language,
+    },
     data: contentType === ContentType.BOOK ? { book_id: contentId } : { poem_id: contentId },
   })
 

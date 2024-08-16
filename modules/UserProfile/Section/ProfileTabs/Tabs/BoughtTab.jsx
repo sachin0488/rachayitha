@@ -1,27 +1,29 @@
-import { InView } from 'react-intersection-observer'
-import { useState } from 'react'
-import { Typography } from '@mui/material'
+import { InView } from 'react-intersection-observer';
+import { useState } from 'react';
+import { Typography } from '@mui/material';
 
-import StyledChip from '../components/StyledChip'
-import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded'
-import BoughtContentCard from '../components/BoughtContentCard'
-import clsx from 'clsx'
-import { ContentContainer, ContentListBox, NotAvailableBar, StyledSkeleton, TabsRoot } from '../components/TabsCommonStyles'
+import StyledChip from '../components/StyledChip';
+import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded';
+import BoughtContentCard from '../components/BoughtContentCard';
+import clsx from 'clsx';
+import { ContentContainer, ContentListBox, NotAvailableBar, StyledSkeleton, TabsRoot } from '../components/TabsCommonStyles';
 
-import useBoughtProductService from 'modules/UserProfile/services/BoughtProduct.service'
+import useBoughtProductService from 'modules/UserProfile/services/BoughtProduct.service';
+import { useTranslation } from 'next-i18next';
 
 const contentTypes = [
   'book',
   'poem',
   //'story',
-]
+];
 
 const BoughtTab = () => {
-  const [selectedContentType, setSelectedContentType] = useState('book')
+  const { t } = useTranslation("common");
+  const [selectedContentType, setSelectedContentType] = useState('book');
 
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isError, isFetchingNextPage } = useBoughtProductService({
     contentType: selectedContentType,
-  })
+  });
 
   return (
     <TabsRoot>
@@ -44,13 +46,13 @@ const BoughtTab = () => {
           <NotAvailableBar>
             <ReportGmailerrorredRoundedIcon sx={{ fontSize: 55 }} color="primary" />
             <Typography variant="h6" component="div" textAlign="center" fontSize={14} fontWeight={500} color="secondary">
-              Something went wrong
+              {t('boughtTab.errorMessage')}
             </Typography>
           </NotAvailableBar>
         ) : ContentList?.length === 0 ? (
           <NotAvailableBar>
             <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
-              You have not bought any {selectedContentType} yet
+              {t('boughtTab.noContentMessage', { contentType: selectedContentType })}
             </Typography>
           </NotAvailableBar>
         ) : (
@@ -75,7 +77,7 @@ const BoughtTab = () => {
                 disabled={isFetching || isFetchingNextPage || !hasNextPage}
                 onChange={(inView, entry) => {
                   if (inView && hasNextPage) {
-                    fetchNextPage()
+                    fetchNextPage();
                   }
                 }}
               />
@@ -84,7 +86,7 @@ const BoughtTab = () => {
         )}
       </ContentContainer>
     </TabsRoot>
-  )
-}
+  );
+};
 
-export default BoughtTab
+export default BoughtTab;

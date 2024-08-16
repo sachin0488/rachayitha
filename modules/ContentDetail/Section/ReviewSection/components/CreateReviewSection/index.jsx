@@ -3,15 +3,18 @@ import { Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CreateReviewModal from './CreateReviewModal'
 import StyledRatingField from './CreateReviewModal/components/StyledRatingField'
+import { useTranslation } from 'react-i18next'
 
 const CreateReviewSection = ({ contentId, contentType }) => {
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation()
+
   return (
     <Root>
       <CreateReviewModal contentId={contentId} contentType={contentType} open={open} setOpen={setOpen} />
-      <InfoText variant="subtitle1">Share your thoughts with others</InfoText>
+      <InfoText variant="subtitle1">{t('reviewSection.infoText')}</InfoText>
       <Button variant="contained" onClick={() => setOpen(true)}>
-        Write a review
+        {t('reviewSection.button')}
       </Button>
     </Root>
   )

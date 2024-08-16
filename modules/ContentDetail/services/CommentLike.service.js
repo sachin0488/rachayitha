@@ -2,7 +2,7 @@ import { APIInstance } from 'services/global.service'
 import { ContentDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
-
+import i18n from 'i18next'
 const likeCommentAPI = async ({ contentId, commentId, contentType }) => {
   const response = await APIInstance({
     url: `/${contentType}like/`,
@@ -11,6 +11,10 @@ const likeCommentAPI = async ({ contentId, commentId, contentType }) => {
       [`${contentType}_id`]: contentId,
       [`${contentType}_comment_id`]: commentId,
     },
+    params:{
+      lang:i18n.language
+    },
+
     headers: {
       'Content-Type': 'application/json',
     },

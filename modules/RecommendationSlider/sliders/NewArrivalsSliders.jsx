@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'components/StyledSlider'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import { mainMaxWidth } from 'modules/Landing/common/styles'
 
@@ -11,6 +12,7 @@ import DataSection from '../components/DataSection'
 import MinimalCard from '../cards/MinimalCard'
 
 const NewArrivalsSliders = () => {
+  const { t } = useTranslation("common");
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = useNewArrivalsService({ contentType: currentContent })
@@ -19,7 +21,7 @@ const NewArrivalsSliders = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading>New Arrivals</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+          <Heading>{t('newArrivals')}</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
         <DataSection
           List={List}

@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 import { Typography } from '@mui/material'
 import DividerBar from 'modules/ReaderSection/components/DividerBar'
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
 
 const DetailsSection = ({ contentType, contentId, slug }) => {
+  const  {t} = useTranslation();
   const { Data, isLoading, isError, error } = useContentDetailsService({ contentType, contentId, slug })
 
   return (
@@ -24,12 +26,12 @@ const DetailsSection = ({ contentType, contentId, slug }) => {
           <ContentName variant="h3" component="h1">
             {Data?.contentName}
             <AuthorName variant="h6" component="small">
-              by <span className="name"> {Data?.authorName} </span>
+              {t('by')} <span className="name"> {Data?.authorName} </span>
             </AuthorName>
           </ContentName>
         </InfoSection>
         <Copyright>
-          <span className="symbol">©</span> rachayitha Pvt.Ltd
+          <span className="symbol">©</span> {t('rachayitha Pvt.Ltd')}
         </Copyright>
       </Main>
       <BottomReachedView>

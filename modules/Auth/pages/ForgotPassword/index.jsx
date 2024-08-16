@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button, CircularProgress, Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import StyledTextField from 'modules/Auth/components/FormComponents/StyledTextField'
 import SuccessCard from './SuccessCard'
@@ -12,8 +13,10 @@ import useFormError from 'hooks/useFormError'
 import { useSendResetPasswordLinkService } from 'modules/Auth/service/SendResetPassword.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
 
 const ForgotPasswordPage = () => {
+  const { t } = useTranslation("common");s
   const { query } = useRouter()
 
   const { handleSendLinkByEmail, isLoading } = useSendResetPasswordLinkService()
@@ -36,30 +39,34 @@ const ForgotPasswordPage = () => {
             <FormProvider {...methods}>
               <TextSection>
                 <TitleText variant="h4" noWrap>
-                  Lost Your{' '}
-                  <TitleText variant="h5" component="div">
+                  {t("forgotPassword.index.Lost Your")}
+                  {/* <TitleText variant="h5" component="div">
                     Password?
-                  </TitleText>
+                  </TitleText> */}
                 </TitleText>
                 <DescriptionText variant="subtitle2">
-                  Please enter the email associated with your account to reset your password.
+                  {t('forgotPassword.index.emailToResetPassword')}
                 </DescriptionText>
               </TextSection>
-              <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
+              <StyledTextField name="email" label={t('email')} placeholder={t('enterYourEmail')} />
 
-              <DescriptionText variant="subtitle2">We will send a email to change your password.</DescriptionText>
+              <DescriptionText variant="subtitle2">{t('forgotPassword.index.willSendEmailToChangePaassword')}</DescriptionText>
               <Nav>
+              <SigninLanguageContainer>
                 <Link href={{ pathname: '/login', query }}>
                   <a>
-                    <StyledButton>Login</StyledButton>
+                    <StyledButton>{t('forgotPassword.index.login')}</StyledButton>
                   </a>
                 </Link>
+
+               <SelectLanguageContainer />
+               </SigninLanguageContainer>
                 <StyledButton
                   disabled={isLoading}
                   startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
                   variant="contained"
                   onClick={methods.handleSubmit(handleSendLinkByEmail, handleFormError)}>
-                  Send
+                  {t('forgotPassword.index.send')}
                 </StyledButton>
               </Nav>
             </FormProvider>
@@ -181,5 +188,17 @@ const StyledForgotPassword = styled(Button)`
   padding: 2px 7px 2px;
   border-radius: 4px;
 `
+
+const SigninLanguageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 700px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
+
 
 export default ForgotPasswordPage

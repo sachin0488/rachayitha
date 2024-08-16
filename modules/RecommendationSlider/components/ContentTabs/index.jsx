@@ -2,7 +2,7 @@ import React from 'react'
 import StyledChip from './StyledChip'
 import styled from '@emotion/styled'
 import { ContentType } from 'modules/RecommendationSlider/constants/common.constants'
-
+import { useTranslation } from 'next-i18next'
 export const ContentTypes = [
   ContentType.BOOK,
   ContentType.POEM,
@@ -10,6 +10,7 @@ export const ContentTypes = [
 ]
 
 const ContentTabs = ({ currentContent, onChange }) => {
+  const { t } = useTranslation("common");
   return (
     <ContentListBox>
       {ContentTypes.map((item, index) => (

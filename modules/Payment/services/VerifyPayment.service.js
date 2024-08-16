@@ -3,6 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import { AuthQuery } from 'modules/Auth/constants/query.address'
+import i18n from 'i18next'
 
 export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id, razorpay_signature }) => {
   const form = new FormData()
@@ -15,6 +16,9 @@ export const verifyPaymentAPI = async ({ razorpay_payment_id, razorpay_order_id,
     url: '/callback/',
     method: 'POST',
     data: form,
+    params:{
+      lang: i18n.language
+    },
     header: {
       'Content-Type': 'multipart/form-data',
     },

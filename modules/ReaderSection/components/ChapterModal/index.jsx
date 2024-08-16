@@ -8,8 +8,10 @@ import PaidRoundedIcon from '@mui/icons-material/PaidRounded'
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'
 import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined'
+import { useTranslation } from 'react-i18next'
 
 const ChapterModal = ({ open, setOpen, chapterList, reload, contentType, contentId, slug }) => {
+  const { t } = useTranslation();
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
@@ -18,24 +20,24 @@ const ChapterModal = ({ open, setOpen, chapterList, reload, contentType, content
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={400}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
-          Chapter Index
+          {t('chapterIndex')}
         </Title>
         <MeaningChipList>
           <MeaningChip>
             <Typography variant="subtitle2" component="div" color="secondary">
-              Locked Chapter
+              {t('lockedChapter')}
             </Typography>
             <LockChip />
           </MeaningChip>
           <MeaningChip>
             <Typography variant="subtitle2" component="div" color="secondary">
-              Unlocked Chapter
+              {t('unlockedChapter')}
             </Typography>
             <UnlockChip />
           </MeaningChip>
           <MeaningChip>
             <Typography variant="subtitle2" component="div" color="secondary">
-              Paid
+             {t('paid')}
             </Typography>
             <PaidChip />
           </MeaningChip>

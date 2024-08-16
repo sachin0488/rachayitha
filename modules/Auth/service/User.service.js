@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import { APIInstance } from 'services/global.service'
 import { useEffect } from 'react'
 import { AuthTokenStore } from 'utility/authTokenStore'
-
+import i18n from 'i18next';
 export const useUserService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -83,6 +83,9 @@ const fetchUserDataAPI = () => {
   return APIInstance({
     url: '/user/',
     method: 'GET',
+    params: {
+      lang: i18n.language,
+    }
   })
     .then(res => {
       return [res, null]
@@ -97,6 +100,9 @@ const silentRenewalAPI = data => {
     url: '/token/refresh/',
     method: 'POST',
     data,
+    params: {
+      lang: i18n.language,
+    },
     headers: {
       'Content-Type': 'application/json',
     },

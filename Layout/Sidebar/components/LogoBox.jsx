@@ -2,8 +2,10 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import styled from '@emotion/styled'
 import React from 'react'
 import Link from 'next/link'
-
+import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 const LogoBox = () => {
+  const { t } = useTranslation();
   return (
     <Link href={'/'}>
       <a>
@@ -13,7 +15,7 @@ const LogoBox = () => {
               fontSize: 29,
             }}
           />
-          <Text>E Book</Text>
+          <Text>{t('e_book')}</Text>
         </Root>
       </a>
     </Link>

@@ -2,10 +2,10 @@ import styled from '@emotion/styled'
 
 import { motion } from 'framer-motion'
 import { useCallback, useId } from 'react'
-
+import { useTranslation } from 'react-i18next'
 const TabSection = ({ currentTabId, onTabChange, tabs }) => {
   const layoutId = useId()
-
+  const { t } = useTranslation();
   const handleChange = useCallback(
     item => () => {
       onTabChange(item.id)
@@ -18,7 +18,7 @@ const TabSection = ({ currentTabId, onTabChange, tabs }) => {
       <ul>
         {tabs.map(item => (
           <li key={item?.id} className={item?.id === currentTabId ? 'selected' : ''} onClick={handleChange(item)}>
-            {item?.label}
+            {t(`${item?.label}`)}
             {item?.id === currentTabId ? <motion.div className="underline" layoutId={layoutId} /> : null}
           </li>
         ))}

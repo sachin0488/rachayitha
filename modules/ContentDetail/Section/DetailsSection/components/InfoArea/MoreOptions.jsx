@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Button, Menu } from '@mui/material'
-
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded'
-import ReportModal from './ReportModal'
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded'
+import ReportModal from './ReportModal'
+import { useTranslation } from 'react-i18next'
 
 const MoreOptions = ({ contentId, contentType }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null)
+  const { t } = useTranslation()
+  const [anchorEl, setAnchorEl] = useState(null)
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
   const open = Boolean(anchorEl)
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -45,7 +47,7 @@ const MoreOptions = ({ contentId, contentType }) => {
             handleClose()
             setIsReportModalOpen(true)
           }}>
-          Report
+          {t('report')}
         </StyledButton>
       </StyledMenu>
     </>

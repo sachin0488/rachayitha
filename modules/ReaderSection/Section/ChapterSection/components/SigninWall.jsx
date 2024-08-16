@@ -3,13 +3,15 @@ import React from 'react'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 const SigninWall = ({ contentType }) => {
+  const { t } = useTranslation();
   return (
     <Root>
       <Main>
         <Typography variant="h5" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
-          You can read this {contentType} by signing !
+          {t('youCanReadThis')} {contentType} {t('bySigning')}
         </Typography>
         <Typography
           variant="subtitle2"
@@ -23,7 +25,7 @@ const SigninWall = ({ contentType }) => {
           <Link href="/create-account">
             <a>
               <Typography as="span" variant="subtitle2" fontWeight={500} component="div" color="primary" textAlign="center">
-                Create one!
+                {t('createOne')}
               </Typography>
             </a>
           </Link>
@@ -37,7 +39,7 @@ const SigninWall = ({ contentType }) => {
           }}>
           <a>
             <StyledButton disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
-              Sign In
+              {t('signIn')}
             </StyledButton>
           </a>
         </Link>

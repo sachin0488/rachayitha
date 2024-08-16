@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useChapterListService } from '../service/ChapterList.service'
 import { useChapterContentService } from '../service/ChapterContent.service'
@@ -15,8 +16,10 @@ import MobileChapterNavigation from '../Section/MobileChapterNavigation'
 import clsx from 'clsx'
 import { useDebounce } from '@uidotdev/usehooks'
 import LoadingBox from '../Section/ChapterSection/components/LoadingBox'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlug }) => {
+  const {t} = useTranslation();
   const theme = useTheme()
   const mainRef = useRef()
   const bodyRef = useRef()
@@ -254,6 +257,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
   }, [ChapterList, LoadedChapterList, chapterId, clearCacheExceptLCN, contentId, contentType, reload, router, slug])
 
   const [isFirstChapter, isLastChapter] = useMemo(() => {
+    // const {t} = useTranslation();
     const currentChapter = LoadedChapterList?.find(chapter => chapter.chapterId === chapterId)
     const currentChapterIndex = ChapterList?.findIndex(chapter => currentChapter?.chapterId === chapter?.chapterId)
 
@@ -272,7 +276,7 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
             hidden: !isInitialLoadingDebounced,
           })}>
           <main>
-            <Typography variant="h2">Loading</Typography>
+            <Typography variant="h2">{t('loading')}</Typography>
             <StyledLinearProgress />
           </main>
         </Loader>
@@ -352,6 +356,16 @@ const ReaderSectionPage = ({ contentType, slug, contentId, chapterId, chapterSlu
   )
 }
 export default memo(ReaderSectionPage)
+
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
+
 
 const StyledLinearProgress = styled(LinearProgress)`
   width: 100%;

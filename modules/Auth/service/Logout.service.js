@@ -3,7 +3,7 @@ import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { APIInstance, queryCache } from 'services/global.service'
-
+import i18n from 'i18next';
 const { setAccess, setRefresh, getAccess, getRefresh } = AuthTokenStore()
 
 export const useLogoutService = () => {
@@ -62,6 +62,9 @@ const logoutAPI = () => {
     method: 'POST',
     data: {
       refresh: getRefresh(),
+    },
+    params:{
+         lang: i18n.language
     },
     headers: {
       'Content-Type': 'application/json',

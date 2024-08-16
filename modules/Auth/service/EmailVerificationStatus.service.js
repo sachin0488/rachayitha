@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { create } from 'zustand'
-
+import i18n from 'i18next';
 const { setAccess, setRefresh } = AuthTokenStore()
 
 const useEmailVerificationStatusStore = create(set => ({
@@ -82,6 +82,9 @@ const emailVerificationAPI = async data => {
           password: data?.password,
         },
       },
+      params: {
+        lang: i18n.lang,
+      },
       headers: {
         'Content-Type': 'application/json',
         Authorization: undefined,
@@ -146,6 +149,9 @@ const emailVerificationAPI = async data => {
 //     headers: {
 //       Authorization: `Bearer ${accessToken}`,
 //     },
+//     params: {
+//       lang: i18n.language,
+//     },
 //   })
 //     .then(res => {
 //       return [res, null]
@@ -160,6 +166,9 @@ const emailVerificationAPI = async data => {
 //     url: '/token/refresh/',
 //     method: 'POST',
 //     data,
+//     params: {
+//       lang: i18n.language,
+//     },
 //   })
 //     .then(res => {
 //       return [res, null]

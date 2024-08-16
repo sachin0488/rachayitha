@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { InView } from 'react-intersection-observer'
 import { Skeleton, Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded'
@@ -9,6 +10,7 @@ import useTransactionHistoryListService from 'modules/UserProfile/services/Trans
 import TransactionCard from '../components/TransactionCard'
 
 const TransactionHistoryTab = () => {
+  const { t } = useTranslation("common");
   const { transactionList, fetchNextPage, hasNextPage, isFetching, isError, isFetchingNextPage } = useTransactionHistoryListService()
 
   return (
@@ -24,14 +26,14 @@ const TransactionHistoryTab = () => {
           <NotAvailableBar>
             <ReportGmailerrorredRoundedIcon sx={{ fontSize: 55 }} color="primary" />
             <Typography variant="h6" component="div" textAlign="center" fontSize={14} fontWeight={500} color="secondary">
-              Something went wrong
+              {t('transactionHistoryTab.errorMessage')}
             </Typography>
           </NotAvailableBar>
         ) : transactionList?.length === 0 ? (
           <NotAvailableBar>
             <LibraryAddCheckIcon sx={{ fontSize: 55 }} color="primary" />
             <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
-              You have no transaction history
+              {t('transactionHistoryTab.noTransactionsMessage')}
             </Typography>
           </NotAvailableBar>
         ) : (
@@ -96,39 +98,11 @@ const Root = styled.div`
   flex-direction: column;
   gap: 20px;
 `
+
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-
-  /* flex-wrap: wrap; */
   gap: 15px;
-
-  /* @media (max-width: 730px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 13px;
-  }
-  @media (max-width: 540px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 13px;
-  }
-
-  @media (max-width: 400px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 13px;
-  } */
-`
-
-const ContentListBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  @media (max-width: 415px) {
-    justify-content: flex-end;
-    margin-left: auto;
-  }
 `
 
 export default TransactionHistoryTab

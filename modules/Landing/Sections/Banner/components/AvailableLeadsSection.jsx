@@ -2,9 +2,12 @@ import React from 'react'
 import TextSection from './TextSection'
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 const AvailableLeadsSection = () => {
+  const { t } = useTranslation('common')
   const is600x = useMediaQuery('(min-width: 600px)')
+
   return (
     <Root>
       <Main>
@@ -12,30 +15,27 @@ const AvailableLeadsSection = () => {
           color="secondary"
           heading={
             <>
-              <span style={{ whiteSpace: 'nowrap' }}>Available for both</span>
+              <span style={{ whiteSpace: 'nowrap' }}>{t('heading')}</span>
               <br />
-              Male & Female Leads
+              {t('heading')}
             </>
           }
           subHeading={
             <>
-              Save your favorites easily and always have
+              {t('subHeading')}
               {is600x && <br />}
-              something to read.
             </>
           }
         />
         <ShowSection>
           <LeadCard style={{ color: '#8049FF' }}>
             <StyledImage src="/male_lead.jpeg" alt="MaleLead" />
-
-            <LeadCardText>Male Lead</LeadCardText>
+            <LeadCardText>{t('maleLead')}</LeadCardText>
           </LeadCard>
 
           <LeadCard style={{ color: '#F450AE' }}>
             <StyledImage src="/female_lead.jpeg" alt="FemaleLead" />
-
-            <LeadCardText>Female Lead</LeadCardText>
+            <LeadCardText>{t('femaleLead')}</LeadCardText>
           </LeadCard>
         </ShowSection>
       </Main>

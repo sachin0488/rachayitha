@@ -1,12 +1,14 @@
+import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
 import { Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const GetStartedInputField = () => {
   const { register, handleSubmit } = useForm()
   const { push } = useRouter()
+  const { t } = useTranslation('getStartedInputField')
 
   const handleRedirectToLoginPage = useCallback(
     data => {
@@ -19,9 +21,17 @@ const GetStartedInputField = () => {
 
   return (
     <Root>
-      <InputField type="email" placeholder="Write your email here..." {...register('email')} />
-      <GetStartedButton color="primary" variant="contained" onClick={handleSubmit(handleRedirectToLoginPage)}>
-        GET STARTED
+      <InputField
+        type="email"
+        placeholder={t('placeholder')}
+        {...register('email')}
+      />
+      <GetStartedButton
+        color="primary"
+        variant="contained"
+        onClick={handleSubmit(handleRedirectToLoginPage)}
+      >
+        {t('buttonLabel')}
       </GetStartedButton>
     </Root>
   )
@@ -31,12 +41,10 @@ export const Root = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   height: 56px;
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.palette.primary.main};
   padding-left: 5px;
-
   gap: 0px;
   width: 85vw;
   max-width: 700px;
@@ -44,25 +52,18 @@ export const Root = styled.div`
     height: 50px;
     max-width: 520px;
   }
-
   @media (max-width: 650px) {
     height: 47px;
   }
-
   @media (max-width: 580px) {
-    /* width: 80vw; */
     padding-left: 0px;
   }
-  @media (max-width: 460px) {
-  }
-
   @media (max-width: 380px) {
     height: 40px;
   }
   @media (max-width: 380px) {
     width: 87vw;
   }
-
   margin-top: 10px;
 `
 
@@ -109,7 +110,6 @@ export const GetStartedButton = styled(Button)`
     font-size: 1.6em;
   }
   @media (max-width: 390px) {
-    /* padding: 5px 10px 3px; */
     font-size: 0.82rem;
   }
   @media (max-width: 350px) {

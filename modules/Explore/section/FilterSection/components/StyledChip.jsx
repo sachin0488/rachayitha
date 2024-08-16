@@ -1,11 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-
 import { Chip } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 const StyledChip = ({ item }) => {
+  const { t } = useTranslation()
   const { query, pathname } = useRouter()
 
   return (

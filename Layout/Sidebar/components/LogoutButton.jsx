@@ -5,10 +5,11 @@ import { useLogoutService } from 'modules/Auth/service/Logout.service'
 
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const LogoutButton = ({ setIsOpen }) => {
   const { handleLogout } = useLogoutService()
-
+  const { t } = useTranslation();
   const handleClick = useCallback(() => {
     handleLogout()
     setIsOpen(false)
@@ -20,7 +21,7 @@ const LogoutButton = ({ setIsOpen }) => {
         handleClick()
       }}
       startIcon={<LogoutOutlinedIcon style={IconStyle} />}>
-      Logout
+      {t('logout')}
     </Root>
   )
 }

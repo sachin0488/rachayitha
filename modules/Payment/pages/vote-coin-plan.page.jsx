@@ -3,18 +3,19 @@ import { Typography } from '@mui/material'
 import React from 'react'
 import { Root } from '../common/styles'
 import VoteCoinPlan from '../section/VoteCoinPlan'
+import { useTranslation } from 'react-i18next'
 
 const VoteCoinPlanPage = () => {
+  const { t } = useTranslation();
   return (
     <Root>
       <Main>
         <TextSection>
           <Typography variant="h2" component="div" color="primary" fontWeight={600}>
-            Chose Your Plan
+           {t('chooseYourPlan')}
           </Typography>
           <Description variant="subtitle1" color="secondary">
-            Chose your plane from available options Global warming, zombies, nuclear war, all at once. Just one tipping point and the world
-            itself would crumble.
+           {t('chooseYourPlanDescription')}
           </Description>
         </TextSection>
         <VoteCoinPlan />

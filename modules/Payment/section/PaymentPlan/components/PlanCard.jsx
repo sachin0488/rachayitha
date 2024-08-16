@@ -2,10 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 
 const PlanCard = ({ Icon, name, description, heightLight, link }) => {
+  const { t } = useTranslation();
   return (
     <Root>
       <Main>
@@ -28,7 +30,7 @@ const PlanCard = ({ Icon, name, description, heightLight, link }) => {
             variant="contained"
             color="primary"
             endIcon={<KeyboardBackspaceRoundedIcon sx={{ rotate: '180deg' }} />}>
-            Continue
+            {t('continue')}
           </ContinueButton>
         </a>
       </Link>

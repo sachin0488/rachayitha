@@ -2,14 +2,15 @@ import Link from 'next/link'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { ButtonBase, Tooltip, Typography } from '@mui/material'
-
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded'
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined'
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'
 import CardMembershipOutlinedIcon from '@mui/icons-material/CardMembershipOutlined'
-//isAvailableInSubscription,
+import { useTranslation } from 'react-i18next'
+
 const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked, chapterSlug, contentId, slug, contentType }) => {
   const { query } = useRouter()
+  const { t } = useTranslation()
 
   return (
     <Link href={`/${contentType}/${contentId}/${slug}/read/${chapterId}/${chapterSlug}#chapter-${chapterId}`}>
@@ -17,7 +18,7 @@ const ChapterBar = ({ chapterId, chapterSequence, chapterTitle, isPaid, isLocked
         <Root>
           <Tooltip disableInteractive title={chapterTitle}>
             <ChapterText variant="subtitle1" noWrap>
-              <strong>Chapter {chapterSequence}:</strong>
+              <strong>{t('chapter_bar_chapter')} {chapterSequence}:</strong>
               <span> </span>
               {chapterTitle}
             </ChapterText>
@@ -103,4 +104,5 @@ const UnlockChip = styled(LockOpenRoundedIcon)`
 const SubscriptionChip = styled(CardMembershipOutlinedIcon)`
   color: ${({ theme }) => theme.palette.primary.main}d5;
 `
+
 export default ChapterBar

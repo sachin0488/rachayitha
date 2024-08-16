@@ -13,6 +13,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import moment from 'moment'
 import CloseIcon from '@mui/icons-material/Close'
+import { useTranslation } from 'react-i18next'
 
 import InfoField from './components/InfoField'
 import StoneSection from './components/StoneSection'
@@ -21,13 +22,17 @@ import EditProfileModal from './EditProfileModal'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined'
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined'
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
-import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
-import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
-import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
+// import MaleOutlinedIcon from '@mui/icons-material/MaleOutlinedIcon'
+// import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlinedIcon'
+// import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlinedIcon'
 import { useUserService } from 'modules/Auth/service/User.service'
 import useCurrentSubscriptionService from 'modules/Payment/services/CurrentSubscription.service'
+import MaleOutlined from '@mui/icons-material/MaleOutlined'
+import { FemaleOutlined } from '@mui/icons-material'
+import TransgenderOutlined from '@mui/icons-material/TransgenderOutlined'
 
 const InfoSection = () => {
+  const { t } = useTranslation()
   const { user, isEmailVerified } = useUserService()
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false)
   const { validityTill, isSubscribed } = useCurrentSubscriptionService()
@@ -52,7 +57,7 @@ const InfoSection = () => {
   ]
 
   const genderIcon = gender => {
-    return gender === 'male' ? MaleOutlinedIcon : gender === 'female' ? FemaleOutlinedIcon : TransgenderOutlinedIcon
+    return gender === 'male' ? MaleOutlined : gender === 'female' ? FemaleOutlined : TransgenderOutlined
   }
 
   const formatCount = count => {
@@ -62,7 +67,7 @@ const InfoSection = () => {
   return (
     <Root>
       <EditProfileModal open={isEditProfileModalOpen} setOpen={setIsEditProfileModalOpen} />
-      <Tooltip title="Edit Your Profile">
+      <Tooltip title={t('editYourProfile')}>
         <StyledEditButton color="primary" variant="contained" onClick={() => setIsEditProfileModalOpen(true)}>
           <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
         </StyledEditButton>
@@ -93,24 +98,23 @@ const InfoSection = () => {
         <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={user?.gender || 'N/A'} />
         <InfoField
           Icon={DateRangeOutlinedIcon}
-          text={`birthday - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
+          text={`${t('birthday')} - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
         />
-        <InfoField Icon={LocationOnOutlinedIcon} text="India" />
+        <InfoField Icon={LocationOnOutlinedIcon} text={t('location')} />
         <ButtonRow sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowerPopupOpen(true)}>
-    <Value>{formatCount(user?.followers || 1200)}</Value>
-    <Label>Followers</Label>
-  </Button>
-  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowingPopupOpen(true)}>
-    <Value>{formatCount(user?.following || 800)}</Value>
-    <Label>Following</Label>
-  </Button>
-  <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <Value>{formatCount(user?.createdBooks || 15)}</Value>
-    <Label>Created Books</Label>
-  </Button>
-</ButtonRow>
-
+          <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowerPopupOpen(true)}>
+            <Value>{formatCount(user?.followers || 1200)}</Value>
+            <Label>{t('followers')}</Label>
+          </Button>
+          <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowingPopupOpen(true)}>
+            <Value>{formatCount(user?.following || 800)}</Value>
+            <Label>{t('following')}</Label>
+          </Button>
+          <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Value>{formatCount(user?.createdBooks || 15)}</Value>
+            <Label>{t('createdBooks')}</Label>
+          </Button>
+        </ButtonRow>
 
         {isEmailVerified && (
           <NavList>
@@ -118,7 +122,7 @@ const InfoSection = () => {
               <Link href="/coin-plan">
                 <a>
                   <StyledButton disableElevation color="primary" variant="contained">
-                    Buy Coins
+                    {t('buyCoins')}
                   </StyledButton>
                 </a>
               </Link>
@@ -127,14 +131,14 @@ const InfoSection = () => {
               <Link href="/subscription-plan">
                 <a>
                   <StyledButton disableElevation color="secondary" variant="contained">
-                    Subscribe
+                    {t('subscribe')}
                   </StyledButton>
                 </a>
               </Link>
               <Link href="/vote-coin-plan">
                 <a>
                   <StyledButton disableElevation color="secondary" variant="contained">
-                    Buy Vote Coins
+                    {t('buyVoteCoins')}
                   </StyledButton>
                 </a>
               </Link>
@@ -143,7 +147,7 @@ const InfoSection = () => {
         )}
         {isSubscribed && (
           <SubscribedFlag variant="subtitle2" component="div" color="secondary">
-            Your Subscription is valid till {moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}
+            {t('subscriptionValidTill')} {moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}
           </SubscribedFlag>
         )}
       </Main>
@@ -152,8 +156,8 @@ const InfoSection = () => {
       <Dialog open={isFollowerPopupOpen} onClose={() => setFollowerPopupOpen(false)} sx={{ maxWidth: '100%' }}>
         <DialogTitle>
           <Button variant='contained' sx={{ marginRight: 'auto' }}
-            onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>Followers</Button>
-          <Button variant='text' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(true); }}>Following</Button>
+            onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>{t('followers')}</Button>
+          <Button variant='text' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(true); }}>{t('following')}</Button>
           <IconButton
             aria-label="close"
             onClick={() => setFollowerPopupOpen(false)}
@@ -183,8 +187,8 @@ const InfoSection = () => {
 
       <Dialog open={isFollowingPopupOpen} onClose={() => setFollowingPopupOpen(false)} sx={{ maxWidth: '100%' }}>
         <DialogTitle>
-          <Button variant='text' onClick={() => { setFollowerPopupOpen(true); setFollowingPopupOpen(false); }}>Followers</Button>
-          <Button variant='contained' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>Following</Button>
+          <Button variant='text' onClick={() => { setFollowerPopupOpen(true); setFollowingPopupOpen(false); }}>{t('followers')}</Button>
+          <Button variant='contained' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>{t('following')}</Button>
           <IconButton
             aria-label="close"
             onClick={() => setFollowingPopupOpen(false)}
@@ -207,7 +211,7 @@ const InfoSection = () => {
                 <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{person.name}</Typography>
                 <Typography variant="body2" sx={{ color: 'dimgray' }}>{person.phone}</Typography>
               </div>
-              <FollowButton variant="outlined" sx={{ marginLeft: '3rem', height: '1.7rem' }}>Following</FollowButton>
+              <FollowButton variant="outlined" sx={{ marginLeft: '3rem', height: '1.7rem' }}>{t('following')}</FollowButton>
             </FollowerRow>
           ))}
         </DialogContent>
@@ -356,21 +360,13 @@ const ButtonRow = styled.div`
   gap: 8px;
 `
 
-// const Button = styled.div`
-//   background: #f0f0f0;
-//   border: 1px solid #ddd;
-//   padding: 8px 16px;
-//   cursor: pointer;
-//   text-align: center;
-// `
-
 const Value = styled.span`
-  font-size: 24px; /* Adjust size as needed */
+  font-size: 24px;
   font-weight: bold;
 `
 
 const Label = styled.span`
-  font-size: 16px; /* Adjust size as needed */
+  font-size: 16px;
 `
 
 const FollowerRow = styled.div`

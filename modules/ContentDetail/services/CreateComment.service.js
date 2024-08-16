@@ -2,6 +2,7 @@ import { APIInstance } from 'services/global.service'
 import { ContentDetailsQuery } from '../constants/query.address'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
+import i18n from 'i18next'
 
 export const createCommentAPI = async ({ contentId, parentCommentId, comment, contentType }) => {
   console.log('contentId', contentId)
@@ -12,6 +13,9 @@ export const createCommentAPI = async ({ contentId, parentCommentId, comment, co
       [`${contentType}_id`]: contentId,
       parent_comment_id: parentCommentId,
       comments: comment,
+    },
+    params:{
+      lang:i18n.language
     },
     headers: {
       'Content-Type': 'application/json',

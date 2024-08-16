@@ -8,10 +8,11 @@ import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined'
 import FemaleOutlinedIcon from '@mui/icons-material/FemaleOutlined'
 import TransgenderOutlinedIcon from '@mui/icons-material/TransgenderOutlined'
 import ShareLocationRoundedIcon from '@mui/icons-material/ShareLocationRounded'
-
+import { useTranslation } from 'next-i18next'
 const AnotherUserInfoSection = ({ user }) => {
+  const { t } = useTranslation("common");
   const genderIcon = gender => {
-    return gender === 'male' ? MaleOutlinedIcon : gender === 'female' ? FemaleOutlinedIcon : TransgenderOutlinedIcon
+    return gender === t('male') ? MaleOutlinedIcon : gender === t('female') ? FemaleOutlinedIcon : TransgenderOutlinedIcon
   }
 
   return (
@@ -39,7 +40,7 @@ const AnotherUserInfoSection = ({ user }) => {
         <Row>
           <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={user?.gender || 'N/A'} />
 
-          <InfoField Icon={ShareLocationRoundedIcon} text="India" />
+          <InfoField Icon={ShareLocationRoundedIcon} text={t('location')} />
         </Row>
       </Main>
     </Root>

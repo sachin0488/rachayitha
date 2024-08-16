@@ -1,41 +1,41 @@
-import { useCallback, useEffect, useState } from 'react'
-import styled from '@emotion/styled'
-
-import { Tab, tabClasses, Tabs, tabsClasses, useMediaQuery, useTheme } from '@mui/material'
-
-import WorkTab from './Tabs/WorkTab'
-import AchievementTab from './Tabs/AchievementTab'
-import LibraryTab from './Tabs/LibraryTab'
-import BoughtTab from './Tabs/BoughtTab'
-import TransactionHistoryTab from './Tabs/TransactionHistoryTab'
+import { useCallback, useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import { Tab, tabClasses, Tabs, tabsClasses, useMediaQuery } from '@mui/material';
+import { useTranslation } from 'next-i18next';
+import WorkTab from './Tabs/WorkTab';
+import AchievementTab from './Tabs/AchievementTab';
+import LibraryTab from './Tabs/LibraryTab';
+import BoughtTab from './Tabs/BoughtTab';
+import TransactionHistoryTab from './Tabs/TransactionHistoryTab';
 
 const ProfileTabs = ({ item }) => {
-  const isMobile = useMediaQuery('(max-width: 1035px)')
-  const [value, setValue] = useState(0)
-  const [secondValue, setSecondValue] = useState(0)
+  const { t } = useTranslation("common");
+  const isMobile = useMediaQuery('(max-width: 1035px)');
+  const [value, setValue] = useState(0);
+  const [secondValue, setSecondValue] = useState(0);
 
   const handleChange = useCallback((event, newValue) => {
-    setValue(newValue)
-  }, [])
+    setValue(newValue);
+  }, []);
 
   const handleSecondChange = useCallback((event, newValue) => {
-    setSecondValue(newValue)
-  }, [])
+    setSecondValue(newValue);
+  }, []);
 
   useEffect(() => {
     if (isMobile) {
-      setValue(0)
-      setSecondValue(0)
+      setValue(0);
+      setSecondValue(0);
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   if (isMobile) {
     return (
       <Root>
         <StyledTabs variant="scrollable" value={value} onChange={handleChange} aria-label="Comment List">
-          <StyledTab label="Library" {...a11yProps(0)} />
-          <StyledTab label="Bought Product" {...a11yProps(1)} />
-          <StyledTab label="Transactions" {...a11yProps(2)} />
+          <StyledTab label={t('profileTabs.library')} {...a11yProps(0)} />
+          <StyledTab label={t('profileTabs.boughtProduct')} {...a11yProps(1)} />
+          <StyledTab label={t('profileTabs.transactions')} {...a11yProps(2)} />
         </StyledTabs>
         <TabPanel value={value} index={0}>
           <LibraryTab item={item} />
@@ -49,8 +49,8 @@ const ProfileTabs = ({ item }) => {
           <TransactionHistoryTab item={item} />
         </TabPanel>
         <StyledTabs value={secondValue} onChange={handleSecondChange} aria-label="Comment List">
-          <StyledTab label="Achievement" {...a11yProps(0)} />
-          <StyledTab label="Original Work" {...a11yProps(1)} />
+          <StyledTab label={t('profileTabs.achievement')} {...a11yProps(0)} />
+          <StyledTab label={t('profileTabs.originalWork')} {...a11yProps(1)} />
         </StyledTabs>
         <TabPanel value={secondValue} index={0}>
           <AchievementTab item={item} />
@@ -60,17 +60,17 @@ const ProfileTabs = ({ item }) => {
           <WorkTab item={item} />
         </TabPanel>
       </Root>
-    )
+    );
   }
 
   return (
     <Root>
       <StyledTabs variant="standard" value={value} onChange={handleChange} aria-label="Comment List">
-        <StyledTab label="Library" {...a11yProps(0)} />
-        <StyledTab label="Bought Product" {...a11yProps(1)} />
-        <StyledTab label="Transactions" {...a11yProps(2)} />
-        <StyledTab label="Achievement" {...a11yProps(3)} />
-        <StyledTab label="Original Work" {...a11yProps(4)} />
+        <StyledTab label={t('profileTabs.library')} {...a11yProps(0)} />
+        <StyledTab label={t('profileTabs.boughtProduct')} {...a11yProps(1)} />
+        <StyledTab label={t('profileTabs.transactions')} {...a11yProps(2)} />
+        <StyledTab label={t('profileTabs.achievement')} {...a11yProps(3)} />
+        <StyledTab label={t('profileTabs.originalWork')} {...a11yProps(4)} />
       </StyledTabs>
       <TabPanel value={value} index={0}>
         <LibraryTab item={item} />
@@ -92,15 +92,15 @@ const ProfileTabs = ({ item }) => {
         <WorkTab item={item} />
       </TabPanel>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
-`
+`;
 
 const StyledTab = styled(Tab)`
   display: flex;
@@ -129,7 +129,7 @@ const StyledTab = styled(Tab)`
   }
 
   transition: 0.1s ease-in 150ms;
-`
+`;
 
 const StyledTabs = styled(Tabs)`
   overflow: visible;
@@ -170,17 +170,17 @@ const StyledTabs = styled(Tabs)`
     border-radius: 12px;
     font-weight: 500;
   }
-`
+`;
 
 const TabPanel = ({ children, value, index }) => {
-  return <>{value === index ? children : <></>}</>
-}
+  return <>{value === index ? children : <></>}</>;
+};
 
 const a11yProps = index => {
   return {
     id: `tab-${index}`,
     'aria-controls': `tabpanel-${index}`,
-  }
-}
+  };
+};
 
-export default ProfileTabs
+export default ProfileTabs;

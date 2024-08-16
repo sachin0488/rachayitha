@@ -4,32 +4,34 @@ import TabBox from './components/TabBax'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 // import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded'
+import { useTranslation } from 'react-i18next'
 
-const TabList = [
-  {
-    id: 0,
-    name: 'Novel',
-    contentType: 'book',
-    category: 0,
-    icon: <MenuBookRoundedIcon color="white" />,
-  },
-  // {
-  //   id: 1,
-  //   name: 'Short',
-  //   contentType: 'short',
-  //   category: 1,
-  //   icon: <LocalLibraryRoundedIcon color="white" />,
-  // },
-  {
-    id: 1,
-    name: 'Poem',
-    contentType: 'poem',
-    category: 0,
-    icon: <DriveFileRenameOutlineOutlinedIcon color="white" />,
-  },
-]
 
 const TabSection = () => {
+  const { t } = useTranslation()
+  const TabList = [
+    {
+      id: 0,
+      name: t('novel'),
+      contentType: 'book',
+      category: 0,
+      icon: <MenuBookRoundedIcon color="white" />,
+    },
+    // {
+    //   id: 1,
+    //   name: 'Short',
+    //   contentType: 'short',
+    //   category: 1,
+    //   icon: <LocalLibraryRoundedIcon color="white" />,
+    // },
+    {
+      id: 1,
+      name: t('poem'),
+      contentType: 'poem',
+      category: 0,
+      icon: <DriveFileRenameOutlineOutlinedIcon color="white" />,
+    },
+  ]
   return (
     <Root>
       <TabBox TabList={TabList} />

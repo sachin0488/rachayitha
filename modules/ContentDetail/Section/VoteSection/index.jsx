@@ -17,14 +17,16 @@ import InfoModal from 'components/StyledModal/InfoModal'
 import { useUserService } from 'modules/Auth/service/User.service'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 const VoteSection = ({ contentType, contentId }) => {
   const isMobile = useMediaQuery('(max-width: 500px)')
-  const { Data, isLoading } = useContentDetailsService({ contentId: contentId, contentType })
+  const { Data, isLoading } = useContentDetailsService({ contentId, contentType })
   const [isVoteModalOpen, setVoteModalOpen] = useState(false)
-  const { isFetching, Data: VoteData } = useFetchVoteService({ contentId: contentId, contentType })
-  const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ contentId: contentId, contentType })
+  const { isFetching, Data: VoteData } = useFetchVoteService({ contentId, contentType })
+  const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ contentId, contentType })
   const { isLoggedIn } = useUserService()
+  const { t } = useTranslation()
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
@@ -49,19 +51,19 @@ const VoteSection = ({ contentType, contentId }) => {
       <Main>
         <Field>
           <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
-          <Text style={{ fontSize: isMobile && 15 }}>Votes are held every day to rank your favorite Novel</Text>
+          <Text style={{ fontSize: isMobile && 15 }}>{t('voteSection.voteInfo')}</Text>
         </Field>
         <InfoModal
-          messageNotice={`Are you sure you want to vote this ${contentType} named ${Data?.contentName}?`}
+          messageNotice={t('voteSection.voteConfirmation', { contentType: contentType, contentName: Data?.contentName })}
           open={isVoteModalOpen}
           setOpen={setVoteModalOpen}
           isLoading={isMutating}
-          buttonText={`Yes, let's Vote`}
+          buttonText={t('voteSection.voteButtonText')}
           onClickOk={mutate}
         />
         <Bottom>
           <InfoSection>
-            <Tooltip title="Ranking">
+            <Tooltip title={t('voteSection.rankingTooltip')}>
               <VoteInfoField>
                 <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
@@ -69,7 +71,7 @@ const VoteSection = ({ contentType, contentId }) => {
                 </HighlightedText>
               </VoteInfoField>
             </Tooltip>
-            <Tooltip title="Total Votes">
+            <Tooltip title={t('voteSection.totalVotesTooltip')}>
               <VoteInfoField>
                 <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
@@ -78,9 +80,8 @@ const VoteSection = ({ contentType, contentId }) => {
               </VoteInfoField>
             </Tooltip>
           </InfoSection>
-          {/* <TollOutlinedIcon sx={{ color: blue[500] }} /> 0 */}
           {isLoggedIn && isAlreadyVoted && (
-            <Tooltip title="Your vote for this Novel">
+            <Tooltip title={t('voteSection.yourVoteTooltip')}>
               <VoteButton
                 disableElevation
                 disableRipple
@@ -98,7 +99,7 @@ const VoteSection = ({ contentType, contentId }) => {
             </Tooltip>
           )}
           {isLoggedIn ? (
-            <Tooltip title="Vote This content">
+            <Tooltip title={t('voteSection.voteTooltip')}>
               <AddVoteButton
                 disabled={isMutating}
                 is_mutating={String(isMutating)}
@@ -112,7 +113,7 @@ const VoteSection = ({ contentType, contentId }) => {
                     <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
                   )}
                 </div>
-                <Typography variant="subtitle2">Vote</Typography>
+                <Typography variant="subtitle2">{t('voteSection.voteButton')}</Typography>
               </AddVoteButton>
             </Tooltip>
           ) : (
@@ -125,7 +126,7 @@ const VoteSection = ({ contentType, contentId }) => {
                     padding: '10px 18px',
                     boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
                   }}>
-                  <Typography variant="subtitle2">Sign in</Typography>
+                  <Typography variant="subtitle2">{t('voteSection.signIn')}</Typography>
                   <LoginRoundedIcon />
                 </Button>
               </a>
@@ -222,9 +223,6 @@ const Bottom = styled.div`
   }
   @media (max-width: 375px) {
     flex-direction: column;
-    /* display: grid; */
-    /* grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr; */
   }
 `
 

@@ -16,10 +16,10 @@ import {
   Root,
   StyledButton,
 } from '../../ProfileTabs/components/CardCommonStyles'
-
+import { useTranslation } from 'react-i18next'
 const WorkContentCard = ({ item, authorId }) => {
   const { isLoggedIn } = useUserService()
-
+  const { t } = useTranslation()
   return (
     <Root>
       <Main>
@@ -33,7 +33,7 @@ const WorkContentCard = ({ item, authorId }) => {
         ) : (
           <></>
         )}
-        <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
+        <Image alt={t('coverImage')} src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
         <InfoSection>
           <InfoLeft>
             <TitleName component="h6" noWrap>

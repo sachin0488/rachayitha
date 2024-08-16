@@ -3,7 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { ExploreQuery } from '../constants/query.address'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
-
+import i18n from 'i18next';
 const useExplore = ({ categoryId, contentType, sortBy }) => {
   const { data, error, isError, fetchNextPage, refetch, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
     queryKey: [ExploreQuery.EXPLORE_LIST, { categoryId, contentType, sortBy }],
@@ -27,6 +27,7 @@ const useExplore = ({ categoryId, contentType, sortBy }) => {
 }
 
 const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) => {
+  const lang = i18n.language;
   const res = await APIInstance({
     url: contentType?.toLocaleLowerCase() === 'poem' ? `/explorepoem/` : `/explorebook/`,
     method: 'GET',
@@ -34,6 +35,7 @@ const fetchExploreListAPI = async ({ categoryId, contentType, page, sortBy }) =>
       category_id: parseInt(categoryId) === 0 ? undefined : categoryId,
       sort_by: sortBy,
       page,
+      lang,
     },
   })
 

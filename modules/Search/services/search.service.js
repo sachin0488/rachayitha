@@ -3,6 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { SearchQuery } from '../constants/query.address'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'i18next'
 
 const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword, contentType }) => {
   const res = await APIInstance({
@@ -11,6 +12,7 @@ const fetchSearchListAPI = async ({ pageParam = 1, SearchKeyword, contentType })
     params: {
       page: pageParam,
       book_name: SearchKeyword,
+      lang: i18n.language,
     },
   })
 

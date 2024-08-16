@@ -7,8 +7,10 @@ import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import { useRouter } from 'next/router'
 import { useToggleToLibraryService } from 'modules/Explore/services/ToggleToLibrary.service'
 import { ExploreQuery } from 'modules/Explore/constants/query.address'
+import { useTranslation } from 'react-i18next'
 
 const ToggleToLibraryButton = ({ contentId, libraryAdded, ranking }) => {
+  const { t } = useTranslation()
   const { query } = useRouter()
 
   const { mutate, isLoading } = useToggleToLibraryService({
@@ -21,7 +23,7 @@ const ToggleToLibraryButton = ({ contentId, libraryAdded, ranking }) => {
   })
 
   return (
-    <Tooltip title={libraryAdded ? 'Remove from Library' : 'Add to Library'}>
+    <Tooltip title={libraryAdded ? t('toggleToLibraryButton.removeFromLibrary') : t('toggleToLibraryButton.addToLibrary')}>
       <ToggleToLibraryStyledButton
         disabled={isLoading}
         variant="contained"

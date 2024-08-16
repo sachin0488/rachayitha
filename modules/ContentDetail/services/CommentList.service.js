@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { ContentDetailsQuery } from '../constants/query.address'
+import i18n from 'i18next'
 
 const fetchCommentListAPI = async ({ pageParam = 1, contentId, parentCommentId, sortBy, contentType }) => {
   const res = await APIInstance({
@@ -11,6 +12,7 @@ const fetchCommentListAPI = async ({ pageParam = 1, contentId, parentCommentId, 
       [`${contentType}_id`]: contentId,
       parent_comment_id: parentCommentId,
       sort_by: sortBy,
+      lang : i18n.language
     },
   })
 

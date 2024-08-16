@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { alpha, InputBase, styled, useMediaQuery } from '@mui/material'
 import SearchModal from './Modal'
+import { useTranslation } from 'react-i18next'
 
 const SearchBoxWithModal = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const isTabletSM = useMediaQuery('(min-width:1070px)')
   const isMobileXS = useMediaQuery('(max-width:590px)')
+  const { t } = useTranslation()
 
   return (
     <>
@@ -23,7 +25,7 @@ const SearchBoxWithModal = () => {
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
-            placeholder={isTabletSM ? 'Search Novels, poems and many more…' : 'Search here...'}
+            placeholder={isTabletSM ? t('searchBox.placeholder.desktop') : t('searchBox.placeholder.mobile')}
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>
@@ -72,7 +74,7 @@ const SearchIconWrapperForMobile = styled('div')(({ theme }) => ({
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: '${({ theme }) => theme.palette.secondary.main}',
+  color: theme.palette.secondary.main,
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -85,7 +87,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
   '& .MuiInputBase-input::placeholder': {
-    color: '${({ theme }) => theme.palette.secondary.main}',
+    color: theme.palette.secondary.main,
     opacity: 0.9,
   },
 }))

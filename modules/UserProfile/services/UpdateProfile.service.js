@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
 import { AuthQuery } from 'modules/Auth/constants/query.address'
+import i18n from 'next-i18next'
 
 export const useUpdateProfileService = () => {
   const { enqueueSnackbar } = useSnackbar()
@@ -66,6 +67,9 @@ const updateUserProfileAPI = async data => {
     url: '/user/',
     method: 'PUT',
     data: form,
+    params:{
+      lang:i18n.language
+    },
     header: {
       'Content-Type': 'multipart/form-data',
     },

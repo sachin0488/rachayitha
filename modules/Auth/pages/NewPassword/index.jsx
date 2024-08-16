@@ -13,10 +13,12 @@ import useFormError from 'hooks/useFormError'
 import { useResetPasswordService } from 'modules/Auth/service/ResetPassword.service'
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
+import { useTranslation } from 'next-i18next';
 
 const NewPasswordPage = () => {
   const { query } = useRouter()
-
+  const { t } = useTranslation("common");
   const { handleFormError } = useFormError()
   const { handleResetPasswordByToken, isLoading } = useResetPasswordService()
 
@@ -45,19 +47,20 @@ const NewPasswordPage = () => {
             <FormProvider {...methods}>
               <TextSection>
                 <TitleText variant="h4" component="div" noWrap>
-                  Choose a new{' '}
-                  <TitleText variant="h5" component="div">
+                 {t('NewPassword.index.chooseANewPassword') }
+                  {/* <TitleText variant="h5" component="div">
                     Password?
-                  </TitleText>
+                  </TitleText> */}
                 </TitleText>
                 <DescriptionText variant="subtitle2">
-                  Please enter your new password below to save the changes and regain access to your account.
+                  {t('NewPassword.index.enterPassword') }
                 </DescriptionText>
               </TextSection>
-              <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." />
-              <StyledPasswordField name="confirmPassword" label="Password Confirm" placeholder="Enter your Confirm Password ..." />
+              <StyledPasswordField name="password" label={t('password')} placeholder={t('enterYourPassword')} />
+              <StyledPasswordField name="confirmPassword" label={t('confirmPassword')} placeholder={t('enterYourConfirmPassword')} />
 
               <Nav>
+              <SelectLanguageContainer />
                 <StyledButton
                   disabled={isLoading}
                   sx={{ ml: 'auto' }}
@@ -67,7 +70,7 @@ const NewPasswordPage = () => {
                     data => handleResetPasswordByToken({ ...data, confirmPassword: undefined }),
                     handleFormError,
                   )}>
-                  Save
+                  {t('NewPassword.index.save') }
                 </StyledButton>
               </Nav>
             </FormProvider>

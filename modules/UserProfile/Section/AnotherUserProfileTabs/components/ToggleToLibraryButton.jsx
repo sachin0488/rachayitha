@@ -4,8 +4,9 @@ import { Button, Tooltip } from '@mui/material'
 import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import { useToggleToLibraryService } from 'modules/UserProfile/services/ToggleToLibrary.service'
-
+import { useTranslation } from 'react-i18next'
 const ToggleToLibraryButton = ({ contentId, libraryAdded, contentType, queryKey }) => {
+  const { t } = useTranslation()
   const { mutate, isLoading } = useToggleToLibraryService({
     contentId,
     contentType,
@@ -13,7 +14,7 @@ const ToggleToLibraryButton = ({ contentId, libraryAdded, contentType, queryKey 
   })
 
   return (
-    <Tooltip title={libraryAdded ? 'Remove from Library' : 'Add to Library'}>
+    <Tooltip title={libraryAdded ? t('toggleToLibraryButton.removeFromLibrary') : t('toggleToLibraryButton.addToLibrary')}>
       <ToggleToLibraryStyledButton
         disabled={isLoading}
         variant="contained"

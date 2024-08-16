@@ -6,8 +6,10 @@ import { useRouter } from 'next/router'
 import StyledCheckButton from './StyledCheckButton'
 import { useDebounce } from '@uidotdev/usehooks'
 import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
 const DrawerBox = ({ List }) => {
+  const { t } = useTranslation()
   const { query } = useRouter()
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -33,7 +35,7 @@ const DrawerBox = ({ List }) => {
   return (
     <>
       <StyledButton variant="text" color="primary" endIcon={<SortRoundedIcon />} onClick={() => setIsDrawerOpen(true)}>
-        Genres
+        {t('drawerBox.genres')}
       </StyledButton>
 
       <StyledDrawer
@@ -45,11 +47,11 @@ const DrawerBox = ({ List }) => {
         open={isDrawerOpen && isDrawerOpenDebounced}
         onClose={() => setIsDrawerOpen(false)}>
         <Content>
-          <Heading variant="h4">{SelectedList?.contentType === 'book' ? 'Novel' : SelectedList?.contentType}</Heading>
+          <Heading variant="h4">{SelectedList?.contentType === 'book' ? t('drawerBox.novel') : SelectedList?.contentType}</Heading>
           <StyledCheckButton
             category={{
               categoryId: 0,
-              categoryName: 'All Categories',
+              categoryName: t('drawerBox.allCategories'),
             }}
             contentType={SelectedList?.contentType?.toLowerCase()}
           />
@@ -67,7 +69,6 @@ export default DrawerBox
 const Heading = styled(Typography)`
   font-weight: 700;
   text-transform: capitalize;
-  /* padding: 0px 14px; */
   margin-bottom: 7px;
 `
 
@@ -97,9 +98,7 @@ const Content = styled.div`
   overflow-y: scroll;
   gap: 13px;
   max-height: 70vh;
-
   padding: 23px 20px 62px;
-  /* padding-right: 20px; */
   width: 100%;
   @media (min-width: 430px) {
     &::-webkit-scrollbar {
@@ -127,23 +126,19 @@ const StyledButton = styled(Button)`
   font-size: 0.87rem;
   padding: 10px 13px 10px;
   color: ${({ theme }) => theme.palette.secondary.main};
-  /* border: 1px solid ${({ theme }) => theme.palette.primary.main}29; */
   background: ${({ theme }) => theme.palette.primary.main}0f;
   display: flex;
   align-items: center;
   line-height: 1.2;
-  /* background: ${({ theme }) => theme.palette.primary.main}11; */
-  border-radius: 9px;
+  border-radius: 12px;
   transition: 0.35s ease-in-out;
   text-transform: capitalize;
-  /* letter-spacing: 0.5px; */
   float: right;
   align-self: flex-end;
   @media (min-width: 500px) {
     padding: 7px 13px 7px;
     font-size: 0.95rem;
   }
-  border-radius: 12px;
 
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main}19;

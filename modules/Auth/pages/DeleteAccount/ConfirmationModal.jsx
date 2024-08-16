@@ -4,11 +4,13 @@ import { StyledModal } from 'components/StyledModal'
 import useInterval from 'hooks/useInterval'
 import { useDeleteAccountService } from 'modules/Auth/service/DeleteAccount.service'
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded'
 
 const ConfirmationModal = ({ open, setOpen }) => {
+  const {t} = useTranslation("common");
   const { handleDelete, isLoading } = useDeleteAccountService()
   const [counter, setCounter] = useState(20)
   const [delay, setDelay] = useState(1000)
@@ -39,31 +41,30 @@ const ConfirmationModal = ({ open, setOpen }) => {
           {counter}
         </ConfirmationCounter>
         <Typography variant="subtitle1" fontWeight={500} color="secondary" paddingInline={2} paddingTop={2} paddingBottom={1}>
-          Following are the things that will happen:
+          {t('deleteAccount.followingAreTheThingsThatWillHappen')}
         </Typography>
 
         <ul>
           <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            All your data will be deleted from our servers. This includes your profile, posts, comments, and any other data you have
-            provided us.
+            {t('deleteAccount.point1')}
           </Typography>
           <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            You will be logged out from all your devices.
+          {t('deleteAccount.point2')}
           </Typography>
           <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            You will not be able to recover your account.
-          </Typography>
-
-          <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            You will not be able to access your subscription.
+          {t('deleteAccount.point3')}
           </Typography>
 
           <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            You will not be able to access your coins.
+          {t('deleteAccount.point4')}
           </Typography>
 
           <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
-            Your Published Poems and Novels or any other content will be deleted.
+          {t('deleteAccount.point5')}
+          </Typography>
+
+          <Typography as="li" variant="subtitle2" color="secondary" paddingInline={2} paddingBlock={0.4}>
+          {t('deleteAccount.point6')}
           </Typography>
         </ul>
       </Main>
@@ -83,7 +84,7 @@ const ConfirmationModal = ({ open, setOpen }) => {
           disabled={counter != 0 || isLoading}
           onClick={handleDelete}
           endIcon={isLoading ? <CircularProgress size={24} color="inherit" /> : <DeleteForeverRoundedIcon />}>
-          Confirm Account Deletion!
+          {t('deleteAccount.confirmAccountDelete')}
         </Button>
       </Footer>
     </Root>

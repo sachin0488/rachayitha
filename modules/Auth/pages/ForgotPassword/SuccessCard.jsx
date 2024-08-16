@@ -1,38 +1,45 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import { Button, Typography } from '@mui/material'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer' // Import the component
 
 const SuccessCard = () => {
+  const { t } = useTranslation()
   return (
     <Main>
       <Body>
         <TitleText variant="h4" component="div" noWrap>
-          Password Reset
+          {t('forgotPassword.SuccessCard.passwordReset')}
           <TitleText variant="h5" component="div">
-            Link Sent!
+            {t('linkSent')}
           </TitleText>
         </TitleText>
 
         <DescriptionText variant="body1" component="div" color="secondary">
-          Great news! We have sent a password reset link to the email address associated with your account. Please
-          follow the instructions in the email to reset your password.{' '}
+          {t('forgotPassword.SuccessCard.successfulReset')}
         </DescriptionText>
 
         <Nav>
-          <Link href="/login">
-            <a>
-              <StyledButton>Go back and login</StyledButton>
-            </a>
-          </Link>
+          <SigninLanguageContainer>
+            <Link href="/login">
+              <a>
+                <StyledButton>{t('forgotPassword.SuccessCard.goToLogin')}</StyledButton>
+              </a>
+            </Link>
+            <SelectLanguageContainer /> 
+          </SigninLanguageContainer>
           <Link href="/forgot-password">
             <a>
-              <StyledButton variant='outlined'>Change Email</StyledButton>
+              <StyledButton variant="outlined">{t('forgotPassword.SuccessCard.changeEmail')}</StyledButton>
             </a>
           </Link>
         </Nav>
       </Body>
+      
     </Main>
   )
 }
@@ -67,7 +74,6 @@ const TitleText = styled(Typography)`
 
 const DescriptionText = styled(Typography)`
   font-weight: 500;
-  /* margin-left: 4px; */
   color: ${({ theme }) => theme.palette.secondary.main}a2;
 `
 
@@ -86,5 +92,17 @@ const StyledButton = styled(Button)`
     text-transform: unset;
   }
 `
+
+const SigninLanguageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 700px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
+
 
 export default SuccessCard

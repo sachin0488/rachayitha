@@ -1,11 +1,15 @@
 import { APIInstance } from 'services/global.service'
 import { ContentDetailsQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
+import i18n from 'i18next'
 
 const fetchVoteDetail = async ({ contentType, contentId }) => {
   const res = await APIInstance({
     url: `/${contentType}vote/${contentId}`,
     method: 'GET',
+    params:{
+      lang : i18n.language
+    }
   })
 
   const List = await res?.data?.data

@@ -3,6 +3,7 @@ import { ContentDetailsQuery } from '../constants/query.address'
 import { useQuery } from '@tanstack/react-query'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'i18next'
 
 const fetchContentDetail = async ({ contentType, contentId, slug }) => {
   const res = await APIInstance({
@@ -10,6 +11,7 @@ const fetchContentDetail = async ({ contentType, contentId, slug }) => {
     method: 'GET',
     params: {
       slug,
+      lang : i18n.language
     },
   })
 

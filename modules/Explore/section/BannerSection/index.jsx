@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import React from 'react'
-
+import { useTranslation } from 'react-i18next'
 const bannerImg = 'https://res.cloudinary.com/dk6twrko6/image/upload/v1667379183/Rectangle_219_ulz5td.png'
 
 const BannerSection = ({ text }) => {
+  const { t } = useTranslation()
   return (
     <Root>
-      <Heading>{text}</Heading>
+      <Heading>{t(`navPageLinks.${text}`)}</Heading>
     </Root>
   )
 }

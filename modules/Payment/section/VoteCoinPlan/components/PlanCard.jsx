@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 import { Button, CircularProgress, Typography } from '@mui/material'
 
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded'
 
 const PlanCard = ({ Icon, name, description, shortDescription, voteToken, amount, onPayClick, isLoading, isSelected }) => {
+  const { t } = useTranslation();
   return (
     <Root>
       <Validity>
@@ -39,7 +41,7 @@ const PlanCard = ({ Icon, name, description, shortDescription, voteToken, amount
         startIcon={isLoading && isSelected && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
         disabled={isLoading}
         onClick={onPayClick}>
-        Pay{' '}
+        {t('Pay')}
         <Typography
           sx={{
             backgroundColor: '#ffffff30',

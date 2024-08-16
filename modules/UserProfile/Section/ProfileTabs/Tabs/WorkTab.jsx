@@ -1,6 +1,8 @@
+import React from 'react'
 import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import WorkContentCard from '../components/WorkContentCard'
 import StyledChip from '../components/StyledChip'
@@ -17,6 +19,7 @@ const contentTypes = [
 ]
 
 const OriginalWorkTab = () => {
+  const { t } = useTranslation("common");
   const [selectedContentType, setSelectedContentType] = useState('book')
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useOriginalWorkService({
     contentType: selectedContentType,
@@ -43,7 +46,7 @@ const OriginalWorkTab = () => {
           <NotAvailableBar>
             <CopyAllRoundedIcon sx={{ fontSize: 55 }} color="primary" />
             <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
-              You have not created any {selectedContentType} yet
+              {t('originalWorkTab.noContentMessage', { contentType: selectedContentType })}
             </Typography>
           </NotAvailableBar>
         ) : (

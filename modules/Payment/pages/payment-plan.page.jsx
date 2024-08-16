@@ -3,18 +3,19 @@ import { Typography } from '@mui/material'
 import React from 'react'
 import { Root } from '../common/styles'
 import PaymentPlan from '../section/PaymentPlan'
+import { useTranslation } from 'react-i18next'
 
 const PaymentPlanPage = () => {
+  const {t} = useTranslation();
   return (
     <Root>
       <Main>
         <TextSection>
           <Heading variant="h3" component="div" color="primary">
-            Chose Your Plan
+           {t('chooseYourPlan')}
           </Heading>
           <Description variant="subtitle2" color="secondary">
-            Chose your plane from available options Global warming, zombies, nuclear war, all at once. Just one tipping
-            point and the world itself would crumble.
+            {t('chooseYourPlanDescription')}
           </Description>
         </TextSection>
         <PaymentPlan />

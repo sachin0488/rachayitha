@@ -3,6 +3,7 @@ import { useSnackbar } from 'notistack'
 import { APIInstance } from 'services/global.service'
 import { useEffect } from 'react'
 import { UserProfileQuery } from '../constants/query.address'
+import i18n from 'i18next'
 
 export const useAnotherUserProfile = ({ authorId }) => {
   const { enqueueSnackbar } = useSnackbar()
@@ -40,6 +41,9 @@ const authorDataAPI = async ({ authorId }) => {
   const response = await APIInstance({
     url: `/author/${authorId}`,
     method: 'GET',
+    params:{
+      lang:i18n.language
+    }
   })
 
   const user = response?.data?.data?.[0]

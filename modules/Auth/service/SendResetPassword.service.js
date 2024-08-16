@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
-
+import i18n from 'i18next';
 export const useSendResetPasswordLinkService = () => {
   const { enqueueSnackbar } = useSnackbar()
   const { push } = useRouter()
@@ -45,6 +45,9 @@ const sendResetPasswordLinkByEmailAPI = async ({ email }) => {
     method: 'POST',
     data: {
       email: email,
+    },
+    params: {
+      lang: i18n.language,
     },
     headers: {
       'Content-Type': 'application/json',

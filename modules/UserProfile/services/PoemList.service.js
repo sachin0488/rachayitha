@@ -4,6 +4,7 @@ import { PoemQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'next-i18next'
 
 const usePoemListService = ({ filter }) => {
   const { data, isError, fetchNextPage, refetch, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({
@@ -33,6 +34,7 @@ const fetchPoemListAPI = async ({ page, filter }) => {
     method: 'GET',
     params: {
       page,
+      lang : i18n.language,
       tab: filter,
     },
   })

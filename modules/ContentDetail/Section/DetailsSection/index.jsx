@@ -1,11 +1,13 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import { Skeleton } from '@mui/material'
-import React from 'react'
 import InfoArea from './components/InfoArea'
 import TabArea from './components/TabArea'
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
+import { useTranslation } from 'react-i18next'
 
 const DetailsSection = ({ contentType, contentId, slug }) => {
+  const { t } = useTranslation()
   const { Data, isLoading } = useContentDetailsService({ contentId: contentId, contentType })
 
   if (isLoading)
@@ -19,16 +21,17 @@ const DetailsSection = ({ contentType, contentId, slug }) => {
           <StyledSkeletonInfo variant="rounded" />
           <StyledSkeletonInfo variant="rounded" />
         </LoadingInfo>
+        <LoadingMessage>{t('details_section_info_loading')}</LoadingMessage>
       </Root>
     )
 
   return (
     <Root>
       <ImageContainer>
-        <StyledImage alt="Cover Image" src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'} />
+        <StyledImage alt={t('details_section_cover_image_alt')} src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'} />
         <StyledImage
           className="blur"
-          alt="Cover Image"
+          alt={t('details_section_cover_image_alt')}
           src={Data?.coverImage && Data?.coverImage.includes('http') ? Data?.coverImage : '/alt-img.svg'}
         />
       </ImageContainer>
@@ -63,6 +66,12 @@ const StyledSkeletonInfo = styled(Skeleton)`
   max-width: 100%;
 `
 
+const LoadingMessage = styled.div`
+  margin-top: 20px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.palette.text.secondary};
+`
+
 const Root = styled.div`
   display: flex;
   width: 100%;
@@ -90,7 +99,6 @@ const StyledImage = styled.img`
   &.blur {
     z-index: 1;
     position: absolute;
-    /* filter: drop-shadow(8px 15px 20px ${({ theme }) => theme.palette.primary.main}44) */
     filter: blur(20px) opacity(0.5);
     top: -5px;
     left: 0px;

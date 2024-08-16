@@ -4,6 +4,7 @@ import { PaymentQuery } from '../constants/query.address'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import i18n from 'i18next'
 
 export const getPaymentStatusSAPI = async ({ transactionId }) => {
   const form = new FormData()
@@ -13,6 +14,9 @@ export const getPaymentStatusSAPI = async ({ transactionId }) => {
     url: '/statuscheckphonepe/',
     method: 'POST',
     data: form,
+    params:{
+      lang:i18n.language
+    },
     header: {
       'Content-Type': 'multipart/form-data',
     },

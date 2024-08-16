@@ -4,6 +4,7 @@ import { ContentReadQuery } from '../constants/query.address'
 import { create } from 'zustand'
 import { useSnackbar } from 'notistack'
 import slugUtility from 'utility/slug.utility'
+import i18n from 'i18next'
 
 const useRerender = create(set => ({
   rerender() {
@@ -93,6 +94,9 @@ const fetchChapterContentAPI = async ({ contentId, chapterId, contentType }) => 
   const response = await APIInstance({
     url: `/${contentType}/${contentId}/chapter/${chapterId}`,
     method: 'GET',
+    params:{
+      lang:i18n.language
+    }
   })
 
   const chapter = response.data?.data?.[0]

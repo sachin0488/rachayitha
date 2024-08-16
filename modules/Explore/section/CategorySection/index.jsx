@@ -2,11 +2,10 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mui/material'
 import { useLayoutEffect, useState } from 'react'
-
 import AccordionBox from './components/AccordionBox'
 import DrawerBox from './components/DrawerBox'
-
 import useCategoryService from 'modules/Explore/services/category.service'
+import { useTranslation } from 'react-i18next'
 
 const getSectionIndexByName = sectionName => {
   switch (sectionName.toLocaleLowerCase()) {
@@ -22,6 +21,7 @@ const getSectionIndexByName = sectionName => {
 }
 
 const CategorySection = () => {
+  const { t } = useTranslation()
   const is800x = useMediaQuery('(max-width: 800px)')
   const { query } = useRouter()
   const { content_type } = query
@@ -34,12 +34,12 @@ const CategorySection = () => {
 
   const List = [
     {
-      name: 'Novel',
+      name: t('categorySection.novel'),
       contentType: 'book',
       CategoryList,
     },
     {
-      name: 'Poem',
+      name: t('categorySection.poem'),
       contentType: 'poem',
       CategoryList,
     },
@@ -55,7 +55,14 @@ const CategorySection = () => {
         <DrawerBox List={List} />
       ) : (
         List.map((item, idx) => (
-          <AccordionBox isLoading={isLoading} key={idx} idx={idx} isOpened={openedIdx === idx} setOpenedIdx={setOpenedIdx} item={item} />
+          <AccordionBox
+            isLoading={isLoading}
+            key={idx}
+            idx={idx}
+            isOpened={openedIdx === idx}
+            setOpenedIdx={setOpenedIdx}
+            item={item}
+          />
         ))
       )}
     </Root>
@@ -63,58 +70,19 @@ const CategorySection = () => {
 }
 
 const categoryList = [
-  {
-    id: 1,
-    category_name: 'All',
-  },
-  {
-    id: 2,
-    category_name: 'Eastern',
-  },
-  {
-    id: 3,
-    category_name: 'Fantasy',
-  },
-  {
-    id: 4,
-    category_name: 'Horror',
-  },
-  {
-    id: 5,
-    category_name: 'Action',
-  },
-  {
-    id: 6,
-    category_name: 'AGC',
-  },
-  {
-    id: 7,
-    category_name: 'Urban',
-  },
-  {
-    id: 8,
-    category_name: 'Games',
-  },
-  {
-    id: 9,
-    category_name: 'Sci-fi',
-  },
-  {
-    id: 10,
-    category_name: 'Sports',
-  },
-  {
-    id: 11,
-    category_name: 'Realistic',
-  },
-  {
-    id: 12,
-    category_name: 'War',
-  },
-  {
-    id: 13,
-    category_name: 'History',
-  },
+  { id: 1, category_name: 'all' },
+  { id: 2, category_name: 'eastern' },
+  { id: 3, category_name: 'fantasy' },
+  { id: 4, category_name: 'horror' },
+  { id: 5, category_name: 'action' },
+  { id: 6, category_name: 'agc' },
+  { id: 7, category_name: 'urban' },
+  { id: 8, category_name: 'games' },
+  { id: 9, category_name: 'sciFi' },
+  { id: 10, category_name: 'sports' },
+  { id: 11, category_name: 'realistic' },
+  { id: 12, category_name: 'war' },
+  { id: 13, category_name: 'history' },
 ]
 
 const Root = styled.div`

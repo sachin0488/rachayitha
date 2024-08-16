@@ -2,6 +2,7 @@ import { APIInstance } from 'services/global.service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { ContentDetailsQuery } from '../constants/query.address'
+import i18n from 'i18next'
 
 const createReviewAPI = async ({ contentId, contentType, comment, parameter1, parameter2, parameter3, parameter4, parameter5 }) => {
   const commentAPI = APIInstance({
@@ -11,6 +12,9 @@ const createReviewAPI = async ({ contentId, contentType, comment, parameter1, pa
       [`${contentType}_id`]: contentId,
       parent_comment_id: null,
       comments: comment,
+    },
+    params:{
+      lang:i18n.language
     },
     headers: {
       'Content-Type': 'application/json',

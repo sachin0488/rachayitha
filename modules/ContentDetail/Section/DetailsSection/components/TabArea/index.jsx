@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react'
 import styled from '@emotion/styled'
-
 import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
-
 import AboutTab from './AboutTab'
 import ChapterListTab from './ChapterListTab'
 import { useContentDetailsService } from 'modules/ContentDetail/services/ContentDetails.service'
+import { useTranslation } from 'react-i18next'
 
 const TabArea = ({ contentType, slug, contentId }) => {
+  const { t } = useTranslation()
   const { Data } = useContentDetailsService({ contentId: contentId, contentType })
 
   const [value, setValue] = React.useState(0)
@@ -19,8 +19,8 @@ const TabArea = ({ contentType, slug, contentId }) => {
   return (
     <Root>
       <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
-        <StyledTab label="About" {...a11yProps(0)} />
-        <StyledTab label="Table of Contents" {...a11yProps(1)} />
+        <StyledTab label={t('tab_area_about')} {...a11yProps(0)} />
+        <StyledTab label={t('tab_area_table_of_contents')} {...a11yProps(1)} />
       </StyledTabs>
 
       <TabPanel value={value} index={0}>

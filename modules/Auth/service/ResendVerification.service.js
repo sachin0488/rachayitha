@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { useSnackbar } from 'notistack'
-
+import i18n from 'i18next';
 export const useResendVerificationService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -34,6 +34,9 @@ const resendVerificationEmailAPI = async data => {
       user: {
         email: data?.email,
       },
+    },
+    params:{
+           lang: i18n.language,
     },
     headers: {
       'Content-Type': 'application/json',

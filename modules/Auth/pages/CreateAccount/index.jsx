@@ -29,37 +29,39 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
-
+import { useTranslation } from 'next-i18next'
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
 const CreateAccountPage = () => {
+  const { t } = useTranslation("common");
   const steps = [
     {
-      label: 'Personal Information',
+      label: t('personalInformation'),
       description: (
         <>
-          <StyledTextField name="fullName" label="Name" placeholder="Enter your name..." />
-          <StyledTextField name="username" label="Username" placeholder="Enter your username..." />
+          <StyledTextField name="fullName" label={t('fullName')} placeholder={t('enterYourName')} />
+          <StyledTextField name="username" label={t('username')} placeholder={t('enterYourUsername')} />
         </>
       ),
     },
     {
-      label: 'Account Information',
+      label: t('accountInformation'),
       description: (
         <>
-          <StyledTextField name="email" label="Email" placeholder="Enter your email ..." />
-          <StyledDateSelector name="birthDate" label="Birth Date" />
+          <StyledTextField name="email" label={t('email')} placeholder={t('enterYourEmail')} />
+          <StyledDateSelector name="birthDate" label={t('birthDate')} />
         </>
       ),
     },
     {
-      label: 'Bio Information',
+      label: t('bioInformation'),
       description: (
         <>
-          <StyledTextField name="bio" label="Bio (Optional)" placeholder="Enter your bio ..." multiline />
+          <StyledTextField name="bio" label={t('bioOptional')} placeholder={t('enterYourBio')} multiline />
           <StyledFieldGroup as="div">
-            <StyledFormLabel>Select Gender</StyledFormLabel>
+            <StyledFormLabel>{t('selectGender')}</StyledFormLabel>
             <StyledRadioGroup name="gender" row>
               {GenderList.map(({ label, value }) => (
-                <StyledRadioBox key={value} label={label} value={value} />
+                <StyledRadioBox key={value} label={t(label)} value={value} />
               ))}
             </StyledRadioGroup>
           </StyledFieldGroup>
@@ -67,21 +69,21 @@ const CreateAccountPage = () => {
       ),
     },
     {
-      label: 'Account Security',
+      label: t('accountSecurity'),
       description: (
         <>
-          <StyledPasswordField name="password" label="Password" placeholder="Enter your password ..." autoComplete="new-password" />
+          <StyledPasswordField name="password" label={t('password')} placeholder={t('enterYourPassword')} autoComplete="new-password" />
           <StyledPasswordField
             name="confirmPassword"
-            label="Confirm Password"
-            placeholder="Enter your confirm password ..."
+            label={t('confirmPassword')}
+            placeholder={t('enterYourConfirmPassword')}
             autoComplete="new-password"
           />
         </>
       ),
     },
     {
-      label: 'Account Security',
+      label: t('accountSecurity'),
       description: (
         <BottomSection>
           <TermsAndPrivacyPolicyCheckbox name="agree" />
@@ -98,8 +100,7 @@ const CreateAccountPage = () => {
   const isMobile = useMediaQuery('(max-width: 621px)')
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = steps.length
-
-  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService()
+  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService();
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -141,7 +142,7 @@ const CreateAccountPage = () => {
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h3" textAlign="center">
-                Sign Up
+                 {t('signUp')}
                 <hr />
               </TitleText>
               {/* <DescriptionText variant="subtitle2">
@@ -253,7 +254,7 @@ const CreateAccountPage = () => {
                   type="button"
                   onClick={activeStep === steps.length - 1 ? methods.handleSubmit(handleCreateAccount, handleFormError) : handleNext}
                   variant="contained">
-                  {activeStep === steps.length - 1 ? 'Sign in' : 'Next'}
+                  {activeStep === steps.length - 1 ? t('signIn') : t('next')}
                 </StyledButton>
               </NavButtonContainer>
               <hr />
@@ -268,10 +269,11 @@ const CreateAccountPage = () => {
                 type="button"
                 onClick={loginWithGoogle}
                 variant="contained">
-                Sign up with Google
+                {t('signUpWithGoogle')}
               </LoginWithGoogleButton>
             </Nav>
-
+            
+            <SigninLanguageContainer>
             <Typography
               sx={{
                 background: '#ffffff91',
@@ -281,12 +283,15 @@ const CreateAccountPage = () => {
               }}
               textAlign="center"
               fontWeight={500}>
-              {`Already have an account? `}
+              {t('alreadyHaveAccount')}
 
               <Link href={{ pathname: '/login', query }}>
-                <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>Sign in</a>
-              </Link>
+                <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>{t('signIn')}</a>
+              </Link>    
             </Typography>
+            {/* Use the SelectLanguageContainer component */}
+            <SelectLanguageContainer />
+            </SigninLanguageContainer>
           </FormProvider>
         </Body>
       </Main>
@@ -529,5 +534,16 @@ const LoginWithGoogleButton = styled(Button)`
   &.MuiButton-text {
   }
 `
+const SigninLanguageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 700px) {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+`;
+
 
 export default CreateAccountPage

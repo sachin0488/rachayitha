@@ -5,8 +5,10 @@ import { Root } from '../common/styles'
 import SubscriptionPlan from '../section/SubscriptionPlan'
 import useCurrentSubscriptionService from 'modules/Payment/services/CurrentSubscription.service'
 import moment from 'moment'
+import { useTranslation } from 'react-i18next'
 
 const SubscriptionPlanPage = () => {
+  const { t } = useTranslation();
   const { validityTill, isSubscribed } = useCurrentSubscriptionService()
 
   return (
@@ -14,16 +16,15 @@ const SubscriptionPlanPage = () => {
       <Main>
         <TextSection>
           <Heading variant="h3" component="div" color="primary">
-            Chose Your Plan
+            {t('chooseYourPlan')}
           </Heading>
           <Description variant="subtitle2" color="secondary">
-            Chose your plane from available options Global warming, zombies, nuclear war, all at once. Just one tipping point and the world
-            itself would crumble.
+            {t('chooseYourPlanDescription')}
           </Description>
         </TextSection>
         {validityTill && (
           <SubscribedFlag variant="subtitle2" component="div" color="secondary">
-            Your Subscription is valid till <span>{moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}</span>
+            {t('yourSubscriptionIsValidTill')} <span>{moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}</span>
           </SubscribedFlag>
         )}
         <SubscriptionPlan />

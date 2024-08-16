@@ -8,7 +8,7 @@ import { getFormErrorMessage } from 'hooks/useFormError'
 import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 
 const { setAccess, setRefresh } = AuthTokenStore()
-
+import  i18n from 'next-i18next'
 export const useCreateAccountService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -69,7 +69,7 @@ export const useCreateAccountService = () => {
     checkVerificationStatus,
   }
 }
-
+// const lang=i18n.lang
 const createAccountAPI = async data => {
   const response = await APIInstance({
     url: '/register/',
@@ -84,6 +84,9 @@ const createAccountAPI = async data => {
         birth_date: moment(data?.birthDate).format('YYYY-MM-DD'),
         gender: data?.gender,
       },
+    },
+    params:{
+      lang: i18n.lang
     },
     headers: {
       'Content-Type': 'application/json',

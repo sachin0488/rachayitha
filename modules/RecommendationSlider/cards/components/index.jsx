@@ -3,15 +3,17 @@ import { Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded'
 import { mainMaxWidth } from 'modules/Landing/common/styles'
+import { useTranslation } from 'react-i18next'
 
 export const NotAvailableBar = ({ Icon, text }) => {
+  const {t} = useTranslation();
   return (
     <Root>
       {Icon ? (
         <Icon sx={{ fontSize: 90, color: theme => theme.palette.primary.main + '37' }} />
       ) : (
         <IconCr variant="h2" fontSize={60} component="div" color="primary">
-          N/A
+          {t('notAvailable')}
         </IconCr>
       )}
       <Text variant="h5" component="div" textAlign="center" fontWeight={600} color="secondary.light">
@@ -22,11 +24,12 @@ export const NotAvailableBar = ({ Icon, text }) => {
 }
 
 export const ErrorBar = () => {
+  const {t} = useTranslation();
   return (
     <Root>
       <ErrorOutlineRoundedIcon style={{ fontSize: 70 }} />
       <Text variant="h5" component="div" textAlign="center">
-        Something went wrong
+        {t('something_went_wrong')}
       </Text>
     </Root>
   )

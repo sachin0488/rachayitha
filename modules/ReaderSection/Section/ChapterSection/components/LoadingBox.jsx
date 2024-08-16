@@ -1,13 +1,15 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import { LinearProgress, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const LoadingBox = () => {
+  const {t}=useTranslation();
   return (
     <Loader>
       <main>
         <Typography variant="h2" fontWeight={500} paddingInline={1} paddingBottom={0.25}>
-          Loading
+          {t('loading')}
         </Typography>
         <StyledLinearProgress />
       </main>

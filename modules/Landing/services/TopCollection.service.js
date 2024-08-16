@@ -3,6 +3,7 @@ import { LandingQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
+import i18n from 'i18next'
 
 export const useTopCollectionService = ({ startDate, endDate }) => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -30,6 +31,7 @@ const fetchTopCollectionAPI = async ({ startDate, endDate }) => {
     params: {
       startDate,
       endDate,
+      lang: i18n.language,
     },
     method: 'GET',
   })

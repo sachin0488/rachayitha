@@ -1,12 +1,15 @@
-import styled from '@emotion/styled'
-import { Button, Typography, useMediaQuery } from '@mui/material'
-import React from 'react'
-import DrawRoundedIcon from '@mui/icons-material/DrawRounded'
+import styled from '@emotion/styled';
+import { Button, Typography, useMediaQuery } from '@mui/material';
+import React from 'react';
+import DrawRoundedIcon from '@mui/icons-material/DrawRounded';
+import { useTranslation } from 'react-i18next';
 
 const PublishContent = () => {
-  const isMobileSxH = useMediaQuery('(max-height:900px)')
-  const isTabletSx = useMediaQuery('(min-width:600px)')
-  const isMobileSx = useMediaQuery('(max-width:360px)')
+  const { t } = useTranslation('publishContentSection');
+  const isMobileSxH = useMediaQuery('(max-height:900px)');
+  const isTabletSx = useMediaQuery('(min-width:600px)');
+  const isMobileSx = useMediaQuery('(max-width:360px)');
+
   return (
     <Root>
       <Main>
@@ -18,7 +21,7 @@ const PublishContent = () => {
             sx={{
               fontSize: isMobileSxH && isTabletSx ? '2.3rem' : undefined,
             }}>
-            Publish Your Novels And Poem
+            {t('publishHeader')}
           </Typography>
           <Typography
             lineHeight={1.8}
@@ -28,23 +31,23 @@ const PublishContent = () => {
             }}
             fontWeight={500}
             color="secondary">
-            Publish your content on the platform and reach millions of readers.
+            {t('publishDescription')}
           </Typography>
           <a className="StyledButtonA" href={process.env.NEXT_PUBLIC_DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
             <StyledButton endIcon={<DrawRoundedIcon fontSize="inherit" />} size="large" disableElevation variant="contained">
               <Typography lineHeight={1.8} variant={isMobileSx ? 'body2' : 'h6'} fontWeight={500}>
-                Start Creating
+                {t('startCreating')}
               </Typography>
             </StyledButton>
           </a>
         </div>
         <div className="right">
-          <StyledImage src="/creator_ill.svg" alt="Publish Content" />
+          <StyledImage src="/creator_ill.svg" alt={t('publishHeader')} />
         </div>
       </Main>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: flex;
@@ -61,7 +64,7 @@ const Root = styled.div`
   @media (max-width: 368px) {
     padding-inline: 20px;
   }
-`
+`;
 
 const Main = styled.div`
   width: 100%;
@@ -151,7 +154,7 @@ const Main = styled.div`
       padding: 10px 10px;
     }
   }
-`
+`;
 
 const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.palette.primary.main};
@@ -167,7 +170,7 @@ const StyledButton = styled(Button)`
   @media (max-width: 360px) {
     border-radius: 12px;
   }
-`
+`;
 
 const StyledImage = styled.img`
   /* max-height: 250px; */
@@ -186,5 +189,6 @@ const StyledImage = styled.img`
     height: 100%;
   }
   filter: drop-shadow(2px 4px 20px rgba(171, 141, 241, 0.368));
-`
-export default PublishContent
+`;
+
+export default PublishContent;

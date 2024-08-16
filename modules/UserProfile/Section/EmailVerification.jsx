@@ -1,12 +1,14 @@
-import styled from '@emotion/styled'
-import { Box, Button, Typography } from '@mui/material'
-import { useUserService } from 'modules/Auth/service/User.service'
-import { useState } from 'react'
+import styled from '@emotion/styled';
+import { Box, Button, Typography } from '@mui/material';
+import { useUserService } from 'modules/Auth/service/User.service';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const EmailVerification = () => {
-  const { user, refetch } = useUserService()
-  const [isCheckStatusButtonDisabled, setIsCheckStatusButtonDisabled] = useState(false)
-  const [secondsLeft, setSecondsLeft] = useState(0)
+  const { user, refetch } = useUserService();
+  const { t } = useTranslation("common");
+  const [isCheckStatusButtonDisabled, setIsCheckStatusButtonDisabled] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(0);
 
   return (
     <Root className={'email-verification'}>
@@ -27,11 +29,10 @@ const EmailVerification = () => {
             padding: '10px 16px',
           }}>
           <Typography variant="h6" color="secondary">
-            Verify your email to unlock the full experience.
+            {t('emailVerification.verifyMessage')}
           </Typography>
           <Description variant="subtitle2" fontWeight={400} marginTop={1} color="secondary">
-            Welcome aboard, <span>{user.fullName}</span>! Your rachayitha journey starts with verifying your email. Just click the link in
-            the email we sent to <span>{user.email}</span> and {`you'll`} be all set! Thanks for joining us!
+            {t('emailVerification.welcomeMessage', { userName: user.fullName, userEmail: user.email })}
           </Description>
         </Box>
         <Box
@@ -43,7 +44,7 @@ const EmailVerification = () => {
           }}>
           {isCheckStatusButtonDisabled && (
             <Typography variant="subtitle2" color="secondary.light" marginLeft={1}>
-              You can recheck the verification status within {secondsLeft} second.
+              {t('emailVerification.statusMessage', { secondsLeft })}
             </Typography>
           )}
           <Button
@@ -52,24 +53,24 @@ const EmailVerification = () => {
             disableElevation
             sx={{ marginLeft: 'auto' }}
             onClick={() => {
-              setIsCheckStatusButtonDisabled(true)
-              setSecondsLeft(10)
+              setIsCheckStatusButtonDisabled(true);
+              setSecondsLeft(10);
               const intr = setInterval(() => {
-                setSecondsLeft(pre => pre - 1)
-              }, 1000)
+                setSecondsLeft(pre => pre - 1);
+              }, 1000);
               setTimeout(() => {
-                setIsCheckStatusButtonDisabled(false)
-                clearInterval(intr)
-              }, 10000)
-              refetch()
+                setIsCheckStatusButtonDisabled(false);
+                clearInterval(intr);
+              }, 10000);
+              refetch();
             }}>
-            Check verification status
+            {t('emailVerification.checkStatusButton')}
           </Button>
         </Box>
       </Box>
     </Root>
-  )
-}
+  );
+};
 
 const Root = styled.div`
   display: flex;
@@ -87,7 +88,7 @@ const Root = styled.div`
     opacity: 1;
     display: flex;
   }
-`
+`;
 
 const LogoImage = styled.img`
   height: auto;
@@ -96,13 +97,13 @@ const LogoImage = styled.img`
   margin-bottom: -4px;
   margin-left: 14px;
   user-select: none;
-`
+`;
 
 const Description = styled(Typography)`
   span {
     color: ${({ theme }) => theme.palette.primary.main};
     font-weight: 500;
   }
-`
+`;
 
-export default EmailVerification
+export default EmailVerification;

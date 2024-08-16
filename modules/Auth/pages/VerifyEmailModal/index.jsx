@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import { useTranslation } from 'next-i18next'
 
 import { Box, Button, Typography } from '@mui/material'
 
 import { StyledModal } from 'components/StyledModal'
 import { useResendVerificationService } from 'modules/Auth/service/ResendVerification.service'
 
+import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer' // Import the component
+
 const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
+  const { t } = useTranslation("common");
   const [isCheckStatusButtonDisabled, setIsCheckStatusButtonDisabled] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(0)
   const { mutate: resendEmail, isLoading: isEmailResending } = useResendVerificationService()
@@ -34,16 +38,15 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
               padding: '10px 16px',
             }}>
             <Typography variant="h6" color="secondary">
-              Verify your email to unlock the full experience.
+              {t('verifyEmailModal.index.verifyEmail')}
             </Typography>
             <Description variant="subtitle2" fontWeight={400} marginTop={1} color="secondary">
-              Welcome aboard, <span>{user?.fullName}</span>! Your rachayitha journey starts with verifying your email. Just click the link
-              in the email we sent to <span>{user?.email}</span> and {`you'll`} be all set! Thanks for joining us!
+              {t('verifyEmailModal.index.welcomeAboard')}, <span>{user?.fullName}</span>! {t('verifyEmailModal.index.message1')}  <span>{user?.email}</span> {t('verifyEmailModal.index.message2')}!
             </Description>
           </Box>
           {isCheckStatusButtonDisabled && (
             <Typography variant="subtitle2" color="secondary.light" marginLeft={1}>
-              You can recheck the verification status within {secondsLeft} second.
+              {t('verifyEmailModal.index.message3')} {secondsLeft} {t('verifyEmailModal.index.second')}
             </Typography>
           )}
           <Bottom>
@@ -63,7 +66,7 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
                 }, 10000)
                 resendEmail({ email: user?.email })
               }}>
-              Resend email
+              {t('verifyEmailModal.index.resendEmail')}
             </Button>
             <Button
               disabled={isCheckStatusButtonDisabled}
@@ -81,10 +84,11 @@ const VerifyEmailModal = ({ open, user, checkVerificationStatus }) => {
                 }, 10000)
                 checkVerificationStatus()
               }}>
-              Check verification status
+              {t('verifyEmailModal.index.checkVerificationStatus')}
             </Button>
           </Bottom>
         </Box>
+        <SelectLanguageContainer /> {/* Add the component here */}
       </Main>
     </Root>
   )

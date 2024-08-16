@@ -2,8 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
-
+import { useTranslation } from 'react-i18next'
 const ErrorPageComp = () => {
+  const { t } = useTranslation();
   return (
     <Root>
       <Main>
@@ -13,7 +14,7 @@ const ErrorPageComp = () => {
           component="div">{`OOPS, THE PAGE YOU ARE LOOKING FOR CAN'T BE FOUND!`}</ParagraphText>
 
         <Link href={`/`}>
-          <ReturnHomeButton variant="outlined">Back to home</ReturnHomeButton>
+          <ReturnHomeButton variant="outlined">{t('return_home')}</ReturnHomeButton>
         </Link>
       </Main>
     </Root>

@@ -1,4 +1,5 @@
 import VoteCoinPlanPage from 'modules/Payment/pages/vote-coin-plan.page'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 const VoteCoinPlan = () => {
@@ -6,3 +7,11 @@ const VoteCoinPlan = () => {
 }
 
 export default VoteCoinPlan
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}

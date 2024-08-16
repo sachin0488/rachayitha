@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
-
+import i18n from 'i18next';
 const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useLoginService = () => {
@@ -86,6 +86,9 @@ const loginAPI = async ({ email, password }) => {
         email,
         password,
       },
+    },
+    params: {
+      lang: i18n.lang,
     },
     headers: {
       'Content-Type': 'application/json',

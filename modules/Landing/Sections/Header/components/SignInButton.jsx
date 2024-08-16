@@ -2,12 +2,14 @@ import styled from '@emotion/styled'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 
 const SignInButton = () => {
+  const {t} = useTranslation("common");
   return (
     <Link href="/login">
       <a>
-        <Root variant="contained">Sign In</Root>
+        <Root variant="contained">{t('signIn')}</Root>
       </a>
     </Link>
   )

@@ -6,8 +6,10 @@ import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded'
 import { Root } from '../common/styles'
 import { usePaymentStatusService } from '../services/PaymentStatus.service'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
+import { useTranslation } from 'react-i18next'
 
 const PaymentStatusPage = () => {
+  const {t} = useTranslation();
   const { isLoading, isPaymentSuccess } = usePaymentStatusService()
 
   if (isLoading) {
@@ -16,7 +18,7 @@ const PaymentStatusPage = () => {
         <Main>
           <CircularProgress color="primary" thickness={5} size={49} />
           <Heading variant="h6" component="div" marginTop={2}>
-            Please wait, Loading...
+            {t('pleaseWaitLoading')}
           </Heading>
         </Main>
       </Root>
@@ -32,16 +34,17 @@ const PaymentStatusPage = () => {
           <CancelRoundedIcon color="error" sx={{ fontSize: 150 }} />
         )}
         <Heading variant="h5" component="div">
-          Payment {isPaymentSuccess ? 'Successful' : 'Failed'}
+        {t('payment')} {isPaymentSuccess ? t('successful') : t('failed')}
+
         </Heading>
         <ParagraphText variant="h6" component="div">
           {isPaymentSuccess
-            ? `Now you can checkout paid chapters of your favorite books 👍 !`
-            : `We were unable to verify your payment 😓!`}
+            ? t('nowYouCanCheckoutPaidChapters')
+            : t('unableToVerify')}
         </ParagraphText>
 
         <Link href={`/`}>
-          <ReturnHomeButton variant="outlined">Back to home</ReturnHomeButton>
+          <ReturnHomeButton variant="outlined">{t('backToHome')}</ReturnHomeButton>
         </Link>
       </Main>
     </Root>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import StyledSlider from 'components/StyledSlider'
 import { Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 import { mainMaxWidth } from 'modules/Landing/common/styles'
 
@@ -13,6 +14,7 @@ import MinimalCard from '../cards/MinimalCard'
 import ContinueReadingCard from '../cards/ContinueReadingCard'
 
 const ContinueReadingSliders = () => {
+  const {t} = useTranslation();
   const [currentContent, setCurrentContent] = useState(ContentTypes[0])
 
   const { List, isLoading, isError, queryKey } = useContinueReadingService({ contentType: currentContent })
@@ -21,7 +23,7 @@ const ContinueReadingSliders = () => {
     <Root>
       <Main>
         <HeadingBox>
-          <Heading>Continue Reading</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
+          <Heading>{t('continueReading')}</Heading> <ContentTabs currentContent={currentContent} onChange={setCurrentContent} />
         </HeadingBox>
         <DataSection
           List={List}

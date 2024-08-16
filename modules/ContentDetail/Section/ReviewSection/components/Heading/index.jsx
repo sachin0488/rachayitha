@@ -2,14 +2,16 @@ import { Rating, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 import StarIcon from '@mui/icons-material/Star'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 const Heading = ({ totalRatingCount, avgRatingValue }) => {
   const isTablet = useMediaQuery('(max-width: 735px)')
+  const { t } = useTranslation();
 
   return (
     <Root>
       <HeadingText variant="h5" component="div" color="secondary">
-        {totalRatingCount} Reviews
+        {totalRatingCount} g{t('reviewSection.reviews')}
       </HeadingText>
       <Rating
         color="primary"

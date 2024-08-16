@@ -2,12 +2,15 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import Synopsis from 'modules/ContentDetail/components/Synopsis'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const AboutTab = ({ tags, synopsis }) => {
+  const { t } = useTranslation()
+
   return (
     <Root>
       <Label variant="h6" component="div" color="secondary">
-        Synopsis
+        {t('about_tab_synopsis')}
       </Label>
       <Synopsis variant="subtitle2">{synopsis}</Synopsis>
       <HashtagList>

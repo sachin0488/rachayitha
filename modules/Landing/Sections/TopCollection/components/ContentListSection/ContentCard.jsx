@@ -6,16 +6,16 @@ import { Typography } from '@mui/material'
 
 import { useUserService } from 'modules/Auth/service/User.service'
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
-
+import { useTranslation } from 'react-i18next'
 const ContentCard = ({ item }) => {
   const { isLoggedIn } = useUserService()
-
+  const { t } = useTranslation()
   return (
     <Link href={isLoggedIn ? `/${item?.contentType}/${item?.id}/${item?.slug}` : `/login`}>
       <Root>
         <ImageSection>
           <StyledImage
-            alt="Cover Image"
+            alt={t('coverImage')}
             src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'}
             width="90px"
             height="115px"

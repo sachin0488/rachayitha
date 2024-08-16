@@ -9,11 +9,13 @@ import { useContentDetailsService } from 'modules/ContentDetail/services/Content
 import { useUserService } from 'modules/Auth/service/User.service'
 import Link from 'next/link'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
+import { useTranslation } from 'react-i18next'
 
 const ReviewSection = ({ contentType, contentId }) => {
-  const { Data, isLoading } = useContentDetailsService({ contentId: contentId, contentType: contentType })
+  const { Data, isLoading } = useContentDetailsService({ contentId, contentType })
   const { isLoggedIn } = useUserService()
-
+  const { t } = useTranslation()
+  
   const isTablet = useMediaQuery('(max-width: 735px)')
 
   if (isLoading)
@@ -44,14 +46,14 @@ const ReviewSection = ({ contentType, contentId }) => {
         ) : (
           <LoginPlaceholder>
             <Typography variant="h6" fontWeight={500} marginBottom={1} component="div" color="secondary" textAlign="center">
-              You can post your own review here after signing !
+              {t('reviewSection.signInPrompt')}
             </Typography>
             <Typography variant="subtitle2" fontWeight={500} component="div" color="secondary.light" textAlign="center">
-              {`Need an account? `}
+              {`${t('reviewSection.needAccount')} `}
               <Link href="/create-account">
                 <a>
                   <Typography as="span" variant="subtitle2" fontWeight={500} component="div" color="primary" textAlign="center">
-                    Create one!
+                    {t('reviewSection.createAccount')}
                   </Typography>
                 </a>
               </Link>
@@ -59,7 +61,7 @@ const ReviewSection = ({ contentType, contentId }) => {
             <Link href="/login">
               <a>
                 <Button disableElevation variant="contained" endIcon={<LoginRoundedIcon />} sx={{ marginTop: 2 }}>
-                  Sign In
+                  {t('reviewSection.signIn')}
                 </Button>
               </a>
             </Link>
@@ -82,7 +84,6 @@ const StyledSkeletonHr = styled(Skeleton)`
 
 const StyledSkeletonCr = styled(Skeleton)`
   min-height: 104px;
-
   width: 100%;
   max-width: 100%;
   @media (max-width: 780px) {
@@ -103,8 +104,6 @@ const LoginPlaceholder = styled.div`
   @media (max-width: 400px) {
     padding: 25px 15px;
   }
-
-  /* box-shadow: 10px 10px 10px ${({ theme }) => theme.palette.primary.main}0c; */
 
   margin-left: auto;
   margin-right: auto;

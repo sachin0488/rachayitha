@@ -5,6 +5,7 @@ import { ContentReadQuery } from '../constants/query.address'
 import { useChapterContentService } from './ChapterContent.service'
 import { useUserService } from 'modules/Auth/service/User.service'
 import slugUtility from 'utility/slug.utility'
+import i18n from 'i18next'
 
 export const useChapterListService = ({ contentId, chapterId, contentType }) => {
   const queryClient = useQueryClient()
@@ -113,12 +114,16 @@ const fetchChapterListAPI = async ({ contentId, chapterId, contentType }) => {
     params: {
       tab: 'published',
       limit: 1000,
+      lang: i18n.language,
     },
   })
 
   const ChapterContentAPI = await APIInstance({
     url: `/${contentType}/${contentId}/chapter/${chapterId}`,
     method: 'GET',
+    params:{
+      lang: i18n.language,
+    }
   })
 
   const [ChapterListResponse, ChapterContentResponse] = await Promise.all([ChapterListAPI, ChapterContentAPI])

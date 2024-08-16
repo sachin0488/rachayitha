@@ -2,6 +2,7 @@ import { APIInstance } from 'services/global.service'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack'
 import { ContentDetailsQuery } from '../constants/query.address'
+import i18n from 'i18next'
 
 export const useReportContentService = ({ contentId, contentType }) => {
   const { enqueueSnackbar } = useSnackbar()
@@ -19,6 +20,9 @@ export const useReportContentService = ({ contentId, contentType }) => {
         url: `/${contentType}report`,
         method: 'POST',
         data: form,
+        params:{
+          lang:i18n.language
+        },
         header: {
           'Content-Type': 'multipart/form-data',
         },
@@ -58,6 +62,9 @@ export const useReportCategoryService = ({ enabled, contentType }) => {
       const response = await APIInstance({
         url: `/${contentType}report/category`,
         method: 'GET',
+        params:{
+          lang:i18n.language
+        }
       })
 
       return {

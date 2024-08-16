@@ -6,8 +6,9 @@ import ClearAllRoundedIcon from '@mui/icons-material/ClearAllRounded'
 import { Skeleton } from '@mui/material'
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded'
 import { NotAvailableBar } from 'modules/RecommendationSlider/cards/components'
-
+import { useTranslation } from 'react-i18next'
 const ContentListSection = ({ contentName, contentList, isLoading }) => {
+  const { t } = useTranslation();
   if (isLoading)
     return (
       <Root>
@@ -24,7 +25,7 @@ const ContentListSection = ({ contentName, contentList, isLoading }) => {
     <Root>
       <ContentName>{contentName}</ContentName>
       {contentList?.length === 0 || contentList === null ? (
-        <NotAvailableBar Icon={MenuBookRoundedIcon} text="Currently we don't have this!" />
+        <NotAvailableBar Icon={MenuBookRoundedIcon} text={t('noContentMessage')} />
       ) : (
         contentList?.map(item => <ContentCard key={item.id} item={item} />)
       )}
