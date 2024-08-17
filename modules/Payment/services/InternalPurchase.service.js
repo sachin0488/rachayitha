@@ -5,7 +5,7 @@ import { PaymentQuery } from '../constants/query.address'
 import { AuthQuery } from 'modules/Auth/constants/query.address'
 import { useChapterContentFCService } from 'modules/ReaderSection/service/ChapterContent.service'
 import { ContentDetailsQuery } from 'modules/ContentDetail/constants/query.address'
-import i18n from 'i18n'
+import i18n from 'i18next'
 
 export const InternalPurchaseOrderType = {
   BOOK_CHAPTER: 'bookchapter',
