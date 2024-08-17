@@ -12,12 +12,12 @@ const ErrorPage = () => {
 
 export default ErrorPage
 
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
+export async function getServerSideProps({ req, res, query, params ,locale}) {
+  return{
+    props:{
+      ...(await serverSideTranslations(locale, ["common"])),  
+    }
+  }
 }
 
 // @charset "UTF-8";

@@ -19,7 +19,7 @@ const Header = ({ handleSidebarOpen }) => {
   const isTabletXSM = useMediaQuery('(min-width:900px)');
   const { isLoggedIn } = useUserService();
   const { t } = useTranslation();
-  const { locales, locale: currentLocale, push, pathname } = useRouter();
+  const { locales, locale: currentLocale, push, pathname, query } = useRouter();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +32,25 @@ const Header = ({ handleSidebarOpen }) => {
   const handleLanguageChange = (lng) => {
     setAnchorEl(null);
     setIsMenuOpen(false);
-    push(pathname, pathname, { locale: lng });
+
+    const { bookId, slug } = query;
+    if(!bookId&&!slug){ 
+        push({ pathname}, { pathname }, { locale: lng });
+    }
+    else if(!bookId&&slug){
+
+        push({ pathname, query: { ...query, slug } }, { pathname, query: { ...query, slug } }, { locale: lng });
+    }
+    else if(bookId&&!slug){
+        push({ pathname, query: { ...query, bookId } }, { pathname, query: { ...query, bookId } }, { locale: lng });
+    }
+    else{
+    push(
+      { pathname, query: { ...query, bookId, slug } }, 
+      { pathname, query: { ...query, bookId, slug } }, 
+      { locale: lng }
+    );
+  }
   };
 
   const handleMenuClose = () => {

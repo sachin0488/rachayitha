@@ -7,7 +7,6 @@ import CategorySection from '../section/CategorySection'
 import ContentSection from '../section/ContentSection'
 import FilterSection from '../section/FilterSection'
 import TabSection from '../section/TabSection'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const ExplorePage = () => {
   const isTablet = useMediaQuery('(max-width: 800px)')
@@ -30,11 +29,3 @@ const ExplorePage = () => {
 }
 
 export default ExplorePage
-
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
-}

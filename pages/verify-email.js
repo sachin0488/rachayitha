@@ -12,10 +12,10 @@ const VerifyEmail = () => {
 
 export default VerifyEmail
 
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
+export async function getServerSideProps({ req, res, query, params ,locale}) {
+  return{
+    props:{
+      ...(await serverSideTranslations(locale, ["common"])),  
+    }
+  }
 }

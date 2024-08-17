@@ -39,7 +39,7 @@ const ChapterBar = ({
       <StyledA onClick={handleClick}>
         <Root>
           <ChapterText variant="subtitle1" noWrap>
-            <strong>{t(heading)} {chapterSequence}:</strong>
+            <strong>{t('heading')} {chapterSequence}:</strong>
             <span> </span>
             {chapterTitle}
           </ChapterText>

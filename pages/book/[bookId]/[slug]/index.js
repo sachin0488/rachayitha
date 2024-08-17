@@ -3,33 +3,31 @@ import ContentDetail from 'modules/ContentDetail/pages/contentDetail.page'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Book = () => {
-  const { query } = useRouter()
-
+const Book = ({ contentId, slug }) => {
   const contentType = 'book'
-  const contentId = query?.bookId
-  const slug = query?.slug
+
+  if (!contentId || !slug) {
+    console.error("Missing contentId or slug:", { contentId, slug });
+    return <p>Loading...</p>; // or some fallback UI
+  }
 
   return <ContentDetail contentId={contentId} contentType={contentType} slug={slug} />
 }
 
 export default Book
 
-// export async function getStaticProps({ locale }) {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale, ["common"])),
-//     },
-//   };
-// }
+export async function getServerSideProps({ req, res, query, params, locale }) {
 
-export async function getServerSideProps({ req, res, query, params ,locale}) {
- 
-  return{
-    props:{
-      ...(await serverSideTranslations(locale, ["common"])),  
-    }
+  // console.log('getServerSideProps', { req, res, query, params, locale })
+    
+  const contentId = query.bookId ;
+  const slug = query.slug ;
+  return {
+    props: {
+      contentId,
+      slug,
+      ...(await serverSideTranslations(locale, ["common"])),
+      
+    },
   }
- 
-  return { props: { serverData: serverData } }
 }

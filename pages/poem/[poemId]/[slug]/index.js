@@ -1,6 +1,7 @@
 import React from 'react'
 import ContentDetail from 'modules/ContentDetail/pages/contentDetail.page'
 import { useRouter } from 'next/router'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Poem = () => {
   const { query } = useRouter()
@@ -17,5 +18,22 @@ const Poem = () => {
 }
 
 export default Poem
+
+export async function getServerSideProps({ req, res, query, params, locale }) {
+
+  // console.log('getServerSideProps', { req, res, query, params, locale })
+    
+  const contentId = query.poemId ;
+  const slug = query.slug ;
+  return {
+    props: {
+      contentId,
+      slug,
+      ...(await serverSideTranslations(locale, ["common"])),
+      
+    },
+  }
+}
+
 
 

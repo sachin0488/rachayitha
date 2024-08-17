@@ -6,7 +6,6 @@ import BannerSection from '../section/BannerSection'
 import CategorySection from '../section/CategorySection'
 import ContentSection from '../section/ContentSection'
 import TabSection from '../section/TabSection'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const RankingPage = () => {
   return (
@@ -25,11 +24,3 @@ const RankingPage = () => {
 }
 
 export default RankingPage
-
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
-}
