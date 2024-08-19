@@ -1,62 +1,64 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import { AppBar, Button, IconButton, Toolbar, useMediaQuery, Menu, MenuItem } from '@mui/material';
-import { NavPageLinks } from '../config.layout';
-import { useTranslation } from 'react-i18next';
+import React, { useCallback, useState } from 'react'
+import styled from '@emotion/styled'
+import { AppBar, Button, IconButton, Toolbar, useMediaQuery, Menu, MenuItem } from '@mui/material'
+import { NavPageLinks } from '../config.layout'
+import { useTranslation } from 'react-i18next'
 
-import LogoBox from './components/LogoBox';
-import ProfileButton from './components/ProfileButton';
-import StyledNavButton from './components/StyledNavButton';
+import LogoBox from './components/LogoBox'
+import ProfileButton from './components/ProfileButton'
+import StyledNavButton from './components/StyledNavButton'
 
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import SearchBoxWithModal from 'modules/Search/components/SearchBoxWithModal';
-import { useUserService } from 'modules/Auth/service/User.service';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { ArrowDropDownRounded, ArrowDropUpRounded, TranslateRounded } from '@mui/icons-material';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen'
+import SearchBoxWithModal from 'modules/Search/components/SearchBoxWithModal'
+import { useUserService } from 'modules/Auth/service/User.service'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { ArrowDropDownRounded, ArrowDropUpRounded, TranslateRounded } from '@mui/icons-material'
+import { LOCALS } from 'constants/locals.constants'
 
 const Header = ({ handleSidebarOpen }) => {
-  const isTabletXSM = useMediaQuery('(min-width:900px)');
-  const { isLoggedIn } = useUserService();
-  const { t } = useTranslation();
-  const { locales, locale: currentLocale, push, pathname, query } = useRouter();
+  const isTabletXSM = useMediaQuery('(min-width:900px)')
+  const { isLoggedIn } = useUserService()
+  const { t } = useTranslation()
+  const { locales, locale: currentLocale, push, pathname, query } = useRouter()
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setIsMenuOpen((prev) => !prev);
-  };
-
-  const handleLanguageChange = (lng) => {
-    setAnchorEl(null);
-    setIsMenuOpen(false);
-
-    const { bookId, slug } = query;
-    if(!bookId&&!slug){ 
-        push({ pathname}, { pathname }, { locale: lng });
-    }
-    else if(!bookId&&slug){
-
-        push({ pathname, query: { ...query, slug } }, { pathname, query: { ...query, slug } }, { locale: lng });
-    }
-    else if(bookId&&!slug){
-        push({ pathname, query: { ...query, bookId } }, { pathname, query: { ...query, bookId } }, { locale: lng });
-    }
-    else{
-    push(
-      { pathname, query: { ...query, bookId, slug } }, 
-      { pathname, query: { ...query, bookId, slug } }, 
-      { locale: lng }
-    );
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+    setIsMenuOpen(prev => !prev)
   }
-  };
 
+  const handleLanguageChange = useCallback(
+    lng => {
+      setAnchorEl(null)
+      setIsMenuOpen(false)
+
+      const { bookId, poemId, chapterId, slug, chapterSlug, ...otherQuery } = query
+      push(
+        {
+          pathname,
+
+          query: {
+            ...query,
+          },
+        },
+        {
+          pathname,
+          query: {
+            ...otherQuery,
+          },
+        },
+        { locale: lng },
+      )
+    },
+    [query, push, pathname],
+  )
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    setIsMenuOpen(false);
-  };
+    setAnchorEl(null)
+    setIsMenuOpen(false)
+  }
 
   return (
     <>
@@ -67,8 +69,7 @@ const Header = ({ handleSidebarOpen }) => {
           backdropFilter: 'blur(18px)',
           borderBottom: theme => '1px solid' + theme.palette.primary.main + '50',
           background: ({ palette }) => palette.background.paper + 'e9',
-        }}
-      >
+        }}>
         <Toolbar>
           <LogoBox />
           <Toolbar style={{ marginLeft: 'auto', paddingInline: '0px' }}>
@@ -77,12 +78,12 @@ const Header = ({ handleSidebarOpen }) => {
               <NavButtonWarper>
                 {NavPageLinks.map((Item, index) => {
                   if (isLoggedIn) {
-                    return <StyledNavButton key={index} {...Item} Icon={Item.Icon} />;
+                    return <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
                   }
 
-                  if (Item?.forLoggedInOnly) return null;
+                  if (Item?.forLoggedInOnly) return null
 
-                  return <StyledNavButton key={index} {...Item} Icon={Item.Icon} />;
+                  return <StyledNavButton key={index} {...Item} Icon={Item.Icon} />
                 })}
               </NavButtonWarper>
             )}
@@ -98,8 +99,7 @@ const Header = ({ handleSidebarOpen }) => {
               padding: '4px',
               marginRight: '1.3rem',
             }}
-            variant="outlined"
-          >
+            variant="outlined">
             <TranslateRounded style={{ fontSize: 20 }} />
             {isMenuOpen ? <ArrowDropUpRounded style={{ fontSize: 20 }} /> : <ArrowDropDownRounded style={{ fontSize: 20 }} />}
           </IconButton>
@@ -111,20 +111,18 @@ const Header = ({ handleSidebarOpen }) => {
               '& .MuiMenu-paper': {
                 borderRadius: '8px',
               },
-            }}
-          >
-            {locales?.map((locale) => (
+            }}>
+            {LOCALS?.map(item => (
               <MenuItem
-                key={locale}
-                onClick={() => handleLanguageChange(locale)}
+                key={item.locale}
+                onClick={() => handleLanguageChange(item.locale)}
                 sx={{
                   color: theme => theme.palette.primary.main,
                   padding: '2px 9px',
                   paddingRight: '1.7rem',
                   fontWeight: '500',
-                }}
-              >
-                {locale === 'en-US' ? 'English' : 'हिंदी'}
+                }}>
+                {item.name}
               </MenuItem>
             ))}
           </Menu>
@@ -139,8 +137,7 @@ const Header = ({ handleSidebarOpen }) => {
                   edge="start"
                   sx={{
                     transition: '.2s ease-in-out',
-                  }}
-                >
+                  }}>
                   <MenuOpenIcon style={{ fontSize: 25 }} />
                 </StyledSidebarButton>
               )}
@@ -155,16 +152,16 @@ const Header = ({ handleSidebarOpen }) => {
         </Toolbar>
       </AppBar>
     </>
-  );
-};
+  )
+}
 
 const NavButtonWarper = styled.div`
   display: flex;
   gap: 1px;
   margin-right: 10px;
   margin-left: 15px;
-`;
+`
 
-const StyledSidebarButton = styled(IconButton)``;
+const StyledSidebarButton = styled(IconButton)``
 
-export default Header;
+export default Header

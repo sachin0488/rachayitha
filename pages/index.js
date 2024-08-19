@@ -3,7 +3,7 @@ import LandingPageWithoutLogin from 'modules/Landing/pages/LandingWithoutLogin.p
 
 import { useUserService } from 'modules/Auth/service/User.service'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from 'next/router';
+
 export default function Home() {
   const { isLoggedIn } = useUserService()
 

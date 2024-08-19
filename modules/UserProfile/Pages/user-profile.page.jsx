@@ -1,28 +1,18 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { BodyContainer, MainContainer, RootContainer } from '../common/styles';
-import BannerSection from '../Section/BannerSection';
-import InfoSection from '../Section/InfoSection';
-import ProfileTabs from '../Section/ProfileTabs';
-import { useUserService } from 'modules/Auth/service/User.service';
-import styled from '@emotion/styled';
-import { Button, Typography } from '@mui/material';
-import Link from 'next/link';
-import nextI18NextConfig from "../../../next-i18next.config"
-import { appWithTranslation } from 'next-i18next';
-
-const emptyInitialI18NextConfig = {
-  i18n: {
-    defaultLocale: nextI18NextConfig.i18n.defaultLocale,
-    locales: nextI18NextConfig.i18n.locales,
-  },
-}
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { BodyContainer, MainContainer, RootContainer } from '../common/styles'
+import BannerSection from '../Section/BannerSection'
+import InfoSection from '../Section/InfoSection'
+import ProfileTabs from '../Section/ProfileTabs'
+import { useUserService } from 'modules/Auth/service/User.service'
+import styled from '@emotion/styled'
+import { Button, Typography } from '@mui/material'
+import Link from 'next/link'
+import nextI18NextConfig from '../../../next-i18next.config'
 
 const UserProfilePage = () => {
-  const { t } = useTranslation();
-  const { user, isLoading: isBannerLoading } = useUserService();
-
-  
+  const { t } = useTranslation()
+  const { user, isLoading: isBannerLoading } = useUserService()
 
   return (
     <RootContainer>
@@ -50,10 +40,8 @@ const UserProfilePage = () => {
         </DeleteAccountSection>
       </MainContainer>
     </RootContainer>
-  );
-};
-
-
+  )
+}
 
 const DeleteAccountSection = styled.div`
   display: flex;
@@ -68,6 +56,6 @@ const DeleteAccountSection = styled.div`
   margin-inline: 1rem;
   max-width: 1240px;
   align-self: center;
-`;
+`
 
-export default appWithTranslation(UserProfilePage, emptyInitialI18NextConfig);
+export default UserProfilePage
