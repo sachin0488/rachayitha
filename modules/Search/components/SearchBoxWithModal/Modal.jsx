@@ -10,7 +10,7 @@ import ContentSection from './components/ContentList'
 import StyledSearchBox from './components/StyledSearchBox'
 import TabSection from './components/TabSection'
 import { ContentType } from 'modules/RecommendationSlider/constants/common.constants'
-
+import { useTranslation } from 'next-i18next'
 const tabs = [
   { id: 1, label: 'Book', value: ContentType.BOOK },
   { id: 2, label: 'Poem', value: ContentType.POEM },
@@ -29,11 +29,12 @@ const SearchModal = ({ open, setOpen }) => {
     setOpen(false)
   }, [setOpen])
 
+  const { t } = useTranslation("common");
   return (
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={550}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
-          Search Your interest...
+          {t('searchModel.title')}
         </Title>
         <TabSection currentTabId={contentTypeId} tabs={tabs} onTabChange={setContentTypeId} />
         <StyledSearchBox SearchText={SearchKeyword} setSearchText={setSearchKeyword} />

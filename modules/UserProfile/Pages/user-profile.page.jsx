@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { BodyContainer, MainContainer, RootContainer } from '../common/styles';
 import BannerSection from '../Section/BannerSection';
 import InfoSection from '../Section/InfoSection';
@@ -8,18 +8,10 @@ import { useUserService } from 'modules/Auth/service/User.service';
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 import Link from 'next/link';
-import nextI18NextConfig from "../../../next-i18next.config"
 import { appWithTranslation } from 'next-i18next';
 
-const emptyInitialI18NextConfig = {
-  i18n: {
-    defaultLocale: nextI18NextConfig.i18n.defaultLocale,
-    locales: nextI18NextConfig.i18n.locales,
-  },
-}
-
 const UserProfilePage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const { user, isLoading: isBannerLoading } = useUserService();
 
   
@@ -70,4 +62,4 @@ const DeleteAccountSection = styled.div`
   align-self: center;
 `;
 
-export default appWithTranslation(UserProfilePage, emptyInitialI18NextConfig);
+export default UserProfilePage;;

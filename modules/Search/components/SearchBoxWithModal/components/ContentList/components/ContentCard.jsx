@@ -16,7 +16,7 @@ import Synopsis from 'modules/ContentDetail/components/Synopsis'
 const ContentCard = ({ item, contentType, onClick }) => {
   const isMobile = useMediaQuery('(max-width: 465px)')
 
-  return (
+  return ( 
     <Root>
       <Main>
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />

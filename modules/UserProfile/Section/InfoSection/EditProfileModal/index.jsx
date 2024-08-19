@@ -5,6 +5,7 @@ import { Button, CircularProgress, FormLabel, Typography } from '@mui/material'
 import { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useTranslation } from 'next-i18next'
 
 import { StyledModal } from 'components/StyledModal'
 import { StyledRadioBox, StyledRadioGroup } from 'components/form-components/StyledRadio'
@@ -16,16 +17,8 @@ import PhotoUploader from './components/PhotoUploader'
 import { useUpdateProfileService } from 'modules/UserProfile/services/UpdateProfile.service'
 import { useUserService } from 'modules/Auth/service/User.service'
 
-const schema = yup.object().shape({
-  fullName: yup.string().min(3).required('Name is required'),
-  username: yup.string().min(3).required('Username is required'),
-  email: yup.string().email().required('Email is required'),
-  birthDate: yup.string().required('birthday is required'),
-  bio: yup.string(),
-  gender: yup.string().required('Gender is required'),
-})
-
 const EditProfileModal = ({ open, setOpen }) => {
+  const { t } = useTranslation("common")
   const { mutate, isLoading, isSuccess } = useUpdateProfileService()
 
   const { user } = useUserService()
@@ -39,6 +32,15 @@ const EditProfileModal = ({ open, setOpen }) => {
       handleClose()
     }
   }, [isSuccess, handleClose])
+
+  const schema = yup.object().shape({
+    fullName: yup.string().min(3).required(t('nameRequired')),
+    username: yup.string().min(3).required(t('usernameRequired')),
+    email: yup.string().email().required(t('emailRequired')),
+    birthDate: yup.string().required(t('birthdateRequired')),
+    bio: yup.string(),
+    gender: yup.string().required(t('genderRequired')),
+  })
 
   const methods = useForm({
     resolver: yupResolver(schema),
@@ -70,20 +72,20 @@ const EditProfileModal = ({ open, setOpen }) => {
     <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={400}>
       <Main>
         <Title variant="h4" component="div" color="secondary">
-          Update Profile
+          {t('updateProfile')}
         </Title>
         <FormProvider {...methods}>
           <PhotoUploader name="profilePic" />
-          <StyledTextField name="username" label="Username" placeholder="Username here..." disabled />
-          <StyledTextField name="email" type="email" label="Email" placeholder="Email here..." disabled />
-          <StyledTextField name="fullName" label="Full Name" placeholder="Full here..." />
-          <StyledDateSelector name="birthDate" label="Birth Date" placeholder="Chapter name here..." />
-          <StyledTextField name="bio" label="Bio" placeholder="Bio here..." multiline />
+          <StyledTextField name="username" label={t('username')} placeholder={t('usernamePlaceholder')} disabled />
+          <StyledTextField name="email" type="email" label={t('email')} placeholder={t('emailPlaceholder')} disabled />
+          <StyledTextField name="fullName" label={t('fullName')} placeholder={t('fullNamePlaceholder')} />
+          <StyledDateSelector name="birthDate" label={t('birthDate')} placeholder={t('birthDatePlaceholder')} />
+          <StyledTextField name="bio" label={t('bio')} placeholder={t('bioPlaceholder')} multiline />
           <FieldGroup>
-            <StyledFormLabel>Select Gender</StyledFormLabel>
+            <StyledFormLabel>{t('selectGender')}</StyledFormLabel>
             <StyledRadioGroup name="gender" row>
               {GenderList.map(({ label, value }) => (
-                <StyledRadioBox key={value} label={label} value={value} />
+                <StyledRadioBox key={value} label={t(label)} value={value} />
               ))}
             </StyledRadioGroup>
           </FieldGroup>
@@ -91,14 +93,23 @@ const EditProfileModal = ({ open, setOpen }) => {
 
         <Bottom>
           <StyledButton variant="outlined" onClick={handleClose}>
-            Cancel
+            {t('cancel')}
           </StyledButton>
           <StyledButton
             disabled={isLoading}
-            startIcon={isLoading && <CircularProgress size={14} thickness={5} sx={{ color: theme => theme.palette.grey[500] }} />}
+            startIcon={
+              isLoading && (
+                <CircularProgress
+                  size={14}
+                  thickness={5}
+                  sx={{ color: theme => theme.palette.grey[500] }}
+                />
+              )
+            }
             variant="contained"
-            onClick={methods.handleSubmit(mutate)}>
-            Save
+            onClick={methods.handleSubmit(mutate)}
+          >
+            {t('save')}
           </StyledButton>
         </Bottom>
       </Main>
@@ -108,15 +119,15 @@ const EditProfileModal = ({ open, setOpen }) => {
 
 const GenderList = [
   {
-    label: 'Male',
+    label: 'male',
     value: 'male',
   },
   {
-    label: 'Female',
+    label: 'female',
     value: 'female',
   },
   {
-    label: 'Others',
+    label: 'others',
     value: 'others',
   },
 ]

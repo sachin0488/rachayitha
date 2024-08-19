@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { alpha, InputBase, styled, useMediaQuery } from '@mui/material'
-
+import { useTranslation } from 'react-i18next'
 const StyledSearchBox = ({ SearchText, setSearchText }) => {
   const isTabletSM = useMediaQuery('(min-width:1070px)')
-
+  const { t } = useTranslation()
   return (
     <>
       <Search>
@@ -14,7 +14,7 @@ const StyledSearchBox = ({ SearchText, setSearchText }) => {
         <StyledInputBase
           value={SearchText}
           onChange={e => setSearchText(e.target.value)}
-          placeholder={isTabletSM ? 'Search books, poems and many more…' : 'Search here...'}
+          placeholder={isTabletSM ?  t('searchBox.placeholder.desktop') : t('searchBox.placeholder.mobile')}
           inputProps={{ 'aria-label': 'search' }}
         />
       </Search>

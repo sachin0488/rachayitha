@@ -14,9 +14,10 @@ export default Profile
 
 
 export async function getServerSideProps({ req, res, query, params ,locale}) {
+
   return{
     props:{
-      ...(await serverSideTranslations(locale, ["common"])),  
+      ...(await serverSideTranslations(locale, ["common"])),
     }
   }
 }
