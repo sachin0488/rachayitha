@@ -15,6 +15,7 @@
     "title": "Search Your interest..."
   },
 
+
   "deleteAccount": {
     "followingAreTheThingsThatWillHappen": "Following are the things that will happen",
     "point1": "All your data will be deleted from our servers. This includes your profile, posts, comments, and any other data you have provided us.",
@@ -330,6 +331,28 @@
     "achievement": "Achievement",
     "originalWork": "Original Work"
   },
+    "updateProfile": "Update Profile",
+    "username": "Username",
+    "usernamePlaceholder": "Username here...",
+    "email": "Email",
+    "emailPlaceholder": "Email here...",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Full Name here...",
+    "birthDate": "Birth Date",
+    "birthDatePlaceholder": "Birth Date here...",
+    "bio": "Bio",
+    "bioPlaceholder": "Bio here...",
+    "selectGender": "Select Gender",
+    "male": "Male",
+    "female": "Female",
+    "others": "Others",
+    "cancel": "Cancel",
+    "save": "Save",
+    "nameRequired": "Name is required",
+    "usernameRequired": "Username is required",
+    "emailRequired": "Email is required",
+    "birthdateRequired": "Birthdate is required",
+    "genderRequired": "Gender is required",  
 
   "emailVerification": {
     "verifyMessage": "Verify your email to unlock the full experience.",

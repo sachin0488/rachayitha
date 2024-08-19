@@ -8,7 +8,6 @@ import { useUserService } from 'modules/Auth/service/User.service'
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
 import Link from 'next/link'
-import nextI18NextConfig from '../../../next-i18next.config'
 
 const UserProfilePage = () => {
   const { t } = useTranslation()
@@ -58,4 +57,4 @@ const DeleteAccountSection = styled.div`
   align-self: center;
 `
 
-export default UserProfilePage
+export default UserProfilePage;;
