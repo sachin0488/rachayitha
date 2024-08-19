@@ -3,11 +3,11 @@ import { Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CreateReviewModal from './CreateReviewModal'
 import StyledRatingField from './CreateReviewModal/components/StyledRatingField'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 const CreateReviewSection = ({ contentId, contentType }) => {
   const [open, setOpen] = useState(false)
-  const { t } = useTranslation()
+  const { t } = useTranslation("common")
 
   return (
     <Root>

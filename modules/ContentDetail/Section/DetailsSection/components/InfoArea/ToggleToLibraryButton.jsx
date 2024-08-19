@@ -4,16 +4,16 @@ import LibraryAddRoundedIcon from '@mui/icons-material/LibraryAddRounded'
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck'
 import { useToggleToLibraryService } from 'modules/ContentDetail/services/ToggleToLibrary.service'
 import { ContentDetailsQuery } from 'modules/ContentDetail/constants/query.address'
-
+import { useTranslation } from 'next-i18next'
 const ToggleToLibraryButton = ({ contentId, libraryAdded, contentType }) => {
   const { mutate, isLoading } = useToggleToLibraryService({
     contentId,
     queryKey: [ContentDetailsQuery.CONTENT_DETAILS, { contentId: parseInt(contentId), contentType }],
     contentType,
   })
-
+ const {t}=useTranslation();
   return (
-    <Tooltip title={libraryAdded ? 'Remove from Library' : 'Add to Library'}>
+    <Tooltip title={libraryAdded ? t('toggleToLibraryButton.removeFromLibrary') : t('toggleToLibraryButton.addToLibrary')}>
       <Button
         disabled={isLoading}
         variant="contained"

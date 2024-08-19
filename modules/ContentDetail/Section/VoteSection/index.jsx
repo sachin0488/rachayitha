@@ -17,7 +17,7 @@ import InfoModal from 'components/StyledModal/InfoModal'
 import { useUserService } from 'modules/Auth/service/User.service'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 const VoteSection = ({ contentType, contentId }) => {
   const isMobile = useMediaQuery('(max-width: 500px)')
@@ -26,7 +26,7 @@ const VoteSection = ({ contentType, contentId }) => {
   const { isFetching, Data: VoteData } = useFetchVoteService({ contentId, contentType })
   const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ contentId, contentType })
   const { isLoggedIn } = useUserService()
-  const { t } = useTranslation()
+  const { t } = useTranslation("common")
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
@@ -51,19 +51,19 @@ const VoteSection = ({ contentType, contentId }) => {
       <Main>
         <Field>
           <HowToVoteRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
-          <Text style={{ fontSize: isMobile && 15 }}>{t('voteSection.voteInfo')}</Text>
+          <Text style={{ fontSize: isMobile && 15 }}>{t('voteInfo')}</Text>
         </Field>
         <InfoModal
-          messageNotice={t('voteSection.voteConfirmation', { contentType: contentType, contentName: Data?.contentName })}
+          messageNotice={t('voteConfirmation', { contentType: contentType, contentName: Data?.contentName })}
           open={isVoteModalOpen}
           setOpen={setVoteModalOpen}
           isLoading={isMutating}
-          buttonText={t('voteSection.voteButtonText')}
+          buttonText={t('voteButtonText')}
           onClickOk={mutate}
         />
         <Bottom>
           <InfoSection>
-            <Tooltip title={t('voteSection.rankingTooltip')}>
+            <Tooltip title={t('rankingTooltip')}>
               <VoteInfoField>
                 <StarBorderRoundedIcon color="primary" style={{ fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
@@ -71,7 +71,7 @@ const VoteSection = ({ contentType, contentId }) => {
                 </HighlightedText>
               </VoteInfoField>
             </Tooltip>
-            <Tooltip title={t('voteSection.totalVotesTooltip')}>
+            <Tooltip title={t('totalVotesTooltip')}>
               <VoteInfoField>
                 <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} />
                 <HighlightedText variant="h6" component="div" color="secondary">
@@ -81,7 +81,7 @@ const VoteSection = ({ contentType, contentId }) => {
             </Tooltip>
           </InfoSection>
           {isLoggedIn && isAlreadyVoted && (
-            <Tooltip title={t('voteSection.yourVoteTooltip')}>
+            <Tooltip title={t('yourVoteTooltip')}>
               <VoteButton
                 disableElevation
                 disableRipple
@@ -99,7 +99,7 @@ const VoteSection = ({ contentType, contentId }) => {
             </Tooltip>
           )}
           {isLoggedIn ? (
-            <Tooltip title={t('voteSection.voteTooltip')}>
+            <Tooltip title={t('voteTooltip')}>
               <AddVoteButton
                 disabled={isMutating}
                 is_mutating={String(isMutating)}
@@ -113,7 +113,7 @@ const VoteSection = ({ contentType, contentId }) => {
                     <KeyboardDoubleArrowUpRoundedIcon sx={{ fontSize: isMobile ? 30 : 45 }} />
                   )}
                 </div>
-                <Typography variant="subtitle2">{t('voteSection.voteButton')}</Typography>
+                <Typography variant="subtitle2">{t('voteButton')}</Typography>
               </AddVoteButton>
             </Tooltip>
           ) : (
@@ -126,7 +126,7 @@ const VoteSection = ({ contentType, contentId }) => {
                     padding: '10px 18px',
                     boxShadow: theme => '4px 4px 15px 2px' + theme.palette.primary.main + '98',
                   }}>
-                  <Typography variant="subtitle2">{t('voteSection.signIn')}</Typography>
+                  <Typography variant="subtitle2">{t('signIn')}</Typography>
                   <LoginRoundedIcon />
                 </Button>
               </a>

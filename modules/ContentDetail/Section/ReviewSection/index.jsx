@@ -9,12 +9,12 @@ import { useContentDetailsService } from 'modules/ContentDetail/services/Content
 import { useUserService } from 'modules/Auth/service/User.service'
 import Link from 'next/link'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 const ReviewSection = ({ contentType, contentId }) => {
   const { Data, isLoading } = useContentDetailsService({ contentId, contentType })
   const { isLoggedIn } = useUserService()
-  const { t } = useTranslation()
+  const { t } = useTranslation("common")  
   
   const isTablet = useMediaQuery('(max-width: 735px)')
 

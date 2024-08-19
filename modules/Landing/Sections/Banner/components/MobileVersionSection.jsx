@@ -17,7 +17,7 @@ const MobileVersionSection = () => {
           color="white"
           heading={
             <>
-              {t('heading').split('\n').map((line, index) => (
+              {t('availableLeadsSection.heading').split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
                   <br />
@@ -27,7 +27,7 @@ const MobileVersionSection = () => {
           }
           subHeading={
             <>
-              {t('subHeading').split('\n').map((line, index) => (
+              {t('availableLeadsSection.subHeading').split('\n').map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
                   {is600x && <br />}

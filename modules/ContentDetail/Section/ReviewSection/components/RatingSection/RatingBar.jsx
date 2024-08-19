@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Rating, Typography } from '@mui/material'
-
+import { useTranslation } from 'next-i18next'
 import StarIcon from '@mui/icons-material/Star'
 
 const RatingBar = ({ label, rating }) => {
+  const { t } = useTranslation('common');
   return (
     <Root>
       <Label variant="subtitle2" color="secondary">
-        {label}
+        {t(label)}
       </Label>
       <Rating
         color="primary"

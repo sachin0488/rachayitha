@@ -523,5 +523,10 @@
   "unableToVerify": "We were unable to verify your payment 😓!",
   "yourSubscriptionIsValidTill": "Your subscription is valid till",
   "continue": "Continue",
-  "Pay": "Pay {' '}"
+  "Pay": "Pay {' '}",
+  "Writing Quality":"Writing Quality",
+  "Stability of Updates":"Stability of Updates",  
+  "Story Development":"Story Development",
+  "Character Design":"Character Design",
+  "World Background":"World Background"
 }

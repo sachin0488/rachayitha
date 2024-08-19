@@ -139,9 +139,7 @@
     "signInPrompt": "साइन इन करने के बाद आप यहाँ अपनी समीक्षा पोस्ट कर सकते हैं!",
     "needAccount": "क्या आपको खाता चाहिए?",
     "createAccount": "एक खाता बनाएं!",
-    "signIn": "साइन इन करें"
-  },
-  "heading": {
+    "signIn": "साइन इन करें",
     "reviews": "समीक्षाएँ"
   },
   "voteInfo": "वोट हर दिन आपके पसंदीदा उपन्यास को रैंक करने के लिए होते हैं",
@@ -320,9 +318,9 @@
 
   "anotherUserProfileTabs": {
     "originalWorks": "मूल कृतियाँ",
-    "book": "पुस्तक",
-    "poem": "कविता",
-    "story": "कहानी",
+    "Book": "पुस्तक",
+    "Poem": "कविता",
+    "Story": "कहानी",
     "noContentMessage": "आपने अभी तक कोई {{contentType}} नहीं बनाई है"
   },
 
@@ -380,9 +378,9 @@
   "discover": "खोजें",
   "home": "होम",
   "ranking": "रैंकिंग",
-  "book": "किताब",
-  "novel": "उपन्यास",
-  "poem": "कविता",
+  "Book": "किताब",
+  "Novel": "उपन्यास",
+  "Poem": "कविता",
   "about_us": "हमारे बारे में",
   "privacy_policy": "गोपनीयता नीति",
   "terms_and_conditions": "नियम और शर्तें",
@@ -527,5 +525,10 @@
     "usernameRequired": "उपयोगकर्ता नाम आवश्यक है",
     "emailRequired": "ईमेल आवश्यक है",
     "birthdateRequired": "जन्म तिथि आवश्यक है",
-    "genderRequired": "लिंग आवश्यक है"  
+    "genderRequired": "लिंग आवश्यक है"  ,
+    "Writing Quality":"लेख की गुणवत्ता", 
+    "Stability of Updates":"अपडेट की स्थिरता", 
+    "Story Development":"गुणवत्ता विकास", 
+    "Character Design":"चरण विकास", 
+    "World Background":"विश्व के बैठक"
 }

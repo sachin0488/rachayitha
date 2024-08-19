@@ -11,9 +11,9 @@ import StyledChip from '../ProfileTabs/components/StyledChip';
 const AnotherUserProfileTabs = ({ authorId }) => {
   const { t } = useTranslation("common");
   const contentTypes = [
-    t('book'),
-    t('poem'),
-    // t('story'),
+    t('Book'),
+    t('Poem'),
+    // t('Story'),
   ];
   const [selectedContentType, setSelectedContentType] = useState('book');
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useAnotherUserWorkService({

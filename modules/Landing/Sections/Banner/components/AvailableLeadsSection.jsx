@@ -17,12 +17,12 @@ const AvailableLeadsSection = () => {
             <>
               <span style={{ whiteSpace: 'nowrap' }}>{t('heading')}</span>
               <br />
-              {t('heading')}
+              {t('availableLeadsSection.heading')}
             </>
           }
           subHeading={
             <>
-              {t('subHeading')}
+              {t('availableLeadsSection.subHeading')}
               {is600x && <br />}
             </>
           }
@@ -30,12 +30,12 @@ const AvailableLeadsSection = () => {
         <ShowSection>
           <LeadCard style={{ color: '#8049FF' }}>
             <StyledImage src="/male_lead.jpeg" alt="MaleLead" />
-            <LeadCardText>{t('maleLead')}</LeadCardText>
+            <LeadCardText>{t('availableLeadsSection.maleLead')}</LeadCardText>
           </LeadCard>
 
           <LeadCard style={{ color: '#F450AE' }}>
             <StyledImage src="/female_lead.jpeg" alt="FemaleLead" />
-            <LeadCardText>{t('femaleLead')}</LeadCardText>
+            <LeadCardText>{t('availableLeadsSection.femaleLead')}</LeadCardText>
           </LeadCard>
         </ShowSection>
       </Main>
