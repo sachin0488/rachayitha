@@ -12,8 +12,9 @@ import {
 } from '@mui/material'
 import StyledButton from './StyledButton'
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded'
-
+import { useTranslation } from 'next-i18next'
 const AccordionBox = ({ isOpened, setOpenedIdx, item, idx, isLoading }) => {
+  const { t } = useTranslation('common');
   return (
     <Root expanded={isOpened}>
       <Summary
@@ -27,7 +28,7 @@ const AccordionBox = ({ isOpened, setOpenedIdx, item, idx, isLoading }) => {
         <StyledButton
           category={{
             categoryId: 0,
-            categoryName: 'All Categories',
+            categoryName: t('All Categories'),
           }}
           contentType={item.contentType?.toLowerCase()}
         />

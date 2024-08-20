@@ -95,7 +95,7 @@ const InfoSection = () => {
 
         <StoneSection redStone={0} blueStone={user?.coins?.voteToken} greenStone={0} greyStone={user?.coins?.coin} />
 
-        <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={user?.gender || 'N/A'} />
+        <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={t(user?.gender) || 'N/A'} />
         <InfoField
           Icon={DateRangeOutlinedIcon}
           text={`${t('birthday')} - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}

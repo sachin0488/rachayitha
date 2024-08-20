@@ -10,10 +10,11 @@ import { ContentContainer, ContentListBox, NotAvailableBar, StyledSkeleton, Tabs
 
 import useBoughtProductService from 'modules/UserProfile/services/BoughtProduct.service';
 import { useTranslation } from 'next-i18next';
+import { ContentType } from 'modules/ReaderSection/constants/common.constants';
 
 const contentTypes = [
-  'book',
-  'poem',
+  ContentType.BOOK,
+  ContentType.POEM,
   //'story',
 ];
 
@@ -29,7 +30,7 @@ const BoughtTab = () => {
     <TabsRoot>
       <ContentListBox>
         {contentTypes.map((item, index) => (
-          <StyledChip key={item} active={selectedContentType === item} label={item} onClick={() => setSelectedContentType(item)} />
+          <StyledChip key={item} active={selectedContentType === item} label={t(item)} onClick={() => setSelectedContentType(item)} />
         ))}
       </ContentListBox>
       <ContentContainer

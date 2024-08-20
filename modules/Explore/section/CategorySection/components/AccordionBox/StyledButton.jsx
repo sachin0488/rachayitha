@@ -4,7 +4,7 @@ import { Button, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
-
+import { useTranslation } from 'next-i18next'
 const getArrayFromURIString = uriString => {
   if (uriString) {
     return uriString.split(',')
@@ -20,6 +20,7 @@ const getURIStringFromArray = array => {
 }
 
 const StyledButton = ({ contentType, category }) => {
+  const { t } = useTranslation('common')
   const router = useRouter()
 
   const categoryIds = useMemo(() => {
@@ -79,7 +80,7 @@ const StyledButton = ({ contentType, category }) => {
     <Link href={href}>
       <a>
         <Root className={isSelected ? 'selected' : ''}>
-          <Typography variant="inherit">{category.categoryName}</Typography>
+          <Typography variant="inherit">{t(category.categoryName)}</Typography>
         </Root>
       </a>
     </Link>

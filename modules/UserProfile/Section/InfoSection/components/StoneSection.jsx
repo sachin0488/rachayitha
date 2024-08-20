@@ -3,15 +3,16 @@ import TollOutlinedIcon from '@mui/icons-material/TollOutlined'
 import styled from '@emotion/styled'
 import { Tooltip, Typography } from '@mui/material'
 import { blue, green, grey, red } from '@mui/material/colors'
-
+import { useTranslation } from 'next-i18next'
 const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
+  const { t } = useTranslation('common')
   return (
     <Root>
       <Top>
         {/* <Field variant="subtitle2">
           <TollOutlinedIcon sx={{ color: red[500] }} /> {redStone}
         </Field> */}
-        <Tooltip title="Vote Coins">
+        <Tooltip title={t('voteCoins')}>
           <Field variant="subtitle2">
             <TollOutlinedIcon sx={{ color: blue[500] }} /> {blueStone}
           </Field>
@@ -22,7 +23,7 @@ const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
       </Top>
 
       <Bottom>
-        <Tooltip title="Coins">
+        <Tooltip title={t('Coins')}>
           <Field variant="subtitle2">
             <TollOutlinedIcon sx={{ color: grey[500] }} /> {greyStone}
           </Field>

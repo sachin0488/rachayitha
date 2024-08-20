@@ -5,11 +5,12 @@ import { CacheProvider } from '@emotion/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider as MUIThemeProvider, CssBaseline } from '@mui/material'
 import { I18nextProvider } from 'react-i18next'
-import {i18n} from 'next-i18next'
+import { i18n } from 'next-i18next'
 
 import snackbarComponents from 'utility/snackbar.components'
 import createEmotionCache from 'utility/createEmotionCache'
 import lightTheme from 'styles/theme/lightTheme'
+
 import 'styles/globals.css'
 import 'styles/quill.snow.css'
 
@@ -26,8 +27,6 @@ import { appWithTranslation } from 'next-i18next'
 const clientSideEmotionCache = createEmotionCache()
 
 const twentyFourHoursInMs = 1000 * 60 * 60 * 24
-
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -94,7 +93,7 @@ const MyApp = props => {
   )
 }
 
-export default appWithTranslation(MyApp, emptyInitialI18NextConfig);
+export default appWithTranslation(MyApp, emptyInitialI18NextConfig)
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,

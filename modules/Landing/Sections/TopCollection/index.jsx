@@ -62,8 +62,8 @@ const TopCollection = () => {
           </HeadingBox>
           {isTabletXSM ? (
             <CollectionList>
-              <ContentListSection contentName="Book" contentList={data?.books} isLoading={isLoading} />
-              <ContentListSection contentName="Poems" contentList={data?.poems} isLoading={isLoading} />
+              <ContentListSection contentName={t('Book')} contentList={data?.books} isLoading={isLoading} />
+              <ContentListSection contentName={t('Poems')} contentList={data?.poems} isLoading={isLoading} />
               {/* <ContentListSection contentName="Shorts" contentList={Obj?.shorts} /> */}
             </CollectionList>
           ) : (

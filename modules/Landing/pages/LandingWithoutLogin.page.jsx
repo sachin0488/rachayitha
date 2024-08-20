@@ -22,4 +22,5 @@ const LandingPageWithoutLogin = () => {
   )
 }
 
+
 export default LandingPageWithoutLogin

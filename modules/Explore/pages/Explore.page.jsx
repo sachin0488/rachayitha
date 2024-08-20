@@ -20,7 +20,6 @@ const ExplorePage = () => {
         {isTablet ? <FilterSection /> : <CategorySection />}
         <BodyContainer>
           {isTablet ? <CategorySection /> : <FilterSection />}
-
           <ContentSection />
         </BodyContainer>
       </MainContainer>

@@ -3,9 +3,10 @@ import styled from '@emotion/styled'
 
 import { Chip } from '@mui/material'
 import { useRouter } from 'next/router'
-
+import { useTranslation } from 'next-i18next'
 const StyledChip = ({ label, onClick, active }) => {
-  return <Root className={active && 'active'} label={label} onClick={onClick} />
+  const { t } = useTranslation("common")
+  return <Root className={active && 'active'} label={t(label)} onClick={onClick} />
 }
 
 const Root = styled(Chip)`

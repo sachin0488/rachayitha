@@ -35,12 +35,12 @@ const CategorySection = () => {
   const List = [
     {
       name: t('categorySection.novel'),
-      contentType: 'book',
+      contentType: t('Book'),
       CategoryList,
     },
     {
       name: t('categorySection.poem'),
-      contentType: 'poem',
+      contentType: t('Poem'),
       CategoryList,
     },
     // {

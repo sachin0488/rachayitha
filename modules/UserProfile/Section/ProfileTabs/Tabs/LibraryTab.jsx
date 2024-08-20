@@ -31,7 +31,7 @@ const LibraryTab = () => {
     <TabsRoot>
       <ContentListBox>
         {contentTypes.map((item, index) => (
-          <StyledChip key={item} active={selectedContentType === item} label={item} onClick={() => setSelectedContentType(item)} />
+          <StyledChip key={item} active={selectedContentType === item} label={t(item)} onClick={() => setSelectedContentType(item)} />
         ))}
       </ContentListBox>
       <ContentContainer

@@ -7,8 +7,10 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined'
 import LandscapeRoundedIcon from '@mui/icons-material/LandscapeRounded'
 
 import { useUpdateProfileService } from 'modules/UserProfile/services/UpdateProfile.service'
+import { useTranslation } from 'next-i18next'
 
 const BannerSection = ({ user, isBannerLoading, readOnly }) => {
+  const { t } = useTranslation("common")
   const name = 'profileBanner'
 
   const { mutate, isLoading } = useUpdateProfileService()
@@ -102,7 +104,7 @@ const BannerSection = ({ user, isBannerLoading, readOnly }) => {
               {isLoading ? <CircularProgress size={18} thickness={6} sx={{ color: theme => theme.palette.primary.main }} /> : 'Save'}
             </StyledSaveButton>
           )}
-          <Tooltip title="Updated Banner Image!">
+          <Tooltip title={t("updateBannerImage")}>
             <StyledEditButton onClick={handleBrowseButton} color="primary" variant="contained" disabled={isLoading}>
               <ModeEditOutlinedIcon style={{ fontSize: 20 }} />
             </StyledEditButton>

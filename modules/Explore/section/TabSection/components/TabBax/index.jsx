@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import { Tab, tabClasses, Tabs, tabsClasses } from '@mui/material'
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function a11yProps(index) {
   return {
@@ -13,7 +14,7 @@ function a11yProps(index) {
 const TabBox = ({ TabList }) => {
   const router = useRouter()
   const [value, setValue] = useState(0)
-
+ const {t}=useTranslation();
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -41,7 +42,7 @@ const TabBox = ({ TabList }) => {
         <StyledTab
           onClick={handleNavigate(item)}
           key={item.id}
-          label={item.name}
+          label={t(item.name)}
           icon={item.icon}
           {...a11yProps(item.id)}
         />

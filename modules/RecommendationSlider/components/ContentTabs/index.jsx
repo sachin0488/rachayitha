@@ -14,7 +14,7 @@ const ContentTabs = ({ currentContent, onChange }) => {
   return (
     <ContentListBox>
       {ContentTypes.map((item, index) => (
-        <StyledChip key={item} active={currentContent === item} label={item} onClick={() => onChange(item)} />
+        <StyledChip key={item} active={currentContent === item} label={t(item)} onClick={() => onChange(item)} />
       ))}
     </ContentListBox>
   )

@@ -40,10 +40,10 @@ const Footer = () => {
             {t('create')}
           </Heading>
           <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/novel`} target="_blank" rel="noreferrer">
-            <LinkButton>{t('book')}</LinkButton>
+            <LinkButton>{t('Book')}</LinkButton>
           </a>
           <a href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}workspace/poem`} target="_blank" rel="noreferrer">
-            <LinkButton>{t('poem')}</LinkButton>
+            <LinkButton>{t('Poem')}</LinkButton>
           </a>
         </Section>
         <Divider />
