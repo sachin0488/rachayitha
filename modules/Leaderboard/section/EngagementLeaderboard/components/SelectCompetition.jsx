@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Select as MUISelect, MenuItem } from '@mui/material';
 
 function SelectCompetition({ setCompetition }) {
+  const [compVal, setCompVal] = React.useState('novel-writing');
   const handleChange = (event) => {
     setCompetition(event.target.value);
+    setCompVal(event.target.value);
   };
 
   return (
@@ -12,12 +15,24 @@ function SelectCompetition({ setCompetition }) {
       <Container>
         <Heading>Select Competition to view Leadership board</Heading>
         <SelectWrapper>
-          <Select onChange={handleChange}>
-            <option value="novel-writing">Novel Writing Competition</option>
-            <option value="book-writing">Book Writing Competition</option>
-            <option value="poem-writing">Poem Writing Competition</option>
+          <Select
+            value={compVal}
+            onChange={handleChange}
+            IconComponent={ArrowDropDownIcon}
+          >
+            <MenuItem value="novel-writing" 
+            sx={{
+             color: `${compVal === 'novel-writing' ? 'rgba(86, 36, 193, 1)': 'black'}`,
+            }}>Novel Writing Competition</MenuItem>
+            <MenuItem value="book-writing" 
+             sx={{
+             color: `${compVal === 'book-writing' ? 'rgba(86, 36, 193, 1)': 'black'}`,
+            }}>Book Writing Competition</MenuItem>
+            <MenuItem value="poem-writing" 
+             sx={{
+             color: `${compVal === 'poem-writing' ? 'rgba(86, 36, 193, 1)': 'black'}`,
+            }}>Poem Writing Competition</MenuItem>
           </Select>
-          <ArrowIcon />
         </SelectWrapper>
         <BelowContent>
           <p>Read | Write | Participate & Compete</p>
@@ -39,7 +54,7 @@ const SelectCompetitionWrapper = styled.div`
   width: 100%;
   position: relative;
   padding: 20px;
-
+ border-radius: 20px;
   @media (max-width: 1100px) {
     flex-direction: column;
     align-items: center;
@@ -51,7 +66,7 @@ const Container = styled.div`
   align-items: flex-start;
   flex-direction: column;
   width: 41rem;
-
+  border-radius: 20px;
   @media (max-width: 1100px) {
     width: 100%;
     align-items: center;
@@ -65,32 +80,37 @@ const SelectWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 41rem;
-
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
   @media (max-width: 1100px) {
     width: 100%;
   }
 `;
 
-const Select = styled.select`
+const Select = styled(MUISelect)`
   padding: 8px 40px 8px 8px;
-  font-size: 16px;
-  border-radius: 4px;
+  font-size: 1rem;
   height: 5rem;
-  appearance: none;
   width: 100%;
   outline: none;
   color: rgba(86, 36, 193, 1);
   font-weight: bold;
   border: 12px solid rgba(86, 36, 193, 1);
   padding-left: 20px;
+  border-radius: 8px;
+  font-family: 'Maven Pro';
+
+  .MuiSelect-select {
+    padding: 8px 40px 8px 8px;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    ${'' /* border-color: rgba(86, 36, 193, 1); */}
+  }
 `;
 
-const ArrowIcon = styled(ArrowDropDownIcon)`
-  position: absolute;
-  right: 10px;
-  pointer-events: none;
-  color: rgba(86, 36, 193, 1);
-  margin-right: 10px;
+const MenuItems = styled(MenuItem)`
+  
 `;
 
 const Heading = styled.h1`
@@ -108,7 +128,7 @@ const Heading = styled.h1`
 const BelowContent = styled.div`
   p {
     font-size: 1.1rem;
-    color: #FFFFFF;
+    color:#fff;
   }
   width: 41rem;
 
@@ -119,8 +139,8 @@ const BelowContent = styled.div`
 
 const RightTop = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -12%;
+  right: -12%;
 
   img {
     width: 400px;

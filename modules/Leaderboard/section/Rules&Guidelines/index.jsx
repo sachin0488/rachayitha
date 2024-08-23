@@ -25,19 +25,44 @@ function RulesAndGuidelines() {
           <Points>
             {KeyPoints.map((point, index) => (
               <Point key={index}>
-                <Icon><CheckCircleOutlineOutlinedIcon /></Icon>
+              <Icon>
+  <CheckCircleOutlineOutlinedIcon 
+    sx={{
+      fontSize: '2rem',
+      width: '2rem',
+      height: '2rem',
+      '@media (max-width: 600px)': {
+        fontSize: '1.5rem',
+        width: '1.5rem',
+        height: '1.5rem',
+      },
+    }} 
+  />
+</Icon>
+
                 {point}
               </Point>
             ))}
           </Points>
-          <Button variant="outlined" color="primary" sx={{margin: '20px 0',
-          alignSelf:'left',
-          width:'fit-content',
-          padding: '10px 60px',
-          fontWeight: 'bold',
-          backgroundColor: '#fff'}}>
-            Read Terms & Guidelines
-          </Button>
+          <Button 
+  variant="outlined" 
+  color="primary" 
+  sx={{
+    margin: '20px 0',
+    alignSelf: 'flex-start',
+    width: 'fit-content',
+    padding: '10px 60px',
+    fontWeight: 'bold',
+    backgroundColor: '#fff',
+    '@media (max-width: 600px)': {
+      padding: '10px 20px',
+      alignSelf: 'center',
+    },
+  }}
+>
+  Read Terms & Guidelines
+</Button>
+
         </RightSection>
       </Container>
     </Wrapper>
@@ -55,17 +80,28 @@ const Root = styled.div`
 
 const Wrapper = styled.div`
   padding: 20px;
-  background-color: #f5f5f5;
 `;
 
 const Heading = styled.h1`
   text-align: center;
-  font-size: 2em;
+  font-size: 2.8rem;
   color: #000;
   font-weight: 600;
   font-family: 'Maven Pro';
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 2.4rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1.8rem;
+  }
 `;
+
 
 const Container = styled.div`
   display: flex;
@@ -73,6 +109,10 @@ const Container = styled.div`
   align-items: flex-start;
   gap: 20px;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 `;
 
 const LeftSection = styled.div`
@@ -83,6 +123,10 @@ const LeftSection = styled.div`
     height: auto;
     border-radius: 10px;
   }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const RightSection = styled.div`
@@ -90,24 +134,47 @@ const RightSection = styled.div`
   max-width: 50%;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) { 
+    max-width: 100%;
+  }
 `;
 
 const Subheading = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: #000;
   margin-bottom: 20px;
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const Points = styled.div`
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #333;
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.9rem;
+  }
+
 `;
 
 const Point = styled.p`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 5px;
+  }
 `;
 
 const Icon = styled.span`
@@ -115,6 +182,10 @@ const Icon = styled.span`
   align-items: center;
   margin-right: 10px;
   color: #5624C1;
+
+  @media (max-width: 768px) {
+    margin-right: 5px;
+  }
 `;
 
 export default RulesAndGuidelines;

@@ -36,7 +36,7 @@ const SearchContainer = styled.div`
 
 const SearchBox = styled.div`
   width: 100%;
-  max-width: 500px; /* Adjust as needed */
+  max-width: 500px;
   position: relative;
   display: flex;
   align-items: center;

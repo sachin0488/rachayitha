@@ -1,26 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-
-
-
 function LaptopBanner() {
   return (
     <Root>
-    <Container>
-      <Content>
-        <Heading>
-       Pursue <span>Your Hobby,</span> Unleash Your Creativity!
-        </Heading>
-        <SubHeading>
-        Nurture Your Talent,<span>  Share Your Stories,</span> and Inspire Others
-        </SubHeading>
-        <StyledButton>Start Writing</StyledButton>
-      </Content>
-      <Image>
-        <img src='./girlWithbook.png' alt="I Was Skeleton" />
-      </Image>
-    </Container>
+      <Container>
+        <Content>
+          <Heading>
+            Pursue <span>Your Hobby,</span> Unleash Your Creativity!
+          </Heading>
+          <SubHeading>
+            Nurture Your Talent,<span> Share Your Stories,</span> and Inspire Others
+          </SubHeading>
+          <StyledButton>Start Writing</StyledButton>
+        </Content>
+        <Image>
+          <img src='./girlWithbook.png' alt="Girl with Book" />
+        </Image>
+      </Container>
     </Root>
   );
 }
@@ -32,18 +29,18 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${'' /* padding-block: 80px; */}
-`
+`;
 
 const Container = styled.div`
-   width: 100%;
+  width: 100%;
   max-width: var(--main-max-width);
   padding-inline: var(--main-side-spacing);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 25px;
-  padding:0 4rem;
+  padding: 0 4rem;
+
   @media (max-width: 900px) {
     flex-direction: column;
     gap: 50px;
@@ -55,12 +52,27 @@ const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-   width: 40vw;
+  width: 40vw;
+  position: relative;
+  top: -150px;
+ @media (max-width: 1350px) {
+    top:-100px;
+ }
+@media (max-width: 1200px) {
+  top:-50px;
+} 
+
   @media (max-width: 900px) {
-    align-items: flex-start;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
     width: 85vw;
+    top:70px;
+    margin-bottom:20px;
   }
 `;
+
 const Heading = styled.h1`
   font-size: 2.5rem;
   line-height: 1.3;
@@ -70,9 +82,13 @@ const Heading = styled.h1`
     color: ${props => props.theme.palette.primary.main};
     font-weight: bold;
   }
-  margin:0;
+  margin: 0;
   @media (max-width: 768px) {
     font-size: 1.8rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -99,7 +115,6 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  
   &:hover {
     background-color: #3700b3;
   }
@@ -112,9 +127,15 @@ const StyledButton = styled.button`
 
 const Image = styled.div`
   img {
-    width:40vw;
+    width: 40vw;
+    height: 100%;
     @media (max-width: 900px) {
-      width: 85vw;
+      width: 100%;
+
+    }
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 100%;
     }
   }
 `;

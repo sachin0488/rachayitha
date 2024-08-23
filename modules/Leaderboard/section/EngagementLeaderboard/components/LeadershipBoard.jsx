@@ -40,8 +40,7 @@ const data = {
   ]
 };
 
-function LeadershipBoard({ competition }) {
-  const [searchTerm, setSearchTerm] = useState('');
+function LeadershipBoard({ competition,searchTerm }) {
 
   const filteredData = data[competition].filter(person =>
     person.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -51,14 +50,20 @@ function LeadershipBoard({ competition }) {
     <BoardContainer>
       {filteredData.map(person => (
         <RankRow key={person.rank}>
-          <RankIcon>
+          <RankIcon >
             <img src={
               person.rank === 1 ? './Vector.png' : './silver.png'}
             alt='Star' />
             <RankNumber>{person.rank}</RankNumber>
           </RankIcon>
           <ImageWrapper>
-            <Avatar />
+          <Avatar 
+  sx={{ 
+    width: { xs: 24, sm: 32, md: 40 }, 
+    height: { xs: 24, sm: 32, md: 40 } 
+  }} 
+/>
+
           </ImageWrapper>
           <Details>
             <Name>{person.name}</Name>
@@ -66,13 +71,13 @@ function LeadershipBoard({ competition }) {
           </Details>
           <Stats>
           <Stat>
-              <img src='./notes.png' alt='Star' /> {person.notes}
+              <img src='./notes.png' style={{width: '15px', height: '15px'}} alt='Star' /> {person.notes}
             </Stat>
             <Stat>
-              <Visibility /> {person.views}
+              <Visibility sx={{width: '20px', height: '20px'}} /> {person.views}
             </Stat>
             <Stat>
-              <Favorite style={{ color: 'rgba(255, 95, 95, 1)' }} /> {person.hearts}
+              <Favorite style={{ color: 'rgba(255, 95, 95, 1)',width: '20px', height: '20px' }} /> {person.hearts}
             </Stat>
           </Stats>
         </RankRow>
@@ -84,6 +89,10 @@ function LeadershipBoard({ competition }) {
 const BoardContainer = styled.div`
   width: 80vw;
   margin-top: 20px;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 1rem;
+  }
 `;
 
 const RankRow = styled.div`
@@ -91,30 +100,48 @@ const RankRow = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 0.8rem;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 0.7rem;
+  color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  color: #FFFFFF;
 `;
 
 const RankIcon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #FFFFFF;
   margin-right: 3rem;
+  img{
+    width: 2.5rem;
+    height: 1.5rem;
+  }
+ @media (max-width: 768px) {
+   margin-right: 1.5rem;
+   img{
+    width: 1.5rem;
+    height: 1rem;
+  }
+ }
+ @media (max-width: 480px) {
+   margin-right: 1rem;
+ }
 `;
 
 const RankNumber = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   position: absolute;
-
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const ImageWrapper = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
@@ -124,28 +151,59 @@ const ImageWrapper = styled.div`
     height: 100%;
     object-fit: cover;
   }
+
+  @media (max-width: 768px) {
+   margin-right: 5px;
+    width:32px;
+    height: 32px;
+  }
+
+  @media (max-width: 480px) {
+    margin-right: 3px;
+    width:24px;
+    height: 24px;
+  }
 `;
 
 const Details = styled.div`
   flex: 1;
   margin-left: 10px;
+  
 `;
 
 const Name = styled.div`
   font-size: 18px;
   font-weight: bold;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 `;
 
 const City = styled.div`
   font-size: 14px;
   color:rgba(255, 255, 255, 0.7);
-
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+  }
 `;
 
 const Stats = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
 `;
 
 const Stat = styled.div`
@@ -156,6 +214,19 @@ const Stat = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   padding: 5px 8px;
   border-radius: 15px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    gap: 3px;
+    padding: 3px 6px;
+    border-radius: 10px;
+  }
+  @media (max-width: 480px) {
+    font-size: 10px;
+    gap: 2px;
+    padding: 2px 4px;
+    border-radius: 8px;
+  }
+
 `;
 
 export default LeadershipBoard;
