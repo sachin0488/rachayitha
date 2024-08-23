@@ -77,6 +77,11 @@ const Heading = styled.h1`
   font-weight: 600;
   font-family: 'Maven Pro';
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    padding:0 1rem;
+  }
 `;
 
 const Container = styled.div`
@@ -93,6 +98,10 @@ const Row = styled.div`
   max-width: 50%;
   display: flex;
   gap: 20px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Point = styled.div`
@@ -104,6 +113,15 @@ const Point = styled.div`
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 21px 26px 0px rgba(47, 63, 87, 0.08);
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 15px 0px rgba(47, 63, 87, 0.08);
+    width: 90vw;
+  }
 
 `;
 

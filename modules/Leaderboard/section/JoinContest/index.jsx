@@ -7,11 +7,11 @@ function JoinContest() {
   return (
     <Root>
       <Heading>
-        How to Win
-        <span>
+        <span>How to Win</span>
+        <h1>
           Join the contest 
           <img src='./trophy.png' alt="Contest" />
-        </span>
+        </h1>
         <SuperMini>
           The best way is by writing and sharing your creative pieces—stories, poems, or shayaris—and joining our Literary Ambassador Program.
         </SuperMini>
@@ -62,6 +62,10 @@ const Root = styled.div`
   justify-content: center;
   flex-direction: column;
   padding-block: 80px;
+  @media (max-width: 768px) {
+    padding-block: 40px;
+  }
+
 `;
 
 const Heading = styled.div`
@@ -75,7 +79,7 @@ const Heading = styled.div`
  font-weight: 600;
   font-size: 1.2rem;
   flex-direction: column;
-  span {
+  h1 {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -86,13 +90,28 @@ const Heading = styled.div`
       height: 40px;
     }
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    width: 90vw;
+    h1 {
+      font-size: 2rem;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
 `;
 
 const SuperMini = styled.div`
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #000;
   text-align: center;
   font-weight: 300;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Container = styled.div`
@@ -101,10 +120,21 @@ const Container = styled.div`
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 `;
 
 const LeftSection = styled.div`
   width: 45vw;
+  align-self: flex-end;
+  @media (max-width: 768px) {
+    align-self: center;
+    width: 85vw;
+    position: relative;
+    top: 60px;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -112,8 +142,7 @@ const ImageWrapper = styled.div`
   width: 100%;
   padding: 20px;
   background-image: url('./curvebg.png'); 
-  background-size: cover;
-  background-position: center;
+  background-size: 100% 100%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -122,24 +151,41 @@ const ImageWrapper = styled.div`
 
   img {
     max-width: 100%;
-    height: auto;
+    height: 100%;
   }
 `;
 
 const RightSection = styled.div`
   width: 50%;
   font-family: 'Maven Pro';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    width: 85vw;
+    align-items: flex-start;
+  }
 `;
 
 const Subheading = styled.h2`
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
+  align-self: flex-start;
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
 `;
 
 const Points = styled.div`
   font-size: 1.1rem;
   width:80%;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 100%;
+  }
 `;
 
 const Point = styled.div`

@@ -1,7 +1,7 @@
-import React from 'react'
-import Stories from './components/Stories'
-import Poem from './components/Poem'
-import styled from '@emotion/styled'
+import React from 'react';
+import Stories from './components/Stories';
+import Poem from './components/Poem';
+import styled from '@emotion/styled';
 
 function RecentEntity() {
   const StoriesData = [
@@ -32,7 +32,7 @@ function RecentEntity() {
       comments: "44",
       date: "Aug 14, 2024 | 09:20 AM"
     }
-  ]
+  ];
 
   const PoemData = [
     {
@@ -62,7 +62,7 @@ function RecentEntity() {
       comments: "44",
       date: "Aug 14, 2024 | 09:20 AM"
     }
-  ]
+  ];
 
   return (
     <Root>
@@ -87,10 +87,10 @@ function RecentEntity() {
         </PoemSection>
       </Container>
     </Root>
-  )
+  );
 }
 
-export default RecentEntity
+export default RecentEntity;
 
 const Root = styled.div`
   width: 100%;
@@ -100,6 +100,19 @@ const Root = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
+  @media (max-width: 1200px) {
+    padding-inline: 60px;
+  }
+
+  @media (max-width: 768px) {
+    padding-inline: 30px;
+  }
+
+  @media (max-width: 450px) {
+    padding-block: 40px;
+    padding-inline: 20px;
+  }
 `;
 
 const Heading = styled.div`
@@ -107,6 +120,15 @@ const Heading = styled.div`
   font-weight: 700;
   font-family: 'Maven Pro';
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
 `;
 
 const Container = styled.div`
@@ -140,6 +162,15 @@ const Subheading = styled.div`
   margin-bottom: 10px;
   max-width: 1500px;
   padding-right: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
 `;
 
 const View = styled.div`
@@ -148,4 +179,12 @@ const View = styled.div`
   font-weight: 300;
   text-decoration: underline;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.8rem;
+  }
 `;
