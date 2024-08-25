@@ -15,12 +15,12 @@ const Root = styled.div`
   background-size: cover;
   background-position: bottom;
   width: 100%;
-  min-height: 120vh;
+  /* min-height: 120vh; */
   height: fit-content;
   position: relative;
   overflow-x: hidden;
   scrollbar-width: none;
-  padding-bottom: 20px;
+  padding-bottom: 170px;
 `
 
 const RightTop = styled.div`

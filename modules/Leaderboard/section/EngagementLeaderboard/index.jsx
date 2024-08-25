@@ -11,31 +11,42 @@ function Index() {
 
   return (
     <Root>
-      <TopMost />
-      <SelectCompetition setCompetition={setCompetition} />
-      <Heading>
-        <Typography variant="h4" fontWeight="600" lineHeight={1} mr={4}>
-          Engagement Leaderboard
-        </Typography>
+      <RightTop>
+        <img src="./Illustrations.png" alt="Illustration" />
+      </RightTop>
+      <Main>
+        <TopMost />
+        <SelectCompetition setCompetition={setCompetition} />
+        <Heading>
+          <Typography variant="h4" fontWeight="600" lineHeight={1} mr={4}>
+            Engagement Leaderboard
+          </Typography>
 
-        <SearchBar onSearch={setSearchTerm} />
-      </Heading>
+          <SearchBar onSearch={setSearchTerm} />
+        </Heading>
 
-      <LeadershipBoard competition={competition} searchTerm={searchTerm} />
+        <LeadershipBoard competition={competition} searchTerm={searchTerm} />
 
-      <Button variant="contained" color="primary" sx={{ margin: '20px 0', marginBottom: '40px', alignSelf: 'center' }}>
-        View Full Leadership Board
-      </Button>
+        <Button variant="contained" color="primary" sx={{ margin: '20px 0', marginBottom: '40px', alignSelf: 'center' }}>
+          View Full Leadership Board
+        </Button>
+      </Main>
     </Root>
   )
 }
 
 const Root = styled.div`
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+
+const Main = styled.div`
+  max-width: var(--main-max-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const TopMost = styled.div`
@@ -46,6 +57,26 @@ const TopMost = styled.div`
   width: 400px;
   height: 400px;
   z-index: 1;
+`
+
+const RightTop = styled.div`
+  position: absolute;
+  top: -5%;
+  right: 0px;
+
+  img {
+    width: 400px;
+  }
+
+  @media (max-width: 1100px) {
+    position: static;
+    margin-top: 20px;
+
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
 `
 
 const Heading = styled.div`
