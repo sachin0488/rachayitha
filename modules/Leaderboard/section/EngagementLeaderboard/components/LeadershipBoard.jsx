@@ -81,7 +81,7 @@ function LeadershipBoard({ competition, searchTerm }) {
 }
 
 const BoardContainer = styled.div`
-  width: 80vw;
+  width: 100%;
   margin-top: 30px;
   @media (max-width: 768px) {
     width: 100%;

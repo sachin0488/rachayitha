@@ -10,28 +10,23 @@ import RecentEntity from '../section/RecentEntity'
 
 function LeaderboardPage() {
   return (
-    <>
+    <Root>
       <BGsvg>
-        <ContentWrapper>
-          <EngagementLeaderboard />
-        </ContentWrapper>
+        <EngagementLeaderboard />
       </BGsvg>
       <RecentEntity />
       <StartWriting />
       <JoinContest />
       <RulesAndGuidelines />
       <Benefits />
-    </>
+    </Root>
   )
 }
 
-const ContentWrapper = styled.div`
+const Root = styled.div`
+  --main-max-width: 1400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 20px;
 `
 
 export default LeaderboardPage

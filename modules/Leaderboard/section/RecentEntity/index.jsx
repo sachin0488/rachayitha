@@ -2,6 +2,7 @@ import React from 'react'
 import Stories from './components/Stories'
 import Poem from './components/Poem'
 import styled from '@emotion/styled'
+import { Typography } from '@mui/material'
 
 function RecentEntity() {
   const StoriesData = [
@@ -67,9 +68,9 @@ function RecentEntity() {
   return (
     <Root>
       <Main>
-        <Heading>
-          <span>Recent Entities</span>
-        </Heading>
+        <Typography variant="h3" fontWeight={600} color="secondary" mb={4}>
+          Recent Entities
+        </Typography>
 
         <Container>
           <StoriesSection>
@@ -96,45 +97,18 @@ export default RecentEntity
 
 const Root = styled.div`
   width: 100%;
-  padding-block: 80px;
-  padding-inline: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Main = styled.div`
+  max-width: var(--main-max-width);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-
-  @media (max-width: 1200px) {
-    padding-inline: 60px;
-  }
-
-  @media (max-width: 768px) {
-    padding-inline: 30px;
-  }
-
-  @media (max-width: 450px) {
-    padding-block: 40px;
-    padding-inline: 20px;
-  }
-`
-
-const Main = styled.div`
-
-`
-
-const Heading = styled.div`
-  font-size: 2.9rem;
-  font-weight: 700;
-  font-family: 'Maven Pro';
-  margin-bottom: 40px;
-
-  @media (max-width: 768px) {
-    font-size: 2.2rem;
-  }
-
-  @media (max-width: 450px) {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
 `
 
 const Container = styled.div`

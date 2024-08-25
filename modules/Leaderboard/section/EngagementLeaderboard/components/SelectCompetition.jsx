@@ -45,9 +45,7 @@ function SelectCompetition({ setCompetition }) {
           Read | Write | Participate & Compete
         </Typography>
       </Container>
-      <RightTop>
-        <img src="./Illustrations.png" alt="Illustration" />
-      </RightTop>
+   
     </SelectCompetitionWrapper>
   )
 }
@@ -146,22 +144,4 @@ const BelowContent = styled.div`
   }
 `
 
-const RightTop = styled.div`
-  position: absolute;
-  top: -12%;
-  right: -12%;
 
-  img {
-    width: 400px;
-  }
-
-  @media (max-width: 1100px) {
-    position: static;
-    margin-top: 20px;
-
-    img {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
-`
