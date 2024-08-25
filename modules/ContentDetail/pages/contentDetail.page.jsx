@@ -21,7 +21,7 @@ const ContentDetail = ({ contentType, contentId, slug, serverData }) => {
     <RootContainer>
       <MainContainer>
         <Head>
-          <title>Rachayitha | {Data?.contentName}</title>
+          <title>{`Rachayitha | ${Data?.contentName}`}</title>
           <meta
             name="keywords"
             content={['Rachayitha', 'rachayitha', ...(Data?.tags || []), ...(Data?.category?.map(item => item?.name) || [])].join()}

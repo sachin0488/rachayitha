@@ -21,6 +21,7 @@ import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
 import CookiesAlert from 'components/CookiesAlert'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import Script from 'next/script'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -53,23 +54,23 @@ const MyApp = props => {
               <AuthProvider>
                 <Layout>
                   <Head>
-                    <title>Rachayitha | {`India's own online book store`}</title>
+                    <title>{`Rachayitha | India's own online book store`}</title>
                     <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <script
-                      async
-                      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
-                      crossorigin="anonymous"></script>
-
-                    <script async src="https://www.googletagmanager.com/gtag/js?id=G-97EPHN49EQ"></script>
-                    <script>
-                      {`window.dataLayer = window.dataLayer || [];
+                  </Head>
+                  <Script async src="https://www.googletagmanager.com/gtag/js?id=G-97EPHN49EQ"></Script>
+                  <Script id="google_data_layer">
+                    {`window.dataLayer = window.dataLayer || [];
                       function gtag(){dataLayer.push(arguments);}
                       gtag('js', new Date());
 
                       gtag('config', 'G-97EPHN49EQ');`}
-                    </script>
-                  </Head>
+                  </Script>
+                  <Script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
+                    crossorigin="anonymous"
+                  />
                   <CookiesAlert />
                   <Component {...pageProps} />
                 </Layout>

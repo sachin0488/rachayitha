@@ -1,68 +1,51 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import SearchIcon from '@mui/icons-material/Search';
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import SearchIcon from '@mui/icons-material/Search'
 
 function SearchBar({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('')
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    onSearch(event.target.value);
-  };
+  const handleSearch = event => {
+    setSearchTerm(event.target.value)
+    onSearch(event.target.value)
+  }
 
   return (
-    <SearchContainer>
-      <SearchBox>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <input 
-          type="text" 
-          placeholder="Search your rank by writing your name" 
-          value={searchTerm} 
-          onChange={handleSearch}
-        />
-      </SearchBox>
-    </SearchContainer>
-  );
+    <Root>
+      <SearchIcon color="primary" />
+      <input type="text" placeholder="Search your rank by writing your name" value={searchTerm} onChange={handleSearch} />
+    </Root>
+  )
 }
 
-const SearchContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-const SearchBox = styled.div`
+const Root = styled.div`
   width: 100%;
   max-width: 500px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 14px 10px 14px;
 
   input {
+    border: 0px;
     width: 100%;
-    padding: 10px 40px 10px 40px; 
-    font-size: 16px;
-    border-radius: 5px;
-    border: 2px solid #5624C1;
+    font-size: 1rem;
+    margin-left: 10px;
     outline: none;
+    background: transparent;
   }
 
   @media (max-width: 600px) {
     input {
-      padding: 10px 30px 10px 30px; 
+      padding: 10px 30px 10px 30px;
     }
   }
-`;
+`
 
-const SearchIconWrapper = styled.div`
-  position: absolute;
-  left: 10px;
-  color: #5624C1;
-`;
+const SearchIconWrapper = styled.div``
 
-export default SearchBar;
+export default SearchBar

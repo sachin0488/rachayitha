@@ -1,73 +1,72 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Button } from '@mui/material';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Button } from '@mui/material'
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 
 const KeyPoints = [
-  "Provide detailed and thoughtful critiques or submissions.",
-  "Ensure all content is original, avoiding plagiarism.",
-  "Focus on literary works like stories, poems, and shayaris.",
-  "Support your work with relevant references and authentic information.",
-  "High-quality, well-crafted submissions are more likely to be featured and rewarded."
-];
+  'Provide detailed and thoughtful critiques or submissions.',
+  'Ensure all content is original, avoiding plagiarism.',
+  'Focus on literary works like stories, poems, and shayaris.',
+  'Support your work with relevant references and authentic information.',
+  'High-quality, well-crafted submissions are more likely to be featured and rewarded.',
+]
 
 function RulesAndGuidelines() {
   return (
     <Root>
-    <Wrapper>
-      <Heading>Rules and Guidelines</Heading>
-      <Container>
-        <LeftSection>
-          <img src='./rules&guidelines.png' alt="Rules and Guidelines" />
-        </LeftSection>
-        <RightSection>
-          <Subheading>Key Points</Subheading>
-          <Points>
-            {KeyPoints.map((point, index) => (
-              <Point key={index}>
-              <Icon>
-  <CheckCircleOutlineOutlinedIcon 
-    sx={{
-      fontSize: '2rem',
-      width: '2rem',
-      height: '2rem',
-      '@media (max-width: 600px)': {
-        fontSize: '1.5rem',
-        width: '1.5rem',
-        height: '1.5rem',
-      },
-    }} 
-  />
-</Icon>
+      <Wrapper>
+        <Heading>Rules and Guidelines</Heading>
+        <Container>
+          <LeftSection>
+            <img src="./rules&guidelines.png" alt="Rules and Guidelines" />
+          </LeftSection>
+          <RightSection>
+            <Subheading>Key Points</Subheading>
+            <Points>
+              {KeyPoints.map((point, index) => (
+                <Point key={index}>
+                  <Icon>
+                    <CheckCircleOutlineOutlinedIcon
+                      sx={{
+                        fontSize: '2rem',
+                        width: '2rem',
+                        height: '2rem',
+                        '@media (max-width: 600px)': {
+                          fontSize: '1.5rem',
+                          width: '1.5rem',
+                          height: '1.5rem',
+                        },
+                      }}
+                    />
+                  </Icon>
 
-                {point}
-              </Point>
-            ))}
-          </Points>
-          <Button 
-  variant="outlined" 
-  color="primary" 
-  sx={{
-    margin: '20px 0',
-    alignSelf: 'flex-start',
-    width: 'fit-content',
-    padding: '10px 60px',
-    fontWeight: 'bold',
-    backgroundColor: '#fff',
-    '@media (max-width: 600px)': {
-      padding: '10px 20px',
-      alignSelf: 'center',
-    },
-  }}
->
-  Read Terms & Guidelines
-</Button>
-
-        </RightSection>
-      </Container>
-    </Wrapper>
+                  {point}
+                </Point>
+              ))}
+            </Points>
+            <Button
+              variant="outlined"
+              color="primary"
+              size="large"
+              sx={{
+                mt: '25px',
+                alignSelf: 'flex-start',
+                padding: '6.5px 57px',
+                fontWeight: '600',
+                fontSize: '1.05rem',
+                backgroundColor: '#fff',
+                '@media (max-width: 600px)': {
+                  padding: '10px 20px',
+                  alignSelf: 'center',
+                },
+              }}>
+              Read Terms & Guidelines
+            </Button>
+          </RightSection>
+        </Container>
+      </Wrapper>
     </Root>
-  );
+  )
 }
 
 const Root = styled.div`
@@ -75,12 +74,12 @@ const Root = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: 80px;  
-`;
+  padding-block: 80px;
+`
 
 const Wrapper = styled.div`
   padding: 20px;
-`;
+`
 
 const Heading = styled.h1`
   text-align: center;
@@ -100,8 +99,7 @@ const Heading = styled.h1`
   @media (max-width: 450px) {
     font-size: 1.8rem;
   }
-`;
-
+`
 
 const Container = styled.div`
   display: flex;
@@ -113,7 +111,7 @@ const Container = styled.div`
     flex-direction: column-reverse;
     justify-content: center;
   }
-`;
+`
 
 const LeftSection = styled.div`
   flex: 1;
@@ -127,7 +125,7 @@ const LeftSection = styled.div`
   @media (max-width: 768px) {
     max-width: 100%;
   }
-`;
+`
 
 const RightSection = styled.div`
   flex: 1;
@@ -135,10 +133,10 @@ const RightSection = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     max-width: 100%;
   }
-`;
+`
 
 const Subheading = styled.h2`
   font-size: 1.7rem;
@@ -148,7 +146,7 @@ const Subheading = styled.h2`
   @media (max-width: 768px) {
     font-size: 1.6rem;
   }
-`;
+`
 
 const Points = styled.div`
   font-size: 1.3rem;
@@ -164,8 +162,7 @@ const Points = styled.div`
   @media (max-width: 450px) {
     font-size: 0.9rem;
   }
-
-`;
+`
 
 const Point = styled.p`
   display: flex;
@@ -175,17 +172,17 @@ const Point = styled.p`
   @media (max-width: 768px) {
     margin-bottom: 5px;
   }
-`;
+`
 
 const Icon = styled.span`
   display: flex;
   align-items: center;
   margin-right: 10px;
-  color: #5624C1;
+  color: #5624c1;
 
   @media (max-width: 768px) {
     margin-right: 5px;
   }
-`;
+`
 
-export default RulesAndGuidelines;
+export default RulesAndGuidelines
