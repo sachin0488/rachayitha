@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import { Favorite, Visibility, Note } from '@mui/icons-material';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import { Avatar } from '@mui/material';
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { Favorite, Visibility, Note } from '@mui/icons-material'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import { Avatar } from '@mui/material'
 
 const data = {
   'novel-writing': [
@@ -37,63 +37,57 @@ const data = {
     { rank: 7, name: 'Noah Scott', city: 'Austin', views: 1000, hearts: 260, notes: 35 },
     { rank: 8, name: 'Olivia Lee', city: 'Denver', views: 950, hearts: 250, notes: 32 },
     { rank: 9, name: 'Sophia Young', city: 'Columbus', views: 900, hearts: 240, notes: 30 },
-  ]
-};
+  ],
+}
 
-function LeadershipBoard({ competition,searchTerm }) {
-
-  const filteredData = data[competition].filter(person =>
-    person.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+function LeadershipBoard({ competition, searchTerm }) {
+  const filteredData = data[competition].filter(person => person.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
     <BoardContainer>
       {filteredData.map(person => (
         <RankRow key={person.rank}>
-          <RankIcon >
-            <img src={
-              person.rank === 1 ? './Vector.png' : './silver.png'}
-            alt='Star' />
+          <RankIcon>
+            <img src={person.rank === 1 ? './Vector.png' : './silver.png'} alt="Star" />
             <RankNumber>{person.rank}</RankNumber>
           </RankIcon>
           <ImageWrapper>
-          <Avatar 
-  sx={{ 
-    width: { xs: 24, sm: 32, md: 40 }, 
-    height: { xs: 24, sm: 32, md: 40 } 
-  }} 
-/>
-
+            <Avatar
+              sx={{
+                width: { xs: 24, sm: 32, md: 40 },
+                height: { xs: 24, sm: 32, md: 40 },
+              }}
+            />
           </ImageWrapper>
           <Details>
             <Name>{person.name}</Name>
             <City>{person.city}</City>
           </Details>
           <Stats>
-          <Stat>
-              <img src='./notes.png' style={{width: '15px', height: '15px'}} alt='Star' /> {person.notes}
+            <Stat>
+              <img src="./notes.png" style={{ width: '15px', height: '15px' }} alt="Star" /> {person.notes}
             </Stat>
             <Stat>
-              <Visibility sx={{width: '20px', height: '20px'}} /> {person.views}
+              <Visibility sx={{ width: '20px', height: '20px' }} /> {person.views}
             </Stat>
             <Stat>
-              <Favorite style={{ color: 'rgba(255, 95, 95, 1)',width: '20px', height: '20px' }} /> {person.hearts}
+              <Favorite style={{ color: 'rgba(255, 95, 95, 1)', width: '20px', height: '20px' }} /> {person.hearts}
             </Stat>
           </Stats>
         </RankRow>
       ))}
     </BoardContainer>
-  );
+  )
 }
 
 const BoardContainer = styled.div`
   width: 80vw;
-  margin-top: 20px;
+  margin-top: 30px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 1rem;
   }
-`;
+`
 
 const RankRow = styled.div`
   display: flex;
@@ -105,28 +99,28 @@ const RankRow = styled.div`
   margin-bottom: 0.7rem;
   color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-`;
+`
 
 const RankIcon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: 3rem;
-  img{
+  img {
     width: 2.5rem;
     height: 1.5rem;
   }
- @media (max-width: 768px) {
-   margin-right: 1.5rem;
-   img{
-    width: 1.5rem;
-    height: 1rem;
+  @media (max-width: 768px) {
+    margin-right: 1.5rem;
+    img {
+      width: 1.5rem;
+      height: 1rem;
+    }
   }
- }
- @media (max-width: 480px) {
-   margin-right: 1rem;
- }
-`;
+  @media (max-width: 480px) {
+    margin-right: 1rem;
+  }
+`
 
 const RankNumber = styled.div`
   font-size: 1rem;
@@ -137,7 +131,7 @@ const RankNumber = styled.div`
   @media (max-width: 480px) {
     font-size: 0.7rem;
   }
-`;
+`
 
 const ImageWrapper = styled.div`
   width: 2.5rem;
@@ -145,7 +139,7 @@ const ImageWrapper = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
-  
+
   img {
     width: 100%;
     height: 100%;
@@ -153,23 +147,22 @@ const ImageWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-   margin-right: 5px;
-    width:32px;
+    margin-right: 5px;
+    width: 32px;
     height: 32px;
   }
 
   @media (max-width: 480px) {
     margin-right: 3px;
-    width:24px;
+    width: 24px;
     height: 24px;
   }
-`;
+`
 
 const Details = styled.div`
   flex: 1;
   margin-left: 10px;
-  
-`;
+`
 
 const Name = styled.div`
   font-size: 18px;
@@ -177,22 +170,22 @@ const Name = styled.div`
   @media (max-width: 768px) {
     font-size: 14px;
   }
-  
+
   @media (max-width: 480px) {
     font-size: 12px;
   }
-`;
+`
 
 const City = styled.div`
   font-size: 14px;
-  color:rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   @media (max-width: 768px) {
     font-size: 12px;
   }
   @media (max-width: 480px) {
     font-size: 10px;
   }
-`;
+`
 
 const Stats = styled.div`
   display: flex;
@@ -204,7 +197,7 @@ const Stats = styled.div`
   @media (max-width: 480px) {
     gap: 10px;
   }
-`;
+`
 
 const Stat = styled.div`
   display: flex;
@@ -226,7 +219,6 @@ const Stat = styled.div`
     padding: 2px 4px;
     border-radius: 8px;
   }
+`
 
-`;
-
-export default LeadershipBoard;
+export default LeadershipBoard
