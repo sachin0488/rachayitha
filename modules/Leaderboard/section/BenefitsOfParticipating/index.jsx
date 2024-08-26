@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import React from 'react';
+import styled from '@emotion/styled'
+import React from 'react'
 
 function Benefits() {
   return (
@@ -12,13 +12,13 @@ function Benefits() {
         <Row>
           <Point>
             <IconWrapper style={{ background: 'rgba(238, 255, 255, 1)' }}>
-              <img src='./icon1.png' alt="Certificates" />
+              <img src="./icon1.png" alt="Certificates" />
             </IconWrapper>
             Certificates of Achievement
           </Point>
           <Point>
             <IconWrapper style={{ background: 'rgba(255, 247, 241, 1)' }}>
-              <img src='./icon2.png' alt="Free Subscription" />
+              <img src="./icon2.png" alt="Free Subscription" />
             </IconWrapper>
             Free Subscription to Premium Features
           </Point>
@@ -26,13 +26,13 @@ function Benefits() {
         <Row>
           <Point>
             <IconWrapper style={{ background: 'rgba(248, 250, 251, 1)' }}>
-              <img src='./icon3.png' alt="Instant Cash Rewards" />
+              <img src="./icon3.png" alt="Instant Cash Rewards" />
             </IconWrapper>
             Instant Cash Rewards
           </Point>
           <Point>
             <IconWrapper style={{ background: 'rgba(225, 239, 255, 1)' }}>
-              <img src='./icon4.png' alt="Feature on Rachayitha" />
+              <img src="./icon4.png" alt="Feature on Rachayitha" />
             </IconWrapper>
             Feature on Rachayitha
           </Point>
@@ -40,13 +40,13 @@ function Benefits() {
         <Row>
           <Point>
             <IconWrapper style={{ background: 'rgba(248, 250, 251, 1)' }}>
-              <img src='./icon5.png' alt="Social Media Promotions" />
+              <img src="./icon5.png" alt="Social Media Promotions" />
             </IconWrapper>
             Social Media Promotions
           </Point>
           <Point>
             <IconWrapper style={{ background: 'rgba(255, 250, 235, 1)' }}>
-              <img src='./icon6.png' alt="Internship Opportunities" />
+              <img src="./icon6.png" alt="Internship Opportunities" />
             </IconWrapper>
             Internship Opportunities at Rachayitha
           </Point>
@@ -54,21 +54,21 @@ function Benefits() {
         <Row>
           <Point>
             <IconWrapper style={{ background: 'rgba(241, 248, 255, 1)' }}>
-              <img src='./icon7.png' alt="Free Webinars and Workshops" />
+              <img src="./icon7.png" alt="Free Webinars and Workshops" />
             </IconWrapper>
             Access to Free Webinars and Writing Workshops
           </Point>
         </Row>
       </Container>
     </Root>
-  );
+  )
 }
 
-export default Benefits;
+export default Benefits
 
 const Root = styled.div`
   padding-block: 80px;
-`;
+`
 
 const Heading = styled.h1`
   text-align: center;
@@ -76,13 +76,13 @@ const Heading = styled.h1`
   color: #000;
   font-weight: 600;
   font-family: 'Maven Pro';
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
-    padding:0 1rem;
+    padding: 0 1rem;
   }
-`;
+`
 
 const Container = styled.div`
   display: flex;
@@ -91,7 +91,7 @@ const Container = styled.div`
   gap: 20px;
   flex-wrap: wrap;
   flex-direction: column;
-`;
+`
 
 const Row = styled.div`
   flex: 1;
@@ -102,10 +102,10 @@ const Row = styled.div`
     max-width: 100%;
     flex-direction: column;
   }
-`;
+`
 
 const Point = styled.div`
-  f  font-size: 1.1rem;
+  font-size: 1.1rem;
   color: #333;
   display: flex;
   align-items: center;
@@ -122,8 +122,7 @@ const Point = styled.div`
     box-shadow: 0px 10px 15px 0px rgba(47, 63, 87, 0.08);
     width: 90vw;
   }
-
-`;
+`
 
 const IconWrapper = styled.div`
   display: flex;
@@ -141,4 +140,4 @@ const IconWrapper = styled.div`
     height: 16px;
     object-fit: contain;
   }
-`;
+`

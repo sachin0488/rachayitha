@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import React from 'react';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import styled from '@emotion/styled'
+import React from 'react'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 
 function Stories({ data }) {
   return (
@@ -17,31 +17,31 @@ function Stories({ data }) {
               <Name>{item.name}</Name>
               <Author>{item.author}</Author>
               <Action>
-              <Likes>
-  <ThumbUpIcon
-    sx={(theme) => ({
-      color: 'rgba(157, 111, 255, 1)',
-      fontSize: 18,
-      [theme.breakpoints.up('md')]: {
-        fontSize: 20,
-      },
-    })}
-  /> 
-  {item.likes}
-</Likes>
+                <Likes>
+                  <ThumbUpIcon
+                    sx={theme => ({
+                      color: 'rgba(157, 111, 255, 1)',
+                      fontSize: 18,
+                      [theme.breakpoints.up('md')]: {
+                        fontSize: 20,
+                      },
+                    })}
+                  />
+                  {item.likes}
+                </Likes>
 
-<Comments>
-  <ChatBubbleIcon
-    sx={(theme) => ({
-      color: 'rgba(157, 111, 255, 1)',
-      fontSize: 18,
-      [theme.breakpoints.up('md')]: {
-        fontSize: 20,
-      },
-    })}
-  /> 
-  {item.comments}
-</Comments>
+                <Comments>
+                  <ChatBubbleIcon
+                    sx={theme => ({
+                      color: 'rgba(157, 111, 255, 1)',
+                      fontSize: 18,
+                      [theme.breakpoints.up('md')]: {
+                        fontSize: 20,
+                      },
+                    })}
+                  />
+                  {item.comments}
+                </Comments>
               </Action>
             </div>
             <Date>{item.date}</Date>
@@ -49,10 +49,10 @@ function Stories({ data }) {
         </Card>
       ))}
     </Root>
-  );
+  )
 }
 
-export default Stories;
+export default Stories
 
 const Root = styled.div`
   width: 100%;
@@ -72,7 +72,7 @@ const Root = styled.div`
   @media (max-width: 449px) {
     grid-template-columns: 1fr;
   }
-`;
+`
 
 const Card = styled.div`
   width: 100%;
@@ -89,7 +89,7 @@ const Card = styled.div`
     flex-direction: row;
     max-height: 250px;
   }
-`;
+`
 
 const ImageWrapper = styled.div`
   width: 100%;
@@ -107,7 +107,7 @@ const ImageWrapper = styled.div`
     max-width: 240px;
     height: 100%;
   }
-`;
+`
 
 const Content = styled.div`
   display: flex;
@@ -120,7 +120,7 @@ const Content = styled.div`
   @media (min-width: 768px) {
     max-width: 250px;
   }
-`;
+`
 
 const Category = styled.span`
   font-size: 1rem;
@@ -135,7 +135,7 @@ const Category = styled.span`
   @media (max-width: 450px) {
     font-size: 0.6rem;
   }
-`;
+`
 
 const Name = styled.div`
   font-size: 1.2rem;
@@ -153,8 +153,7 @@ const Name = styled.div`
   @media (max-width: 300px) {
     font-size: 0.6rem;
   }
-
-`;
+`
 
 const Author = styled.div`
   font-size: 1rem;
@@ -167,14 +166,14 @@ const Author = styled.div`
   @media (max-width: 450px) {
     font-size: 0.6rem;
   }
-`;
+`
 
 const Action = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
-`;
+`
 
 const Likes = styled.div`
   font-size: 1rem;
@@ -187,10 +186,10 @@ const Likes = styled.div`
     font-size: 0.8rem;
   }
 
-  @media (max-width: 450px) { 
+  @media (max-width: 450px) {
     font-size: 0.6rem;
   }
-`;
+`
 
 const Comments = styled.div`
   font-size: 1rem;
@@ -201,13 +200,12 @@ const Comments = styled.div`
 
   @media (max-width: 900px) {
     font-size: 0.8rem;
-  } 
+  }
 
   @media (max-width: 450px) {
     font-size: 0.6rem;
   }
-
-`;
+`
 
 const Date = styled.div`
   font-size: 0.9rem;
@@ -221,4 +219,4 @@ const Date = styled.div`
   @media (max-width: 450px) {
     font-size: 0.5rem;
   }
-`;
+`
