@@ -39,7 +39,7 @@ const Main = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   gap: 25px;
-  padding: 0 4rem;
+  padding: 0 var(--main-side-spacing);
 
   @media (max-width: 900px) {
     flex-direction: column;
