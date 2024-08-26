@@ -62,6 +62,7 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   padding-block: 12rem;
   @media (max-width: 1310px) {
     padding-block: 6rem;
@@ -151,10 +152,13 @@ const Container = styled.div`
   align-items: flex-start;
   gap: 20px;
   ${'' /* flex-wrap: wrap; */}
+  @media (max-width: 1400px) {
+    padding: 0 var(--main-side-spacing);
+  }
   @media (max-width: 768px) {
     flex-direction: column-reverse;
     justify-content: center;
-    padding-inline: 20px;
+    /* padding-inline: 20px; */
   }
 `
 
@@ -196,7 +200,7 @@ const Subheading = styled.h2`
 
 const Points = styled.div`
   font-size: 1.1rem;
-  width: 80%;
+  width:80%;
   @media (max-width: 768px) {
     font-size: 1rem;
     width: 100%;

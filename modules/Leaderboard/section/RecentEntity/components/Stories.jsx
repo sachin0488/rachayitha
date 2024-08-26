@@ -65,11 +65,11 @@ const Root = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 450px) and (max-width: 949px) {
+  @media (min-width: 600px) and (max-width: 949px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 449px) {
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
 `

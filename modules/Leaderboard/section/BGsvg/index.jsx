@@ -34,7 +34,7 @@ const RightTop = styled.div`
 
 const ChildrenWrapper = styled.div`
   position: relative;
-  padding: 20px;
+  padding: 0 var(--main-side-spacing);
   margin-top: 5%;
   width: 100%;
   box-sizing: border-box;

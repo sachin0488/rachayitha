@@ -25,6 +25,11 @@ function LeaderboardPage() {
 
 const Root = styled.div`
   --main-max-width: 1400px;
+  --main-side-spacing: 40px;
+
+  @media (max-width: 768px) {
+    --main-side-spacing: 20px;
+  }
   display: flex;
   flex-direction: column;
 `
