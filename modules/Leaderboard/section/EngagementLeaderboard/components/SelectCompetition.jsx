@@ -45,7 +45,6 @@ function SelectCompetition({ setCompetition }) {
           Read | Write | Participate & Compete
         </Typography>
       </Container>
-   
     </SelectCompetitionWrapper>
   )
 }
@@ -143,5 +142,3 @@ const BelowContent = styled.div`
     width: 100%;
   }
 `
-
-
