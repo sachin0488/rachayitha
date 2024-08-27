@@ -6,7 +6,7 @@ import Schedule from "../components/Schedule";
 import Section from "../components/Section";
 import Adventure from "../components/Themes_Adventure";
 import Romance from "../components/Themes_Romance";
-
+import OngoingEvents from "../components/OngoingEvents";
 const SpirityMain = () => {
     return (
         <>
@@ -15,9 +15,10 @@ const SpirityMain = () => {
             <Prizepool />
             <Schedule />
             <Adventure />
+            
             <Romance />
+            <OngoingEvents />
             <Rules />
-
             <About />
 
         </>
