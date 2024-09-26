@@ -16,7 +16,7 @@ const SpirityMain = () => {
             <Schedule />
             <Adventure />
             
-            <Romance />
+            {/* <Romance /> */}
             <OngoingEvents />
             <Rules />
             <About />

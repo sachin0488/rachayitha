@@ -3,29 +3,40 @@ import { Typography } from '@mui/material'
 import { useCallback } from 'react'
 
 import StyleModal from './StyleModal'
+import { useBookDetailService } from '../service/BookDetail.service'
+import Link from 'next/link'
 
 
 const SearchModal = ({ open, setOpen, id, data }) => {
-  const item = data[id];
+  const item = data[id-1];
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen])
-  const paragraphs = item?.ideas?.split('\n') || [];
+console.log(item);
+  const {data: bookData1, isLoading: isLoading1} = useBookDetailService(item?.
+    theme_booksample1);
+  const {data: bookData2, isLoading: isLoading2} = useBookDetailService(item?.
+    theme_booksample2);
+  const {data: bookData3, isLoading: isLoading3} = useBookDetailService(item?.
+    theme_booksample3);
+  
+  const combineAllBooks = [bookData1, bookData2, bookData3].filter(book => book !== undefined && book !== null);
+   console.log("jdh",combineAllBooks)
+  // const paragraphs = item?.ideas?.split('\n') || [];
 
+   const isLoading = isLoading1 || isLoading2 || isLoading3;
   return (
     <>
       <Root maxWidth="30rem" maxHeight="fit-content" open={open} handleClose={handleClose} breakPoint={550}>
         <Main>
-
-
           <ContactList>
             {item && (
               <div>
                 <Card >
                   <Details >
-                    <h1 className='name'>{item.name}</h1>
-                    <p className='phone'>{item.hashtags}</p>
-                    <p className='phone'>{item.info}</p>
+                    <h1 className='name'>{item.theme_name}</h1>
+                    <p className='phone'>{item.theme_keywords}</p>
+                    <p className='phone'>{item.theme_description}</p>
                   </Details>
 
                 </Card>
@@ -33,19 +44,34 @@ const SearchModal = ({ open, setOpen, id, data }) => {
 
                   <Description>
                     <h1 className='name'>Ideas</h1>
-                    {paragraphs.map((paragraph, index) => (
+                    {/* {paragraphs.map((paragraph, index) => (
                       <Paragraph key={index}>{paragraph}</Paragraph>
-                    ))}
+                    ))} */}
+                    <Paragraph>1.{item.theme_example1}</Paragraph>
+                    <Paragraph>2.{item.theme_example2}</Paragraph>
+                    <Paragraph>3.{item.theme_example3}</Paragraph>
                   </Description>
                 </Card>
-                <ImageGrid>
-                  {item.images.map((image, index) => (
-                    <ImageContainer key={index}>
-                      <ContactImage src={image.url} alt={image.name} />
-                      <ImageName>{image.name}</ImageName>
-                    </ImageContainer>
-                  ))}
-                </ImageGrid>
+                {
+                  isLoading ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <ImageGrid>
+  {combineAllBooks.map((image, index) => (
+    <Link 
+      key={image[0].id}
+      href={`/book/${image[0].id}/${image[0].book_name.toLowerCase().split(' ').join('-')}`}
+      style={{ textDecoration: 'none' }}
+    >
+      <ImageContainer>
+        <ContactImage src={image[0].cover_img} alt={image[0].book_name} />
+        <ImageName>{image[0].book_name}</ImageName>
+      </ImageContainer>
+    </Link>
+  ))}
+</ImageGrid>
+                  )
+                }
               </div>
             )}
           </ContactList>
@@ -148,7 +174,12 @@ const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px; /* Fixed width for consistency */
+  width: 120px;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8; 
+  }
 `;
 
 const ImageName = styled.p`
