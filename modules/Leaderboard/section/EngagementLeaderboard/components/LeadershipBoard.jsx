@@ -3,8 +3,10 @@ import styled from '@emotion/styled'
 import { Favorite, Visibility, Note } from '@mui/icons-material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import { Avatar } from '@mui/material'
+import { useWinnerListService } from 'modules/Leaderboard/services/WinnerList.service'
+import { useLeaderListService } from 'modules/Leaderboard/services/LeaderList.service'
 
-const data = {
+const data2 = {
   'novel-writing': [
     { rank: 1, name: 'Alice Smith', city: 'New York', views: 1200, hearts: 300, notes: 45 },
     { rank: 2, name: 'Bob Johnson', city: 'Los Angeles', views: 1100, hearts: 290, notes: 50 },
@@ -40,12 +42,16 @@ const data = {
   ],
 }
 
-function LeadershipBoard({ competition, searchTerm }) {
-  const filteredData = data[competition].filter(person => person.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
+function LeadershipBoard({ competition, searchTerm , contestId}) {
+  // const filteredData = data2[competition].filter(person => person.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
+  const {data}=useLeaderListService(contestId);
+  console.log("dhs",data)
+ const filteredData=data?.filter((person) => person.author_name.toLowerCase().includes(searchTerm.toLowerCase()))
   return (
     <BoardContainer>
-      {filteredData.map(person => (
+      {/* {filteredData.map(person => (
         <RankRow key={person.rank}>
           <RankIcon>
             <img src={person.rank === 1 ? './Vector.png' : './silver.png'} alt="Star" />
@@ -72,6 +78,75 @@ function LeadershipBoard({ competition, searchTerm }) {
             </Stat>
             <Stat>
               <Favorite style={{ color: 'rgba(255, 95, 95, 1)', width: '20px', height: '20px' }} /> {person.hearts}
+            </Stat>
+          </Stats>
+        </RankRow>
+      ))} */}
+      
+      {filteredData?
+      filteredData?.map((person, index) => (
+        <RankRow key={index}>
+          <RankIcon>
+            <img src={person.ranking === 1 ? './Vector.png' : './silver.png'} alt="Star" />
+            <RankNumber>{person.ranking}</RankNumber>
+          </RankIcon>
+          <ImageWrapper>
+            <Avatar
+              sx={{
+                width: { xs: 24, sm: 32, md: 40 },
+                height: { xs: 24, sm: 32, md: 40 },
+              }}
+            src={person.author_img} />
+          </ImageWrapper>
+          <Details>
+            <Name>{person.author_name}</Name>
+          </Details>
+          <Stats>
+            <Stat>
+              <img src="./notes.png" style={{ width: '15px', height: '15px' }} alt="Star" /> {person.
+                book_comment_count}
+            </Stat>
+            <Stat>
+              <Visibility sx={{ width: '20px', height: '20px' }} /> {person.book_view_count
+              }
+            </Stat>
+            <Stat>
+              <Favorite style={{ color: 'rgba(255, 95, 95, 1)', width: '20px', height: '20px' }} /> {person
+                .book_like_count}
+            </Stat>
+          </Stats>
+                
+        </RankRow>
+      ))
+      :data?.map((person, index) => (
+        <RankRow key={index}>
+          <RankIcon>
+            <img src={person.ranking === 1 ? './Vector.png' : './silver.png'} alt="Star" />
+            <RankNumber>{person.ranking}</RankNumber>
+          </RankIcon>
+          <ImageWrapper>
+            <Avatar
+              sx={{
+                width: { xs: 24, sm: 32, md: 40 },
+                height: { xs: 24, sm: 32, md: 40 },
+              }}
+            src={person.author_img} />
+          </ImageWrapper>
+          <Details>
+            <Name>{person.author_name}</Name>
+          </Details>
+          <Stats>
+            <Stat>
+              <img src="./notes.png" style={{ width: '15px', height: '15px' }} alt="Star" /> {person.
+                book_comment_count}
+            </Stat>
+            <Stat>
+              <Visibility sx={{ width: '20px', height: '20px' }} /> {person.book_view_count
+              }
+            </Stat>
+            <Stat>
+              <Favorite style={{ color: 'rgba(255, 95, 95, 1)', width: '20px', height: '20px' }} /> {person.
+                book_like_count}
             </Stat>
           </Stats>
         </RankRow>

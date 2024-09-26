@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BGsvg from '../section/BGsvg'
 import EngagementLeaderboard from '../section/EngagementLeaderboard'
 import styled from '@emotion/styled'
@@ -7,17 +7,17 @@ import RulesAndGuidelines from '../section/Rules&Guidelines'
 import Benefits from '../section/BenefitsOfParticipating'
 import JoinContest from '../section/JoinContest'
 import RecentEntity from '../section/RecentEntity'
-
 function LeaderboardPage() {
+  const [contestID, setContestID] = useState(null)
   return (
     <Root>
       <BGsvg>
-        <EngagementLeaderboard />
+        <EngagementLeaderboard contestID={contestID} setContestID={setContestID} />
       </BGsvg>
-      <RecentEntity />
+      <RecentEntity contestID={contestID} />
       <StartWriting />
       <JoinContest />
-      <RulesAndGuidelines />
+      <RulesAndGuidelines contestID={contestID} />
       <Benefits />
     </Root>
   )

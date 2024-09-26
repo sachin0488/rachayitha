@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { Button } from '@mui/material'
+import { Button, Dialog, DialogTitle, DialogContent } from '@mui/material'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
+import { useParticipationRuleService } from 'modules/Leaderboard/services/ParticipationRule.service'
+import { useTermConditionService } from 'modules/Leaderboard/services/TermCondition.service'
 
-const KeyPoints = [
-  'Provide detailed and thoughtful critiques or submissions.',
-  'Ensure all content is original, avoiding plagiarism.',
-  'Focus on literary works like stories, poems, and shayaris.',
-  'Support your work with relevant references and authentic information.',
-  'High-quality, well-crafted submissions are more likely to be featured and rewarded.',
-]
+function RulesAndGuidelines({ contestID }) {
+  const { data } = useParticipationRuleService(contestID)
+  const { data: termData, refetch: refetchTerms } = useTermConditionService(contestID)
+  const [open, setOpen] = useState(false)
+ console.log(termData.data.length)
+  const handleOpen = () => {
+    refetchTerms()
+    setOpen(true)
+  }
 
-function RulesAndGuidelines() {
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const KeyPoints = data?.data?.map(item => item?.participation_rule_description)
+
   return (
     <Root>
       <Wrapper>
@@ -39,7 +48,6 @@ function RulesAndGuidelines() {
                       }}
                     />
                   </Icon>
-
                   {point}
                 </Point>
               ))}
@@ -48,6 +56,7 @@ function RulesAndGuidelines() {
               variant="outlined"
               color="primary"
               size="large"
+              onClick={handleOpen} // Opens the modal on click
               sx={{
                 mt: '25px',
                 alignSelf: 'flex-start',
@@ -65,10 +74,31 @@ function RulesAndGuidelines() {
           </RightSection>
         </Container>
       </Wrapper>
+
+      {/* Terms and Conditions Dialog */}
+      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+        <DialogTitle>Terms and Conditions</DialogTitle>
+        <DialogContent>
+          {termData?.data?.length > 0 ? (
+            termData?.data?.map((term, index) => (
+              <div key={index}>
+                <h3>{term?.term_name}</h3>
+                <p>{term?.term_description}</p>
+              </div>
+            ))
+          ) : (
+            <p>No terms available</p>
+          )}
+        </DialogContent>
+        <Button onClick={handleClose} sx={{ margin: '20px' }}>
+          Close
+        </Button>
+      </Dialog>
     </Root>
   )
 }
 
+// Styled components (same as your original styles)
 const Root = styled.div`
   width: 100%;
   display: flex;

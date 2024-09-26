@@ -3,37 +3,52 @@ import Stories from './components/Stories'
 import Poem from './components/Poem'
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
+import { useBookListService } from 'modules/Leaderboard/services/BookList.service'
 
-function RecentEntity() {
-  const StoriesData = [
-    {
-      img: './book_cover1.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-    {
-      img: './book_cover2.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-    {
-      img: './book_cover3.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-  ]
+function RecentEntity({ contestID }) {
+  console.log("ghjsID",contestID);
+  const { data } = useBookListService(contestID)
+  console.log("data",data);
+  const StoriesData = data?.data.map(item => ({
+    img: item?.book_cover_img,
+    category: item?.book_category[0]?.name,
+    name: item?.book_name,
+    author: item?.author_name,
+    likes: item?.book_like_count,
+    comments: item?.book_comment_count,
+    date: item?.book_publish_date,
+  }))
+
+  console.log("StoriesData",StoriesData);
+  // const StoriesData = [
+  //   {
+  //     img: './book_cover1.png',
+  //     category: 'Fantasy',
+  //     name: 'Supreme Magus',
+  //     author: 'Tarun',
+  //     likes: '430',
+  //     comments: '44',
+  //     date: 'Aug 14, 2024 | 09:20 AM',
+  //   },
+  //   {
+  //     img: './book_cover2.png',
+  //     category: 'Fantasy',
+  //     name: 'Supreme Magus',
+  //     author: 'Tarun',
+  //     likes: '430',
+  //     comments: '44',
+  //     date: 'Aug 14, 2024 | 09:20 AM',
+  //   },
+  //   {
+  //     img: './book_cover3.png',
+  //     category: 'Fantasy',
+  //     name: 'Supreme Magus',
+  //     author: 'Tarun',
+  //     likes: '430',
+  //     comments: '44',
+  //     date: 'Aug 14, 2024 | 09:20 AM',
+  //   },
+  // ]
 
   const PoemData = [
     {
@@ -80,13 +95,13 @@ function RecentEntity() {
             </Subheading>
             <Stories data={StoriesData} />
           </StoriesSection>
-          <PoemSection>
+          {/* <PoemSection>
             <Subheading>
               <span>Poems</span>
               <View>View All</View>
             </Subheading>
             <Poem data={PoemData} />
-          </PoemSection>
+          </PoemSection> */}
         </Container>
       </Main>
     </Root>
