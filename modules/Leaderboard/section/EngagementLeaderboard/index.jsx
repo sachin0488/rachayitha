@@ -5,10 +5,10 @@ import SelectCompetition from './components/SelectCompetition'
 import styled from '@emotion/styled'
 import { Button, Typography } from '@mui/material'
 
-function Index() {
-  const [competition, setCompetition] = useState('novel-writing')
+function Index({contestID,setContestID}) {
+  // const [competition, setCompetition] = useState('novel-writing')
   const [searchTerm, setSearchTerm] = useState('')
-
+  // const [selectContest, setSelectContest] = useState('')
   return (
     <Root>
       <RightTop>
@@ -16,16 +16,18 @@ function Index() {
       </RightTop>
       <Main>
         <TopMost />
-        <SelectCompetition setCompetition={setCompetition} />
+        {/* <SelectCompetition setCompetition={setCompetition} /> */}
+        <SelectCompetition setSelectContest={setContestID} />
         <Heading>
           <Typography variant="h4" fontWeight="600" lineHeight={1} mr={4}>
             Engagement Leaderboard
           </Typography>
-
           <SearchBar onSearch={setSearchTerm} />
         </Heading>
 
-        <LeadershipBoard competition={competition} searchTerm={searchTerm} />
+        {/* <LeadershipBoard competition={competition} searchTerm={searchTerm} /> */}
+
+        <LeadershipBoard contestId={contestID} searchTerm={searchTerm} />
 
         <Button variant="contained" color="primary" sx={{ margin: '20px 0', marginBottom: '40px', alignSelf: 'center' }}>
           View Full Leadership Board

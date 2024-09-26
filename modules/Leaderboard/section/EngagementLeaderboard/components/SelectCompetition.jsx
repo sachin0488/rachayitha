@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Select as MUISelect, MenuItem, Typography } from '@mui/material'
+import { useContestListService } from '../../../services/ContestList.service'
 
-function SelectCompetition({ setCompetition }) {
-  const [compVal, setCompVal] = React.useState('novel-writing')
-  const handleChange = event => {
-    setCompetition(event.target.value)
-    setCompVal(event.target.value)
+function SelectCompetition({ setCompetition,setSelectContest }) {
+  const [compVal, setCompVal] = useState(1);
+  const {data}=useContestListService();
+  setSelectContest(compVal);
+  const handleChange = (e) => {
+       console.log(e.target.value)
+    setSelectContest(e.target.value)
+    setCompVal(e.target.value)
   }
+  // console.log(data.data.data);
 
   return (
     <SelectCompetitionWrapper>
@@ -17,7 +22,7 @@ function SelectCompetition({ setCompetition }) {
           Select Competition to view Leadership board
         </Typography>
         <SelectWrapper>
-          <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
+          {/* <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
             <MenuItem
               value="novel-writing"
               sx={{
@@ -39,6 +44,21 @@ function SelectCompetition({ setCompetition }) {
               }}>
               Poem Writing Competition
             </MenuItem>
+          </Select> */}
+          <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}> 
+            {
+
+              data?.data?.data?.map((item,index)=>{
+                return <MenuItem
+                key={index}
+                value={item.id}
+                sx={{
+                  color: `${compVal === item.contest_name ? 'rgba(86, 36, 193, 1)' : 'black'}`,
+                }}>
+                {item.contest_name}
+              </MenuItem>
+              })
+            }
           </Select>
         </SelectWrapper>
         <Typography variant="body1" sx={{ color: theme => theme.palette.background.default + 'ee', mt: 2.5 }}>
