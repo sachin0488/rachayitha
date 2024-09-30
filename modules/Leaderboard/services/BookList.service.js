@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { ContestQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import { useRouter } from 'next/router'
 
-export const useBookListService = (contest_id) => {
+export const useBookListService = () => {
+  const contest_id=useRouter().query?.contest_id||1;
+
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.BOOK_LIST, contest_id],
     queryFn: () => fetchBookListAPI(contest_id),

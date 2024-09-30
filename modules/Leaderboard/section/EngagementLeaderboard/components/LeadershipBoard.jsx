@@ -43,11 +43,11 @@ const data2 = {
 }
 
 
-function LeadershipBoard({ competition, searchTerm , contestId}) {
+function LeadershipBoard({ competition, searchTerm }) {
   // const filteredData = data2[competition].filter(person => person.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
-  const {data}=useLeaderListService(contestId);
-  console.log("dhs",data)
+  const {data,isLoading}=useLeaderListService();
+  // console.log("dhs",data)
  const filteredData=data?.filter((person) => person.author_name.toLowerCase().includes(searchTerm.toLowerCase()))
   return (
     <BoardContainer>

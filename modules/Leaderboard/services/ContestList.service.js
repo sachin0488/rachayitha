@@ -8,7 +8,7 @@ export const useContestListService = () => {
     queryFn: fetchContestListAPI,
   })
   
-  console.log("hdga",data)
+  // console.log("hdga",data)
   return {
     data: {
       data: data,

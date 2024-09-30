@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { ContestQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import { useRouter } from 'next/router';
 
-export const useParticipationRuleService = (contest_id) => {
+export const useParticipationRuleService = () => {
+  const contest_id=useRouter().query?.contest_id||1;
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.PARTICIPATION_RULE, contest_id],
     queryFn: () => fetchParticipationRuleAPI(contest_id),

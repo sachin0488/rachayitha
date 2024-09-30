@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { ContestQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import { useRouter } from 'next/router';
 
-export const useTermConditionService = (contest_id) => {
+export const useTermConditionService = () => {
+  const contest_id = useRouter().query?.contest_id || 1;
+   
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.TERM_CONDITION, contest_id],
     queryFn: () => fetchTermConditionAPI(contest_id),
