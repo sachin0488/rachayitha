@@ -7,16 +7,18 @@ import Section from "../components/Section";
 import Adventure from "../components/Themes_Adventure";
 import Romance from "../components/Themes_Romance";
 import OngoingEvents from "../components/OngoingEvents";
+import { useContestDetailService } from "../service/Schedule.service";
 const SpirityMain = () => {
+    const {data: contestDetail,isLoading} = useContestDetailService();
     return (
         <>
             <IconSets />
-            <Section />
-            <Prizepool />
-            <Schedule />
+            <Section contestDetail={contestDetail} />
+            <Prizepool contestDetail={contestDetail} />
+            <Schedule contestDetail={contestDetail} isLoading={isLoading} />
             <Adventure />
             
-            <Romance />
+            {/* <Romance /> */}
             <OngoingEvents />
             <Rules />
             <About />
