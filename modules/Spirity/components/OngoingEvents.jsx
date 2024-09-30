@@ -19,7 +19,7 @@ function OngoingEvents() {
           {contestList?.data?.data?.map(item => (
             <EventCard theme={theme} key={item?.id}>
               <ImageContainer>
-                <img src={item?.contest_img} alt="Novel Writing Competition" />
+                <img src={item?.contest_img} alt="Writing Competition" />
               </ImageContainer>
               <EventTitle theme={theme}>{item?.contest_name}</EventTitle>
               <EventDescription theme={theme}>{item?.contest_description}</EventDescription>
