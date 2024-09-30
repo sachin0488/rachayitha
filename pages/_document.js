@@ -4,14 +4,17 @@ import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from '../utility/createEmotionCache'
 import Script from 'next/script'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import i18nextConfig from '../next-i18next.config'
 
 export default class MyDocument extends Document {
   render() {
+    const currentLocale = this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale
+
     return (
-      <Html lang="en">
+      <Html lang={currentLocale}>
         <Head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-          <script >
+          <script>
             {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -105,10 +108,10 @@ MyDocument.getInitialProps = async ctx => {
   }
 }
 
-export async function getServerSideProps({ req, res, query, params ,locale}) {
-  return{
-    props:{
-      ...(await serverSideTranslations(locale, ["common"])),  
-    }
+export async function getServerSideProps({ req, res, query, params, locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
   }
 }
