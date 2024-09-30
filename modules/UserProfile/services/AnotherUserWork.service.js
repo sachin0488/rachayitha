@@ -3,7 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { UserProfileQuery } from '../constants/query.address'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
-import i18n from 'next-i18next'
+import { i18n } from 'next-i18next'
 
 const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, { contentType, authorId }) => {
   const res = await APIInstance({

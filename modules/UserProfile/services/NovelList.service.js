@@ -4,7 +4,7 @@ import { NovelQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
-import i18n from 'next-i18next'
+import { i18n } from 'next-i18next'
 
 const useNovelListService = ({ filter }) => {
   const { data, isError, fetchNextPage, refetch, hasNextPage, isLoading, isFetchingNextPage } = useInfiniteQuery({

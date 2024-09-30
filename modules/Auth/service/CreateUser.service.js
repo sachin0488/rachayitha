@@ -6,9 +6,9 @@ import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { getFormErrorMessage } from 'hooks/useFormError'
 import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
+import { i18n } from 'next-i18next'
 
 const { setAccess, setRefresh } = AuthTokenStore()
-import  i18n from 'next-i18next'
 export const useCreateAccountService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -85,8 +85,8 @@ const createAccountAPI = async data => {
         gender: data?.gender,
       },
     },
-    params:{
-      lang: i18n.lang
+    params: {
+      lang: i18n.lang,
     },
     headers: {
       'Content-Type': 'application/json',

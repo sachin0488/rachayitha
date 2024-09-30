@@ -3,7 +3,7 @@ import { APIInstance } from 'services/global.service'
 import { UserProfileQuery } from '../constants/query.address'
 import slugUtility from 'utility/slug.utility'
 import encodeImgURI from 'utility/encodeImgURI'
-import i18n from 'next-i18next'
+import { i18n } from 'next-i18next'
 
 const fetchBoughtProductListAPI = async ({ pageParam = 1 }, contentType) => {
   const res = await APIInstance({
@@ -11,7 +11,7 @@ const fetchBoughtProductListAPI = async ({ pageParam = 1 }, contentType) => {
     method: 'GET',
     params: {
       page: pageParam,
-      lang : i18n.language
+      lang: i18n.language,
     },
   })
 
