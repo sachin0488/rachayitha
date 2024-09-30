@@ -7,8 +7,7 @@ export const useContestListService = () => {
     queryKey: [ContestQuery?.CONTEST_LIST],
     queryFn: fetchContestListAPI,
   })
-  
-  // console.log("hdga",data)
+
   return {
     data: {
       data: data,
@@ -27,9 +26,9 @@ const fetchContestListAPI = async () => {
     method: 'GET',
   })
 
-//   console.log('fxnresponse', response)
+  //   console.log('fxnresponse', response)
   const data = response?.data?.data || {}
-//   console.log('fxndata', data)
+  //   console.log('fxndata', data)
   return {
     data: data?.map(item => {
       return {
