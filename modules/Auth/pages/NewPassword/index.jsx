@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button, CircularProgress, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Typography } from '@mui/material'
 
 import SuccessCard from './SuccessCard'
 import StyledPasswordField from 'modules/Auth/components/FormComponents/StyledPasswordField'
@@ -14,11 +14,12 @@ import { useResetPasswordService } from 'modules/Auth/service/ResetPassword.serv
 
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined'
 import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
+import SelectLanguage from 'modules/Landing/Sections/Header/components/SelectLanguage'
 
 const NewPasswordPage = () => {
   const { query } = useRouter()
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
   const { handleFormError } = useFormError()
   const { handleResetPasswordByToken, isLoading } = useResetPasswordService()
 
@@ -44,23 +45,23 @@ const NewPasswordPage = () => {
       ) : (
         <Main>
           <Body>
+            <Box sx={{ ml: 'auto' }}>
+              <SelectLanguage />
+            </Box>
             <FormProvider {...methods}>
               <TextSection>
                 <TitleText variant="h4" component="div" noWrap>
-                 {t('NewPassword.index.chooseANewPassword') }
+                  {t('NewPassword.index.chooseANewPassword')}
                   {/* <TitleText variant="h5" component="div">
                     Password?
                   </TitleText> */}
                 </TitleText>
-                <DescriptionText variant="subtitle2">
-                  {t('NewPassword.index.enterPassword') }
-                </DescriptionText>
+                <DescriptionText variant="subtitle2">{t('NewPassword.index.enterPassword')}</DescriptionText>
               </TextSection>
               <StyledPasswordField name="password" label={t('password')} placeholder={t('enterYourPassword')} />
               <StyledPasswordField name="confirmPassword" label={t('confirmPassword')} placeholder={t('enterYourConfirmPassword')} />
 
               <Nav>
-              <SelectLanguageContainer />
                 <StyledButton
                   disabled={isLoading}
                   sx={{ ml: 'auto' }}
@@ -70,7 +71,7 @@ const NewPasswordPage = () => {
                     data => handleResetPasswordByToken({ ...data, confirmPassword: undefined }),
                     handleFormError,
                   )}>
-                  {t('NewPassword.index.save') }
+                  {t('NewPassword.index.save')}
                 </StyledButton>
               </Nav>
             </FormProvider>

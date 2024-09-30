@@ -55,9 +55,9 @@
 
   "Login": {
     "index": {
-      "signIn": "साइन इन करें",
+      "signIn": "साइन इन",
       "forgotPassword": "पासवर्ड भूल गए ?",
-      "signInWithGoogle": "Google साइन इन करें",
+      "signInWithGoogle": "Google साइन इन",
       "dontHaveAccount": "आपके खाता नहीं है ?"
     }
   },
@@ -139,7 +139,7 @@
     "signInPrompt": "साइन इन करने के बाद आप यहाँ अपनी समीक्षा पोस्ट कर सकते हैं!",
     "needAccount": "क्या आपको खाता चाहिए?",
     "createAccount": "एक खाता बनाएं!",
-    "signIn": "साइन इन करें",
+    "signIn": "साइन इन",
     "reviews": "समीक्षाएँ"
   },
   "voteInfo": "वोट हर दिन आपके पसंदीदा उपन्यास को रैंक करने के लिए होते हैं",
@@ -150,7 +150,7 @@
   "yourVoteTooltip": "इस उपन्यास के लिए आपका वोट",
   "voteTooltip": "इस सामग्री को वोट दें",
   "voteButton": "वोट करें",
-  "signIn": "साइन इन करें",
+  "signIn": "साइन इन",
 
   "privacyPolicy": {
     "privacy_policy": "गोपनीयता नीति",
@@ -399,7 +399,7 @@
   "privacy_policy": "गोपनीयता नीति",
   "signUp": "साइन अप करें",
   "alreadyHaveAccount": "पहले से ही खाता है?",
-  "signIn": "साइन इन करें",
+  "signIn": "साइन इन",
   "personalInformation": "व्यक्तिगत जानकारी",
   "accountInformation": "खाता जानकारी",
   "bioInformation": "बायो जानकारी",

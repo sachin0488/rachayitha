@@ -20,10 +20,12 @@ import Layout from 'Layout'
 import AuthProvider from 'modules/Auth/AuthProvider'
 import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
+import Script from 'next/script'
 import CookiesAlert from 'components/CookiesAlert'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import nextI18NextConfig from '../next-i18next.config.js'
 import { appWithTranslation } from 'next-i18next'
+
 const clientSideEmotionCache = createEmotionCache()
 
 const twentyFourHoursInMs = 1000 * 60 * 60 * 24
@@ -63,23 +65,24 @@ const MyApp = props => {
                 <AuthProvider>
                   <Layout>
                     <Head>
-                      <title>Rachayitha | {`India's own online book store`}</title>
+                      <title>{`Rachayitha | India's own online book store`}</title>
                       <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                      <script
-                        async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
-                        crossorigin="anonymous"></script>
+                    </Head>
+                    <Script
+                      async
+                      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4036020514230622"
+                      crossOrigin="anonymous"
+                    />
 
-                      <script async src="https://www.googletagmanager.com/gtag/js?id=G-97EPHN49EQ"></script>
-                      <script>
-                        {`window.dataLayer = window.dataLayer || [];
+                    <Script async src="https://www.googletagmanager.com/gtag/js?id=G-97EPHN49EQ" />
+                    <Script id="google_code">
+                      {`window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
 
                         gtag('config', 'G-97EPHN49EQ');`}
-                      </script>
-                    </Head>
+                    </Script>
                     <CookiesAlert />
                     <Component {...pageProps} />
                   </Layout>

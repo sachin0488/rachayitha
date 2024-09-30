@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 html,
 body {
@@ -7,7 +8,7 @@ body {
   margin: 0;
   /* font-family: 'Inter', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif; */
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'Maven Pro', 'Noto Sans', sans-serif;
 }
 
 a {
@@ -16,7 +17,7 @@ a {
 }
 
 input {
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'Maven Pro', 'Noto Sans', sans-serif;
 }
 
 * {

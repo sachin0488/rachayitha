@@ -31,8 +31,9 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
 import { useTranslation } from 'next-i18next'
 import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
+import SelectLanguage from 'modules/Landing/Sections/Header/components/SelectLanguage'
 const CreateAccountPage = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
   const steps = [
     {
       label: t('personalInformation'),
@@ -100,7 +101,7 @@ const CreateAccountPage = () => {
   const isMobile = useMediaQuery('(max-width: 621px)')
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = steps.length
-  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService();
+  const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService()
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -139,10 +140,13 @@ const CreateAccountPage = () => {
 
       <Main>
         <Body onSubmit={methods.handleSubmit(handleCreateAccount, handleFormError)}>
+          <Box sx={{ ml: 'auto' }}>
+            <SelectLanguage />
+          </Box>
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h3" textAlign="center">
-                 {t('signUp')}
+                {t('signUp')}
                 <hr />
               </TitleText>
               {/* <DescriptionText variant="subtitle2">
@@ -272,8 +276,7 @@ const CreateAccountPage = () => {
                 {t('signUpWithGoogle')}
               </LoginWithGoogleButton>
             </Nav>
-            
-            <SigninLanguageContainer>
+
             <Typography
               sx={{
                 background: '#ffffff91',
@@ -287,11 +290,8 @@ const CreateAccountPage = () => {
 
               <Link href={{ pathname: '/login', query }}>
                 <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>{t('signIn')}</a>
-              </Link>    
+              </Link>
             </Typography>
-            {/* Use the SelectLanguageContainer component */}
-            <SelectLanguageContainer />
-            </SigninLanguageContainer>
           </FormProvider>
         </Body>
       </Main>
@@ -543,7 +543,6 @@ const SigninLanguageContainer = styled.div`
     justify-content: center;
     width: 100%;
   }
-`;
-
+`
 
 export default CreateAccountPage

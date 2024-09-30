@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { Button, CircularProgress, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Button, CircularProgress, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'next-i18next'
 
@@ -17,7 +17,8 @@ import { useEffect, useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google'
 import GoogleIcon from 'components/icons/google_icons'
 import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
-import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
+import SelectLanguage from 'modules/Landing/Sections/Header/components/SelectLanguage'
+// import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
 
 /**
  * Client Secret
@@ -37,7 +38,7 @@ import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageConta
 // }
 
 const LoginPage = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
   const { query } = useRouter()
   const theme = useTheme()
   const isTablet = useMediaQuery('(min-width: 700px)')
@@ -69,6 +70,9 @@ const LoginPage = () => {
       </ImageWarper>
       <Main>
         <Body onSubmit={methods.handleSubmit(handleLogin, handleFormError)}>
+          <Box sx={{ ml: 'auto' }}>
+            <SelectLanguage />
+          </Box>
           <FormProvider {...methods}>
             <TextSection>
               <TitleText variant="h3" textAlign="center">
@@ -122,25 +126,21 @@ const LoginPage = () => {
               </LoginWithGoogleButton>
             </Nav>
 
-            <SignupLanguageContainer>
-              <Typography
-                sx={{
-                  background: '#ffffff91',
-                  alignSelf: 'center',
-                  padding: '2px 10px',
-                  borderRadius: '6px',
-                }}
-                textAlign="center"
-                fontWeight={500}>
-                {t(`Login.index.dontHaveAccount`)}
+            <Typography
+              sx={{
+                background: '#ffffff91',
+                alignSelf: 'center',
+                padding: '2px 10px',
+                borderRadius: '6px',
+              }}
+              textAlign="center"
+              fontWeight={500}>
+              {t(`Login.index.dontHaveAccount`)}
 
-                <Link href={{ pathname: '/create-account', query }}>
-                  <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>{t('signUp')}</a>
-                </Link>
-              </Typography>
-              {/* Use the SelectLanguageContainer component */}
-              <SelectLanguageContainer />
-            </SignupLanguageContainer>
+              <Link href={{ pathname: '/create-account', query }}>
+                <a style={{ color: theme.palette.primary.main, fontWeight: 700 }}>{t('signUp')}</a>
+              </Link>
+            </Typography>
           </FormProvider>
         </Body>
       </Main>

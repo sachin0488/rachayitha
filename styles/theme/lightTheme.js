@@ -39,7 +39,7 @@ const theme = createTheme({
   },
   typography: {
     // fontFamily: ['Inter', 'sans-serif'].join(','),
-    fontFamily: ['Maven Pro', 'sans-serif'].join(','),
+    fontFamily: ['Maven Pro', 'Noto Sans', 'sans-serif'].join(','),
     // letterSpacing: '0.015rem',
     color: '#2F2D5C',
   },
