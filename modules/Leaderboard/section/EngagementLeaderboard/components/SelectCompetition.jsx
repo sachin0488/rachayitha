@@ -3,8 +3,10 @@ import styled from '@emotion/styled'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Select as MUISelect, MenuItem, Typography } from '@mui/material'
 import { useContestListService } from '../../../services/ContestList.service'
+import { useRouter } from 'next/router'
 
 function SelectCompetition({ setCompetition,setSelectContest }) {
+  const router = useRouter();
   const [compVal, setCompVal] = useState(1);
   const {data}=useContestListService();
   setSelectContest(compVal);
@@ -14,6 +16,11 @@ function SelectCompetition({ setCompetition,setSelectContest }) {
     setCompVal(e.target.value)
   }
   // console.log(data.data.data);
+
+   const pushToQueryPath=(id)=>{
+    router.query.contest_id=id;
+    router.push(router);
+   }
 
   return (
     <SelectCompetitionWrapper>
@@ -54,7 +61,9 @@ function SelectCompetition({ setCompetition,setSelectContest }) {
                 value={item.id}
                 sx={{
                   color: `${compVal === item.contest_name ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-                }}>
+                }} 
+                onClick={()=>pushToQueryPath(item.id)}
+                >
                 {item.contest_name}
               </MenuItem>
               })

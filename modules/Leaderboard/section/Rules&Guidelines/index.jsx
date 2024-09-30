@@ -5,9 +5,9 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import { useParticipationRuleService } from 'modules/Leaderboard/services/ParticipationRule.service'
 import { useTermConditionService } from 'modules/Leaderboard/services/TermCondition.service'
 
-function RulesAndGuidelines({ contestID }) {
-  const { data } = useParticipationRuleService(contestID)
-  const { data: termData, refetch: refetchTerms } = useTermConditionService(contestID)
+function RulesAndGuidelines() {
+  const { data,isLoading: isLoadingParticipationRule } = useParticipationRuleService()
+  const { data: termData, refetch: refetchTerms, isLoading: isLoadingTerm } = useTermConditionService()
   const [open, setOpen] = useState(false)
  console.log(termData.data.length)
   const handleOpen = () => {
@@ -31,7 +31,10 @@ function RulesAndGuidelines({ contestID }) {
           </LeftSection>
           <RightSection>
             <Subheading>Key Points</Subheading>
-            <Points>
+            {isLoadingParticipationRule || isLoadingTerm ? (
+              <p>Loading...</p>
+            ) : (
+              <Points>
               {KeyPoints.map((point, index) => (
                 <Point key={index}>
                   <Icon>
@@ -52,6 +55,7 @@ function RulesAndGuidelines({ contestID }) {
                 </Point>
               ))}
             </Points>
+            )}
             <Button
               variant="outlined"
               color="primary"
@@ -78,7 +82,8 @@ function RulesAndGuidelines({ contestID }) {
       {/* Terms and Conditions Dialog */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>Terms and Conditions</DialogTitle>
-        <DialogContent>
+        {isLoadingTerm?<p>Loading...</p>:
+          <DialogContent>
           {termData?.data?.length > 0 ? (
             termData?.data?.map((term, index) => (
               <div key={index}>
@@ -89,7 +94,7 @@ function RulesAndGuidelines({ contestID }) {
           ) : (
             <p>No terms available</p>
           )}
-        </DialogContent>
+        </DialogContent>}
         <Button onClick={handleClose} sx={{ margin: '20px' }}>
           Close
         </Button>

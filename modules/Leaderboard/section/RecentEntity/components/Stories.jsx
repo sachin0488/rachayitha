@@ -3,9 +3,13 @@ import React from 'react'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 
-function Stories({ data }) {
+function Stories({ data,isLoading }) {
   return (
     <Root>
+     {isLoading? (
+      <div>Loading...</div>
+     ):(
+      <>
       {data.map((item, index) => (
         <Card key={index}>
           <ImageWrapper>
@@ -48,6 +52,7 @@ function Stories({ data }) {
           </Content>
         </Card>
       ))}
+     </>)}
     </Root>
   )
 }

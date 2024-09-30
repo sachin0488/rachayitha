@@ -5,10 +5,9 @@ import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import { useBookListService } from 'modules/Leaderboard/services/BookList.service'
 
-function RecentEntity({ contestID }) {
-  console.log("ghjsID",contestID);
-  const { data } = useBookListService(contestID)
-  console.log("data",data);
+function RecentEntity({  }) {
+  const { data ,refetch,isLoading,isFetching,isSuccess,isError} = useBookListService()
+
   const StoriesData = data?.data.map(item => ({
     img: item?.book_cover_img,
     category: item?.book_category[0]?.name,
@@ -93,7 +92,7 @@ function RecentEntity({ contestID }) {
               <span>Stories</span>
               <View>View All</View>
             </Subheading>
-            <Stories data={StoriesData} />
+            <Stories data={StoriesData} isLoading={isLoading} />
           </StoriesSection>
           {/* <PoemSection>
             <Subheading>

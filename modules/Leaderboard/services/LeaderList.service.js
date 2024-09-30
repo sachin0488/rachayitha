@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { APIInstance } from 'services/global.service';
 import { ContestQuery } from '../constants/query.address';
-export const useLeaderListService = (contest_id) => {
+import { useRouter } from 'next/router';
+export const useLeaderListService = () => {
+  const contest_id=useRouter().query?.contest_id||1;
+
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.LEADERBOARD_LIST, contest_id],
     queryFn: () => fetchLeaderListAPI(contest_id),
