@@ -5,22 +5,22 @@ import { Select as MUISelect, MenuItem, Typography } from '@mui/material'
 import { useContestListService } from '../../../services/ContestList.service'
 import { useRouter } from 'next/router'
 
-function SelectCompetition({ setCompetition,setSelectContest }) {
-  const router = useRouter();
-  const [compVal, setCompVal] = useState(1);
-  const {data}=useContestListService();
-  setSelectContest(compVal);
-  const handleChange = (e) => {
-       console.log(e.target.value)
+function SelectCompetition({ setCompetition, setSelectContest }) {
+  const router = useRouter()
+  const [compVal, setCompVal] = useState(1)
+  const { data } = useContestListService()
+  setSelectContest(compVal)
+  const handleChange = e => {
+    console.log(e.target.value)
     setSelectContest(e.target.value)
     setCompVal(e.target.value)
   }
   // console.log(data.data.data);
 
-   const pushToQueryPath=(id)=>{
-    router.query.contest_id=id;
-    router.push(router);
-   }
+  const pushToQueryPath = id => {
+    router.query.contest_id = id
+    router.push(router)
+  }
 
   return (
     <SelectCompetitionWrapper>
@@ -52,22 +52,20 @@ function SelectCompetition({ setCompetition,setSelectContest }) {
               Poem Writing Competition
             </MenuItem>
           </Select> */}
-          <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}> 
-            {
-
-              data?.data?.data?.map((item,index)=>{
-                return <MenuItem
-                key={index}
-                value={item.id}
-                sx={{
-                  color: `${compVal === item.contest_name ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-                }} 
-                onClick={()=>pushToQueryPath(item.id)}
-                >
-                {item.contest_name}
-              </MenuItem>
-              })
-            }
+          <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
+            {data?.data?.data?.map((item, index) => {
+              return (
+                <MenuItem
+                  key={index}
+                  value={item.id}
+                  sx={{
+                    color: `${compVal === item.contest_name ? 'rgba(86, 36, 193, 1)' : 'black'}`,
+                  }}
+                  onClick={() => pushToQueryPath(item.id)}>
+                  {item.contest_name}
+                </MenuItem>
+              )
+            })}
           </Select>
         </SelectWrapper>
         <Typography variant="body1" sx={{ color: theme => theme.palette.background.default + 'ee', mt: 2.5 }}>
