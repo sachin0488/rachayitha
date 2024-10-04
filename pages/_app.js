@@ -17,7 +17,6 @@ import { queryCache, mutationCache } from 'services/global.service'
 
 import Layout from 'Layout'
 import AuthProvider from 'modules/Auth/AuthProvider'
-import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
 import CookiesAlert from 'components/CookiesAlert'
 import { GoogleOAuthProvider } from '@react-oauth/google'
