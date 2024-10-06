@@ -28,6 +28,7 @@ const fetchSubmissionTimelineAPI = async contest_id => {
     method: 'GET',
   })
 
+
   const contests = response?.data?.data || []
 
   const contest = contests.find(item => item.id === contest_id) || null
