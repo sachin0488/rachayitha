@@ -1,15 +1,15 @@
 import React from 'react'
 import ContentDetail from 'modules/ContentDetail/pages/contentDetail.page'
-import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { fetchContentDetail } from 'modules/ContentDetail/services/ContentDetails.service'
 
-const Poem = ({ serverData }) => {
-  const { query } = useRouter()
-
+const Poem = ({ contentId, slug, serverData }) => {
   const contentType = 'poem'
-  const contentId = query?.poemId
-  const slug = query?.slug
+
+  if (!contentId || !slug) {
+    console.error('Missing contentId or slug:', { contentId, slug })
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -21,10 +21,8 @@ const Poem = ({ serverData }) => {
 export default Poem
 
 export async function getServerSideProps({ req, res, query, params, locale }) {
-  // console.log('getServerSideProps', { req, res, query, params, locale })
-
-  const contentId = query.poemId
-  const slug = query.slug
+  const contentId = query?.poemId
+  const slug = query?.slug
 
   const serverData = await fetchContentDetail({ contentType: 'poem', contentId: contentId, slug: slug })
 
