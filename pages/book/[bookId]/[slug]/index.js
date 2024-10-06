@@ -1,6 +1,7 @@
 import React from 'react'
 import ContentDetail from 'modules/ContentDetail/pages/contentDetail.page'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { fetchContentDetail } from 'modules/ContentDetail/services/ContentDetails.service'
 
 const Book = ({ contentId, slug, serverData }) => {
   const contentType = 'book'
