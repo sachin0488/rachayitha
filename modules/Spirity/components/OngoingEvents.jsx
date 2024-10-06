@@ -1,41 +1,83 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
-import { useTheme } from '@mui/material/styles'
+import SelectSelectedContent from './SelectSelectedTime'
+
 import { useContestListService } from 'modules/Leaderboard/services/ContestList.service'
-import Link from 'next/link'
+import { Button, Typography } from '@mui/material'
+import { FormProvider, useForm } from 'react-hook-form'
 
 function OngoingEvents() {
-  const theme = useTheme()
   const { data: contestList } = useContestListService()
+  const methods = useForm({
+    defaultValues: {
+      contestType: 'all',
+    },
+  })
+
+  const contestType = methods.watch('contestType')
+
+  const filteredContestList = useMemo(() => {
+    if (contestType === 'all') {
+      return contestList?.data?.data
+    }
+
+    return contestList?.data?.data?.filter(item => item?.contest_type === contestType)||[]
+  }, [contestList, contestType])
+
   return (
     <Root>
       <Main>
         <Header>
-          <Title theme={theme}>OUR ONGOING EVENTS! -</Title>
-          <Subtitle theme={theme}>UNLEASH YOUR TALENT &nbsp;</Subtitle>
+          <Title>
+            OUR ONGOING EVENTS!{' '}
+            <FormProvider {...methods}>
+              <SelectSelectedContent
+                name="contestType"
+                menuList={[
+                  {
+                    label: 'All',
+                    value: 'all',
+                  },
+                  {
+                    label: 'Poem',
+                    value: 'poem',
+                  },
+                  {
+                    label: 'Novel',
+                    value: 'book',
+                  },
+                ]}
+              />
+            </FormProvider>
+          </Title>
+          <Subtitle>UNLEASH YOUR TALENT &nbsp;</Subtitle>
         </Header>
         <EventsContainer>
-          {/* <img src="./novelWritingComp.svg" alt="Novel Writing Competition" /> */}
-          {contestList?.data?.data?.map(item => (
-            <EventCard theme={theme} key={item?.id}>
+          {filteredContestList?.map(item => (
+            <EventCard key={item?.id}>
               <ImageContainer>
                 <img src={item?.contest_img} alt="Writing Competition" />
               </ImageContainer>
-              <EventTitle theme={theme}>{item?.contest_name}</EventTitle>
-              <EventDescription theme={theme}>{item?.contest_description}</EventDescription>
-              <a href={`/leaderboard?contest_id=${item?.id}`} target="_blank" rel="noreferrer">
-                <ParticipateButton theme={theme}>Participate now</ParticipateButton>
+              <Typography variant="h6" color="secondary">
+                {item?.contest_name}
+              </Typography>
+              <Typography variant="body2" fontWeight={500} color="secondary.light">
+                {item?.contest_description}
+              </Typography>
+              <a
+                style={{
+                  display: 'flex',
+                  marginTop: '10px',
+                }}
+                href={`/leaderboard?contest_id=${item?.id}`}
+                target="_blank"
+                rel="noreferrer">
+                <Button variant="contained" disableElevation>
+                  Participate now
+                </Button>
               </a>
             </EventCard>
           ))}
-          {/* <EventCard theme={theme}>
-            <ImageContainer>
-              <img src="./poemWritingComp.svg" alt="Poem Writing Competition" />
-            </ImageContainer>
-            <EventTitle theme={theme}>Poem Writing Competition</EventTitle>
-            <EventDescription theme={theme}>Great, this illustration When passion fades, only true love lasts forever.</EventDescription>
-            <ParticipateButton theme={theme}>Participate now</ParticipateButton>
-          </EventCard> */}
         </EventsContainer>
       </Main>
     </Root>
@@ -66,7 +108,6 @@ const Main = styled.div`
   padding-inline: 80px;
   justify-content: space-between;
   gap: 25px;
-  font-family: 'Maven Pro';
   @media (max-width: 900px) {
     gap: 15px;
     padding-inline: 20px;
@@ -74,7 +115,6 @@ const Main = styled.div`
 `
 
 const Header = styled.div`
-  text-align: center;
   @media (max-width: 900px) {
     text-align: left;
   }
@@ -113,16 +153,16 @@ const Subtitle = styled.h1`
 
 const EventsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
-  @media (max-width: 900px) {
+  @media (max-width: 980px) {
+    flex-wrap: wrap;
     justify-content: center;
   }
 `
 
 const EventCard = styled.div`
   background-color: ${({ theme }) => theme.palette.background.paper};
-  border-radius: 10px;
+  border-radius: 22px;
   box-shadow: ${({ theme }) => theme.palette.primary.shadowLevel01};
   max-width: 49%;
   padding: 15px;
@@ -136,31 +176,6 @@ const ImageContainer = styled.div`
   img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
-  }
-`
-
-const EventTitle = styled.h3`
-  font-size: 1.2rem;
-  font-family: 'Maven Pro';
-  margin: 15px 0;
-`
-
-const EventDescription = styled.p`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.palette.primary.main};
-  font-family: 'Maven Pro';
-`
-
-const ParticipateButton = styled.a`
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.palette.background.default};
-  background-color: ${({ theme }) => theme.palette.primary.main};
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.primary.dark};
+    border-radius: 14px;
   }
 `

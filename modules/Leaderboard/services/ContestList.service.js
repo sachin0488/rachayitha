@@ -26,14 +26,15 @@ const fetchContestListAPI = async () => {
     method: 'GET',
   })
 
-  //   console.log('fxnresponse', response)
   const data = response?.data?.data || {}
-  //   console.log('fxndata', data)
+
   return {
     data: data?.map(item => {
       return {
         contest_description: item?.contest_description,
         contest_name: item?.contest_name,
+        contest_img: item?.contest_img,
+        contest_type: item?.contest_type,
         result_date: item?.result_date,
         start_date: item?.start_date,
         user_id: item?.user_id,

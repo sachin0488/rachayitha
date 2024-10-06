@@ -28,7 +28,6 @@ const fetchSubmissionTimelineAPI = async contest_id => {
     method: 'GET',
   })
 
-
   const contests = response?.data?.data || []
 
   const contest = contests.find(item => item.id === contest_id) || null
@@ -39,6 +38,7 @@ const fetchSubmissionTimelineAPI = async contest_id => {
           id: contest.id,
           user_id: contest.user_id,
           contest_name: contest.contest_name,
+          contest_highlight: contest.contest_highlight,
           contest_description: contest.contest_description,
           prizepool: contest.prizepool,
           contest_img: contest.contest_img,

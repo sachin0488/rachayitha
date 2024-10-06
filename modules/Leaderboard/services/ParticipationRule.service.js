@@ -1,16 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { ContestQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
 export const useParticipationRuleService = () => {
-  const contest_id=useRouter().query?.contest_id||1;
+  const router = useRouter()
+  const contest_id = router.query?.contest_id || 1
+
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.PARTICIPATION_RULE, contest_id],
     queryFn: () => fetchParticipationRuleAPI(contest_id),
     enabled: !!contest_id,
   })
-  
+
   return {
     data: {
       data: data?.data || [],
@@ -23,14 +25,14 @@ export const useParticipationRuleService = () => {
   }
 }
 
-const fetchParticipationRuleAPI = async (contest_id) => {
+const fetchParticipationRuleAPI = async contest_id => {
   const response = await APIInstance({
     url: `/contest/participationrule?contest_id=${contest_id}`,
     method: 'GET',
   })
 
   const data = response?.data?.data || []
-  
+
   return {
     data: data?.map(item => {
       return {

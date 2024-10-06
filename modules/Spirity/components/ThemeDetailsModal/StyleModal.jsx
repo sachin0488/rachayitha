@@ -5,35 +5,37 @@ import { Dialog, IconButton, Slide, useMediaQuery } from '@mui/material'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
 const Transition = forwardRef(function Transition({ isBreakPointCrossed, ...props }, ref) {
-    return <Slide direction={isBreakPointCrossed ? 'left' : 'down'} ref={ref} {...props} />
+  return <Slide direction={isBreakPointCrossed ? 'left' : 'down'} ref={ref} {...props} />
 })
 
 const StyleModal = ({ children, open, handleClose, bodyBarColor, ...props }) => {
-    const { title, breakPoint, maxWidth, maxHeight, ...bodyProps } = props
-    const isBreakPointCrossed = useMediaQuery(`(max-width: ${breakPoint}px)`)
-    return (
-        <Root
-            open={open}
-            TransitionComponent={Transition}
-            TransitionProps={{ isBreakPointCrossed }}
-            keepMounted
-            onClose={handleClose}
-            aria-describedby={title}
-            max_width={maxWidth}
-            max_height={maxHeight}
-            custom_barack_point={breakPoint}>
-            <Body
-                {...bodyProps}
-                style={{
-                    borderColor: bodyBarColor,
-                }}>
-                <StyledIconButton color="primary" onClick={handleClose} custom_barack_point={breakPoint}>
-                    <CloseRoundedIcon />
-                </StyledIconButton>
-                {children}
-            </Body>
-        </Root>
-    )
+  const { title, breakPoint, maxWidth, maxHeight, ...bodyProps } = props
+
+  const isBreakPointCrossed = useMediaQuery(`(max-width: ${breakPoint}px)`)
+
+  return (
+    <Root
+      open={open}
+      TransitionComponent={Transition}
+      TransitionProps={{ isBreakPointCrossed }}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby={title}
+      max_width={maxWidth}
+      max_height={maxHeight}
+      custom_barack_point={breakPoint}>
+      <Body
+        {...bodyProps}
+        style={{
+          borderColor: bodyBarColor,
+        }}>
+        <StyledIconButton color="primary" onClick={handleClose} custom_barack_point={breakPoint}>
+          <CloseRoundedIcon />
+        </StyledIconButton>
+        {children}
+      </Body>
+    </Root>
+  )
 }
 
 export default StyleModal
@@ -71,9 +73,7 @@ const Body = styled.div`
   padding: 0px 27px 15px;
   overflow-y: auto;
   padding-top: 0px;
-  border - top: 8px solid ${props => props.theme.palette.primary.main};
-
-
+  border-top: 8px solid ${props => props.theme.palette.primary.main};
   @media (max-width: 400px) {
     padding: 27px 15px 15px;
   }

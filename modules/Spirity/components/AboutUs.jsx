@@ -20,7 +20,6 @@ const About = () => {
               </p>
             </div>
             <div class="dg gtc3 aic gap36 gtc-m-3 logo-group">
-              <img className="w80p" src={contestData?.organiser_logo1} />
               <img className="w80p" src={contestData?.organiser_logo2} />
               <img className="w80p" src={contestData?.organiser_logo3} />
               <img className="w80p" src={contestData?.organiser_logo4} />

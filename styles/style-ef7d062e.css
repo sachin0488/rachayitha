@@ -202,7 +202,6 @@ li {
   background-image: url(/rachayitha_spirity/8cf898c-cfe8-46ad-880e-14f174f8aa38.png);
   background-position: center center;
   background-repeat: no-repeat;
-  filter: hue-rotate(281deg);
 }
 .header-icon-img {
   padding: 10px;
@@ -292,7 +291,7 @@ li {
 .rule-wrapper {
   margin-right: 20px;
   margin-bottom: 20px;
-  height: 180px;
+  height: fit-content;
   border: 1px solid #160d02;
   position: relative;
   background: white;

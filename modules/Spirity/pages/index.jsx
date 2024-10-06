@@ -3,9 +3,8 @@ import Prizepool from '../components/PrizePool'
 import About from '../components/AboutUs'
 import Rules from '../components/Rules'
 import Schedule from '../components/Schedule'
-import Section from '../components/Section'
-import Adventure from '../components/Themes_Adventure'
-import Romance from '../components/Themes_Romance'
+import Hero from '../components/Hero'
+import ThemesListSection from '../components/ThemesListSection'
 import OngoingEvents from '../components/OngoingEvents'
 import { useSpecificContestService } from '../service/Schedule.service'
 
@@ -15,12 +14,10 @@ const SpirityMain = () => {
   return (
     <>
       <IconSets />
-      <Section contestDetail={contestDetail} />
+      <Hero />
       <Prizepool contestDetail={contestDetail} />
       <Schedule contestDetail={contestDetail} isLoading={isLoading} />
-      <Adventure />
-
-      {/* <Romance /> */}
+      <ThemesListSection />
       <OngoingEvents />
       <Rules />
       <About />
