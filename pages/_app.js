@@ -13,12 +13,13 @@ import lightTheme from 'styles/theme/lightTheme'
 
 import 'styles/globals.css'
 import 'styles/quill.snow.css'
+import 'styles/atomic-c0af5538.css'
+import 'styles/style-ef7d062e.css'
 
 import { queryCache, mutationCache } from 'services/global.service'
 
 import Layout from 'Layout'
 import AuthProvider from 'modules/Auth/AuthProvider'
-import darkTheme from 'styles/theme/darkTheme'
 import Head from 'next/head'
 import Script from 'next/script'
 import CookiesAlert from 'components/CookiesAlert'

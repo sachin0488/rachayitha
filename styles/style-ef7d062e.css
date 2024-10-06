@@ -1,0 +1,997 @@
+@charset "UTF-8";
+/* 基本样式 */
+body {
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+  color: #160d02;
+  background: #ffffff;
+}
+a,
+a:active {
+  color: rgba(10, 23, 51, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover,
+a.active {
+  color: #5122c0;
+}
+button {
+  cursor: pointer;
+}
+header {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.hue_rotate {
+  filter: hue-rotate(175deg);
+}
+
+.header_wrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.border-top-primary {
+  border-top: 1px solid #160d02;
+}
+
+.border-top-primary-reverse {
+  border-top: 1px solid #ffffff;
+}
+
+.border-bottom-primary {
+  border-bottom: 1px solid #160d02;
+}
+
+.border-bottom-primary-reverse {
+  border-bottom: 1px solid #001366;
+  margin-top: 84px;
+}
+.title-decorate {
+  position: relative;
+}
+.title-decorate::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75em;
+  right: 0;
+  width: 5.5em;
+  height: 0.75em;
+  background-size: 100% 100%;
+  background-image: url(/rachayitha_spirity/126657bf-aa3d-43d0-b00d-7fbd471ad15b.png);
+  filter: hue-rotate(281deg);
+}
+.title-new {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -4px;
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(/rachayitha_spirity/f82aa89f-14ed-4cfe-a1fd-aa5628fada44.png);
+  filter: hue-rotate(281deg);
+}
+
+.section_wrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section_wrapper_pb20 {
+  padding-bottom: 20px;
+}
+
+.bookCover {
+  padding-top: 133.3%;
+  position: relative;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 32px;
+}
+.book-cover-mark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 16px 8px 10px;
+  background-color: #5122c0;
+  color: #fff;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  border-radius: 32px;
+  border-bottom-right-radius: 0;
+  text-transform: uppercase;
+}
+.book-cover-mark-Classic {
+  background-color: #1a0837;
+}
+.bookCover img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 300ms;
+  border-radius: 32px;
+}
+.book-link:hover {
+  color: #5122c0;
+}
+.book-link:hover .bookCover img {
+  transform: scale(1.1);
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  border: 1px solid #160d02;
+  overflow: hidden;
+}
+.avatar._small {
+  width: 24px;
+  height: 24px;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.book_avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  border: 1px solid #ffffff;
+  overflow: hidden;
+}
+.book_avatar img {
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  display: inline-block;
+  border: 1px solid #160d02;
+  box-sizing: border-box;
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #160d02;
+  padding: 16px 16px 17px;
+  cursor: pointer;
+}
+.btn._white {
+  border-color: #fff;
+  color: #fff;
+}
+.btn:hover {
+  background: #5122c0;
+  border-color: #5122c0;
+  color: white;
+}
+/*  头部 */
+.header-line {
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: #160d02;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.header-illustrator {
+  padding-top: 100%;
+  background-size: 100%;
+  background-image: url(/rachayitha_spirity/8cf898c-cfe8-46ad-880e-14f174f8aa38.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: hue-rotate(281deg);
+}
+.header-icon-img {
+  padding: 10px;
+  border-radius: 28px;
+  background-color: #f6f1ff;
+}
+.header-icon-img img {
+  display: block;
+}
+
+.header-menu > .header-link {
+  padding: 0 28px;
+}
+
+/* 用于扩大选区 */
+.header-dropdown-menus:after {
+  content: '';
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  margin-left: -15%;
+  margin-top: -20px;
+  z-index: -1;
+}
+
+.header-dropdown:hover .header-dropdown-menus,
+.header-dropdown:active .header-dropdown-menus {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header-dropdown-menus {
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  left: 50%;
+  display: flex;
+  padding: 6px 0;
+  flex-direction: column;
+  border: 1px solid;
+  background: white;
+  transform: translate(-50%, 10px);
+}
+
+.header-dropdown-items {
+  padding: 8px 24px;
+  margin: 2px 0;
+}
+/* 第一屏幕 */
+
+/* 第二屏幕 */
+.prize-section {
+  background: #f3f1f8;
+}
+.prize-img {
+  margin-left: auto;
+  width: 120px;
+  height: 150px;
+  filter: hue-rotate(281deg);
+}
+/* 第三屏幕 */
+.schedule-wrapper {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #160d02;
+  position: relative;
+  background: white;
+  border-radius: 32px;
+}
+.schedule-wrapper::before {
+  content: '';
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #160d02;
+  border-radius: 32px;
+  position: absolute;
+  z-index: -1;
+}
+.schedule-wrapper li + li {
+  margin-top: 8px;
+}
+/* 第四屏幕 */
+
+.rule-wrapper {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  height: 180px;
+  border: 1px solid #160d02;
+  position: relative;
+  background: white;
+  border-radius: 32px;
+}
+.rule-wrapper::before {
+  content: '';
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #160d02;
+  border-radius: 32px;
+  position: absolute;
+  z-index: -1;
+}
+.rule-wrapper li + li {
+  margin-top: 8px;
+}
+
+.bookInfo {
+  margin-bottom: 24px;
+  min-width: 110px;
+}
+.theme-section-male {
+  background-color: #1a0837;
+}
+.theme-section-female {
+  background-color: #4625a1;
+}
+.theme-pic {
+  border: 1px solid #ffffff;
+  border-radius: 32px;
+  padding: 64px 20px 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.theme-pic:hover {
+  color: white;
+  border: 1px solid #4625a1;
+}
+.theme-pic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(59, 102, 245, 0);
+  transition: background-color 300ms;
+}
+.theme-pic:hover::before {
+  background: #4625a1;
+}
+.theme-section-female .theme-pic:hover {
+  border: 1px solid #1a0837;
+}
+.theme-section-female .theme-pic:hover::before {
+  background: #1a0837;
+}
+.theme-bkg {
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+}
+.theme-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: -32px;
+}
+.theme-scroll-wrapper {
+  padding-bottom: 32px;
+}
+
+.rules-section {
+  background-color: #f2f1f8;
+  position: relative;
+  z-index: 5;
+}
+
+.rule-wrapper {
+  background-color: #f2f1f8;
+}
+
+/* 第五屏幕 */
+
+/* 活动目前还没有，暂时隐藏 */
+.last-year-slider {
+  /* display: none; */
+}
+
+.section-next-button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.section-next-button i {
+  display: inline-block;
+  background: #f2f1f8;
+  width: 56px;
+  height: 56px;
+  border-radius: 56px;
+  color: #160d02;
+  text-align: center;
+  cursor: pointer;
+}
+.section-next-button i:hover {
+  background-color: #5122c0;
+  color: white;
+}
+.section-next-button i svg {
+  margin-top: 18px;
+}
+
+.scroll_wrapper {
+  pointer-events: none;
+  margin-bottom: -20px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.scroll_wrapper_s {
+  width: calc(200% + 36px);
+  min-width: 1134px;
+  padding-bottom: 20px;
+  pointer-events: initial;
+}
+.scroll_wrapper_s h3 {
+  padding-top: 20px;
+  border-top: 1px solid white;
+}
+
+.pic-scroll {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.pic-scroll-wrapper {
+  height: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  transition: transform 300ms;
+}
+
+.last-picture {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-top: 66%;
+  border: 1px solid #160d02;
+  position: relative;
+  background-color: white;
+  white-space: normal;
+  overflow: hidden;
+}
+.last-picture::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 20px;
+  left: -20px;
+  border: 1px solid #160d02;
+  border-radius: 32px;
+  z-index: -1;
+}
+.last-picture .pic-poster {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-color: #eeeeed;
+}
+
+.book-review {
+  background-color: rgba(10, 23, 51, 0.72);
+  opacity: 0;
+  border-radius: 32px;
+}
+.book-review:hover {
+  opacity: 1;
+}
+
+.book-review.empty:hover {
+  opacity: 0;
+}
+
+.book-review.empty .book-review-btn {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.book-review .book-review-btn {
+  display: inline-block;
+  width: 80%;
+  font-size: 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin: 8px 0;
+  border: 1px solid;
+
+  color: white;
+}
+
+.book-review .book-review-btn.middle {
+  font-size: 14px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 4px 0;
+}
+
+.book-review .book-review-btn.small {
+  width: 75%;
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 4px 0;
+}
+
+.book-review .go-preview {
+  background: #5122c0;
+  border-color: #5122c0;
+}
+
+/*.book-review-btn:hover {*/
+/*  background: #D79D2C;*/
+/*  border-color: #D79D2C;*/
+/*}*/
+
+.book_collapse_wrapper {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.book_collapse._hide .book_collapse_wrapper {
+  opacity: 0;
+  display: none;
+}
+.book_collapse_btn {
+  font-family: Ubuntu, sans-serif;
+  padding-top: 15px;
+  padding-bottom: 16px;
+  background: #5122c0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+.book_collapse_btn svg {
+  fill: currentColor;
+}
+.book_collapse_btn:hover {
+  background: #1a0837;
+  color: white;
+}
+.book_collapse_btn > span {
+  display: none;
+}
+.book_collapse_btn > span:first-child {
+  display: block;
+}
+._hide .book_collapse_btn > span:first-child {
+  display: none;
+}
+._hide .book_collapse_btn > span:last-child {
+  display: block;
+}
+
+.book_scroll_wrapper > div {
+  transition: transform 300ms;
+}
+.prize-line-title {
+  border-top: 1px solid #160d02;
+}
+
+/* 第六屏幕 */
+.testimony-section {
+  background: #1a0837;
+}
+.testimony-scroll-wrapper {
+  width: 400%;
+  transition: transform 300ms;
+}
+
+.testimony-author {
+  color: #ffffff;
+}
+
+.testimony-author:hover {
+  color: #ffcf75;
+}
+
+.testimony-desc {
+  cursor: pointer;
+}
+
+.testimony-desc:hover {
+  color: #ffcf75;
+}
+
+.ells-multi {
+  display: -webkit-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+}
+
+.about-us-section {
+  background: #f2f1f8;
+}
+.about-us-section .logo-group {
+  height: 48px;
+  width: 70%;
+}
+
+.join-us-section:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.join-us-section {
+  position: relative;
+  color: #ffffff;
+
+  background-color: rgba(10, 23, 51, 0.72);
+  background-image: url(/rachayitha_spirity/joinus2024.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: hue-rotate(281deg);
+}
+
+.footer {
+  background-color: #160d02;
+}
+.footer .link {
+  color: #fff;
+  opacity: 0.64;
+}
+
+.dialog {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.88);
+  z-index: 101;
+}
+
+.dialog-content {
+  height: 70%;
+  max-width: 480px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid #160d02;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.dialog-content p {
+  line-height: 24px;
+}
+.dialog-content p + p {
+  margin-top: 1em;
+}
+.dialog-content p + h5 {
+  margin-top: 1em;
+}
+.dialog-content h5 + p {
+  margin-top: 1em;
+}
+.dialog-content-fill {
+  padding-left: 24px;
+  padding-right: 24px;
+  overscroll-behavior: contain;
+  overflow-y: auto;
+}
+
+.small-menu {
+  background-color: white;
+  z-index: 102;
+  box-sizing: border-box;
+  padding-bottom: 60px;
+  padding-top: 120px;
+}
+.scroll-nomination {
+  overflow: hidden;
+  margin-bottom: -20px;
+}
+.scroll-nomination > div {
+  padding-bottom: 20px;
+}
+.scroll-nomination-gtc-22 {
+  grid-template-columns: repeat(22, 1fr);
+}
+.scroll-nomination-gtc1-5 {
+  grid-column: 1 / span 5;
+}
+.scroll-nomination-gtc5-5 {
+  grid-column: 6 / span 5;
+}
+.scroll-nomination-gtc10-5 {
+  grid-column: 11 / span 5;
+}
+.scroll-nomination-gtc15-5 {
+  grid-column: 16 / span 5;
+}
+.scroll-nomination-gtc20-2 {
+  grid-column: 21 / span 2;
+}
+.scroll-l-bronze,
+.scroll-l-gold,
+.scroll-l-silver {
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scrollbar-gutter: auto;
+  margin-bottom: -20px;
+}
+.scroll-l-bronze > div {
+  width: 100%;
+  padding-bottom: 20px;
+}
+.scroll-l-gold > div {
+  padding-bottom: 20px;
+}
+.scroll-l-silver > div {
+  padding-bottom: 20px;
+}
+.ol-level-one {
+  list-style-type: lower-alpha;
+  padding-inline-start: 24px;
+}
+.ol-level-two {
+  list-style-type: upper-roman;
+  padding-inline-start: 12px;
+}
+.li-none {
+  list-style-type: none;
+}
+
+.dn-pc {
+  display: none;
+}
+
+.dn-mobile {
+  display: inherit;
+}
+
+@media screen and (max-width: 1080px) {
+  .header-menu > .header-link {
+    padding: 0 10px;
+  }
+
+  .bookInfo {
+    margin-bottom: 0;
+  }
+  .scroll-nomination {
+    overflow-x: scroll;
+    scrollbar-width: none;
+    scrollbar-gutter: auto;
+    margin-bottom: -20px;
+  }
+
+  .book-review .book-review-btn.auto {
+    font-size: 14px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 4px 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  /*  头部 */
+  .header_wrapper .logo {
+    width: 94px;
+    height: 12px;
+  }
+  .header_wrapper .wsa {
+    width: 40px;
+    height: 12px;
+  }
+  .header-line {
+    margin-right: 12px;
+    margin-left: 12px;
+    height: 16px;
+  }
+  .header-icon-img {
+    padding: 6px;
+  }
+  /* 第一屏幕 */
+
+  /* 第二屏幕 */
+  .prize-img {
+    width: 96px;
+    height: 120px;
+  }
+  /* 第三屏幕 */
+  .schedule-wrapper {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .schedule-wrapper::before {
+    top: 10px;
+    left: 10px;
+  }
+  .rule-wrapper {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .rule-wrapper::before {
+    top: 10px;
+    left: 10px;
+  }
+  /* 第四屏幕 */
+  .theme-pic {
+    padding: 56px 16px 12px;
+  }
+  /* 第五屏幕 */
+  .last-picture {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-top: 56%;
+  }
+  .last-picture::before {
+    top: 10px;
+    left: -10px;
+  }
+  .book_collapse_btn {
+    padding-top: 11px;
+    padding-bottom: 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  .book_collapse_btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .book_container {
+    width: 180%;
+  }
+
+  /* 第六屏幕 */
+  .testimony-scroll {
+    overflow: auto;
+  }
+  .testimony-scroll-wrapper {
+    white-space: nowrap;
+    width: auto;
+  }
+  .testimony-scroll-wrapper-item > div {
+    width: 300px;
+    margin-right: 16px;
+  }
+  .btn {
+    font-size: 16px;
+    padding: 14px 12px 15px;
+  }
+  .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .book-review {
+    border-radius: 16px;
+  }
+  .book-review svg {
+    width: 16px;
+    height: 16px;
+  }
+  .book-review button {
+    font-size: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .section_wrapper {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .header-icons img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .book_scroll_wrapper {
+    pointer-events: initial;
+  }
+  .scroll_wrapper_s {
+    width: calc(200% + 16px);
+  }
+  .scroll_wrapper_s h3 {
+    padding-top: 20px;
+  }
+  .join-us-section img {
+    width: 24px;
+  }
+
+  .section-next-button i {
+    width: 48px;
+    height: 48px;
+  }
+  .section-next-button i svg {
+    width: 16px;
+    height: 16px;
+    margin-top: 16px;
+  }
+
+  .dialog-content {
+    height: 80%;
+  }
+
+  .about-us-section .logo-group {
+    height: auto;
+    width: 100%;
+  }
+
+  .bookCover {
+    border-radius: 16px;
+  }
+
+  .bookCover img {
+    border-radius: 16px;
+  }
+
+  .dn-pc {
+    display: inherit;
+  }
+
+  .dn-mobile {
+    display: none;
+  }
+
+  .theme-switch {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px 24px 16px;
+    font-weight: 700;
+  }
+  .theme-switch-male {
+    width: 100%;
+  }
+  .theme-switch-male img {
+    width: 100%;
+  }
+  .theme-switch-female {
+    width: 100%;
+    margin-left: 12px;
+  }
+  .theme-switch-female img {
+    width: 100%;
+  }
+
+  .theme-switch-female div {
+    width: 80%;
+  }
+  .theme-header-mobile {
+    display: flex;
+  }
+  .mobile-prizes {
+    display: flex;
+  }
+  .df-mobile {
+    display: flex;
+  }
+  .mobile-prizes-text {
+    width: 100px;
+  }
+  .mobile-prizes-and {
+    font-size: 100px;
+    line-height: 76px;
+    font-weight: 300;
+    margin-right: 12px;
+  }
+  .book-cover-mark {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .book-review .book-review-btn.auto {
+    width: 75%;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 4px 0;
+  }
+}

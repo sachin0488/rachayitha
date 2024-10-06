@@ -92,7 +92,6 @@ const InfoSection = () => {
           </NameText>
           <BioText variant="subtitle2">{user?.bio}</BioText>
         </NameSection>
-
         <StoneSection redStone={0} blueStone={user?.coins?.voteToken} greenStone={0} greyStone={user?.coins?.coin} />
 
         <InfoField Icon={genderIcon(user?.gender?.toLocaleLowerCase())} text={t(user?.gender) || 'N/A'} />

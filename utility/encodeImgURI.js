@@ -1,4 +1,6 @@
 const encodeImgURI = uri => {
+  if (!uri) return null
+
   let arr = uri.split('/')
 
   for (let i = 0; i < arr.length; i++) {
