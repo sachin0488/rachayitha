@@ -83,7 +83,7 @@ const Rules = () => {
                                     <div className="dialog-review">
             
             <button className="btn mt24 br60" onClick={handleLearnMoreClick2}>
-              <span className="vam mr8 dib">LEARN MORE</span>
+              <span className="vam mr8 dib">LEARN {!showDialog2 ? 'MORE' : 'LESS'}</span>
               <svg className="vam" width="20" height="20">
                 <use xlinkHref="#i-arrow-right"></use>
               </svg>

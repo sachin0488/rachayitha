@@ -46,7 +46,7 @@ const Prizepool = () => {
                             }
                         </div> */}
 
-                        <div className="dn-mobile">
+                        {/* <div className="dn-mobile">
                             <h2 className="ttu fs48 fs-m-24 mb36 mb-m-16 fw700 ff_ubuntu">
                                 <span className="op0.2">classNameIC Track Prizes</span>
                             </h2>
@@ -69,7 +69,7 @@ const Prizepool = () => {
                             }
                         </div>
                             </h2>
-                        </div>
+                        </div> */}
                     </h2>
                 </div>
             </div>

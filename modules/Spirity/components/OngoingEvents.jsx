@@ -152,7 +152,7 @@ const EventDescription = styled.p`
   font-family: 'Maven Pro';
 `
 
-const ParticipateButton = styled.button`
+const ParticipateButton = styled.a`
   padding: 10px 20px;
   font-size: 1rem;
   color: ${({ theme }) => theme.palette.background.default};

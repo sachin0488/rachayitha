@@ -1,10 +1,8 @@
 import React from 'react'
 import { useSpecificContestService } from '../service/Schedule.service'
 
-
 const About = () => {
-
-    const {data:contestData}=useSpecificContestService();
+  const { data: contestData } = useSpecificContestService()
 
   return (
     <div>
