@@ -15,7 +15,7 @@ function Index({ contestID, setContestID }) {
       </RightTop>
       <Main>
         <TopMost />
-        <SelectCompetition setSelectContest={setContestID} />
+        <SelectCompetition setSelectContest={setContestID} contestID={contestID} />
         <Heading>
           <Typography variant="h4" fontWeight="600" lineHeight={1} mr={4}>
             Engagement Leaderboard
@@ -56,7 +56,7 @@ const TopMost = styled.div`
   left: 0;
   width: 400px;
   height: 400px;
-  z-index: 1;
+  z-index: -1;
 `
 
 const RightTop = styled.div`

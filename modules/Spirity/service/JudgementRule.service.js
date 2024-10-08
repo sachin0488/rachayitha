@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 export const useJudgementRuleListService = () => {
   const router = useRouter()
-  const contest_id = router.query?.contest_id || 1
+  const contest_id = Number(router.query?.contest_id || 1)
 
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.JUDGEMENT_RULE, contest_id],

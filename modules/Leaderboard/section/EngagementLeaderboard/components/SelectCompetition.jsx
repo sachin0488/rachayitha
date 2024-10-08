@@ -5,21 +5,11 @@ import { Select as MUISelect, MenuItem, Typography } from '@mui/material'
 import { useContestListService } from '../../../services/ContestList.service'
 import { useRouter } from 'next/router'
 
-function SelectCompetition({ setCompetition, setSelectContest }) {
-  const router = useRouter()
-  const [compVal, setCompVal] = useState(1)
+function SelectCompetition({ contestID, setSelectContest }) {
   const { data } = useContestListService()
-  setSelectContest(compVal)
-  const handleChange = e => {
-    console.log(e.target.value)
-    setSelectContest(e.target.value)
-    setCompVal(e.target.value)
-  }
-  // console.log(data.data.data);
 
-  const pushToQueryPath = id => {
-    router.query.contest_id = id
-    router.push(router)
+  const handleChange = e => {
+    setSelectContest(e.target.value)
   }
 
   return (
@@ -29,39 +19,10 @@ function SelectCompetition({ setCompetition, setSelectContest }) {
           Select Competition to view Leadership board
         </Typography>
         <SelectWrapper>
-          {/* <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
-            <MenuItem
-              value="novel-writing"
-              sx={{
-                color: `${compVal === 'novel-writing' ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-              }}>
-              Novel Writing Competition
-            </MenuItem>
-            <MenuItem
-              value="book-writing"
-              sx={{
-                color: `${compVal === 'book-writing' ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-              }}>
-              Book Writing Competition
-            </MenuItem>
-            <MenuItem
-              value="poem-writing"
-              sx={{
-                color: `${compVal === 'poem-writing' ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-              }}>
-              Poem Writing Competition
-            </MenuItem>
-          </Select> */}
-          <Select value={compVal} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
+          <Select value={contestID} onChange={handleChange} IconComponent={ArrowDropDownIcon}>
             {data?.data?.data?.map((item, index) => {
               return (
-                <MenuItem
-                  key={index}
-                  value={item.id}
-                  sx={{
-                    color: `${compVal === item.contest_name ? 'rgba(86, 36, 193, 1)' : 'black'}`,
-                  }}
-                  onClick={() => pushToQueryPath(item.id)}>
+                <MenuItem key={index} value={item.id}>
                   {item.contest_name}
                 </MenuItem>
               )
@@ -124,19 +85,19 @@ const SelectWrapper = styled.div`
 `
 
 const Select = styled(MUISelect)`
-  padding: 4px 20px 4px 4px;
+  /* padding: 4px 20px 4px 4px; */
   font-size: 1rem;
-  height: 3.4rem;
+  /* height: 3.4rem; */
   width: 100%;
   outline: none;
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: bold;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   border-radius: 9px;
   background: ${({ theme }) => theme.palette.background.default};
   box-shadow: 0px 0px 50px 1px rgba(0, 0, 0, 0.2);
   .MuiSelect-select {
-    padding: 4px 20px 4px 4px;
+    /* padding: 4px 20px 4px 4px; */
   }
 
   .MuiOutlinedInput-notchedOutline {

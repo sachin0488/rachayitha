@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 export const useSpecificContestService = () => {
   const router = useRouter()
-  const contest_id = router.query?.contest_id || 1
+  const contest_id = Number(router.query?.contest_id || 1)
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.SUBMISSION_TIMELINE, contest_id],
     queryFn: () => fetchSubmissionTimelineAPI(contest_id),
@@ -55,7 +55,7 @@ const fetchSubmissionTimelineAPI = async contest_id => {
 
 export const useJudgingTimelineService = () => {
   const router = useRouter()
-  const contest_id = router.query?.contest_id || 1
+  const contest_id = Number(router.query?.contest_id || 1)
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.JUDGING_TIMELINE, contest_id],
     queryFn: () => fetchJudgingTimelineAPI(contest_id),

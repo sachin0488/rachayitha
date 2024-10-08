@@ -12,7 +12,7 @@ const formatKeywords = keywords => {
 
 export const useThemeListService = () => {
   const router = useRouter()
-  const contest_id = router.query?.contest_id || 1
+  const contest_id = Number(router.query?.contest_id || 1)
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
     queryKey: [ContestQuery?.THEME_LIST, { contest_id }],
     queryFn: () => fetchThemeListAPI(contest_id),
