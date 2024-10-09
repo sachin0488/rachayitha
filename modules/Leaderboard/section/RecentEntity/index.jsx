@@ -90,7 +90,7 @@ function RecentEntity({  }) {
           <StoriesSection>
             <Subheading>
               <span>Stories</span>
-              <View>View All</View>
+              {/* <View>View All</View> */}
             </Subheading>
             <Stories data={StoriesData} isLoading={isLoading} />
           </StoriesSection>
