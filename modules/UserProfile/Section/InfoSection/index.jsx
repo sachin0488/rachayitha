@@ -1,14 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Avatar,
-  Button,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
-  Tooltip,
-} from '@mui/material'
+import { Avatar, Button, Typography, Dialog, DialogTitle, DialogContent, IconButton, Tooltip } from '@mui/material'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import moment from 'moment'
@@ -30,6 +21,7 @@ import useCurrentSubscriptionService from 'modules/Payment/services/CurrentSubsc
 import MaleOutlined from '@mui/icons-material/MaleOutlined'
 import { FemaleOutlined } from '@mui/icons-material'
 import TransgenderOutlined from '@mui/icons-material/TransgenderOutlined'
+import ReferralCodePopup from './ReferralCodePopup'
 
 const InfoSection = () => {
   const { t } = useTranslation()
@@ -39,6 +31,8 @@ const InfoSection = () => {
 
   const [isFollowerPopupOpen, setFollowerPopupOpen] = useState(false)
   const [isFollowingPopupOpen, setFollowingPopupOpen] = useState(false)
+
+  const [isReferralCodePopupOpen, setIsReferralCodePopupOpen] = useState(false)
 
   const followers = [
     { name: 'Alice Smith', phone: '123-456-7890', followed: true },
@@ -100,7 +94,7 @@ const InfoSection = () => {
           text={`${t('birthday')} - ${user?.birthDate ? moment(user?.birthDate).format('DD/MM/YYYY') : 'N/A'}`}
         />
         <InfoField Icon={LocationOnOutlinedIcon} text={t('location')} />
-        <ButtonRow sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        {/* <ButtonRow sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <Button sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1px solid grey', borderRadius:'0' }} onClick={() => setFollowerPopupOpen(true)}>
             <Value>{formatCount(user?.followers || 1200)}</Value>
             <Label>{t('followers')}</Label>
@@ -113,7 +107,7 @@ const InfoSection = () => {
             <Value>{formatCount(user?.createdBooks || 15)}</Value>
             <Label>{t('createdBooks')}</Label>
           </Button>
-        </ButtonRow>
+        </ButtonRow> */}
 
         {isEmailVerified && (
           <NavList>
@@ -144,6 +138,25 @@ const InfoSection = () => {
             </Row>
           </NavList>
         )}
+
+        <ReferralCodePopup
+          open={isReferralCodePopupOpen}
+          onClose={() => {
+            setIsReferralCodePopupOpen(false)
+          }}
+          onBlur={() => {
+            setIsReferralCodePopupOpen(false)
+          }}
+        />
+        <StyledButton
+          disableElevation
+          color="secondary"
+          variant="contained"
+          onClick={() => {
+            setIsReferralCodePopupOpen(true)
+          }}>
+          Redeem Referral Code
+        </StyledButton>
         {isSubscribed && (
           <SubscribedFlag variant="subtitle2" component="div" color="secondary">
             {t('subscriptionValidTill')} {moment(validityTill, 'YYYY-DD-DD').format('DD/MM/YYYY')}
@@ -154,9 +167,24 @@ const InfoSection = () => {
       {/* Follower Popup */}
       <Dialog open={isFollowerPopupOpen} onClose={() => setFollowerPopupOpen(false)} sx={{ maxWidth: '100%' }}>
         <DialogTitle>
-          <Button variant='contained' sx={{ marginRight: 'auto' }}
-            onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>{t('followers')}</Button>
-          <Button variant='text' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(true); }}>{t('following')}</Button>
+          <Button
+            variant="contained"
+            sx={{ marginRight: 'auto' }}
+            onClick={() => {
+              setFollowerPopupOpen(false)
+              setFollowingPopupOpen(false)
+            }}>
+            {t('followers')}
+          </Button>
+          <Button
+            variant="text"
+            sx={{ marginLeft: 'auto' }}
+            onClick={() => {
+              setFollowerPopupOpen(false)
+              setFollowingPopupOpen(true)
+            }}>
+            {t('following')}
+          </Button>
           <IconButton
             aria-label="close"
             onClick={() => setFollowerPopupOpen(false)}
@@ -173,8 +201,12 @@ const InfoSection = () => {
             <FollowerRow key={index}>
               <Avatar sx={{ width: '3rem', height: '3rem', marginRight: '0.3rem' }} src={follower.profilePic} />
               <div>
-                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{follower.name}</Typography>
-                <Typography variant="body2" sx={{ color: 'dimgray' }}>{follower.phone}</Typography>
+                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+                  {follower.name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'dimgray' }}>
+                  {follower.phone}
+                </Typography>
               </div>
               <FollowButton variant={follower.followed ? 'outlined' : 'contained'} sx={{ marginLeft: '4rem', height: '1.7rem' }}>
                 {follower.followed ? 'Following' : 'Follow Back'}
@@ -186,8 +218,23 @@ const InfoSection = () => {
 
       <Dialog open={isFollowingPopupOpen} onClose={() => setFollowingPopupOpen(false)} sx={{ maxWidth: '100%' }}>
         <DialogTitle>
-          <Button variant='text' onClick={() => { setFollowerPopupOpen(true); setFollowingPopupOpen(false); }}>{t('followers')}</Button>
-          <Button variant='contained' sx={{ marginLeft: 'auto' }} onClick={() => { setFollowerPopupOpen(false); setFollowingPopupOpen(false); }}>{t('following')}</Button>
+          <Button
+            variant="text"
+            onClick={() => {
+              setFollowerPopupOpen(true)
+              setFollowingPopupOpen(false)
+            }}>
+            {t('followers')}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ marginLeft: 'auto' }}
+            onClick={() => {
+              setFollowerPopupOpen(false)
+              setFollowingPopupOpen(false)
+            }}>
+            {t('following')}
+          </Button>
           <IconButton
             aria-label="close"
             onClick={() => setFollowingPopupOpen(false)}
@@ -195,7 +242,7 @@ const InfoSection = () => {
               position: 'absolute',
               right: 8,
               top: 7,
-              color: (theme) => theme.palette.grey[500],
+              color: theme => theme.palette.grey[500],
               height: '1.5rem',
               width: '1.5rem',
             }}>
@@ -207,10 +254,16 @@ const InfoSection = () => {
             <FollowerRow key={index}>
               <Avatar sx={{ width: '3rem', height: '3rem', marginRight: '0.3rem' }} src={person.profilePic} />
               <div>
-                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{person.name}</Typography>
-                <Typography variant="body2" sx={{ color: 'dimgray' }}>{person.phone}</Typography>
+                <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+                  {person.name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'dimgray' }}>
+                  {person.phone}
+                </Typography>
               </div>
-              <FollowButton variant="outlined" sx={{ marginLeft: '3rem', height: '1.7rem' }}>{t('following')}</FollowButton>
+              <FollowButton variant="outlined" sx={{ marginLeft: '3rem', height: '1.7rem' }}>
+                {t('following')}
+              </FollowButton>
             </FollowerRow>
           ))}
         </DialogContent>
@@ -354,7 +407,7 @@ const BioText = styled(Typography)`
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center; 
+  align-items: center;
   width: 100%;
   gap: 8px;
 `

@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import { APIInstance } from 'services/global.service'
 import { useEffect } from 'react'
 import { AuthTokenStore } from 'utility/authTokenStore'
-import i18n from 'i18next';
+import i18n from 'i18next'
 export const useUserService = () => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -38,6 +38,7 @@ export const useUserService = () => {
       birthDate: data?.user?.birthDate || '',
       bio: data?.user?.bio || '',
       isMonetizationEnabled: data?.user?.isMonetizationEnabled || false,
+      referralLinkStatus: data?.user?.referralLinkStatus || false,
       coins: {
         coin: data?.user?.coins?.coin || 0,
         voteToken: data?.user?.coins?.voteToken || 0,
@@ -85,7 +86,7 @@ const fetchUserDataAPI = () => {
     method: 'GET',
     params: {
       lang: i18n.language,
-    }
+    },
   })
     .then(res => {
       return [res, null]
@@ -127,6 +128,7 @@ const formatUserData = res => {
     birthDate: res?.data?.user?.birth_date || '',
     bio: res?.data?.user?.bio || '',
     isMonetizationEnabled: res?.data?.user?.is_monetization_enabled || false,
+    referralLinkStatus: res?.data?.user?.referral_link_status || false,
     // isEmailVerified: !!!res?.data?.user?.is_email_verified || false,
     isEmailVerified: true,
     coins: {

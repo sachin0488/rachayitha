@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import { AuthQuery } from './constants/query.address'
 import styled from '@emotion/styled'
 import { LinearProgress } from '@mui/material'
+import ReferralCodePopup from './components/ReferralCodePopup'
+import { useState } from 'react'
 
 const blockList = ['/payment-plan', '/payment-success', '/subscription-plan', '/coin-plan', '/payment-plan', '/profile']
 
@@ -12,7 +14,17 @@ const blockListForLoggedIn = ['/login', '/create-account', '/forgot-password']
 const AuthProvider = ({ children }) => {
   const { push, pathname, isReady, query } = useRouter()
 
-  const { isLoading, isLoggedIn, isSuccess } = useUserService()
+  const { isLoading, isLoggedIn, isSuccess, user } = useUserService()
+
+  const [isReferralCodePopupOpen, setIsReferralCodePopupOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const referralCodePopup = localStorage.getItem('referralCodePopup')
+      if (referralCodePopup === 'false') {
+        return false
+      }
+    }
+    return true
+  })
 
   const { isLoading: isFetching } = useQuery({
     queryKey: [AuthQuery.AUTH_PROVIDER, { pathname, isLoggedIn }],
@@ -48,6 +60,19 @@ const AuthProvider = ({ children }) => {
         <LogoImage src="/rachayitha_logo_500.svg" />
         <StyledLinearProgress />
       </Root>
+
+      {isLoggedIn && !user.referralLinkStatus && (
+        <ReferralCodePopup
+          open={isReferralCodePopupOpen}
+          onClose={() => {
+            setIsReferralCodePopupOpen(false)
+            localStorage.setItem('referralCodePopup', 'false')
+          }}
+          onBlur={() => {
+            setIsReferralCodePopupOpen(false)
+          }}
+        />
+      )}
       {children}
     </>
   )

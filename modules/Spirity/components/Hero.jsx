@@ -38,19 +38,19 @@ const Hero = () => {
                   <small className="fs16 fs-m-14 lh1d5">Total Prize Pool</small>
                 </div>
               </div>
-              <Link
-                href="https://inkstone.webnovel.com/essaycontest.html?contestId=597&amp;contestName=Webnovel%20Spirity%20Awards%202024&amp;wsa=1"
-                target="_blank">
-                <a
-                  className="btn br60 click_join_now"
-                  dangerouslySetInnerHTML={{
-                    __html: `
+              <a
+                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/novel/create?contest_id=${contestData?.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn br60 click_join_now"
+                dangerouslySetInnerHTML={{
+                  __html: `
                     <span className="vam mr8 dib">JOIN NOW</span>
                     <svg className="vam" width="20" height="20">
                       <use xlink:href="#i-arrow-right"></use>
                     </svg>`,
-                  }}></a>
-              </Link>
+                }}
+              />
             </div>
           </div>
           <div

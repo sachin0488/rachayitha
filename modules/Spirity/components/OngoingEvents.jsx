@@ -21,7 +21,7 @@ function OngoingEvents() {
       return contestList?.data?.data
     }
 
-    return contestList?.data?.data?.filter(item => item?.contest_type === contestType)||[]
+    return contestList?.data?.data?.filter(item => item?.contest_type === contestType) || []
   }, [contestList, contestType])
 
   return (
@@ -69,7 +69,7 @@ function OngoingEvents() {
                   display: 'flex',
                   marginTop: '10px',
                 }}
-                href={`/leaderboard?contest_id=${item?.id}`}
+                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/novel/create?contest_id=${item?.id}`}
                 target="_blank"
                 rel="noreferrer">
                 <Button variant="contained" disableElevation>
