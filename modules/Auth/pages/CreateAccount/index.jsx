@@ -22,18 +22,15 @@ import VerifyEmailModal from '../VerifyEmailModal'
 import { useRouter } from 'next/router'
 import GoogleIcon from 'components/icons/google_icons'
 import { useTheme } from '@emotion/react'
-import { useGoogleLogin } from '@react-oauth/google'
 
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
-import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useGoogleSignInService } from 'modules/Auth/service/GoogleSignIn.service'
 import { useTranslation } from 'next-i18next'
-import SelectLanguageContainer from 'modules/Auth/components/SelectLanguageContainer'
 import SelectLanguage from 'modules/Landing/Sections/Header/components/SelectLanguage'
+
 const CreateAccountPage = () => {
   const { t } = useTranslation('common')
+
   const steps = [
     {
       label: t('personalInformation'),
@@ -92,14 +89,17 @@ const CreateAccountPage = () => {
       ),
     },
   ]
+
   const { query } = useRouter()
   const theme = useTheme()
   const isTablet = useMediaQuery('(min-width: 700px)')
   const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false)
+
   const { handleCreateAccount, isLoading, user, isEmailVerified, checkVerificationStatus, isSuccess } = useCreateAccountService()
   const { handleFormError } = useFormError()
-  const isMobile = useMediaQuery('(max-width: 621px)')
+
   const [activeStep, setActiveStep] = React.useState(0)
+
   const maxSteps = steps.length
   const { loginWithGoogle, isLoading: isGoogleLoading } = useGoogleSignInService()
 
@@ -236,7 +236,11 @@ const CreateAccountPage = () => {
               />
             </Box> */}
 
-            {steps[activeStep].description}
+            {steps.map((step, index) => (
+              <Box key={step.label} sx={{ display: index === activeStep ? 'flex' : 'none', flexDirection: 'column', gap: 2 }}>
+                {step.description}
+              </Box>
+            ))}
 
             <Nav>
               <NavButtonContainer>
