@@ -18,13 +18,13 @@ export const NavPageLinks = [
     link: '/ranking?content_type=book&category=0',
     forLoggedInOnly: false,
   },
-  {
-    Icon: EmojiEventsRoundedIcon,
-    label: 'Spirity',
-    path: '/rachayitha_spirity',
-    link: '/rachayitha_spirity?contest_id=1',
-    forLoggedInOnly: false,
-  },
+  // {
+  //   Icon: EmojiEventsRoundedIcon,
+  //   label: 'Spirity',
+  //   path: '/rachayitha_spirity',
+  //   link: '/rachayitha_spirity?contest_id=1',
+  //   forLoggedInOnly: false,
+  // },
   {
     Icon: BorderColorOutlinedIcon,
     label: 'Create',
