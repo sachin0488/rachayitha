@@ -550,5 +550,32 @@
   "Entrepreneurship": "Entrepreneurship",
   "Gothic": "Gothic",
   "Lyrical": "Lyrical",
-  "Others": "Others"
+  "Others": "Others",
+  "rachayithaSpirity": {
+    "hero": {
+      "Organized By": "Organized By",
+      "Total Prize Pool": "Total Prize Pool",
+      "JOIN NOW": "JOIN NOW"
+    },
+    "Schedule": {
+      "Submission": "Submission",
+      "Judging": "Judging"
+    },
+    "leaderboard": {
+      "Weekly Top Leaderboard": "Weekly Top Leaderboard",
+      "Top Content": "Top Content",
+      "Top Contributor": "Top Contributor"
+    },
+    "theme": {
+      "Theme": "Theme"
+    },
+    "events": {
+      "OUR ONGOING EVENTS!": "OUR ONGOING EVENTS!",
+      "UNLEASH YOUR TALENT": "UNLEASH YOUR TALENT"
+    },
+    "rule": {
+      "OUR ONGOING EVENTS!": "OUR ONGOING EVENTS!",
+      "UNLEASH YOUR TALENT": "UNLEASH YOUR TALENT"
+    }
+  }
 }
