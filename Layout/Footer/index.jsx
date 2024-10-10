@@ -94,7 +94,7 @@ const Footer = () => {
               {t('contact_us')}
             </Heading>
             <Description variant="subtitle1">
-              <a href="mailto:support@rachayitha.com">{t('email')}</a>
+              <a href="mailto:support@rachayitha.com">support@rachayitha.com</a>
             </Description>
           </ColumnSection>
           <ColumnSection>

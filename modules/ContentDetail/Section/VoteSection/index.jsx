@@ -26,7 +26,7 @@ const VoteSection = ({ contentType, contentId }) => {
   const { isFetching, Data: VoteData } = useFetchVoteService({ contentId, contentType })
   const { isLoading: isMutating, mutate, isSuccess } = useCreateVoteService({ contentId, contentType })
   const { isLoggedIn } = useUserService()
-  const { t } = useTranslation("common")
+  const { t } = useTranslation('common')
 
   const isAlreadyVoted = VoteData?.isAlreadyVoted
   const totalVotesByUser = VoteData?.voteCount
@@ -73,7 +73,13 @@ const VoteSection = ({ contentType, contentId }) => {
             </Tooltip>
             <Tooltip title={t('totalVotesTooltip')}>
               <VoteInfoField>
-                <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} />
+                {/* <TollOutlinedIcon sx={{ color: blue[500], fontSize: isMobile ? 34 : 55 }} /> */}
+                <img
+                  src="/coins/VoteCoin.svg"
+                  style={{
+                    width: isMobile ? 34 : 55,
+                  }}
+                />
                 <HighlightedText variant="h6" component="div" color="secondary">
                   {Data?.totalVote || 0}
                 </HighlightedText>
