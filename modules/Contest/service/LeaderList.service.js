@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { APIInstance } from 'services/global.service'
 import { ContestQuery } from '../constants/query.address'
 import { useRouter } from 'next/router'
+import slugUtility from 'utility/slug.utility'
 
 export const useLeaderListService = ({ contentType }) => {
   const contest_id = Number(useRouter().query?.contest_id || 1)
@@ -56,6 +57,7 @@ const fetchLeaderListAPI = async ({ contest_id, contentType }) => {
           rate_avg: item.book_rating?.rate__avg,
           rate_count: item.book_rating?.rate__count,
         },
+        slug: slugUtility.create(item.book_name),
       })),
     }
   } else {
@@ -66,7 +68,7 @@ const fetchLeaderListAPI = async ({ contest_id, contentType }) => {
         contest_id: item.contest_id,
         ranking: item.ranking,
         book_id: item.poem_id,
-        book_title: item.poem_title,
+        book_name: item.poem_name,
         book_cover_img: item.poem_cover_img,
         book_synopsis: item.poem_synopsis,
         book_comment_count: item.poem_comment_count,
@@ -79,6 +81,7 @@ const fetchLeaderListAPI = async ({ contest_id, contentType }) => {
           rate_avg: item.poem_rating?.rate__avg,
           rate_count: item.poem_rating?.rate__count,
         },
+        slug: slugUtility.create(item.poem_name),
       })),
     }
   }

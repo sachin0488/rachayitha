@@ -3,6 +3,7 @@ import React from 'react'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import { Skeleton } from '@mui/material'
+import Link from 'next/link'
 
 function Stories({ data, isLoading }) {
   return (
@@ -50,46 +51,50 @@ function Stories({ data, isLoading }) {
         <>
           {data?.length === 0 && <div>No Entries found</div>}
           {data?.map((item, index) => (
-            <Card key={index}>
-              <ImageWrapper>
-                <img src={item?.img && item?.img.includes('http') ? item?.img : '/alt-img.svg'} alt="img" />
-              </ImageWrapper>
-              <Content>
-                <div>
-                  <Category>{item.category}</Category>
-                  <Name>{item.name}</Name>
-                  <Author>{item.author}</Author>
-                  <Action>
-                    <Likes>
-                      <ThumbUpIcon
-                        sx={theme => ({
-                          color: 'rgba(157, 111, 255, 1)',
-                          fontSize: 18,
-                          [theme.breakpoints.up('md')]: {
-                            fontSize: 20,
-                          },
-                        })}
-                      />
-                      {item.likes}
-                    </Likes>
+            <Link key={index} href={`/${item?.contentType}/${item?.id}/${item?.slug}`}>
+              <a>
+                <Card>
+                  <ImageWrapper>
+                    <img src={item?.img && item?.img.includes('http') ? item?.img : '/alt-img.svg'} alt="img" />
+                  </ImageWrapper>
+                  <Content>
+                    <div>
+                      <Category>{item.category}</Category>
+                      <Name>{item.name}</Name>
+                      <Author>{item.author}</Author>
+                      <Action>
+                        <Likes>
+                          <ThumbUpIcon
+                            sx={theme => ({
+                              color: 'rgba(157, 111, 255, 1)',
+                              fontSize: 18,
+                              [theme.breakpoints.up('md')]: {
+                                fontSize: 20,
+                              },
+                            })}
+                          />
+                          {item.likes}
+                        </Likes>
 
-                    <Comments>
-                      <ChatBubbleIcon
-                        sx={theme => ({
-                          color: 'rgba(157, 111, 255, 1)',
-                          fontSize: 18,
-                          [theme.breakpoints.up('md')]: {
-                            fontSize: 20,
-                          },
-                        })}
-                      />
-                      {item.comments}
-                    </Comments>
-                  </Action>
-                </div>
-                <Date>{item.date}</Date>
-              </Content>
-            </Card>
+                        <Comments>
+                          <ChatBubbleIcon
+                            sx={theme => ({
+                              color: 'rgba(157, 111, 255, 1)',
+                              fontSize: 18,
+                              [theme.breakpoints.up('md')]: {
+                                fontSize: 20,
+                              },
+                            })}
+                          />
+                          {item.comments}
+                        </Comments>
+                      </Action>
+                    </div>
+                    <Date>{item.date}</Date>
+                  </Content>
+                </Card>
+              </a>
+            </Link>
           ))}
         </>
       )}

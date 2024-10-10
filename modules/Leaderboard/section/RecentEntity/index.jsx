@@ -25,7 +25,7 @@ function RecentEntity() {
     <Root>
       <Main>
         <Typography variant="h3" fontWeight={600} color="secondary" mb={4}>
-          Recent Entities
+          Recent Entries
         </Typography>
 
         <Container>

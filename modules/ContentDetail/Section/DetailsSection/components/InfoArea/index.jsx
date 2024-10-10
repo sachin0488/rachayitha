@@ -20,6 +20,7 @@ import { useUserService } from 'modules/Auth/service/User.service'
 import { ContentType } from 'modules/ReaderSection/constants/common.constants'
 import ShareButton from './ShareButton'
 import { useTranslation } from 'react-i18next'
+import { useSnackbar } from 'notistack'
 
 const InfoArea = ({ contentType, contentId, slug }) => {
   const { t } = useTranslation()
@@ -31,6 +32,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
   const [isPurchaseModalOpen, setPurchaseModalOpen] = useState(false)
   const [purchaseFeedbackModalType, setPurchaseFeedbackModalType] = useState(InfoModalType.Default)
   const [isPurchaseFeedbackModalOpen, setPurchaseFeedbackModalOpen] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
 
   const handlePayClick = useCallback(
     ({ amount, id }) =>
@@ -88,7 +90,9 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         disableOkButton
       />
 
-      <ContentName variant="h3" component="div">{Data?.contentName}</ContentName>
+      <ContentName variant="h3" component="div">
+        {Data?.contentName}
+      </ContentName>
 
       <InfoChipList>
         <StyledChip label={Data?.status} contained />
@@ -114,13 +118,25 @@ const InfoArea = ({ contentType, contentId, slug }) => {
       <RatingBar avgRatingValue={Data?.avgRatingValue} totalRatingCount={Data?.totalRatingCount} />
 
       <ButtonList>
-        <Link href={`/${contentType}/${contentId}/${slug}/read/${Data?.chapter?.[0]?.id}/${Data?.chapter?.[0]?.slug}`}>
-          <a>
-            <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />}>
-              {t('read')}
-            </Button>
-          </a>
-        </Link>
+        {Data?.chapter?.[0]?.id ? (
+          <Link href={`/${contentType}/${contentId}/${slug}/read/${Data?.chapter?.[0]?.id}/${Data?.chapter?.[0]?.slug}`}>
+            <a>
+              <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />}>
+                {t('read')}
+              </Button>
+            </a>
+          </Link>
+        ) : (
+          <Button
+            variant="contained"
+            disableElevation
+            endIcon={<ArrowForwardRoundedIcon />}
+            onClick={() => {
+              enqueueSnackbar('Chapter not released yet!', { variant: 'info' })
+            }}>
+            {t('read')}
+          </Button>
+        )}
 
         {Data?.price ? (
           <>

@@ -3,6 +3,7 @@ import StarHalfOutlinedIcon from '@mui/icons-material/StarHalfOutlined'
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded'
+
 export const NavPageLinks = [
   {
     Icon: AutoStoriesOutlinedIcon,

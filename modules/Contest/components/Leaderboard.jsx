@@ -23,7 +23,7 @@ const Leaderboard = ({ contestDetail }) => {
         </TopSection>
         <Content>
           <TopContentsWrapper>
-            <TopContents list={[...data]} />
+            <TopContents list={[...data]} contentType={contestDetail?.contest_type} />
           </TopContentsWrapper>
           <TopContributorsWrapper>
             <TopContributors list={[...data]} />
@@ -135,7 +135,7 @@ const ViewButton = styled.button`
 `
 
 // Top Contents Component
-const TopContents = ({ list }) => {
+const TopContents = ({ list, contentType }) => {
   return (
     <TopContentsLayout>
       <Typography variant="h4" marginY={2.5} fontWeight={600} color="white">
@@ -143,19 +143,21 @@ const TopContents = ({ list }) => {
       </Typography>
       <div className="content_list">
         {list?.slice(0, 2)?.map((item, index) => (
-          <Card key={item.id}>
-            <CardImage src={item?.book_cover_img} />
-            <CardText>
-              <RatingWrapper>
-                <StarIcon>⭐</StarIcon>
-                <Rating>{item?.book_rating?.rate_avg?.toFixed(1)}</Rating>
-                <RatingText>Rating</RatingText>
-              </RatingWrapper>
-              <TitleText>{item?.book_name}</TitleText>
-              <Author>by {item?.author_name}</Author>
-              <Description>“{item?.book_synopsis}”</Description>
-            </CardText>
-          </Card>
+          <Link key={item.id} href={`/${contentType}/${item?.id}/${item?.slug}`}>
+            <Card>
+              <CardImage src={item?.book_cover_img} />
+              <CardText>
+                <RatingWrapper>
+                  <StarIcon>⭐</StarIcon>
+                  <Rating>{item?.book_rating?.rate_avg?.toFixed(1)}</Rating>
+                  <RatingText>Rating</RatingText>
+                </RatingWrapper>
+                <TitleText>{item?.book_name}</TitleText>
+                <Author>by {item?.author_name}</Author>
+                <Description>“{item?.book_synopsis}”</Description>
+              </CardText>
+            </Card>
+          </Link>
         ))}
         {/* <Card>
           <CardImage
@@ -203,6 +205,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: row;
   gap: 15px;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const CardImage = styled.img`
