@@ -54,9 +54,8 @@ function Stories({ data, isLoading }) {
             <Link key={index} href={`/${item?.contentType}/${item?.id}/${item?.slug}`}>
               <a>
                 <Card>
-                  <ImageWrapper>
-                    <img src={item?.img && item?.img.includes('http') ? item?.img : '/alt-img.svg'} alt="img" />
-                  </ImageWrapper>
+                  <Image src={item?.img && item?.img.includes('http') ? item?.img : '/alt-img.svg'} alt="img" />
+
                   <Content>
                     <div>
                       <Category>{item.category}</Category>
@@ -138,6 +137,24 @@ const Card = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
     max-height: 250px;
+  }
+`
+
+const Image = styled.img`
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+
+  border-radius: 10px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+
+  aspect-ratio: 0.97/1.3;
+
+  @media (min-width: 768px) {
+    max-width: 240px;
+    height: 100%;
   }
 `
 

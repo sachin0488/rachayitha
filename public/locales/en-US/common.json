@@ -3,7 +3,7 @@
     "Explore": "Explore",
     "Ranking": "Ranking",
     "Create": "Create",
-    "Spirity": "Contest",
+    "Contest": "Contest",
     "Library": "Library"
   },
   "searchBox": {
@@ -552,7 +552,7 @@
   "Gothic": "Gothic",
   "Lyrical": "Lyrical",
   "Others": "Others",
-  "rachayithaSpirity": {
+  "rachayithaContest": {
     "hero": {
       "Organized By": "Organized By",
       "Total Prize Pool": "Total Prize Pool",

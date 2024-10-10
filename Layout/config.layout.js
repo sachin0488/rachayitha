@@ -21,7 +21,7 @@ export const NavPageLinks = [
   },
   {
     Icon: EmojiEventsRoundedIcon,
-    label: 'Spirity',
+    label: 'Contest',
     path: '/contest',
     link: '/contest',
     forLoggedInOnly: false,
