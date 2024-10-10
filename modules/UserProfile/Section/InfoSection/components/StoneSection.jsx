@@ -14,7 +14,13 @@ const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
         </Field> */}
         <Tooltip title={t('voteCoins')}>
           <Field variant="subtitle2">
-            <TollOutlinedIcon sx={{ color: blue[500] }} /> {blueStone}
+            <img
+              src="/coins/VoteCoin.svg"
+              style={{
+                width: '20px',
+              }}
+            />{' '}
+            {blueStone}
           </Field>
         </Tooltip>
         {/* <Field variant="subtitle2">
@@ -25,7 +31,13 @@ const StoneSection = ({ redStone, blueStone, greenStone, greyStone }) => {
       <Bottom>
         <Tooltip title={t('Coins')}>
           <Field variant="subtitle2">
-            <TollOutlinedIcon sx={{ color: grey[500] }} /> {greyStone}
+            <img
+              src="/coins/MoneyCoin.svg"
+              style={{
+                width: '20px',
+              }}
+            />{' '}
+            {greyStone}
           </Field>
         </Tooltip>
       </Bottom>
