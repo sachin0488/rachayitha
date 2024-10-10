@@ -5,7 +5,7 @@ import { AuthTokenStore } from 'utility/authTokenStore'
 import { AuthQuery } from '../constants/query.address'
 import { useEmailVerificationStatusService } from './EmailVerificationStatus.service'
 import { useGoogleLogin } from '@react-oauth/google'
-import i18n from 'i18next';
+import i18n from 'i18next'
 const { setAccess, setRefresh } = AuthTokenStore()
 
 export const useGoogleSignInService = () => {
@@ -18,13 +18,13 @@ export const useGoogleSignInService = () => {
   const { mutate, variables, isLoading, isSuccess, data, error, isError } = useMutation({
     mutationFn: loginAPI,
     onSuccess({ tokens, message }, variables) {
-      if (variables?.remember_me) {
-        setAccess(tokens?.access)
-        setRefresh(tokens?.refresh)
-      } else {
-        setAccess(tokens?.access, 'session')
-        setRefresh(tokens?.refresh, 'session')
-      }
+      // if (variables?.remember_me) {
+      setAccess(tokens?.access)
+      setRefresh(tokens?.refresh)
+      // } else {
+      //   setAccess(tokens?.access, 'session')
+      //   setRefresh(tokens?.refresh, 'session')
+      // }
 
       enqueueSnackbar(message || 'Logged in successfully !', {
         variant: 'success',
