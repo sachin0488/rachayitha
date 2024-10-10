@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
 const Footer = () => {
-  const { t } = useTranslation("common")
+  const { t } = useTranslation('common')
 
   return (
     <Root>
@@ -61,6 +61,9 @@ const Footer = () => {
               <LinkButton>{t('terms_and_conditions')}</LinkButton>
             </a>
           </Link>
+          <a href="https://career.rachayitha.com/" target="_blank" rel="noreferrer">
+            <LinkButton>{t('Career')}</LinkButton>
+          </a>
         </Section>
         <Extra />
         <Divider />
@@ -69,14 +72,20 @@ const Footer = () => {
             {t('follow_us')}
           </Heading>
           <SocialLinks>
-            <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank" rel="noreferrer">
-              <BsFacebook size={35} color="#673CCB" />
-            </a>
             <a href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK} target="_blank" rel="noreferrer">
-              <FaInstagramSquare size={35} color="#673CCB" />
+              <SocialIcon src="/social/instagram.svg" />
+            </a>
+            <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank" rel="noreferrer">
+              <SocialIcon src="/social/facebook.svg" />
             </a>
             <a href={process.env.NEXT_PUBLIC_TWITTER_LINK} target="_blank" rel="noreferrer">
-              <AiFillTwitterCircle size={37} color="#673CCB" />
+              <SocialIcon src="/social/x.svg" />
+            </a>
+            <a href={process.env.NEXT_PUBLIC_YOUTUBE_LINK} target="_blank" rel="noreferrer">
+              <SocialIcon src="/social/youtube.svg" />
+            </a>
+            <a href={process.env.NEXT_PUBLIC_LINKEDIN_LINK} target="_blank" rel="noreferrer">
+              <SocialIcon src="/social/linkedin.svg" />
             </a>
           </SocialLinks>
 
@@ -105,6 +114,8 @@ const Root = styled.div`
   justify-content: center;
   margin-top: auto;
 `
+
+const SocialIcon = styled.img``
 
 const Main = styled.div`
   gap: 10px;
