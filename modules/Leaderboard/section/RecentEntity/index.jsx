@@ -4,9 +4,12 @@ import Poem from './components/Poem'
 import styled from '@emotion/styled'
 import { Typography } from '@mui/material'
 import { useBookListService } from 'modules/Leaderboard/services/BookList.service'
+import { useSpecificContestService } from 'modules/Contest/service/Schedule.service'
 
-function RecentEntity({  }) {
-  const { data ,refetch,isLoading,isFetching,isSuccess,isError} = useBookListService()
+function RecentEntity() {
+  const { data: contestData } = useSpecificContestService()
+
+  const { data, refetch, isLoading, isFetching, isSuccess, isError } = useBookListService({ contentType: contestData?.contest_type })
 
   const StoriesData = data?.data.map(item => ({
     img: item?.book_cover_img,
@@ -18,67 +21,6 @@ function RecentEntity({  }) {
     date: item?.book_publish_date,
   }))
 
-  console.log("StoriesData",StoriesData);
-  // const StoriesData = [
-  //   {
-  //     img: './book_cover1.png',
-  //     category: 'Fantasy',
-  //     name: 'Supreme Magus',
-  //     author: 'Tarun',
-  //     likes: '430',
-  //     comments: '44',
-  //     date: 'Aug 14, 2024 | 09:20 AM',
-  //   },
-  //   {
-  //     img: './book_cover2.png',
-  //     category: 'Fantasy',
-  //     name: 'Supreme Magus',
-  //     author: 'Tarun',
-  //     likes: '430',
-  //     comments: '44',
-  //     date: 'Aug 14, 2024 | 09:20 AM',
-  //   },
-  //   {
-  //     img: './book_cover3.png',
-  //     category: 'Fantasy',
-  //     name: 'Supreme Magus',
-  //     author: 'Tarun',
-  //     likes: '430',
-  //     comments: '44',
-  //     date: 'Aug 14, 2024 | 09:20 AM',
-  //   },
-  // ]
-
-  const PoemData = [
-    {
-      img: './book_cover4.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-    {
-      img: './book_cover5.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-    {
-      img: './book_cover6.png',
-      category: 'Fantasy',
-      name: 'Supreme Magus',
-      author: 'Tarun',
-      likes: '430',
-      comments: '44',
-      date: 'Aug 14, 2024 | 09:20 AM',
-    },
-  ]
-
   return (
     <Root>
       <Main>
@@ -89,7 +31,7 @@ function RecentEntity({  }) {
         <Container>
           <StoriesSection>
             <Subheading>
-              <span>Stories</span>
+              {/* <span>Stories</span> */}
               {/* <View>View All</View> */}
             </Subheading>
             <Stories data={StoriesData} isLoading={isLoading} />

@@ -27,9 +27,7 @@ function Index({ contestID, setContestID }) {
 
         <LeadershipBoard contestId={contestID} searchTerm={searchTerm} />
 
-        <Button variant="contained" color="primary" sx={{ margin: '20px 0', marginBottom: '40px', alignSelf: 'center' }}>
-          View Full Leadership Board
-        </Button>
+       
       </Main>
     </Root>
   )

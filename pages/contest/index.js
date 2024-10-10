@@ -1,16 +1,17 @@
 import React from 'react'
-import SpirityMain from 'modules/Spirity/pages'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Spirity = () => {
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import ContestListPage from 'modules/ContestList/pages/ContestList.page'
+
+const Contest = () => {
   return (
     <>
-      <SpirityMain />
+      <ContestListPage />
     </>
   )
 }
 
-export default Spirity
+export default Contest
 
 export async function getServerSideProps({ req, res, query, params, locale }) {
   return {

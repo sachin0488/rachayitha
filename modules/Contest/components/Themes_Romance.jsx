@@ -33,17 +33,17 @@ const Romance = () => {
           <h2>
             <div className="dn-pc theme-switch">
               <div className="dn-pc theme-switch-male female-theme-switch-male">
-                <img src="/rachayitha_spirity/female_male.png" />
+                <img src="/contest/female_male.png" />
               </div>
               <div className="dn-pc theme-switch-female female-theme-switch-female">
-                <img src="/rachayitha_spirity/female_female.png" />
+                <img src="/contest/female_female.png" />
               </div>
             </div>
 
             <div className="theme-scroll">
               <div className="theme-scroll-wrapper dg gtc-s-1 gtc2 gap36 gap-m-16 ml64 mr64  ml-m-16 mr-m-16">
                 <div onClick={() => openModalWithId(1)} className="theme-pic df jcfe fdc pr dialog-review">
-                  <div style={{ backgroundImage: 'url(/rachayitha_spirity/ceo.jpeg)' }} className="theme-bkg"></div>
+                  <div style={{ backgroundImage: 'url(/contest/ceo.jpeg)' }} className="theme-bkg"></div>
                   <div className="pr z1">
                     <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Billionaire/CEO</h3>
                     <p className="fs16 fs-m-14 lh1d5 fw400">#ceo #bigshot #loveaftermarriage #pregnancy #sweetlove</p>
@@ -91,7 +91,7 @@ const Romance = () => {
                   </div>
                 </div>
                 <div onClick={() => openModalWithId(2)} className="theme-pic df jcfe fdc pr dialog-review">
-                  <div style={{ backgroundImage: 'url(/rachayitha_spirity/werewolf.jpeg)' }} className="theme-bkg"></div>
+                  <div style={{ backgroundImage: 'url(/contest/werewolf.jpeg)' }} className="theme-bkg"></div>
                   <div className="pr z1">
                     <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Werewolf</h3>
                     <p className="fs16 fs-m-14 lh1d5 fw400">#alpha #fatedlove/truelove #enemiestolovers #mates</p>
@@ -136,7 +136,7 @@ const Romance = () => {
                   </div>
                 </div>
                 <div onClick={() => openModalWithId(3)} className="theme-pic df jcfe fdc pr dialog-review">
-                  <div style={{ backgroundImage: 'url(/rachayitha_spirity/fantasy_romance.jpeg)' }} className="theme-bkg"></div>
+                  <div style={{ backgroundImage: 'url(/contest/fantasy_romance.jpeg)' }} className="theme-bkg"></div>
                   <div className="pr z1">
                     <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Fantasy Romance</h3>
                     <p className="fs16 fs-m-14 lh1d5 fw400">#vampire #beast #demon #transmigration #system</p>
@@ -183,7 +183,7 @@ const Romance = () => {
                   </div>
                 </div>
                 <div onClick={() => openModalWithId(4)} className="theme-pic df jcfe fdc pr dialog-review">
-                  <div style={{ backgroundImage: 'url(/rachayitha_spirity/royal.jpeg)' }} className="theme-bkg"></div>
+                  <div style={{ backgroundImage: 'url(/contest/royal.jpeg)' }} className="theme-bkg"></div>
                   <div className="pr z1">
                     <h3 className="mb4 ttc fs24 fs-m-16 fw700 lh1d5 ff_ubuntu">Royal</h3>
                     <p className="fs16 fs-m-14 lh1d5 fw400">#royalfamily #arrangedmarriage #forbiddenlove #princess</p>

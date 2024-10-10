@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { ContestQuery } from '../constants/query.address'
 import { APIInstance } from 'services/global.service'
+import slugUtility from 'utility/slug.utility'
 
 export const useContestListService = () => {
   const { refetch, data, isLoading, isFetching, isError, isSuccess } = useQuery({
@@ -39,6 +40,7 @@ const fetchContestListAPI = async () => {
         start_date: item?.start_date,
         user_id: item?.user_id,
         id: item?.id,
+        slug: slugUtility.create(item?.contest_name),
       }
     }),
   }

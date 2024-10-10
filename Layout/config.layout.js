@@ -2,7 +2,7 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined'
 import StarHalfOutlinedIcon from '@mui/icons-material/StarHalfOutlined'
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
+import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded'
 export const NavPageLinks = [
   {
     Icon: AutoStoriesOutlinedIcon,
@@ -18,13 +18,13 @@ export const NavPageLinks = [
     link: '/ranking?content_type=book&category=0',
     forLoggedInOnly: false,
   },
-  // {
-  //   Icon: EmojiEventsRoundedIcon,
-  //   label: 'Spirity',
-  //   path: '/rachayitha_spirity',
-  //   link: '/rachayitha_spirity?contest_id=1',
-  //   forLoggedInOnly: false,
-  // },
+  {
+    Icon: EmojiEventsRoundedIcon,
+    label: 'Spirity',
+    path: '/contest',
+    link: '/contest',
+    forLoggedInOnly: false,
+  },
   {
     Icon: BorderColorOutlinedIcon,
     label: 'Create',

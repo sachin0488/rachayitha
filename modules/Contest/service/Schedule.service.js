@@ -40,6 +40,7 @@ const fetchSubmissionTimelineAPI = async contest_id => {
           contest_name: contest.contest_name,
           contest_highlight: contest.contest_highlight,
           contest_description: contest.contest_description,
+          contest_type: contest.contest_type,
           prizepool: contest.prizepool,
           contest_img: contest.contest_img,
           organiser_name: contest.organiser_name,

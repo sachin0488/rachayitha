@@ -22,7 +22,7 @@ const Hero = () => {
             <div className="header-icons">
               <div className="df mb16 aic">
                 {/* <div className="header-icon-img mr8">
-                                    <img style={{ filter: 'hue-rotate(281deg)' }} src="/rachayitha_spirity/1677564804_362584.png" width="36" height="36" />
+                                    <img style={{ filter: 'hue-rotate(281deg)' }} src="/contest/1677564804_362584.png" width="36" height="36" />
                                 </div> */}
                 {/* <div>
                                     <strong className="db ff_ubuntu fs24 fs-m-16 lh1d5">Newbie Prize</strong>
@@ -31,7 +31,7 @@ const Hero = () => {
               </div>
               <div className="df mb40 aic">
                 <div className="header-icon-img mr8">
-                  <img style={{ filter: 'hue-rotate(281deg)' }} src="/rachayitha_spirity/1677564806_948592.png" width="36" height="36" />
+                  <img style={{ filter: 'hue-rotate(281deg)' }} src="/contest/1677564806_948592.png" width="36" height="36" />
                 </div>
                 <div>
                   <strong className="db ff_ubuntu fs24 fs-m-16 lh1d5">{contestData?.prizepool} INR</strong>
@@ -39,7 +39,9 @@ const Hero = () => {
                 </div>
               </div>
               <a
-                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/novel/create?contest_id=${contestData?.id}`}
+                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/${
+                  contestData?.contest_type === 'book' ? 'novel' : 'poem'
+                }/create?contest_id=${contestData?.id}`}
                 target="_blank"
                 rel="noreferrer"
                 className="btn br60 click_join_now"

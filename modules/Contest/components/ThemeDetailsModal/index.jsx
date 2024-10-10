@@ -4,8 +4,8 @@ import { useCallback, useMemo } from 'react'
 
 import StyleModal from './StyleModal'
 import Link from 'next/link'
-import { useBookDetailService } from 'modules/Spirity/service/BookDetail.service'
-import { usePoemDetailService } from 'modules/Spirity/service/PoemDetail.service'
+import { useBookDetailService } from 'modules/Contest/service/BookDetail.service'
+import { usePoemDetailService } from 'modules/Contest/service/PoemDetail.service'
 
 const ThemeDetailsModal = ({ open, setOpen, data }) => {
   const { data: bookData1, isLoading: isLoading1 } = useBookDetailService(data?.theme_booksample1)

@@ -5,9 +5,12 @@ import SelectSelectedContent from './SelectSelectedTime'
 import { useContestListService } from 'modules/Leaderboard/services/ContestList.service'
 import { Button, Typography } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
+import StyledSlider from 'components/StyledSlider'
+import Link from 'next/link'
 
 function OngoingEvents() {
   const { data: contestList } = useContestListService()
+
   const methods = useForm({
     defaultValues: {
       contestType: 'all',
@@ -52,33 +55,7 @@ function OngoingEvents() {
           </Title>
           <Subtitle>UNLEASH YOUR TALENT &nbsp;</Subtitle>
         </Header>
-        <EventsContainer>
-          {filteredContestList?.map(item => (
-            <EventCard key={item?.id}>
-              <ImageContainer>
-                <img src={item?.contest_img} alt="Writing Competition" />
-              </ImageContainer>
-              <Typography variant="h6" color="secondary">
-                {item?.contest_name}
-              </Typography>
-              <Typography variant="body2" fontWeight={500} color="secondary.light">
-                {item?.contest_description}
-              </Typography>
-              <a
-                style={{
-                  display: 'flex',
-                  marginTop: '10px',
-                }}
-                href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/novel/create?contest_id=${item?.id}`}
-                target="_blank"
-                rel="noreferrer">
-                <Button variant="contained" disableElevation>
-                  Participate now
-                </Button>
-              </a>
-            </EventCard>
-          ))}
-        </EventsContainer>
+        <StyledSlider CardComponent={EventCard} List={filteredContestList} queryKey={'queryKey'} contentType={'contentType'} />
       </Main>
     </Root>
   )
@@ -86,31 +63,61 @@ function OngoingEvents() {
 
 export default OngoingEvents
 
+const EventCard = ({ item }) => {
+  return (
+    <EventCardRoot key={item?.id}>
+      <Image src={item?.contest_img} alt="Writing Competition" />
+
+      <Typography variant="h6" color="secondary">
+        {item?.contest_name}
+      </Typography>
+      <Typography variant="body2" fontWeight={500} color="secondary.light">
+        {item?.contest_description}
+      </Typography>
+      <Link href={`/contest/${item.slug}/${item?.id}`}>
+        <a
+          style={{
+            display: 'flex',
+            marginTop: '10px',
+          }}>
+          <Button variant="contained" disableElevation>
+            Participate now
+          </Button>
+        </a>
+      </Link>
+    </EventCardRoot>
+  )
+}
+
 const Root = styled.div`
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding-block: 80px;
-  ${'' /* background-color: ${({ theme }) => theme.palette.background.dark}; */}
-  background: rgba(242, 241, 248, 1);
+  position: relative;
+  margin-top: 10px;
+  width: 100%;
+  --main-side-spacing: 68px;
+  --main-max-width: 1366px;
+
+  @media (max-width: 768px) {
+    --main-side-spacing: 16px;
+  }
 `
+
+const mainMaxWidth = 1366
 
 const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: var(--main-max-width);
-  padding-inline: var(--main-side-spacing);
-  align-items: flex-start;
-  max-width: 1280px;
-  padding-inline: 80px;
-  justify-content: space-between;
-  gap: 25px;
-  @media (max-width: 900px) {
-    gap: 15px;
-    padding-inline: 20px;
+
+  padding-block: 40px;
+  gap: 10px;
+  overflow: hidden;
+
+  /* Styled Slider Settings ----- */
+  --element-left-spacing: calc((100vw - var(--main-max-width)) / 2 + var(--main-side-spacing));
+  @media (max-width: ${mainMaxWidth}px) {
+    --element-left-spacing: var(--main-side-spacing);
   }
 `
 
@@ -118,6 +125,7 @@ const Header = styled.div`
   @media (max-width: 900px) {
     text-align: left;
   }
+  padding-left: var(--element-left-spacing);
 `
 
 const Title = styled.h1`
@@ -151,31 +159,21 @@ const Subtitle = styled.h1`
   }
 `
 
-const EventsContainer = styled.div`
-  display: flex;
-  gap: 20px;
-  @media (max-width: 980px) {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-`
-
-const EventCard = styled.div`
+const EventCardRoot = styled.div`
   background-color: ${({ theme }) => theme.palette.background.paper};
   border-radius: 22px;
-  box-shadow: ${({ theme }) => theme.palette.primary.shadowLevel01};
-  max-width: 49%;
+  box-shadow: 5px 5px 40px 1px ${({ theme }) => theme.palette.primary.shadowLevel01};
   padding: 15px;
-  @media (max-width: 750px) {
-    max-width: 100%;
-  }
+  max-width: fit-content;
 `
 
-const ImageContainer = styled.div`
-  width: 100%;
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
+const Image = styled.img`
+  border-radius: 14px;
+  width: 490px;
+  border-radius: 10px;
+  aspect-ratio: 2.35/0.97;
+  object-fit: cover;
+  @media (max-width: 560px) {
+    width: calc(100vw - 69px);
   }
 `

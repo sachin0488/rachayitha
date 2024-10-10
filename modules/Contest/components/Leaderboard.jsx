@@ -22,10 +22,10 @@ const Leaderboard = () => {
         </TopSection>
         <Content>
           <TopContentsWrapper>
-            <TopContents list={[...data, ...data, ...data, ...data]} />
+            <TopContents list={[...data]} />
           </TopContentsWrapper>
           <TopContributorsWrapper>
-            <TopContributors list={[...data, ...data, ...data, ...data]} />
+            <TopContributors list={[...data]} />
           </TopContributorsWrapper>
         </Content>
         <Footer>
@@ -277,7 +277,7 @@ const TopContributors = ({ list }) => {
       <TopContributorsLayout>
         {list?.slice(0, 4)?.map((item, index) => (
           <ContributorCard key={item?.id}>
-            <CrownIcon src={`/rachayitha_spirity/crowns/f${index + 1}.svg`} alt="" />
+            <CrownIcon src={`/contest/crowns/f${index + 1}.svg`} alt="" />
 
             <Avatar
               src={item?.author_img}
