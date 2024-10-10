@@ -131,7 +131,7 @@ function LeadershipBoard({ competition, searchTerm }) {
           </Details>
           <Stats>
             <Stat>
-              <img src="./notes.png" style={{ width: '15px', height: '15px' }} alt="Star" /> {person.book_comment_count}
+              <img src="./vote_coin_icon.svg" style={{ width: '20px', height: '20px' }} alt="Star" /> {person.book_comment_count}
             </Stat>
             <Stat>
               <Visibility sx={{ width: '20px', height: '20px' }} /> {person.book_view_count}
