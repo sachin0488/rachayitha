@@ -7,11 +7,12 @@ import { useLeaderListService } from '../service/LeaderList.service'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const Leaderboard = () => {
-  const { data } = useLeaderListService()
+const Leaderboard = ({ contestDetail }) => {
   const contest_id = Number(useRouter().query?.contest_id || 1)
+  const { data } = useLeaderListService({ contentType: contestDetail?.contest_type })
 
   console.log(data)
+
   return (
     <Root>
       <Main>

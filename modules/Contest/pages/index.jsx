@@ -18,7 +18,7 @@ const SpirityMain = () => {
       <Hero />
       <Prizepool contestDetail={contestDetail} />
       <Schedule contestDetail={contestDetail} isLoading={isLoading} />
-      <Leaderboard />
+      <Leaderboard contestDetail={contestDetail}/>
       <ThemesListSection />
       <OngoingEvents />
       <Rules />
