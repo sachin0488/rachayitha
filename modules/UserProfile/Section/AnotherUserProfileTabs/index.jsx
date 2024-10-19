@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import { InView } from 'react-intersection-observer';
-import { Skeleton, Typography } from '@mui/material';
-import { useTranslation } from 'next-i18next';
-import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded';
-import useAnotherUserWorkService from 'modules/UserProfile/services/AnotherUserWork.service';
-import WorkContentCard from './components/WorkContentCard';
-import StyledChip from '../ProfileTabs/components/StyledChip';
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { InView } from 'react-intersection-observer'
+import { Skeleton, Typography } from '@mui/material'
+import { useTranslation } from 'next-i18next'
+import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded'
+import useAnotherUserWorkService from 'modules/UserProfile/services/AnotherUserWork.service'
+import WorkContentCard from './components/WorkContentCard'
+import StyledChip from '../ProfileTabs/components/StyledChip'
 
 const AnotherUserProfileTabs = ({ authorId }) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
   const contentTypes = [
-    t('Book'),
-    t('Poem'),
+    { key: 'book', label: t('Book') },
+    { key: 'poem', label: t('Poem') },
     // t('Story'),
-  ];
-  const [selectedContentType, setSelectedContentType] = useState('book');
+  ]
+  const [selectedContentType, setSelectedContentType] = useState('book')
   const { ContentList, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useAnotherUserWorkService({
     contentType: selectedContentType,
     authorId: authorId,
-  });
+  })
 
   return (
     <Root>
@@ -27,12 +27,12 @@ const AnotherUserProfileTabs = ({ authorId }) => {
         {t('anotherUserProfileTabs.originalWorks')}
       </Typography>
       <ContentListBox>
-        {contentTypes.map((item, index) => (
+        {contentTypes.map((item) => (
           <StyledChip
-            key={item}
-            active={selectedContentType === item}
-            label={item}
-            onClick={() => setSelectedContentType(item)}
+            key={item.key}
+            active={selectedContentType === item.key}
+            label={item.label}
+            onClick={() => setSelectedContentType(item.key)}
           />
         ))}
       </ContentListBox>
@@ -46,14 +46,7 @@ const AnotherUserProfileTabs = ({ authorId }) => {
         ) : ContentList?.length === 0 ? (
           <NotAvailableBar>
             <CopyAllRoundedIcon sx={{ fontSize: 55 }} color="primary" />
-            <Typography
-              variant="h6"
-              component="div"
-              textAlign="center"
-              fontSize={17}
-              fontWeight={500}
-              color="secondary"
-            >
+            <Typography variant="h6" component="div" textAlign="center" fontSize={17} fontWeight={500} color="secondary">
               {t('anotherUserProfileTabs.noContentMessage', { contentType: selectedContentType })}
             </Typography>
           </NotAvailableBar>
@@ -79,7 +72,7 @@ const AnotherUserProfileTabs = ({ authorId }) => {
                 disabled={isFetching || isFetchingNextPage || !hasNextPage}
                 onChange={(inView, entry) => {
                   if (inView && hasNextPage) {
-                    fetchNextPage();
+                    fetchNextPage()
                   }
                 }}
               />
@@ -88,8 +81,8 @@ const AnotherUserProfileTabs = ({ authorId }) => {
         )}
       </Main>
     </Root>
-  );
-};
+  )
+}
 
 const StyledSkeleton = styled(Skeleton)`
   height: 238px;
@@ -101,7 +94,7 @@ const StyledSkeleton = styled(Skeleton)`
     max-width: 100%;
     height: 238px;
   }
-`;
+`
 
 const NotAvailableBar = styled.div`
   display: flex;
@@ -112,13 +105,13 @@ const NotAvailableBar = styled.div`
   height: 300px;
   max-width: 240px;
   align-self: center;
-`;
+`
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`;
+`
 
 const Main = styled.div`
   display: flex;
@@ -141,7 +134,7 @@ const Main = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 13px;
   }
-`;
+`
 
 const ContentListBox = styled.div`
   display: flex;
@@ -151,6 +144,6 @@ const ContentListBox = styled.div`
     justify-content: flex-end;
     margin-left: auto;
   }
-`;
+`
 
-export default AnotherUserProfileTabs;
+export default AnotherUserProfileTabs

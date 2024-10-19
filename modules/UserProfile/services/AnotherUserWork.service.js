@@ -15,14 +15,16 @@ const fetchOriginalWorkListAPI = async ({ pageParam = 1 }, { contentType, author
       lang: i18n.language,
     },
   })
-
   return await {
     data: res?.data?.data?.map(item => {
+      console.log(contentType)
+      console.log(item)
+      console.log(item?.[`${contentType}_name`])
       return {
         contentType,
         contentId: item?.id,
-        contentName: item?.[`${contentType}_name`],
-        slug: slugUtility.create(item?.[`${contentType}_name`]),
+        contentName: item?.[`${contentType?.toLowerCase()}_name`],
+        slug: slugUtility.create(item?.[`${contentType?.toLowerCase()}_name`]),
         authorName: item?.author_name,
         category: item?.category?.category,
         commentCount: item?.comment_count,
