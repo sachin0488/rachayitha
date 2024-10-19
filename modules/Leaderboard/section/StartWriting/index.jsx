@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useSpecificContestService } from 'modules/Contest/service/Schedule.service'
 
 function LaptopBanner() {
+  const { data: contestData } = useSpecificContestService()
+
   return (
     <Root>
       <Main>
@@ -12,7 +15,14 @@ function LaptopBanner() {
           <SubHeading>
             Nurture Your Talent,<span> Share Your Stories,</span> and Inspire Others
           </SubHeading>
-          <StyledButton>Start Writing</StyledButton>
+          <a
+            href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/workspace/${
+              contestData?.contest_type === 'book' ? 'novel' : 'poem'
+            }/create?contest_id=${contestData?.id}`}
+            target="_blank"
+            rel="noreferrer">
+            <StyledButton>Start Writing</StyledButton>
+          </a>
         </Content>
         <Image>
           <img src="./girlWithbook.png" alt="Girl with Book" />

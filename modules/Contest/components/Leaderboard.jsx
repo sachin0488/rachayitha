@@ -143,18 +143,18 @@ const TopContents = ({ list, contentType }) => {
       </Typography>
       <div className="content_list">
         {list?.slice(0, 2)?.map((item, index) => (
-          <Link key={item.id} href={`/${contentType}/${item?.id}/${item?.slug}`}>
+          <Link key={item.id} href={`/${contentType}/${item?.content_id}/${item?.slug}`}>
             <Card>
-              <CardImage src={item?.book_cover_img} />
+              <CardImage src={item?.content_cover_img} />
               <CardText>
                 <RatingWrapper>
                   <StarIcon>⭐</StarIcon>
-                  <Rating>{item?.book_rating?.rate_avg?.toFixed(1)}</Rating>
+                  <Rating>{item?.content_rating?.rate_avg?.toFixed(1)}</Rating>
                   <RatingText>Rating</RatingText>
                 </RatingWrapper>
-                <TitleText>{item?.book_name}</TitleText>
+                <TitleText>{item?.content_name}</TitleText>
                 <Author>by {item?.author_name}</Author>
-                <Description>“{item?.book_synopsis}”</Description>
+                <Description>“{item?.content_synopsis}”</Description>
               </CardText>
             </Card>
           </Link>
@@ -209,6 +209,7 @@ const Card = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  cursor: pointer;
 `
 
 const CardImage = styled.img`
@@ -304,11 +305,11 @@ const TopContributors = ({ list }) => {
             <Stats>
               <Stat>
                 <VisibilityRoundedIcon fontSize="small" />
-                <StatValue>{item?.book_view_count}</StatValue>
+                <StatValue>{item?.content_view_count}</StatValue>
               </Stat>
               <Stat>
                 <FavoriteRoundedIcon sx={{ color: '#FF5F5F' }} fontSize="small" />
-                <StatValue>{item?.book_like_count}</StatValue>
+                <StatValue>{item?.content_like_count}</StatValue>
               </Stat>
             </Stats>
           </ContributorCard>
@@ -346,6 +347,7 @@ const ContributorCard = styled.div`
   position: relative;
   height: 230px;
   width: 100%;
+  cursor: pointer;
 `
 
 const CrownIcon = styled.img`
