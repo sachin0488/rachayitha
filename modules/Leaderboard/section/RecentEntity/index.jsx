@@ -11,16 +11,6 @@ function RecentEntity() {
 
   const { data, refetch, isLoading, isFetching, isSuccess, isError } = useBookListService({ contentType: contestData?.contest_type })
 
-  const StoriesData = data?.data.map(item => ({
-    img: item?.book_cover_img,
-    category: item?.book_category[0]?.name,
-    name: item?.book_name,
-    author: item?.author_name,
-    likes: item?.book_like_count,
-    comments: item?.book_comment_count,
-    date: item?.book_publish_date,
-  }))
-
   return (
     <Root>
       <Main>
@@ -34,7 +24,7 @@ function RecentEntity() {
               {/* <span>Stories</span> */}
               {/* <View>View All</View> */}
             </Subheading>
-            <Stories data={StoriesData} isLoading={isLoading} />
+            <Stories data={data} isLoading={isLoading} />
           </StoriesSection>
           {/* <PoemSection>
             <Subheading>
