@@ -90,7 +90,7 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         disableOkButton
       />
 
-      <ContentName variant="h3" component="div">
+      <ContentName variant="h3" component="h1">
         {Data?.contentName}
       </ContentName>
 
@@ -107,8 +107,8 @@ const InfoArea = ({ contentType, contentId, slug }) => {
         <Link href={`/author/${Data?.authorId}`}>
           <a>
             <ButtonBase sx={{ width: 'fit-content', borderRadius: '6px', padding: '0px 5px ' }}>
-              <Author color="secondary">
-                {t('author')}: <b>{Data?.authorName}</b>
+              <Author color="secondary" component="p">
+                {t('author')}: <strong>{Data?.authorName}</strong>
               </Author>
             </ButtonBase>
           </a>

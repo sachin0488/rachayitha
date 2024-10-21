@@ -24,7 +24,7 @@ const TabArea = ({ contentType, slug, contentId }) => {
       </StyledTabs>
 
       <TabPanel value={value} index={0}>
-        <AboutTab tags={Data?.tags} synopsis={Data?.synopsis} />
+        <AboutTab tags={Data?.tags} synopsis={Data?.synopsis}  />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ChapterListTab chapterList={Data?.chapterList} contentId={contentId} contentType={contentType} slug={slug} />

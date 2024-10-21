@@ -69,6 +69,8 @@ const MyApp = props => {
                       <title>{`Rachayitha | India's own online book store`}</title>
                       <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                      <meta name="google-site-verification" content="CESgbg5tM4vKi2jI8PEGKWNEwFT8TRgShqzWY_eEuj4" />
+                      
                     </Head>
                     <Script
                       async

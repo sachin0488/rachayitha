@@ -12,7 +12,9 @@ const AboutTab = ({ tags, synopsis }) => {
       <Label variant="h6" component="div" color="secondary">
         {t('about_tab_synopsis')}
       </Label>
-      <Synopsis variant="subtitle2">{synopsis}</Synopsis>
+      <Synopsis variant="subtitle2" component="p">
+        {synopsis}
+      </Synopsis>
       <HashtagList>
         {tags?.map(name => (
           <Hashtag variant="subtitle2" key={name}>
