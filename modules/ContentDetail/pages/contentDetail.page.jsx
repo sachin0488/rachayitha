@@ -13,9 +13,9 @@ import RecommendationSection from 'modules/RecommendationSlider/sliders/Recommen
 import Head from 'next/head'
 import { useTranslation } from 'react-i18next'
 
-const ContentDetail = ({ contentType, contentId, slug }) => {
+const ContentDetail = ({ contentType, contentId, slug, serverData }) => {
   const { t } = useTranslation()
-  const { error, Data } = useContentDetailsService({ contentId: contentId, slug: slug, contentType })
+  const { error, Data } = useContentDetailsService({ contentId: contentId, slug: slug, contentType, serverData })
 
   if (error) return <div>{t('somethingWrong')}</div>
 

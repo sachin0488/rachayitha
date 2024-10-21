@@ -104,5 +104,6 @@ export const useContentDetailsService = ({ contentId, slug, contentType, serverD
     enabled: Boolean(contentId && slug && contentType),
     initialData: serverData,
   })
+  
   return { Data: data, isLoading, isError, error, isFetching }
 }
