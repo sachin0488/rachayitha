@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: false,
   i18n,
   swcMinify: true,
-   env: {
+  env: {
     NEXT_PUBLIC_SUPPORT_EMAIL: 'support@rachayitha.com',
     NEXT_PUBLIC_DASHBOARD_URL: 'https://editor.rachayitha.com/',
     NEXT_PUBLIC_TWITTER_LINK: 'https://x.com/Rachayitha_2024',
