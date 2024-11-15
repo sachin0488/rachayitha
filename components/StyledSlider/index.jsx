@@ -94,14 +94,14 @@ const Root = styled.div`
   padding-right: 30px;
   @media ${mobileM} {
     height: 100%;
-    min-height: 335px;
+    min-height: 300px;
 
     gap: 30px;
   }
 
   @media ${tablet} {
     height: 100%;
-    min-height: 426px;
+    min-height: 300px;
   }
 
   overflow-x: auto;
