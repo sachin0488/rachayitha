@@ -6,12 +6,18 @@ import SignInButton from './components/SignInButton'
 import SelectLanguage from './components/SelectLanguage'
 // import { mainMaxWidth } from 'modules/Landing/common/styles'
 import { useMediaQuery } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const Header = () => {
+  const { t } = useTranslation();
   const isMobile327sx = useMediaQuery('(max-width: 327px)')
 
   return (
-    <Root>
+    <>
+      <HiddenHeader variant="h1" component="h1">
+        {t('description')}-{t('indiasOwnPlatform')}
+      </HiddenHeader>
+      <Root>
       <LogoBox />
       <NavSection>
         <SelectLanguage />
@@ -19,6 +25,7 @@ const Header = () => {
         <SignInButton />
       </NavSection>
     </Root>
+    </>
   )
 }
 
@@ -59,6 +66,15 @@ const NavSection = styled.div`
     /* flex-direction: column; */
     /* align-items: flex-end; */
   }
+`
+
+const HiddenHeader = styled.h1`
+    position: absolute; 
+    left: -9999px; 
+    top: auto; 
+    width: 1px; 
+    height: 1px; 
+    overflow: hidden;
 `
 
 export default Header

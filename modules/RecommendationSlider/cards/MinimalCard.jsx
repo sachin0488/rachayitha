@@ -27,22 +27,25 @@ const MinimalCard = ({ item, queryKey, contentType }) => {
         <Image alt="Cover Image" src={item?.coverImage && item?.coverImage.includes('http') ? item?.coverImage : '/alt-img.svg'} />
 
         <InfoSection>
-          <InfoLeft>
-            <TitleName variant="h6" component="div" noWrap>
+          <InfoTop>
+            <TitleName component="div">
               {item?.contentName}
             </TitleName>
+          </InfoTop>
 
+          <InfoBottom>
+            <InfoLeft>
             <CategoryName variant="subtitle2" noWrap>
               {item?.category?.map(({ name }) => name).join(', ') || 'N/A'}
             </CategoryName>
-          </InfoLeft>
-
-          <InfoRight>
+            </InfoLeft>
+            <InfoRight>
             <Rating variant="subtitle2" color="secondary">
               {item?.avgRatingValue ? parseFloat(item?.avgRatingValue).toFixed(1) : 0}
               <StarRateRoundedIcon sx={{ fontSize: 21, color: theme => theme.palette.primary.light }} />
             </Rating>
-          </InfoRight>
+            </InfoRight>
+          </InfoBottom>
         </InfoSection>
       </Main>
       <Link href={`/${contentType}/${item.contentId}/${item?.slug}`}>
@@ -72,7 +75,7 @@ const Root = styled.div`
     box-shadow: 5px 4px 25px 0px ${({ theme }) => theme.palette.primary.shadowLevel02};
     transform: scale(1.02);
   }
-  min-width: 260px;
+  min-width: 150px;
   max-width: 312.75px;
 `
 
@@ -95,7 +98,7 @@ const Main = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 285px;
+  height: 150px;
   object-fit: cover;
   border-radius: 10px;
 `
@@ -104,6 +107,18 @@ const InfoSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+`
+
+const InfoTop = styled.div`
+  display: flex;
+`
+
+const InfoBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5rem;
 `
 
 const InfoLeft = styled.div`
@@ -121,9 +136,16 @@ const InfoRight = styled.div`
 `
 
 const TitleName = styled(Typography)`
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.palette.secondary.main};
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2em;
+  max-height: calc(2 * 1.2em);
 `
 
 const CategoryName = styled(Typography)`
@@ -134,7 +156,7 @@ const CategoryName = styled(Typography)`
 
 const Rating = styled(Typography)`
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   line-height: 1.2;

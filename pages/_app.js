@@ -26,6 +26,7 @@ import CookiesAlert from 'components/CookiesAlert'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import nextI18NextConfig from '../next-i18next.config.js'
 import { appWithTranslation } from 'next-i18next'
+import { useTranslation } from 'react-i18next'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -54,6 +55,7 @@ const emptyInitialI18NextConfig = {
 
 const MyApp = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  const { t } = useTranslation()
 
   return (
     <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
@@ -67,9 +69,27 @@ const MyApp = props => {
                   <Layout>
                     <Head>
                       <title>{`Rachayitha | India's own online book store`}</title>
+                      <link rel="canonical" href="https://www.rachayitha.com/" />
+                      <link rel="alternate" hreflang="hi-IN" href="https://www.rachayitha.com/hi-IN" />
+                      <link rel="alternate" hreflang="en" href="https://www.rachayitha.com" />
                       <meta name="description" content="Expand your Vision of Literature and Poem Here" />
                       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                       <meta name="google-site-verification" content="CESgbg5tM4vKi2jI8PEGKWNEwFT8TRgShqzWY_eEuj4" />
+
+                      <meta property="og:type" content="website" />
+                      <meta property="og:url" content="https://www.rachayitha.com/" />
+                      <meta property="og:title" content={t('Rachayitha')} />
+                      <meta property="og:description" content={t('description')} />
+                      <meta property="og:image" content={'rachayitha_logo_500.svg'} />
+                      <meta property="og:site_name" content={t('Rachayitha')} />
+                      <meta property="og:title" content={t('Rachayitha')} />
+
+                      <meta property="twitter:card" content="summary_large_image" />
+                      <meta property="twitter:url" content={`https://www.rachayitha.com`} />
+                      <meta property="twitter:title" content={t('Rachayitha')} />
+                      <meta property="twitter:description" content={t('description')} />
+                      <meta property="twitter:image" content={'rachayitha_logo_500.svg'} />
+                      <meta property="twitter:site" content={process.env.NEXT_PUBLIC_TWITTER_LINK} />
                     </Head>
                     <Script
                       async
